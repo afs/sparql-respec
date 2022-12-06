@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>SPARQL 1.2 Query</title>
+
+    <script src="https://www.w3.org/Tools/respec/respec-w3c" class="remove" defer>
+    </script>
+    <script class="remove">
+      // All config options at https://respec.org/docs/
+      var respecConfig = {
+        specStatus: "unofficial",
+        editors: [{ name: "Andy Seaborne", url: "https://www.linkedin.com/in/andyseaborne/"}],
+        github: "some-org/mySpec",
+        shortName: "sparql-12",
+        xref: "web-platform",
+        group: "rdf-star"
+      };
+    </script>
+
+    <style type="text/css">
+  @import url("local.css");
+
+  code           { font-family: monospace; }
+
+  div.constraint,
+  div.issue,
+  div.note,
+  div.notice     { margin-left: 2em; }
+
+  ol.enumar      { list-style-type: decimal; }
+  ol.enumla      { list-style-type: lower-alpha; }
+  ol.enumlr      { list-style-type: lower-roman; }
+  ol.enumua      { list-style-type: upper-alpha; }
+  ol.enumur      { list-style-type: upper-roman; }
+
+
+  div.exampleInner pre { margin-left: 1em;
+                       margin-top: 0em; margin-bottom: 0em}
+  div.exampleOuter {border: 4px double gray;
+                  margin: 0em; padding: 0em}
+  div.exampleInner { background-color: #d5dee3;
+                   border-top-width: 4px;
+                   border-top-style: double;
+                   border-top-color: #d3d3d3;
+                   border-bottom-width: 4px;
+                   border-bottom-style: double;
+                   border-bottom-color: #d3d3d3;
+                   padding: 4px; margin: 0em }
+  div.exampleWrapper { margin: 4px }
+  div.exampleHeader { font-weight: bold;
+                    margin: 4px}
+
+  em.rfc2119 { text-transform: lowercase;
+             font-variant: small-caps;
+             font-style: normal; }
+    </style>
+  </head>
+  <body>
+    <!--<h1 id="title">SPARQL 1.2 <i>Conversion</i></h1>-->
+    <section id="abstract">
+      <h2>Abstract</h2>
+      <p>SPARQL 1.2 (<a href="">SPARQL 1.1 Query</a> converted to ReSpec).</p>
+      <aside class="note" title="A useful note">
+        <p><a href="https://www.w3.org/TR/sparql11-query/">SPARQL 1.1 Query</a> converted to <a href="https://respec.org/">ReSpec</a>.
+      </aside>
+
+      <p>
+        RDF is a directed, labeled graph data format for representing information in the
+        Web. This specification defines the syntax and semantics of the SPARQL query language for
+        RDF. SPARQL can be used to express queries across diverse data sources, whether the data is
+        stored natively as RDF or viewed as RDF via middleware. SPARQL contains capabilities for
+        querying required and optional graph patterns along with their conjunctions and
+        disjunctions. SPARQL also supports aggregation, subqueries, negation, creating values by
+        expressions, extensible value testing, and constraining queries by source RDF graph. The results
+        of SPARQL queries can be result sets or RDF graphs.
+      </p>
+    </section>
+
+    <section id="sotd" class="introductory">
+      <h2 id="status-of-this-document">Status of This Document
+        <a class="self-link" href="#sotd" aria-label="Permalink for Section"></a></h2>
+      <p>
+        This specification is published by the
+        <a href="https://www.w3.org/groups/wg/rdf-star">RDF Star Working Group</a> as part of the
+        update of specifications for format and errata.
+      </p>
+    </section>
+
+    <!-- @@ -->
+

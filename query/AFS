@@ -1,0 +1,97 @@
+Reintroduce the initial material.
+
+==== Process
+
+tidy -i -q -utf8 -ashtml -w 200 < query-tr.html > q.html
+
+Extract content.html - first class="div1" to end, minus last lines.
+
+** Fix
+18.4 Property Path Patterns
+Replace <div class="pre"> with <pre>
+(no other uses in doc)
+
+Empty <a ... ></a>
+
+** Fix: 16.2.1 "Templates with Blank Nodes"
+Remove extra "<a id="
+<h4><a name="templatesWithBNodes" id="templatesWithBNodes"></a>16.2.1 <a id="tempatesWithBNodes"></a>Templates with Blank Nodes</h4>
+
+
+
+** Fix: 1.2.3 "Result Descriptions"
+<a name="table39" id="table39"></a>
+Comment out line
+
+and other /name="table/
+
+Coudl be <div ...></div>
+
+** Fix:
+17.2 Filter Evaluation
+<!-- <a name="truthTable" id="truthTable"></a> -->
+
+** Fix:
+Just before:
+17.3.1 Operator Extensibility
+
+Extra </a>
+Change <a ...></a> to <div ...></div
+
+**** **** 18.5.1 has become 19
+After 18.4 Property Path Patterns
+Extra </div>
+
+** Fix
+19.1.4 Avg
+No need for <a..></a> Comment out.
+
+** Fix
+Section A, A.1, A.2
+
+** Fix:
+s/tempate/template/ at end 17.4.2.9 BNODE
+
+** Fix:
+Check link before "Operator Extensibility"
+effective boolean value
+
+-------------
+  <script type="text/javascript" async src="query-tr_files/matomo.js"></script>
+  <script type="application/javascript" src="query-tr_files/fixup.js"></script>
+
+
+-------------
+
+<div class="div1" - has h2
+<div class="div2" - has h3
+<div class="div3" - has h4
+
+<div class="queryGroup
+
+algExample
+algExample1
+algExample2
+back
+body
+defn
+
+</div> at same level? "div class" inside?
+div1
+div2
+div3
+div4
+div5
+
+exampleGroup
+grammarExtract
+grammarTable
+head
+mime
+note
+queryGroup
+result
+result add
+result untested
+toc
+wgNote

@@ -1,0 +1,65 @@
+#!/usr/bin/perl
+
+
+@stackIndent = ();
+@stackDepth = ();
+@divDepth = ();
+
+$endDivLevel = 0 ;
+$divs = 0;
+
+
+while(<>) {
+
+    if ( /class="div(\d)"/ ) {
+	
+	$depth = $1;
+	$indent = ' ' x (2+2*$depth);
+
+	push @stackIndent,$indent;
+	push @stackDepth,$depth;
+
+	$divs++;
+	push @divDepth,$divs;
+
+	$endDivLevel = $divs;
+
+	## Advance.
+	$_ = <>;
+	if ( m!<h\d><a[^>]*(id=".*")[^>]*></a>! )
+	{
+	    $id = $1;
+	    #print "ID=$id\n";
+	    if ( $id == "" ) {
+		print $indent,"<section $id>","\n";
+	    } else {
+		print $indent,"<section>","\n";	
+	    }
+	    s!<a[^>]*></a>(\d+|A)(\.\d+)* !!;
+	    print;
+	}
+	
+	next;
+    }
+
+    if ( /<div/ ) {
+	$divs++;
+	## go on.
+    }
+
+    if ( m!</div>! ) {
+	if ( $divs == $endDivLevel ) {
+	    pop @divDepth;
+	    $endDivLevel = @divDepth[-1];
+	    $depth = pop @stackDepth;
+	    $indent = pop @stackIndent;
+	    print $indent,"</section>","\n";
+	    $divs--;
+	    next;
+	}
+	$divs--;
+    }
+    
+    print $_;
+}
+
