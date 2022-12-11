@@ -1,0 +1,52 @@
+3189c3189
+<           <h4><a name="templatesWithBNodes" id="templatesWithBNodes"></a>16.2.1 <a id="tempatesWithBNodes"></a>Templates with Blank Nodes</h4>
+---
+>           <h4><a name="templatesWithBNodes" id="templatesWithBNodes"></a>16.2.1 Templates with Blank Nodes</h4>
+4817c4817
+<             <p>This functionality is compatible with the <a href="#tempatesWithBNodes">treatment of blank nodes in SPARQL CONSTRUCT templates</a>.</p>
+---
+>             <p>This functionality is compatible with the <a href="#templatesWithBNodes">treatment of blank nodes in SPARQL CONSTRUCT templates</a>.</p>
+7235,7237c7235
+<           <div class="pre">
+<             Var(x<sub>1</sub>, x<sub>2</sub>, ..., x<sub>n</sub>) = { x<sub>i</sub> | i in 1...n and x<sub>i</sub> is a variable }
+<           </div>
+---
+>           <pre>Var(x<sub>1</sub>, x<sub>2</sub>, ..., x<sub>n</sub>) = { x<sub>i</sub> | i in 1...n and x<sub>i</sub> is a variable }</pre>
+7263,7265c7261
+<             <div class="pre">
+<               eval(Path(X, link(iri), Y)) = <a href="#BasicGraphPattern">evaluation of basic graph pattern</a> {X iri Y}
+<             </div>
+---
+>             <pre>eval(Path(X, link(iri), Y)) = <a href="#BasicGraphPattern">evaluation of basic graph pattern</a> {X iri Y}</pre>
+7269,7271c7265
+<         <div class="pre">
+<           eval(Path(X:var, link(iri), Y:var)) = { (X, xn) (Y, yn) | xn and yn are RDF terms and triple (xn iri yn) is in the active graph }
+<         </div>
+---
+>         <pre>eval(Path(X:var, link(iri), Y:var)) = { (X, xn) (Y, yn) | xn and yn are RDF terms and triple (xn iri yn) is in the active graph }</pre>
+7273,7275c7267
+<         <div class="pre">
+<           eval(Path(X:var, link(iri), Y:term)) = { (X, xn) | xn is an RDF term and triple (xn iri Y) is in the active graph }
+<         </div>
+---
+>         <pre>eval(Path(X:var, link(iri), Y:term)) = { (X, xn) | xn is an RDF term and triple (xn iri Y) is in the active graph }</pre>
+7277,7279c7269
+<         <div class="pre">
+<           eval(Path(X:term, link(iri), Y:var)) = { (Y, yn) | yn is an RDF term and triple (X iri yn) is in the active graph }
+<         </div>
+---
+>         <pre>eval(Path(X:term, link(iri), Y:var)) = { (Y, yn) | yn is an RDF term and triple (X iri yn) is in the active graph }</pre>
+7281,7284c7271,7272
+<         <div class="pre">
+<           eval(Path(X:term, link(iri), Y:term)) = { μ<sub>0</sub> } if triple (X iri Y) is in the active graph = { { } } = Ω<sub>0</sub> eval(Path(X:term, link(iri), Y:term)) = { } if triple (X iri
+<           Y) is not in the active graph
+<         </div>
+---
+>         <pre>eval(Path(X:term, link(iri), Y:term)) = { μ<sub>0</sub> } if triple (X iri Y) is in the active graph = { { } } = Ω<sub>0</sub> eval(Path(X:term, link(iri), Y:term)) = { } if triple (X iri
+>           Y) is not in the active graph</pre>
+7319c7307
+<           <p><b>Definition: <a id="defn_evalPP_ZeroOrOnePath">Evaluation of ZeroOrOnePath</a></b></p>
+---
+>           <p><b>Definition: <a id="defn_evalPP_ZeroOrOnePath" name="defn_evalPP_ZeroOrOnePath">Evaluation of ZeroOrOnePath</a></b></p>
+7407d7394
+<         </div>

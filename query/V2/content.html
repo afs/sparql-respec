@@ -85,7 +85,7 @@
           <h4><a name="docResultDesc" id="docResultDesc"></a>1.2.3 Result Descriptions</h4>
           <p>Result sets are illustrated in tabular form.</p>
           <div class="result">
-            <a name="table39" id="table39"></a>
+            <!--<a name="table39" id="table39"></a>-->
             <table class="resultTable">
               <tbody>
                 <tr>
@@ -156,7 +156,7 @@ WHERE
             <p>This query, on the data above, has one solution:</p>
             <p>Query Result:</p>
             <div class="result">
-              <a name="table109" id="table109"></a>
+              <!-- <a name="table109" id="table109"></a> -->
               <table class="resultTable">
                 <tbody>
                   <tr>
@@ -280,7 +280,7 @@ WHERE
             <pre class="query">SELECT ?v WHERE { ?v ?p 42 }
 </pre>
             <div class="result">
-              <a name="table60" id="table60"></a>
+              <!-- <a name="table60" id="table60"></a> -->
               <table class="resultTable">
                 <tbody>
                   <tr>
@@ -303,7 +303,7 @@ WHERE
             <pre class="query">SELECT ?v WHERE { ?v ?p "abc"^^&lt;http://example.org/datatype#specialDatatype&gt; }
 </pre>
             <div class="result">
-              <a name="table61" id="table61"></a>
+              <!-- <a name="table61" id="table61"></a> -->
               <table class="resultTable">
                 <tbody>
                   <tr>
@@ -338,7 +338,7 @@ SELECT ?x ?name
 WHERE  { ?x foaf:name ?name }
 </pre>
             <div class="result">
-              <a name="table56" id="table56"></a>
+              <!-- <a name="table56" id="table56"></a> -->
               <table class="resultTable">
                 <tbody>
                   <tr>
@@ -360,7 +360,7 @@ WHERE  { ?x foaf:name ?name }
           <p>The results above could equally be given with different blank node labels because the labels in the results only indicate whether RDF terms in the solutions are the same or
           different.</p>
           <div class="result untested">
-            <a name="table57" id="table57"></a>
+            <!-- <a name="table57" id="table57"></a> -->
             <table class="resultTable">
               <tbody>
                 <tr>
@@ -407,7 +407,7 @@ WHERE  {
    BIND(CONCAT(?G, " ", ?S) AS ?name)
 }</pre>
             <div class="result">
-              <a name="table59" id="table59"></a>
+              <!-- <a name="table59" id="table59"></a> -->
               <table class="resultTable">
                 <tbody>
                   <tr>
@@ -499,7 +499,7 @@ WHERE   { ?x dc:title ?title
 </pre>
           <p>Query Result:</p>
           <div class="result">
-            <a name="table63" id="table63"></a>
+            <!-- <a name="table63" id="table63"></a> -->
             <table class="resultTable">
               <tbody>
                 <tr>
@@ -523,7 +523,7 @@ WHERE   { ?x dc:title ?title
 </pre>
           <p>Query Result:</p>
           <div class="result">
-            <a name="table64" id="table64"></a>
+            <!-- <a name="table64" id="table64"></a> -->
             <table class="resultTable">
               <tbody>
                 <tr>
@@ -552,7 +552,7 @@ WHERE   { ?x ns:price ?price .
           ?x dc:title ?title . }</pre>
           <p>Query Result:</p>
           <div class="result">
-            <a name="table58" id="table58"></a>
+            <!-- <a name="table58" id="table58"></a> -->
             <table class="resultTable">
               <tbody>
                 <tr>
@@ -981,7 +981,7 @@ WHERE  { ?x foaf:name  ?name .
 </pre>
             <p>With the data above, the query result is:</p>
             <div class="result">
-              <a name="table92" id="table92"></a>
+              <!-- <a name="table92" id="table92"></a> -->
               <table class="resultTable">
                 <tbody>
                   <tr>
@@ -1032,7 +1032,7 @@ WHERE   { ?x dc:title ?title .
         }
 </pre>
             <div class="result">
-              <a name="table93" id="table93"></a>
+              <!-- <a name="table93" id="table93"></a> -->
               <table class="resultTable">
                 <tbody>
                   <tr>
@@ -1079,7 +1079,7 @@ WHERE  { ?x foaf:name  ?name .
 </pre>
             <p>Query result:</p>
             <div class="result">
-              <a name="table94" id="table94"></a>
+              <!-- <a name="table94" id="table94"></a> -->
               <table class="resultTable">
                 <tbody>
                   <tr>
@@ -1133,7 +1133,7 @@ WHERE  { { ?book dc10:title  ?title } UNION { ?book dc11:title  ?title } }
 </pre>
           <p>Query result:</p>
           <div class="result">
-            <a name="table97" id="table97"></a>
+            <!-- <a name="table97" id="table97"></a> -->
             <table class="resultTable">
               <tbody>
                 <tr>
@@ -1165,7 +1165,7 @@ SELECT ?x ?y
 WHERE  { { ?book dc10:title ?x } UNION { ?book dc11:title  ?y } }
 </pre>
           <div class="result">
-            <a name="table98" id="table98"></a>
+            <!-- <a name="table98" id="table98"></a> -->
             <table class="resultTable">
               <tbody>
                 <tr>
@@ -1206,7 +1206,7 @@ WHERE  { { ?book dc10:title ?title .  ?book dc10:creator ?author }
        }
 </pre>
           <div class="result">
-            <a name="table99" id="table99"></a>
+            <!-- <a name="table99" id="table99"></a> -->
             <table class="resultTable">
               <tbody>
                 <tr>
@@ -1898,7 +1898,7 @@ SELECT ?book ?title ?price
 }</pre>
             <p>Result:</p>
             <div class="result">
-              <a name="table110" id="table110"></a>
+              <!-- <a name="table110" id="table110"></a> -->
               <table class="resultTable">
                 <tbody>
                   <tr>
@@ -1930,7 +1930,7 @@ SELECT ?book ?title ?price
    }
 }</pre>
           <div class="result">
-            <a name="table111" id="table111"></a>
+            <!-- <a name="table111" id="table111"></a> -->
             <table class="resultTable">
               <tbody>
                 <tr>
@@ -2316,7 +2316,7 @@ FROM    &lt;http://example.org/foaf/aliceFoaf&gt;
 WHERE   { ?x foaf:name ?name }
 </pre>
               <div class="result">
-                <a name="table102" id="table102"></a>
+                <!-- <a name="table102" id="table102"></a> -->
                 <table class="resultTable">
                   <tbody>
                     <tr>
@@ -2460,7 +2460,7 @@ WHERE
 </pre>
             <p>The query result gives the name of the graphs where the information was found and the value for Bob's nick:</p>
             <div class="result">
-              <a name="table105" id="table105"></a>
+              <!-- <a name="table105" id="table105"></a> -->
               <table class="resultTable">
                 <tbody>
                   <tr>
@@ -2500,7 +2500,7 @@ WHERE
 </pre>
             <p>which yields a single solution:</p>
             <div class="result">
-              <a name="table106" id="table106"></a>
+              <!-- <a name="table106" id="table106"></a> -->
               <table class="resultTable">
                 <tbody>
                   <tr>
@@ -2547,7 +2547,7 @@ WHERE
 }
 </pre>
             <div class="result">
-              <a name="table107" id="table107"></a>
+              <!-- <a name="table107" id="table107"></a> -->
               <table class="resultTable">
                 <tbody>
                   <tr>
@@ -2619,7 +2619,7 @@ WHERE
 </pre>
               <p>The results show that the email address for "Bob" has changed.</p>
               <div class="result">
-                <a name="table108" id="table108"></a>
+                <!-- <a name="table108" id="table108"></a> -->
                 <table class="resultTable">
                   <tbody>
                     <tr>
@@ -2992,7 +2992,7 @@ WHERE
     OPTIONAL { ?y foaf:nick ?nickY }
   }</pre>
               <div class="result">
-                <a name="table33" id="table33"></a>
+                <!-- <a name="table33" id="table33"></a> -->
                 <table class="resultTable">
                   <tbody>
                     <tr>
@@ -3540,7 +3540,8 @@ WHERE { ?annot  a:annotates  &lt;http://www.w3.org/TR/rdf-sparql-query/&gt; .
           <li>A <a href="#func-logical-or">logical-or</a> or <a href="#func-logical-and">logical-and</a> that encounters errors on both branches will produce <em>either</em> of the errors.</li>
         </ul>
         <p>The logical-and and logical-or truth table for true (<span class="truth">T</span>), false (<span class="truth">F</span>), and error (<span class="truth error">E</span>) is as
-        follows:</p><a name="truthTable" id="truthTable"></a>
+        follows:</p>
+        <!-- <a name="truthTable" id="truthTable"></a> -->
         <table class="truthTable">
           <thead>
             <tr>
@@ -4011,9 +4012,9 @@ WHERE { ?annot  a:annotates  &lt;http://www.w3.org/TR/rdf-sparql-query/&gt; .
             </tr>
           </tbody>
         </table>
-        <p><a id="ebv-arg" name="ebv-arg"></a>xsd:boolean function arguments marked with "(EBV)" are coerced to xsd:boolean by evaluating the <a href="#ebv">effective boolean value of that
-        argument.</a></p>
-        <div class="div3">
+        <p><div id="ebv-arg" name="ebv-arg"></div>xsd:boolean function arguments marked with "(EBV)" are coerced to xsd:boolean by evaluating the <a href="#ebv">effective boolean value</a> of
+          that argument.</p>
+	      <div class="div3">
           <h4><a name="operatorExtensibility" id="operatorExtensibility"></a>17.3.1 Operator Extensibility</h4>
           <p>SPARQL language extensions may provide additional associations between operators and operator functions; this amounts to adding rows to the table above. No additional operator may yield
           a result that replaces any result other than a type error in the semantics defined above. The consequence of this rule is that SPARQL <code>FILTER</code>s will produce <em>at least</em> the
@@ -7270,6 +7271,7 @@ The set PV is used later for projection.
         <p>If both X and Y are RDF terms:</p>
         <pre>eval(Path(X:term, link(iri), Y:term)) = { μ<sub>0</sub> } if triple (X iri Y) is in the active graph = { { } } = Ω<sub>0</sub> eval(Path(X:term, link(iri), Y:term)) = { } if triple (X iri
           Y) is not in the active graph</pre>
+        </div>
         <p>Informally, evaluating a Predicate Property Path is the same as executing a subquery <code>SELECT * { <i>X P Y</i> }</code> at that point in the query evaluation.</p>
         <div class="defn">
           <p><b>Definition: <a name="defn_evalPP_inverse" id="defn_evalPP_inverse">Evaluation of Inverse Property Path</a></b></p>
@@ -7392,7 +7394,8 @@ eval(Path(x:term, OneOrMorePath(path), y:term)) =
 
 eval(Path(x, NPS(S), y)) = { μ | ∃ triple(μ'(μ,x), p, μ'(μ,y)) in G, such that the IRI of p ∉ S }
         </pre>
-      </div>
+        </div>
+
       <div class="div2">
         <h3><a name="sparqlAlgebra" id="sparqlAlgebra"></a>18.5 SPARQL Algebra</h3>
         <p>For each remaining symbol in a SPARQL abstract query, we define an operator for evaluation. The SPARQL algebra operators of the same name are used to evaluate SPARQL abstract query nodes
@@ -7641,7 +7644,7 @@ eval(Path(x, NPS(S), y)) = { μ | ∃ triple(μ'(μ,x), p, μ'(μ,y)) in G, such
           </div>
           <div class="div4">
             <h5><a name="defn_aggAvg" id="defn_aggAvg"></a>18.5.1.4 Avg</h5>
-            <p><a name="defn_algAvg" id="defn_algAvg"></a>The Avg set function calculates the average value for an expression over a group. It is defined in terms of Sum and Count.</p>
+            <p><!-- <a name="defn_algAvg" id="defn_algAvg"></a> -->The Avg set function calculates the average value for an expression over a group. It is defined in terms of Sum and Count.</p>
             <div class="defn">
               <p><b>Definition: Avg</b></p>numeric Avg(multiset M)
               <p>Avg(M) = "0"^^xsd:integer, where Count(M) = 0</p>
@@ -7904,7 +7907,8 @@ _:x rdf:type xsd:decimal .</pre>
       <div class="div2">
         <h3><a name="codepointEscape" id="codepointEscape"></a>19.2 Codepoint Escape Sequences</h3>
         <p>A SPARQL Query String is processed for codepoint escape sequences before parsing by the grammar defined in EBNF below. The codepoint escape sequences for a SPARQL query string
-        are:</p><a name="table68" id="table68"></a>
+        are:</p>
+        <!-- <a name="table68" id="table68"></a> -->
         <table summary="Codepoint escapes">
           <colgroup span="1">
             <col width="40%" span="1">

@@ -1,3 +1,376 @@
+<!--?xml version="1.0" encoding="UTF-8"?-->
+<html lang="EN">
+<head>
+  <meta name="generator" content="HTML Tidy for HTML5 for Linux version 5.6.0">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>SPARQL 1.1 Query Language</title>
+  <style type="text/css">
+  @import url("local.css");
+
+  code           { font-family: monospace; }
+
+  div.constraint,
+  div.issue,
+  div.note,
+  div.notice     { margin-left: 2em; }
+
+  ol.enumar      { list-style-type: decimal; }
+  ol.enumla      { list-style-type: lower-alpha; }
+  ol.enumlr      { list-style-type: lower-roman; }
+  ol.enumua      { list-style-type: upper-alpha; }
+  ol.enumur      { list-style-type: upper-roman; }
+
+
+  div.exampleInner pre { margin-left: 1em;
+                       margin-top: 0em; margin-bottom: 0em}
+  div.exampleOuter {border: 4px double gray;
+                  margin: 0em; padding: 0em}
+  div.exampleInner { background-color: #d5dee3;
+                   border-top-width: 4px;
+                   border-top-style: double;
+                   border-top-color: #d3d3d3;
+                   border-bottom-width: 4px;
+                   border-bottom-style: double;
+                   border-bottom-color: #d3d3d3;
+                   padding: 4px; margin: 0em }
+  div.exampleWrapper { margin: 4px }
+  div.exampleHeader { font-weight: bold;
+                    margin: 4px}
+
+  em.rfc2119 { text-transform: lowercase;
+             font-variant: small-caps;
+             font-style: normal; }
+  </style>
+  <link rel="stylesheet" type="text/css" href="http://www.w3.org/StyleSheets/TR/W3C-REC.css">
+</head>
+<body>
+  <div class="head">
+    <p><a href="http://www.w3.org/"><img src="SPARQL%201.1%20Query%20Language_files/w3c_home.svg" alt="W3C" width="72" height="48"></a></p>
+    <h1><a name="title" id="title"></a>SPARQL 1.1 Query Language</h1>
+    <h2><a name="w3c-doctype" id="w3c-doctype"></a>W3C Recommendation 21 March 2013</h2>
+    <dl>
+      <dt>This version:</dt>
+      <dd><a href="http://www.w3.org/TR/2013/REC-sparql11-query-20130321/">http://www.w3.org/TR/2013/REC-sparql11-query-20130321/</a></dd>
+      <dt>Latest version:</dt>
+      <dd><a href="http://www.w3.org/TR/sparql11-query/">http://www.w3.org/TR/sparql11-query/</a></dd>
+      <dt>Previous version:</dt>
+      <dd><a href="http://www.w3.org/TR/2012/PR-sparql11-query-20121108/">http://www.w3.org/TR/2012/PR-sparql11-query-20121108/</a></dd>
+      <dt>Editors:</dt>
+      <dd>Steve Harris, Garlik, a part of Experian</dd>
+      <dd>Andy Seaborne, The Apache Software Foundation</dd>
+      <dt>Previous Editor:</dt>
+      <dd>Eric Prud'hommeaux, W3C</dd>
+    </dl>
+    <p>Please refer to the <a href="http://www.w3.org/2013/sparql-errata#sparql11-query"><strong>errata</strong></a> for this document, which may include some normative corrections.</p>
+    <p>See also <a href="http://www.w3.org/2003/03/Translations/byTechnology?technology=sparql11-query"><strong>translations</strong></a>.</p>
+    <p class="copyright"><a href="http://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Copyright</a>&nbsp;©&nbsp;2013&nbsp;<a href="http://www.w3.org/"><acronym title=
+    "World Wide Web Consortium">W3C</acronym></a><sup>®</sup> (<a href="http://www.csail.mit.edu/"><acronym title="Massachusetts Institute of Technology">MIT</acronym></a>, <a href=
+    "http://www.ercim.eu/"><acronym title="European Research Consortium for Informatics and Mathematics">ERCIM</acronym></a>, <a href="http://www.keio.ac.jp/">Keio</a>, <a href=
+    "http://ev.buaa.edu.cn/">Beihang</a>), All Rights Reserved. W3C <a href="http://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer">liability</a>, <a href=
+    "http://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks">trademark</a> and <a href="http://www.w3.org/Consortium/Legal/copyright-documents">document use</a> rules apply.</p>
+  </div>
+  <hr>
+  <div>
+    <h2><a name="abstract" id="abstract"></a>Abstract</h2>
+    <p>RDF is a directed, labeled graph data format for representing information in the Web. This specification defines the syntax and semantics of the SPARQL query language for RDF. SPARQL can be
+    used to express queries across diverse data sources, whether the data is stored natively as RDF or viewed as RDF via middleware. SPARQL contains capabilities for querying required and optional
+    graph patterns along with their conjunctions and disjunctions. SPARQL also supports aggregation, subqueries, negation, creating values by expressions, extensible value testing, and constraining
+    queries by source RDF graph. The results of SPARQL queries can be result sets or RDF graphs.</p>
+  </div>
+  <div>
+    <h2><a name="status" id="status"></a>Status of This Document</h2>
+    <h4 id="may-be">May Be Superseded</h4>
+    <p><em>This section describes the status of this document at the time of its publication. Other documents may supersede this document. A list of current W3C publications and the latest revision
+    of this technical report can be found in the <a href="http://www.w3.org/TR/">W3C technical reports index</a> at http://www.w3.org/TR/.</em></p>
+    <h4 id="related">Set of Documents</h4>
+    <p>This document is one of eleven SPARQL 1.1 Recommendations produced by the <a href="http://www.w3.org/2001/sw/DataAccess/">SPARQL Working Group</a>:</p>
+    <ol>
+      <li><a href="http://www.w3.org/TR/2013/REC-sparql11-overview-20130321">SPARQL 1.1 Overview</a></li>
+      <li><a href="http://www.w3.org/TR/2013/REC-sparql11-query-20130321">SPARQL 1.1 Query Language</a> (this document)</li>
+      <li><a href="http://www.w3.org/TR/2013/REC-sparql11-update-20130321">SPARQL 1.1 Update</a></li>
+      <li><a href="http://www.w3.org/TR/2013/REC-sparql11-service-description-20130321">SPARQL1.1 Service Description</a></li>
+      <li><a href="http://www.w3.org/TR/2013/REC-sparql11-federated-query-20130321">SPARQL 1.1 Federated Query</a></li>
+      <li><a href="http://www.w3.org/TR/2013/REC-sparql11-results-json-20130321">SPARQL 1.1 Query Results JSON Format</a></li>
+      <li><a href="http://www.w3.org/TR/2013/REC-sparql11-results-csv-tsv-20130321">SPARQL 1.1 Query Results CSV and TSV Formats</a></li>
+      <li><a href="http://www.w3.org/TR/2013/REC-rdf-sparql-XMLres-20130321">SPARQL Query Results XML Format (Second Edition)</a></li>
+      <li><a href="http://www.w3.org/TR/2013/REC-sparql11-entailment-20130321">SPARQL 1.1 Entailment Regimes</a></li>
+      <li><a href="http://www.w3.org/TR/2013/REC-sparql11-protocol-20130321">SPARQL 1.1 Protocol</a></li>
+      <li><a href="http://www.w3.org/TR/2013/REC-sparql11-http-rdf-update-20130321">SPARQL 1.1 Graph Store HTTP Protocol</a></li>
+    </ol>
+    <h4 class="no-toc no-num" id="status-changes">No Substantive Changes</h4>
+    <p>There have been no substantive changes to this document since the <a href="http://www.w3.org/TR/2012/PR-sparql11-query-20121108/">previous version</a>. Minor editorial changes, if any, are
+    detailed in the <a href="#changes-since-pr">change log</a> and visible in the <a href="https://www.w3.org/TR/sparql11-query/diff">color-coded diff</a>.</p>
+    <h4 class="no-toc no-num" id="please">Please Send Comments</h4>
+    <p>Please send any comments to <a class="mailto" href="mailto:public-rdf-dawg-comments@w3.org">public-rdf-dawg-comments@w3.org</a> (<a class="http" href=
+    "http://lists.w3.org/Archives/Public/public-rdf-dawg-comments/">public archive</a>). Although work on this document by the <a href="http://www.w3.org/2009/sparql/">SPARQL Working Group</a> is
+    complete, comments may be addressed in the <a href="http://www.w3.org/2013/sparql-errata">errata</a> or in future revisions. Open discussion is welcome at <a class="mailto" href=
+    "mailto:public-sparql-dev@w3.org">public-sparql-dev@w3.org</a> (<a class="http" href="http://lists.w3.org/Archives/Public/public-sparql-dev/">public archive</a>).</p>
+    <h4 class="no-toc no-num" id="endorsement">Endorsed By W3C</h4>
+    <p><em>This document has been reviewed by W3C Members, by software developers, and by other W3C groups and interested parties, and is endorsed by the Director as a W3C Recommendation. It is a
+    stable document and may be used as reference material or cited from another document. W3C's role in making the Recommendation is to draw attention to the specification and to promote its
+    widespread deployment. This enhances the functionality and interoperability of the Web.</em></p>
+    <h4 id="patents">Patents</h4>
+    <p><em>This document was produced by a group operating under the <a href="http://www.w3.org/Consortium/Patent-Policy-20040205/">5 February 2004 W3C Patent Policy</a>. W3C maintains a <a href=
+    "http://www.w3.org/2004/01/pp-impl/35463/status" rel="disclosure">public list of any patent disclosures</a> made in connection with the deliverables of the group; that page also includes
+    instructions for disclosing a patent. An individual who has actual knowledge of a patent which the individual believes contains <a href=
+    "http://www.w3.org/Consortium/Patent-Policy-20040205/#def-essential">Essential Claim(s)</a> must disclose the information in accordance with <a href=
+    "http://www.w3.org/Consortium/Patent-Policy-20040205/#sec-Disclosure">section 6 of the W3C Patent Policy</a>.</em></p>
+  </div>
+  <div class="toc">
+    <h2><a name="contents" id="contents"></a>Table of Contents</h2>
+    <p class="toc">1 <b><a href="#introduction">Introduction</a></b><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;1.1 <a href="#docOutline">Document Outline</a><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;1.2 <a href="#docConventions">Document Conventions</a><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.2.1 <a href="#docNamespaces">Namespaces</a><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.2.2 <a href="#docDataDesc">Data Descriptions</a><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.2.3 <a href="#docResultDesc">Result Descriptions</a><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.2.4 <a href="#docTerminology">Terminology</a><br>
+    2 <b><a href="#basicpatterns">Making Simple Queries (Informative)</a></b><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;2.1 <a href="#WritingSimpleQueries">Writing a Simple Query</a><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;2.2 <a href="#MultipleMatches">Multiple Matches</a><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;2.3 <a href="#matchingRDFLiterals">Matching RDF Literals</a><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2.3.1 <a href="#matchLangTags">Matching Literals with Language Tags</a><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2.3.2 <a href="#matchNumber">Matching Literals with Numeric Types</a><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2.3.3 <a href="#matchArbDT">Matching Literals with Arbitrary Datatypes</a><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;2.4 <a href="#BlankNodesInResults">Blank Node Labels in Query Results</a><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;2.5 <a href="#CreatingValuesWithExpressions">Creating Values with Expressions</a><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;2.6 <a href="#constructGraph">Building RDF Graphs</a><br>
+    3 <b><a href="#termConstraint">RDF Term Constraints (Informative)</a></b><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;3.1 <a href="#restrictString">Restricting the Value of Strings</a><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;3.2 <a href="#restrictNumber">Restricting Numeric Values</a><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;3.3 <a href="#otherTermConstraints">Other Term Constraints</a><br>
+    4 <b><a href="#sparqlSyntax">SPARQL Syntax</a></b><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;4.1 <a href="#syntaxTerms">RDF Term Syntax</a><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4.1.1 <a href="#QSynIRI">Syntax for IRIs</a><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4.1.1.1 <a href="#prefNames">Prefixed Names</a><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4.1.1.2 <a href="#relIRIs">Relative IRIs</a><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4.1.2 <a href="#QSynLiterals">Syntax for Literals</a><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4.1.3 <a href="#QSynVariables">Syntax for Query Variables</a><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4.1.4 <a href="#QSynBlankNodes">Syntax for Blank Nodes</a><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;4.2 <a href="#QSynTriples">Syntax for Triple Patterns</a><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4.2.1 <a href="#predObjLists">Predicate-Object Lists</a><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4.2.2 <a href="#objLists">Object Lists</a><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4.2.3 <a href="#collections">RDF Collections</a><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4.2.4 <a href="#abbrevRdfType">rdf:type</a><br>
+    5 <b><a href="#GraphPattern">Graph Patterns</a></b><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;5.1 <a href="#BasicGraphPatterns">Basic Graph Patterns</a><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;5.1.1 <a href="#bgpBNodeLabels">Blank Node Labels</a><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;5.1.2 <a href="#bgpExtend">Extending Basic Graph Pattern Matching</a><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;5.2 <a href="#GroupPatterns">Group Graph Patterns</a><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;5.2.1 <a href="#emptyGroupPattern">Empty Group Pattern</a><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;5.2.2 <a href="#scopeFilters">Scope of Filters</a><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;5.2.3 <a href="#groupExamples">Group Graph Pattern Examples</a><br>
+    6 <b><a href="#optionals">Including Optional Values</a></b><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;6.1 <a href="#OptionalMatching">Optional Pattern Matching</a><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;6.2 <a href="#OptionalAndConstraints">Constraints in Optional Pattern Matching</a><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;6.3 <a href="#MultipleOptionals">Multiple Optional Graph Patterns</a><br>
+    7 <b><a href="#alternatives">Matching Alternatives</a></b><br>
+    8 <b><a href="#negation">Negation</a></b><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;8.1 <a href="#neg-pattern">Filtering Using Graph Patterns</a><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;8.1.1 <a href="#neg-notexists">Testing For the Absence of a Pattern</a><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;8.1.2 <a href="#neg-exists">Testing For the Presence of a Pattern</a><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;8.2 <a href="#neg-minus">Removing Possible Solutions</a><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;8.3 <a href="#neg-notexists-minus">Relationship and differences between NOT EXISTS and MINUS</a><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;8.3.1 <a href="#neg-example-1">Example: Sharing of variables</a><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;8.3.2 <a href="#neg-example-2">Example: Fixed pattern</a><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;8.3.3 <a href="#idp899488">Example: Inner FILTERs</a><br>
+    9 <b><a href="#propertypaths">Property Paths</a></b><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;9.1 <a href="#pp-language">Property Path Syntax</a><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;9.2 <a href="#propertypath-examples">Examples</a><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;9.3 <a href="#propertypath-syntaxforms">Property Paths and Equivalent Patterns</a><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;9.4 <a href="#propertypath-arbitrary-length">Arbitrary Length Path Matching</a><br>
+    10 <b><a href="#assignment">Assignment</a></b><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;10.1 <a href="#bind">BIND: Assigning to Variables</a><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;10.2 <a href="#inline-data">VALUES: Providing inline data</a><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;10.2.1 <a href="#inline-data-syntax">VALUES syntax</a><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;10.2.2 <a href="#inline-data-examples">VALUES Examples</a><br>
+    11 <b><a href="#aggregates">Aggregates</a></b><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;11.1 <a href="#aggregateExample">Aggregate Example</a><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;11.2 <a href="#groupby">GROUP BY</a><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;11.3 <a href="#having">HAVING</a><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;11.4 <a href="#aggregateRestrictions">Aggregate Projection Restrictions</a><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;11.5 <a href="#aggregateExample2">Aggregate Example (with errors)</a><br>
+    12 <b><a href="#subqueries">Subqueries</a></b><br>
+    13 <b><a href="#rdfDataset">RDF Dataset</a></b><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;13.1 <a href="#exampleDatasets">Examples of RDF Datasets</a><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;13.2 <a href="#specifyingDataset">Specifying RDF Datasets</a><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;13.2.1 <a href="#unnamedGraph">Specifying the Default Graph</a><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;13.2.2 <a href="#namedGraphs">Specifying Named Graphs</a><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;13.2.3 <a href="#specDataset">Combining FROM and FROM NAMED</a><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;13.3 <a href="#queryDataset">Querying the Dataset</a><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;13.3.1 <a href="#accessByLabel">Accessing Graph Names</a><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;13.3.2 <a href="#restrictByLabel">Restricting by Graph IRI</a><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;13.3.3 <a href="#restrictInQuery">Restricting Possible Graph IRIs</a><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;13.3.4 <a href="#namedAndDefaultGraph">Named and Default Graphs</a><br>
+    14 <b><a href="#basic-federated-query">Basic Federated Query</a></b><br>
+    15 <b><a href="#solutionModifiers">Solution Sequences and Modifiers</a></b><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;15.1 <a href="#modOrderBy">ORDER BY</a><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;15.2 <a href="#modProjection">Projection</a><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;15.3 <a href="#modDuplicates">Duplicate Solutions</a><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;15.4 <a href="#modOffset">OFFSET</a><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;15.5 <a href="#modResultLimit">LIMIT</a><br>
+    16 <b><a href="#QueryForms">Query Forms</a></b><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;16.1 <a href="#select">SELECT</a><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;16.1.1 <a href="#selectproject">Projection</a><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;16.1.2 <a href="#selectExpressions">SELECT Expressions</a><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;16.2 <a href="#construct">CONSTRUCT</a><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;16.2.1 <a href="#templatesWithBNodes">Templates with Blank Nodes</a><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;16.2.2 <a href="#accessingRdfGraphs">Accessing Graphs in the RDF Dataset</a><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;16.2.3 <a href="#SolModandCONSTRUCT">Solution Modifiers and CONSTRUCT</a><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;16.2.4 <a href="#constructWhere">CONSTRUCT WHERE</a><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;16.3 <a href="#ask">ASK</a><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;16.4 <a href="#describe">DESCRIBE (Informative)</a><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;16.4.1 <a href="#explicitIRIs">Explicit IRIs</a><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;16.4.2 <a href="#identifyingResources">Identifying Resources</a><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;16.4.3 <a href="#descriptionsOfResources">Descriptions of Resources</a><br>
+    17 <b><a href="#expressions">Expressions and Testing Values</a></b><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;17.1 <a href="#operandDataTypes">Operand Data Types</a><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;17.2 <a href="#evaluation">Filter Evaluation</a><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;17.2.1 <a href="#invocation">Invocation</a><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;17.2.2 <a href="#ebv">Effective Boolean Value (EBV)</a><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;17.3 <a href="#OperatorMapping">Operator Mapping</a><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;17.3.1 <a href="#operatorExtensibility">Operator Extensibility</a><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;17.4 <a href="#SparqlOps">Function Definitions</a><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;17.4.1 <a href="#func-forms">Functional Forms</a><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;17.4.1.1 <a href="#func-bound">bound</a><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;17.4.1.2 <a href="#func-if">IF</a><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;17.4.1.3 <a href="#func-coalesce">COALESCE</a><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;17.4.1.4 <a href="#func-filter-exists">NOT EXISTS and EXISTS</a><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;17.4.1.5 <a href="#func-logical-or">logical-or</a><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;17.4.1.6 <a href="#func-logical-and">logical-and</a><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;17.4.1.7 <a href="#func-RDFterm-equal">RDFterm-equal</a><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;17.4.1.8 <a href="#func-sameTerm">sameTerm</a><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;17.4.1.9 <a href="#func-in">IN</a><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;17.4.1.10 <a href="#func-not-in">NOT IN</a><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;17.4.2 <a href="#func-rdfTerms">Functions on RDF Terms</a><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;17.4.2.1 <a href="#func-isIRI">isIRI</a><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;17.4.2.2 <a href="#func-isBlank">isBlank</a><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;17.4.2.3 <a href="#func-isLiteral">isLiteral</a><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;17.4.2.4 <a href="#func-isNumeric">isNumeric</a><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;17.4.2.5 <a href="#func-str">str</a><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;17.4.2.6 <a href="#func-lang">lang</a><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;17.4.2.7 <a href="#func-datatype">datatype</a><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;17.4.2.8 <a href="#func-iri">IRI</a><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;17.4.2.9 <a href="#func-bnode">BNODE</a><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;17.4.2.10 <a href="#func-strdt">STRDT</a><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;17.4.2.11 <a href="#func-strlang">STRLANG</a><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;17.4.2.12 <a href="#func-uuid">UUID</a><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;17.4.2.13 <a href="#func-struuid">STRUUID</a><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;17.4.3 <a href="#func-strings">Functions on Strings</a><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;17.4.3.1 <a href="#idp1887976">Strings in SPARQL Functions</a><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;17.4.3.1.1 <a href="#func-string">String arguments</a><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;17.4.3.1.2 <a href="#func-arg-compatibility">Argument Compatibility Rules</a><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;17.4.3.1.3 <a href="#idp1915512">String Literal Return Type</a><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;17.4.3.2 <a href="#func-strlen">STRLEN</a><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;17.4.3.3 <a href="#func-substr">SUBSTR</a><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;17.4.3.4 <a href="#func-ucase">UCASE</a><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;17.4.3.5 <a href="#func-lcase">LCASE</a><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;17.4.3.6 <a href="#func-strstarts">STRSTARTS</a><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;17.4.3.7 <a href="#func-strends">STRENDS</a><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;17.4.3.8 <a href="#func-contains">CONTAINS</a><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;17.4.3.9 <a href="#func-strbefore">STRBEFORE</a><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;17.4.3.10 <a href="#func-strafter">STRAFTER</a><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;17.4.3.11 <a href="#func-encode">ENCODE_FOR_URI</a><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;17.4.3.12 <a href="#func-concat">CONCAT</a><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;17.4.3.13 <a href="#func-langMatches">langMatches</a><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;17.4.3.14 <a href="#func-regex">REGEX</a><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;17.4.3.15 <a href="#func-replace">REPLACE</a><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;17.4.4 <a href="#func-numerics">Functions on Numerics</a><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;17.4.4.1 <a href="#func-abs">abs</a><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;17.4.4.2 <a href="#func-round">round</a><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;17.4.4.3 <a href="#func-ceil">ceil</a><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;17.4.4.4 <a href="#func-floor">floor</a><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;17.4.4.5 <a href="#idp2130040">RAND</a><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;17.4.5 <a href="#func-date-time">Functions on Dates and Times</a><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;17.4.5.1 <a href="#func-now">now</a><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;17.4.5.2 <a href="#func-year">year</a><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;17.4.5.3 <a href="#func-month">month</a><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;17.4.5.4 <a href="#func-day">day</a><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;17.4.5.5 <a href="#func-hours">hours</a><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;17.4.5.6 <a href="#func-minutes">minutes</a><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;17.4.5.7 <a href="#func-seconds">seconds</a><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;17.4.5.8 <a href="#func-timezone">timezone</a><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;17.4.5.9 <a href="#func-tz">tz</a><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;17.4.6 <a href="#func-hash">Hash Functions</a><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;17.4.6.1 <a href="#func-md5">MD5</a><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;17.4.6.2 <a href="#func-sha1">SHA1</a><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;17.4.6.3 <a href="#func-sha256">SHA256</a><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;17.4.6.4 <a href="#func-sha384">SHA384</a><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;17.4.6.5 <a href="#func-sha512">SHA512</a><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;17.5 <a href="#FunctionMapping">XPath Constructor Functions</a><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;17.6 <a href="#extensionFunctions">Extensible Value Testing</a><br>
+    18 <b><a href="#sparqlDefinition">Definition of SPARQL</a></b><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;18.1 <a href="#initDefinitions">Initial Definitions</a><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;18.1.1 <a href="#sparqlBasicTerms">RDF Terms</a><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;18.1.2 <a href="#simple_literal">Simple Literal</a><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;18.1.3 <a href="#sparqlDataset">RDF Dataset</a><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;18.1.4 <a href="#sparqlQueryVariables">Query Variables</a><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;18.1.5 <a href="#sparqlTriplePatterns">Triple Patterns</a><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;18.1.6 <a href="#sparqlBasicGraphPatterns">Basic Graph Patterns</a><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;18.1.7 <a href="#sparqlPropertyPaths">Property Path Patterns</a><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;18.1.8 <a href="#sparqlSolutions">Solution Mapping</a><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;18.1.9 <a href="#sparqlSolMod">Solution Sequence Modifiers</a><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;18.1.10 <a href="#idp2427544">SPARQL Query</a><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;18.2 <a href="#sparqlQuery">Translation to the SPARQL Algebra</a><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;18.2.1 <a href="#variableScope">Variable Scope</a><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;18.2.2 <a href="#convertGraphPattern">Converting Graph Patterns</a><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;18.2.2.1 <a href="#sparqlExpandForms">Expand Syntax Forms</a><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;18.2.2.2 <a href="#sparqlCollectFilters">Collect FILTER Elements</a><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;18.2.2.3 <a href="#sparqlTranslatePathExpressions">Translate Property Path Expressions</a><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;18.2.2.4 <a href="#sparqlTranslatePathPatterns">Translate Property Path Patterns</a><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;18.2.2.5 <a href="#sparqlTranslateBasicGraphPatterns">Translate Basic Graph Patterns</a><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;18.2.2.6 <a href="#sparqlTranslateGraphPatterns">Translate Graph Patterns</a><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;18.2.2.7 <a href="#sparqlAddFilters">Filters of Group</a><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;18.2.2.8 <a href="#sparqlSimplification">Simplification step</a><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;18.2.3 <a href="#sparqlAlgebraExamples">Examples of Mapped Graph Patterns</a><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;18.2.4 <a href="#convertGroupAggSelectExpressions">Converting Groups, Aggregates, HAVING, final VALUES clause and SELECT Expressions</a><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;18.2.4.1 <a href="#sparqlGroupAggregate">Grouping and Aggregation</a><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;18.2.4.2 <a href="#sparqlHavingClause">HAVING</a><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;18.2.4.3 <a href="#sparqlAlgebraFinalValues">VALUES</a><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;18.2.4.4 <a href="#sparqlSelectExpressions">SELECT Expressions</a><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;18.2.5 <a href="#convertSolMod">Converting Solution Modifiers</a><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;18.2.5.1 <a href="#sparqlOrderBy">ORDER BY</a><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;18.2.5.2 <a href="#sparqlProjection">Projection</a><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;18.2.5.3 <a href="#sparqlDistinct">DISTINCT</a><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;18.2.5.4 <a href="#sparqlReduced">REDUCED</a><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;18.2.5.5 <a href="#sparqlOffsetLimit">OFFSET and LIMIT</a><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;18.2.5.6 <a href="#sparqlAlgebraOutcome">Final Algebra Expression</a><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;18.3 <a href="#BasicGraphPattern">Basic Graph Patterns</a><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;18.3.1 <a href="#BGPsparql">SPARQL Basic Graph Pattern Matching</a><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;18.3.2 <a href="#BGPsparqlBNodes">Treatment of Blank Nodes</a><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;18.4 <a href="#PropertyPathPatterns">Property Path Patterns</a><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;18.5 <a href="#sparqlAlgebra">SPARQL Algebra</a><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;18.5.1 <a href="#aggregateAlgebra">Aggregate Algebra</a><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;18.5.1.1 <a href="#setFunctions">Set Functions</a><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;18.5.1.2 <a href="#defn_aggCount">Count</a><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;18.5.1.3 <a href="#defn_aggSum">Sum</a><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;18.5.1.4 <a href="#defn_aggAvg">Avg</a><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;18.5.1.5 <a href="#defn_aggMin">Min</a><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;18.5.1.6 <a href="#defn_aggMax">Max</a><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;18.5.1.7 <a href="#defn_aggGroupConcat">GroupConcat</a><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;18.5.1.8 <a href="#defn_aggSample">Sample</a><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;18.6 <a href="#sparqlAlgebraEval">Evaluation Semantics</a><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;18.7 <a href="#sparqlBGPExtend">Extending SPARQL Basic Graph Matching</a><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;18.7.1 <a href="#sparqlBGPExtend-notes">Notes</a><br>
+    19 <b><a href="#grammar">SPARQL Grammar</a></b><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;19.1 <a href="#queryString">SPARQL Request String</a><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;19.2 <a href="#codepointEscape">Codepoint Escape Sequences</a><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;19.3 <a href="#whitespace">White Space</a><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;19.4 <a href="#grammarComments">Comments</a><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;19.5 <a href="#iriRefs">IRI References</a><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;19.6 <a href="#grammarBNodes">Blank Nodes and Blank Node Labels</a><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;19.7 <a href="#grammarEscapes">Escape sequences in strings</a><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;19.8 <a href="#sparqlGrammar">Grammar</a><br>
+    20 <b><a href="#conformance">Conformance</a></b><br>
+    21 <b><a href="#security">Security Considerations (Informative)</a></b><br>
+    22 <b><a href="#mediaType">Internet Media Type, File Extension and Macintosh File Type</a></b><br></p>
+    <h3><a name="appendices" id="appendices"></a>Appendix</h3>
+    <p class="toc">A <b><a href="#sec-bibliography">References</a></b><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;A.1 <a href="#sec-normative-refs">Normative References</a><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;A.2 <a href="#sec-non-normative-refs">Other References</a><br></p>
+  </div>
+  <hr>
+  <div class="body">
     <div class="div1">
       <h2><a name="introduction" id="introduction"></a>1 Introduction</h2>
       <p>RDF is a directed, labeled graph data format for representing information in the Web. RDF is often used to represent, among other things, personal information, social networks, metadata
@@ -3186,7 +3559,7 @@ WHERE       { ?x foaf:name ?name }
           </div>
         </div>
         <div class="div3">
-          <h4><a name="templatesWithBNodes" id="templatesWithBNodes"></a>16.2.1 Templates with Blank Nodes</h4>
+          <h4><a name="templatesWithBNodes" id="templatesWithBNodes"></a>16.2.1 <a id="tempatesWithBNodes"></a>Templates with Blank Nodes</h4>
           <p>A template can create an RDF graph containing blank nodes. The blank node labels are scoped to the template for each solution. If the same label occurs twice in a template, then there
           will be one blank node created for each query solution, but there will be different blank nodes for triples generated by different query solutions.</p>
           <div class="exampleGroup">
@@ -4814,7 +5187,7 @@ SELECT ?name ?shoeSize
             constructor for other query solutions. If the no argument form is used, every call results in a distinct blank node. If the form with a simple literal is used, every call results in
             distinct blank nodes for different simple literals, and the same blank node for calls with the same simple literal within expressions for one <a href=
             "#defn_sparqlSolutionMapping">solution mapping</a>.</p>
-            <p>This functionality is compatible with the <a href="#templatesWithBNodes">treatment of blank nodes in SPARQL CONSTRUCT templates</a>.</p>
+            <p>This functionality is compatible with the <a href="#tempatesWithBNodes">treatment of blank nodes in SPARQL CONSTRUCT templates</a>.</p>
           </div>
           <div class="div4">
             <h5><a name="func-strdt" id="func-strdt"></a>17.4.2.10 STRDT</h5>
@@ -7232,7 +7605,9 @@ The set PV is used later for projection.
           <p>for the evaluation of the property path patterns. This produces a multiset of solution mappings μ, each solution mapping having a binding for variables used (each of X and Y can be a
           variable). Some operators only produce a set of solution mappings.</p>
           <p>Write</p>
-          <pre>Var(x<sub>1</sub>, x<sub>2</sub>, ..., x<sub>n</sub>) = { x<sub>i</sub> | i in 1...n and x<sub>i</sub> is a variable }</pre>
+          <div class="pre">
+            Var(x<sub>1</sub>, x<sub>2</sub>, ..., x<sub>n</sub>) = { x<sub>i</sub> | i in 1...n and x<sub>i</sub> is a variable }
+          </div>
           <p>for the variables in <code>x<sub>1</sub>, x<sub>2</sub>, ..., x<sub>n</sub></code>.</p>
           <p>Write</p>
           <table style="border-collapse: collapse; border-color: #000000" cellpadding="10" border="1">
@@ -7258,18 +7633,28 @@ The set PV is used later for projection.
           <p><b>Definition: <a name="defn_evalPP_predicate" id="defn_evalPP_predicate">Evaluation of Predicate Property Path</a></b></p>
           <p>Let Path(X, link(iri), Y) be an predicate inverse property path pattern, using some IRI iri.</p>
           <blockquote>
-            <pre>eval(Path(X, link(iri), Y)) = <a href="#BasicGraphPattern">evaluation of basic graph pattern</a> {X iri Y}</pre>
+            <div class="pre">
+              eval(Path(X, link(iri), Y)) = <a href="#BasicGraphPattern">evaluation of basic graph pattern</a> {X iri Y}
+            </div>
           </blockquote>
         </div>
         <p>If both X and Y are variables, this is the same as:</p>
-        <pre>eval(Path(X:var, link(iri), Y:var)) = { (X, xn) (Y, yn) | xn and yn are RDF terms and triple (xn iri yn) is in the active graph }</pre>
+        <div class="pre">
+          eval(Path(X:var, link(iri), Y:var)) = { (X, xn) (Y, yn) | xn and yn are RDF terms and triple (xn iri yn) is in the active graph }
+        </div>
         <p>If X is a variable and Y an RDF term:</p>
-        <pre>eval(Path(X:var, link(iri), Y:term)) = { (X, xn) | xn is an RDF term and triple (xn iri Y) is in the active graph }</pre>
+        <div class="pre">
+          eval(Path(X:var, link(iri), Y:term)) = { (X, xn) | xn is an RDF term and triple (xn iri Y) is in the active graph }
+        </div>
         <p>If X is an RDF term and Y is a variable:</p>
-        <pre>eval(Path(X:term, link(iri), Y:var)) = { (Y, yn) | yn is an RDF term and triple (X iri yn) is in the active graph }</pre>
+        <div class="pre">
+          eval(Path(X:term, link(iri), Y:var)) = { (Y, yn) | yn is an RDF term and triple (X iri yn) is in the active graph }
+        </div>
         <p>If both X and Y are RDF terms:</p>
-        <pre>eval(Path(X:term, link(iri), Y:term)) = { μ<sub>0</sub> } if triple (X iri Y) is in the active graph = { { } } = Ω<sub>0</sub> eval(Path(X:term, link(iri), Y:term)) = { } if triple (X iri
-          Y) is not in the active graph</pre>
+        <div class="pre">
+          eval(Path(X:term, link(iri), Y:term)) = { μ<sub>0</sub> } if triple (X iri Y) is in the active graph = { { } } = Ω<sub>0</sub> eval(Path(X:term, link(iri), Y:term)) = { } if triple (X iri
+          Y) is not in the active graph
+        </div>
         <p>Informally, evaluating a Predicate Property Path is the same as executing a subquery <code>SELECT * { <i>X P Y</i> }</code> at that point in the query evaluation.</p>
         <div class="defn">
           <p><b>Definition: <a name="defn_evalPP_inverse" id="defn_evalPP_inverse">Evaluation of Inverse Property Path</a></b></p>
@@ -7304,7 +7689,7 @@ The set PV is used later for projection.
           <p>nodes(G) = { n | n is an RDF term that is used as a subject or object of a triple of G}</p>
         </div>
         <div class="defn">
-          <p><b>Definition: <a id="defn_evalPP_ZeroOrOnePath" name="defn_evalPP_ZeroOrOnePath">Evaluation of ZeroOrOnePath</a></b></p>
+          <p><b>Definition: <a id="defn_evalPP_ZeroOrOnePath">Evaluation of ZeroOrOnePath</a></b></p>
           <pre>eval(Path(X:term, ZeroOrOnePath(P), Y:var)) = { (Y, yn) | yn = X or {(Y, yn)} in eval(Path(X,P,Y)) }</pre>
           <pre>eval(Path(X:var, ZeroOrOnePath(P), Y:term)) = { (X, xn) | xn = Y or {(X, xn)} in eval(Path(X,P,Y)) }</pre>
           <pre>eval(Path(X:term, ZeroOrOnePath(P), Y:term)) = 
@@ -7392,6 +7777,7 @@ eval(Path(x:term, OneOrMorePath(path), y:term)) =
 
 eval(Path(x, NPS(S), y)) = { μ | ∃ triple(μ'(μ,x), p, μ'(μ,y)) in G, such that the IRI of p ∉ S }
         </pre>
+        </div>
       </div>
       <div class="div2">
         <h3><a name="sparqlAlgebra" id="sparqlAlgebra"></a>18.5 SPARQL Algebra</h3>
@@ -9458,3 +9844,8 @@ a\u003Ab            # a:b -- codepoint x3A is colon</pre>
         <li><a href="#SparqlOps">An expanded set of functions and operators</a></li>
       </ul>
     </div>
+  </div>
+  <script type="text/javascript" async src="SPARQL%201.1%20Query%20Language_files/matomo.js"></script>
+  <script type="application/javascript" src="SPARQL%201.1%20Query%20Language_files/fixup.js"></script>
+</body>
+</html>

@@ -1,0 +1,21 @@
+1.3.12 Definitions and linking
+To define a term, simple wrap it in a <dfn> element.
+
+<dfn>some concept</dfn>
+Then, to link to it, just do:
+
+<a>some concept</a>
+
+or 
+
+[=some concept=]
+
+-------------
+{ "no-unused-dfns": false }
+
+Use <dfn> for <a name= id= > / <a id= name=> and <a> </a>
+
+Unstyle italics on dfn
+
+** Not picking up id= name= from dfn
+Definition is "bolder"
