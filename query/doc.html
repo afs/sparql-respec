@@ -10,11 +10,40 @@
     <script class="remove">
       // All config options at https://respec.org/docs/
       var respecConfig = {
+        localBiblio: {
+          "CBD": {
+            "title": "CBD - Concise Bounded Description",
+            "href": "https://www.w3.org/Submission/CBD/",
+            "authors": [
+              "Patrick Stickler, Nokia"
+            ],
+            "rawDate": "2005-06-03",
+            "publisher": "W3C",
+            "status": "W3C Member Submission"
+            //Nokia
+          },
+          "UCNR": {
+            "aliasOf": "rdf-dawg-uc"
+          },
+          "UCNR2": {
+            "aliasOf": "sparql-features"
+          },
+          "FUNCOP": {
+            "aliasOf": "XPATH-FUNCTIONS"
+          },
+          "Multiset": {
+            "title": "Multiset",
+            "href": "https://en.wikipedia.org/w/index.php?title=Multiset&amp;oldid=163605900",
+            "publisher": "Wikipedia, The Free Encyclopedia",
+            "rawDate": "2007-10-25",
+            "versionOf": "https://en.wikipedia.org/wiki/Multiset"
+          }
+        },
         specStatus: "ED",
         editors: [{ name: "Andy Seaborne", url: "https://www.linkedin.com/in/andyseaborne/"}],
         github: "some-org/mySpec",
         shortName: "sparql-12",
-        xref: "web-platform",
+        xref: ["web-platform", "RDF11-CONCEPTS"],
         group: "rdf-star" ,
         lint: { "no-unused-dfns": false }
       };
@@ -60,6 +89,7 @@
   em.rfc2119 { text-transform: lowercase;
              font-variant: small-caps;
              font-style: normal; }
+  code { color: #c63501; }
     </style>
   </head>
   <body>
@@ -68,7 +98,7 @@
       <h2>Abstract</h2>
       <p>SPARQL 1.2 (<a href="">SPARQL 1.1 Query</a> converted to ReSpec).</p>
       <aside class="note" title="A useful note">
-        <p><a href="https://www.w3.org/TR/sparql11-query/">SPARQL 1.1 Query</a> converted to <a href="https://respec.org/">ReSpec</a>.
+        <p>[[[SPARQL11-QUERY]]] converted to <a href="https://respec.org/">ReSpec</a>.
       </aside>
 
       <p>
@@ -84,8 +114,6 @@
     </section>
 
     <section id="sotd" class="introductory">
-      <h2 id="status-of-this-document">Status of This Document
-        <a class="self-link" href="#sotd" aria-label="Permalink for Section"></a></h2>
       <p>
         This specification is published by the
         <a href="https://www.w3.org/groups/wg/rdf-star">RDF Star Working Group</a> as part of the
@@ -100,9 +128,8 @@
       <p>RDF is a directed, labeled graph data format for representing information in the Web. RDF is often used to represent, among other things, personal information, social networks, metadata
       about digital artifacts, as well as to provide a means of integration over disparate sources of information. This specification defines the syntax and semantics of the SPARQL query language for
       RDF.</p>
-      <p>The SPARQL query language for RDF is designed to meet the use cases and requirements identified by the RDF Data Access Working Group in <a href="http://www.w3.org/TR/rdf-dawg-uc/" class=
-      "inform">RDF Data Access Use Cases and Requirements</a> [<a href="#UCNR">UCNR</a>] and <a href="http://www.w3.org/TR/sparql-features/" class="inform">SPARQL New Features and Rationale</a>
-      [<a href="#UCNR2">UCNR2</a>].</p>
+      <p>The SPARQL query language for RDF is designed to meet the use cases and requirements identified by the RDF Data Access Working Group in
+        [[[?UCNR]]] [[?UCNR]] and [[[?UCNR2]]] [[?UCNR2]].</p>
       <section id="docOutline">
         <h3>Document Outline</h3>
         <p>Unless otherwise noted in the section heading, all sections and appendices in this document are normative.</p>
@@ -124,14 +151,14 @@
         12</a>.</p>
         <p><a href="#rdfDataset">Section 13</a> introduces the ability to constrain portions of a query to particular source graphs. Section 13 also presents SPARQL's mechanism for defining the
         source graphs for a query.</p>
-        <p><a href="#basic-federated-query">Section 14</a> refers to the separate document <a href="http://www.w3.org/TR/sparql11-federated-query/">SPARQL 1.1 Federated Query</a>.</p>
+        <p><a href="#basic-federated-query">Section 14</a> refers to the separate document [[[SPARQL11-FEDERATED-QUERY]]].</p>
         <p><a href="#solutionModifiers">Section 15</a> defines the constructs that affect the solutions of a query by ordering, slicing, projecting, limiting, and removing duplicates from a sequence
         of solutions.</p>
         <p><a href="#QueryForms">Section 16</a> defines the four types of SPARQL queries that produce results in different forms.</p>
         <p><a href="#expressions">Section 17</a> defines SPARQL's extensible value testing and expression framework. It presents the functions and operators that can be used to constrain the values
         that appear in a query's results and also calculate new values to be returned by a query.</p>
         <p><a href="#sparqlDefinition">Section 18</a> is a formal definition of the evaluation of SPARQL graph patterns and solution modifiers.</p>
-        <p><a href="#grammar">Section 19</a> contains the normative definition of the syntax for the SPARQL query and <a href="http://www.w3.org/TR/sparql11-update/">SPARQL update</a> languages, as
+        <p><a href="#grammar">Section 19</a> contains the normative definition of the syntax for the SPARQL query and [[[SPARQL11-UPDATE]]] languages, as
         given by a grammar expressed in EBNF notation.</p>
       </section>
       <section id="docConventions">
@@ -172,7 +199,7 @@
         </section>
         <section id="docDataDesc">
           <h4>Data Descriptions</h4>
-          <p>This document uses the <a class="inform" href="http://www.w3.org/TR/turtle/">Turtle</a> [<a href="#TURTLE">TURTLE</a>] data format to show each triple explicitly. Turtle allows IRIs to
+          <p>This document uses the [[[?TURTLE]]] [[?TURTLE]] data format to show each triple explicitly. Turtle allows IRIs to
           be abbreviated with prefixes:</p>
           <pre class="data">@prefix dc:   &lt;http://purl.org/dc/elements/1.1/&gt; .
 @prefix :     &lt;http://example.org/book/&gt; .
@@ -206,21 +233,21 @@
         <section id="docTerminology">
           <h4>Terminology</h4>
           <p>The SPARQL language includes IRIs, a subset of RDF URI References that omits spaces. Note that all IRIs in SPARQL queries are absolute; they may or may not include a fragment identifier
-          [<a href="#rfc3987">RFC3987</a>, section 3.1]. IRIs include URIs [<a href="#rfc3986">RFC3986</a>] and URLs. The abbreviated forms (<a href="#QSynIRI">relative IRIs and prefixed names</a>)
+          [[RFC3987], section 3.1. IRIs include URIs [[RFC3986]] and URLs. The abbreviated forms (<a href="#QSynIRI">relative IRIs and prefixed names</a>)
           in the SPARQL syntax are resolved to produce absolute IRIs.</p>
-          <p>The following terms are defined in <a class="norm" href="http://www.w3.org/TR/2004/REC-rdf-concepts-20040210/">RDF Concepts and Abstract Syntax</a> <a href="#CONCEPTS">[CONCEPTS]</a> and
+          <p>The following terms are defined in [[[RDF11-CONCEPTS]]] [[RDF11-CONCEPTS]] and
           used in SPARQL:</p>
           <ul>
-            <li><a class="type IRI" href="http://www.w3.org/TR/2004/REC-rdf-concepts-20040210/#dfn-URI-reference">IRI</a> (corresponds to the Concepts and Abstract Syntax term "<code>RDF URI
+            <li><a>IRI</a> (corresponds to the Concepts and Abstract Syntax term "<code>RDF URI
             reference</code>")</li>
-            <li><a class="type literal" href="http://www.w3.org/TR/2004/REC-rdf-concepts-20040210/#dfn-literal">literal</a></li>
-            <li><a class="type lexicalForm" href="http://www.w3.org/TR/rdf-concepts/#dfn-lexical-form">lexical form</a></li>
+            <li><a>literal</a></li>
+            <li><a >lexical form</a></li>
             <li><a class="type plainLiteral" href="http://www.w3.org/TR/2004/REC-rdf-concepts-20040210/#dfn-plain-literal">plain literal</a></li>
-            <li><a class="type langTag" href="http://www.w3.org/TR/2004/REC-rdf-concepts-20040210/#dfn-language-identifier">language tag</a></li>
+            <li><a>language tag</a></li>
             <li><a class="type typedLiteral" href="http://www.w3.org/TR/2004/REC-rdf-concepts-20040210/#dfn-typed-literal">typed literal</a></li>
-            <li><a class="type datatypeIRI" href="http://www.w3.org/TR/2004/REC-rdf-concepts-20040210/#dfn-datatype-URI">datatype IRI</a> (corresponds to the Concepts and Abstract Syntax term
+            <li><a>datatype IRI</a> (corresponds to the Concepts and Abstract Syntax term
             "<code>datatype URI</code>")</li>
-            <li><a class="type bNode" href="http://www.w3.org/TR/2004/REC-rdf-concepts-20040210/#dfn-blank-node">blank node</a></li>
+            <li><a>blank node</a></li>
           </ul>
           <p>In addition, we define the following terms:</p>
           <ul>
@@ -337,8 +364,7 @@ WHERE
         <p>This RDF data is the data graph for the query examples in sections 2.3.1–2.3.3.</p>
         <section id="matchLangTags">
           <h4>Matching Literals with Language Tags</h4>
-          <p>Language tags in SPARQL are expressed using <code>@</code> and the language tag, as defined in <a class="norm" href="http://www.rfc-editor.org/rfc/bcp/bcp47.txt">Best Common Practice
-          47</a> [<a href="#BCP47">BCP47</a>].</p>
+          <p>Language tags in SPARQL are expressed using <code>@</code> and the language tag, as defined in [[[BCP47]]] [[BCP47]].</p>
           <p>This following query has no solution because <code>"cat"</code> is not the same RDF literal as <code>"cat"@en</code>:</p>
           <div class="queryGroup">
             <pre class="query">SELECT ?v WHERE { ?v ?p "cat" }</pre>
@@ -418,8 +444,8 @@ WHERE
       <section id="BlankNodesInResults">
         <h3>Blank Node Labels in Query Results</h3>
         <p>Query results can contain blank nodes. Blank nodes in the example result sets in this document are written in the form "_:" followed by a blank node label.</p>
-        <p>Blank node labels are scoped to a result set (see "<a class="inform" href="http://www.w3.org/TR/rdf-sparql-XMLres/">SPARQL Query Results XML Format</a>" and "<a href=
-        "http://www.w3.org/TR/sparql11-results-json/">SPARQL 1.1 Query Results JSON Format</a>") or, for the <code>CONSTRUCT</code> query form, the result graph. Use of the same label within a result
+        <p>Blank node labels are scoped to a result set
+          (see "[[[?RDF-SPARQL-XMLRES]]]" and "[[[?SPARQL11-RESULTS-JSON]]]") or, for the <code>CONSTRUCT</code> query form, the result graph. Use of the same label within a result
         set indicates the same blank node.</p>
         <div class="exampleGroup">
           Data:
@@ -633,8 +659,9 @@ WHERE   { ?x dc:title ?title
             </table>
           </div>
         </div>
-        <p>The regular expression language is <a href="http://www.w3.org/TR/xpath-functions/#regex-syntax">defined by XQuery 1.0 and XPath 2.0 Functions and Operators</a> and is based on <a href=
-        "http://www.w3.org/TR/xmlschema-2/#regexs">XML Schema Regular Expressions</a>.</p>
+        <p>The regular expression language is
+          <a data-cite="FUNCOP#regex-syntax">defined by XQuery 1.0 and XPath 2.0 Functions and Operators</a> and is based on
+          <a data-cite="XMLSCHEMA-2#regexs">XML Schema Regular Expressions</a>.</p>
       </section>
       <section id="restrictNumber">
         <h3>Restricting Numeric Values</h3>
@@ -682,28 +709,26 @@ WHERE   { ?x ns:price ?price .
         <h3>RDF Term Syntax</h3>
         <section id="QSynIRI">
           <h4>Syntax for IRIs</h4>
-          <p>The <a href="#riri">iri</a> production designates the set of IRIs [<a href="#rfc3987">RFC3987</a>]; IRIs are a generalization of URIs [<a href="#rfc3986">RFC3986</a>] and are fully
+          <p>The <a href="#riri">iri</a> production designates the set of IRIs [[RFC3987]]; IRIs are a generalization of URIs [[RFC3986]] and are fully
           compatible with URIs and URLs. The <a href="#rPrefixedName">PrefixedName</a> production designates a prefixed name. The mapping from a prefixed name to an IRI is described below. IRI
           references (relative or absolute IRIs) are designated by the <a href="#rIRIREF">IRIREF</a> production, where the '&lt;' and '&gt;' delimiters do not form part of the IRI reference. Relative
-          IRIs match the <code>irelative-ref</code> reference in section 2.2 ABNF for IRI References and IRIs in [<a href="#rfc3987">RFC3987</a>] and are resolved to IRIs as described below.</p>
-          <p>The set of RDF terms defined in RDF Concepts and Abstract Syntax includes RDF URI references while SPARQL terms include IRIs. RDF URI references containing "<code>&lt;</code>",
+          IRIs match the <code>irelative-ref</code> reference in section 2.2 ABNF for IRI References and IRIs in [[RFC3987]] and are resolved to IRIs as described below.</p>
+          <p>The set of RDF terms defined in [[[RDF11-CONCEPTS]]] includes RDF URI references while SPARQL terms include IRIs. RDF URI references containing "<code>&lt;</code>",
           "<code>&gt;</code>", '<code>"</code>' (double quote), space, "<code>{</code>", "<code>}</code>", "<code>|</code>", "<code>\</code>", "<code>^</code>", and "<code>`</code>" are not IRIs. The
           behavior of a SPARQL query against RDF statements composed of such RDF URI references is not defined.</p>
           <section id="prefNames">
             <h5>Prefixed Names</h5>
             <p>The <code>PREFIX</code> keyword associates a prefix label with an IRI. A prefixed name is a prefix label and a local part, separated by a colon "<code>:</code>". A prefixed name is
             mapped to an IRI by concatenating the IRI associated with the prefix and the local part. The prefix label or the local part may be empty. Note that <a href="#rPN_LOCAL">SPARQL local
-            names</a> allow leading digits while <a href="http://www.w3.org/TR/2006/REC-xml-names11-20060816/#NT-LocalPart">XML local names</a> do not. <a href="#rPN_LOCAL">SPARQL local names</a>
+            names</a> allow leading digits while <a data-cite="XML-NAMES11#NT-LocalPart">XML local names</a> do not. <a href="#rPN_LOCAL">SPARQL local names</a>
             also allow the non-alphanumeric characters allowed in IRIs via backslash character escapes (e.g. <code>ns:id\=123</code>). <a href="#rPN_LOCAL">SPARQL local names</a> have more syntactic
             restrictions than <a href="http://www.w3.org/TR/curie/">CURIE</a>s.</p>
           </section>
           <section id="relIRIs">
             <h5>Relative IRIs</h5>
-            <p>Relative IRIs are combined with base IRIs as per <a class="norm" href="http://www.ietf.org/rfc/rfc3986.txt">Uniform Resource Identifier (URI): Generic Syntax</a> [<a href=
-            "#rfc3986">RFC3986</a>] using only the basic algorithm in section 5.2. Neither Syntax-Based Normalization nor Scheme-Based Normalization (described in sections 6.2.2 and 6.2.3 of RFC3986)
-            are performed. Characters additionally allowed in IRI references are treated in the same way that unreserved characters are treated in URI references, per section 6.5 of <a class="norm"
-            href="http://www.ietf.org/rfc/rfc3987.txt">Internationalized Resource Identifiers (IRIs)</a> [<a href="#rfc3987">RFC3987</a>].</p>
-            <p>The <code>BASE</code> keyword defines the Base IRI used to resolve relative IRIs per RFC3986 section 5.1.1, "Base URI Embedded in Content". Section 5.1.2, "Base URI from the
+            <p>Relative IRIs are combined with base IRIs as per [[[RFC3986]]] [[RFC3986]] using only the basic algorithm in section 5.2. Neither Syntax-Based Normalization nor Scheme-Based Normalization (described in sections 6.2.2 and 6.2.3 of [[RFC3986]])
+            are performed. Characters additionally allowed in IRI references are treated in the same way that unreserved characters are treated in URI references, per section 6.5 of [[[RFC3987]]] [[RFC3987]].</p>
+            <p>The <code>BASE</code> keyword defines the Base IRI used to resolve relative IRIs per [[RFC3986]] section 5.1.1, "Base URI Embedded in Content". Section 5.1.2, "Base URI from the
             Encapsulating Entity" defines how the Base IRI may come from an encapsulating document, such as a SOAP envelope with an xml:base directive or a mime multipart document with a
             Content-Location header. The "Retrieval URI" identified in 5.1.3, Base "URI from the Retrieval URI", is the URL from which a particular SPARQL query was retrieved. If none of the above
             specifies the Base URI, the default Base URI (section 5.1.4, "Default Base URI") is used.</p>
@@ -749,7 +774,7 @@ book:book1</pre>
         </section>
         <section id="QSynBlankNodes">
           <h4>Syntax for Blank Nodes</h4>
-          <p><a class="norm" href="http://www.w3.org/TR/rdf-concepts/#section-blank-nodes">Blank nodes</a> in graph patterns act as variables, not as references to specific blank nodes in the data
+          <p><a>Blank nodes</a> in graph patterns act as variables, not as references to specific blank nodes in the data
           being queried.</p>
           <p>Blank nodes are indicated by either the label form, such as "<code>_:abc</code>", or the abbreviated form "<code>[]</code>". A blank node that is used in only one place in the query
           syntax can be indicated with <code>[]</code>. A unique blank node will be used to form the triple pattern. Blank node labels are written as "<code>_:abc</code>" for a blank node with label
@@ -839,7 +864,7 @@ WHERE   { &lt;book1&gt;  dc:title  ?title }
         </section>
         <section id="collections">
           <h4>RDF Collections</h4>
-          <p><a class="norm" href="http://www.w3.org/TR/2004/REC-rdf-mt-20040210/#collections">RDF collections</a> can be written in triple patterns using the syntax "(element1 element2 ...)". The
+          <p><a data-cite="RDF11-MT#collections">RDF collections</a> can be written in triple patterns using the syntax "(element1 element2 ...)". The
           form "<code>()</code>" is an alternative for the IRI <code><a href="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil">http://www.w3.org/1999/02/22-rdf-syntax-ns#nil</a></code>. When used with
           collection elements, such as <code>(1 ?x 3 4)</code>, triple patterns with blank nodes are allocated for the collection. The blank node at the head of the collection can be used as a
           subject or object in other triple patterns. The blank nodes allocated by the collection syntax do not occur elsewhere in the query.</p>
@@ -925,7 +950,7 @@ WHERE   { &lt;book1&gt;  dc:title  ?title }
         <section id="bgpExtend">
           <h4>Extending Basic Graph Pattern Matching</h4>
           <p>SPARQL evaluates basic graph patterns using subgraph matching, which is defined for simple entailment. SPARQL can be extended to other forms of entailment given <a href=
-          "#sparqlBGPExtend">certain conditions</a> as described below. The document <a href="http://www.w3.org/TR/sparql11-entailment/">SPARQL 1.1 Entailment Regimes</a> describes several specific
+          "#sparqlBGPExtend">certain conditions</a> as described below. The document [[[SPARQL11-ENTAILMENT]]] describes several specific
           entailment regimes.</p>
         </section>
       </section>
@@ -2353,7 +2378,7 @@ _:a foaf:mbox &lt;mailto:alice@work.example.org&gt; .
         </div>
         <p>In this example, the default graph contains the names of the publishers of two named graphs. The triples in the named graphs are not visible in the default graph in this example.</p>
         <p id="ex_2"><b>Example 2:</b></p>
-        <p>RDF data can be combined by the <a class="norm" href="http://www.w3.org/TR/rdf-mt/#graphdefs">RDF merge</a> [<a href="#RDF-MT">RDF-MT</a>] of graphs. One possible arrangement of graphs in
+        <p>RDF data can be combined by the <a data-cite="RDF11-MT#graphdefs">RDF merge</a> [[RDF11-MT]] of graphs. One possible arrangement of graphs in
         an RDF Dataset is to have the default graph be the RDF merge of some or all of the information in the named graphs.</p>
         <p>In this next example, the named graphs contain the same triples as before. The RDF dataset includes an RDF merge of the named graphs in the default graph, re-labeling blank nodes to keep
         them distinct.</p>
@@ -2384,8 +2409,8 @@ _:a foaf:mbox &lt;<a href="mailto:alice@work.example">mailto:alice@work.example<
       <section id="specifyingDataset">
         <h3>Specifying RDF Datasets</h3>
         <p>A SPARQL query may specify the dataset to be used for matching by using the <code>FROM</code> clause and the <code>FROM NAMED</code> clause to describe the RDF dataset. If a query provides
-        such a dataset description, then it is used in place of any dataset that the query service would use if no dataset description is provided in a query. The RDF dataset may also be <a class=
-        "inform" href="http://www.w3.org/TR/sparql11-protocol/">specified in a SPARQL protocol request</a>, in which case the protocol description overrides any description in the query itself. A
+        such a dataset description, then it is used in place of any dataset that the query service would use if no dataset description is provided in a query. The RDF dataset may also be
+        <a data-cite="SPARQL11-PROTOCOL#">specified in a SPARQL protocol request</a>, in which case the protocol description overrides any description in the query itself. A
         query service may refuse a query request if the dataset description is not acceptable to the service.</p>
         <p>The <code>FROM</code> and <code>FROM NAMED</code> keywords allow a query to specify an RDF dataset by reference; they indicate that the dataset should include graphs that are obtained from
         representations of the resources identified by the given IRIs (i.e. the absolute form of the given IRI references). The dataset resulting from a number of <code>FROM</code> and <code>FROM
@@ -2427,8 +2452,8 @@ WHERE   { ?x foaf:name ?name }
               </div>
             </div>
           </div>
-          <p>If a query provides more than one <code>FROM</code> clause, providing more than one IRI to indicate the default graph, then the default graph is the <a class="norm" href=
-          "http://www.w3.org/TR/rdf-mt/#graphdefs">RDF merge</a> of the graphs obtained from representations of the resources identified by the given IRIs.</p>
+          <p>If a query provides more than one <code>FROM</code> clause, providing more than one IRI to indicate the default graph, then the default graph is the
+            <a data-cite="RDF11-MT#graphdefs">RDF merge</a> of the graphs obtained from representations of the resources identified by the given IRIs.</p>
         </section>
         <section id="namedGraphs">
           <h4>Specifying Named Graphs</h4>
@@ -2453,8 +2478,8 @@ FROM NAMED &lt;http://example.org/bob&gt;
 ...</pre>
           </div>
           <p>The <code>FROM NAMED</code> syntax suggests that the IRI identifies the corresponding graph, but the relationship between an IRI and a graph in an RDF dataset is indirect. The IRI
-          identifies a resource, and the resource is represented by a graph (or, more precisely: by a document that serializes a graph). For <a class="inform" href=
-          "http://www.w3.org/TR/webarch/#intro">further details</a> see [<a href="#WEBARCH">WEBARCH</a>].</p>
+          identifies a resource, and the resource is represented by a graph (or, more precisely: by a document that serializes a graph).
+          For <a data-cite="?WEBARCH#intro">further details</a> see [[?WEBARCH]].</p>
         </section>
         <section id="specDataset">
           <h4>Combining FROM and FROM NAMED</h4>
@@ -2745,7 +2770,7 @@ WHERE
     <section id="basic-federated-query">
       <h2>Basic Federated Query</h2>
       <p>This document incorporates the syntax for SPARQL federation extensions.</p>
-      <p>This feature is defined in the document <a href="http://www.w3.org/TR/sparql11-federated-query/">SPARQL 1.1 Federated Query</a>.</p>
+      <p>This feature is defined in the document [[[SPARQL11-FEDERATED-QUERY]]].</p>
     </section>
     <section id="solutionModifiers">
       <h2>Solution Sequences and Modifiers</h2>
@@ -3054,9 +3079,7 @@ LIMIT 20
           <dd>Returns an RDF graph that describes the resources found.</dd>
         </dl>
       </blockquote>
-      <p>Formats such as <a class="inform" href="http://www.w3.org/TR/sparql11-results-json/">SPARQL 1.1 Query Results JSON Format</a>, <a class="inform" href=
-      "http://www.w3.org/TR/rdf-sparql-XMLres/">SPARQL Query Results XML Format</a> or <a class="inform" href="http://www.w3.org/TR/sparql11-results-csv-tsv/">SPARQL 1.1 Query Results CSV and TSV
-      Formats</a> <a class="inform" href=""></a> <a class="inform" href=""></a> can be used to serialize the result set from a <code>SELECT</code> query or the boolean result of an <code>ASK</code>
+      <p>Formats such as [[[?SPARQL11-RESULTS-JSON]]], [[[?RDF-SPARQL-XMLRES]]] or [[[?SPARQL11-RESULTS-CSV-TSV]]] can be used to serialize the result set from a <code>SELECT</code> query or the boolean result of an <code>ASK</code>
       query.</p>
       <section id="select">
         <h3>SELECT</h3>
@@ -3111,7 +3134,7 @@ WHERE
                 </table>
               </div>
               <p>Result sets can be accessed by a local API but also can be serialized into either JSON, XML, CSV or TSV.</p>
-              <p><a class="inform" href="http://www.w3.org/TR/sparql11-results-json/">SPARQL 1.1 Query Results JSON Format</a>:</p>
+              <p>[[[?SPARQL11-RESULTS-JSON]]]:</p>
               <div class="result">
                 <pre class="resultSet">{
   "head": {
@@ -3132,7 +3155,7 @@ WHERE
   }
 }</pre>
               </div>
-              <p><a class="inform" href="http://www.w3.org/TR/rdf-sparql-XMLres/">SPARQL Query Results XML Format</a>:</p>
+              <p>[[[?RDF-SPARQL-XMLRES]]]:</p>
               <div class="result">
                 <pre class="resultSet">&lt;?xml version="1.0"?&gt;
 &lt;sparql xmlns="http://www.w3.org/2005/sparql-results#"&gt;
@@ -3430,7 +3453,7 @@ ASK  { ?x foaf:name  "Alice" }
             <div class="result">
               <pre class="resultAsk">true</pre>
             </div>
-            <p>The <a class="inform" href="http://www.w3.org/TR/rdf-sparql-XMLres/">SPARQL Query Results XML Format</a> form of this result set gives:</p>
+            <p>The [[[?RDF-SPARQL-XMLRES]]] form of this result set gives:</p>
             <div class="result">
               <pre class="resultSet">&lt;?xml version="1.0"?&gt;
 &lt;sparql xmlns="http://www.w3.org/2005/sparql-results#"&gt;
@@ -3532,7 +3555,7 @@ _:a     exOrg:employeeId    "1234" ;
             </div>
           </div>
           <p>which includes the blank node closure for the <a href="http://www.w3.org/TR/vcard-rdf" class="inform">vcard</a> vocabulary vcard:N. Other possible mechanisms for deciding what
-          information to return include Concise Bounded Descriptions [<a href="#CBD">CBD</a>].</p>
+          information to return include Concise Bounded Descriptions [[?CBD]].</p>
           <p>For a vocabulary such as FOAF, where the resources are typically blank nodes, returning sufficient information to identify a node such as the InverseFunctionalProperty
           <code>foaf:mbox_sha1sum</code> as well as information like name and other details recorded would be appropriate. In the example, the match to the <code>WHERE</code> clause was returned, but
           this is not required.</p>
@@ -3543,8 +3566,8 @@ _:a     exOrg:employeeId    "1234" ;
       <h2>Expressions and Testing Values</h2>
       <p>SPARQL <code>FILTERs</code> restrict the solutions of a graph pattern match according to a given <a href="#rConstraint">constraint</a>. Specifically, <code>FILTERs</code> eliminate any
       solutions that, when substituted into the expression, either result in an effective boolean value of <code>false</code> or produce an error. Effective boolean values are defined in section
-      <a href="#ebv">17.2.2 <em>Effective Boolean Value</em></a> and errors are defined in XQuery 1.0: An XML Query Language [<a href="#XQUERY">XQUERY</a>] section <a class="norm" href=
-      "http://www.w3.org/TR/2007/REC-xquery-20070123/#dt-type-error">2.3.1, <em>Kinds of Errors</em></a>. These errors have no effect outside of <code>FILTER</code> evaluation.</p>
+      <a href="#ebv">17.2.2 <em>Effective Boolean Value</em></a> and errors are defined in [[[XQUERY]]] [[XQUERY]] section
+      <a data-cite="XQUERY#dt-type-error">2.3.1, <em>Kinds of Errors</em></a>. These errors have no effect outside of <code>FILTER</code> evaluation.</p>
       <div class="exampleGroup">
         <p>RDF literals may have a <div>datatype IRI</div>:</p>
         <pre class="data">@prefix a:          &lt;http://www.w3.org/2000/10/annotation-ns#&gt; .
@@ -3576,22 +3599,22 @@ WHERE { ?annot  a:annotates  &lt;http://www.w3.org/TR/rdf-sparql-query/&gt; .
       <p>Typographical convention in this section: XPath operators are labeled with the prefix <code>op:</code>. XPath operators have no namespace; <code>op:</code> is a labeling convention.</p>
       <section id="operandDataTypes">
         <h3>Operand Data Types</h3>
-        <p>SPARQL functions and operators operate on RDF terms and SPARQL variables. A subset of these functions and operators are taken from the <a class="norm" href=
-        "http://www.w3.org/TR/xpath-functions/">XQuery 1.0 and XPath 2.0 Functions and Operators</a> [<a href="#FUNCOP">FUNCOP</a>] and have XML Schema <a href=
-        "http://www.w3.org/TR/xpath20/#dt-typed-value">typed value</a> arguments and return types. RDF <code>typed literals</code> passed as arguments to these functions and operators are mapped to
-        XML Schema typed values with a <a href="http://www.w3.org/TR/xpath20/#dt-string-value">string value</a> of the <code>lexical form</code> and an <a href=
+        <p>SPARQL functions and operators operate on RDF terms and SPARQL variables. A subset of these functions and operators are taken from the
+          [[[FUNCOP]]] [[FUNCOP]] and have XML Schema
+          <a data-cite="XPATH20#dt-typed-value">typed value</a> arguments and return types. RDF <code>typed literals</code> passed as arguments to these functions and operators are mapped to
+        XML Schema typed values with a <a data-cite="XPATH20#dt-string-value">string value</a> of the <code>lexical form</code> and an <a href=
         "http://www.w3.org/TR/xmlschema-2/#dt-atomic">atomic datatype</a> corresponding to the <span class="type datatypeIRI">datatype IRI</span>. The returned typed values are mapped back to RDF
         <code>typed literals</code> the same way.</p>
         <p>SPARQL has additional operators which operate on specific subsets of RDF terms. When referring to a type, the following terms denote a <code>typed literal</code> with the corresponding
-        <a class="norm" href="http://www.w3.org/TR/2004/REC-xmlschema-2-20041028/">XML Schema</a> [<a class="norm" href="#XSDT">XSDT</a>] <span class="type datatypeIRI">datatype IRI</span>:</p>
+        [[[XMLSCHEMA-2]]] [[XMLSCHEMA-2]] <span class="type datatypeIRI">datatype IRI</span>:</p>
         <ul>
-          <li><code><a href="http://www.w3.org/TR/2004/REC-xmlschema-2-20041028/#dt-integer">xsd:integer</a></code></li>
-          <li><code><a href="http://www.w3.org/TR/2004/REC-xmlschema-2-20041028/#dt-decimal">xsd:decimal</a></code></li>
-          <li><code><a href="http://www.w3.org/TR/2004/REC-xmlschema-2-20041028/#dt-float">xsd:float</a></code></li>
-          <li><code><a href="http://www.w3.org/TR/2004/REC-xmlschema-2-20041028/#dt-double">xsd:double</a></code></li>
-          <li><code><a href="http://www.w3.org/TR/2004/REC-xmlschema-2-20041028/#dt-string">xsd:string</a></code></li>
-          <li><code><a href="http://www.w3.org/TR/2004/REC-xmlschema-2-20041028/#dt-boolean">xsd:boolean</a></code></li>
-          <li><code><a href="http://www.w3.org/TR/2004/REC-xmlschema-2-20041028/#dt-dateTime">xsd:dateTime</a></code></li>
+          <li><code><a data-cite="XMLSCHEMA-2#dt-integer">xsd:integer</a></code></li>
+          <li><code><a data-cite="XMLSCHEMA-2#dt-decimal">xsd:decimal</a></code></li>
+          <li><code><a data-cite="XMLSCHEMA-2#dt-float">xsd:float</a></code></li>
+          <li><code><a data-cite="XMLSCHEMA-2#dt-double">xsd:double</a></code></li>
+          <li><code><a data-cite="XMLSCHEMA-2#dt-string">xsd:string</a></code></li>
+          <li><code><a data-cite="XMLSCHEMA-2#dt-boolean">xsd:boolean</a></code></li>
+          <li><code><a data-cite="XMLSCHEMA-2#dt-dateTime">xsd:dateTime</a></code></li>
         </ul>
         <p>The following terms identify additional types used in SPARQL value tests:</p>
         <ul>
@@ -3604,29 +3627,29 @@ WHERE { ?annot  a:annotates  &lt;http://www.w3.org/TR/rdf-sparql-query/&gt; .
         <p>The following types are derived from <span class="type numeric">numeric</span> types and are valid arguments to functions and operators taking <span class="type numeric">numeric</span>
         arguments:</p>
         <ul>
-          <li><a href="http://www.w3.org/TR/2004/REC-xmlschema-2-20041028/#dt-nonPositiveInteger"><code>xsd:nonPositiveInteger</code></a></li>
-          <li><a href="http://www.w3.org/TR/2004/REC-xmlschema-2-20041028/#dt-negativeInteger"><code>xsd:negativeInteger</code></a></li>
-          <li><a href="http://www.w3.org/TR/2004/REC-xmlschema-2-20041028/#dt-long"><code>xsd:long</code></a></li>
-          <li><a href="http://www.w3.org/TR/2004/REC-xmlschema-2-20041028/#dt-int"><code>xsd:int</code></a></li>
-          <li><a href="http://www.w3.org/TR/2004/REC-xmlschema-2-20041028/#dt-short"><code>xsd:short</code></a></li>
-          <li><a href="http://www.w3.org/TR/2004/REC-xmlschema-2-20041028/#dt-byte"><code>xsd:byte</code></a></li>
-          <li><a href="http://www.w3.org/TR/2004/REC-xmlschema-2-20041028/#dt-nonNegativeInteger"><code>xsd:nonNegativeInteger</code></a></li>
-          <li><a href="http://www.w3.org/TR/2004/REC-xmlschema-2-20041028/#dt-unsignedLong"><code>xsd:unsignedLong</code></a></li>
-          <li><a href="http://www.w3.org/TR/2004/REC-xmlschema-2-20041028/#dt-unsignedInt"><code>xsd:unsignedInt</code></a></li>
-          <li><a href="http://www.w3.org/TR/2004/REC-xmlschema-2-20041028/#dt-unsignedShort"><code>xsd:unsignedShort</code></a></li>
-          <li><a href="http://www.w3.org/TR/2004/REC-xmlschema-2-20041028/#dt-unsignedByte"><code>xsd:unsignedByte</code></a></li>
-          <li><a href="http://www.w3.org/TR/2004/REC-xmlschema-2-20041028/#dt-positiveInteger"><code>xsd:positiveInteger</code></a></li>
+          <li><a data-cite="XMLSCHEMA-2-2#dt-nonPositiveInteger"><code>xsd:nonPositiveInteger</code></a></li>
+          <li><a data-cite="XMLSCHEMA-2-2#dt-negativeInteger"><code>xsd:negativeInteger</code></a></li>
+          <li><a data-cite="XMLSCHEMA-2-2#dt-long"><code>xsd:long</code></a></li>
+          <li><a data-cite="XMLSCHEMA-2-2#dt-int"><code>xsd:int</code></a></li>
+          <li><a data-cite="XMLSCHEMA-2-2#dt-short"><code>xsd:short</code></a></li>
+          <li><a data-cite="XMLSCHEMA-2-2#dt-byte"><code>xsd:byte</code></a></li>
+          <li><a data-cite="XMLSCHEMA-2-2#dt-nonNegativeInteger"><code>xsd:nonNegativeInteger</code></a></li>
+          <li><a data-cite="XMLSCHEMA-2-2#dt-unsignedLong"><code>xsd:unsignedLong</code></a></li>
+          <li><a data-cite="XMLSCHEMA-2-2#dt-unsignedInt"><code>xsd:unsignedInt</code></a></li>
+          <li><a data-cite="XMLSCHEMA-2-2#dt-unsignedShort"><code>xsd:unsignedShort</code></a></li>
+          <li><a data-cite="XMLSCHEMA-2-2#dt-unsignedByte"><code>xsd:unsignedByte</code></a></li>
+          <li><a data-cite="XMLSCHEMA-2-2#dt-positiveInteger"><code>xsd:positiveInteger</code></a></li>
         </ul>
         <p>SPARQL language extensions may treat additional types as being derived from XML schema datatypes.</p>
       </section>
       <section id="evaluation">
         <h3>Filter Evaluation</h3>
-        <p>SPARQL provides a subset of the functions and operators defined by XQuery <a href="http://www.w3.org/TR/xquery/#mapping" class="norm">Operator Mapping</a>. XQuery 1.0 section <a href=
-        "http://www.w3.org/TR/xquery/#id-expression-processing" class="norm">2.2.3 Expression Processing</a> describes the invocation of XPath functions. The following rules accommodate the
+        <p>SPARQL provides a subset of the functions and operators defined by XQuery <a data-cite="XQUERY#mapping">Operator Mapping</a>. XQuery 1.0 section
+          <a data-cite="XQUERY#id-expression-processing">2.2.3 Expression Processing</a> describes the invocation of XPath functions. The following rules accommodate the
         differences in the data and execution models between XQuery and SPARQL:</p>
         <ul>
           <li>Unlike XPath/XQuery, SPARQL functions do not process node sequences. When interpreting the semantics of XPath functions, assume that each argument is a sequence of a single node.</li>
-          <li>Functions invoked with an argument of the wrong type will produce a <a href="http://www.w3.org/TR/xquery/#dt-type-error" class="norm">type error</a>. Effective boolean value arguments
+          <li>Functions invoked with an argument of the wrong type will produce a <a data-cite="XQUERY#dt-type-error">type error</a>. Effective boolean value arguments
           (labeled "xsd:boolean (EBV)" in the operator mapping table below), are coerced to <code>xsd:boolean</code> using the <a href="#ebv">EBV rules</a> in section 17.2.2.</li>
           <li>Apart from <a href="#func-bound">BOUND</a>, <a href="#func-coalesce">COALESCE</a>, <a href="#func-filter-exists">NOT EXISTS</a> and <a href="#func-filter-exists">EXISTS</a>, all
           functions and operators operate on RDF Terms and will produce a type error if any arguments are unbound.</li>
@@ -3719,10 +3742,10 @@ WHERE { ?annot  a:annotates  &lt;http://www.w3.org/TR/rdf-sparql-query/&gt; .
         </section>
         <section id="ebv">
           <h4>Effective Boolean Value (EBV)</h4>
-          <p>Effective boolean value is used to calculate the arguments to the logical functions <a href="#func-logical-and">logical-and</a>, <a href="#func-logical-or">logical-or</a>, and <a class=
-          "norm" href="http://www.w3.org/TR/xpath-functions/#func-not">fn:not</a>, as well as evaluate the result of a <code>FILTER</code> expression.</p>
-          <p>The XQuery <a href="http://www.w3.org/TR/xquery/#id-ebv">Effective Boolean Value</a> rules rely on the definition of XPath's <a href=
-          "http://www.w3.org/TR/xpath-functions/#func-boolean">fn:boolean</a>. The following rules reflect the rules for <code>fn:boolean</code> applied to the argument types present in SPARQL
+          <p>Effective boolean value is used to calculate the arguments to the logical functions <a href="#func-logical-and">logical-and</a>, <a href="#func-logical-or">logical-or</a>,
+            and <a data-cite="FUNCOP#func-not">fn:not</a>, as well as evaluate the result of a <code>FILTER</code> expression.</p>
+          <p>The XQuery <a data-cite="XQUERY#id-ebv">Effective Boolean Value</a> rules rely on the definition of XPath's
+            <a data-cite="FUNCOP#func-boolean">fn:boolean</a>. The following rules reflect the rules for <code>fn:boolean</code> applied to the argument types present in SPARQL
           queries:</p>
           <ul>
             <li>The EBV of any literal whose type is <code>xsd:boolean</code> or <span class="type">numeric</span> is false if the lexical form is not valid for that datatype (e.g.
@@ -3742,18 +3765,18 @@ WHERE { ?annot  a:annotates  &lt;http://www.w3.org/TR/rdf-sparql-query/&gt; .
       <section id="OperatorMapping">
         <h3>Operator Mapping</h3>
         <p>The SPARQL grammar identifies a set of operators (for instance, <span class="token">&amp;&amp;</span>, <span class="token">*</span>, <span class="token">isIRI</span>) used to construct
-        constraints. The following table associates each of these grammatical productions with the appropriate operands and an operator function defined by either <a class="norm" href=
-        "http://www.w3.org/TR/xpath-functions/">XQuery 1.0 and XPath 2.0 Functions and Operators</a> [<a href="#FUNCOP">FUNCOP</a>] or the SPARQL operators specified in <a href="#SparqlOps">section
+        constraints. The following table associates each of these grammatical productions with the appropriate operands and an operator function defined by either
+        [[[FUNCOP]]] [[FUNCOP]] or the SPARQL operators specified in <a href="#SparqlOps">section
         17.4</a>. When selecting the operator definition for a given set of parameters, the definition with the most specific parameters applies. For instance, when evaluating <code>xsd:integer =
         xsd:signedInt</code>, the definition for <code>=</code> with two <code>numeric</code> parameters applies, rather than the one with two <span class="type RDFterm">RDF terms</span>. The table
         is arranged so that the upper-most viable candidate is the most specific. Operators invoked without appropriate operands result in a type error.</p>
-        <p>SPARQL follows XPath's scheme for numeric type promotions and subtype substitution for arguments to numeric operators. The <a href="http://www.w3.org/TR/xpath20/#mapping">XPath Operator
+        <p>SPARQL follows XPath's scheme for numeric type promotions and subtype substitution for arguments to numeric operators. The <a data-cite="XPATH20#mapping">XPath Operator
         Mapping</a> rules for <span class="type numeric">numeric</span> operands (<code>xsd:integer</code>, <code>xsd:decimal</code>, <code>xsd:float</code>, <code>xsd:double</code>, and types
-        derived from a <span class="type numeric">numeric</span> type) apply to SPARQL operators as well (see <a class="norm" href="http://www.w3.org/TR/xpath20/">XML Path Language (XPath) 2.0</a>
-        [<a href="#XPATH20">XPATH20</a>] for definitions of <a class="norm" href="http://www.w3.org/TR/xpath20/#promotion">numeric type promotions</a> and <a class="norm" href=
-        "http://www.w3.org/TR/xpath20/#dt-subtype-substitution">subtype substitution</a>). Some of the operators are associated with nested function expressions, e.g. <code>fn:not(op:numeric-equal(A,
+        derived from a <span class="type numeric">numeric</span> type) apply to SPARQL operators as well
+        (see [[[XPATH20]]] [[XPATH20]] for definitions of <a data-cite="XPATH20#promotion">numeric type promotions</a> and
+        <a data-cite="XPATH20#dt-subtype-substitution">subtype substitution</a>). Some of the operators are associated with nested function expressions, e.g. <code>fn:not(op:numeric-equal(A,
         B))</code>. Note that per the XPath definitions, <code>fn:not</code> and <code>op:numeric-equal</code> produce an error if their argument is an error.</p>
-        <p>The collation for <code>fn:compare</code> is <a href="http://www.w3.org/TR/xpath-functions/#collations">defined by XPath</a> and identified by
+        <p>The collation for <code>fn:compare</code> is <a data-cite="FUNCOP#collations">defined by XPath</a> and identified by
         <code>http://www.w3.org/2005/xpath-functions/collation/codepoint</code>. This collation allows for string comparison based on code point values. Codepoint string equivalence can be tested
         with <span class="type RDFterm">RDF term</span> equivalence.</p>
         <table summary="SPARQL Unary Operators" class="FAndOTable">
@@ -3773,19 +3796,19 @@ WHERE { ?annot  a:annotates  &lt;http://www.w3.org/TR/rdf-sparql-query/&gt; .
             <tr>
               <th scope="row"><a href="#rUnaryExpression" title="UnaryExpression"><span class="FAOTtoken">!</span> A</a></th>
               <td>xsd:boolean <a href="#ebv-arg">(EBV)</a></td>
-              <td class="xpathOp"><a class="norm" href="http://www.w3.org/TR/xpath-functions/#func-not">fn:not</a>(A)</td>
+              <td class="xpathOp"><a data-cite="FUNCOP#func-not">fn:not</a>(A)</td>
               <td>xsd:boolean</td>
             </tr>
             <tr>
               <th scope="row"><a href="#rUnaryExpression" title="UnaryExpression"><span class="FAOTtoken">+</span> A</a></th>
               <td><span class="type numeric">numeric</span></td>
-              <td class="xpathOp"><a class="norm" href="http://www.w3.org/TR/xpath-functions/#func-numeric-unary-plus">op:numeric-unary-plus</a>(A)</td>
+              <td class="xpathOp"><a data-cite="FUNCOP#func-numeric-unary-plus">op:numeric-unary-plus</a>(A)</td>
               <td><span class="type numeric">numeric</span></td>
             </tr>
             <tr>
               <th scope="row"><a href="#rUnaryExpression" title="UnaryExpression"><span class="FAOTtoken">-</span> A</a></th>
               <td><span class="type numeric">numeric</span></td>
-              <td class="xpathOp"><a class="norm" href="http://www.w3.org/TR/xpath-functions/#func-numeric-unary-minus">op:numeric-unary-minus</a>(A)</td>
+              <td class="xpathOp"><a data-cite="FUNCOP#func-numeric-unary-minus">op:numeric-unary-minus</a>(A)</td>
               <td><span class="type numeric">numeric</span></td>
             </tr>
           </tbody>
@@ -3826,61 +3849,56 @@ WHERE { ?annot  a:annotates  &lt;http://www.w3.org/TR/rdf-sparql-query/&gt; .
               <th scope="row"><a href="#rRelationalExpression" title="RelationalExpression">A <span class="FAOTtoken">=</span> B</a></th>
               <td><span class="type numeric">numeric</span></td>
               <td><span class="type numeric">numeric</span></td>
-              <td class="xpathOp"><a class="norm" href="http://www.w3.org/TR/xpath-functions/#func-numeric-equal">op:numeric-equal</a>(A, B)</td>
+              <td class="xpathOp"><a data-cite="FUNCOP#func-numeric-equal">op:numeric-equal</a>(A, B)</td>
               <td>xsd:boolean</td>
             </tr>
             <tr>
               <th scope="row"><a href="#rRelationalExpression" title="RelationalExpression">A <span class="FAOTtoken">=</span> B</a></th>
               <td><span class="type simpleLiteral">simple literal</span></td>
               <td><span class="type simpleLiteral">simple literal</span></td>
-              <td class="xpathOp"><a class="norm" href="http://www.w3.org/TR/xpath-functions/#func-numeric-equal">op:numeric-equal</a>(<a class="norm" href=
-              "http://www.w3.org/TR/xpath-functions/#func-compare">fn:compare</a>(A, B), 0)</td>
+              <td class="xpathOp"><a data-cite="FUNCOP#func-numeric-equal">op:numeric-equal</a>(<a data-cite="XPATH-FUNCTIONS#func-compare">fn:compare</a>(A, B), 0)</td>
               <td>xsd:boolean</td>
             </tr>
             <tr>
               <th scope="row"><a href="#rRelationalExpression" title="RelationalExpression">A <span class="FAOTtoken">=</span> B</a></th>
               <td>xsd:string</td>
               <td>xsd:string</td>
-              <td class="xpathOp"><a class="norm" href="http://www.w3.org/TR/xpath-functions/#func-numeric-equal">op:numeric-equal</a>(<a class="norm" href=
-              "http://www.w3.org/TR/xpath-functions/#func-compare">fn:compare</a>(<a href="#func-str" class="FAOTtoken">STR</a>(A), <a href="#func-str" class="FAOTtoken">STR</a>(B)), 0)</td>
+              <td class="xpathOp"><a data-cite="FUNCOP#func-numeric-equal">op:numeric-equal</a>(<a data-cite="XPATH-FUNCTIONS#func-compare">fn:compare</a>(<a href="#func-str" class="FAOTtoken">STR</a>(A), <a href="#func-str" class="FAOTtoken">STR</a>(B)), 0)</td>
               <td>xsd:boolean</td>
             </tr>
             <tr>
               <th scope="row"><a href="#rRelationalExpression" title="RelationalExpression">A <span class="FAOTtoken">=</span> B</a></th>
               <td>xsd:boolean</td>
               <td>xsd:boolean</td>
-              <td class="xpathOp"><a class="norm" href="http://www.w3.org/TR/xpath-functions/#func-boolean-equal">op:boolean-equal</a>(A, B)</td>
+              <td class="xpathOp"><a data-cite="FUNCOP#func-boolean-equal">op:boolean-equal</a>(A, B)</td>
               <td>xsd:boolean</td>
             </tr>
             <tr>
               <th scope="row"><a href="#rRelationalExpression" title="RelationalExpression">A <span class="FAOTtoken">=</span> B</a></th>
               <td>xsd:dateTime</td>
               <td>xsd:dateTime</td>
-              <td class="xpathOp"><a class="norm" href="http://www.w3.org/TR/xpath-functions/#func-dateTime-equal">op:dateTime-equal</a>(A, B)</td>
+              <td class="xpathOp"><a data-cite="FUNCOP#func-dateTime-equal">op:dateTime-equal</a>(A, B)</td>
               <td>xsd:boolean</td>
             </tr>
             <tr>
               <th scope="row"><a href="#rRelationalExpression" title="RelationalExpression">A <span class="FAOTtoken">!=</span> B</a></th>
               <td><span class="type numeric">numeric</span></td>
               <td><span class="type numeric">numeric</span></td>
-              <td class="xpathOp"><a class="norm" href="http://www.w3.org/TR/xpath-functions/#func-not">fn:not</a>(<a class="norm" href=
-              "http://www.w3.org/TR/xpath-functions/#func-numeric-equal">op:numeric-equal</a>(A, B))</td>
+              <td class="xpathOp"><a data-cite="FUNCOP#func-not">fn:not</a>(<a data-cite="XPATH-FUNCTIONS#func-numeric-equal">op:numeric-equal</a>(A, B))</td>
               <td>xsd:boolean</td>
             </tr>
             <tr>
               <th scope="row"><a href="#rRelationalExpression" title="RelationalExpression">A <span class="FAOTtoken">!=</span> B</a></th>
               <td><span class="type simpleLiteral">simple literal</span></td>
               <td><span class="type simpleLiteral">simple literal</span></td>
-              <td class="xpathOp"><a class="norm" href="http://www.w3.org/TR/xpath-functions/#func-not">fn:not</a>(<a class="norm" href=
-              "http://www.w3.org/TR/xpath-functions/#func-numeric-equal">op:numeric-equal</a>(<a class="norm" href="http://www.w3.org/TR/xpath-functions/#func-compare">fn:compare</a>(A, B), 0))</td>
+              <td class="xpathOp"><a data-cite="FUNCOP#func-not">fn:not</a>(<a data-cite="XPATH-FUNCTIONS#func-numeric-equal">op:numeric-equal</a>(<a data-cite="FUNCOP#func-compare">fn:compare</a>(A, B), 0))</td>
               <td>xsd:boolean</td>
             </tr>
             <tr>
               <th scope="row"><a href="#rRelationalExpression" title="RelationalExpression">A <span class="FAOTtoken">!=</span> B</a></th>
               <td>xsd:string</td>
               <td>xsd:string</td>
-              <td class="xpathOp"><a class="norm" href="http://www.w3.org/TR/xpath-functions/#func-not">fn:not</a>(<a class="norm" href=
-              "http://www.w3.org/TR/xpath-functions/#func-numeric-equal">op:numeric-equal</a>(<a class="norm" href="http://www.w3.org/TR/xpath-functions/#func-compare">fn:compare</a>(<a href=
+              <td class="xpathOp"><a data-cite="FUNCOP#func-not">fn:not</a>(<a data-cite="XPATH-FUNCTIONS#func-numeric-equal">op:numeric-equal</a>(<a data-cite="FUNCOP#func-compare">fn:compare</a>(<a href=
               "#func-str" class="FAOTtoken">STR</a>(A), <a href="#func-str" class="FAOTtoken">STR</a>(B)), 0))</td>
               <td>xsd:boolean</td>
             </tr>
@@ -3888,115 +3906,105 @@ WHERE { ?annot  a:annotates  &lt;http://www.w3.org/TR/rdf-sparql-query/&gt; .
               <th scope="row"><a href="#rRelationalExpression" title="RelationalExpression">A <span class="FAOTtoken">!=</span> B</a></th>
               <td>xsd:boolean</td>
               <td>xsd:boolean</td>
-              <td class="xpathOp"><a class="norm" href="http://www.w3.org/TR/xpath-functions/#func-not">fn:not</a>(<a class="norm" href=
-              "http://www.w3.org/TR/xpath-functions/#func-boolean-equal">op:boolean-equal</a>(A, B))</td>
+              <td class="xpathOp"><a data-cite="FUNCOP#func-not">fn:not</a>(<a data-cite="XPATH-FUNCTIONS#func-boolean-equal">op:boolean-equal</a>(A, B))</td>
               <td>xsd:boolean</td>
             </tr>
             <tr>
               <th scope="row"><a href="#rRelationalExpression" title="RelationalExpression">A <span class="FAOTtoken">!=</span> B</a></th>
               <td>xsd:dateTime</td>
               <td>xsd:dateTime</td>
-              <td class="xpathOp"><a class="norm" href="http://www.w3.org/TR/xpath-functions/#func-not">fn:not</a>(<a class="norm" href=
-              "http://www.w3.org/TR/xpath-functions/#func-dateTime-equal">op:dateTime-equal</a>(A, B))</td>
+              <td class="xpathOp"><a data-cite="FUNCOP#func-not">fn:not</a>(<a data-cite="XPATH-FUNCTIONS#func-dateTime-equal">op:dateTime-equal</a>(A, B))</td>
               <td>xsd:boolean</td>
             </tr>
             <tr id="op_lt">
               <th scope="row"><a href="#rRelationalExpression" title="RelationalExpression">A <span class="FAOTtoken">&lt;</span> B</a></th>
               <td><span class="type numeric">numeric</span></td>
               <td><span class="type numeric">numeric</span></td>
-              <td class="xpathOp"><a class="norm" href="http://www.w3.org/TR/xpath-functions/#func-numeric-less-than">op:numeric-less-than</a>(A, B)</td>
+              <td class="xpathOp"><a data-cite="FUNCOP#func-numeric-less-than">op:numeric-less-than</a>(A, B)</td>
               <td>xsd:boolean</td>
             </tr>
             <tr>
               <th scope="row"><a href="#rRelationalExpression" title="RelationalExpression">A <span class="FAOTtoken">&lt;</span> B</a></th>
               <td><span class="type simpleLiteral">simple literal</span></td>
               <td><span class="type simpleLiteral">simple literal</span></td>
-              <td class="xpathOp"><a class="norm" href="http://www.w3.org/TR/xpath-functions/#func-numeric-equal">op:numeric-equal</a>(<a class="norm" href=
-              "http://www.w3.org/TR/xpath-functions/#func-compare">fn:compare</a>(A, B), -1)</td>
+              <td class="xpathOp"><a data-cite="FUNCOP#func-numeric-equal">op:numeric-equal</a>(<a data-cite="XPATH-FUNCTIONS#func-compare">fn:compare</a>(A, B), -1)</td>
               <td>xsd:boolean</td>
             </tr>
             <tr>
               <th scope="row"><a href="#rRelationalExpression" title="RelationalExpression">A <span class="FAOTtoken">&lt;</span> B</a></th>
               <td>xsd:string</td>
               <td>xsd:string</td>
-              <td class="xpathOp"><a class="norm" href="http://www.w3.org/TR/xpath-functions/#func-numeric-equal">op:numeric-equal</a>(<a class="norm" href=
-              "http://www.w3.org/TR/xpath-functions/#func-compare">fn:compare</a>(<a href="#func-str" class="FAOTtoken">STR</a>(A), <a href="#func-str" class="FAOTtoken">STR</a>(B)), -1)</td>
+              <td class="xpathOp"><a data-cite="FUNCOP#func-numeric-equal">op:numeric-equal</a>(<a data-cite="XPATH-FUNCTIONS#func-compare">fn:compare</a>(<a href="#func-str" class="FAOTtoken">STR</a>(A), <a href="#func-str" class="FAOTtoken">STR</a>(B)), -1)</td>
               <td>xsd:boolean</td>
             </tr>
             <tr>
               <th scope="row"><a href="#rRelationalExpression" title="RelationalExpression">A <span class="FAOTtoken">&lt;</span> B</a></th>
               <td>xsd:boolean</td>
               <td>xsd:boolean</td>
-              <td class="xpathOp"><a class="norm" href="http://www.w3.org/TR/xpath-functions/#func-boolean-less-than">op:boolean-less-than</a>(A, B)</td>
+              <td class="xpathOp"><a data-cite="FUNCOP#func-boolean-less-than">op:boolean-less-than</a>(A, B)</td>
               <td>xsd:boolean</td>
             </tr>
             <tr>
               <th scope="row"><a href="#rRelationalExpression" title="RelationalExpression">A <span class="FAOTtoken">&lt;</span> B</a></th>
               <td>xsd:dateTime</td>
               <td>xsd:dateTime</td>
-              <td class="xpathOp"><a class="norm" href="http://www.w3.org/TR/xpath-functions/#func-dateTime-less-than">op:dateTime-less-than</a>(A, B)</td>
+              <td class="xpathOp"><a data-cite="FUNCOP#func-dateTime-less-than">op:dateTime-less-than</a>(A, B)</td>
               <td>xsd:boolean</td>
             </tr>
             <tr>
               <th scope="row"><a href="#rRelationalExpression" title="RelationalExpression">A <span class="FAOTtoken">&gt;</span> B</a></th>
               <td><span class="type numeric">numeric</span></td>
               <td><span class="type numeric">numeric</span></td>
-              <td class="xpathOp"><a class="norm" href="http://www.w3.org/TR/xpath-functions/#func-numeric-greater-than">op:numeric-greater-than</a>(A, B)</td>
+              <td class="xpathOp"><a data-cite="FUNCOP#func-numeric-greater-than">op:numeric-greater-than</a>(A, B)</td>
               <td>xsd:boolean</td>
             </tr>
             <tr>
               <th scope="row"><a href="#rRelationalExpression" title="RelationalExpression">A <span class="FAOTtoken">&gt;</span> B</a></th>
               <td><span class="type simpleLiteral">simple literal</span></td>
               <td><span class="type simpleLiteral">simple literal</span></td>
-              <td class="xpathOp"><a class="norm" href="http://www.w3.org/TR/xpath-functions/#func-numeric-equal">op:numeric-equal</a>(<a class="norm" href=
-              "http://www.w3.org/TR/xpath-functions/#func-compare">fn:compare</a>(A, B), 1)</td>
+              <td class="xpathOp"><a data-cite="FUNCOP#func-numeric-equal">op:numeric-equal</a>(<a data-cite="XPATH-FUNCTIONS#func-compare">fn:compare</a>(A, B), 1)</td>
               <td>xsd:boolean</td>
             </tr>
             <tr>
               <th scope="row"><a href="#rRelationalExpression" title="RelationalExpression">A <span class="FAOTtoken">&gt;</span> B</a></th>
               <td>xsd:string</td>
               <td>xsd:string</td>
-              <td class="xpathOp"><a class="norm" href="http://www.w3.org/TR/xpath-functions/#func-numeric-equal">op:numeric-equal</a>(<a class="norm" href=
-              "http://www.w3.org/TR/xpath-functions/#func-compare">fn:compare</a>(<a href="#func-str" class="FAOTtoken">STR</a>(A), <a href="#func-str" class="FAOTtoken">STR</a>(B)), 1)</td>
+              <td class="xpathOp"><a data-cite="FUNCOP#func-numeric-equal">op:numeric-equal</a>(<a data-cite="XPATH-FUNCTIONS#func-compare">fn:compare</a>(<a href="#func-str" class="FAOTtoken">STR</a>(A), <a href="#func-str" class="FAOTtoken">STR</a>(B)), 1)</td>
               <td>xsd:boolean</td>
             </tr>
             <tr>
               <th scope="row"><a href="#rRelationalExpression" title="RelationalExpression">A <span class="FAOTtoken">&gt;</span> B</a></th>
               <td>xsd:boolean</td>
               <td>xsd:boolean</td>
-              <td class="xpathOp"><a class="norm" href="http://www.w3.org/TR/xpath-functions/#func-boolean-greater-than">op:boolean-greater-than</a>(A, B)</td>
+              <td class="xpathOp"><a data-cite="FUNCOP#func-boolean-greater-than">op:boolean-greater-than</a>(A, B)</td>
               <td>xsd:boolean</td>
             </tr>
             <tr>
               <th scope="row"><a href="#rRelationalExpression" title="RelationalExpression">A <span class="FAOTtoken">&gt;</span> B</a></th>
               <td>xsd:dateTime</td>
               <td>xsd:dateTime</td>
-              <td class="xpathOp"><a class="norm" href="http://www.w3.org/TR/xpath-functions/#func-dateTime-greater-than">op:dateTime-greater-than</a>(A, B)</td>
+              <td class="xpathOp"><a data-cite="FUNCOP#func-dateTime-greater-than">op:dateTime-greater-than</a>(A, B)</td>
               <td>xsd:boolean</td>
             </tr>
             <tr>
               <th scope="row"><a href="#rRelationalExpression" title="RelationalExpression">A <span class="FAOTtoken">&lt;=</span> B</a></th>
               <td><span class="type numeric">numeric</span></td>
               <td><span class="type numeric">numeric</span></td>
-              <td class="xpathOp"><a href="#func-logical-or" class="SPARQLoperator">logical-or</a>(<a class="norm" href=
-              "http://www.w3.org/TR/xpath-functions/#func-numeric-less-than">op:numeric-less-than</a>(A, B), <a class="norm" href=
-              "http://www.w3.org/TR/xpath-functions/#func-numeric-equal">op:numeric-equal</a>(A, B))</td>
+              <td class="xpathOp"><a href="#func-logical-or" class="SPARQLoperator">logical-or</a>(<a data-cite="XPATH-FUNCTIONS#func-numeric-less-than">op:numeric-less-than</a>(A, B), <a data-cite="XPATH-FUNCTIONS#func-numeric-equal">op:numeric-equal</a>(A, B))</td>
               <td>xsd:boolean</td>
             </tr>
             <tr>
               <th scope="row"><a href="#rRelationalExpression" title="RelationalExpression">A <span class="FAOTtoken">&lt;=</span> B</a></th>
               <td><span class="type simpleLiteral">simple literal</span></td>
               <td><span class="type simpleLiteral">simple literal</span></td>
-              <td class="xpathOp"><a class="norm" href="http://www.w3.org/TR/xpath-functions/#func-not">fn:not</a>(<a class="norm" href=
-              "http://www.w3.org/TR/xpath-functions/#func-numeric-equal">op:numeric-equal</a>(<a class="norm" href="http://www.w3.org/TR/xpath-functions/#func-compare">fn:compare</a>(A, B), 1))</td>
+              <td class="xpathOp"><a data-cite="FUNCOP#func-not">fn:not</a>(<a data-cite="XPATH-FUNCTIONS#func-numeric-equal">op:numeric-equal</a>(<a data-cite="FUNCOP#func-compare">fn:compare</a>(A, B), 1))</td>
               <td>xsd:boolean</td>
             </tr>
             <tr>
               <th scope="row"><a href="#rRelationalExpression" title="RelationalExpression">A <span class="FAOTtoken">&lt;=</span> B</a></th>
               <td>xsd:string</td>
               <td>xsd:string</td>
-              <td class="xpathOp"><a class="norm" href="http://www.w3.org/TR/xpath-functions/#func-not">fn:not</a>(<a class="norm" href=
-              "http://www.w3.org/TR/xpath-functions/#func-numeric-equal">op:numeric-equal</a>(<a class="norm" href="http://www.w3.org/TR/xpath-functions/#func-compare">fn:compare</a>(<a href=
+              <td class="xpathOp"><a data-cite="FUNCOP#func-not">fn:not</a>(<a data-cite="XPATH-FUNCTIONS#func-numeric-equal">op:numeric-equal</a>(<a data-cite="FUNCOP#func-compare">fn:compare</a>(<a href=
               "#func-str" class="FAOTtoken">STR</a>(A), <a href="#func-str" class="FAOTtoken">STR</a>(B)), 1))</td>
               <td>xsd:boolean</td>
             </tr>
@@ -4004,41 +4012,35 @@ WHERE { ?annot  a:annotates  &lt;http://www.w3.org/TR/rdf-sparql-query/&gt; .
               <th scope="row"><a href="#rRelationalExpression" title="RelationalExpression">A <span class="FAOTtoken">&lt;=</span> B</a></th>
               <td>xsd:boolean</td>
               <td>xsd:boolean</td>
-              <td class="xpathOp"><a class="norm" href="http://www.w3.org/TR/xpath-functions/#func-not">fn:not</a>(<a class="norm" href=
-              "http://www.w3.org/TR/xpath-functions/#func-boolean-greater-than">op:boolean-greater-than</a>(A, B))</td>
+              <td class="xpathOp"><a data-cite="FUNCOP#func-not">fn:not</a>(<a data-cite="XPATH-FUNCTIONS#func-boolean-greater-than">op:boolean-greater-than</a>(A, B))</td>
               <td>xsd:boolean</td>
             </tr>
             <tr>
               <th scope="row"><a href="#rRelationalExpression" title="RelationalExpression">A <span class="FAOTtoken">&lt;=</span> B</a></th>
               <td>xsd:dateTime</td>
               <td>xsd:dateTime</td>
-              <td class="xpathOp"><a class="norm" href="http://www.w3.org/TR/xpath-functions/#func-not">fn:not</a>(<a class="norm" href=
-              "http://www.w3.org/TR/xpath-functions/#func-dateTime-greater-than">op:dateTime-greater-than</a>(A, B))</td>
+              <td class="xpathOp"><a data-cite="FUNCOP#func-not">fn:not</a>(<a data-cite="XPATH-FUNCTIONS#func-dateTime-greater-than">op:dateTime-greater-than</a>(A, B))</td>
               <td>xsd:boolean</td>
             </tr>
             <tr>
               <th scope="row"><a href="#rRelationalExpression" title="RelationalExpression">A <span class="FAOTtoken">&gt;=</span> B</a></th>
               <td><span class="type numeric">numeric</span></td>
               <td><span class="type numeric">numeric</span></td>
-              <td class="xpathOp"><a href="#func-logical-or" class="SPARQLoperator">logical-or</a>(<a class="norm" href=
-              "http://www.w3.org/TR/xpath-functions/#func-numeric-greater-than">op:numeric-greater-than</a>(A, B), <a class="norm" href=
-              "http://www.w3.org/TR/xpath-functions/#func-numeric-equal">op:numeric-equal</a>(A, B))</td>
+              <td class="xpathOp"><a href="#func-logical-or" class="SPARQLoperator">logical-or</a>(<a data-cite="XPATH-FUNCTIONS#func-numeric-greater-than">op:numeric-greater-than</a>(A, B), <a data-cite="XPATH-FUNCTIONS#func-numeric-equal">op:numeric-equal</a>(A, B))</td>
               <td>xsd:boolean</td>
             </tr>
             <tr>
               <th scope="row"><a href="#rRelationalExpression" title="RelationalExpression">A <span class="FAOTtoken">&gt;=</span> B</a></th>
               <td><span class="type simpleLiteral">simple literal</span></td>
               <td><span class="type simpleLiteral">simple literal</span></td>
-              <td class="xpathOp"><a class="norm" href="http://www.w3.org/TR/xpath-functions/#func-not">fn:not</a>(<a class="norm" href=
-              "http://www.w3.org/TR/xpath-functions/#func-numeric-equal">op:numeric-equal</a>(<a class="norm" href="http://www.w3.org/TR/xpath-functions/#func-compare">fn:compare</a>(A, B), -1))</td>
+              <td class="xpathOp"><a data-cite="FUNCOP#func-not">fn:not</a>(<a data-cite="XPATH-FUNCTIONS#func-numeric-equal">op:numeric-equal</a>(<a data-cite="FUNCOP#func-compare">fn:compare</a>(A, B), -1))</td>
               <td>xsd:boolean</td>
             </tr>
             <tr>
               <th scope="row"><a href="#rRelationalExpression" title="RelationalExpression">A <span class="FAOTtoken">&gt;=</span> B</a></th>
               <td>xsd:string</td>
               <td>xsd:string</td>
-              <td class="xpathOp"><a class="norm" href="http://www.w3.org/TR/xpath-functions/#func-not">fn:not</a>(<a class="norm" href=
-              "http://www.w3.org/TR/xpath-functions/#func-numeric-equal">op:numeric-equal</a>(<a class="norm" href="http://www.w3.org/TR/xpath-functions/#func-compare">fn:compare</a>(<a href=
+              <td class="xpathOp"><a data-cite="FUNCOP#func-not">fn:not</a>(<a data-cite="XPATH-FUNCTIONS#func-numeric-equal">op:numeric-equal</a>(<a data-cite="FUNCOP#func-compare">fn:compare</a>(<a href=
               "#func-str" class="FAOTtoken">STR</a>(A), <a href="#func-str" class="FAOTtoken">STR</a>(B)), -1))</td>
               <td>xsd:boolean</td>
             </tr>
@@ -4046,16 +4048,14 @@ WHERE { ?annot  a:annotates  &lt;http://www.w3.org/TR/rdf-sparql-query/&gt; .
               <th scope="row"><a href="#rRelationalExpression" title="RelationalExpression">A <span class="FAOTtoken">&gt;=</span> B</a></th>
               <td>xsd:boolean</td>
               <td>xsd:boolean</td>
-              <td class="xpathOp"><a class="norm" href="http://www.w3.org/TR/xpath-functions/#func-not">fn:not</a>(<a class="norm" href=
-              "http://www.w3.org/TR/xpath-functions/#func-boolean-less-than">op:boolean-less-than</a>(A, B))</td>
+              <td class="xpathOp"><a data-cite="FUNCOP#func-not">fn:not</a>(<a data-cite="XPATH-FUNCTIONS#func-boolean-less-than">op:boolean-less-than</a>(A, B))</td>
               <td>xsd:boolean</td>
             </tr>
             <tr>
               <th scope="row"><a href="#rRelationalExpression" title="RelationalExpression">A <span class="FAOTtoken">&gt;=</span> B</a></th>
               <td>xsd:dateTime</td>
               <td>xsd:dateTime</td>
-              <td class="xpathOp"><a class="norm" href="http://www.w3.org/TR/xpath-functions/#func-not">fn:not</a>(<a class="norm" href=
-              "http://www.w3.org/TR/xpath-functions/#func-dateTime-less-than">op:dateTime-less-than</a>(A, B))</td>
+              <td class="xpathOp"><a data-cite="FUNCOP#func-not">fn:not</a>(<a data-cite="XPATH-FUNCTIONS#func-dateTime-less-than">op:dateTime-less-than</a>(A, B))</td>
               <td>xsd:boolean</td>
             </tr>
             <tr>
@@ -4065,28 +4065,28 @@ WHERE { ?annot  a:annotates  &lt;http://www.w3.org/TR/rdf-sparql-query/&gt; .
               <th scope="row"><a href="#rMultiplicativeExpression" title="MultiplicativeExpression">A <span class="FAOTtoken">*</span> B</a></th>
               <td><span class="type numeric">numeric</span></td>
               <td><span class="type numeric">numeric</span></td>
-              <td class="xpathOp"><a class="norm" href="http://www.w3.org/TR/xpath-functions/#func-numeric-multiply">op:numeric-multiply</a>(A, B)</td>
+              <td class="xpathOp"><a data-cite="FUNCOP#func-numeric-multiply">op:numeric-multiply</a>(A, B)</td>
               <td><span class="type numeric">numeric</span></td>
             </tr>
             <tr>
               <th scope="row"><a href="#rMultiplicativeExpression" title="MultiplicativeExpression">A <span class="FAOTtoken">/</span> B</a></th>
               <td><span class="type numeric">numeric</span></td>
               <td><span class="type numeric">numeric</span></td>
-              <td class="xpathOp"><a class="norm" href="http://www.w3.org/TR/xpath-functions/#func-numeric-divide">op:numeric-divide</a>(A, B)</td>
+              <td class="xpathOp"><a data-cite="FUNCOP#func-numeric-divide">op:numeric-divide</a>(A, B)</td>
               <td><span class="type numeric">numeric</span>; but xsd:decimal if both operands are xsd:integer</td>
             </tr>
             <tr>
               <th scope="row"><a href="#rAdditiveExpression" title="AdditiveExpression">A <span class="FAOTtoken">+</span> B</a></th>
               <td><span class="type numeric">numeric</span></td>
               <td><span class="type numeric">numeric</span></td>
-              <td class="xpathOp"><a class="norm" href="http://www.w3.org/TR/xpath-functions/#func-numeric-add">op:numeric-add</a>(A, B)</td>
+              <td class="xpathOp"><a data-cite="FUNCOP#func-numeric-add">op:numeric-add</a>(A, B)</td>
               <td><span class="type numeric">numeric</span></td>
             </tr>
             <tr>
               <th scope="row"><a href="#rAdditiveExpression" title="AdditiveExpression">A <span class="FAOTtoken">-</span> B</a></th>
               <td><span class="type numeric">numeric</span></td>
               <td><span class="type numeric">numeric</span></td>
-              <td class="xpathOp"><a class="norm" href="http://www.w3.org/TR/xpath-functions/#func-numeric-subtract">op:numeric-subtract</a>(A, B)</td>
+              <td class="xpathOp"><a data-cite="FUNCOP#func-numeric-subtract">op:numeric-subtract</a>(A, B)</td>
               <td><span class="type numeric">numeric</span></td>
             </tr>
             <tr>
@@ -4103,7 +4103,7 @@ WHERE { ?annot  a:annotates  &lt;http://www.w3.org/TR/rdf-sparql-query/&gt; .
               <th><a href="#rRelationalExpression" title="RelationalExpression">A <span class="FAOTtoken">!=</span> B</a></th>
               <td><span class="type RDFterm">RDF term</span></td>
               <td><span class="type RDFterm">RDF term</span></td>
-              <td class="xpathOp"><a class="norm" href="http://www.w3.org/TR/xpath-functions/#func-not">fn:not</a>(<a href="#func-RDFterm-equal" class="SPARQLoperator">RDFterm-equal</a>(A, B))</td>
+              <td class="xpathOp"><a data-cite="FUNCOP#func-not">fn:not</a>(<a href="#func-RDFterm-equal" class="SPARQLoperator">RDFterm-equal</a>(A, B))</td>
               <td>xsd:boolean</td>
             </tr>
           </tbody>
@@ -4267,7 +4267,7 @@ SELECT ?name
             <p><code>NOT EXISTS { pattern }</code> is equivalent to <code>fn:not(EXISTS { pattern })</code>.</p>
             <pre class="prototype"> <span class="return">xsd:boolean</span>  <code>EXISTS</code> { <span class="pattern">pattern</span> }</pre>
             <p>Returns <code>true</code> if <code>pattern</code> matches. Returns false otherwise.</p>
-            <p>Variables in the <code>pattern</code> that are bound in the current <a href="http://www.w3.org/TR/rdf-sparql-query/#defn_sparqlSolutionMapping">solution mapping</a> take the value that
+            <p>Variables in the <code>pattern</code> that are bound in the current <a data-cite="SPARQL11-QUERY#defn_sparqlSolutionMapping">solution mapping</a> take the value that
             they have from the solution mapping. Variables in the pattern <code>pattern</code> that are not bound in the current solution mapping take part in pattern matching.</p>
             <p>To facilitate this, we introduce a function <a href="#defn_exists">Exists</a> that evaluates a SPARQL Algebra expression and returns true or false, depending on whether there are any
             solutions to the pattern, given the solution mapping being tested by the filter operation.</p>
@@ -4292,16 +4292,15 @@ SELECT ?name
             <h5>RDFterm-equal</h5>
             <pre class="prototype"> <span class="return">xsd:boolean</span>  <span class="type">RDF term</span> <span class="name">term1</span> <span class="operator">=</span> <span class=
             "type">RDF term</span> <span class="name">term2</span></pre>
-            <p>Returns TRUE if <code>term1</code> and <code>term2</code> are the same RDF term as defined in <a class="norm" href="http://www.w3.org/TR/rdf-concepts/">Resource Description Framework
-            (RDF): Concepts and Abstract Syntax</a> [<a href="#CONCEPTS">CONCEPTS</a>]; produces a type error if the arguments are both literal but are not the same RDF term <sup><a href=
+            <p>Returns TRUE if <code>term1</code> and <code>term2</code> are the same RDF term as defined in [[[RDF11-CONCEPTS]]] [[RDF11-CONCEPTS]]; produces a type error if the arguments are both literal but are not the same RDF term <sup><a href=
             "#func-RDFterm-equal-foot1" class="footnote">*</a></sup>; returns FALSE otherwise. <code>term1</code> and <code>term2</code> are the same if any of the following is true:</p>
             <ul>
-              <li><span class="name">term1</span> and <span class="name">term2</span> are equivalent <span class="IRI type">IRIs</span> as defined in <a href=
-              "http://www.w3.org/TR/rdf-concepts/#section-Graph-URIref">6.4 RDF URI References</a> of [<a href="#CONCEPTS">CONCEPTS</a>].</li>
-              <li><span class="name">term1</span> and <span class="name">term2</span> are equivalent <span class="literal type">literals</span> as defined in <a class="norm" href=
-              "http://www.w3.org/TR/rdf-concepts/#section-Literal-Equality">6.5.1 Literal Equality</a> of [<a href="#CONCEPTS">CONCEPTS</a>].</li>
-              <li><span class="name">term1</span> and <span class="name">term2</span> are the same <span class="bnode type">blank node</span> as described in <a class="norm" href=
-              "http://www.w3.org/TR/rdf-concepts/#section-blank-nodes">6.6 Blank Nodes</a> of [<a href="#CONCEPTS">CONCEPTS</a>].</li>
+              <li><span class="name">term1</span> and <span class="name">term2</span> are equivalent <span class="IRI type">IRIs</span> as defined in
+                <a data-cite="RDF11-CONCEPTS#section-Graph-URIref">6.4 RDF URI References</a> of [[RDF11-CONCEPTS]].</li>
+              <li><span class="name">term1</span> and <span class="name">term2</span> are equivalent <span class="literal type">literals</span> as defined in
+                <a data-cite="RDF11-CONCEPTS#section-Literal-Equality">6.5.1 Literal Equality</a> of [[RDF11-CONCEPTS]].</li>
+              <li><span class="name">term1</span> and <span class="name">term2</span> are the same <span class="bnode type">blank node</span> as described in
+                <a data-cite="RDF11-CONCEPTS#section-blank-nodes">6.6 Blank Nodes</a> of [[RDF11-CONCEPTS]].</li>
             </ul>
             <div class="exampleGroup">
               <pre class="data">@prefix foaf:       &lt;http://xmlns.com/foaf/0.1/&gt; .
@@ -4387,8 +4386,8 @@ WHERE { ?annot  a:annotates  ?annotates .
             <h5>sameTerm</h5>
             <pre class="prototype"> <span class="return">xsd:boolean</span>  <span class="operator">sameTerm</span> (<span class="type"><span class="type RDFterm">RDF term</span></span> <span class=
             "name">term1</span>, <span class="type"><span class="type RDFterm">RDF term</span></span> <span class="name">term2</span>)</pre>
-            <p>Returns TRUE if <code>term1</code> and <code>term2</code> are the same RDF term as defined in <a class="norm" href="http://www.w3.org/TR/rdf-concepts/">Resource Description Framework
-            (RDF): Concepts and Abstract Syntax</a> [<a href="#CONCEPTS">CONCEPTS</a>]; returns FALSE otherwise.</p>
+            <p>Returns TRUE if <code>term1</code> and <code>term2</code> are the same RDF term as defined in
+              [[[RDF11-CONCEPTS]]] [[RDF11-CONCEPTS]]; returns FALSE otherwise.</p>
             <div class="exampleGroup">
               <pre class="data">@prefix foaf:       &lt;http://xmlns.com/foaf/0.1/&gt; .
 
@@ -4861,7 +4860,7 @@ SELECT ?name ?shoeSize
               </div>
             </div>
             <div class="note">
-              <p>In <a href="http://www.w3.org/TR/rdf-sparql-query/">SPARQL 1.0</a>, the <code>DATATYPE</code> function was not defined for literals with a language tag. Therefore, an unextended
+              <p>In [[[RDF-SPARQL-QUERY]]] the <code>DATATYPE</code> function was not defined for literals with a language tag. Therefore, an unextended
               implementation would raise an error when <code>DATATYPE</code> was called with a literal with a language tag. <a href="#operatorExtensibility">Operator extensibility</a> allows
               implementations to return a result rather than raise an error. SPARQL 1.1 defines the result of <code>DATATYPE</code> applied to a literal with a language tag to be
               <code>rdf:langString</code>.</p>
@@ -4879,8 +4878,7 @@ SELECT ?name ?shoeSize
  <span class="return">iri</span>  <span class="operator">URI</span>(<code>simple literal</code>)
  <span class="return">iri</span>  <span class="operator">URI</span>(<span class="type">xsd:string</span>)
  <span class="return">iri</span>  <span class="operator">URI</span>(<span class="type">iri</span>)</pre>
-            <p>The <code>IRI</code> function constructs an IRI by resolving the string argument (see <a href="http://www.ietf.org/rfc/rfc3986.txt">RFC 3986</a> and <a href=
-            "http://www.ietf.org/rfc/rfc3987.txt">RFC 3987</a> or any later RFC that superceeds RFC 3986 or RFC 3987). The IRI is resolved against the base IRI of the query and must result in an
+            <p>The <code>IRI</code> function constructs an IRI by resolving the string argument (see [[RFC3986]] and [[RFC3987]] or any later RFC that superceeds RFC 3986 or RFC 3987). The IRI is resolved against the base IRI of the query and must result in an
             absolute IRI.</p>
             <p>The <code>URI</code> function is a synonym for <a href="#func-iri"><code>IRI</code></a>.</p>
             <p>If the function is passed an IRI, it returns the IRI unchanged.</p>
@@ -4952,7 +4950,7 @@ SELECT ?name ?shoeSize
           <section id="func-uuid">
             <h5>UUID</h5>
             <pre class="prototype"><span class="return">iri</span>  <span class="operator">UUID</span>()</pre>
-            <p>Return a fresh IRI from the <a href="http://www.ietf.org/rfc/rfc4122.txt">UUID URN scheme</a>. Each call of <code>UUID()</code> returns a different UUID. It must not be the "nil" UUID
+            <p>Return a fresh IRI from the [[[RFC4122]]]. Each call of <code>UUID()</code> returns a different UUID. It must not be the "nil" UUID
             (all zeroes). The variant and version of the UUID is implementation dependent.</p>
             <div class="result">
               <table>
@@ -5079,7 +5077,7 @@ SELECT ?name ?shoeSize
           <section id="func-strlen">
             <h5>STRLEN</h5>
             <pre class="prototype"><span class="return">xsd:integer</span>  <span class="operator">STRLEN</span>(<span class="type">string literal</span> str)</pre>
-            <p>The <code>strlen</code> function corresponds to the XPath <a href="http://www.w3.org/TR/xpath-functions/#func-string-length">fn:string-length</a> function and returns an
+            <p>The <code>strlen</code> function corresponds to the XPath <a data-cite="XPATH-FUNCTIONS#func-string-length">fn:string-length</a> function and returns an
             <code>xsd:integer</code> equal to the length in characters of the lexical form of the literal.</p>
             <div class="result">
               <table>
@@ -5106,7 +5104,7 @@ SELECT ?name ?shoeSize
             "type">xsd:integer</span> startingLoc)</pre>
             <pre class="prototype"><span class="return">string literal</span>  <span class="operator">SUBSTR</span>(<span class="type">string literal</span> source, <span class=
             "type">xsd:integer</span> startingLoc, <span class="type">xsd:integer</span> length)</pre>
-            <p>The <code>substr</code> function corresponds to the XPath <a href="http://www.w3.org/TR/xpath-functions/#func-substring">fn:substring</a> function and returns a literal of the same
+            <p>The <code>substr</code> function corresponds to the XPath <a data-cite="XPATH-FUNCTIONS#func-substring">fn:substring</a> function and returns a literal of the same
             kind (simple literal, literal with language tag, <code>xsd:string</code> typed literal) as the <code>source</code> input parameter but with a lexical form formed from the substring of the
             lexcial form of the source.</p>
             <p>The arguments <code>startingLoc</code> and <code>length</code> may be derived types of xsd:integer.</p>
@@ -5145,7 +5143,7 @@ SELECT ?name ?shoeSize
           <section id="func-ucase">
             <h5>UCASE</h5>
             <pre class="prototype"><span class="return">string literal</span>  <span class="operator">UCASE</span>(<span class="type">string literal</span> str)</pre>
-            <p>The <code>UCASE</code> function corresponds to the XPath <a href="http://www.w3.org/TR/xpath-functions/#func-upper-case">fn:upper-case</a> function. It returns a string literal whose
+            <p>The <code>UCASE</code> function corresponds to the XPath <a data-cite="XPATH-FUNCTIONS#func-upper-case">fn:upper-case</a> function. It returns a string literal whose
             lexical form is the upper case of the lexcial form of the argument.</p>
             <div class="result">
               <table>
@@ -5169,7 +5167,7 @@ SELECT ?name ?shoeSize
           <section id="func-lcase">
             <h5>LCASE</h5>
             <pre class="prototype"><span class="return">string literal</span>  <span class="operator">LCASE</span>(<span class="type">string literal</span> str)</pre>
-            <p>The <code>LCASE</code> function corresponds to the XPath <a href="http://www.w3.org/TR/xpath-functions/#func-lower-case">fn:lower-case</a> function. It returns a string literal whose
+            <p>The <code>LCASE</code> function corresponds to the XPath <a data-cite="XPATH-FUNCTIONS#func-lower-case">fn:lower-case</a> function. It returns a string literal whose
             lexical form is the lower case of the lexcial form of the argument.</p>
             <div class="result">
               <table>
@@ -5194,7 +5192,7 @@ SELECT ?name ?shoeSize
             <h5>STRSTARTS</h5>
             <pre class="prototype"><span class="return">xsd:boolean</span>  <span class="operator">STRSTARTS</span>(<span class="type">string literal</span> arg1, <span class=
             "type">string literal</span> arg2)</pre>
-            <p>The <code>STRSTARTS</code> function corresponds to the XPath <a href="http://www.w3.org/TR/xpath-functions/#func-starts-with">fn:starts-with</a> function. The arguments must be
+            <p>The <code>STRSTARTS</code> function corresponds to the XPath <a data-cite="XPATH-FUNCTIONS#func-starts-with">fn:starts-with</a> function. The arguments must be
             <a href="#func-arg-compatibility">argument compatible</a> otherwise an error is raised.</p>
             <p>For such input pairs, the function returns true if the lexical form of <code>arg1</code> starts with the lexical form of <code>arg2</code>, otherwise it returns false.</p>
             <div class="result">
@@ -5236,7 +5234,7 @@ SELECT ?name ?shoeSize
             <h5>STRENDS</h5>
             <pre class="prototype"><span class="return">xsd:boolean</span>  <span class="operator">STRENDS</span>(<span class="type">string literal</span> arg1, <span class=
             "type">string literal</span> arg2)</pre>
-            <p>The <code>STRENDS</code> function corresponds to the XPath <a href="http://www.w3.org/TR/xpath-functions/#func-ends-with">fn:ends-with</a> function. The arguments must be <a href=
+            <p>The <code>STRENDS</code> function corresponds to the XPath <a data-cite="XPATH-FUNCTIONS#func-ends-with">fn:ends-with</a> function. The arguments must be <a href=
             "#func-arg-compatibility">argument compatible</a> otherwise an error is raised.</p>
             <p>For such input pairs, the function returns true if the lexical form of <code>arg1</code> ends with the lexical form of <code>arg2</code>, otherwise it returns false.</p>
             <div class="result">
@@ -5278,7 +5276,7 @@ SELECT ?name ?shoeSize
             <h5>CONTAINS</h5>
             <pre class="prototype"><span class="return">xsd:boolean</span>  <span class="operator">CONTAINS</span>(<span class="type">string literal</span> arg1, <span class=
             "type">string literal</span> arg2)</pre>
-            <p>The <code>CONTAINS</code> function corresponds to the XPath <a href="http://www.w3.org/TR/xpath-functions/#func-contains">fn:contains</a>. The arguments must be <a href=
+            <p>The <code>CONTAINS</code> function corresponds to the XPath <a data-cite="XPATH-FUNCTIONS#func-contains">fn:contains</a>. The arguments must be <a href=
             "#func-arg-compatibility">argument compatible</a> otherwise an error is raised.</p>
             <div class="result">
               <table>
@@ -5319,7 +5317,7 @@ SELECT ?name ?shoeSize
             <h5>STRBEFORE</h5>
             <pre class="prototype"><span class="return">literal</span>  <span class="operator">STRBEFORE</span>(<span class="type">string literal</span> arg1, <span class=
             "type">string literal</span> arg2)</pre>
-            <p>The <code>STRBEFORE</code> function corresponds to the XPath <a href="http://www.w3.org/TR/xpath-functions/#func-substring-before">fn:substring-before</a> function. The arguments must
+            <p>The <code>STRBEFORE</code> function corresponds to the XPath <a data-cite="XPATH-FUNCTIONS#func-substring-before">fn:substring-before</a> function. The arguments must
             be <a href="#func-arg-compatibility">argument compatible</a> otherwise an error is raised.</p>
             <p>For compatible arguments, if the lexical part of the second argument occurs as a substring of the lexical part of the first argument, the function returns a literal of the same kind as
             the first argument <code>arg1</code> (simple literal, plain literal same language tag, xsd:string). The lexical form of the result is the substring of the lexical form of
@@ -5373,7 +5371,7 @@ SELECT ?name ?shoeSize
             <h5>STRAFTER</h5>
             <pre class="prototype"><span class="return">literal</span>  <span class="operator">STRAFTER</span>(<span class="type">string literal</span> arg1, <span class=
             "type">string literal</span> arg2)</pre>
-            <p>The <code>STRAFTER</code> function corresponds to the XPath <a href="http://www.w3.org/TR/xpath-functions/#func-substring-after">fn:substring-after</a> function. The arguments must be
+            <p>The <code>STRAFTER</code> function corresponds to the XPath <a data-cite="XPATH-FUNCTIONS#func-substring-after">fn:substring-after</a> function. The arguments must be
             <a href="#func-arg-compatibility">argument compatible</a> otherwise an error is raised.</p>
             <p>For compatible arguments, if the lexical part of the second argument occurs as a substring of the lexical part of the first argument, the function returns a literal of the same kind as
             the first argument <code>arg1</code> (simple literal, plain literal same language tag, xsd:string). The lexical form of the result is the substring of the lexcial form of
@@ -5426,7 +5424,7 @@ SELECT ?name ?shoeSize
           <section id="func-encode">
             <h5>ENCODE_FOR_URI</h5>
             <pre class="prototype"><span class="return">simple literal</span>  <span class="operator">ENCODE_FOR_URI</span>(<span class="type">string literal</span> ltrl)</pre>
-            <p>The <code>ENCODE_FOR_URI</code> function corresponds to the XPath <a href="http://www.w3.org/TR/xpath-functions/#func-encode-for-uri">fn:encode-for-uri</a> function. It returns a
+            <p>The <code>ENCODE_FOR_URI</code> function corresponds to the XPath <a data-cite="XPATH-FUNCTIONS#func-encode-for-uri">fn:encode-for-uri</a> function. It returns a
             simple literal with the lexical form obtained from the lexical form of its input after translating reserved characters according to the <a href=
             "http://www.w3.org/TR/xpath-functions/#func-encode-for-uri">fn:encode-for-uri</a> function.</p>
             <div class="result">
@@ -5452,7 +5450,7 @@ SELECT ?name ?shoeSize
             <h5>CONCAT</h5>
             <pre class="prototype"><span class="return">string literal</span>  <span class="operator">CONCAT</span>(<span class=
             "type">string literal</span> <span>ltrl<sub>1</sub></span> ... <span class="type">string literal</span> <span>ltrl<sub>n</sub></span>)</pre>
-            <p>The <code>CONCAT</code> function corresponds to the XPath <a href="http://www.w3.org/TR/xpath-functions/#func-concat">fn:concat</a> function. The function accepts string literals as
+            <p>The <code>CONCAT</code> function corresponds to the XPath <a data-cite="XPATH-FUNCTIONS#func-concat">fn:concat</a> function. The function accepts string literals as
             arguments.</p>
             <p>The lexical form of the returned literal is obtained by concatenating the lexical forms of its inputs. If all input literals are typed literals of type <code>xsd:string</code>, then
             the returned literal is also of type <code>xsd:string</code>, if all input literals are plain literals with identical language tag, then the returned literal is a plain literal with the
@@ -5493,9 +5491,8 @@ SELECT ?name ?shoeSize
             <pre class="prototype"> <span class="return">xsd:boolean</span>  <span class="operator">langMatches</span> (<span class="type"><span class="type">simple literal</span></span> <span class=
             "name">language-tag</span>, <span class="type"><span class="type">simple literal</span></span> <span class="name">language-range</span>)
 </pre>
-            <p>Returns <code>true</code> if <code>language-tag</code> (first argument) matches <code>language-range</code> (second argument) per the basic filtering scheme defined in [<a href=
-            "#rfc4647">RFC4647</a>] section 3.3.1. <code>language-range</code> is a basic language range per <a class="norm" href="http://www.ietf.org/rfc/rfc4647.txt">Matching of Language Tags</a>
-            [<a href="#rfc4647">RFC4647</a>] section 2.1. A <code>language-range</code> of "*" matches any non-empty <code>language-tag</code> string.</p>
+            <p>Returns <code>true</code> if <code>language-tag</code> (first argument) matches <code>language-range</code> (second argument) per the basic filtering scheme defined in [[RFC4647]] section 3.3.1. <code>language-range</code> is a basic language range per [[[RFC4647]]]
+            [[RFC4647]] section 2.1. A <code>language-range</code> of "*" matches any non-empty <code>language-tag</code> string.</p>
             <div class="exampleGroup">
               <pre class="data">@prefix dc:       &lt;http://purl.org/dc/elements/1.1/&gt; .
 
@@ -5564,9 +5561,9 @@ SELECT ?title
  <span class="return">xsd:boolean</span>  <span class="operator">REGEX</span> (<span class="type"><span class="type">string literal</span></span> <span class="name">text</span>, <span class=
 "type"><span class="type">simple literal</span></span> <span class="name">pattern</span>, <span class="type"><span class="type">simple literal</span></span> <span class="name">flags</span>)
 </pre>
-            <p>Invokes the XPath <a class="norm" href="http://www.w3.org/TR/xpath-functions/#func-matches">fn:matches</a> function to match <code>text</code> against a regular expression
-            <code>pattern</code>. The regular expression language is defined in XQuery 1.0 and XPath 2.0 Functions and Operators section <a class="norm" href=
-            "http://www.w3.org/TR/xpath-functions/#regex-syntax">7.6.1 Regular Expression Syntax</a> [<a href="#FUNCOP">FUNCOP</a>].</p>
+            <p>Invokes the XPath <a data-cite="FUNCOP#func-matches">fn:matches</a> function to match <code>text</code> against a regular expression
+            <code>pattern</code>. The regular expression language is defined in XQuery 1.0 and XPath 2.0 Functions and Operators section
+            <a data-cite="FUNCOP#regex-syntax">7.6.1 Regular Expression Syntax</a> [[FUNCOP]].</p>
             <div class="exampleGroup">
               <pre class="data">@prefix foaf:       &lt;http://xmlns.com/foaf/0.1/&gt; .
 
@@ -5603,7 +5600,7 @@ SELECT ?name
  <span class="return"><span class="type">string literal</span></span>  <span class="operator">REPLACE</span> (<span class="type"><span class="type">string literal</span></span> arg, <span class=
 "type"><span class="type">simple literal</span></span> pattern, <span class="type"><span class="type">simple literal</span></span> replacement,  <span class="type"><span class=
 "type">simple literal</span></span> flags)</pre>
-            <p>The <code>REPLACE</code> function corresponds to the XPath <a href="http://www.w3.org/TR/xpath-functions/#func-replace">fn:replace</a> function. It replaces each non-overlapping
+            <p>The <code>REPLACE</code> function corresponds to the XPath <a data-cite="XPATH-FUNCTIONS#func-replace">fn:replace</a> function. It replaces each non-overlapping
             occurrence of the regular expression <tt>pattern</tt> with the replacement string. Regular expession matching may involve modifier flags. See <a href="#func-regex">REGEX</a>.</p>
             <div class="result">
               <table class="resultTable">
@@ -5632,7 +5629,7 @@ SELECT ?name
             <pre class="prototype"> <span class="return">numeric</span>  <span class="operator">ABS</span> (<span class="type"><span class="type numeric">numeric</span></span> <span class=
             "name">term</span>)</pre>
             <p>Returns the absolute value of <code>arg</code>. An error is raised if <code>arg</code> is not a numeric value.</p>
-            <p>This function is the same as <a href="http://www.w3.org/TR/xpath-functions/#func-abs">fn:numeric-abs</a> for terms with a datatype from <a href=
+            <p>This function is the same as <a data-cite="XPATH-FUNCTIONS#func-abs">fn:numeric-abs</a> for terms with a datatype from <a href=
             "http://www.w3.org/TR/xpath-datamodel/">XDM</a>.</p>
             <div class="result">
               <table>
@@ -5655,7 +5652,7 @@ SELECT ?name
             "name">term</span>)</pre>
             <p>Returns the number with no fractional part that is closest to the argument. If there are two such numbers, then the one that is closest to positive infinity is returned. An error is
             raised if <code>arg</code> is not a numeric value.</p>
-            <p>This function is the same as <a href="http://www.w3.org/TR/xpath-functions/#func-round">fn:numeric-round</a> for terms with a datatype from <a href=
+            <p>This function is the same as <a data-cite="XPATH-FUNCTIONS#func-round">fn:numeric-round</a> for terms with a datatype from <a href=
             "http://www.w3.org/TR/xpath-datamodel/">XDM</a>.</p>
             <div class="result">
               <table>
@@ -5682,7 +5679,7 @@ SELECT ?name
             "name">term</span>)</pre>
             <p>Returns the smallest (closest to negative infinity) number with no fractional part that is not less than the value of <code>arg</code>. An error is raised if <code>arg</code> is not a
             numeric value.</p>
-            <p>This function is the same as <a href="http://www.w3.org/TR/xpath-functions/#func-ceiling">fn:numeric-ceil</a> for terms with a datatype from <a href=
+            <p>This function is the same as <a data-cite="XPATH-FUNCTIONS#func-ceiling">fn:numeric-ceil</a> for terms with a datatype from <a href=
             "http://www.w3.org/TR/xpath-datamodel/">XDM</a>.</p>
             <div class="result">
               <table>
@@ -5705,7 +5702,7 @@ SELECT ?name
             "name">term</span>)</pre>
             <p>Returns the largest (closest to positive infinity) number with no fractional part that is not greater than the value of <code>arg</code>. An error is raised if <code>arg</code> is not
             a numeric value.</p>
-            <p>This function is the same as <a href="http://www.w3.org/TR/xpath-functions/#func-floor">fn:numeric-floor</a> for terms with a datatype from <a href=
+            <p>This function is the same as <a data-cite="XPATH-FUNCTIONS#func-floor">fn:numeric-floor</a> for terms with a datatype from <a href=
             "http://www.w3.org/TR/xpath-datamodel/">XDM</a>.</p>
             <div class="result">
               <table>
@@ -5762,7 +5759,7 @@ SELECT ?name
             <pre class="prototype"> <span class="return">xsd:integer</span>  <span class="operator">YEAR</span> (<span class="type"><span class="type">xsd:dateTime</span></span> <span class=
             "parm">arg</span>)</pre>
             <p>Returns the year part of <code>arg</code> as an integer.</p>
-            <p>This function corresponds to <a href="http://www.w3.org/TR/xpath-functions/#func-year-from-dateTime">fn:year-from-dateTime</a>.</p>
+            <p>This function corresponds to <a data-cite="XPATH-FUNCTIONS#func-year-from-dateTime">fn:year-from-dateTime</a>.</p>
             <div class="result">
               <table>
                 <tbody>
@@ -5779,7 +5776,7 @@ SELECT ?name
             <pre class="prototype"> <span class="return">xsd:integer</span>  <span class="operator">MONTH</span> (<span class="type"><span class="type">xsd:dateTime</span></span> <span class=
             "parm">arg</span>)</pre>
             <p>Returns the month part of <code>arg</code> as an integer.</p>
-            <p>This function corresponds to <a href="http://www.w3.org/TR/xpath-functions/#func-month-from-dateTime">fn:month-from-dateTime</a>.</p>
+            <p>This function corresponds to <a data-cite="XPATH-FUNCTIONS#func-month-from-dateTime">fn:month-from-dateTime</a>.</p>
             <div class="result">
               <table>
                 <tbody>
@@ -5796,7 +5793,7 @@ SELECT ?name
             <pre class="prototype"> <span class="return">xsd:integer</span>  <span class="operator">DAY</span> (<span class="type"><span class="type">xsd:dateTime</span></span> <span class=
             "parm">arg</span>)</pre>
             <p>Returns the day part of <code>arg</code> as an integer.</p>
-            <p>This function corresponds to <a href="http://www.w3.org/TR/xpath-functions/#func-day-from-dateTime">fn:day-from-dateTime</a>.</p>
+            <p>This function corresponds to <a data-cite="XPATH-FUNCTIONS#func-day-from-dateTime">fn:day-from-dateTime</a>.</p>
             <div class="result">
               <table>
                 <tbody>
@@ -5813,7 +5810,7 @@ SELECT ?name
             <pre class="prototype"> <span class="return">xsd:integer</span>  <span class="operator">HOURS</span> (<span class="type"><span class="type">xsd:dateTime</span></span> <span class=
             "parm">arg</span>)</pre>
             <p>Returns the hours part of <code>arg</code> as an integer. The value is as given in the lexical form of the XSD dateTime.</p>
-            <p>This function corresponds to <a href="http://www.w3.org/TR/xpath-functions/#func-hours-from-dateTime">fn:hours-from-dateTime</a>.</p>
+            <p>This function corresponds to <a data-cite="XPATH-FUNCTIONS#func-hours-from-dateTime">fn:hours-from-dateTime</a>.</p>
             <div class="result">
               <table>
                 <tbody>
@@ -5830,7 +5827,7 @@ SELECT ?name
             <pre class="prototype"> <span class="return">xsd:integer</span>  <span class="operator">MINUTES</span> (<span class="type"><span class="type">xsd:dateTime</span></span> <span class=
             "parm">arg</span>)</pre>
             <p>Returns the minutes part of the lexical form of <code>arg</code>. The value is as given in the lexical form of the XSD dateTime.</p>
-            <p>This function corresponds to <a href="http://www.w3.org/TR/xpath-functions/#func-minutes-from-dateTime">fn:minutes-from-dateTime</a>.</p>
+            <p>This function corresponds to <a data-cite="XPATH-FUNCTIONS#func-minutes-from-dateTime">fn:minutes-from-dateTime</a>.</p>
             <div class="result">
               <table>
                 <tbody>
@@ -5847,7 +5844,7 @@ SELECT ?name
             <pre class="prototype"> <span class="return">xsd:decimal</span>  <span class="operator">SECONDS</span> (<span class="type"><span class="type">xsd:dateTime</span></span> <span class=
             "parm">arg</span>)</pre>
             <p>Returns the seconds part of the lexical form of <code>arg</code>.</p>
-            <p>This function corresponds to <a href="http://www.w3.org/TR/xpath-functions/#func-seconds-from-dateTime">fn:seconds-from-dateTime</a>.</p>
+            <p>This function corresponds to <a data-cite="XPATH-FUNCTIONS#func-seconds-from-dateTime">fn:seconds-from-dateTime</a>.</p>
             <div class="result">
               <table>
                 <tbody>
@@ -5864,7 +5861,7 @@ SELECT ?name
             <pre class="prototype"> <span class="return">xsd:dayTimeDuration</span>  <span class="operator">TIMEZONE</span> (<span class="type"><span class=
             "type">xsd:dateTime</span></span> <span class="parm">arg</span>)</pre>
             <p>Returns the timezone part of <code>arg</code> as an xsd:dayTimeDuration. Raises an error if there is no timezone.</p>
-            <p>This function corresponds to <a href="http://www.w3.org/TR/xpath-functions/#func-timezone-from-dateTime">fn:timezone-from-dateTime</a> except for the treatment of literals with no
+            <p>This function corresponds to <a data-cite="XPATH-FUNCTIONS#func-timezone-from-dateTime">fn:timezone-from-dateTime</a> except for the treatment of literals with no
             timezone.</p>
             <div class="result">
               <table>
@@ -6031,28 +6028,28 @@ SELECT ?name
       </section>
       <section id="FunctionMapping">
         <h3>XPath Constructor Functions</h3>
-        <p>SPARQL imports a subset of the XPath constructor functions defined in <a class="norm" href="http://www.w3.org/TR/xpath-functions/">XQuery 1.0 and XPath 2.0 Functions and Operators</a>
-        [<a href="#FUNCOP">FUNCOP</a>] in section <a class="norm" href="http://www.w3.org/TR/xpath-functions/#casting-from-primitive-to-primitive">17.1 Casting from primitive types to primitive
+        <p>SPARQL imports a subset of the XPath constructor functions defined in
+          [[[FUNCOP]]] [[FUNCOP]] in section <a data-cite="FUNCOP#casting-from-primitive-to-primitive">17.1 Casting from primitive types to primitive
         types</a>. SPARQL constructors include all of the XPath constructors for the <a href="#operandDataTypes">SPARQL operand datatypes</a> plus the <a href="#operandDataTypes">additional
         datatypes</a> imposed by the RDF data model. Casting in SPARQL is performed by calling a constructor function for the target type on an operand of the source type.</p>
         <p>XPath defines only the casts from one XML Schema datatype to another. The remaining casts are defined as follows:</p>
         <ul>
           <li>Casting an <span class="IRI type">IRI</span> to an <code>xsd:string</code> produces a <span class="IRI typedLiteral">typed literal</span> with a lexical value of the codepoints
           comprising the IRI, and a datatype of <code>xsd:string</code>.</li>
-          <li>Casting a <span class="simpleLiteral type">simple literal</span> to any XML Schema datatype is defined as the product of casting an <code>xsd:string</code> with the <a href=
-          "http://www.w3.org/TR/xpath20/#dt-string-value">string value</a> equal to the lexical value of the literal to the target datatype.</li>
+          <li>Casting a <span class="simpleLiteral type">simple literal</span> to any XML Schema datatype is defined as the product of casting an <code>xsd:string</code> with the
+            <a data-cite="XPATH20#dt-string-value">string value</a> equal to the lexical value of the literal to the target datatype.</li>
         </ul>
         <p>The table below summarizes the casting operations that are always allowed (<span class="castY">Y</span>), never allowed (<span class="castN">N</span>) and dependent on the lexical value
         (<span class="castM">M</span>). For example, a casting operation from an <code>xsd:string</code> (the first row) to an <code>xsd:float</code> (the second column) is dependent on the lexical
         value (<span class="castM">M</span>).</p>
         <blockquote>
-          <p>bool = <a class="norm" href="http://www.w3.org/TR/xmlschema-2/#boolean">xsd:boolean</a><br>
-          dbl = <a class="norm" href="http://www.w3.org/TR/xmlschema-2/#double">xsd:double</a><br>
-          flt = <a class="norm" href="http://www.w3.org/TR/xmlschema-2/#float">xsd:float</a><br>
-          dec = <a class="norm" href="http://www.w3.org/TR/xmlschema-2/#decimal">xsd:decimal</a><br>
-          int = <a class="norm" href="http://www.w3.org/TR/xmlschema-2/#integer">xsd:integer</a><br>
-          dT = <a class="norm" href="http://www.w3.org/TR/xmlschema-2/#dateTime">xsd:dateTime</a><br>
-          str = <a class="norm" href="http://www.w3.org/TR/xmlschema-2/#string">xsd:string</a><br>
+          <p>bool = <a data-cite="XMLSCHEMA-2#boolean">xsd:boolean</a><br>
+          dbl = <a data-cite="XMLSCHEMA-2#double">xsd:double</a><br>
+          flt = <a data-cite="XMLSCHEMA-2#float">xsd:float</a><br>
+          dec = <a data-cite="XMLSCHEMA-2#decimal">xsd:decimal</a><br>
+          int = <a data-cite="XMLSCHEMA-2#integer">xsd:integer</a><br>
+          dT = <a data-cite="XMLSCHEMA-2#dateTime">xsd:dateTime</a><br>
+          str = <a data-cite="XMLSCHEMA-2#string">xsd:string</a><br>
           <span class="rdfDM">IRI</span> = <span class="type IRI">IRI</span><br>
           <span class="rdfDM">ltrl</span> = <code>simple literal</code></p>
         </blockquote>
@@ -6231,23 +6228,23 @@ WHERE { ?a aGeo:placeName "Grenoble" .
         <h3>Initial Definitions</h3>
         <section id="sparqlBasicTerms">
           <h4>RDF Terms</h4>
-          <p>SPARQL is defined in terms of IRIs [<a href="#rfc3987">RFC3987</a>]. IRIs are a subset of RDF URI References that omits the use of spaces.</p>
+          <p>SPARQL is defined in terms of IRIs [[RFC3987]]. IRIs are a subset of RDF URI References that omits the use of spaces.</p>
           <div class="defn">
             <b>Definition: <div id="defn_RDFTerm" name="defn_RDFTerm">RDF Term</div></b>
             <p>Let I be the set of all IRIs.<br>
-            Let RDF-L be the set of all <a class="norm" href="http://www.w3.org/TR/2004/REC-rdf-concepts-20040210/#dfn-literal">RDF Literals</a><br>
-            Let RDF-B be the set of all <a class="norm" href="http://www.w3.org/TR/2004/REC-rdf-concepts-20040210/#dfn-blank-node">blank nodes</a> in RDF graphs</p>
+            Let RDF-L be the set of all <a data-lt="literal">RDF Literals</a><br>
+            Let RDF-B be the set of all <a>blank nodes</a> in RDF graphs</p>
             <p>The set of <span class="definedTerm">RDF Terms</span>, RDF-T, is I ∪ RDF-L ∪ RDF-B.</p>
           </div>
-          <p>This definition of <span class="definedTerm">RDF Term</span> collects together several basic notions from the <a class="norm" href=
-          "http://www.w3.org/TR/2004/REC-rdf-concepts-20040210/#section-data-model">RDF data model</a>, but <a href="http://www.w3.org/TR/rdf-concepts/#section-Graph-URIref">updated</a> to refer to
+          <p>This definition of <span class="definedTerm">RDF Term</span> collects together several basic notions from the
+            <a data-cite="RDF11-CONCEPTS#section-data-model">RDF data model</a>, but <a data-cite="RDF11-CONCEPTS#section-Graph-URIref">updated</a> to refer to
           IRIs rather than RDF URI references.</p>
         </section>
         <section id="simple_literal">
           <h4>Simple Literal</h4>
           <div class="defn">
             <p><b>Definition: <div id="defn_SimpleLiteral" name="defn_SimpleLiteral">Simple Literal</div></b></p>
-            <p>The set of <b>Simple Literals</b> is the set of all <a class="norm" href="http://www.w3.org/TR/2004/REC-rdf-concepts-20040210/#dfn-literal">RDF Literals</a> with no language tag or
+            <p>The set of <b>Simple Literals</b> is the set of all <a data-lt="literal">RDF Literals</a> with no language tag or
             datatype IRI.</p>
           </div>
         </section>
@@ -6274,11 +6271,11 @@ WHERE { ?a aGeo:placeName "Grenoble" .
             <p>Write N1 for { &lt;u1<sub>j</sub>&gt; j = 1 to n }<br>
             Write N2 for { &lt;u2<sub>j</sub>&gt; j = 1 to m }<br></p>
             <ul>
-              <li>G is the <a href="http://www.w3.org/TR/rdf-mt/#defmerge">merge</a> of G1 and G2</li>
+              <li>G is the <a data-cite="RDF11-MT#defmerge">merge</a> of G1 and G2</li>
               <li>(&lt;u<sub>i</sub>&gt;, G<sub>i</sub>) where &lt;u<sub>i</sub>&gt; is in N1 but not in N2</li>
               <li>(&lt;u<sub>i</sub>&gt;, G<sub>i</sub>) where &lt;u<sub>i</sub>&gt; is in N2 but not in N1</li>
-              <li>(&lt;u<sub>i</sub>&gt;, G<sub>i</sub>) where &lt;u<sub>i</sub>&gt; is equal to &lt;u<sub>j</sub>&gt; in N1 and equal to &lt;u<sub>k</sub>&gt; in N2 and G<sub>i</sub> is the <a href=
-              "http://www.w3.org/TR/rdf-mt/#defmerge">merge</a> of G1<sub>j</sub> and G2<sub>k</sub></li>
+              <li>(&lt;u<sub>i</sub>&gt;, G<sub>i</sub>) where &lt;u<sub>i</sub>&gt; is equal to &lt;u<sub>j</sub>&gt; in N1 and equal to &lt;u<sub>k</sub>&gt; in N2 and G<sub>i</sub> is the
+                <a data-cite="RDF11-MT#defmerge">merge</a> of G1<sub>j</sub> and G2<sub>k</sub></li>
             </ul>
           </div>
         </section>
@@ -7265,8 +7262,7 @@ The set PV is used later for projection.
       </section>
       <section id="BasicGraphPattern">
         <h3>Basic Graph Patterns</h3>
-        <p>When matching graph patterns, the possible solutions form a <i><a href="http://en.wikipedia.org/w/index.php?title=Multiset&amp;oldid=163605900">multiset</a></i> [<a href=
-        "#multiset">multiset</a>], also known as a <i>bag</i>. A multiset is an unordered collection of elements in which each element may appear more than once. It is described by a set of elements
+        <p>When matching graph patterns, the possible solutions form a <i><a data-cite="?Multiset#">multiset</a></i> [[?Multiset]], also known as a <i>bag</i>. A multiset is an unordered collection of elements in which each element may appear more than once. It is described by a set of elements
         and a cardinality function giving the number of occurrences of each element from the set in the multiset.</p>
         <p>Write μ for solution mappings.</p>
         <p>Write μ<sub>0</sub> for the mapping such that dom(μ<sub>0</sub>) is the empty set.</p>
@@ -7283,7 +7279,7 @@ The set PV is used later for projection.
         <section id="BGPsparql">
           <h4>SPARQL Basic Graph Pattern Matching</h4>
           <p>A basic graph pattern is matched against the active graph for that part of the query. Basic graph patterns can be instantiated by replacing both variables and blank nodes by terms,
-          giving two notions of instance. Blank nodes are replaced using an <a href="http://www.w3.org/TR/rdf-mt#definst">RDF instance mapping</a>, &nbsp;σ, from blank nodes to RDF terms; variables
+          giving two notions of instance. Blank nodes are replaced using an <a data-cite="RDF11-MT#definst">RDF instance mapping</a>, &nbsp;σ, from blank nodes to RDF terms; variables
           are replaced by a solution mapping from query variables to RDF terms.</p>
           <div class="defn">
             <b>Definition: <div id="defn_PatternInstanceMapping" name="defn_PatternInstanceMapping">Pattern Instance Mapping</div></b>
@@ -7302,16 +7298,15 @@ The set PV is used later for projection.
         <section id="BGPsparqlBNodes">
           <h4>Treatment of Blank Nodes</h4>
           <p>This definition allows the solution mapping to bind a variable in a basic graph pattern, BGP, to a blank node in G. Since SPARQL treats blank node identifiers in a results format
-          document (<a href="http://www.w3.org/TR/rdf-sparql-XMLres/">SPARQL Query Results XML Format</a>, <a href="http://www.w3.org/TR/sparql11-results-json/">SPARQL 1.1 Query Results JSON
-          Format</a> and <a href="http://www.w3.org/TR/sparql11-results-csv-tsv/">SPARQL 1.1 Query Results CSV and TSV Formats</a>) as scoped to the document, they cannot be understood as identifying
+          document ([[[?RDF-SPARQL-XMLRES]]], [[[?SPARQL11-RESULTS-JSON]]] and [[[?SPARQL11-RESULTS-CSV-TSV]]]) as scoped to the document, they cannot be understood as identifying
           nodes in the active graph of the dataset. If DS is the dataset of a query, pattern solutions are therefore understood to be not from the active graph of DS itself, but from an RDF graph,
           called the <i>scoping graph,</i> which is graph-equivalent to the active graph of DS but shares no blank nodes with DS or with BGP. The same scoping graph is used for all solutions to a
           single query. The scoping graph is purely a theoretical construct; in practice, the effect is obtained simply by the document scope conventions for blank node identifiers.</p>
           <p>Since RDF blank nodes allow infinitely many redundant solutions for many patterns, there can be infinitely many pattern solutions (obtained by replacing blank nodes by different blank
           nodes). It is necessary, therefore, to somehow delimit the solutions for a basic graph pattern. SPARQL uses the subgraph match criterion to determine the solutions of a basic graph pattern.
           There is one solution for each distinct pattern instance mapping from the basic graph pattern to a subset of the active graph.</p>
-          <p>This is optimized for ease of computation rather than redundancy elimination. It allows query results to contain redundancies even when the active graph of the dataset is <a href=
-          "http://www.w3.org/TR/rdf-mt/#deflean">lean</a>, and it allows logically equivalent datasets to yield different query results.</p>
+          <p>This is optimized for ease of computation rather than redundancy elimination. It allows query results to contain redundancies even when the active graph of the dataset is
+            <a data-cite="RDF11-MT#deflean">lean</a>, and it allows logically equivalent datasets to yield different query results.</p>
         </section>
       </section>
       <section id="PropertyPathPatterns">
@@ -7927,7 +7922,7 @@ eval(D(G), Graph(IRI,P)) = the empty multiset</pre>
           <li>a subset of RDF graphs called <i>well-formed</i> for the regime</li>
           <li>an <i>entailment</i> relation between subsets of well-formed graphs and well-formed graphs.</li>
         </ol>
-        <p>Detailed definitions for querying various entailment regimes can be found in <a href="http://www.w3.org/TR/sparql11-entailment/">SPARQL 1.1 Entailment Regimes</a>.</p>
+        <p>Detailed definitions for querying various entailment regimes can be found in [[[SPARQL11-ENTAILMENT]]].</p>
         <p>Some entailment regimes can categorize some RDF graphs as inconsistent. For example, the RDF graph:</p>
         <pre class="data">_:x rdf:type xsd:string .
 _:x rdf:type xsd:decimal .</pre>
@@ -7980,22 +7975,21 @@ _:x rdf:type xsd:decimal .</pre>
           = [ σ<sub>1</sub> + ... + σ<sub>n</sub>](SG union μ<sub>1</sub>(BGP<sub>1</sub>) union ... union μ<sub>n</sub>(BGP<sub>n</sub>) )</p>
           <p>i.e.</p>
           <p>SG union μ<sub>1</sub>(BGP<sub>1</sub>) union ... union μ<sub>n</sub>(BGP<sub>n</sub>)</p>
-          <p>has an instance which is a subgraph of SG, so is simply entailed by SG by the <a href="http://www.w3.org/TR/rdf-mt/#interplemmaprf">RDF interpolation lemma</a> [<a href=
-          "#RDF-MT">RDF-MT</a>].</p>
+          <p>has an instance which is a subgraph of SG, so is simply entailed by SG by the <a data-cite="RDF11-MT#interplemmaprf">RDF interpolation lemma</a> [[RDF11-MT]].</p>
         </section>
       </section>
       </section>
     <section id="grammar">
       <h2>SPARQL Grammar</h2>
-      <p>The SPARQL grammar covers both SPARQL Query and <a href="http://www.w3.org/TR/sparql11-update/">SPARQL Update</a>.</p>
+      <p>The SPARQL grammar covers both SPARQL Query and [[[SPARQL11-UPDATE]]].</p>
       <section id="queryString">
         <h3>SPARQL Request String</h3>
         <p>A <div name="defn_SPARQLRequestString" id="defn_SPARQLRequestString">SPARQL Request String</div> is a SPARQL Query String or SPARQL Update String and it is a Unicode character string (c.f.
-        section 6.1 String concepts of [<a href="#CHARMOD">CHARMOD</a>]) in the language defined by the following grammar.</p>
+        section 6.1 String concepts of [[CHARMOD]]) in the language defined by the following grammar.</p>
         <p>A <div name="defn_SPARQLQueryString" id="defn_SPARQLQueryString">SPARQL Query String</div> start at the <a href="#rQueryUnit">QueryUnit</a> production.</p>
         <p>A <div name="defn_SPARQLUpdateString" id="defn_SPARQLUpdateString">SPARQL Update String</div> start at the <a href="#rUpdateUnit">UpdateUnit</a> production.</p>
-        <p>For compatibility with future versions of Unicode, the characters in this string may include Unicode codepoints that are unassigned as of the date of this publication (see <a class=
-        "inform" href="http://www.unicode.org/reports/tr31/tr31-5.html">Identifier and Pattern Syntax</a> [<a href="#UNIID">UNIID</a>] section 4 Pattern Syntax). For productions with excluded
+        <p>For compatibility with future versions of Unicode, the characters in this string may include Unicode codepoints that are unassigned as of the date of this publication
+          (see [[[?UAX31]]] [[?UAX31]] section 4 Pattern Syntax). For productions with excluded
         character classes (for example <code>[^&lt;&gt;'{}|^`]</code>), the characters are excluded from the range <code>#x0 - #x10FFFF</code>.</p>
       </section>
       <section id="codepointEscape">
@@ -8055,7 +8049,7 @@ a\u003Ab            # a:b -- codepoint x3A is colon</pre>
       <section id="iriRefs">
         <h3>IRI References</h3>
         <p>Text matched by the <code><a href="#rIRIREF">IRIREF</a></code> production and <code><a href="#rPrefixedName">PrefixedName</a></code> (after prefix expansion) production, after escape
-        processing, must conform to the generic syntax of IRI references in section 2.2 of RFC 3987 "ABNF for IRI References and IRIs" [<a href="#rfc3987">RFC3987</a>]. For example, the
+        processing, must conform to the generic syntax of IRI references in section 2.2 of RFC 3987 "ABNF for IRI References and IRIs" [[RFC3987]]. For example, the
         <code><a href="#rIRIREF">IRIREF</a></code> <code>&lt;abc#def&gt;</code> may occur in a SPARQL query string, but the <code><a href="#rIRIREF">IRIREF</a></code> <code>&lt;abc##def&gt;</code>
         must not.</p>
         <p>Base IRIs declared with the <span class="token">BASE</span> keyword must be absolute IRIs. A prefix declared with the <span class="token">PREFIX</span> keyword may not be re-declared in
@@ -8069,7 +8063,7 @@ a\u003Ab            # a:b -- codepoint x3A is colon</pre>
           <li><code><a href="#rDeleteWhere">DELETE DATA</a></code></li>
           <li>a <code><a href="#rDeleteClause">DeleteClause</a></code></li>
         </ul>
-        <p>in a <a href="http://www.w3.org/TR/sparql11-update/#terminology">SPARQL Update request</a>.</p>
+        <p>in a <a data-cite="SPARQL11-UPDATE#terminology">SPARQL Update request</a>.</p>
         <p>Blank node labels are scoped to the <a href="#defn_SPARQLRequestString">SPARQL Request String</a> in which they occur. Different uses of the same blank node label in a request string refer
         to the same blank node. Fresh blank nodes are generated for each request; blank nodes can not be referenced by label across requests.</p>
         <p>The same blank node label can not be used in:</p>
@@ -8078,7 +8072,7 @@ a\u003Ab            # a:b -- codepoint x3A is colon</pre>
           <li>two <code><a href="#rModify">WHERE</a></code> clauses within a single SPARQL Update request</li>
           <li>two <code><a href="#rInsertData">INSERT DATA</a></code> operations within a single SPARQL Update request</li>
         </ul>
-        <p>Note that the same blank node label can occur in different <a href="#rQuadPattern">QuadPattern</a> clauses in a <a href="http://www.w3.org/TR/sparql11-update/">SPARQL Update</a>
+        <p>Note that the same blank node label can occur in different <a href="#rQuadPattern">QuadPattern</a> clauses in a [[[SPARQL11-UPDATE]]]
         request.</p>
       </section>
       <section id="grammarEscapes">
@@ -8136,8 +8130,8 @@ a\u003Ab            # a:b -- codepoint x3A is colon</pre>
       </section>
       <section id="sparqlGrammar">
         <h3>Grammar</h3>
-        <p>The EBNF notation used in the grammar is defined in Extensible Markup Language (XML) 1.1 [<a href="#XML11">XML11</a>] section 6 <a class="norm" href=
-        "http://www.w3.org/TR/2004/REC-xml11-20040204/#sec-notation">Notation</a>.</p>
+        <p>The EBNF notation used in the grammar is defined in [[[XML11]]] [[XML11]] section 6
+          <a data-cite="XML11#sec-notation">Notation</a>.</p>
         <p>Notes:</p>
         <ol>
           <li>Keywords are matched in a case-insensitive manner with the exception of the keyword '<code>a</code>' which, in line with Turtle and N3, is used in place of the IRI <code>rdf:type</code>
@@ -9352,25 +9346,21 @@ a\u003Ab            # a:b -- codepoint x3A is colon</pre>
       <h2>Conformance</h2>
       <p>See Section <a href="#grammar">19 SPARQL Grammar</a> regarding conformance of <a href="#defn_SPARQLQueryString">SPARQL Query strings</a>, and section <a href="#QueryForms">16 Query Forms</a>
       for conformance of query results. See section <a href="#mediaType">22. Internet Media Type</a> for conformance to the application/sparql-query media type.</p>
-      <p>This specification is intended for use in conjunction with the SPARQL 1.1 Protocol [<a href="#SPROT">SPROT</a>], the SPARQL Query Results XML Format [<a href="#SPARQL-XML-RESULTS">SPARQL XML
-      Results</a>], the SPARQL 1.1 Query Results JSON Format [<a href="#SPARQL-JSON-RESULTS">SPARQL-JSON-Results</a>] and the SPARQL 1.1 Query Results CSV and TSV Formats [<a href=
-      "#SPARQL-CSV-TSV-RESULTS">SPARQL CSV and TSV Results</a>]. See those specifications for their conformance criteria.</p>
+      <p>This specification is intended for use in conjunction with the [[[?SPARQL11-PROTOCOL]]] [[?SPARQL11-PROTOCOL]], the [[[?RDF-SPARQL-XMLRES]]] [[?RDF-SPARQL-XMLRES]], the [[[SPARQL11-RESULTS-JSON]]] [[SPARQL11-RESULTS-JSON]] and the [[[?SPARQL11-RESULTS-CSV-TSV]]] [[?SPARQL11-RESULTS-CSV-TSV]]. See those specifications for their conformance criteria.</p>
       <p>Note that the SPARQL protocol describes a means for conveying SPARQL queries to an SPARQL query processing service and returning the query results to the entity that requested them.</p>
     </section>
     <section id="security">
       <h2>Security Considerations (Informative)</h2>
       <p>SPARQL queries using FROM, FROM NAMED, or GRAPH may cause the specified URI to be dereferenced. This may cause additional use of network, disk or CPU resources along with associated
-      secondary issues such as denial of service. The security issues of <a class="norm" href="http://www.ietf.org/rfc/rfc3986.txt">Uniform Resource Identifier (URI): Generic Syntax</a> [<a href=
-      "#rfc3986">RFC3986</a>] Section 7 should be considered. In addition, the contents of <code>file:</code> URIs can in some cases be accessed, processed and returned as results, providing
+      secondary issues such as denial of service. The security issues of [[[RFC3986]]] [[RFC3986]] Section 7 should be considered. In addition, the contents of <code>file:</code> URIs can in some cases be accessed, processed and returned as results, providing
       unintended access to local resources.</p>
       <p>SPARQL requests may cause additional requests to be issued from the SPARQL endpoint, such as FROM NAMED. The endpoint is potentially within an organisations firewall or DMZ, and so such
       queries may be a source of indirection attacks.</p>
       <p>The SPARQL language permits extensions, which will have their own security implications.</p>
       <p>Multiple IRIs may have the same appearance. Characters in different scripts may look similar (a Cyrillic "о" may appear similar to a Latin "o"). A character followed by combining characters
       may have the same visual representation as another character (LATIN SMALL LETTER E followed by COMBINING ACUTE ACCENT has the same visual representation as LATIN SMALL LETTER E WITH ACUTE).
-      Users of SPARQL must take care to construct queries with IRIs that match the IRIs in the data. Further information about matching of similar characters can be found in <a class="inform" href=
-      "http://www.unicode.org/reports/tr36/">Unicode Security Considerations</a> [<a href="#UNISEC">UNISEC</a>] and <a class="norm" href="http://www.ietf.org/rfc/rfc3987.txt">Internationalized
-      Resource Identifiers (IRIs)</a> [<a href="#rfc3987">RFC3987</a>] Section 8.</p>
+      Users of SPARQL must take care to construct queries with IRIs that match the IRIs in the data. Further information about matching of similar characters can be found in
+      [[[?UTR36]]] [[?UTR36]] and [[[RFC3987]]] [[RFC3987]] Section 8.</p>
     </section>
     <section id="mediaType">
       <h2>Internet Media Type, File Extension and Macintosh File Type</h2>
@@ -9388,11 +9378,10 @@ a\u003Ab            # a:b -- codepoint x3A is colon</pre>
           <dt>Optional parameters:</dt>
           <dd>None</dd>
           <dt>Encoding considerations:</dt>
-          <dd>The syntax of the SPARQL Query Language is expressed over code points in Unicode [<a href="#UNICODE">UNICODE</a>]. The encoding is always UTF-8 [<a href="#rfc3629">RFC3629</a>].</dd>
+          <dd>The syntax of the SPARQL Query Language is expressed over code points in Unicode [[UNICODE]]. The encoding is always UTF-8 [[RFC3629]].</dd>
           <dd>Unicode code points may also be expressed using an \uXXXX (U+0 to U+FFFF) or \UXXXXXXXX syntax (for U+10000 onwards) where X is a hexadecimal digit [0-9A-F]</dd>
           <dt>Security considerations:</dt>
-          <dd>See SPARQL Query appendix C, <a href="#security">Security Considerations</a> as well as <a class="norm" href="http://www.ietf.org/rfc/rfc3629.txt">RFC 3629</a> [<a href=
-          "#rfc3629">RFC3629</a>] section 7, Security Considerations.</dd>
+          <dd>See SPARQL Query appendix C, <a href="#security">Security Considerations</a> as well as [[[RFC3629]]] [[RFC3629]] section 7, Security Considerations.</dd>
           <dt>Interoperability considerations:</dt>
           <dd>There are no known interoperability issues.</dd>
           <dt>Published specification:</dt>
@@ -9421,115 +9410,6 @@ a\u003Ab            # a:b -- codepoint x3A is colon</pre>
     </section>
     </section>
   <div class="back">
-    <section id="sec-bibliography">
-      <h2>References</h2>
-      <section id="sec-normative-refs">
-        <h3>Normative References</h3>
-        <dl class="bib">
-          <dt><div name="CHARMOD" id="CHARMOD">[CHARMOD]</div></dt>
-          <dd><a href="http://www.w3.org/TR/2005/REC-charmod-20050215/">Character Model for the World Wide Web 1.0: Fundamentals</a>, R. Ishida, F. Yergeau, M. J. Dürst, M. Wolf, T. Texin, Editors,
-          W3C Recommendation, 15 February 2005, http://www.w3.org/TR/2005/REC-charmod-20050215/ . <a href="http://www.w3.org/TR/charmod/" title=
-          "Latest version of Character Model for the World Wide Web 1.0: Fundamentals">Latest version</a> available at http://www.w3.org/TR/charmod/ .</dd>
-          <dt><div name="CONCEPTS" id="CONCEPTS">[CONCEPTS]</div></dt>
-          <dd><a href="http://www.w3.org/TR/2004/REC-rdf-concepts-20040210/">Resource Description Framework (RDF): Concepts and Abstract Syntax</a>, G. Klyne, J. J. Carroll, Editors, W3C
-          Recommendation, 10 February 2004, http://www.w3.org/TR/2004/REC-rdf-concepts-20040210/ . <a href="http://www.w3.org/TR/rdf-concepts/" title=
-          "Latest version of Resource Description Framework (RDF): Concepts and Abstract Syntax">Latest version</a> available at http://www.w3.org/TR/rdf-concepts/ .</dd>
-          <dt><div name="FUNCOP" id="FUNCOP">[FUNCOP]</div></dt>
-          <dd><a href="http://www.w3.org/TR/2007/REC-xpath-functions-20070123/">XQuery 1.0 and XPath 2.0 Functions and Operators</a>, J. Melton, A. Malhotra, N. Walsh, Editors, W3C Recommendation, 23
-          January 2007, http://www.w3.org/TR/2007/REC-xpath-functions-20070123/ . <a href="http://www.w3.org/TR/xpath-functions/" title=
-          "Latest version of XQuery 1.0 and XPath 2.0 Functions and Operators">Latest version</a> available at http://www.w3.org/TR/xpath-functions/ .</dd>
-          <dt><div id="RDF-MT" name="RDF-MT">[RDF-MT]</div></dt>
-          <dd><a href="http://www.w3.org/TR/2004/REC-rdf-mt-20040210/">RDF Semantics</a>, P. Hayes, Editor, W3C Recommendation, 10 February 2004, http://www.w3.org/TR/2004/REC-rdf-mt-20040210/ .
-          <a title="Latest version of RDF Semantics" href="http://www.w3.org/TR/rdf-mt/">Latest version</a> available at http://www.w3.org/TR/rdf-mt/ .</dd>
-          <dt><div name="rfc3629" id="rfc3629">[RFC3629]</div></dt>
-          <dd>RFC 3629 <a href="http://www.ietf.org/rfc/rfc3629.txt">UTF-8, a transformation format of ISO 10646</a>, F. Yergeau November 2003</dd>
-          <dt><div name="rfc4647" id="rfc4647">[RFC4647]</div></dt>
-          <dd>RFC 4647 <a href="http://www.ietf.org/rfc/rfc4647.txt">Matching of Language Tags</a>, A. Phillips, M. Davis September 2006</dd>
-          <dt><div name="rfc3986" id="rfc3986">[RFC3986]</div></dt>
-          <dd>RFC 3986 <a href="http://www.ietf.org/rfc/rfc3986.txt">Uniform Resource Identifier (URI): Generic Syntax</a>, T. Berners-Lee, R. Fielding, L. Masinter January 2005</dd>
-          <dt><div name="rfc3987" id="rfc3987">[RFC3987]</div></dt>
-          <dd>RFC 3987 <a href="http://www.ietf.org/rfc/rfc3987.txt">Internationalized Resource Identifiers (IRIs)</a>, M. Dürst , M. Suignard</dd>
-          <dt><div name="UNICODE" id="UNICODE">[UNICODE]</div></dt>
-          <dd>The Unicode Standard, Version 4. ISBN 0-321-18578-1, as updated from time to time by the publication of new versions. The latest version of Unicode and additional information on
-          versions of the standard and of the Unicode Character Database is available at <a href=
-          "http://www.unicode.org/unicode/standard/versions/">http://www.unicode.org/unicode/standard/versions/</a>.</dd>
-          <dt><div name="XML11" id="XML11">[XML11]</div></dt>
-          <dd><a href="http://www.w3.org/TR/2004/REC-xml11-20040204/">Extensible Markup Language (XML) 1.1</a>, J. Cowan, J. Paoli, E. Maler, C. M. Sperberg-McQueen, F. Yergeau, T. Bray, Editors, W3C
-          Recommendation, 4 February 2004, http://www.w3.org/TR/2004/REC-xml11-20040204/ . <a href="http://www.w3.org/TR/xml11/" title="Latest version of Extensible Markup Language (XML) 1.1">Latest
-          version</a> available at http://www.w3.org/TR/xml11/ .</dd>
-          <dt><div name="XPATH20" id="XPATH20">[XPATH20]</div></dt>
-          <dd><a href="http://www.w3.org/TR/2007/REC-xpath20-20070123/">XML Path Language (XPath) 2.0</a>, A. Berglund, S. Boag, D. Chamberlin, M. F. Fernández, M. Kay, J. Robie, J. Siméon, Editors,
-          W3C Recommendation, 23 January 2007, http://www.w3.org/TR/2007/REC-xpath20-20070123/ . <a href="http://www.w3.org/TR/xpath20/" title="Latest version of XML Path Language (XPath) 2.0">Latest
-          version</a> available at http://www.w3.org/TR/xpath20/ .</dd>
-          <dt><div name="XQUERY" id="XQUERY">[XQUERY]</div></dt>
-          <dd><a href="http://www.w3.org/TR/2007/REC-xquery-20070123/">XQuery 1.0: An XML Query Language</a>, S. Boag, D. Chamberlin, M. F. Fernández, D. Florescu, J. Robie, J. Siméon, Editors, W3C
-          Recommendation, 23 January 2007, http://www.w3.org/TR/2007/REC-xquery-20070123/. <a href="http://www.w3.org/TR/xquery/" title="Latest version of XQuery 1.0: An XML Query Language">Latest
-          version</a> available at http://www.w3.org/TR/xquery/ .</dd>
-          <dt><div name="XSDT" id="XSDT">[XSDT]</div></dt>
-          <dd><a href="http://www.w3.org/TR/2004/REC-xmlschema-2-20041028/">XML Schema Part 2: Datatypes Second Edition</a>, P. V. Biron, A. Malhotra, Editors, W3C Recommendation, 28 October 2004,
-          http://www.w3.org/TR/2004/REC-xmlschema-2-20041028/ . <a href="http://www.w3.org/TR/xmlschema-2/">Latest version</a> available at http://www.w3.org/TR/xmlschema-2/.<br>
-          Updated 2012 by <a href="http://www.w3.org/TR/2012/REC-xmlschema11-2-20120405/">W3C XML Schema Definition Language (XSD) 1.1 Part 2: Datatypes</a>. (<a href=
-          "http://www.w3.org/TR/xmlschema11-2/">Latest version</a> available at http://www.w3.org/TR/xmlschema11-2/).</dd>
-          <dt><div name="BCP47" id="BCP47">[BCP47]</div></dt>
-          <dd><a href="http://www.rfc-editor.org/rfc/bcp/bcp47.txt">Best Common Practice 47</a>, P. V. Biron, A. Malhotra, Editors, W3C Recommendation, 28 October 2004,
-          http://www.rfc-editor.org/rfc/bcp/bcp47.txt .</dd>
-        </dl>
-      </section>
-      <section id="sec-non-normative-refs">
-        <h3>Other References</h3>
-        <dl class="bib">
-          <dt><div name="CBD" id="CBD">[CBD]</div></dt>
-          <dd><a href="http://www.w3.org/Submission/CBD/">CBD - Concise Bounded Description</a>, Patrick Stickler, Nokia, W3C Member Submission, 3 June 2005.</dd>
-          <dt><div name="DC" id="DC">[DC]</div></dt>
-          <dd><a href="http://www.dublincore.org/documents/dcmes-xml/">Expressing Simple Dublin Core in RDF/XML</a> <a href="http://dublincore.org/">Dublin Core Dublin Core Metadata Initiative</a>
-          Recommendation 2002-07-31.</dd>
-          <dt><div id="multiset" name="multiset">[Multiset]</div></dt>
-          <dd><a href="http://en.wikipedia.org/w/index.php?title=Multiset&amp;oldid=163605900">Multiset</a>, Wikipedia, The Free Encyclopedia. Article as given on October 25, 2007 at
-          http://en.wikipedia.org/w/index.php?title=Multiset&amp;oldid=163605900. The <a href="http://en.wikipedia.org/wiki/Multiset">latest version</a> of this article is at
-          http://en.wikipedia.org/wiki/Multiset.</dd>
-          <dt><div name="SPARQL-XML-RESULTS" id="SPARQL-XML-RESULTS">[SPARQL XML Results]</div></dt>
-          <dd><cite><a href="http://www.w3.org/TR/2013/REC-rdf-sparql-XMLres-20130321">SPARQL Query Results XML Format (Second Edition)</a></cite>, D. Beckett, J. Broekstra, Editors, W3C
-          Recommendation, 21 March 2013, http://www.w3.org/TR/2013/REC-rdf-sparql-XMLres-20130321. <a href="http://www.w3.org/TR/rdf-sparql-XMLres/" title=
-          "Latest version of SPARQL Query Results XML Format (Second Edition)">Latest version</a> available at http://www.w3.org/TR/rdf-sparql-XMLres.</dd>
-          <dt><div name="SPARQL-JSON-RESULTS" id="SPARQL-JSON-RESULTS">[SPARQL JSON Results]</div></dt>
-          <dd><cite><a href="http://www.w3.org/TR/2013/REC-sparql11-results-json-20130321">SPARQL 1.1 Query Results JSON Format</a></cite>, A. Seaborne, Editor, W3C Recommendation, 21 March 2013,
-          http://www.w3.org/TR/2013/REC-sparql11-results-json-20130321. <a href="http://www.w3.org/TR/sparql11-results-json/" title="Latest version of SPARQL 1.1 Query Results JSON Format">Latest
-          version</a> available at http://www.w3.org/TR/sparql11-results-json.</dd>
-          <dt><div name="SPARQL-CSV-TSV-RESULTS" id="SPARQL-CSV-TSV-RESULTS">[SPARQL CSV and TSV Result]</div></dt>
-          <dd><cite><a href="http://www.w3.org/TR/2013/REC-sparql11-results-csv-tsv-20130321">SPARQL 1.1 Query Results CSV and TSV Formats</a></cite>, A. Seaborne, Editor, W3C Recommendation, 21
-          March 2013, http://www.w3.org/TR/2013/REC-sparql11-results-csv-tsv-20130321. <a href="http://www.w3.org/TR/sparql11-results-csv-tsv/" title=
-          "Latest version of SPARQL 1.1 Query Results CSV and TSV Formats">Latest version</a> available at http://www.w3.org/TR/sparql11-results-csv-tsv.</dd>
-          <dt><div id="SPROT" name="SPROT">[SPROT]</div></dt>
-          <dd><cite><a href="http://www.w3.org/TR/2013/REC-sparql11-protocol-20130321">SPARQL 1.1 Protocol</a></cite>, L. Feigenbaum, G. Williams, K. Clark, E. Torres, Editors, W3C Recommendation, 21
-          March 2013, http://www.w3.org/TR/2013/REC-sparql11-protocol-20130321. <a href="http://www.w3.org/TR/sparql11-protocol/" title="Latest version of SPARQL 1.1 Protocol">Latest version</a>
-          available at http://www.w3.org/TR/sparql11-protocol.</dd>
-          <dt><div name="TURTLE" id="TURTLE">[TURTLE]</div></dt>
-          <dd><cite><a href="http://www.w3.org/TR/2013/CR-turtle-20130219/">Turtle: Terse RDF Triple Language</a></cite>, E Prud'hommeaux, G Carothers, Editors, W3C Candidate Recommendation, 19
-          February 2013, http://www.w3.org/TR/2013/CR-turtle-20130219/. <a href="http://www.w3.org/TR/turtle/" title="Latest version of Turtle">Latest version</a> available at
-          http://www.w3.org/TR/turtle/.</dd>
-          <dt><div name="UCNR" id="UCNR">[UCNR]</div></dt>
-          <dd><a href="http://www.w3.org/TR/2005/WD-rdf-dawg-uc-20050325/">RDF Data Access Use Cases and Requirements</a>, K. Clark, Editor, W3C Working Draft, 25 March 2005,
-          http://www.w3.org/TR/2005/WD-rdf-dawg-uc-20050325/ . <a href="http://www.w3.org/TR/rdf-dawg-uc/" title="Latest version of RDF Data Access Use Cases and Requirements">Latest version</a>
-          available at http://www.w3.org/TR/rdf-dawg-uc/ .</dd>
-          <dt><div name="UCNR2" id="UCNR2">[UCNR2]</div></dt>
-          <dd><a href="http://www.w3.org/TR/2009/WD-sparql-features-20090702/">SPARQL New Features and Rationale</a>, Kjetil Kjernsmo, Alexandre Passant, Editors, W3C Working Draft, 2 July 2009,
-          http://www.w3.org/TR/2009/WD-sparql-features-20090702/ . <a href="http://www.w3.org/TR/sparql-features/" title="Latest version of SPARQL New Features and Rationale">Latest version</a>
-          available at http://www.w3.org/TR/sparql-features/ .</dd>
-          <dt><div name="UNISEC" id="UNISEC">[UNISEC]</div></dt>
-          <dd><a href="http://www.unicode.org/reports/tr36/">Unicode Security Considerations</a>, Mark Davis, Michel Suignard</dd>
-          <dt><div id="VCARD" name="VCARD">[VCARD]</div></dt>
-          <dd><a href="http://www.w3.org/TR/2001/NOTE-vcard-rdf-20010222/">Representing vCard Objects in RDF/XML</a>, Renato Iannella, W3C Note, 22 February 2001,
-          http://www.w3.org/TR/2001/NOTE-vcard-rdf-20010222/ . <a href="http://www.w3.org/TR/vcard-rdf">Latest version</a> is available at <tt>http://www.w3.org/TR/vcard-rdf</tt> .</dd>
-          <dt><div name="WEBARCH" id="WEBARCH">[WEBARCH]</div></dt>
-          <dd><a href="http://www.w3.org/TR/2004/REC-webarch-20041215/">Architecture of the World Wide Web, Volume One</a>, I. Jacobs, N. Walsh, Editors, W3C Recommendation, 15 December 2004,
-          http://www.w3.org/TR/2004/REC-webarch-20041215/ . <a href="http://www.w3.org/TR/webarch/">Latest version</a> is available at <tt>http://www.w3.org/TR/webarch/</tt> .</dd>
-          <dt><div name="UNIID" id="UNIID">[UNIID]</div></dt>
-          <dd><a href="http://www.unicode.org/reports/tr31/tr31-5.html">Identifier and Pattern Syntax 4.1.0</a>, Mark Davis, Unicode Standard Annex #31, 25 March 2005,
-          http://www.unicode.org/reports/tr31/tr31-5.html . <a href="http://www.unicode.org/reports/tr31/" title="Latest version of Identifier and Pattern Syntax">Latest version</a> available at
-          <a href="http://www.unicode.org/reports/tr31/">http://www.unicode.org/reports/tr31/</a> .</dd>
-        </dl>
-      </section>
-    </section>
     <div>
       <h2 id="changelog">Change Log</h2>
       <h3 id="changes-since-pr">Changes since Proposed Recommendation</h3>
