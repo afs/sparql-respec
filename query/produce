@@ -13,4 +13,4 @@ rm -f yy-all
 ## 	cat $X | sed '1d;$d' | perl -p -e 's/(^ *<h\d>)<a.*>\d+ /$1/'
 ## 	echo "    </section>"
 ##     done
-) > doc.html
+) > doc0.html
