@@ -14,23 +14,21 @@
         //localBiblio:            "sparql.localBiblio",
         
         // specification status (e.g. WD, LCWD, NOTE, etc.). If in doubt use ED.
-        specStatus:             "WD",
+        specStatus:             "ED",
 
         // if you wish the publication date to be other than today, set this
         //publishDate:          "2023-08-24",
         
         editors: [
-          { name: "Editor" ,  w3cid: "99999" },
-          { name: "Andy Seaborne",
-            url: "https://www.linkedin.com/in/andyseaborne/",
-            w3cid: "29909"
-          }
+            { name: "Andy Seaborne",
+              url: "https://www.linkedin.com/in/andyseaborne/",
+              w3cid: "29909"
+            }
         ],
         formerEditors: [
-          { name: "Editor1" , w3cid: "99999" },
-          { name: "Editor2" , w3cid: "99999" }
+          { name: "Eric Prud'hommeaux" },
+          { name: "Carlos Buil-Aranda" },
         ],
-        //authors: [],
 
         github: { repoURL: "https://github.com/w3c/sparql-federated-query", branch: "main"},
 
@@ -46,8 +44,8 @@
 //         prevRecURI:           "http://www.w3.org/TR/2013/REC-sparql11-federated-query-20130321",
         
         errata:               "https://w3c.github.io/rdf-star-wg/errata",
-        edDraftURI: "https://w3c.github.io/sparql12-federated-query/",
-        testSuiteURI: "https://w3c.github.io/rdf-tests/",
+        edDraftURI:           "https://w3c.github.io/sparql12-federated-query/",
+        testSuiteURI:         "https://w3c.github.io/rdf-tests/",
 //        implementationReportURI: "https://w3c.github.io/sparql12-federated-query/reports/",
 
         includePermalinks:      true,
@@ -100,27 +98,21 @@
     </style>
   </head>
   <body>
-    <!--<h1 id="title">SPARQL 1.2 Federated Query <i>Conversion</i></h1>-->
     <section id="abstract">
       <h2>Abstract</h2>
-
-      <p>
-        sparql12-federated-query-abstract
-      </p>
+<p>RDF is a directed, labeled graph data format for representing information in the Web. SPARQL can be used to express queries across diverse data sources, whether the data is stored natively as
+    RDF or viewed as RDF via middleware. This specification defines the syntax and semantics of SPARQL 1.1 Federated Query extension for executing queries distributed over different SPARQL endpoints.
+    The <code>SERVICE</code> keyword extends SPARQL 1.1 to support queries that merge data distributed across the Web.</p>
     </section>
 
     <section id="sotd" class="introductory">
-      <h2 id="status-of-this-document">Status of This Document
-        <a class="self-link" href="#sotd" aria-label="Permalink for Section"></a></h2>
       <p>
         This specification is published by the
         <a href="https://www.w3.org/groups/wg/rdf-star">RDF Star Working Group</a> as part of the
         update of specifications for format and errata.
       </p>
     </section>
-
-    <!-- @@ -->
-
+<!-- BODY -->
     <section id="introduction">
       <h2>Introduction</h2>
       <p>The growing number of SPARQL query services offer data consumers an opportunity to merge data distributed across the Web. This specification defines the syntax and semantics of the
@@ -696,7 +688,7 @@ WHERE {
       </section>
     </section>
     <section id="sec-acknowledgements">
-      <h2><a name="sec-acknowledgements" id="sec-acknowledgements"></a>B Acknowledgements</h2>
+      <h2>Acknowledgements</h2>
       <p>The SPARQL 1.1 Federated Query document is a product of the whole of the <a href="http://www.w3.org/2009/sparql/wiki/Main_Page">W3C SPARQL Working Group</a>, and our thanks for discussions,
       comments and reviews go to all present and past members.</p>
       <p>In addition, we have had comments and discussions with many people through the working group comments list. All comments go to making a better document. Carlos would also like to
@@ -706,6 +698,7 @@ WHERE {
       <h2><a name="sec-cvsLog" id="sec-cvsLog"></a>C CVS History (Last Call and after)</h2>
     </section>
     
+<!-- BODY -->
     <section id="privacy">
       <h2>Privacy Considerations</h2>
       <p>TODO</p>
@@ -723,7 +716,7 @@ WHERE {
 
     <section class="appendix informative" id="changes-from-sparql11">
       <h2>Change Log</h2>
-      <p>Changes</p>
+      <p>TODO</p>
     </section>   
 
   </div>

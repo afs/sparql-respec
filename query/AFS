@@ -12,16 +12,7 @@ Extract content.html - first class="div1" to end, minus last lines.
 
 Fixes - content-tr.diff has the actual changes - below are working notes and may be not needed now.
 
-------------------------------------------c
-
-
-
-
-
-
-
-
-
+------------------------------------------
 
 ** Fix
 18.4 Property Path Patterns
@@ -32,6 +23,15 @@ Replace <div class="pre"> with <pre>
 ** Fix: 16.2.1 "Templates with Blank Nodes"
 Remove extra "<a id="
 <h4><a name="templatesWithBNodes" id="templatesWithBNodes"></a>16.2.1 <a id="tempatesWithBNodes"></a>Templates with Blank Nodes</h4>
+
+** Fix:
+ZeroOrOnePath add name=
+
+** Fix:
+s/tempate/template/ at end 17.4.2.9 BNODE
+
+----------------------
+
 
 ## ** Fix: 1.2.3 "Result Descriptions"
 ## <a name="table39" id="table39"></a>
@@ -64,12 +64,7 @@ Line 7408-ish
 ** Fix:
 Section A, A.1, A.2
 
-** Fix:
-s/tempate/template/ at end 17.4.2.9 BNODE
-
 ## ** Fix:
 ## Check link before "Operator Extensibility"
 ## effective boolean value
 
-** Fix:
-ZeroOrOnePath add name=

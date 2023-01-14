@@ -14,23 +14,21 @@
         //localBiblio:            "sparql.localBiblio",
         
         // specification status (e.g. WD, LCWD, NOTE, etc.). If in doubt use ED.
-        specStatus:             "WD",
+        specStatus:             "ED",
 
         // if you wish the publication date to be other than today, set this
         //publishDate:          "2023-08-24",
         
         editors: [
-          { name: "Editor" ,  w3cid: "99999" },
-          { name: "Andy Seaborne",
-            url: "https://www.linkedin.com/in/andyseaborne/",
-            w3cid: "29909"
-          }
+            { name: "Andy Seaborne",
+              url: "https://www.linkedin.com/in/andyseaborne/",
+              w3cid: "29909"
+            }
         ],
         formerEditors: [
-          { name: "Editor1" , w3cid: "99999" },
-          { name: "Editor2" , w3cid: "99999" }
+          { name: "Birte Glimm" },
+          { name: "Chimezie Ogbuji" },
         ],
-        //authors: [],
 
         github: { repoURL: "https://github.com/w3c/sparql-entailment", branch: "main"},
 
@@ -46,8 +44,8 @@
 //         prevRecURI:           "http://www.w3.org/TR/2013/REC-sparql11-entailment-20130321",
         
         errata:               "https://w3c.github.io/rdf-star-wg/errata",
-        edDraftURI: "https://w3c.github.io/sparql12-entailment/",
-        testSuiteURI: "https://w3c.github.io/rdf-tests/",
+        edDraftURI:           "https://w3c.github.io/sparql12-entailment/",
+        testSuiteURI:         "https://w3c.github.io/rdf-tests/",
 //        implementationReportURI: "https://w3c.github.io/sparql12-entailment/reports/",
 
         includePermalinks:      true,
@@ -100,27 +98,28 @@
     </style>
   </head>
   <body>
-    <!--<h1 id="title">SPARQL 1.2 Entailment Regimes <i>Conversion</i></h1>-->
     <section id="abstract">
       <h2>Abstract</h2>
-
-      <p>
-        sparql12-entailment-abstract
-      </p>
+<p>SPARQL is a query language and a protocol for data that is stored natively as RDF or viewed as RDF via middleware. The main mechanism for computing query results in SPARQL is subgraph
+    matching: RDF triples in both the queried RDF data and the query pattern are interpreted as nodes and edges of directed graphs, and the resulting query graph is matched to the data graph using
+    variables as wild cards. Various W3C standards, including <a href="http://www.w3.org/TR/rdf-mt/">RDF</a> and <a href="http://www.w3.org/TR/owl2-mapping-to-rdf/">OWL</a>, provide semantic
+    interpretations for RDF graphs that allow additional RDF statements to be inferred from explicitly given assertions. Many applications that rely on these semantics require a query language such
+    as SPARQL, but in order to use SPARQL, basic graph pattern matching has to be defined using semantic entailment relations instead of explicitly given graph structures. There are different
+    possible ways of defining a basic graph pattern matching extension for an entailment relation. This document specifies one such way for a range of standard semantic web entailment relations. Such
+    extensions of the SPARQL semantics are called <em>entailment regimes</em> within this document. An entailment regime defines not only which entailment relation is used, but also which queries and
+    graphs are well-formed for the regime, how the entailment is used (since there are potentially different meaningful ways to use the same entailment relation), and what kinds of errors can arise.
+    The entailment relations used in this document are standard entailment relations in the semantic web: RDF entailment, RDFS entailment, D-entailment, OWL Direct and RDF-Based Semantics entailment,
+    and RIF Core entailment.</p>
     </section>
 
     <section id="sotd" class="introductory">
-      <h2 id="status-of-this-document">Status of This Document
-        <a class="self-link" href="#sotd" aria-label="Permalink for Section"></a></h2>
       <p>
         This specification is published by the
         <a href="https://www.w3.org/groups/wg/rdf-star">RDF Star Working Group</a> as part of the
         update of specifications for format and errata.
       </p>
     </section>
-
-    <!-- @@ -->
-
+<!-- BODY -->
     <section id="sec-intro">
       <h2>Introduction</h2>
       <p>The SPARQL 1.1 Query specification <a href="#SPARQL11">[SPARQL 1.1 Query]</a> defines the evaluation of a basic graph pattern by means of subgraph matching. This form of basic graph pattern
@@ -438,7 +437,7 @@
       <p>The entailment regimes defined in this document are all defined analogously to the RDF entailment regime above. This section explains, therefore, the rationale behind the definition and the
       conditions (C1) and (C2), which are to a large extent shared among all the defined entailment regimes. Possible differences or additional constraints for the following regimes are defined in
       the respective sections.</p>
-      <section id="bnodes"></a>3.1 Blank Nodes in the Queried Graph</h3><a name="C1-Restriction" id="C1-Restriction">
+      <section id="bnodes">
         <h3>Blank Nodes in the Queried Graph</h3><a name="C1-Restriction" id="C1-Restriction"></a>
         <p>The <a href="#condition3">third condition for extensions of basic graph pattern matching</a> requires that if blank node names are returned as bindings for a variable, then the same blank
         node name occurs in different solutions only if it corresponds to the same blank node in the graph. To illustrate why this is required, consider the following graphs, which are also
@@ -878,7 +877,7 @@ ex:d rdfs:range rdf:XMLLiteral . </pre>
         </section>
       </section>
     </section>
-    <section id="DEntRegime"></a>5 D-Entailment Regime</h2><a name="d-entailment" id="d-entailment">
+    <section id="DEntRegime">
       <h2>D-Entailment Regime</h2><a name="d-entailment" id="d-entailment"></a>
       <p>The D-entailment regime is defined for datatyped interpretations, which give semantics to datatypes. A <a href="http://www.w3.org/TR/rdf-concepts/#section-Datatypes">datatype</a> is an
       entity characterized by a set of character strings called lexical forms and a mapping from that set to a set of values. Formally, a datatype d is defined by three items:</p>
@@ -893,7 +892,7 @@ ex:d rdfs:range rdf:XMLLiteral . </pre>
       space), this is not always the case. A <em>canonical mapping</em> is a prescribed subset of the inverse of a lexical mapping, which is one-to-one and whose domain (where possible) is the entire
       range of the lexical mapping (the value space). Thus a canonical mapping selects one lexical representation for each value in the value space. The <em>canonical representation</em> of a value
       in the value space of a datatype is the lexical representation associated with that value by the datatype's canonical mapping.</p>
-      <section id="CanonicalLit"></a>5.1 The D-Entailment Regime</h3><a name="CanonicalLiteral" id="CanonicalLiteral">
+      <section id="CanonicalLit">
         <h3>The D-Entailment Regime</h3><a name="CanonicalLiteral" id="CanonicalLiteral"></a>
         <p>It is possible to define one datatype as a refinement of another one. For example, in the XML Schema Datatypes specification <a href="#XSD">[XML Schema Datatypes]</a>, the datatype
         <code>long</code> is derived from the datatype <code>integer</code>, which is itself derived from <code>decimal</code>. The datatype <code>decimal</code> is a primitive type, i.e., it is not
@@ -1119,7 +1118,7 @@ ex:s ex:p "+100"^^xsd:short .</pre>
         <p>is added to G. In the OWL 2 Direct Semantics, in contrast, classes denote sets and not domain elements, so G entails μ(BGP) under the Direct Semantics where, formally, G must first be
         extended with an ontology header to become well-formed.</p>
       </section>
-      <section id="OWLRDFBSRestrictions"></a>6.2 Restriction on Solutions</h3><a name="C2-RDF-Based" id="C2-RDF-Based">
+      <section id="OWLRDFBSRestrictions">
         <h3>Restriction on Solutions</h3><a name="C2-RDF-Based" id="C2-RDF-Based"></a>
         <p>In this section the restrictions on solutions are explained. As the previously defined regimes, a Skolemization of the queried graph and the BGP is used to limit answers that just differ
         in blank node labels (C1). An explanation for this restriction is given in the <a href="#C1-Restriction">General Notes</a> section. Under OWL 2 RDF-Based Semantics the axiomatic triples are
@@ -1161,7 +1160,7 @@ ex:s ex:p "+100"^^xsd:short .</pre>
           respect to the size of the data (assertions). As in OWL 2 EL, polynomial time algorithms can be used to implement the ontology consistency and class expression subsumption reasoning
           problems.</p>
         </section>
-        <section id="OWL2RLDS"></a>6.4.4 The OWL 2 RL Profile</h4><a name="OWL2RL" id="OWL2RL">
+        <section id="OWL2RLDS">
           <h4>The OWL 2 RL Profile</h4><a name="OWL2RL" id="OWL2RL"></a>
           <p>OWL 2 RL defines a syntactic subset of OWL 2 DL, which is amenable to <a href="http://www.w3.org/TR/owl2-profiles/#Profile_Specification_3">implementation using rule-based
           technologies</a>.</p>
@@ -1272,7 +1271,7 @@ _:x rdf:type owl:Restriction ;
           <li>Ontology Properties (imports, ontology IRIs).</li>
         </ol>
         <p>Such axioms are called <em>non-logical axioms</em>, whereas axioms that do carry semantics under OWL 2 Direct Semantics are called <em>logical axioms</em>.</p>
-        <section id="OWLDSImports"></a>7.1.1 OWL Import Directives</h4><a name="OWLImports" id="OWLImports">
+        <section id="OWLDSImports">
           <h4>OWL Import Directives</h4><a name="OWLImports" id="OWLImports"></a>
           <p>OWL provides an import directive, which allows one ontology to incorporate axioms from another ontology. Thus, if the queried RDF graph G contains a triple of the form</p>
           <pre class="data">ont owl:imports imported .</pre>
@@ -1283,7 +1282,7 @@ _:x rdf:type owl:Restriction ;
           not has no effect on the logical consequences of the ontology. The statement does, however, influence the outcome of mapping an RDF graph into an OWL ontology. In the process of mapping a
           graph G into the ontology structure O(G) the directly and indirectly imported axioms are taken into account.</p>
         </section>
-        <section id="OWLDSExtGrammar"></a>7.1.2 Extended Grammar for OWL 2 Direct Semantics BGPs</h4><a name="extendedStructuralSpec" id="extendedStructuralSpec">
+        <section id="OWLDSExtGrammar">
           <h4>Extended Grammar for OWL 2 Direct Semantics BGPs</h4><a name="extendedStructuralSpec" id="extendedStructuralSpec"></a>
           <p>SPARQL 1.1 Query <a href="#SPARQL11">[SPARQL 1.1 Query]</a> is only defined for basic graph patterns using a triple-based syntax. For OWL 2 Direct Semantics, an alternative syntax for
           BGPs based on the functional-style syntax or other popular OWL syntaxes seems natural, but is not part of this specification.</p>
@@ -1875,7 +1874,7 @@ _:x rdf:type owl:Restriction ;
       <p>has the answer <code>{ (inst, ex:x) }</code>. One cannot merge triples from several sources into a named graph (they will always be merged into a fresh default graph) and such an extension
       would require changes to the conditions for extensions of basic graph pattern matching in the existing SPARQL query language specification.</p>
     </section>
-    <section id="PropertyPaths"></a>10 Entailment Regimes and Property Paths (Informative)</h2><a name="property-path" id="property-path">
+    <section id="PropertyPaths">
       <h2>Entailment Regimes and Property Paths (Informative)</h2><a name="property-path" id="property-path"></a>
       <p>SPARQL 1.1 introduces <a href="http://www.w3.org/TR/sparql11-query/#propertypaths">property paths</a>, which allow for using path expressions in place of the predicate of a triple pattern.
       Such path expressions describe a possible route through the active graph. For an example, assume the following data in the default graph:</p>
@@ -2155,8 +2154,8 @@ ex:p2 rdfs:subPropertyOf ex:p3 .</pre>
         </dl>
       </section>
     </section>
-    <section id="AppendixMapping"></a>B Appendix: Mapping from BGPs to the extended OWL 2 Structural Specification</h2><a name="OWL2parsingBGPs" id="OWL2parsingBGPs">
-      <h2><a name="AppendixMapping" id="AppendixMapping"></a>B Appendix: Mapping from BGPs to the extended OWL 2 Structural Specification</h2><a name="OWL2parsingBGPs" id="OWL2parsingBGPs"></a>
+    <section id="AppendixMapping">
+      <h2>Appendix: Mapping from BGPs to the extended OWL 2 Structural Specification</h2><a name="OWL2parsingBGPs" id="OWL2parsingBGPs"></a>
       <p>This appendix specifies how a legal basic graph pattern BGP of a SPARQL query can be parsed into the extension of the OWL 2 Structural specification <a href="#OWL2">[OWL 2 Structural
       Specification]</a>. Let <code>x</code> be a variable from BGP. If BGP contains a triple <code>?x rdf:type TYPE</code> or <code>$x rdf:type TYPE</code>, where <code>TYPE</code> is one of
       <code>owl:Class</code>, <code>owl:ObjectProperty</code>, <code>owl:DatatypeProperty</code>, or <code>owl:NamedIndividual</code>, <code>x</code> is declared to be of type <code>TYPE</code>. BGP
@@ -2210,7 +2209,7 @@ ex:p2 rdfs:subPropertyOf ex:p3 .</pre>
       </table>
       <p>A canonical definition for Step <strong>CP&nbsp;4</strong> is given in the following section.</p>
       <section id="OWLParsing">
-        <h3><a name="OWLParsing" id="OWLParsing"></a>B.1 Parsing BGPs into Objects of the Extended OWL 2 Structural Specification</h3>
+        <h3>Parsing BGPs into Objects of the Extended OWL 2 Structural Specification</h3>
         <p>Parsing BGPs into OWL objects as required in <strong>CP&nbsp;4</strong> follows closely the parsing process described in <a href=
         "http://www.w3.org/TR/owl2-mapping-to-rdf/#Populating_an_Ontology">Section 3.2</a> of <a href="#RDF2OWLMAPPING">[OWL 2 Mapping to RDF Graphs]</a>. This document only states where the parsing
         differs from the mapping as defined by OWL 2. The main difference is that IRIs, anonymous individuals, and literals can also be variables. Thus, the notation used in the mapping specification
@@ -2324,6 +2323,7 @@ _:b2 ex:p ex:o</pre>and the BGP of the query is
       <p id="changes-since-cr">Since Candidate Recommendation, the only change has been to remove the "At Risk" notes, which labeled sections of the text which might potentially have been removed
       during Candidate Recommendation (but were not).</p>
     </section>
+<!-- BODY -->
     <section id="privacy">
       <h2>Privacy Considerations</h2>
       <p>TODO</p>
@@ -2341,7 +2341,7 @@ _:b2 ex:p ex:o</pre>and the BGP of the query is
 
     <section class="appendix informative" id="changes-from-sparql11">
       <h2>Change Log</h2>
-      <p>Changes</p>
+      <p>TODO</p>
     </section>   
 
   </div>
