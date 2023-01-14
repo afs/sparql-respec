@@ -1,0 +1,585 @@
+    <div class="div1">
+      <h2><a name="introduction" id="introduction"></a>1 Introduction</h2>
+      <p>The growing number of SPARQL query services offer data consumers an opportunity to merge data distributed across the Web. This specification defines the syntax and semantics of the
+      <code>SERVICE</code> extension to the SPARQL 1.1 Query Language. This extension allows a query author to direct a portion of a query to a particular SPARQL endpoint. Results are returned to the
+      federated query processor and are combined with results from the rest of the query.</p>
+      <div class="div2">
+        <h3><a name="docConventions" id="docConventions"></a>1.1 Document Conventions</h3>
+        <div class="div3">
+          <h4><a name="docNamespaces" id="docNamespaces"></a>1.1.1 Namespaces</h4>
+          <p>This document uses the same namespaces as from the <a class="inform" href="http://www.w3.org/TR/2011/WD-sparql11-query-20110512/#docNamespaces">SPARQL 1.1 Query document</a>.</p>
+        </div>
+        <div class="div3">
+          <h4><a name="docResultDesc" id="docResultDesc"></a>1.1.2 Result Descriptions</h4>
+          <p>Result sets are illustrated in tabular form as in the <a class="inform" href="http://www.w3.org/TR/2011/WD-sparql11-query-20110512/#docResultDesc">SPARQL 1.1 Query document</a>.</p>
+          <div class="result">
+            <a name="table39" id="table39"></a>
+            <table class="resultTable">
+              <tbody>
+                <tr>
+                  <th>x</th>
+                  <th>y</th>
+                  <th>z</th>
+                </tr>
+                <tr>
+                  <td>"Alice"</td>
+                  <td><code>&lt;http://example/a&gt;</code></td>
+                  <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p>A 'binding' is a pair (<a href="http://www.w3.org/TR/sparql11-query/#defn_QueryVariable">variable</a>, <a href="http://www.w3.org/TR/sparql11-query/#defn_RDFTerm">RDF term</a>). There
+          are three variables: <code>x</code>, <code>y</code> and <code>z</code> (shown as column headers). Each solution is shown as one row in the body of the table.&nbsp; Here, there is a single
+          solution, in which variable <code>x</code> is bound to <code>"Alice"</code>, variable <code>y</code> is bound to <code>http://example/a</code>, and variable <code>z</code> is not bound to
+          an RDF term. Variables are not required to be bound in a solution.</p>
+        </div>
+        <div class="div3">
+          <h4><a name="docTerminology" id="docTerminology"></a>1.1.3 Terminology</h4>
+          <p>The following terms are defined in <a class="norm" href="http://www.w3.org/TR/sparql11-query/">SPARQL 1.1 Query Language</a> <a href="#SQRY">[SQRY]</a> and reused in this document:</p>
+          <ul>
+            <li><a class="type IRI" href="http://www.w3.org/TR/2004/REC-rdf-concepts-20040210/#dfn-URI-reference">IRI</a> (corresponds to the Concepts and Abstract Syntax term <code>RDF URI
+            reference</code>)</li>
+            <li><a class="type SolutionMapping" href="http://www.w3.org/TR/sparql11-query/#defn_sparqlSolutionMapping">Solution Mapping</a></li>
+            <li><a class="type SolutionSequence" href="http://www.w3.org/TR/sparql11-query/#defn_sparqlSolutionSequence">Solution Sequence</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="div1">
+      <h2><a name="service" id="service"></a>2 SPARQL 1.1 Federated Query Extension</h2>
+      <p>The <code>SERVICE</code> keyword instructs a federated query processor to invoke a portion of a SPARQL query against a remote SPARQL endpoint. This section presents examples of how to use
+      the <code>SERVICE</code> keyword. The following sections define the syntax and semantics of this extension.</p>
+      <div class="div2">
+        <h3><a name="simpleService" id="simpleService"></a>2.1 Simple query to a remote SPARQL endpoint</h3>
+        <div class="exampleGroup" id="fooService1">
+          <p>This example shows how to query a remote SPARQL endpoint and join the returned data with the data from the local RDF Dataset. Consider a query to find the names of the people we know.
+          Data about the names of various people is available at the <code>http://people.example.org/sparql</code> endpoint:</p>
+          <pre class="data">  @prefix foaf:  &lt;http://xmlns.com/foaf/0.1/&gt; .
+  @prefix : &lt;http://example.org/&gt; .
+  
+  :people15  foaf:name     "Alice" .
+  :people16  foaf:name     "Bob" .
+  :people17  foaf:name     "Charles" .
+  :people18  foaf:name     "Daisy" .</pre>and one wants to combine with a local FOAF file <code>http://example.org/myfoaf.rdf</code> that contains the single triple:
+          <pre class="data">&lt;http://example.org/myfoaf/I&gt; &lt;http://xmlns.com/foaf/0.1/knows&gt;  &lt;http://example.org/people15&gt; . </pre>
+          <div class="queryGroup">
+            <p>Query:</p>
+            <pre class="query">PREFIX foaf:   &lt;http://xmlns.com/foaf/0.1/&gt;
+SELECT ?name
+FROM &lt;http://example.org/myfoaf.rdf&gt;
+WHERE
+{
+  &lt;http://example.org/myfoaf/I&gt; foaf:knows ?person .
+  SERVICE &lt;http://people.example.org/sparql&gt; { 
+    ?person foaf:name ?name . } 
+}</pre>
+            <p>This query, on the data above, has one solution:</p>
+            <p>Query Result:</p>
+            <div class="result">
+              <a name="table1" id="table1"></a>
+              <table class="resultTable">
+                <tbody>
+                  <tr>
+                    <th>name</th>
+                  </tr>
+                  <tr>
+                    <td>"Alice"</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="div2">
+        <h3><a name="optionalTwoServices" id="optionalTwoServices"></a>2.2 SPARQL query with OPTIONAL to two remote SPARQL endpoints</h3>
+        <p>Imagine we want to query people and optionally obtain their interests and the names of people they know. Imagine for instance, two endpoints containing data about people:</p>
+        <div class="exampleGroup" id="optionalService1">
+          <p>Data in the default graph at remote SPARQL endpoint: <code>http://people.example.org/sparql</code></p>
+          <pre class="data"> 
+  @prefix foaf:  &lt;http://xmlns.com/foaf/0.1/&gt; .
+  @prefix : &lt;http://example.org/&gt; .
+  
+  :people15  foaf:name     "Alice" .
+  :people16  foaf:name     "Bob" .
+  :people17  foaf:name     "Charles" .
+  :people17  foaf:interest     &lt;http://www.w3.org/2001/sw/rdb2rdf/&gt; .
+  </pre>
+          <p>and data in the default graph the remote SPARQL endpoint: <code>http://people2.example.org/sparql</code></p>
+          <pre class="data"> 
+  @prefix foaf:  &lt;http://xmlns.com/foaf/0.1/&gt; .
+  @prefix : &lt;http://example.org/&gt; .
+  
+  :people15  foaf:knows    :people18 . 
+  :people18  foaf:name     "Mike" .
+  :people17  foaf:knows    :people19 . 
+  :people19  foaf:name     "Daisy" .
+  </pre>
+          <div class="queryGroup">
+            <p>Query:</p>
+            <pre class="query">PREFIX foaf:   &lt;http://xmlns.com/foaf/0.1/&gt;
+SELECT ?person ?interest ?known
+WHERE
+{
+  SERVICE &lt;http://people.example.org/sparql&gt; { 
+    ?person foaf:name ?name .  
+    OPTIONAL { 
+      ?person foaf:interest ?interest .
+      SERVICE &lt;http://people2.example.org/sparql&gt; { 
+        ?person foaf:knows ?known . } }
+  }    
+}</pre>
+            <p>This query, on the data above, has three solutions:</p>
+            <p>Query Result:</p>
+            <div class="result">
+              <a name="table03" id="table03"></a>
+              <table class="resultTable">
+                <tbody>
+                  <tr>
+                    <th>person</th>
+                    <th>interest</th>
+                    <th>known</th>
+                  </tr>
+                  <tr>
+                    <td>"Alice"</td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td>"Bob"</td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td>"Charles"</td>
+                    <td>&lt;http://www.w3.org/2001/sw/rdb2rdf/&gt;</td>
+                    <td>&lt;http://example.org/people19&gt;</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+        <p>Notice that in the query above there is a nested <code>SERVICE</code> in the <code>OPTIONAL</code> clause. This query requires the SPARQL query service at
+        <code>http://people.example.org/sparql</code> to support basic federated query.</p>
+      </div>
+      <div class="div2">
+        <h3><a name="serviceFailure" id="serviceFailure"></a>2.3 Service Execution Failure</h3>
+        <p>The execution of a <code>SERVICE</code> pattern may fail due to several reasons: the remote service may be down, the service IRI may not be dereferenceable, or the endpoint may return an
+        error to the query. Normally, under such circumstances the invoked query containing a <code>SERVICE</code> pattern fails as a whole. Queries may explicitly allow failed <code>SERVICE</code>
+        requests with the use of the <code>SILENT</code> keyword. The <code>SILENT</code> keyword indicates that errors encountered while accessing a remote SPARQL endpoint should be ignored while
+        processing the query. The failed <code>SERVICE</code> clause is treated as if it had a result of a single solution with no bindings.</p>
+        <p>In the following query the <code>SILENT</code> keyword is present. If the remote SPARQL endpoint is not available because the SPARQL endpoint does not exist, it is down or it is not
+        accessible the query will return a solution sequence of one empty solution mapping. If the <code>SILENT</code> keyword is not present, the query will stop and return the error.</p>
+        <div class="exampleGroup" id="fooService2">
+          <p>Data in <code>&lt;http://people.example.org/sparql&gt;</code> endpoint:</p>
+          <pre class="data">  &lt;http://example.org/people15&gt;  &lt;http://xmlns.com/foaf/0.1/name&gt;     "Charles" .</pre>
+          <div class="queryGroup">
+            <p>Query:</p>
+            <pre class="query">PREFIX foaf:   &lt;http://xmlns.com/foaf/0.1/&gt;
+SELECT ?name
+WHERE
+{
+  SERVICE SILENT &lt;http://people.example.org/sparql&gt; { 
+    &lt;http://example.org/people15&gt; foaf:name ?name . }
+}</pre>
+            <p>Query result if an error occurs while querying the remote SPARQL endpoint:</p>
+            <div class="result">
+              <a name="table2" id="table2"></a>
+              <table class="resultTable">
+                <tbody>
+                  <tr>
+                    <th>name</th>
+                  </tr>
+                  <tr>
+                    <td>&nbsp;</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="div2">
+        <h3><a name="values" id="values"></a>2.4 Interplay of SERVICE and VALUES (Informative)</h3>
+        <p>SPARQL 1.1 Query includes the <code>VALUES</code> clause (<a class="inform" href="http://www.w3.org/TR/sparql11-query/#inline-data">VALUES</a>), which can be used to provide an unordered
+        solution sequence that is joined with the results of the query evaluation. Implementers of SPARQL 1.1 Federated Query may use the <code>VALUES</code> clause to constrain the results received
+        from a remote endpoint based on solution bindings from evaluating other parts of the query.</p>
+        <p>The following example shows how <code>SERVICE</code> and <code>VALUES</code> can work together. Suppose a query that asks for all instances of foaf:Person in the default graph and also
+        their known people in the remote endpoint <code>http://example.org/sparql</code>:</p>
+        <p>Data in the default graph:</p>
+        <div class="exampleGroup" id="bindingsService1">
+          <pre class="data">   
+  @prefix foaf:  &lt;http://xmlns.com/foaf/0.1/&gt; .
+  @prefix : &lt;http://example.org/&gt; .
+  
+  :a a foaf:Person  ;
+     foaf:name     "Alan" ;
+     foaf:mbox;     "alan@example.org" .
+  :b a foaf:Person  ;
+     foaf:name     "Bob" ;
+     foaf:mbox     "bob@example.org" .
+  </pre>
+          <p>and data in the default graph the remote SPARQL endpoint <code>http://example.org/sparql</code>:</p>
+          <pre class="data"> 
+  @prefix foaf:  &lt;http://xmlns.com/foaf/0.1/&gt; .
+  @prefix : &lt;http://example.org/&gt; .
+  
+  :a  foaf:knows     :b . 
+  :b  foaf:knows     :c .
+  :c  foaf:knows     :a .
+  :a  foaf:interest  "SPARQL 1.1 Basic Federated Query" . 
+  :b  foaf:interest  "SPARQL 1.1 Query" .
+  :c  foaf:interest  "RDB2RDF Direct mapping" .
+  </pre>
+          <p>Query:</p>
+          <pre class="query">PREFIX foaf:   &lt;http://xmlns.com/foaf/0.1/&gt;
+SELECT ?s
+{
+  ?s a foaf:Person .
+  SERVICE &lt;http://example.org/sparql&gt; {?s foaf:knows ?o }
+}
+</pre>
+        </div>
+        <p>When the original query is executed naively, with an unconstrained service call the endpoint may return more results than necessary. It may also happen that the SPARQL endpoint will not
+        return all of them. Many existing SPARQL endpoints have restrictions in the number of results they return and may miss the ones matching subjects <code>?s</code> from the local default graph.
+        Thus, an implementation of a query planner for federated queries may decide to decompose the query into two queries instead, where first the bindings from the local default graph are
+        evaluated:</p>
+        <div class="exampleGroup" id="bindingsService2">
+          <p>Query:</p>
+          <pre class="query">PREFIX : &lt;http://example.org/&gt;
+PREFIX foaf:   &lt;http://xmlns.com/foaf/0.1/&gt;
+SELECT ?s
+{
+  ?s a foaf:Person
+} 
+</pre>
+          <p>This query, on the data above, has two solutions:</p>
+          <p>Query Result:</p>
+          <div class="result">
+            <a name="table04a" id="table04a"></a>
+            <table class="resultTable">
+              <tbody>
+                <tr>
+                  <th>s</th>
+                </tr>
+                <tr>
+                  <td>&lt;http://example.org/a&gt;</td>
+                </tr>
+                <tr>
+                  <td>&lt;http://example.org/b&gt;</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <p>Next, dispatch to the remote endpoint &lt;http://example.org/sparql&gt; a constrained query with the solutions for <code>?s</code>:</p>
+        <pre class="query">PREFIX foaf:   &lt;http://xmlns.com/foaf/0.1/&gt;
+PREFIX : &lt;http://example.org/&gt;
+SELECT * {?s foaf:knows ?o } VALUES (?s) { (:a) (:b) }</pre>
+        <p>The query process involving <code>SERVICE</code> limits the data returned to the data it needs for the overall query:</p>
+        <div class="queryGroup">
+          <p>Query:</p>
+          <pre class="query">PREFIX foaf:   &lt;http://xmlns.com/foaf/0.1/&gt;
+SELECT ?s ?o
+{
+  ?s a foaf:Person
+  SERVICE &lt;http://example.org/sparql&gt; {?s foaf:knows ?o }
+} 
+</pre>
+          <p>This query, on the data above using <code>VALUES</code>, has the expected two solutions to the overall query:</p>
+          <p>Query Result:</p>
+          <div class="result">
+            <a name="table04b" id="table04b"></a>
+            <table class="resultTable">
+              <tbody>
+                <tr>
+                  <th>s</th>
+                  <th>o</th>
+                </tr>
+                <tr>
+                  <td>&lt;http://example.org/a&gt;</td>
+                  <td>&lt;http://example.org/b&gt;</td>
+                </tr>
+                <tr>
+                  <td>&lt;http://example.org/b&gt;</td>
+                  <td>&lt;http://example.org/c&gt;</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="div1">
+      <h2><a name="fedSemantics" id="fedSemantics"></a>3 SPARQL 1.1 Simple Federation Extension: semantics</h2>
+      <div class="div2">
+        <h3><a name="defn_service" id="defn_service"></a>3.1 Translation to the SPARQL Algebra</h3>
+        <p>The <code>SERVICE</code> extension is defined as an additional type of GroupGraphPattern, with an accompanying addition to SPARQL Query 1.1's <a href=
+        "http://www.w3.org/TR/sparql11-query/#convertGraphPattern">Transform (syntax form)</a>:</p>
+        <blockquote>
+          <p>If the form is <code><a href="http://www.w3.org/TR/sparql11-query/#rGroupGraphPattern">GroupGraphPattern</a></code></p>
+          <blockquote>
+            <p>From the <a href="http://www.w3.org/TR/sparql11-query/#sparqlTranslateGraphPatterns">Translate Graph Patterns section</a> of [<a class="inform" href=
+            "http://www.w3.org/TR/sparql11-query/">SPARQL 1.1 Query Language</a>] we extend the transformation of GroupGraphPattern to define the transformation of <code>SERVICE</code> patterns:</p>
+          </blockquote>
+        </blockquote>
+        <pre class="codeBlock">Let FS := the empty set
+Let G := the empty pattern, Z, a basic graph pattern which is the empty set.
+Let SilentOp := boolean, indicating SERVICE error behavior.
+
+For each element E in the GroupGraphPattern
+    If E is of the form FILTER(expr)
+        FS := FS ∪ {expr}
+        End
+
+    If E is of the form OPTIONAL{P} 
+        Let A := Transform(P)
+        If A is of the form Filter(F, A2)
+            G := LeftJoin(G, A2, F)
+        Else 
+            G := LeftJoin(G, A, true)
+            End
+        End
+
+    If E is of the form MINUS{P}
+        G := Minus(G, Transform(P))
+        End
+
+    If E is of the form BIND(expr AS var)
+        G := Extend(G, var, expr)
+        End
+
+    If E is any other form 
+        Let A := Transform(E)
+        G := Join(G, A)
+        End
+
+    <strong>If E is of the form SERVICE [SILENT] IRI {P}
+        Let G := Join(G, Service(IRI, Transform(P), SilentOp))
+        End</strong>
+   
+   End
+   
+If FS is not empty:
+  Let X := Conjunction of expressions in FS
+  G := Filter(X, G)
+
+The result is G.
+            </pre>
+      </div>
+      <div class="div2">
+        <h3><a name="algebra_service" id="algebra_service"></a>3.2 SPARQL 1.1 Simple Federation Extension Algebra</h3>
+        <p>The evaluation of <code>SERVICE</code> is defined in terms of the <a class="inform" href="http://www.w3.org/TR/rdf-sparql-XMLres/">SPARQL Results</a> [<a href="#RESULTS">RESULTS</a>]
+        returned by a SPARQL Protocol [<a href="#SPROT">SPROT</a>] execution of the nested graph pattern:</p>
+        <div class="defn">
+          <p><strong>Definition: <a id="defn_evalService" name="defn_evalService">Evaluation of a Service Pattern</a></strong></p>Let
+          <ul>
+            <li>iri be an IRI,</li>
+            <li><code>Ω<sub>0</sub></code> the solution set with one empty solution, and</li>
+            <li>SilentOp be a boolean variable to indicate that SERVICE execution should ignore errors when true.</li>
+          </ul>
+          <p>then:</p>
+          <div class="defn">
+            eval(D(G), Service(IRI,P,SilentOp)) = Invocation( iri, P, SilentOp )
+          </div>where: Invocation(IRI, P, SilentOp) is
+          <ul>
+            <li>the multiset of solution mappings corresponding to the results of executing query <code>SELECT * WHERE Q</code> against the service endpoint with IRI iri where Q is the serialization
+            of P in SPARQL syntax, in case of a successful service invocation according to the SPARQL protocol, and otherwise</li>
+            <li><code>Ω<sub>0</sub>.</code> in case SilentOp is true, and otherwise</li>
+            <li>error.</li>
+          </ul>
+        </div>
+        <div class="div3">
+          <h4><a name="algebra_service_examples" id="algebra_service_examples"></a>3.2.1 SERVICE Examples</h4>
+          <p>In the folowing section we introduce two examples showing the evaluation of <code>SERVICE</code> patterns in the SPARQL algebra:</p>
+          <p>Example: a <code>SERVICE</code> graph pattern in a series of joins:</p>
+          <div class="algExample">
+            <div class="algExample1">
+              ... WHERE { { ?s :p1 ?v1 } SERVICE &lt;srvc&gt; {?s :p2 ?v2 } { ?s :p3 ?v2 } }
+            </div>
+            <div class="algExample2">
+              Join( Service( &lt;srvc&gt;,<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; BGP( ?s :p2 ?v2 ), false ),<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; BGP( ?s :p3 ?v2 ) )
+            </div>
+          </div>
+          <p>Example: a <code>SERVICE SILENT</code> graph pattern in a series of joins:</p>
+          <div class="algExample">
+            <div class="algExample1">
+              ... WHERE { { ?s :p1 ?v1 } SERVICE SILENT &lt;srvc&gt; {?s :p2 ?v2 } { ?s :p3 ?v2 } }
+            </div>
+            <div class="algExample2">
+              Join( Service( &lt;srvc&gt;,<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; BGP( ?s :p2 ?v2 ), true ),<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; BGP( ?s :p3 ?v2 ) )
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="div1">
+      <h2><a name="variableService" id="variableService"></a>4 SERVICE Variables (Informative)</h2>
+      <p>In the this section we do not present official evaluation semantics for the SPARQL pattern <code>SERVICE VAR</code>. We only provide indications about how the evaluation of the SPARQL
+      pattern <code>SERVICE VAR</code> can be evaluated.</p>
+      <p>A variable used in place of a service IRI indicates that the service call for any solution depends on that variable's binding in that solution. For instance, the default graph may contain
+      data about which services contain data about project endpoints. We assume the following data on various projects that contains information about SPARQL endpoints where data about these projects
+      (using the <a href="https://github.com/edumbill/doap/wiki">DOAP vocabulary</a>) can be queried from:</p>
+      <pre class="data">@prefix void:    &lt;http://rdfs.org/ns/void#&gt; .
+@prefix dc: &lt;http://purl.org/dc/elements/1.1/&gt; .
+@prefix doap: &lt;http://usefulinc.com/ns/doap#&gt; .
+
+[] dc:subject "Querying RDF" ;
+   void:sparqlEndpoint &lt;http://projects1.example.org/sparql&gt; .
+[] dc:subject "Querying RDF remotely" ;
+   void:sparqlEndpoint &lt;http://projects2.example.org/sparql&gt; .
+[] dc:subject "Updating RDF remotely"  ;
+   void:sparqlEndpoint &lt;http://projects3.example.org/sparql&gt; .
+
+</pre>
+      <p>Data in the default graph at remote SPARQL endpoint http://projects2.example.org/sparql:</p>
+      <pre class="data">_:project1  doap:name    "Query remote RDF Data" .
+_:project1  doap:created "2011-02-12"^^xsd:date .
+_:project2  doap:name    "Querying multiple SPARQL endpoints" .
+_:project2  doap:created "2011-02-13"^^xsd:date .
+</pre>
+      <p>Data in the default graph at remote SPARQL endpoint http://projects3.example.org/sparql:</p>
+      <pre class="data">_:project3  doap:name    "Update remote RDF Data" .
+_:project3  doap:created "2011-02-14"^^xsd:date .
+</pre>
+      <p>We now want to query the project names of projects on the subject "remote":</p>
+      <div class="queryGroup">
+        <pre class="query">PREFIX  void: &lt;http://rdfs.org/ns/void#&gt;
+PREFIX  dc:   &lt;http://purl.org/dc/elements/1.1/&gt;
+PREFIX  doap: &lt;http://usefulinc.com/ns/doap#&gt; 
+
+SELECT ?service ?projectName
+WHERE {
+  # Find the service with subject "remote".
+  ?p dc:subject ?projectSubject ;
+     void:sparqlEndpoint ?service .
+     FILTER regex(?projectSubject, "remote")
+
+  # Query that service projects.
+  SERVICE ?service {
+     ?project  doap:name ?projectName . } 
+}
+
+</pre>
+        <p>In the following table we present the intuitive solutions for this query with the data above:</p>
+        <p>Query Result:</p>
+        <div class="result">
+          <a name="tableResultsVarEndpoint" id="tableResultsVarEndpoint"></a>
+          <table class="resultTable">
+            <tbody>
+              <tr>
+                <th>service</th>
+                <th>title</th>
+              </tr>
+              <tr>
+                <td>&lt;http://projects2.example.org/sparql&gt;</td>
+                <td>"Query remote RDF Data"</td>
+              </tr>
+              <tr>
+                <td>&lt;http://projects2.example.org/sparql&gt;</td>
+                <td>"Querying multiple SPARQL endpoints"</td>
+              </tr>
+              <tr>
+                <td>&lt;http://projects3.example.org/sparql&gt;</td>
+                <td>"Update remote RDF Data"</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <p>A <code>SERVICE</code> clause involving a variable can be executed as a series of separate invocations of SPARQL query services. The results of each invocation are combined using union.</p>
+      <p>The query engine must determine the possible target SPARQL query services. The exact mechanism for doing this is not defined in this document. Execution order may also be used to determine
+      the list of services to to be tried. The example above suggests a specific order of execution: evaluating the basic graph pattern and filter outside the <code>SERVICE</code> block first will
+      yield bindings for <code>?service</code> which may then be used to evaluate the <code>SERVICE</code> block:</p>
+      <pre class="query">?p dc:subject ?projectSubject ;
+   void:sparqlEndpoint ?service
+   FILTER regex(?projectSubject, "remote")</pre>
+      <p>Once <code>?service</code> has been evaluated it is possible to execute <code>SERVICE</code> for each value of <code>?service</code>:</p>
+      <pre class="query">SERVICE ?service {
+?project doap:name ?projectName . }</pre>
+      <p>Note that blank nodes are unique to any document which serializes them. Also, <code>SERVICE</code> calls depend on the SPARQL Protocol [<a href="#SPROT">SPROT</a>] which transfers serialized
+      RDF documents making blank nodes unique between service calls.</p>
+    </div>
+    <div class="div1">
+      <h2><a name="conformance" id="conformance"></a>5 Conformance</h2>
+      <p>See section 4 <a href="http://www.w3.org/TR/sparql11-query/#grammar">SPARQL 1.1 Federated Query Grammar</a> regarding conformance of <a href=
+      "http://www.w3.org/TR/sparql11-query/#defn_SPARQLQueryString">SPARQL Query strings</a> that include the SPARQL 1.1 Federated Query Extensions. See section 3.1 <a href="#defn_service">Definition
+      of SERVICE</a> for conformance of query results for the <code>SERVICE</code> keyword.</p>
+      <p>This specification is intended for use in conjunction with the <a href="http://www.w3.org/TR/sparql11-query/">SPARQL 1.1 Query Language</a>. See that specification for its conformance
+      criteria.</p>
+    </div>
+    <div class="div1">
+      <h2><a name="security" id="security-original"></a>6 Security Considerations (Informative)</h2>
+      <p>SPARQL queries using <code>SERVICE</code> imply that a URI will be dereferenced, and that the result will be incorporated into a working data set. All of the security issues of <a class=
+      "norm" href="http://www.w3.org/TR/sparql11-protocol/#policy-security">SPARQL Protocol 1.1</a> [<a href="#SPROT">SPROT</a>] Section 3.1 <a class="norm" href=
+      "http://www.w3.org/TR/sparql11-query/#security-original">SPARQL 1.1 Query</a> [<a href="#SQRY">SQRY</a>] Section 21, and <a class="norm" href="http://www.ietf.org/rfc/rfc3986.txt">Uniform Resource
+      Identifier (URI): Generic Syntax</a> [<a href="#rfc3986">RFC3986</a>] Section 7 should be considered.</p>
+    </div>
+  </div>
+  
+    <div class="div1">
+      <h2><a name="sec-bibliography" id="sec-bibliography"></a>A References</h2>
+      <div class="div2">
+        <h3><a name="sec-normative-refs" id="sec-normative-refs"></a>A.1 Normative References</h3>
+        <dl class="bib">
+          <dt><a id="SQRY" name="SQRY">[SQRY]</a></dt>
+          <dd><cite><a href="http://www.w3.org/TR/2013/REC-sparql11-query-20130321">SPARQL 1.1 Query Language</a></cite>, S. Harris, A. Seaborne, Editors, W3C Recommendation, 21 March 2013,
+          http://www.w3.org/TR/2013/REC-sparql11-query-20130321. <a href="http://www.w3.org/TR/sparql11-query/" title="Latest version of SPARQL 1.1 Query Language">Latest version</a> available at
+          http://www.w3.org/TR/sparql11-query.</dd>
+          <dt><a id="SPROT" name="SPROT">[SPROT]</a></dt>
+          <dd><cite><a href="http://www.w3.org/TR/2013/REC-sparql11-protocol-20130321">SPARQL 1.1 Protocol</a></cite>, L. Feigenbaum, G. Williams, K. Clark, E. Torres, Editors, W3C Recommendation, 21
+          March 2013, http://www.w3.org/TR/2013/REC-sparql11-protocol-20130321. <a href="http://www.w3.org/TR/sparql11-protocol/" title="Latest version of SPARQL 1.1 Protocol">Latest version</a>
+          available at http://www.w3.org/TR/sparql11-protocol.</dd>
+          <dt><a name="CHARMOD" id="CHARMOD">[CHARMOD]</a></dt>
+          <dd>Character Model for the World Wide Web 1.0: Fundamentals, R. Ishida, F. Yergeau, M. J. Düst, M. Wolf, T. Texin, Editors, W3C Recommendation, 15 February 2005,
+          http://www.w3.org/TR/2005/REC-charmod-20050215/ . <a href="http://www.w3.org/TR/charmod/" title="Latest version of Character Model for the World Wide Web 1.0: Fundamentals">Latest
+          version</a> available at http://www.w3.org/TR/charmod/ .</dd>
+          <dt><a name="rfc3629" id="rfc3629">[RFC3629]</a></dt>
+          <dd>RFC 3629 UTF-8, a transformation format of ISO 10646, F. Yergeau November 2003</dd>
+          <dt><a name="rfc3986" id="rfc3986">[RFC3986]</a></dt>
+          <dd>RFC 3986 Uniform Resource Identifier (URI): Generic Syntax, T. Berners-Lee, R. Fielding, L. Masinter January 2005</dd>
+          <dt><a name="rfc3987" id="rfc3987">[RFC3987]</a></dt>
+          <dd><a href="http://www.ietf.org/rfc/rfc3987.txt">RFC 3987</a>, "Internationalized Resource Identifiers (IRIs)", M. Dürst , M. Suignard</dd>
+          <dt><a name="UNICODE" id="UNICODE">[UNICODE]</a></dt>
+          <dd>The Unicode Standard, Version 4. ISBN 0-321-18578-1, as updated from time to time by the publication of new versions. The latest version of Unicode and additional information on
+          versions of the standard and of the Unicode Character Database is available at <a href=
+          "http://www.unicode.org/unicode/standard/versions/">http://www.unicode.org/unicode/standard/versions/</a>.</dd>
+          <dt><a name="XML11" id="XML11">[XML11]</a></dt>
+          <dd>Extensible Markup Language (XML) 1.1, J. Cowan, J. Paoli, E. Maler, C. M. Sperberg-McQueen, F. Yergeau, T. Bray, Editors, W3C Recommendation, 4 February 2004,
+          http://www.w3.org/TR/2004/REC-xml11-20040204/ . <a href="http://www.w3.org/TR/xml11/" title="Latest version of Extensible Markup Language (XML) 1.1">Latest version</a> available at
+          http://www.w3.org/TR/xml11/ .</dd>
+          <dt><a name="BCP47" id="BCP47">[BCP47]</a></dt>
+          <dd>Best Common Practice 47, P. V. Biron, A. Malhotra, Editors, W3C Recommendation, 28 October 2004, http://www.rfc-editor.org/rfc/bcp/bcp47.txt .</dd>
+        </dl>
+      </div>
+      <div class="div2">
+        <h3><a name="sec-non-normative-refs" id="sec-non-normative-refs"></a>A.2 Other References</h3>
+        <dl class="bib">
+          <dt><a name="RESULTS" id="RESULTS">[RESULTS]</a></dt>
+          <dd><cite><a href="http://www.w3.org/TR/2013/REC-rdf-sparql-XMLres-20130321">SPARQL Query Results XML Format (Second Edition)</a></cite>, D. Beckett, J. Broekstra, Editors, W3C
+          Recommendation, 21 March 2013, http://www.w3.org/TR/2013/REC-rdf-sparql-XMLres-20130321. <a href="http://www.w3.org/TR/rdf-sparql-XMLres/" title=
+          "Latest version of SPARQL Query Results XML Format (Second Edition)">Latest version</a> available at http://www.w3.org/TR/rdf-sparql-XMLres.</dd>
+          <dt><a name="TURTLE" id="TURTLE">[TURTLE]</a></dt>
+          <dd><cite><a href="http://www.w3.org/TR/2013/CR-turtle-20130219/">Turtle: Terse RDF Triple Language</a></cite>, E Prud'hommeaux, G Carothers, Editors, W3C Candidate Recommendation, 19
+          February 2013, http://www.w3.org/TR/2013/CR-turtle-20130219/. <a href="http://www.w3.org/TR/turtle/" title="Latest version of Turtle">Latest version</a> available at
+          http://www.w3.org/TR/turtle/.</dd>
+        </dl>
+      </div>
+    </div>
+    <div class="div1">
+      <h2><a name="sec-acknowledgements" id="sec-acknowledgements"></a>B Acknowledgements</h2>
+      <p>The SPARQL 1.1 Federated Query document is a product of the whole of the <a href="http://www.w3.org/2009/sparql/wiki/Main_Page">W3C SPARQL Working Group</a>, and our thanks for discussions,
+      comments and reviews go to all present and past members.</p>
+      <p>In addition, we have had comments and discussions with many people through the working group comments list. All comments go to making a better document. Carlos would also like to
+      particularly thank Jorge Pérez, Oscar Corcho and Marcelo Arenas for their discussions on the syntax and semantics of the Federated query extension.</p>
+    </div>
+    <div class="div1">
+      <h2><a name="sec-cvsLog" id="sec-cvsLog"></a>C CVS History (Last Call and after)</h2>
+    </div>
+    
