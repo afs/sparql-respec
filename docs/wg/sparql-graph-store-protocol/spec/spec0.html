@@ -76,7 +76,7 @@ href="#rfc2119">[RFC2119]</a>.</p>
   Requests to an implementation of this protocol receive HTTP requests using one of the HTTP methods that is directed at some RDF graph content. Above the arrows indicating the request is the
   relevant HTTP methods and below is any message body content or additional headers that accompany the request. At the head of the arrows leaving RDF graph content is the message body for the
   corresponding response.</p>
-  <p><img src="SPARQL%201.1%20Graph%20Store%20HTTP%20Protocol_files/ProtocolModel.jpg" alt="Protocol model diagram"><br>
+  <p><img src="./ProtocolModel.jpg" alt="Protocol model diagram"><br>
   <b>Figure 1</b>: A diagram of the protocol model for direct graph references.</p>
   </div>
 
@@ -98,7 +98,7 @@ href="#rfc2119">[RFC2119]</a>.</p>
   to manipulate. Any server that implements this protocol and receives a request IRI in this form MUST perform the indicated operation on the RDF graph content identified by the IRI embedded in the
   query component where the IRI is the result of percent-decoding the value associated with the <em>graph</em> key. The query string IRI MUST be an absolute IRI and the server MUST respond with a
   <code>400 Bad Request</code> if it is not. The diagram below illustrates this.</p>
-  <p><img src="SPARQL%201.1%20Graph%20Store%20HTTP%20Protocol_files/ProtocolModelIndirect.jpg" alt="Protocol model diagram for indirect manipulation"><br>
+  <p><img src="./ProtocolModelIndirect.jpg" alt="Protocol model diagram for indirect manipulation"><br>
   <b>Figure 2</b>: A diagram of the protocol model for indirect graph references (uses the same legend as the previous diagramT).</p>
   <p>As indicated in <a href="http://www.apps.ietf.org/rfc/rfc3986.html#sec-3.3">section 3.3</a> of <a href="#rfc3986">[RFC3986]</a>, the path component (of an IRI) contains data, usually organized
   in hierarchical form, that, along with data in the non-hierarchical query component, serves to identify a resource within the scope of the IRI's scheme and naming authority. As a result, the full
@@ -352,12 +352,7 @@ href="#rfc2119">[RFC2119]</a>.</p>
      </div>
 
      <div class="div1">
-  <h2><a id="sec-appendix"></a>8 Appendix</h2>
-
-  <div class="div2">
-  <h3><a id="section-appendix-acknowledgement" name="section-appendix-acknowledgement"></a>Acknowledgements</h3>
-  <p>The editor would like to thank the following individuals for their input into the creation of this document:</p>
-  <p>Sandro Hawke, Birte Glimm, Andy Seaborne, Steve Harris, Arnaud Le Hors, Ivan Mikhailov, David Booth, Simon Johnston, Kjetil Kjernsmo, Gregg Reynolds, Leigh Dodds, Tim Berners-Lee, and Ian
-    Davis</p>
-  </div>
+  <h2><a id="ackacknowledgements" name="acknowledgements"></a>8 Acknowledgements</h2>
+  <p>Chimezie Ogbuji like to thank the following individuals for their input into the creation of this document:</p>
+  <p>Sandro Hawke, Birte Glimm, Andy Seaborne, Steve Harris, Arnaud Le Hors, Ivan Mikhailov, David Booth, Simon Johnston, Kjetil Kjernsmo, Gregg Reynolds, Leigh Dodds, Tim Berners-Lee, and Ian Davis.</p>
      </div>
