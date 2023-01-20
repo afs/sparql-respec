@@ -1,4 +1,4 @@
-    <div class="div1">
+      <div class="div1">
   <h2><a id="introduction" name="introduction"></a>1 Introduction</h2>
   <p>The <cite><a href="http://www.w3.org/TR/2008/REC-rdf-sparql-query-20080115/">SPARQL Query Language for RDF</a></cite> <a href="#ref-sparql-query">[SPARQL-QUERY]</a> defines several <em>Query
   Result Forms</em> (<a href="http://www.w3.org/TR/2008/REC-rdf-sparql-query-20080115/#QueryForms">SPARQL Query section 10</a>). This document defines a <a href="#defn-srd">SPARQL Results
@@ -10,17 +10,17 @@
     <a href="http://www.w3.org/TR/sparql11-results-json/">SPARQL 1.1 Query Results JSON Format</a> @@fixup@@ and 
     <a href="http://www.w3.org/TR/sparql11-results-csv-tsv/">SPARQL 1.1 Query Results CSV and TSV Formats</a> @@fixup@@.
   </p>
-    </div>
-
-             <div class="div1">
+      </div>
+      
+      <div class="div1">
   <h2><a id="definition" name="definition"></a>2 Definition</h2>
-    <div class="defn">
-      <p><b>Definition:</b> <a name="defn-srd">SPARQL Results Document</a></p>
+  <div class="defn">
+      <p><b>Definition:</b> <a id="defn-srd" name="defn-srd">SPARQL Results Document</a></p>
       <p>A <span class="definedTerm">SPARQL Results Document</span> is an XML document that is valid with respect to either the RELAX NG XML Schema or the W3C XML Schema in <a href="#schemas">Section
     4.</a></p>
-    </div>
+  </div>
 
-    <div class="div2">
+  <div class="div2">
   <h3><a id="docElement" name="docElement"></a>2.1 Document Element</h3>
   <p>The <a href="#defn-srd">SPARQL Results Document</a> begins with <code>sparql</code> document element in the <code>http://www.w3.org/2005/sparql-results#</code> namespace, written as follows:</p>
   <pre>&lt;?xml version="1.0"?&gt;
@@ -31,7 +31,7 @@
   <p>Inside the <code>sparql</code> element are two sub-elements, <code>head</code> and a results element (either <code>results</code> or <code>boolean</code>) which must appear in that order.</p>
     </div>
 
-             <div class="div2">
+    <div class="div2">
     <h3><a id="head" name="head"></a>2.2 Header</h3>
     <p>The <code>head</code> element is the first child element of the <code>sparql</code> element.</p>
     <p>For a variable binding query result, <code>head</code> must contain a sequence of elements describing the set of 
@@ -71,14 +71,14 @@
 ...
 &lt;/sparql&gt;
 </pre>
-             </div>
+    </div>
 
-             <div class="div2">
+    <div class="div2">
   <h3><a id="results" name="results"></a>2.3 Results</h3>
   <p>The second child-element of <code>sparql</code> must appear after <code>head</code> and is either <code>results</code> or <code>boolean</code>. It is written even if the query results are
   empty.</p>
 
-       <div class="div3">
+  <div class="div3">
   <h4><a id="vb-results" name="vb-results"></a>2.3.1 Variable Binding Results</h4>
   <p>The <code>results</code> element contains the complete sequence of query results.</p>
   <p>For each <a href="http://www.w3.org/TR/2008/REC-rdf-sparql-query-20080115/#defn_sparqlSolutionMapping">Query Solution</a> in the query results, a <code>result</code> child-element of
@@ -177,9 +177,9 @@
 
 &lt;/sparql&gt;
 </pre>
-       </div>
+  </div>
 
-       <div class="div3">
+  <div class="div3">
   <h4><a id="boolean-results" name="boolean-results"></a>2.3.2 Boolean Results</h4>
   <p>A boolean result is written as the element content of a <code>boolean</code> child-element of the <code>sparql</code> element directly after a <code>head</code>, containing either
   <code>true</code> or <code>false</code> as follows:</p>
@@ -191,11 +191,11 @@
 
 &lt;/sparql&gt;
 </pre>
+  </div>
     </div>
-             </div>
-             </div>
+      </div>
 
-  <div class="div1">
+      <div class="div1">
   <h2><a id="examples" name="examples"></a>3 Examples</h2>
 
   <div class="div2">
@@ -217,9 +217,9 @@
   "http://www.w3.org/2009/sparql/xml-results/output-xquery2.html">output-xquery2.html</a> or with XSLT sheet <a href=
   "http://www.w3.org/2009/sparql/xml-results/result-to-html.xsl">result-to-html.xsl</a> giving <a href="http://www.w3.org/2009/sparql/xml-results/output-xslt2.html">output-xslt2.html</a></p>
   </div>
-  </div>
+      </div>
 
-  <div class="div1">
+      <div class="div1">
   <h2><a id="schemas" name="schemas"></a>4 XML Schemas</h2>
   <p>There are normative XML schemas provided in the following formats:</p>
   <ol>
@@ -238,9 +238,14 @@
 
 &lt;/sparql&gt;
 </pre>
-  </div>
+      </div>
 
-  <div class="div1">
+    <div class="div1">
+      <h2><a id="changes" name="changes"></a>9 Changes</h2>
+      The document title changed from "SPARQL Query Results XML Format (Second Edition)" to "SPARQL 1.2 Query Results XML Format".
+    </div>
+
+      <div class="div1">
   <h2><a id="mime" name="mime"></a>5 Internet Media Type, File Extension and Macintosh File Type</h2>
   <p>The Internet Media Type / MIME Type for the SPARQL Query Results XML Format is "application/sparql-results+xml".</p>
   <p>It is recommended that result files have the extension ".srx" (all lowercase) on all platforms.</p>
@@ -291,13 +296,13 @@
       <dd>The SPARQL specification is a work product of the World Wide Web Consortium's RDF Data Access Working Group. The W3C has change control over these specifications.</dd>
     </dl>
     <h3><a id="mime-references" name="mime-references">References</a></h3>
-    <p><a name="mime-rfc-3023">[RFC3023]</a> Murata, M., St. Laurent, S., and D. Kohn, "XML Media Types", RFC 3023, January 2001.</p>
-    <p><a name="mime-rfc-3986">[RFC3986]</a> Berners-Lee, T., Fielding, R., and L. Masinter, "Uniform Resource Identifier (URI): Generic Syntax", STD 66, RFC 3986, January 2005.</p>
-    <p><a name="mime-rfc-3987">[RFC3987]</a> Duerst, M. and M. Suignard, "Internationalized Resource Identifiers (IRIs)", RFC 3987, January 2005.</p>
+    <p>[<a id="mime-rfc-3023" name="mime-rfc-3023">[RFC3023]</a> Murata, M., St. Laurent, S., and D. Kohn, "XML Media Types", RFC 3023, January 2001.</p>
+    <p><a id="mime-rfc-3986" name="mime-rfc-3986">[RFC3986]</a> Berners-Lee, T., Fielding, R., and L. Masinter, "Uniform Resource Identifier (URI): Generic Syntax", STD 66, RFC 3986, January 2005.</p>
+    <p><a id="mime-rfc-3987" name="mime-rfc-3987">[RFC3987]</a> Duerst, M. and M. Suignard, "Internationalized Resource Identifiers (IRIs)", RFC 3987, January 2005.</p>
   </div>
-  </div>
+      </div>
 
-  <div class="div1">
+      <div class="div1">
   <h2><a id="references" name="references"></a>6 References</h2>
   <dl class="bib">
     <dt><a id="ref-xml" name="ref-xml">[XML]</a></dt>
@@ -328,18 +333,4 @@
     2013, http://www.w3.org/TR/2013/REC-sparql11-results-csv-tsv-20130321. <a href="http://www.w3.org/TR/sparql11-results-csv-tsv/" title=
     "Latest version of SPARQL 1.1 Query Results CSV and TSV Formats">Latest version</a> available at http://www.w3.org/TR/sparql11-results-csv-tsv.</dd>
   </dl>
-  </div>
-
-  <div class="div1">
-    <h2 id="changelog">Change Log</h2>
-    <h3 id="changes-since-pr">Changes since Proposed Edited Recommendation</h3>
-    <ul>
-      <li>Removed statement that IANA had not processed registration</li>
-    </ul>
-    <h3 id="changes-since-lc">Changes since 2008 Recommendation</h3>
-    <ul>
-      <li>Mention the JSON and CSV/TSV results formats</li>
-      <li>Make in the examples point to maintainable versions</li>
-    </ul>
-  </div>
-  
+      </div>

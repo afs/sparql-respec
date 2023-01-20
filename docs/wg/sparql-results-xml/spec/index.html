@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-<html>
   <head>
     <meta charset="utf-8" />
     <title>SPARQL 1.2 Query Results XML Format</title>
@@ -111,6 +110,25 @@
         update of specifications for format and errata.
       </p>
     </section>
+
+    <section id="sparql12-documents" class="introductory">
+      <h2>SPARQL 1.2 Documents</h2>
+      <ul>
+        <li><a href="../../sparql-new/spec/index.html">SPARQL 1.2 New</a></li>
+        <li><a href="../../sparql-concepts/spec/index.html">SPARQL 1.2 Overview</a></li>
+        <li><a href="../../sparql-query/spec/index.html">SPARQL 1.2 Query Language</a></li>
+        <li><a href="../../sparql-update/spec/index.html">SPARQL 1.2 Update</a></li>
+        <li><a href="../../sparql-entailment/spec/index.html">SPARQL 1.2 Entailment Regimes</a></li>
+        <li><a href="../../sparql-service-description/spec/index.html">SPARQL 1.2 Service Description</a></li>
+        <li><a href="../../sparql-federated-query/spec/index.html">SPARQL 1.2 Federated Query</a></li>
+        <li><a href="../../sparql-results-json/spec/index.html">SPARQL 1.2 Query Results JSON Format</a></li>
+        <li><a href="../../sparql-results-csv-tsv/spec/index.html">SPARQL 1.2 Query Results CSV and TSV Formats</a></li>
+        <li><a href="../../sparql-results-xml/spec/index.html">SPARQL 1.2 Query Results XML Format</a></li>
+        <li><a href="../../sparql-graph-store-protocol/spec/index.html">SPARQL 1.2 Graph Store Protocol</a></li>
+        <li><a href="../../sparql-protocol/spec/index.html">SPARQL 1.2 Protocol</a></li>
+      </ul>
+    </section>
+    
 <!-- BODY -->
     <section id="introduction">
   <h2>Introduction</h2>
@@ -125,14 +143,14 @@
     <a href="http://www.w3.org/TR/sparql11-results-csv-tsv/">SPARQL 1.1 Query Results CSV and TSV Formats</a> @@fixup@@.
   </p>
     </section>
-
+      
     <section id="definition">
   <h2>Definition</h2>
-    <div class="defn">
-      <p><b>Definition:</b> <a name="defn-srd">SPARQL Results Document</a></p>
+  <div class="defn">
+      <p><b>Definition:</b> <span class="doc-ref" id="defn-srd">SPARQL Results Document</span></p>
       <p>A <span class="definedTerm">SPARQL Results Document</span> is an XML document that is valid with respect to either the RELAX NG XML Schema or the W3C XML Schema in <a href="#schemas">Section
     4.</a></p>
-    </div>
+  </div>
 
       <section id="docElement">
   <h3>Document Element</h3>
@@ -354,13 +372,18 @@
 </pre>
     </section>
 
+    <section id="changes">
+      <h2>Changes</h2>
+      The document title changed from "SPARQL Query Results XML Format (Second Edition)" to "SPARQL 1.2 Query Results XML Format".
+    </section>
+
     <section id="mime">
   <h2>Internet Media Type, File Extension and Macintosh File Type</h2>
   <p>The Internet Media Type / MIME Type for the SPARQL Query Results XML Format is "application/sparql-results+xml".</p>
   <p>It is recommended that result files have the extension ".srx" (all lowercase) on all platforms.</p>
   <p>It is recommended that result files stored on Macintosh HFS file systems be given a file type of "TEXT".</p>
   <div class="mime">
-    <h3><div id="mime-form" name="mime-form">Internet Media Type Registration Form</div></h3>
+    <h3><span class="doc-ref" id="mime-form">Internet Media Type Registration Form</span></h3>
     <dl>
       <dt>Type name:<br></dt>
       <dd>application</dd>
@@ -404,57 +427,45 @@
       <dt>Author/Change controller:<br></dt>
       <dd>The SPARQL specification is a work product of the World Wide Web Consortium's RDF Data Access Working Group. The W3C has change control over these specifications.</dd>
     </dl>
-    <h3><div id="mime-references" name="mime-references">References</div></h3>
-    <p><a name="mime-rfc-3023">[RFC3023]</a> Murata, M., St. Laurent, S., and D. Kohn, "XML Media Types", RFC 3023, January 2001.</p>
-    <p><a name="mime-rfc-3986">[RFC3986]</a> Berners-Lee, T., Fielding, R., and L. Masinter, "Uniform Resource Identifier (URI): Generic Syntax", STD 66, RFC 3986, January 2005.</p>
-    <p><a name="mime-rfc-3987">[RFC3987]</a> Duerst, M. and M. Suignard, "Internationalized Resource Identifiers (IRIs)", RFC 3987, January 2005.</p>
+    <h3><span class="doc-ref" id="mime-references">References</span></h3>
+    <p>[<span class="doc-ref" id="mime-rfc-3023">[RFC3023]</span> Murata, M., St. Laurent, S., and D. Kohn, "XML Media Types", RFC 3023, January 2001.</p>
+    <p><span class="doc-ref" id="mime-rfc-3986">[RFC3986]</span> Berners-Lee, T., Fielding, R., and L. Masinter, "Uniform Resource Identifier (URI): Generic Syntax", STD 66, RFC 3986, January 2005.</p>
+    <p><span class="doc-ref" id="mime-rfc-3987">[RFC3987]</span> Duerst, M. and M. Suignard, "Internationalized Resource Identifiers (IRIs)", RFC 3987, January 2005.</p>
   </div>
     </section>
 
     <section id="references">
   <h2>References</h2>
   <dl class="bib">
-    <dt><div id="ref-xml" name="ref-xml">[XML]</div></dt>
+    <dt><span class="doc-ref" id="ref-xml">[XML]</span></dt>
     <dd><cite><a href="http://www.w3.org/TR/2004/REC-xml-20040204/">Extensible Markup Language (XML) 1.0, Third Edition</a></cite>, T. Bray, J. Paoli, C.M. Sperberg-McQueen, E. Maler, F. Yergeau,
     Editors, W3C Recommendation, 4 February 2004. This document is http://www.w3.org/TR/2004/REC-xml-20040204 . The <a href="http://www.w3.org/TR/REC-xml/" title="Latest version of XML">latest
     version</a> is available at http://www.w3.org/TR/REC-xml .</dd>
-    <dt><div id="ref-sparql-query" name="ref-sparql-query">[SPARQL-QUERY]</div></dt>
+    <dt><span class="doc-ref" id="ref-sparql-query">[SPARQL-QUERY]</span></dt>
     <dd><cite><a href="http://www.w3.org/TR/2013/REC-sparql11-query-20130321">SPARQL 1.1 Query Language</a></cite>, S. Harris, A. Seaborne, Editors, W3C Recommendation, 21 March 2013,
     http://www.w3.org/TR/2013/REC-sparql11-query-20130321. <a href="http://www.w3.org/TR/sparql11-query/" title="Latest version of SPARQL 1.1 Query Language">Latest version</a> available at
     http://www.w3.org/TR/sparql11-query.</dd>
-    <dt><div id="ref-relaxng" name="ref-relaxng">[RELAXNG]</div></dt>
+    <dt><span class="doc-ref" id="ref-relaxng">[RELAXNG]</span></dt>
     <dd><cite><a href="http://www.oasis-open.org/committees/relax-ng/spec-20011203.html">RELAX NG Specification</a></cite>, James Clark and MURATA Makoto, Editors, OASIS Committee Specification, 3
     December 2001. This document is http://www.oasis-open.org/committees/relax-ng/spec-20011203.html . The <a href="http://www.oasis-open.org/committees/relax-ng/spec.html" title=
     "Latest version of RELAX NG Specification">latest version</a> is available at http://www.oasis-open.org/committees/relax-ng/spec.html .</dd>
-    <dt><div id="ref-relaxng-nx" name="ref-relaxng-nx">[RELAXNG-COMPACT]</div></dt>
+    <dt><span class="doc-ref" id="ref-relaxng-nx">[RELAXNG-COMPACT]</span></dt>
     <dd><cite><a href="http://www.oasis-open.org/committees/relax-ng/compact-20021121.html">RELAX NG Compact Syntax</a></cite>, James Clark, Editor. OASIS Committee Specification, 21 November 2002.
     This document is http://www.oasis-open.org/committees/relax-ng/compact-20021121.html .</dd>
-    <dt><div name="ref-xmlschema-1" id="ref-xmlschema-1">[XMLSCHEMA-1]</div></dt>
+    <dt><span class="doc-ref" id="ref-xmlschema-1">[XMLSCHEMA-1]</span></dt>
     <dd><cite><a href="http://www.w3.org/TR/2004/REC-xmlschema-1-20041028/">XML Schema Part 1: Structures Second Edition</a></cite>, D. Beech, N. Mendelsohn, M. Maloney, H. S. Thompson, Editors, W3C
     Recommendation, 28 October 2004. This document is http://www.w3.org/TR/2004/REC-xmlschema-1-20041028/ . The <a href="http://www.w3.org/TR/xmlschema-1/" title=
     "Latest version of XML Schema Part 1: Structures Second Edition">latest version</a> is available at http://www.w3.org/TR/xmlschema-1/ .</dd>
-    <dt><div name="ref-srj" id="ref-srj">[SRJ]</div></dt>
+    <dt><span class="doc-ref" id="ref-srj">[SRJ]</span></dt>
     <dd><cite><a href="http://www.w3.org/TR/2013/REC-sparql11-results-json-20130321">SPARQL 1.1 Query Results JSON Format</a></cite>, A. Seaborne, Editor, W3C Recommendation, 21 March 2013,
     http://www.w3.org/TR/2013/REC-sparql11-results-json-20130321. <a href="http://www.w3.org/TR/sparql11-results-json/" title="Latest version of SPARQL 1.1 Query Results JSON Format">Latest
     version</a> available at http://www.w3.org/TR/sparql11-results-json.</dd>
-    <dt><div name="ref-src" id="ref-src">[SRC]</div></dt>
+    <dt><span class="doc-ref" id="ref-src">[SRC]</span></dt>
     <dd><cite><a href="http://www.w3.org/TR/2013/REC-sparql11-results-csv-tsv-20130321">SPARQL 1.1 Query Results CSV and TSV Formats</a></cite>, A. Seaborne, Editor, W3C Recommendation, 21 March
     2013, http://www.w3.org/TR/2013/REC-sparql11-results-csv-tsv-20130321. <a href="http://www.w3.org/TR/sparql11-results-csv-tsv/" title=
     "Latest version of SPARQL 1.1 Query Results CSV and TSV Formats">Latest version</a> available at http://www.w3.org/TR/sparql11-results-csv-tsv.</dd>
   </dl>
     </section>
-
-    <h3 id="changes-since-pr">Changes since Proposed Edited Recommendation</h3>
-    <ul>
-      <li>Removed statement that IANA had not processed registration</li>
-    </ul>
-    <h3 id="changes-since-lc">Changes since 2008 Recommendation</h3>
-    <ul>
-      <li>Mention the JSON and CSV/TSV results formats</li>
-      <li>Make in the examples point to maintainable versions</li>
-    </ul>
-    </section>
-  
 <!-- BODY -->
     <section id="privacy">
       <h2>Privacy Considerations</h2>
@@ -475,8 +486,6 @@
       <h2>Change Log</h2>
       <p>TODO</p>
     </section>   
-
-  </div>
 
   </body>
 </html>

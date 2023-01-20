@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-<html>
   <head>
     <meta charset="utf-8" />
     <title>SPARQL 1.2 Overview</title>
@@ -110,6 +109,25 @@
         update of specifications for format and errata.
       </p>
     </section>
+
+    <section id="sparql12-documents" class="introductory">
+      <h2>SPARQL 1.2 Documents</h2>
+      <ul>
+        <li><a href="../../sparql-new/spec/index.html">SPARQL 1.2 New</a></li>
+        <li><a href="../../sparql-concepts/spec/index.html">SPARQL 1.2 Overview</a></li>
+        <li><a href="../../sparql-query/spec/index.html">SPARQL 1.2 Query Language</a></li>
+        <li><a href="../../sparql-update/spec/index.html">SPARQL 1.2 Update</a></li>
+        <li><a href="../../sparql-entailment/spec/index.html">SPARQL 1.2 Entailment Regimes</a></li>
+        <li><a href="../../sparql-service-description/spec/index.html">SPARQL 1.2 Service Description</a></li>
+        <li><a href="../../sparql-federated-query/spec/index.html">SPARQL 1.2 Federated Query</a></li>
+        <li><a href="../../sparql-results-json/spec/index.html">SPARQL 1.2 Query Results JSON Format</a></li>
+        <li><a href="../../sparql-results-csv-tsv/spec/index.html">SPARQL 1.2 Query Results CSV and TSV Formats</a></li>
+        <li><a href="../../sparql-results-xml/spec/index.html">SPARQL 1.2 Query Results XML Format</a></li>
+        <li><a href="../../sparql-graph-store-protocol/spec/index.html">SPARQL 1.2 Graph Store Protocol</a></li>
+        <li><a href="../../sparql-protocol/spec/index.html">SPARQL 1.2 Protocol</a></li>
+      </ul>
+    </section>
+    
 <!-- BODY -->
     <section id="sec-intro">
       <h2>Introduction</h2>
@@ -142,7 +160,7 @@
         <p>In the following, we will illustrate the use of SPARQL's languages, protocols, and related specifications with a small example.</p>
         <p>Some RDF graph published on the Web at the URL '<a href="http://example.org/alice'" class="external free" title="http://example.org/alice'" rel="nofollow">http://example.org/alice'</a>
         contains personal information about Alice and her social contacts. We use Turtle [<a href="#Turtle">Turtle</a>] syntax here for illustration.</p>
-        <p>Graph: <tt><a href="http://example.org/alice" class="external free" title="http://example.org/alice" rel="nofollow">http://example.org/alice</a></tt></p>
+        <p>Graph: <code>/<a href="http://example.org/alice" class="external free" title="http://example.org/alice" rel="nofollow">http://example.org/alice</a></code></p>
         <pre> 
  @prefix foaf: &lt;<a href="http://xmlns.com/foaf/0.1/" class="external free" title="http://xmlns.com/foaf/0.1/" rel="nofollow">http://xmlns.com/foaf/0.1/</a>&gt; .
  @prefix rdfs: &lt;<a href="http://www.w3.org/2000/01/rdf-schema#" class="external free" title="http://www.w3.org/2000/01/rdf-schema#" rel="nofollow">http://www.w3.org/2000/01/rdf-schema#</a>&gt; .
@@ -194,7 +212,7 @@ WHERE {
       <p>Results of SELECT queries in SPARQL comprise bags of mappings from variables to RDF terms, often conveniently represented in tabular form. For instance, the query from Section 2 has the
       following results:</p>
       <p><br></p>
-      <table style="text-align:center;" border="1" align="center">
+      <table style="text-align:center;" border="1">
         <tbody>
           <tr>
             <td>?name</td>
@@ -303,7 +321,7 @@ Charlie,1
 "Bob"&lt;TAB&gt;1
 "Charlie"&lt;TAB&gt;1
 </pre>
-      <p>(<i><b>Note:</b> tab characters are visually marked with</i> '<tt>&lt;TAB&gt;</tt>' <i>here for illustration only.</i>)</p>
+      <p>(<i><b>Note:</b> tab characters are visually marked with</i> '<code>/&lt;TAB&gt;</code>' <i>here for illustration only.</i>)</p>
     </section>
     <section id="sparql11-federated-query">
       <h2>SPARQL 1.1 Federated Query</h2>
@@ -312,9 +330,9 @@ Charlie,1
       Language</a> to explicitly delegate certain subqueries to different SPARQL endpoints.</p>
       <p>For instance, in our example, one may want to know whether there is anyone among Alice's friends with the same name as the resource identified by the IRI &lt;<a href=
       "http://dbpedia.org/resource/Snoopy" class="external text" title="http://dbpedia.org/resource/Snoopy" rel="nofollow">http://dbpedia.org/resource/Snoopy</a>&gt; at DBpedia. This can be done by
-      combining a query for the names of friends with a remote call to the SPARQL endpoint at <tt><a href="http://dbpedia.org/sparql" class="external free" title="http://dbpedia.org/sparql" rel=
-      "nofollow">http://dbpedia.org/sparql</a></tt> finding out the name of &lt;<a href="http://dbpedia.org/resource/Snoopy" class="external text" title="http://dbpedia.org/resource/Snoopy" rel=
-      "nofollow">http://dbpedia.org/resource/Snoopy</a>&gt; using the <tt>SERVICE</tt> keyword as follows:</p>
+      combining a query for the names of friends with a remote call to the SPARQL endpoint at <code>/<a href="http://dbpedia.org/sparql" class="external free" title="http://dbpedia.org/sparql" rel=
+      "nofollow">http://dbpedia.org/sparql</a></code> finding out the name of &lt;<a href="http://dbpedia.org/resource/Snoopy" class="external text" title="http://dbpedia.org/resource/Snoopy" rel=
+      "nofollow">http://dbpedia.org/resource/Snoopy</a>&gt; using the <code>/SERVICE</code> keyword as follows:</p>
       <pre>PREFIX foaf: &lt;http://xmlns.com/foaf/0.1/&gt;
 SELECT ?name
 WHERE {
@@ -323,7 +341,7 @@ WHERE {
 }
 </pre>
       <p>with the following result:</p>
-      <table style="text-align:center;" border="1" align="center">
+      <table style="text-align:center;" border="1">
         <tbody>
           <tr>
             <td>?name</td>
@@ -333,7 +351,7 @@ WHERE {
           </tr>
         </tbody>
       </table>
-      <p>Here, the first part of the pattern in the <tt>WHERE</tt> part is still matched against the local SPARQL service, whereas the evaluation of the pattern following the <tt>SERVICE</tt> keyword
+      <p>Here, the first part of the pattern in the <code>/WHERE</code> part is still matched against the local SPARQL service, whereas the evaluation of the pattern following the <code>/SERVICE</code> keyword
       is delegated to the respective remote SPARQL service.</p>
     </section>
     <section id="sparql11-entailment">
@@ -354,7 +372,7 @@ WHERE { ?person rdfs:label ?label }
 </pre>
       <p>A SPARQL engine that does not consider any special entailment regimes (on top of standard <a href="http://www.w3.org/TR/rdf-mt/#entail" class="external text" title=
       "http://www.w3.org/TR/rdf-mt/#entail" rel="nofollow">simple entailment</a>) would not return any results for this query, whereas an RDF Schema aware query engine will return</p>
-      <table style="text-align:center;" border="1" align="center">
+      <table style="text-align:center;" border="1">
         <tbody>
           <tr>
             <td>?label</td>
@@ -373,7 +391,7 @@ WHERE { ?person rdfs:label ?label }
           </tr>
         </tbody>
       </table>
-      <p>since <tt>foaf:name</tt> is a sub-property of <tt>rdfs:label</tt>.</p>
+      <p>since <code>/foaf:name</code> is a sub-property of <code>/rdfs:label</code>.</p>
       <p>The <a href="http://www.w3.org/TR/sparql11-entailment/" class="external text" title="http://www.w3.org/TR/sparql11-entailment/" rel="nofollow">SPARQL 1.1 Entailment Regimes</a> specification
       defines which answers should be given under which entailment regime, specifying entailment regimes for RDF, RDF Schema, D-Entailment [<a href="#RDF-MT">RDF-MT</a>], OWL [<a href=
       "#OWL2-Overview">OWL2-Overview</a>], and RIF [<a href="#RIF-Overview">RIF-Overview</a>].</p>
@@ -401,8 +419,8 @@ WHERE { &lt;http://www.example.org/alice#me&gt; foaf:knows ?person .
       <p>The <a href="http://www.w3.org/TR/sparql11-protocol/" class="external text" title="http://www.w3.org/TR/sparql11-protocol/" rel="nofollow">SPARQL 1.1 Protocol</a> for RDF defines how to
       transfer SPARQL 1.1 queries and update requests to a SPARQL service via HTTP. It also defines how to map requests to HTTP GET and POST operations and what respective HTTP responses to such
       requests should look like.</p>
-      <p>For instance, the query from Section 3 above issued against a SPARQL query service hosted at <tt><a href="http://www.example.org/sparql/" class="external free" title=
-      "http://www.example.org/sparql/" rel="nofollow">http://www.example.org/sparql/</a></tt> could according to this specification be wrapped into an HTTP GET request (where the query string is
+      <p>For instance, the query from Section 3 above issued against a SPARQL query service hosted at <code>/<a href="http://www.example.org/sparql/" class="external free" title=
+      "http://www.example.org/sparql/" rel="nofollow">http://www.example.org/sparql/</a></code> could according to this specification be wrapped into an HTTP GET request (where the query string is
       URI-encoded):</p>
       <pre>
       GET /sparql/?query=PREFIX%20foaf%3A%20%3Chttp%3A%2F%2Fxmlns.com%2Ffoaf%2F0.1%2F%3E%0ASELECT%20%3Fname%20%28COUNT%28%3Ffriend%29%20AS%20%3Fcount%29%0AWHERE%20%7B%20%0A%20%20%20%20%3Fperson%20foaf%3Aname%20%3Fname%20.%20%0A%20%20%20%20%3Fperson%20foaf%3Aknows%20%3Ffriend%20.%20%0A%7D%20GROUP%20BY%20%3Fperson%20%3Fname HTTP/1.1
@@ -421,8 +439,8 @@ User-agent: my-sparql-client/0.1
       <pre>GET /sparql/ HTTP/1.1
 Host: www.example.org
 </pre>
-      <p>issued against the SPARQL endpoint hosted at <tt><a href="http://www.example.org/sparql/" class="external free" title="http://www.example.org/sparql/" rel=
-      "nofollow">http://www.example.org/sparql/</a></tt> should return an RDF description, using the Service Description vocabulary. Such a description provides, for instance, information about the
+      <p>issued against the SPARQL endpoint hosted at <code>/<a href="http://www.example.org/sparql/" class="external free" title="http://www.example.org/sparql/" rel=
+      "nofollow">http://www.example.org/sparql/</a></code> should return an RDF description, using the Service Description vocabulary. Such a description provides, for instance, information about the
       default dataset of the respective endpoint, or about SPARQL query language features and entailment regimes that are supported.</p>
     </section>
     <section id="sparql11-graphstore-http-protocol">
@@ -473,26 +491,26 @@ Content-Type: text/turtle
     <section id="sec-bibliography">
       <h2>References</h2>
       <dl>
-        <dt class="label"><div name="SPARQL-XML-Result" id="SPARQL-XML-Result"></div>SPARQL-XML-Result</dt>
+        <dt class="label"><span class="doc-ref" id="SPARQL-XML-Result"></span>SPARQL-XML-Result</dt>
         <dd><cite><a href="http://www.w3.org/TR/2013/REC-rdf-sparql-XMLres-20130321">SPARQL Query Results XML Format (Second Edition)</a></cite>, D. Beckett, J. Broekstra, Editors, W3C
         Recommendation, 21 March 2013, http://www.w3.org/TR/2013/REC-rdf-sparql-XMLres-20130321. <a href="http://www.w3.org/TR/rdf-sparql-XMLres/" title=
         "Latest version of SPARQL Query Results XML Format (Second Edition)">Latest version</a> available at http://www.w3.org/TR/rdf-sparql-XMLres. (See
         http://www.w3.org/TR/rdf-sparql-XMLres/.)</dd>
-        <dt class="label"><div name="RDF-Schema" id="RDF-Schema"></div>RDF-Schema</dt>
+        <dt class="label"><span class="doc-ref" id="RDF-Schema"></span>RDF-Schema</dt>
         <dd><a href="http://www.w3.org/TR/rdf-schema/"><cite>RDF Vocabulary Description Language 1.0: RDF Schema</cite></a> , ed. Dan Brickley and R.V. Guha, W3C Recommendation 10 February 2004 (See
         http://www.w3.org/TR/rdf-schema/.)</dd>
-        <dt class="label"><div name="RDF-MT" id="RDF-MT"></div>RDF-MT</dt>
+        <dt class="label"><span class="doc-ref" id="RDF-MT"></span>RDF-MT</dt>
         <dd><a href="http://www.w3.org/TR/rdf-mt/"><cite>RDF Semantics</cite></a> , ed. Pat Hayes, W3C Recommendation 10 February 2004 (See http://www.w3.org/TR/rdf-mt/.)</dd>
-        <dt class="label"><div name="OWL2-Overview" id="OWL2-Overview"></div>OWL2-Overview</dt>
+        <dt class="label"><span class="doc-ref" id="OWL2-Overview"></span>OWL2-Overview</dt>
         <dd><a href="http://www.w3.org/TR/owl2-overview/"><cite>OWL 2 Web Ontology Language Document Overview</cite></a>, W3C OWL Working Group, W3C Recommendation 27 October 2009 (See
         http://www.w3.org/TR/owl2-overview/.)</dd>
-        <dt class="label"><div name="RIF-Overview" id="RIF-Overview"></div>RIF-Overview</dt>
+        <dt class="label"><span class="doc-ref" id="RIF-Overview"></span>RIF-Overview</dt>
         <dd><a href="http://www.w3.org/TR/rif-overview/"><cite>RIF Overview</cite></a>, ed. Michael Kifer and Harold Boley, W3C Working Group Note 22 June 2010 (See
         http://www.w3.org/TR/rif-overview/.)</dd>
-        <dt class="label"><div name="Turtle" id="Turtle"></div>Turtle</dt>
+        <dt class="label"><span class="doc-ref" id="Turtle"></span>Turtle</dt>
         <dd><a href="http://www.w3.org/TR/turtle/"><cite>Turtle - Terse RDF Triple Language</cite></a>, ed Eric Prud'hommeaux and Gavin Carothers, Working Draft 09 August 2011. (See
         http://www.w3.org/TR/turtle/.)</dd>
-        <dt class="label"><div name="SPARQL10-Query" id="SPARQL10-Query"></div>SPARQL10-Query</dt>
+        <dt class="label"><span class="doc-ref" id="SPARQL10-Query"></span>SPARQL10-Query</dt>
         <dd><a href="http://www.w3.org/TR/rdf-sparql-query/"><cite>SPARQL Query Language for RDF</cite></a>, ed. Eric Prud'hommeaux and Andy Seaborne, W3C Recommendation 15 January 2008 (See
         http://www.w3.org/TR/rdf-sparql-query/.)</dd>
       </dl>
@@ -518,8 +536,6 @@ Content-Type: text/turtle
       <h2>Change Log</h2>
       <p>TODO</p>
     </section>   
-
-  </div>
 
   </body>
 </html>

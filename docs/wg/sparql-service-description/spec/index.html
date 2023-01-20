@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-<html>
   <head>
     <meta charset="utf-8" />
     <title>SPARQL 1.2 Service Description</title>
@@ -111,6 +110,25 @@
         update of specifications for format and errata.
       </p>
     </section>
+
+    <section id="sparql12-documents" class="introductory">
+      <h2>SPARQL 1.2 Documents</h2>
+      <ul>
+        <li><a href="../../sparql-new/spec/index.html">SPARQL 1.2 New</a></li>
+        <li><a href="../../sparql-concepts/spec/index.html">SPARQL 1.2 Overview</a></li>
+        <li><a href="../../sparql-query/spec/index.html">SPARQL 1.2 Query Language</a></li>
+        <li><a href="../../sparql-update/spec/index.html">SPARQL 1.2 Update</a></li>
+        <li><a href="../../sparql-entailment/spec/index.html">SPARQL 1.2 Entailment Regimes</a></li>
+        <li><a href="../../sparql-service-description/spec/index.html">SPARQL 1.2 Service Description</a></li>
+        <li><a href="../../sparql-federated-query/spec/index.html">SPARQL 1.2 Federated Query</a></li>
+        <li><a href="../../sparql-results-json/spec/index.html">SPARQL 1.2 Query Results JSON Format</a></li>
+        <li><a href="../../sparql-results-csv-tsv/spec/index.html">SPARQL 1.2 Query Results CSV and TSV Formats</a></li>
+        <li><a href="../../sparql-results-xml/spec/index.html">SPARQL 1.2 Query Results XML Format</a></li>
+        <li><a href="../../sparql-graph-store-protocol/spec/index.html">SPARQL 1.2 Graph Store Protocol</a></li>
+        <li><a href="../../sparql-protocol/spec/index.html">SPARQL 1.2 Protocol</a></li>
+      </ul>
+    </section>
+    
 <!-- BODY -->
     <section id="intro">
       <h2>Introduction</h2>
@@ -123,7 +141,7 @@
         <p>The following terms are also in use throughout this document:</p>
         <dl>
           <dt>SPARQL Service</dt>
-          <dd>Any implementation conforming to the <a href="">SPARQL 1.1 Protocol for RDF</a> (this document's use of "SPARQL Service" is the same as "<a href=
+          <dd>Any implementation conforming to the <span class="doc-ref">SPARQL 1.1 Protocol for RDF</span> (this document's use of "SPARQL Service" is the same as "<a href=
           "http://www.w3.org/TR/sparql11-protocol/#terminology">SPARQL Protocol service</a>" as defined in the SPARQL 1.1 Protocol) [<a href="#SPROT">SPROT</a>].</dd>
           <dt>SPARQL endpoint</dt>
           <dd>The URI at which a SPARQL Service listens for requests from clients.</dd>
@@ -947,31 +965,29 @@ Content-Type: text/turtle
         section <a href="#vocab">3 Service Description Vocabulary</a>.</li>
       </ol>
     </section>
-</section>
-  
     <section id="sec-bibliography">
       <h2>References</h2>
       <section id="sec-normative-refs">
         <h3>Normative References</h3>
         <dl class="bib">
-          <dt><div id="CONNEG" name="CONNEG">[CONNEG]</div></dt>
+          <dt><span class="doc-ref" id="CONNEG">[CONNEG]</span></dt>
           <dd><a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec12.html">Hypertext Transfer Protocol -- HTTP/1.1, Content Negotiation</a>, Fielding, et al., IETF. June 1999. This document is
           http://www.w3.org/Protocols/rfc2616/rfc2616-sec12.html .</dd>
-          <dt><div id="RFC2119" name="RFC2119">[RFC2119]</div></dt>
+          <dt><span class="doc-ref" id="RFC2119">[RFC2119]</span></dt>
           <dd><a href="http://www.ietf.org/rfc/rfc2119.txt">Key words for use in RFCs to Indicate Requirement Levels</a>, S. Bradner, IETF. March 1997. This document is
           http://www.ietf.org/rfc/rfc2119.txt .</dd>
-          <dt><div id="QUERY10" name="QUERY10">[QUERY10]</div></dt>
+          <dt><span class="doc-ref" id="QUERY10">[QUERY10]</span></dt>
           <dd><a href="http://www.w3.org/TR/rdf-sparql-query/">SPARQL Query Language for RDF</a>, E. Prud'hommeaux and Andy Seaborne, Editors, W3C Recommendation, 15 January 2008. This document is
           http://www.w3.org/TR/rdf-sparql-query/ .</dd>
-          <dt><div id="QUERY11" name="QUERY11">[QUERY11]</div></dt>
+          <dt><span class="doc-ref" id="QUERY11">[QUERY11]</span></dt>
           <dd><cite><a href="http://www.w3.org/TR/2013/REC-sparql11-query-20130321">SPARQL 1.1 Query Language</a></cite>, S. Harris, A. Seaborne, Editors, W3C Recommendation, 21 March 2013,
           http://www.w3.org/TR/2013/REC-sparql11-query-20130321. <a href="http://www.w3.org/TR/sparql11-query/" title="Latest version of SPARQL 1.1 Query Language">Latest version</a> available at
           http://www.w3.org/TR/sparql11-query.</dd>
-          <dt><div id="SPROT" name="SPROT">[SPROT]</div></dt>
+          <dt><span class="doc-ref" id="SPROT">[SPROT]</span></dt>
           <dd><cite><a href="http://www.w3.org/TR/2013/REC-sparql11-protocol-20130321">SPARQL 1.1 Protocol</a></cite>, L. Feigenbaum, G. Williams, K. Clark, E. Torres, Editors, W3C Recommendation, 21
           March 2013, http://www.w3.org/TR/2013/REC-sparql11-protocol-20130321. <a href="http://www.w3.org/TR/sparql11-protocol/" title="Latest version of SPARQL 1.1 Protocol">Latest version</a>
           available at http://www.w3.org/TR/sparql11-protocol.</dd>
-          <dt><div id="UPDATE11" name="UPDATE11">[UPDATE11]</div></dt>
+          <dt><span class="doc-ref" id="UPDATE11">[UPDATE11]</span></dt>
           <dd><cite><a href="http://www.w3.org/TR/2013/REC-sparql11-update-20130321">SPARQL 1.1 Update</a></cite>, P. Gearon, A. Passant, A. Polleres, Editors, W3C Recommendation, 21 March 2013,
           http://www.w3.org/TR/2013/REC-sparql11-update-20130321. <a href="http://www.w3.org/TR/sparql11-update/" title="Latest version of SPARQL 1.1 Update">Latest version</a> available at
           http://www.w3.org/TR/sparql11-update.</dd>
@@ -980,31 +996,31 @@ Content-Type: text/turtle
       <section id="sec-non-normative-refs">
         <h3>Other References</h3>
         <dl class="bib">
-          <dt><div id="AWWW" name="AWWW">[AWWW]</div></dt>
+          <dt><span class="doc-ref" id="AWWW">[AWWW]</span></dt>
           <dd><a href="http://www.w3.org/TR/webarch/">Architecture of the World Wide Web, Volume One</a>, I. Jacobs and N. Walsh, Editors, W3C Recommendation, 15 December 2004.
           http://www.w3.org/TR/webarch/ .</dd>
-          <dt><div id="ENTAILMENT" name="ENTAILMENT">[ENTAILMENT]</div></dt>
+          <dt><span class="doc-ref" id="ENTAILMENT">[ENTAILMENT]</span></dt>
           <dd><a href="http://www.w3.org/ns/entailment/">Unique URIs for Semantic Web Entailment Regimes</a></dd>
-          <dt><div id="FORMATS" name="FORMATS">[FORMATS]</div></dt>
+          <dt><span class="doc-ref" id="FORMATS">[FORMATS]</span></dt>
           <dd><a href="http://www.w3.org/ns/formats/">Unique URIs for File Formats</a></dd>
-          <dt><div id="OWL2PROF" name="OWL2PROF">[OWL2PROF]</div></dt>
+          <dt><span class="doc-ref" id="OWL2PROF">[OWL2PROF]</span></dt>
           <dd><a href="http://www.w3.org/ns/owl-profile/">Unique URIs for OWL 2 Profiles</a></dd>
-          <dt><div id="RDFA" name="RDFA">[RDFA]</div></dt>
+          <dt><span class="doc-ref" id="RDFA">[RDFA]</span></dt>
           <dd><a href="http://www.w3.org/TR/rdfa-syntax/">RDFa in XHTML: Syntax and Processing</a>, B. Adida, M. Birbeck, S. McCarron, and S. Pemberton, Editors, W3C Recommendation, 14 October 2008.
           http://www.w3.org/TR/rdfa-syntax/ .</dd>
-          <dt><div id="SPARQLENT" name="SPARQLENT">[SPARQLENT]</div></dt>
+          <dt><span class="doc-ref" id="SPARQLENT">[SPARQLENT]</span></dt>
           <dd><cite><a href="http://www.w3.org/TR/2013/REC-sparql11-entailment-20130321">SPARQL 1.1 Entailment Regimes</a></cite>, B. Glimm, C. Ogbuji, Editors, W3C Recommendation, 21 March 2013,
           http://www.w3.org/TR/2013/REC-sparql11-entailment-20130321. <a href="http://www.w3.org/TR/sparql11-entailment/" title="Latest version of SPARQL 1.1 Entailment Regimes">Latest version</a>
           available at http://www.w3.org/TR/sparql11-entailment.</dd>
-          <dt><div id="SPARQLFED" name="SPARQLFED">[SPARQLFED]</div></dt>
+          <dt><span class="doc-ref" id="SPARQLFED">[SPARQLFED]</span></dt>
           <dd><cite><a href="http://www.w3.org/TR/2013/REC-sparql11-federated-query-20130321">SPARQL 1.1 Federated Query</a></cite>, E. Prud'hommeaux, C. Buil-Aranda, Editors, W3C Recommendation, 21
           March 2013, http://www.w3.org/TR/2013/REC-sparql11-federated-query-20130321. <a href="http://www.w3.org/TR/sparql11-federated-query/" title=
           "Latest version of SPARQL 1.1 Federated Query">Latest version</a> available at http://www.w3.org/TR/sparql11-federated-query.</dd>
-          <dt><div name="TURTLE" id="TURTLE">[TURTLE]</div></dt>
+          <dt><span class="doc-ref" id="TURTLE">[TURTLE]</span></dt>
           <dd><cite><a href="http://www.w3.org/TR/2013/CR-turtle-20130219/">Turtle: Terse RDF Triple Language</a></cite>, E Prud'hommeaux, G Carothers, Editors, W3C Candidate Recommendation, 19
           February 2013, http://www.w3.org/TR/2013/CR-turtle-20130219/. <a href="http://www.w3.org/TR/turtle/" title="Latest version of Turtle">Latest version</a> available at
           http://www.w3.org/TR/turtle/.</dd>
-          <dt><div id="VOID" name="VOID">[VOID]</div></dt>
+          <dt><span class="doc-ref" id="VOID">[VOID]</span></dt>
           <dd><a href="http://www.w3.org/TR/2011/NOTE-void-20110303/">Describing Linked Datasets with the voiD Vocabulary</a>, K. Alexander, R. Cyganiak, M. Hausenblas, and J. Zhao, Authors, W3C
           Interest Group Note, 3 March 2011, http://www.w3.org/TR/2011/NOTE-void-20110303/ . <a title="Latest version of Describing Linked Datasets with the voiD Vocabulary" href=
           "http://www.w3.org/TR/void/">Latest version</a> available at http://www.w3.org/TR/void/ .</dd>
@@ -1032,8 +1048,6 @@ Content-Type: text/turtle
       <h2>Change Log</h2>
       <p>TODO</p>
     </section>   
-
-  </div>
 
   </body>
 </html>

@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-<html>
   <head>
     <meta charset="utf-8" />
     <title>SPARQL 1.2 Entailment Regimes</title>
@@ -119,6 +118,25 @@
         update of specifications for format and errata.
       </p>
     </section>
+
+    <section id="sparql12-documents" class="introductory">
+      <h2>SPARQL 1.2 Documents</h2>
+      <ul>
+        <li><a href="../../sparql-new/spec/index.html">SPARQL 1.2 New</a></li>
+        <li><a href="../../sparql-concepts/spec/index.html">SPARQL 1.2 Overview</a></li>
+        <li><a href="../../sparql-query/spec/index.html">SPARQL 1.2 Query Language</a></li>
+        <li><a href="../../sparql-update/spec/index.html">SPARQL 1.2 Update</a></li>
+        <li><a href="../../sparql-entailment/spec/index.html">SPARQL 1.2 Entailment Regimes</a></li>
+        <li><a href="../../sparql-service-description/spec/index.html">SPARQL 1.2 Service Description</a></li>
+        <li><a href="../../sparql-federated-query/spec/index.html">SPARQL 1.2 Federated Query</a></li>
+        <li><a href="../../sparql-results-json/spec/index.html">SPARQL 1.2 Query Results JSON Format</a></li>
+        <li><a href="../../sparql-results-csv-tsv/spec/index.html">SPARQL 1.2 Query Results CSV and TSV Formats</a></li>
+        <li><a href="../../sparql-results-xml/spec/index.html">SPARQL 1.2 Query Results XML Format</a></li>
+        <li><a href="../../sparql-graph-store-protocol/spec/index.html">SPARQL 1.2 Graph Store Protocol</a></li>
+        <li><a href="../../sparql-protocol/spec/index.html">SPARQL 1.2 Protocol</a></li>
+      </ul>
+    </section>
+    
 <!-- BODY -->
     <section id="sec-intro">
       <h2>Introduction</h2>
@@ -217,7 +235,7 @@
           <h4>Result Descriptions</h4>
           <p>Result sets are illustrated in tabular form.</p>
           <div class="result">
-            <div name="table0" id="table0"></div>
+            <span class="doc-ref" id="table0"></span>
             <table class="resultTable">
               <tbody>
                 <tr>
@@ -240,7 +258,7 @@
           <p>Sometimes solutions are annotated with the name of a solution mapping so that the explanatory text can refer to the solution mapping and explain or justify certain solutions. For
           example, in the results table below, the only solution is given by the solution mapping μ<sub>1</sub>:</p>
           <div class="result">
-            <div name="table01" id="table01"></div>
+            <span class="doc-ref" id="table01"></span>
             <table class="resultTable">
               <tbody>
                 <tr>
@@ -313,17 +331,17 @@
         the corresponding section for that entailment regime. The SPARQL Query conditions for using a logical entailment relation E, such as RDFS entailment, instead of subgraph matching for the case
         of a consistent active graph are repeated below for clarity. An overview of how the different entailment regimes satisfy these conditions follows.</p>
         <ol class="enumar">
-          <li><div name="condition1" id="condition1"></div>The <a href="http://www.w3.org/TR/sparql11-query/#BGPsparqlBNodes">scoping graph</a>, SG, corresponding to any E-consistent active graph AG is
+          <li><span class="doc-ref" id="condition1"></span>The <a href="http://www.w3.org/TR/sparql11-query/#BGPsparqlBNodes">scoping graph</a>, SG, corresponding to any E-consistent active graph AG is
           uniquely specified up to <a href="http://www.w3.org/TR/rdf-concepts/#section-graph-equality">RDF graph equivalence</a> and is E-equivalent to AG.</li>
-          <li><div name="condition2" id="condition2"></div>For any basic graph pattern BGP and pattern instance mapping P, P(BGP) is well-formed for E.</li>
+          <li><span class="doc-ref" id="condition2"></span>For any basic graph pattern BGP and pattern instance mapping P, P(BGP) is well-formed for E.</li>
           <li>
-            <div name="condition3" id="condition3"></div>For any <a href="http://www.w3.org/TR/sparql11-query/#BGPsparqlBNodes">scoping graph</a> SG and answer set {P<sub>1</sub> ... P<sub>n</sub>} for a
+            <span class="doc-ref" id="condition3"></span>For any <a href="http://www.w3.org/TR/sparql11-query/#BGPsparqlBNodes">scoping graph</a> SG and answer set {P<sub>1</sub> ... P<sub>n</sub>} for a
             basic graph pattern BGP, and where {BGP<sub>1</sub> .... BGP<sub>n</sub>} is a set of basic graph patterns all equivalent to BGP, none of which share any blank nodes with any other or
             with SG
             <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SG E-entails (SG ∪ P<sub>1</sub>(BGP<sub>1</sub>) ∪ ... ∪ P<sub>n</sub>(BGP<sub>n</sub>))</p>These conditions do not fully determine the set
             of possible answers, since RDF allows unlimited amounts of redundancy. In addition, therefore, the following must hold.
           </li>
-          <li><div name="condition4" id="condition4"></div>Each SPARQL extension <em class="rfc2119" title="Keyword in RFC 2119 context">MUST</em> provide conditions on answer sets which guarantee that
+          <li><span class="doc-ref" id="condition4"></span>Each SPARQL extension <em class="rfc2119" title="Keyword in RFC 2119 context">MUST</em> provide conditions on answer sets which guarantee that
           the set of triples obtained by instantiating BGP with each solution μ is uniquely specified up to RDF graph equivalence, and <em class="rfc2119" title=
           "Keyword in RFC 2119 context">SHOULD</em> provide further conditions to prevent trivial infinite answers as appropriate to the regime.</li>
         </ol>
@@ -475,7 +493,7 @@
         <pre class="query">ex:a ex:b ?x . ?y ex:e ex:f . </pre>
         <p>When taking just the possible answers, without applying condition (C1) and (C2), a solution multiset for BGP would include</p>
         <div class="result">
-          <div name="tablenoc1c2" id="tablenoc1c2"></div>
+          <span class="doc-ref" id="tablenoc1c2"></span>
           <table class="resultTable">
             <tbody>
               <tr>
@@ -543,7 +561,7 @@ ex:d rdf:type rdf:Bag .
 ex:d rdf:_1 ex:a .</pre>
         <p>One of the possible solutions is</p>
         <div class="result">
-          <div name="table3" id="table3"></div>
+          <span class="doc-ref" id="table3"></span>
           <table class="resultTable">
             <tbody>
               <tr>
@@ -560,7 +578,7 @@ ex:d rdf:_1 ex:a .</pre>
         <p>since <code>ex:a ex:b ex:c</code> RDF entails <code>ex:b a rdf:Property</code> (see also the <a href="http://www.w3.org/TR/rdf-mt/#RDFRules" title=
         "http://www.w3.org/TR/rdf-mt/#RDFRules">RDF entailment rule</a> <em>rdf1</em>). Further, the axiomatic triples give possible solutions such as</p>
         <div class="result">
-          <div name="table4" id="table4"></div>
+          <span class="doc-ref" id="table4"></span>
           <table class="resultTable">
             <tbody>
               <tr>
@@ -656,7 +674,7 @@ _:a4 ex:writesBook ex:book2 .
 ex:writesBook rdfs:subPropertyOf ex:writes .</pre>
         <p>Under simple and RDF entailment, basic graph pattern matching finds two solutions:</p>
         <div class="result">
-          <div name="aggregateExample" id="aggregateExample"></div>
+          <span class="doc-ref" id="aggregateExample"></span>
           <table class="resultTable">
             <tbody>
               <tr>
@@ -680,7 +698,7 @@ ex:writesBook rdfs:subPropertyOf ex:writes .</pre>
         <p>The results are then grouped and aggregated by algebra operators. In this case, there is only one group for <code>ex:book1</code> and the authors for the group are counted due to the
         <code>COUNT</code> aggregate over <code>author</code> resulting in the query answer:</p>
         <div class="result">
-          <div name="table3_1" id="table3_1"></div>
+          <span class="doc-ref" id="table3_1"></span>
           <table class="resultTable">
             <tbody>
               <tr>
@@ -696,7 +714,7 @@ ex:writesBook rdfs:subPropertyOf ex:writes .</pre>
         </div>
         <p>RDFS further gives semantics to <code>rdfs:subPropertyOf</code> and the basic graph pattern matching under RDFS entailment finds five solution mappings:</p>
         <div class="result">
-          <div name="aggregateExample2" id="aggregateExample2"></div>
+          <span class="doc-ref" id="aggregateExample2"></span>
           <table class="resultTable">
             <tbody>
               <tr>
@@ -735,7 +753,7 @@ ex:writesBook rdfs:subPropertyOf ex:writes .</pre>
         <p>These solutions are then processed by the algebra operators. Again, the authors for each book (now there are two groups) are counted due to the <code>COUNT</code> aggregate over
         <code>author</code>, which leads to the following result for the query under RDFS entailment:</p>
         <div class="result">
-          <div name="table3_2" id="table3_2"></div>
+          <span class="doc-ref" id="table3_2"></span>
           <table class="resultTable">
             <tbody>
               <tr>
@@ -1215,7 +1233,7 @@ ex:D rdfs:subClassOf ex:C .</pre>
           <pre class="query">SELECT ?rel WHERE { ex:C ?rel ex:D . }</pre>
           <p>has the answers:</p>
           <div class="result">
-            <div name="table10" id="table10"></div>
+            <span class="doc-ref" id="table10"></span>
             <table class="resultTable">
               <tbody>
                 <tr>
@@ -1464,7 +1482,7 @@ _:x rdf:type owl:Restriction ;
           <pre class="data">ex:Mary ex:dp "6"^^xsd:int .</pre>
           <p>The same query has now two answers:</p>
           <div class="result">
-            <div name="table11" id="table11"></div>
+            <span class="doc-ref" id="table11"></span>
             <table class="resultTable">
               <tbody>
                 <tr>
@@ -1622,7 +1640,7 @@ _:x rdf:type owl:Restriction ;
         <pre class="query">SELECT ?father ?child WHERE { ?father ex:isFatherOf ?child . }</pre>
         <p>producing the single solution:</p>
         <div class="result">
-          <div name="table11RIF" id="table11RIF"></div>
+          <span class="doc-ref" id="table11RIF"></span>
           <table class="resultTable">
             <tbody>
               <tr>
@@ -1804,7 +1822,7 @@ _:x rdf:type owl:Restriction ;
 </pre>
             <p>returns</p>
             <div class="result">
-              <div name="tableRESULTRIF" id="tableRESULTRIF"></div>
+              <span class="doc-ref" id="tableRESULTRIF"></span>
               <table class="resultTable">
                 <tbody>
                   <tr>
@@ -1831,7 +1849,7 @@ _:x rdf:type owl:Restriction ;
   WHERE { GRAPH &lt;r1&gt; {  [ rif:varname ?N ] } }
 </pre>
             <div class="result">
-              <div name="tableRESULTRIFmeta" id="tableRESULTRIFmeta"></div>
+              <span class="doc-ref" id="tableRESULTRIFmeta"></span>
               <table class="resultTable">
                 <tbody>
                   <tr>
@@ -1899,7 +1917,7 @@ ex:p2 rdfs:subPropertyOf ex:p3 .</pre>
       that cannot be eliminated or employ the evaluation as defined in the <a href="http://www.w3.org/TR/sparql11-query/#sparqlAlgebraEval">evaluation semantics</a> of the SPARQL 1.1 Query
       specification. For the latter case, evaluating <code>Path(?x, ZeroOrMorePath(link(rdfs:subClassOf)), ?type)</code> yields</p>
       <div class="result">
-        <div name="resultUnion" id="resultUnion"></div>
+        <span class="doc-ref" id="resultUnion"></span>
         <table class="resultTable">
           <tbody>
             <tr>
@@ -1936,7 +1954,7 @@ ex:p2 rdfs:subPropertyOf ex:p3 .</pre>
       <p>The evaluation of <code>Bgp(ex:a rdf:type ?x)</code> now depends on the entailment regime that is used. We assume, for this example, that RDFS entailment is used. Thus, the evaluation
       yields</p>
       <div class="result">
-        <div name="resultBgpOne" id="resultBgpOne"></div>
+        <span class="doc-ref" id="resultBgpOne"></span>
         <table class="resultTable">
           <tbody>
             <tr>
@@ -1953,7 +1971,7 @@ ex:p2 rdfs:subPropertyOf ex:p3 .</pre>
       </div>
       <p>We can now compute the join to obtain</p>
       <div class="result">
-        <div name="firstJoin" id="firstJoin"></div>
+        <span class="doc-ref" id="firstJoin"></span>
         <table class="resultTable">
           <tbody>
             <tr>
@@ -1978,7 +1996,7 @@ ex:p2 rdfs:subPropertyOf ex:p3 .</pre>
       <p>Evaluating <code>Bgp(ex:a ex:p1 ?tmp1 . ?tmp1 ex:p3 ?c)</code> would yield an empty solution set under simple entailment (i.e., standard subgraph matching). Under RDFS entailment we get,
       however,</p>
       <div class="result">
-        <div name="bgp2" id="bgp2"></div>
+        <span class="doc-ref" id="bgp2"></span>
         <table class="resultTable">
           <tbody>
             <tr>
@@ -1994,7 +2012,7 @@ ex:p2 rdfs:subPropertyOf ex:p3 .</pre>
       </div>
       <p>We can now compute the final result for the query pattern under RDFS entailment by joining the last two solution sets:</p>
       <div class="result">
-        <div name="secondJoin" id="secondJoin"></div>
+        <span class="doc-ref" id="secondJoin"></span>
         <table class="resultTable">
           <tbody>
             <tr>
@@ -2026,7 +2044,7 @@ ex:p2 rdfs:subPropertyOf ex:p3 .</pre>
       </div>
       <p>The overall query result can then be obtained by projecting <code>x</code> and <code>tmp1</code> away.</p>
       <div class="result">
-        <div name="project" id="project"></div>
+        <span class="doc-ref" id="project"></span>
         <table class="resultTable">
           <tbody>
             <tr>
@@ -2077,51 +2095,49 @@ ex:p2 rdfs:subPropertyOf ex:p3 .</pre>
       an entailment regime other than simple entailment may support update queries, but the exact behavior of the system for such queries is not covered by this specification. SPARQL endpoints that
       use an entailment regime other than simple entailment and that do support update queries should describe the system behavior in the system's documentation.</p>
     </section>
-</section>
-  
     <section id="sec-bibliography">
       <h2>References</h2>
       <section id="sec-existing-stds">
         <h3>Normative References</h3>
         <dl>
-          <dt class="label"><div name="OWL2Conformance" id="OWL2Conformance"></div>OWL 2 Conformance</dt>
+          <dt class="label"><span class="doc-ref" id="OWL2Conformance"></span>OWL 2 Conformance</dt>
           <dd><a href="http://www.w3.org/TR/2009/REC-owl2-conformance-20091027/"><cite>OWL 2 Web Ontology Language Conformance</cite></a>, eds. Michael Smith, Ian Horrocks, Markus Krötzsch, Birte
           Glimm. W3C Recommendation 27 October 2009. (See http://www.w3.org/TR/2009/REC-owl2-conformance-20091027/.)</dd>
-          <dt class="label"><div name="OWL2DS" id="OWL2DS"></div>OWL 2 Direct Semantics</dt>
+          <dt class="label"><span class="doc-ref" id="OWL2DS"></span>OWL 2 Direct Semantics</dt>
           <dd><a href="http://www.w3.org/TR/2009/REC-owl2-direct-semantics-20091027/"><cite>OWL 2 Web Ontology Language Direct Semantics</cite></a>, eds. Boris Motik, Peter F. Patel-Schneider,
           Bernardo Cuenca Grau. W3C Recommendation 27 October 2009. (See http://www.w3.org/TR/2009/REC-owl2-direct-semantics-20091027/.)</dd>
-          <dt class="label"><div name="RDF2OWLMAPPING" id="RDF2OWLMAPPING"></div>OWL 2 Mapping to RDF Graphs</dt>
+          <dt class="label"><span class="doc-ref" id="RDF2OWLMAPPING"></span>OWL 2 Mapping to RDF Graphs</dt>
           <dd><a href="http://www.w3.org/TR/2009/REC-owl2-mapping-to-rdf-20091027/"><cite>OWL 2 Web Ontology Language Mapping to RDF Graphs</cite></a>, eds. Peter F. Patel-Schneider, Boris Motik. W3C
           Recommendation 27 October 2009. (See http://www.w3.org/TR/2009/REC-owl2-mapping-to-rdf-20091027/.)</dd>
-          <dt class="label"><div name="OWL2Profiles" id="OWL2Profiles"></div>OWL 2 Profiles</dt>
+          <dt class="label"><span class="doc-ref" id="OWL2Profiles"></span>OWL 2 Profiles</dt>
           <dd><a href="http://www.w3.org/TR/2009/REC-owl2-profiles-20091027/"><cite>OWL 2 Web Ontology Language Profiles</cite></a>, eds. Boris Motik, Bernardo Cuenca Grau, Ian Horrocks, Zhe Wu,
           Achille Fokoue, Carsten Lutz. W3C Recommendation 27 October 2009. (See http://www.w3.org/TR/2009/REC-owl2-profiles-20091027/.)</dd>
-          <dt class="label"><div name="OWL2RDFBS" id="OWL2RDFBS"></div>OWL 2 RDF-Based Semantics</dt>
+          <dt class="label"><span class="doc-ref" id="OWL2RDFBS"></span>OWL 2 RDF-Based Semantics</dt>
           <dd><a href="http://www.w3.org/TR/2009/REC-owl2-rdf-based-semantics-20091027/"><cite>OWL 2 Web Ontology Language RDF-Based Semantics</cite></a>, ed. Michael Schneider. W3C Recommendation 27
           October 2009. (See http://www.w3.org/TR/2009/REC-owl2-rdf-based-semantics-20091027/.)</dd>
-          <dt class="label"><div name="OWL2" id="OWL2"></div>OWL 2 Structural Specification</dt>
+          <dt class="label"><span class="doc-ref" id="OWL2"></span>OWL 2 Structural Specification</dt>
           <dd><a href="http://www.w3.org/TR/2009/REC-owl2-syntax-20091027/"><cite>OWL 2 Web Ontology Language Structural Specification and Functional-Style Syntax</cite></a>, eds. Boris Motik, Peter
           F. Patel-Schneider, Bijan Parsia. W3C Recommendation 27 October 2009. (See http://www.w3.org/TR/2009/REC-owl2-syntax-20091027/.)</dd>
-          <dt class="label"><div name="RDF-Concepts" id="RDF-Concepts"></div>RDF Concepts</dt>
+          <dt class="label"><span class="doc-ref" id="RDF-Concepts"></span>RDF Concepts</dt>
           <dd><a href="http://www.w3.org/TR/2004/REC-rdf-concepts-20040210/"><cite>Resource Description Framework (RDF): Concepts and Abstract Syntax</cite></a>, eds. Graham Klyne and Jeremy J.
           Carroll. W3C Recommendation 10 February 2004. (See http://www.w3.org/TR/2004/REC-rdf-concepts-20040210/.)</dd>
-          <dt class="label"><div name="RDF-PlainLiteral" id="RDF-PlainLiteral"></div>RDF Plain Literal</dt>
+          <dt class="label"><span class="doc-ref" id="RDF-PlainLiteral"></span>RDF Plain Literal</dt>
           <dd><a href="http://www.w3.org/TR/2009/REC-rdf-plain-literal-20091027/"><cite>rdf:PlainLiteral: A Datatype for RDF Plain Literals</cite></a>, eds. Jie Bao, Sandro Hawke, Boris Motik, Peter
           F. Patel-Schneider, Axel Polleres. W3C Recommendation 27 October 2009. (See http://www.w3.org/TR/2009/REC-rdf-plain-literal-20091027/.)</dd>
-          <dt class="label"><div name="RDFMT" id="RDFMT"></div>RDF Semantics</dt>
+          <dt class="label"><span class="doc-ref" id="RDFMT"></span>RDF Semantics</dt>
           <dd><a href="http://www.w3.org/TR/2004/REC-rdf-mt-20040210/"><cite>RDF Semantics</cite></a>, ed. Patrick Hayes. W3C Recommendation 10 February 2004. (See
           http://www.w3.org/TR/2004/REC-rdf-mt-20040210/.)</dd>
-          <dt class="label"><div name="RIF-Core" id="RIF-Core"></div>RIF Core</dt>
+          <dt class="label"><span class="doc-ref" id="RIF-Core"></span>RIF Core</dt>
           <dd><a href="http://www.w3.org/TR/rif-core/"><cite>RIF Core Dialect (Second Edition)</cite></a>, eds. Harold Boley, Gary Hallmark, Michael Kifer, Adrian Paschke, Axel Polleres, and Dave
           Reynolds. W3C Recommendation 5 February 2013 (See http://www.w3.org/TR/rif-core/.)</dd>
-          <dt class="label"><div name="RIF-RDF" id="RIF-RDF"></div>RIF RDF</dt>
+          <dt class="label"><span class="doc-ref" id="RIF-RDF"></span>RIF RDF</dt>
           <dd><a href="http://www.w3.org/TR/rif-rdf-owl/"><cite>RIF RDF and OWL Compatibility (Second Edition)</cite></a>, ed. Jos de Bruijn. W3C Recommendation 5 February 2013 (See
           http://www.w3.org/TR/rif-rdf-owl/.)</dd>
-          <dt class="label"><div name="SPARQL11" id="SPARQL11"></div>SPARQL 1.1 Query</dt>
+          <dt class="label"><span class="doc-ref" id="SPARQL11"></span>SPARQL 1.1 Query</dt>
           <dd><cite><a href="http://www.w3.org/TR/2013/REC-sparql11-query-20130321">SPARQL 1.1 Query Language</a></cite>, S. Harris, A. Seaborne, Editors, W3C Recommendation, 21 March 2013,
           http://www.w3.org/TR/2013/REC-sparql11-query-20130321. <a href="http://www.w3.org/TR/sparql11-query/" title="Latest version of SPARQL 1.1 Query Language">Latest version</a> available at
           http://www.w3.org/TR/sparql11-query.</dd>
-          <dt class="label"><div name="XSD" id="XSD"></div>XML Schema Datatypes</dt>
+          <dt class="label"><span class="doc-ref" id="XSD"></span>XML Schema Datatypes</dt>
           <dd><a href="http://www.w3.org/TR/2012/REC-xmlschema11-2-20120405/"><cite>W3C XML Schema Definition Language (XSD) 1.1 Part 2: Datatypes</cite></a>, eds. David Peterson, Shudi (Sandy) Gao
           高殊镝, Ashok Malhotra, C. M. Sperberg-McQueen, Henry S. Thompson. W3C Recommendation 5 April 2012. (See http://www.w3.org/TR/2012/REC-xmlschema11-2-20120405/.)</dd>
         </dl>
@@ -2129,25 +2145,25 @@ ex:p2 rdfs:subPropertyOf ex:p3 .</pre>
       <section id="null">
         <h3>Other References</h3>
         <dl>
-          <dt class="label"><div name="ANSWERSET-SW" id="ANSWERSET-SW"></div>ANSWERSET-SW</dt>
+          <dt class="label"><span class="doc-ref" id="ANSWERSET-SW"></span>ANSWERSET-SW</dt>
           <dd><a href="http://www.kr.tuwien.ac.at/staff/former_staff/roman/papers/thesis.pdf"><cite>Answer-Set Programming for the Semantic Web. PhD thesis</cite></a>, Roman Schindlauer. Vienna
           University of Technology, Austria, December 2006. (See http://www.kr.tuwien.ac.at/staff/former_staff/roman/papers/thesis.pdf.)</dd>
-          <dt class="label"><div name="OWL2-RL-RIF" id="OWL2-RL-RIF"></div>OWL2-RL-RIF</dt>
+          <dt class="label"><span class="doc-ref" id="OWL2-RL-RIF"></span>OWL2-RL-RIF</dt>
           <dd><a href="http://www.w3.org/TR/2010/NOTE-rif-owl-rl-20100622/"><cite>OWL 2 RL in RIF</cite></a>, eds. Dave Reynolds. W3C Working Group Note 22 June 2010 (See
           http://www.w3.org/TR/2010/NOTE-rif-owl-rl-20100622/.)</dd>
-          <dt class="label"><div name="RDFSENTAILMENT" id="RDFSENTAILMENT"></div>RDFSENTAILMENT</dt>
+          <dt class="label"><span class="doc-ref" id="RDFSENTAILMENT"></span>RDFSENTAILMENT</dt>
           <dd><cite>Completeness, decidability and complexity of entailment for RDF Schema and a semantic extension involving the OWL vocabulary</cite>, ed. Herman J. ter Horst. Journal of Web
           Semantics, 3(2-3):79-115, 2005.</dd>
-          <dt class="label"><div name="RIF-in-RDF" id="RIF-in-RDF"></div>RIF-in-RDF</dt>
+          <dt class="label"><span class="doc-ref" id="RIF-in-RDF"></span>RIF-in-RDF</dt>
           <dd><a href="http://www.w3.org/TR/2011/NOTE-rif-in-rdf-20110512/"><cite>RIF In RDF</cite></a>, eds. Sandro Hawke, Axel Polleres. W3C Working Group Note 12 May 2011. (See
           http://www.w3.org/TR/2011/NOTE-rif-in-rdf-20110512/.)</dd>
-          <dt class="label"><div name="SAFETY" id="SAFETY"></div>SAFETY</dt>
+          <dt class="label"><span class="doc-ref" id="SAFETY"></span>SAFETY</dt>
           <dd><a href="http://portal.acm.org/citation.cfm?doid=28659.28694"><cite>Safety of recursive Horn clauses with infinite relations</cite></a>, R. Ramakrishnan, F. Bancilhon, and A.
           Silberschatz. ACM New York, NY 1987. (See http://portal.acm.org/citation.cfm?doid=28659.28694.)</dd>
-          <dt class="label"><div name="STABLEMODEL" id="STABLEMODEL"></div>STABLEMODEL</dt>
+          <dt class="label"><span class="doc-ref" id="STABLEMODEL"></span>STABLEMODEL</dt>
           <dd><a href="http://arxiv.org/abs/cs.LO/9809032"><cite>Stable models and an alternative logic programming paradigm</cite></a>, eds. Victor W. Marek, Miroslaw Truszczynski. Arxiv preprint /
           Citeseer, 1998. (See http://arxiv.org/abs/cs.LO/9809032.)</dd>
-          <dt class="label"><div name="TURTLE" id="TURTLE"></div>TURTLE</dt>
+          <dt class="label"><span class="doc-ref" id="TURTLE"></span>TURTLE</dt>
           <dd><cite><a href="http://www.w3.org/TR/2013/CR-turtle-20130219/">Turtle: Terse RDF Triple Language</a></cite>, E Prud'hommeaux, G Carothers, Editors, W3C Candidate Recommendation, 19
           February 2013, http://www.w3.org/TR/2013/CR-turtle-20130219/. <a href="http://www.w3.org/TR/turtle/" title="Latest version of Turtle">Latest version</a> available at
           http://www.w3.org/TR/turtle/. (See http://www.w3.org/TR/turtle/.)</dd>
@@ -2306,22 +2322,9 @@ _:b2 ex:p ex:o</pre>and the BGP of the query is
       immediate that any BGP over any AG results in finite answers. The answer set is unique up to RDF graph equivalence since the entailed answers can only vary in their blank node identifiers,
       which still preserves graph equivalence. For the RIF entailment regime finiteness and uniqueness follows from the <a href="#RIFFiniteAnswers">safety conditions</a>.</p>
     </section>
-    <section id="changelog">
-      <h2>Change Summary</h2>
-      <h3 id="changes-since-pr">Changes since Proposed Recommendation</h3>
-      <ul>
-        <li>Updated RIF references, given publication of RIF Second Edition</li>
-      </ul>
-      <h3 id="changes-since-lc">Changes since Last Call</h3>
-      <p>Since last call, the following changes have been made:</p>
-      <ol class="enumar">
-        <li>Since XML Schema Definition Language (XSD) 1.1 Part 2: Datatypes <a href="#XSD">[XML Schema Datatypes]</a> now has recommendation status, the reference to XML Schema Part 2: Datatypes
-        Second Edition, eds. Paul V. Biron, Ashok Malhotra (W3C Recommendation 28 October 2004) becomes obsolete as previously announced.</li>
-        <li>In the informative section "Entailment Regimes and Property Paths", the link to the property path translation in SPARQL Query 1.1 has been fixed and the example has been updated to
-        reflect the new algebra operators that SPARQL 1.1 Query introduced for property path expressions.</li>
-      </ol>
-      <p id="changes-since-cr">Since Candidate Recommendation, the only change has been to remove the "At Risk" notes, which labeled sections of the text which might potentially have been removed
-      during Candidate Recommendation (but were not).</p>
+
+    <section id="conformance">
+      <h2>Conformance</h2>
     </section>
 <!-- BODY -->
     <section id="privacy">
@@ -2343,8 +2346,6 @@ _:b2 ex:p ex:o</pre>and the BGP of the query is
       <h2>Change Log</h2>
       <p>TODO</p>
     </section>   
-
-  </div>
 
   </body>
 </html>

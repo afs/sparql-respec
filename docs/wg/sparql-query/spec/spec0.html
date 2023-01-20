@@ -1527,7 +1527,7 @@ SELECT * WHERE {
       <p>Property paths allow for more concise expressions for some SPARQL basic graph patterns and they also add the ability to match connectivity of two resources by an arbitrary length path.</p>
       <div class="div2">
         <h3><a name="pp-language" id="pp-language"></a>9.1 Property Path Syntax</h3>
-        <p>In the description below, <i><tt>iri</tt></i> is either <a href="#QSynIRI">an IRI written in full or abbreviated by a prefixed name</a>, or the keyword <tt>a</tt>. <i><tt>elt</tt></i> is a
+        <p>In the description below, <i><code>iri</code></i> is either <a href="#QSynIRI">an IRI written in full or abbreviated by a prefixed name</a>, or the keyword <code>a</code>. <i><code>elt</code></i> is a
         path element, which may itself be composed of path constructs.</p>
         <table cellspacing="0" border="1">
           <tbody>
@@ -1537,60 +1537,60 @@ SELECT * WHERE {
               <th>Matches</th>
             </tr>
             <tr>
-              <td><tt><i>iri</i></tt></td>
+              <td><code><i>iri</i></code></td>
               <td>PredicatePath</td>
               <td>An IRI. A path of length one.</td>
             </tr>
             <tr>
-              <td><tt>^<i>elt</i></tt></td>
+              <td><code>^<i>elt</i></code></td>
               <td>InversePath</td>
               <td>Inverse path (object to subject).</td>
             </tr>
             <tr>
-              <td><tt><i>elt1</i> / <i>elt2</i></tt></td>
+              <td><code><i>elt1</i> / <i>elt2</i></code></td>
               <td>SequencePath</td>
-              <td>A sequence path of <tt><i>elt1</i></tt> followed by <tt><i>elt2</i></tt>.</td>
+              <td>A sequence path of <code><i>elt1</i></code> followed by <code><i>elt2</i></code>.</td>
             </tr>
             <tr>
-              <td><tt><i>elt1</i> | <i>elt2</i></tt></td>
+              <td><code><i>elt1</i> | <i>elt2</i></code></td>
               <td>AlternativePath</td>
-              <td>A alternative path of <tt><i>elt1</i></tt> or <tt><i>elt2</i></tt> (all possibilities are tried).</td>
+              <td>A alternative path of <code><i>elt1</i></code> or <code><i>elt2</i></code> (all possibilities are tried).</td>
             </tr>
             <tr>
-              <td><tt><i>elt</i>*</tt></td>
+              <td><code><i>elt</i>*</code></td>
               <td>ZeroOrMorePath</td>
-              <td>A path that connects the subject and object of the path by zero or more matches of <tt><i>elt</i></tt>.</td>
+              <td>A path that connects the subject and object of the path by zero or more matches of <code><i>elt</i></code>.</td>
             </tr>
             <tr>
-              <td><tt><i>elt</i>+</tt></td>
+              <td><code><i>elt</i>+</code></td>
               <td>OneOrMorePath</td>
-              <td>A path that connects the subject and object of the path by one or more matches of <tt><i>elt</i></tt>.</td>
+              <td>A path that connects the subject and object of the path by one or more matches of <code><i>elt</i></code>.</td>
             </tr>
             <tr>
-              <td><tt><i>elt</i>?</tt></td>
+              <td><code><i>elt</i>?</code></td>
               <td>ZeroOrOnePath</td>
-              <td>A path that connects the subject and object of the path by zero or one matches of <tt><i>elt</i></tt>.</td>
+              <td>A path that connects the subject and object of the path by zero or one matches of <code><i>elt</i></code>.</td>
             </tr>
             <tr>
-              <td><tt>!<i>iri</i></tt> or <tt>!(<i>iri<sub>1</sub></i>| ...|<i>iri<sub>n</sub></i>)</tt></td>
+              <td><code>!<i>iri</i></code> or <code>!(<i>iri<sub>1</sub></i>| ...|<i>iri<sub>n</sub></i>)</code></td>
               <td>NegatedPropertySet</td>
-              <td>Negated property set. An IRI which is not one of <tt><i>iri<sub>i</sub></i></tt>. <tt>!<i>iri</i></tt> is short for <tt>!<i>(iri)</i></tt>.</td>
+              <td>Negated property set. An IRI which is not one of <code><i>iri<sub>i</sub></i></code>. <code>!<i>iri</i></code> is short for <code>!<i>(iri)</i></code>.</td>
             </tr>
             <tr>
-              <td><tt>!^<i>iri</i></tt> or <tt>!(^<i>iri<sub>1</sub></i>| ...|^<i>iri<sub>n</sub></i>)</tt></td>
+              <td><code>!^<i>iri</i></code> or <code>!(^<i>iri<sub>1</sub></i>| ...|^<i>iri<sub>n</sub></i>)</code></td>
               <td>NegatedPropertySet</td>
               <td>Negated property set where the excluded matches are based on reversed path.<br>
-              That is, not one of <i>iri<sub>1</sub></i>...<i>iri<sub>n</sub></i> as reverse paths. <tt>!^<i>iri</i></tt> is short for <tt>!(^<i>iri</i>)</tt>.</td>
+              That is, not one of <i>iri<sub>1</sub></i>...<i>iri<sub>n</sub></i> as reverse paths. <code>!^<i>iri</i></code> is short for <code>!(^<i>iri</i>)</code>.</td>
             </tr>
             <tr>
-              <td><tt>!(<i>iri<sub>1</sub></i>| ...|<i>iri<sub>j</sub></i>|^<i>iri<sub>j+1</sub></i>| ...|^<i>iri<sub>n</sub></i>)</tt></td>
+              <td><code>!(<i>iri<sub>1</sub></i>| ...|<i>iri<sub>j</sub></i>|^<i>iri<sub>j+1</sub></i>| ...|^<i>iri<sub>n</sub></i>)</code></td>
               <td>NegatedPropertySet</td>
               <td>A combination of forward and reverse properties in a negated property set.</td>
             </tr>
             <tr>
-              <td><tt>(<i>elt</i>)</tt></td>
+              <td><code>(<i>elt</i>)</code></td>
               <td>&nbsp;</td>
-              <td>A group path <tt><i>elt</i></tt>, brackets control precedence.</td>
+              <td>A group path <code><i>elt</i></code>, brackets control precedence.</td>
             </tr>
           </tbody>
         </table>
@@ -1600,10 +1600,10 @@ SELECT * WHERE {
           <li>IRI, prefixed names</li>
           <li>Negated property sets</li>
           <li>Groups</li>
-          <li>Unary operators <tt>*</tt>, <tt>?</tt> and <tt>+</tt></li>
+          <li>Unary operators <code>*</code>, <code>?</code> and <code>+</code></li>
           <li>Unary ^ inverse links</li>
-          <li>Binary operator <tt>/</tt></li>
-          <li>Binary operator <tt>|</tt></li>
+          <li>Binary operator <code>/</code></li>
+          <li>Binary operator <code>|</code></li>
         </ul>
         <p>Precedence is left-to-right within groups.</p>
       </div>
@@ -1618,7 +1618,7 @@ SELECT * WHERE {
     ?x foaf:mbox &lt;mailto:alice@example&gt; .
     ?x foaf:knows/foaf:name ?name .
   }</pre>
-        <p><i>Sequence</i>: Find the names of people 2 "<tt>foaf:knows</tt>" links away.</p>
+        <p><i>Sequence</i>: Find the names of people 2 "<code>foaf:knows</code>" links away.</p>
         <pre class="query">  { 
     ?x foaf:mbox &lt;mailto:alice@example&gt; .
     ?x foaf:knows/foaf:knows/foaf:name ?name .
@@ -1646,7 +1646,7 @@ SELECT * WHERE {
         <p><i>Inverse Property Paths</i>: These two are the same query: the second is just reversing the property direction which swaps the roles of subject and object.</p>
         <pre class="query">  { ?x foaf:mbox &lt;mailto:alice@example&gt; }</pre>
         <pre class="query">  { &lt;mailto:alice@example&gt; ^foaf:mbox ?x }</pre>
-        <p><i>Inverse Path Sequence</i>: Find all the people who know someone <tt>?x</tt> knows.</p>
+        <p><i>Inverse Path Sequence</i>: Find all the people who know someone <code>?x</code> knows.</p>
         <pre class="query">  {
     ?x foaf:knows/^foaf:knows ?y .  
     FILTER(?x != ?y)
@@ -1657,7 +1657,7 @@ SELECT * WHERE {
     ?y foaf:knows ?gen1 .  
     FILTER(?x != ?y)
   }</pre>
-        <p><i>Arbitrary length match</i>: Find the names of all the people that can be reached from Alice by <tt>foaf:knows</tt>:</p>
+        <p><i>Arbitrary length match</i>: Find the names of all the people that can be reached from Alice by <code>foaf:knows</code>:</p>
         <pre class="query">  {
     ?x foaf:mbox &lt;mailto:alice@example&gt; .
     ?x foaf:knows+/foaf:name ?name .
@@ -2959,7 +2959,7 @@ LIMIT 20
       </blockquote>
       <p>Formats such as <a class="inform" href="http://www.w3.org/TR/sparql11-results-json/">SPARQL 1.1 Query Results JSON Format</a>, <a class="inform" href=
       "http://www.w3.org/TR/rdf-sparql-XMLres/">SPARQL Query Results XML Format</a> or <a class="inform" href="http://www.w3.org/TR/sparql11-results-csv-tsv/">SPARQL 1.1 Query Results CSV and TSV
-      Formats</a> <a class="inform" href=""></a> <a class="inform" href=""></a> can be used to serialize the result set from a <code>SELECT</code> query or the boolean result of an <code>ASK</code>
+      Formats</a> can be used to serialize the result set from a <code>SELECT</code> query or the boolean result of an <code>ASK</code>
       query.</p>
       <div class="div2">
         <h3><a name="select" id="select"></a>16.1 SELECT</h3>
@@ -3659,7 +3659,7 @@ WHERE { ?annot  a:annotates  &lt;http://www.w3.org/TR/rdf-sparql-query/&gt; .
         <p>The collation for <code>fn:compare</code> is <a href="http://www.w3.org/TR/xpath-functions/#collations">defined by XPath</a> and identified by
         <code>http://www.w3.org/2005/xpath-functions/collation/codepoint</code>. This collation allows for string comparison based on code point values. Codepoint string equivalence can be tested
         with <span class="type RDFterm">RDF term</span> equivalence.</p>
-        <table summary="SPARQL Unary Operators" class="FAndOTable">
+        <table title="SPARQL Unary Operators" class="FAndOTable">
           <caption>
             SPARQL Unary Operators
           </caption>
@@ -3693,7 +3693,7 @@ WHERE { ?annot  a:annotates  &lt;http://www.w3.org/TR/rdf-sparql-query/&gt; .
             </tr>
           </tbody>
         </table>
-        <table summary="SPARQL Binary Operators" class="FAndOTable">
+        <table title="SPARQL Binary Operators" class="FAndOTable">
           <caption>
             SPARQL Binary Operators
           </caption>
@@ -5507,7 +5507,7 @@ SELECT ?name
 "type"><span class="type">simple literal</span></span> pattern, <span class="type"><span class="type">simple literal</span></span> replacement,  <span class="type"><span class=
 "type">simple literal</span></span> flags)</pre>
             <p>The <code>REPLACE</code> function corresponds to the XPath <a href="http://www.w3.org/TR/xpath-functions/#func-replace">fn:replace</a> function. It replaces each non-overlapping
-            occurrence of the regular expression <tt>pattern</tt> with the replacement string. Regular expession matching may involve modifier flags. See <a href="#func-regex">REGEX</a>.</p>
+            occurrence of the regular expression <code>pattern</code> with the replacement string. Regular expession matching may involve modifier flags. See <a href="#func-regex">REGEX</a>.</p>
             <div class="result">
               <table class="resultTable">
                 <tbody>
@@ -5959,7 +5959,7 @@ SELECT ?name
           <span class="rdfDM">IRI</span> = <span class="type IRI">IRI</span><br>
           <span class="rdfDM">ltrl</span> = <code>simple literal</code></p>
         </blockquote>
-        <table class="casting" summary="Casting table" cellpadding="1" border="1">
+        <table class="casting" title="Casting table" cellpadding="1" border="1">
           <colgroup>
             <col width="13%" span="1">
             <col width="11%" span="1">
@@ -5985,93 +5985,93 @@ SELECT ?name
           <tbody>
             <tr>
               <th><span class="cancast" title="string">str</span></th>
-              <td class="castY" valign="middle" align="center"><span class="cancast" title="Cast string to string? Yes">Y</span></td>
-              <td class="castM" valign="middle" align="center"><span class="cancast" title="Cast string to float? Maybe">M</span></td>
-              <td class="castM" valign="middle" align="center"><span class="cancast" title="Cast string to double? Maybe">M</span></td>
-              <td class="castM" valign="middle" align="center"><span class="cancast" title="Cast string to decimal? Maybe">M</span></td>
-              <td class="castM" valign="middle" align="center"><span class="cancast" title="Cast string to integer? Maybe">M</span></td>
-              <td class="castM" valign="middle" align="center"><span class="cancast" title="Cast string to dateTime? Maybe">M</span></td>
-              <td class="castM" valign="middle" align="center"><span class="cancast" title="Cast string to boolean? Maybe">M</span></td>
+              <td class="castY" style="vertical-align=middle; text-align=center;"><span class="cancast" title="Cast string to string? Yes">Y</span></td>
+              <td class="castM" style="vertical-align=middle; text-align=center;"><span class="cancast" title="Cast string to float? Maybe">M</span></td>
+              <td class="castM" style="vertical-align=middle; text-align=center;"><span class="cancast" title="Cast string to double? Maybe">M</span></td>
+              <td class="castM" style="vertical-align=middle; text-align=center;"><span class="cancast" title="Cast string to decimal? Maybe">M</span></td>
+              <td class="castM" style="vertical-align=middle; text-align=center;"><span class="cancast" title="Cast string to integer? Maybe">M</span></td>
+              <td class="castM" style="vertical-align=middle; text-align=center;"><span class="cancast" title="Cast string to dateTime? Maybe">M</span></td>
+              <td class="castM" style="vertical-align=middle; text-align=center;"><span class="cancast" title="Cast string to boolean? Maybe">M</span></td>
             </tr>
             <tr>
               <th><span class="cancast" title="float">flt</span></th>
-              <td class="castY" valign="middle" align="center"><span class="cancast" title="Cast float to string? Yes">Y</span></td>
-              <td class="castY" valign="middle" align="center"><span class="cancast" title="Cast float to float? Yes">Y</span></td>
-              <td class="castY" valign="middle" align="center"><span class="cancast" title="Cast float to double? Yes">Y</span></td>
-              <td class="castM" valign="middle" align="center"><span class="cancast" title="Cast float to decimal? Maybe">M</span></td>
-              <td class="castM" valign="middle" align="center"><span class="cancast" title="Cast float to integer? Maybe">M</span></td>
-              <td class="castN" valign="middle" align="center"><span class="cancast" title="Cast float to dateTime? No">N</span></td>
-              <td class="castY" valign="middle" align="center"><span class="cancast" title="Cast float to boolean? Yes">Y</span></td>
+              <td class="castY" style="vertical-align=middle; text-align=center;"><span class="cancast" title="Cast float to string? Yes">Y</span></td>
+              <td class="castY" style="vertical-align=middle; text-align=center;"><span class="cancast" title="Cast float to float? Yes">Y</span></td>
+              <td class="castY" style="vertical-align=middle; text-align=center;"><span class="cancast" title="Cast float to double? Yes">Y</span></td>
+              <td class="castM" style="vertical-align=middle; text-align=center;"><span class="cancast" title="Cast float to decimal? Maybe">M</span></td>
+              <td class="castM" style="vertical-align=middle; text-align=center;"><span class="cancast" title="Cast float to integer? Maybe">M</span></td>
+              <td class="castN" style="vertical-align=middle; text-align=center;"><span class="cancast" title="Cast float to dateTime? No">N</span></td>
+              <td class="castY" style="vertical-align=middle; text-align=center;"><span class="cancast" title="Cast float to boolean? Yes">Y</span></td>
             </tr>
             <tr>
               <th><span class="cancast" title="double">dbl</span></th>
-              <td class="castY" valign="middle" align="center"><span class="cancast" title="Cast double to string? Yes">Y</span></td>
-              <td class="castY" valign="middle" align="center"><span class="cancast" title="Cast double to float? Yes">Y</span></td>
-              <td class="castY" valign="middle" align="center"><span class="cancast" title="Cast double to double? Yes">Y</span></td>
-              <td class="castM" valign="middle" align="center"><span class="cancast" title="Cast double to decimal? Maybe">M</span></td>
-              <td class="castM" valign="middle" align="center"><span class="cancast" title="Cast double to integer? Maybe">M</span></td>
-              <td class="castN" valign="middle" align="center"><span class="cancast" title="Cast double to dateTime? No">N</span></td>
-              <td class="castY" valign="middle" align="center"><span class="cancast" title="Cast double to boolean? Yes">Y</span></td>
+              <td class="castY" style="vertical-align=middle; text-align=center;"><span class="cancast" title="Cast double to string? Yes">Y</span></td>
+              <td class="castY" style="vertical-align=middle; text-align=center;"><span class="cancast" title="Cast double to float? Yes">Y</span></td>
+              <td class="castY" style="vertical-align=middle; text-align=center;"><span class="cancast" title="Cast double to double? Yes">Y</span></td>
+              <td class="castM" style="vertical-align=middle; text-align=center;"><span class="cancast" title="Cast double to decimal? Maybe">M</span></td>
+              <td class="castM" style="vertical-align=middle; text-align=center;"><span class="cancast" title="Cast double to integer? Maybe">M</span></td>
+              <td class="castN" style="vertical-align=middle; text-align=center;"><span class="cancast" title="Cast double to dateTime? No">N</span></td>
+              <td class="castY" style="vertical-align=middle; text-align=center;"><span class="cancast" title="Cast double to boolean? Yes">Y</span></td>
             </tr>
             <tr>
               <th><span class="cancast" title="decimal">dec</span></th>
-              <td class="castY" valign="middle" align="center"><span class="cancast" title="Cast decimal to string? Yes">Y</span></td>
-              <td class="castY" valign="middle" align="center"><span class="cancast" title="Cast decimal to float? Yes">Y</span></td>
-              <td class="castY" valign="middle" align="center"><span class="cancast" title="Cast decimal to double? Yes">Y</span></td>
-              <td class="castY" valign="middle" align="center"><span class="cancast" title="Cast decimal to decimal? Yes">Y</span></td>
-              <td class="castY" valign="middle" align="center"><span class="cancast" title="Cast decimal to integer? Yes">Y</span></td>
-              <td class="castN" valign="middle" align="center"><span class="cancast" title="Cast decimal to dateTime? No">N</span></td>
-              <td class="castY" valign="middle" align="center"><span class="cancast" title="Cast decimal to boolean? Yes">Y</span></td>
+              <td class="castY" style="vertical-align=middle; text-align=center;"><span class="cancast" title="Cast decimal to string? Yes">Y</span></td>
+              <td class="castY" style="vertical-align=middle; text-align=center;"><span class="cancast" title="Cast decimal to float? Yes">Y</span></td>
+              <td class="castY" style="vertical-align=middle; text-align=center;"><span class="cancast" title="Cast decimal to double? Yes">Y</span></td>
+              <td class="castY" style="vertical-align=middle; text-align=center;"><span class="cancast" title="Cast decimal to decimal? Yes">Y</span></td>
+              <td class="castY" style="vertical-align=middle; text-align=center;"><span class="cancast" title="Cast decimal to integer? Yes">Y</span></td>
+              <td class="castN" style="vertical-align=middle; text-align=center;"><span class="cancast" title="Cast decimal to dateTime? No">N</span></td>
+              <td class="castY" style="vertical-align=middle; text-align=center;"><span class="cancast" title="Cast decimal to boolean? Yes">Y</span></td>
             </tr>
             <tr>
               <th><span class="cancast" title="integer">int</span></th>
-              <td class="castY" valign="middle" align="center"><span class="cancast" title="Cast integer to string? Yes">Y</span></td>
-              <td class="castY" valign="middle" align="center"><span class="cancast" title="Cast integer to float? Yes">Y</span></td>
-              <td class="castY" valign="middle" align="center"><span class="cancast" title="Cast integer to double? Yes">Y</span></td>
-              <td class="castY" valign="middle" align="center"><span class="cancast" title="Cast integer to decimal? Yes">Y</span></td>
-              <td class="castY" valign="middle" align="center"><span class="cancast" title="Cast integer to integer? Yes">Y</span></td>
-              <td class="castN" valign="middle" align="center"><span class="cancast" title="Cast integer to dateTime? No">N</span></td>
-              <td class="castY" valign="middle" align="center"><span class="cancast" title="Cast integer to boolean? Yes">Y</span></td>
+              <td class="castY" style="vertical-align=middle; text-align=center;"><span class="cancast" title="Cast integer to string? Yes">Y</span></td>
+              <td class="castY" style="vertical-align=middle; text-align=center;"><span class="cancast" title="Cast integer to float? Yes">Y</span></td>
+              <td class="castY" style="vertical-align=middle; text-align=center;"><span class="cancast" title="Cast integer to double? Yes">Y</span></td>
+              <td class="castY" style="vertical-align=middle; text-align=center;"><span class="cancast" title="Cast integer to decimal? Yes">Y</span></td>
+              <td class="castY" style="vertical-align=middle; text-align=center;"><span class="cancast" title="Cast integer to integer? Yes">Y</span></td>
+              <td class="castN" style="vertical-align=middle; text-align=center;"><span class="cancast" title="Cast integer to dateTime? No">N</span></td>
+              <td class="castY" style="vertical-align=middle; text-align=center;"><span class="cancast" title="Cast integer to boolean? Yes">Y</span></td>
             </tr>
             <tr>
               <th><span class="cancast" title="dateTime">dT</span></th>
-              <td class="castY" valign="middle" align="center"><span class="cancast" title="Cast dateTime to string? Yes">Y</span></td>
-              <td class="castN" valign="middle" align="center"><span class="cancast" title="Cast dateTime to float? No">N</span></td>
-              <td class="castN" valign="middle" align="center"><span class="cancast" title="Cast dateTime to double? No">N</span></td>
-              <td class="castN" valign="middle" align="center"><span class="cancast" title="Cast dateTime to decimal? No">N</span></td>
-              <td class="castN" valign="middle" align="center"><span class="cancast" title="Cast dateTime to integer? No">N</span></td>
-              <td class="castY" valign="middle" align="center"><span class="cancast" title="Cast dateTime to dateTime? Yes">Y</span></td>
-              <td class="castN" valign="middle" align="center"><span class="cancast" title="Cast dateTime to boolean? No">N</span></td>
+              <td class="castY" style="vertical-align=middle; text-align=center;"><span class="cancast" title="Cast dateTime to string? Yes">Y</span></td>
+              <td class="castN" style="vertical-align=middle; text-align=center;"><span class="cancast" title="Cast dateTime to float? No">N</span></td>
+              <td class="castN" style="vertical-align=middle; text-align=center;"><span class="cancast" title="Cast dateTime to double? No">N</span></td>
+              <td class="castN" style="vertical-align=middle; text-align=center;"><span class="cancast" title="Cast dateTime to decimal? No">N</span></td>
+              <td class="castN" style="vertical-align=middle; text-align=center;"><span class="cancast" title="Cast dateTime to integer? No">N</span></td>
+              <td class="castY" style="vertical-align=middle; text-align=center;"><span class="cancast" title="Cast dateTime to dateTime? Yes">Y</span></td>
+              <td class="castN" style="vertical-align=middle; text-align=center;"><span class="cancast" title="Cast dateTime to boolean? No">N</span></td>
             </tr>
             <tr>
               <th><span class="cancast" title="boolean">bool</span></th>
-              <td class="castY" valign="middle" align="center"><span class="cancast" title="Cast boolean to string? Yes">Y</span></td>
-              <td class="castY" valign="middle" align="center"><span class="cancast" title="Cast boolean to float? Yes">Y</span></td>
-              <td class="castY" valign="middle" align="center"><span class="cancast" title="Cast boolean to double? Yes">Y</span></td>
-              <td class="castY" valign="middle" align="center"><span class="cancast" title="Cast boolean to decimal? Yes">Y</span></td>
-              <td class="castY" valign="middle" align="center"><span class="cancast" title="Cast boolean to integer? Yes">Y</span></td>
-              <td class="castN" valign="middle" align="center"><span class="cancast" title="Cast boolean to dateTime? No">N</span></td>
-              <td class="castY" valign="middle" align="center"><span class="cancast" title="Cast boolean to boolean? Yes">Y</span></td>
+              <td class="castY" style="vertical-align=middle; text-align=center;"><span class="cancast" title="Cast boolean to string? Yes">Y</span></td>
+              <td class="castY" style="vertical-align=middle; text-align=center;"><span class="cancast" title="Cast boolean to float? Yes">Y</span></td>
+              <td class="castY" style="vertical-align=middle; text-align=center;"><span class="cancast" title="Cast boolean to double? Yes">Y</span></td>
+              <td class="castY" style="vertical-align=middle; text-align=center;"><span class="cancast" title="Cast boolean to decimal? Yes">Y</span></td>
+              <td class="castY" style="vertical-align=middle; text-align=center;"><span class="cancast" title="Cast boolean to integer? Yes">Y</span></td>
+              <td class="castN" style="vertical-align=middle; text-align=center;"><span class="cancast" title="Cast boolean to dateTime? No">N</span></td>
+              <td class="castY" style="vertical-align=middle; text-align=center;"><span class="cancast" title="Cast boolean to boolean? Yes">Y</span></td>
             </tr>
             <tr>
               <th><span class="cancast rdfDM" title="IRI">IRI</span></th>
-              <td class="castY" valign="middle" align="center"><span class="cancast rdfDM" title="Cast IRI to string? Yes">Y</span></td>
-              <td class="castN" valign="middle" align="center"><span class="cancast rdfDM" title="Cast IRI to float? No">N</span></td>
-              <td class="castN" valign="middle" align="center"><span class="cancast rdfDM" title="Cast IRI to double? No">N</span></td>
-              <td class="castN" valign="middle" align="center"><span class="cancast rdfDM" title="Cast IRI to decimal? No">N</span></td>
-              <td class="castN" valign="middle" align="center"><span class="cancast rdfDM" title="Cast IRI to integer? No">N</span></td>
-              <td class="castN" valign="middle" align="center"><span class="cancast rdfDM" title="Cast IRI to dateTime? No">N</span></td>
-              <td class="castN" valign="middle" align="center"><span class="cancast rdfDM" title="Cast IRI to boolean? No">N</span></td>
+              <td class="castY" style="vertical-align=middle; text-align=center;"><span class="cancast rdfDM" title="Cast IRI to string? Yes">Y</span></td>
+              <td class="castN" style="vertical-align=middle; text-align=center;"><span class="cancast rdfDM" title="Cast IRI to float? No">N</span></td>
+              <td class="castN" style="vertical-align=middle; text-align=center;"><span class="cancast rdfDM" title="Cast IRI to double? No">N</span></td>
+              <td class="castN" style="vertical-align=middle; text-align=center;"><span class="cancast rdfDM" title="Cast IRI to decimal? No">N</span></td>
+              <td class="castN" style="vertical-align=middle; text-align=center;"><span class="cancast rdfDM" title="Cast IRI to integer? No">N</span></td>
+              <td class="castN" style="vertical-align=middle; text-align=center;"><span class="cancast rdfDM" title="Cast IRI to dateTime? No">N</span></td>
+              <td class="castN" style="vertical-align=middle; text-align=center;"><span class="cancast rdfDM" title="Cast IRI to boolean? No">N</span></td>
             </tr>
             <tr>
               <th><span class="cancast rdfDM" title="Literal">ltrl</span></th>
-              <td class="castY" valign="middle" align="center"><span class="cancast rdfDM" title="Cast Literal to string? Yes">Y</span></td>
-              <td class="castM" valign="middle" align="center"><span class="cancast rdfDM" title="Cast Literal to float? No">M</span></td>
-              <td class="castM" valign="middle" align="center"><span class="cancast rdfDM" title="Cast Literal to double? No">M</span></td>
-              <td class="castM" valign="middle" align="center"><span class="cancast rdfDM" title="Cast Literal to decimal? No">M</span></td>
-              <td class="castM" valign="middle" align="center"><span class="cancast rdfDM" title="Cast Literal to integer? No">M</span></td>
-              <td class="castM" valign="middle" align="center"><span class="cancast rdfDM" title="Cast Literal to dateTime? No">M</span></td>
-              <td class="castM" valign="middle" align="center"><span class="cancast rdfDM" title="Cast Literal to boolean? No">M</span></td>
+              <td class="castY" style="vertical-align=middle; text-align=center;"><span class="cancast rdfDM" title="Cast Literal to string? Yes">Y</span></td>
+              <td class="castM" style="vertical-align=middle; text-align=center;"><span class="cancast rdfDM" title="Cast Literal to float? No">M</span></td>
+              <td class="castM" style="vertical-align=middle; text-align=center;"><span class="cancast rdfDM" title="Cast Literal to double? No">M</span></td>
+              <td class="castM" style="vertical-align=middle; text-align=center;"><span class="cancast rdfDM" title="Cast Literal to decimal? No">M</span></td>
+              <td class="castM" style="vertical-align=middle; text-align=center;"><span class="cancast rdfDM" title="Cast Literal to integer? No">M</span></td>
+              <td class="castM" style="vertical-align=middle; text-align=center;"><span class="cancast rdfDM" title="Cast Literal to dateTime? No">M</span></td>
+              <td class="castM" style="vertical-align=middle; text-align=center;"><span class="cancast rdfDM" title="Cast Literal to boolean? No">M</span></td>
             </tr>
           </tbody>
         </table>
@@ -6226,7 +6226,7 @@ extend the syntaxes to allow literals as the subjects of statements."</pre>
           <p>A property path does not span multiple graphs in a dataset.</p>
           <div class="defn">
             <b>Definition: <a id="defn_PropertyPathExpr" name="defn_PropertyPathExpr">Property Path Expression</a></b>
-            <p>A property path expression is an expression using the property path forms <a href="">described above</a>.</p>
+            <p>A property path expression is an expression using the property path forms described above.</p>
           </div>
           <div class="defn">
             <b>Definition: <a id="defn_PropertyPathPattern" name="defn_PropertyPathPattern">Property Path Pattern</a></b>
@@ -6285,7 +6285,7 @@ extend the syntaxes to allow literals as the subjects of statements."</pre>
       <div class="div2">
         <h3><a name="sparqlQuery" id="sparqlQuery"></a>18.2 Translation to the SPARQL Algebra</h3>
         <p>This section defines the process of converting graph patterns and solution modifiers in a SPARQL query string into a SPARQL algebra expression. The process described converts one level of
-        query nesting, as formed by subqueries using the nested <tt>SELECT</tt> syntax and is applied recursively on subqueries. Each level consists of graph pattern matching and filtering, followed
+        query nesting, as formed by subqueries using the nested <code>SELECT</code> syntax and is applied recursively on subqueries. Each level consists of graph pattern matching and filtering, followed
         by the application of solution modifiers.</p>
         <p>The SPARQL query string is parsed and the abbreviations for IRIs and triple patterns given in <a href="#sparqlSyntax">section 4</a> are applied. At this point the abstract syntax tree is
         composed of:</p>
@@ -6510,7 +6510,7 @@ extend the syntaxes to allow literals as the subjects of statements."</pre>
               </tr>
             </tbody>
           </table>
-          <p>The variable <tt>v</tt> must not be in-scope at the point of the <code>(expr AS v)</code> form. The scoping for <code>(expr AS v)</code> applies immediately in <code>SELECT</code>
+          <p>The variable <code>v</code> must not be in-scope at the point of the <code>(expr AS v)</code> form. The scoping for <code>(expr AS v)</code> applies immediately in <code>SELECT</code>
           expressions.</p>
           <p>In <code>BIND (expr AS v)</code> requires that the variable <code>v</code> is not in-scope from the preceeding elements in the group graph pattern in which it is used.</p>
           <p>In <code>SELECT</code>, the variable <code>v</code> must not be in-scope in the graph pattern of the <code>SELECT</code> clause, nor used in another select expression earlier in the
@@ -6572,7 +6572,7 @@ For each form FILTER(expr) in the group graph pattern:
             <p>The following table gives the translation of property paths expressions from SPARQL syntax to terms in the SPARQL algebra. This applies to all elements of a property path expression
             recursively.</p>
             <p>The <a href="#sparqlTranslatePathPatterns">next step after this one</a> translates certain forms to triple patterns, and these are converted later to basic graph patterns by adjacency
-            (without intervening group pattern delimiters <tt>{</tt> and <tt>})</tt> or other syntax forms. Overall, SPARQL syntax property paths of just an IRI become triple patterns and these are
+            (without intervening group pattern delimiters <code>{</code> and <code>})</code> or other syntax forms. Overall, SPARQL syntax property paths of just an IRI become triple patterns and these are
             aggregated into basic graph patterns.</p>
             <p>Notes:</p>
             <ul>
@@ -7316,7 +7316,7 @@ The set PV is used later for projection.
           <p>nodes(G) = { n | n is an RDF term that is used as a subject or object of a triple of G}</p>
         </div>
         <div class="defn">
-          <p><b>Definition: <a id="defn_evalPP_ZeroOrOnePath">Evaluation of ZeroOrOnePath</a></b></p>
+          <p><b>Definition: <a name="defn_evalPP_ZeroOrOnePath" id="defn_evalPP_ZeroOrOnePath">Evaluation of ZeroOrOnePath</a></b></p>
           <pre>eval(Path(X:term, ZeroOrOnePath(P), Y:var)) = { (Y, yn) | yn = X or {(Y, yn)} in eval(Path(X,P,Y)) }</pre>
           <pre>eval(Path(X:var, ZeroOrOnePath(P), Y:term)) = { (X, xn) | xn = Y or {(X, xn)} in eval(Path(X,P,Y)) }</pre>
           <pre>eval(Path(X:term, ZeroOrOnePath(P), Y:term)) = 
@@ -7329,7 +7329,7 @@ The set PV is used later for projection.
         free to implement evaluation by any method that produces the same results for the query overall. The ZeroOrMorePath and OneOrMorePath forms return matches based on distinct nodes connected by
         the path.</p>
         <p>The matching algorithm is based on following all paths, and detecting when a graph node (subject or object), has been already visited on the path.</p>
-        <p>Informally, this algorithm attempts to extend the multiset of results by one application of <tt>path</tt> at each step, noting which nodes it has visited for this particular path. If a
+        <p>Informally, this algorithm attempts to extend the multiset of results by one application of <code>path</code> at each step, noting which nodes it has visited for this particular path. If a
         node has been visited for the path under consideration, it is not a candidate for another step.</p>
         <div class="defn">
           <p><b>Definition: <a name="defn_evalALP_1" id="defn_evalALP_1">Function ALP</a></b></p>
@@ -7918,7 +7918,7 @@ _:x rdf:type xsd:decimal .</pre>
         <h3><a name="codepointEscape" id="codepointEscape"></a>19.2 Codepoint Escape Sequences</h3>
         <p>A SPARQL Query String is processed for codepoint escape sequences before parsing by the grammar defined in EBNF below. The codepoint escape sequences for a SPARQL query string
         are:</p><a name="table68" id="table68"></a>
-        <table summary="Codepoint escapes">
+        <table title="Codepoint escapes">
           <colgroup span="1">
             <col width="40%" span="1">
           </colgroup>
@@ -8002,7 +8002,7 @@ a\u003Ab            # a:b -- codepoint x3A is colon</pre>
         <p>In addition to the <a href="#codepointEscape">codepoint escape sequences</a>, the following escape sequences any <code><a href="#rString">string</a></code> production (e.g. <code><a href=
         "#rSTRING_LITERAL1">STRING_LITERAL1</a></code>, <code><a href="#rSTRING_LITERAL2">STRING_LITERAL2</a></code>, <code><a href="#rSTRING_LITERAL_LONG1">STRING_LITERAL_LONG1</a></code>,
         <code><a href="#rSTRING_LITERAL_LONG2">STRING_LITERAL_LONG2</a></code>):</p>
-        <table summary="String escapes">
+        <table title="String escapes">
           <colgroup span="1">
             <col width="40%" span="1">
           </colgroup>
@@ -8078,7 +8078,7 @@ a\u003Ab            # a:b -- codepoint x3A is colon</pre>
           <code><a href="#rGroupGraphPattern">GroupGraphPattern</a></code>.</li>
           <li>Aggregate functions can be one of the <a href="#rAggregate">built-in keywords for aggregates</a> or a custom aggregate, which is syntactically a <a href="#rFunctionCall">function
           call</a>. Aggregate functions may only be used in <a href="#rSelectClause">SELECT</a>, <a href="#rHavingClause">HAVING</a> and <a href="#rOrderClause">ORDER BY</a> clauses.</li>
-          <li>Only custom aggregate functions use the <tt>DISTINCT</tt> keyword in a <a href="#rFunctionCall">function call</a>.</li>
+          <li>Only custom aggregate functions use the <code>DISTINCT</code> keyword in a <a href="#rFunctionCall">function call</a>.</li>
         </ol>
         <div class="grammarTable">
           <table>
@@ -9290,7 +9290,7 @@ a\u003Ab            # a:b -- codepoint x3A is colon</pre>
     </div>
     <div class="div1">
       <h2><a name="mediaType" id="mediaType"></a>22 Internet Media Type, File Extension and Macintosh File Type</h2>
-      <p>The Internet Media Type / MIME Type for the SPARQL Query Language is "<tt>application/sparql-query</tt>".</p>
+      <p>The Internet Media Type / MIME Type for the SPARQL Query Language is "<code>application/sparql-query</code>".</p>
       <p>It is recommended that sparql query files have the extension ".rq" (lowercase) on all platforms.</p>
       <p>It is recommended that sparql query files stored on Macintosh HFS file systems be given a file type of "TEXT".</p>
       <div class="mime">
@@ -9335,8 +9335,6 @@ a\u003Ab            # a:b -- codepoint x3A is colon</pre>
         </dl>
       </div>
     </div>
-  </div>
-  
     <div class="div1">
       <h2><a name="sec-bibliography" id="sec-bibliography"></a>A References</h2>
       <div class="div2">
@@ -9435,10 +9433,10 @@ a\u003Ab            # a:b -- codepoint x3A is colon</pre>
           <dd><a href="http://www.unicode.org/reports/tr36/">Unicode Security Considerations</a>, Mark Davis, Michel Suignard</dd>
           <dt><a id="VCARD" name="VCARD">[VCARD]</a></dt>
           <dd><a href="http://www.w3.org/TR/2001/NOTE-vcard-rdf-20010222/">Representing vCard Objects in RDF/XML</a>, Renato Iannella, W3C Note, 22 February 2001,
-          http://www.w3.org/TR/2001/NOTE-vcard-rdf-20010222/ . <a href="http://www.w3.org/TR/vcard-rdf">Latest version</a> is available at <tt>http://www.w3.org/TR/vcard-rdf</tt> .</dd>
+          http://www.w3.org/TR/2001/NOTE-vcard-rdf-20010222/ . <a href="http://www.w3.org/TR/vcard-rdf">Latest version</a> is available at <code>http://www.w3.org/TR/vcard-rdf</code> .</dd>
           <dt><a name="WEBARCH" id="WEBARCH">[WEBARCH]</a></dt>
           <dd><a href="http://www.w3.org/TR/2004/REC-webarch-20041215/">Architecture of the World Wide Web, Volume One</a>, I. Jacobs, N. Walsh, Editors, W3C Recommendation, 15 December 2004,
-          http://www.w3.org/TR/2004/REC-webarch-20041215/ . <a href="http://www.w3.org/TR/webarch/">Latest version</a> is available at <tt>http://www.w3.org/TR/webarch/</tt> .</dd>
+          http://www.w3.org/TR/2004/REC-webarch-20041215/ . <a href="http://www.w3.org/TR/webarch/">Latest version</a> is available at <code>http://www.w3.org/TR/webarch/</code> .</dd>
           <dt><a name="UNIID" id="UNIID">[UNIID]</a></dt>
           <dd><a href="http://www.unicode.org/reports/tr31/tr31-5.html">Identifier and Pattern Syntax 4.1.0</a>, Mark Davis, Unicode Standard Annex #31, 25 March 2005,
           http://www.unicode.org/reports/tr31/tr31-5.html . <a href="http://www.unicode.org/reports/tr31/" title="Latest version of Identifier and Pattern Syntax">Latest version</a> available at

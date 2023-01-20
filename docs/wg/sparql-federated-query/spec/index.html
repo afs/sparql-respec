@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-<html>
   <head>
     <meta charset="utf-8" />
     <title>SPARQL 1.2 Federated Query</title>
@@ -112,6 +111,25 @@
         update of specifications for format and errata.
       </p>
     </section>
+
+    <section id="sparql12-documents" class="introductory">
+      <h2>SPARQL 1.2 Documents</h2>
+      <ul>
+        <li><a href="../../sparql-new/spec/index.html">SPARQL 1.2 New</a></li>
+        <li><a href="../../sparql-concepts/spec/index.html">SPARQL 1.2 Overview</a></li>
+        <li><a href="../../sparql-query/spec/index.html">SPARQL 1.2 Query Language</a></li>
+        <li><a href="../../sparql-update/spec/index.html">SPARQL 1.2 Update</a></li>
+        <li><a href="../../sparql-entailment/spec/index.html">SPARQL 1.2 Entailment Regimes</a></li>
+        <li><a href="../../sparql-service-description/spec/index.html">SPARQL 1.2 Service Description</a></li>
+        <li><a href="../../sparql-federated-query/spec/index.html">SPARQL 1.2 Federated Query</a></li>
+        <li><a href="../../sparql-results-json/spec/index.html">SPARQL 1.2 Query Results JSON Format</a></li>
+        <li><a href="../../sparql-results-csv-tsv/spec/index.html">SPARQL 1.2 Query Results CSV and TSV Formats</a></li>
+        <li><a href="../../sparql-results-xml/spec/index.html">SPARQL 1.2 Query Results XML Format</a></li>
+        <li><a href="../../sparql-graph-store-protocol/spec/index.html">SPARQL 1.2 Graph Store Protocol</a></li>
+        <li><a href="../../sparql-protocol/spec/index.html">SPARQL 1.2 Protocol</a></li>
+      </ul>
+    </section>
+    
 <!-- BODY -->
     <section id="introduction">
       <h2>Introduction</h2>
@@ -128,7 +146,7 @@
           <h4>Result Descriptions</h4>
           <p>Result sets are illustrated in tabular form as in the <a class="inform" href="http://www.w3.org/TR/2011/WD-sparql11-query-20110512/#docResultDesc">SPARQL 1.1 Query document</a>.</p>
           <div class="result">
-            <div name="table39" id="table39"></div>
+            <span class="doc-ref" id="table39"></span>
             <table class="resultTable">
               <tbody>
                 <tr>
@@ -192,7 +210,7 @@ WHERE
             <p>This query, on the data above, has one solution:</p>
             <p>Query Result:</p>
             <div class="result">
-              <div name="table1" id="table1"></div>
+              <span class="doc-ref" id="table1"></span>
               <table class="resultTable">
                 <tbody>
                   <tr>
@@ -248,7 +266,7 @@ WHERE
             <p>This query, on the data above, has three solutions:</p>
             <p>Query Result:</p>
             <div class="result">
-              <div name="table03" id="table03"></div>
+              <span class="doc-ref" id="table03"></span>
               <table class="resultTable">
                 <tbody>
                   <tr>
@@ -301,7 +319,7 @@ WHERE
 }</pre>
             <p>Query result if an error occurs while querying the remote SPARQL endpoint:</p>
             <div class="result">
-              <div name="table2" id="table2"></div>
+              <span class="doc-ref" id="table2"></span>
               <table class="resultTable">
                 <tbody>
                   <tr>
@@ -373,7 +391,7 @@ SELECT ?s
           <p>This query, on the data above, has two solutions:</p>
           <p>Query Result:</p>
           <div class="result">
-            <div name="table04a" id="table04a"></div>
+            <span class="doc-ref" id="table04a"></span>
             <table class="resultTable">
               <tbody>
                 <tr>
@@ -406,7 +424,7 @@ SELECT ?s ?o
           <p>This query, on the data above using <code>VALUES</code>, has the expected two solutions to the overall query:</p>
           <p>Query Result:</p>
           <div class="result">
-            <div name="table04b" id="table04b"></div>
+            <span class="doc-ref" id="table04b"></span>
             <table class="resultTable">
               <tbody>
                 <tr>
@@ -489,7 +507,7 @@ The result is G.
         <p>The evaluation of <code>SERVICE</code> is defined in terms of the <a class="inform" href="http://www.w3.org/TR/rdf-sparql-XMLres/">SPARQL Results</a> [<a href="#RESULTS">RESULTS</a>]
         returned by a SPARQL Protocol [<a href="#SPROT">SPROT</a>] execution of the nested graph pattern:</p>
         <div class="defn">
-          <p><strong>Definition: <div id="defn_evalService" name="defn_evalService">Evaluation of a Service Pattern</div></strong></p>Let
+          <p><strong>Definition: <span class="doc-ref" id="defn_evalService">Evaluation of a Service Pattern</span></strong></p>Let
           <ul>
             <li>iri be an IRI,</li>
             <li><code>Ω<sub>0</sub></code> the solution set with one empty solution, and</li>
@@ -585,7 +603,7 @@ WHERE {
         <p>In the following table we present the intuitive solutions for this query with the data above:</p>
         <p>Query Result:</p>
         <div class="result">
-          <div name="tableResultsVarEndpoint" id="tableResultsVarEndpoint"></div>
+          <span class="doc-ref" id="tableResultsVarEndpoint"></span>
           <table class="resultTable">
             <tbody>
               <tr>
@@ -636,51 +654,49 @@ WHERE {
       "http://www.w3.org/TR/sparql11-query/#security-original">SPARQL 1.1 Query</a> [<a href="#SQRY">SQRY</a>] Section 21, and <a class="norm" href="http://www.ietf.org/rfc/rfc3986.txt">Uniform Resource
       Identifier (URI): Generic Syntax</a> [<a href="#rfc3986">RFC3986</a>] Section 7 should be considered.</p>
     </section>
-</section>
-  
     <section id="sec-bibliography">
       <h2>References</h2>
       <section id="sec-normative-refs">
         <h3>Normative References</h3>
         <dl class="bib">
-          <dt><div id="SQRY" name="SQRY">[SQRY]</div></dt>
+          <dt><span class="doc-ref" id="SQRY">[SQRY]</span></dt>
           <dd><cite><a href="http://www.w3.org/TR/2013/REC-sparql11-query-20130321">SPARQL 1.1 Query Language</a></cite>, S. Harris, A. Seaborne, Editors, W3C Recommendation, 21 March 2013,
           http://www.w3.org/TR/2013/REC-sparql11-query-20130321. <a href="http://www.w3.org/TR/sparql11-query/" title="Latest version of SPARQL 1.1 Query Language">Latest version</a> available at
           http://www.w3.org/TR/sparql11-query.</dd>
-          <dt><div id="SPROT" name="SPROT">[SPROT]</div></dt>
+          <dt><span class="doc-ref" id="SPROT">[SPROT]</span></dt>
           <dd><cite><a href="http://www.w3.org/TR/2013/REC-sparql11-protocol-20130321">SPARQL 1.1 Protocol</a></cite>, L. Feigenbaum, G. Williams, K. Clark, E. Torres, Editors, W3C Recommendation, 21
           March 2013, http://www.w3.org/TR/2013/REC-sparql11-protocol-20130321. <a href="http://www.w3.org/TR/sparql11-protocol/" title="Latest version of SPARQL 1.1 Protocol">Latest version</a>
           available at http://www.w3.org/TR/sparql11-protocol.</dd>
-          <dt><div name="CHARMOD" id="CHARMOD">[CHARMOD]</div></dt>
+          <dt><span class="doc-ref" id="CHARMOD">[CHARMOD]</span></dt>
           <dd>Character Model for the World Wide Web 1.0: Fundamentals, R. Ishida, F. Yergeau, M. J. Düst, M. Wolf, T. Texin, Editors, W3C Recommendation, 15 February 2005,
           http://www.w3.org/TR/2005/REC-charmod-20050215/ . <a href="http://www.w3.org/TR/charmod/" title="Latest version of Character Model for the World Wide Web 1.0: Fundamentals">Latest
           version</a> available at http://www.w3.org/TR/charmod/ .</dd>
-          <dt><div name="rfc3629" id="rfc3629">[RFC3629]</div></dt>
+          <dt><span class="doc-ref" id="rfc3629">[RFC3629]</span></dt>
           <dd>RFC 3629 UTF-8, a transformation format of ISO 10646, F. Yergeau November 2003</dd>
-          <dt><div name="rfc3986" id="rfc3986">[RFC3986]</div></dt>
+          <dt><span class="doc-ref" id="rfc3986">[RFC3986]</span></dt>
           <dd>RFC 3986 Uniform Resource Identifier (URI): Generic Syntax, T. Berners-Lee, R. Fielding, L. Masinter January 2005</dd>
-          <dt><div name="rfc3987" id="rfc3987">[RFC3987]</div></dt>
+          <dt><span class="doc-ref" id="rfc3987">[RFC3987]</span></dt>
           <dd><a href="http://www.ietf.org/rfc/rfc3987.txt">RFC 3987</a>, "Internationalized Resource Identifiers (IRIs)", M. Dürst , M. Suignard</dd>
-          <dt><div name="UNICODE" id="UNICODE">[UNICODE]</div></dt>
+          <dt><span class="doc-ref" id="UNICODE">[UNICODE]</span></dt>
           <dd>The Unicode Standard, Version 4. ISBN 0-321-18578-1, as updated from time to time by the publication of new versions. The latest version of Unicode and additional information on
           versions of the standard and of the Unicode Character Database is available at <a href=
           "http://www.unicode.org/unicode/standard/versions/">http://www.unicode.org/unicode/standard/versions/</a>.</dd>
-          <dt><div name="XML11" id="XML11">[XML11]</div></dt>
+          <dt><span class="doc-ref" id="XML11">[XML11]</span></dt>
           <dd>Extensible Markup Language (XML) 1.1, J. Cowan, J. Paoli, E. Maler, C. M. Sperberg-McQueen, F. Yergeau, T. Bray, Editors, W3C Recommendation, 4 February 2004,
           http://www.w3.org/TR/2004/REC-xml11-20040204/ . <a href="http://www.w3.org/TR/xml11/" title="Latest version of Extensible Markup Language (XML) 1.1">Latest version</a> available at
           http://www.w3.org/TR/xml11/ .</dd>
-          <dt><div name="BCP47" id="BCP47">[BCP47]</div></dt>
+          <dt><span class="doc-ref" id="BCP47">[BCP47]</span></dt>
           <dd>Best Common Practice 47, P. V. Biron, A. Malhotra, Editors, W3C Recommendation, 28 October 2004, http://www.rfc-editor.org/rfc/bcp/bcp47.txt .</dd>
         </dl>
       </section>
       <section id="sec-non-normative-refs">
         <h3>Other References</h3>
         <dl class="bib">
-          <dt><div name="RESULTS" id="RESULTS">[RESULTS]</div></dt>
+          <dt><span class="doc-ref" id="RESULTS">[RESULTS]</span></dt>
           <dd><cite><a href="http://www.w3.org/TR/2013/REC-rdf-sparql-XMLres-20130321">SPARQL Query Results XML Format (Second Edition)</a></cite>, D. Beckett, J. Broekstra, Editors, W3C
           Recommendation, 21 March 2013, http://www.w3.org/TR/2013/REC-rdf-sparql-XMLres-20130321. <a href="http://www.w3.org/TR/rdf-sparql-XMLres/" title=
           "Latest version of SPARQL Query Results XML Format (Second Edition)">Latest version</a> available at http://www.w3.org/TR/rdf-sparql-XMLres.</dd>
-          <dt><div name="TURTLE" id="TURTLE">[TURTLE]</div></dt>
+          <dt><span class="doc-ref" id="TURTLE">[TURTLE]</span></dt>
           <dd><cite><a href="http://www.w3.org/TR/2013/CR-turtle-20130219/">Turtle: Terse RDF Triple Language</a></cite>, E Prud'hommeaux, G Carothers, Editors, W3C Candidate Recommendation, 19
           February 2013, http://www.w3.org/TR/2013/CR-turtle-20130219/. <a href="http://www.w3.org/TR/turtle/" title="Latest version of Turtle">Latest version</a> available at
           http://www.w3.org/TR/turtle/.</dd>
@@ -718,8 +734,6 @@ WHERE {
       <h2>Change Log</h2>
       <p>TODO</p>
     </section>   
-
-  </div>
 
   </body>
 </html>

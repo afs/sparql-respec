@@ -322,7 +322,8 @@ INSERT DATA
           <p>If the <code>DELETE</code> clause is omitted, then the operation only inserts data (see <code><a href="#insert">INSERT</a></code>). If the <code>INSERT</code> clause is omitted, then the
           operation only removes data (see <code><a href="#delete">DELETE</a></code>). The grammar does not permit both <code>DELETE</code> and <code>INSERT</code> to be omitted in the same
           operation.</p>
-          <p>The <a id="defUSING"><code>USING</code></a> and <code>USING NAMED</code> clauses affect the <a href="http://www.w3.org/TR/sparql11-query/#rdfDataset">RDF Dataset</a> used while
+          <p>The <code><span class="doc-ref" id="defUSING">USING</span></code> and
+<code><span class="doc-ref" id="defUSINGNAMED">USING NAMED</span></code> clauses affect the <a href="http://www.w3.org/TR/sparql11-query/#rdfDataset">RDF Dataset</a> used while
           evaluating the <code>WHERE</code> clause. This describes a dataset in the same way as <code>FROM</code> and <code>FROM NAMED</code> clauses describe <a href=
           "http://www.w3.org/TR/sparql11-query/#specifyingDataset">RDF Datasets in the SPARQL 1.1 Query Language</a>. The keyword <code>USING</code> instead of <code>FROM</code> in update requests is
           to avoid possible ambiguities which could arise from writing "<code>DELETE FROM</code>". That is, the <a href=
@@ -1332,8 +1333,6 @@ _:b a foaf:Person .
       <p>This specification is intended for use in conjunction with: the <a href="http://www.w3.org/TR/sparql11-http-rdf-update/">SPARQL 1.1 Graph Store HTTP Protocol</a> and the <a href=
       "http://www.w3.org/TR/sparql11-protocol/">SPARQL 1.1 Protocol for RDF</a>.</p>
     </div>
-  </div>
-  
     <div class="div1">
       <h2><a name="security" id="security-original"></a>A Security Considerations (Informative)</h2>
       <p>Exposing RDF data for update creates many security issues which all deployments must be aware of, and consider the risks involved. This submission discusses some of the potential issues. New

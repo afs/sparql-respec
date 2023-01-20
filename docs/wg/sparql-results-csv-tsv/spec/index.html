@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-<html>
   <head>
     <meta charset="utf-8" />
     <title>SPARQL 1.2 Query Results CSV and TSV Formats</title>
@@ -111,9 +110,28 @@
         update of specifications for format and errata.
       </p>
     </section>
+
+    <section id="sparql12-documents" class="introductory">
+      <h2>SPARQL 1.2 Documents</h2>
+      <ul>
+        <li><a href="../../sparql-new/spec/index.html">SPARQL 1.2 New</a></li>
+        <li><a href="../../sparql-concepts/spec/index.html">SPARQL 1.2 Overview</a></li>
+        <li><a href="../../sparql-query/spec/index.html">SPARQL 1.2 Query Language</a></li>
+        <li><a href="../../sparql-update/spec/index.html">SPARQL 1.2 Update</a></li>
+        <li><a href="../../sparql-entailment/spec/index.html">SPARQL 1.2 Entailment Regimes</a></li>
+        <li><a href="../../sparql-service-description/spec/index.html">SPARQL 1.2 Service Description</a></li>
+        <li><a href="../../sparql-federated-query/spec/index.html">SPARQL 1.2 Federated Query</a></li>
+        <li><a href="../../sparql-results-json/spec/index.html">SPARQL 1.2 Query Results JSON Format</a></li>
+        <li><a href="../../sparql-results-csv-tsv/spec/index.html">SPARQL 1.2 Query Results CSV and TSV Formats</a></li>
+        <li><a href="../../sparql-results-xml/spec/index.html">SPARQL 1.2 Query Results XML Format</a></li>
+        <li><a href="../../sparql-graph-store-protocol/spec/index.html">SPARQL 1.2 Graph Store Protocol</a></li>
+        <li><a href="../../sparql-protocol/spec/index.html">SPARQL 1.2 Protocol</a></li>
+      </ul>
+    </section>
+    
 <!-- BODY -->
     <section id="introduction">
-      <h2>Introduction</h2>
+    <h2>Introduction</h2>
     <p>This document describes CSV and TSV formats for expressing the results of a SPARQL <code>SELECT</code> query. They provide lowest common denominator formats between systems using different
     implementation technologies.</p>
     <p>Other formats for expression SPARQL results are the SPARQL XML Results Format [<cite><a class="bibref" rel="biblioentry" href="#bib-RDF-SPARQL-XMLRES">RDF-SPARQL-XMLRES</a></cite>] and SPARQL
@@ -131,6 +149,8 @@
     "rfc2119" title="should not">should not</em>, <em class="rfc2119" title="may">may</em> and <em class="rfc2119" title="recommended">recommended</em>, they must be interpreted as described in RFC
     2119 [<cite><a class="bibref" rel="biblioentry" href="#bib-RFC2119">RFC2119</a></cite>].</p>
 
+      <section id="example1">
+      <h3>Example</h3>
       <p>The following artificial example is used to illustrate the features of serializing results in each format.</p>
       <table class="result">
         <tbody>
@@ -183,47 +203,49 @@
       </table>
       </section>
     </section>
-    
     <section id="general-comments">
     <h2>Transmission issues using CSV and TSV Formats</h2>
     <p>The SPARQL results formats described here confirm to the formal specifications of the relevant formats, Comma Separated values (CSV) [<cite><a class="bibref" rel="biblioentry" href=
     "#bib-RFC4180">RFC4180</a></cite>] and Tab Separated Value (TSV) [<cite><a class="bibref" rel="biblioentry" href="#bib-IANA-TSV">IANA-TSV</a></cite>].</p>
-    <p>Systems providing these formats should note that the content types for CSV is <tt>text/csv</tt> and for TSV <tt>text/tab-separated-values</tt>. Being <tt>text/*</tt>, the default character set
-    is US-ASCII. The <tt>charset</tt> parameter <em class="rfc2119" title="should">should</em> be used in conjunction with SPARQL Results; UTF-8 is recommended: <tt>text/csv; charset=utf-8</tt> and
-    <tt>text/tab-separated-values; charset=utf-8</tt>.</p>
-    <p>The end-of-line in CSV is <tt>CRLF</tt> i.e. Unicode codepoints 13 (0x0D) and 10 (0x0A).</p>
-    <p>The end-of-line in TSV is <tt>EOL</tt> i.e. Unicode codepoint 10 (0x0A).</p>
+    <p>Systems providing these formats should note that the content types for CSV is <code>/text/csv</code> and for TSV <code>/text/tab-separated-values</code>. Being <code>/text/*</code>, the default character set
+    is US-ASCII. The <code>/charset</code> parameter <em class="rfc2119" title="should">should</em> be used in conjunction with SPARQL Results; UTF-8 is recommended: <code>/text/csv; charset=utf-8</code> and
+    <code>/text/tab-separated-values; charset=utf-8</code>.</p>
+    <p>The end-of-line in CSV is <code>/CRLF</code> i.e. Unicode codepoints 13 (0x0D) and 10 (0x0A).</p>
+    <p>The end-of-line in TSV is <code>/EOL</code> i.e. Unicode codepoint 10 (0x0A).</p>
     <p>Applications reading these formats are advised to cope with both CRLF and LF as end of line markers and not rely on conformance to the formal specifications.</p>
     </section>
-
-    <section id="csv">
+    
+    <section id="csv-table">
     <h2>CSV - Comma Separated values</h2>
     <p>In the SPARQL Results CSV Format, the results table is serialized as one line listing the variables in the results, using the CSV header line, followed by one line for each query solution (a
     line may end up split by newlines in the data). Values in the results are strings, for URIs, literals and blank nodes, together with numbers when the literals are of numeric XSD datatype.</p>
-    <div id="csv-table" class="section">
-      <h3><span class="secno">3.1</span> Serializing the Results Table</h3>
+      <section id="serializing-results">
+      <h3>Serializing the Results Table</h3>
       <p>The first line of a SPARQL CSV Results Format response is the header line giving the names of the variables used in the result set. The header line consists of the variable names, without
-      leading <tt>?</tt>, separated by commas.</p>
-      <p>While the <tt>text/csv</tt> format does not require a header row, the SPARQL CSV Results Format <em class="rfc2119" title="must">must</em> use a header row. If the content type parameter
-      <tt>header</tt> is used, it <em class="rfc2119" title="must">must</em> be <tt>header=present</tt>.</p>
+      leading <code>/?</code>, separated by commas.</p>
+      <p>While the <code>/text/csv</code> format does not require a header row, the SPARQL CSV Results Format <em class="rfc2119" title="must">must</em> use a header row. If the content type parameter
+      <code>/header</code> is used, it <em class="rfc2119" title="must">must</em> be <code>/header=present</code>.</p>
       <p>The remaining rows are the values of the results, with each binding determined by the position in the row, corresponding to the entry in the header line.</p>
-      <p>If a variable is not bound, an empty field is used (e.g. <tt>,,</tt>). Each row <em class="rfc2119" title="must">must</em> have the same number of fields, with each field corresponding to a
+      <p>If a variable is not bound, an empty field is used (e.g. <code>/,,</code>). Each row <em class="rfc2119" title="must">must</em> have the same number of fields, with each field corresponding to a
       binding to the variable in the header line in the same field position.</p>
-    </div>
-    <div id="csv-terms" class="section">
-      <h3><span class="secno">3.2</span> Serializing RDF Terms</h3>
+      </section>
+
+      <section id="csv-terms">
+      <h3>Serializing RDF Terms</h3>
       <p>The entry in each field is the string corresponding to the RDF term value. (c.f. SPARQL STR()) without syntax to denote what kind of term it is. The encoding quoting rules of CSV format must
       be used.</p>
-      <p>Blank nodes use the <tt>_:label</tt> form from Turtle and SPARQL. Use of the same label indicates the same blank node within the results but has no significance outside the results.</p>
-      <p>Fields containing any of <tt>"</tt> (<small>QUOTATION MARK</small>, code point 34, 0x22 in Unicode[<cite><a class="bibref" rel="biblioentry" href="#bib-UNICODE">UNICODE</a></cite>]),
-      <tt>,</tt> (<small>COMMA</small>, code point 44, 0x2C), <tt>LF</tt> (code point 10, 0x0A) or <tt>CR</tt> (code point 13, 0x0D) must be quoted using the quoting mechanism of RFC4180
-      [<cite><a class="bibref" rel="biblioentry" href="#bib-RFC4180">RFC4180</a></cite>]. Fields are limited by a pair of quotation marks <tt>"</tt> (code point 0x22). Within quote strings, all
-      characters except <tt>"</tt>, including new line characters have their exact meaning - newlines do not end a CSV record. <tt>" <!--  For emacs " --></tt> is written using a pair of quotation
-      marks <tt>""</tt>.</p>
+      <p>Blank nodes use the <code>/_:label</code> form from Turtle and SPARQL. Use of the same label indicates the same blank node within the results but has no significance outside the results.</p>
+      <p>Fields containing any of <code>/"</code> (<small>QUOTATION MARK</small>, code point 34, 0x22 in Unicode[<cite><a class="bibref" rel="biblioentry" href="#bib-UNICODE">UNICODE</a></cite>]),
+      <code>/,</code> (<small>COMMA</small>, code point 44, 0x2C), <code>/LF</code> (code point 10, 0x0A) or <code>/CR</code> (code point 13, 0x0D) must be quoted using the quoting mechanism of RFC4180
+      [<cite><a class="bibref" rel="biblioentry" href="#bib-RFC4180">RFC4180</a></cite>]. Fields are limited by a pair of quotation marks <code>/"</code> (code point 0x22). Within quote strings, all
+      characters except <code>/"</code>, including new line characters have their exact meaning - newlines do not end a CSV record. <code>/"</code> is written using a pair of quotation
+      marks <code>/""</code>.</p>
       <p>The standard CSV format does not distinguish between missing values and empty strings. The SPARQL 1.1 CSV Results Format uses the same representation for unbound variables as for variables
       bound to an empty string literal. The other SPARQL Result formats (based on JSON, TSV or XML) can be used if this distinction is required.</p>
-    </div>
-
+      </section>
+    
+      <section id="csv-example">
+      <h3>Example of CSV-Serialized Results</h3>
       <pre class="box csv">x,literal
 http://example/x,String
 http://example/x,"String-with-dquote"""
@@ -241,13 +263,13 @@ _:b1,123</pre>
     <p>In the SPARQL Results TSV Format, the results table is serialized as one line listing the variables in the results, followed by one line for each query solution. All RDF terms used in the
     format are encoded in the format specified by Turtle [<cite><a class="bibref" rel="biblioentry" href="#bib-TURTLE">TURTLE</a></cite>] except that the triple quoted forms for the lexical part of
     literals <em class="rfc2119" title="must not">must not</em> be used. These forms would allow raw newlines and tabs that form part of the TSV format. A TSV format SPARQL result set must use the
-    single quoted literal forms, together with any necessary escapes such as <tt>\t</tt>, <tt>\n</tt> and <tt>\r</tt>.</p>
+    single quoted literal forms, together with any necessary escapes such as <code>/\t</code>, <code>/\n</code> and <code>/\r</code>.</p>
 
       <section id="tsv-table">
       <h3>Serializing the Results Table</h3>
       <p>The results table is serialized as one line listing the variables in the results, followed by one line for each query solution. This first line is required by the TSV format [<cite><a class=
       "bibref" rel="biblioentry" href="#bib-IANA-TSV">IANA-TSV</a></cite>], unlike CSV, where it is optional.</p>
-      <p>Variables are serialized in SPARQL syntax, using question mark <tt>?</tt> character followed by the variable name.</p>
+      <p>Variables are serialized in SPARQL syntax, using question mark <code>/?</code> character followed by the variable name.</p>
       <p>Each row of the result set is serialized by sequence of RDF terms in SPARQL syntax, separated by a tab (Horizontal Tab, Unicode codepoint 9) character.</p>
       <p>If a variable is not bound in a row, an empty field is used. Each row <em class="rfc2119" title="must">must</em> have the same number of fields, corresponding to the variables listed in the
       first row.</p>
@@ -257,17 +279,17 @@ _:b1,123</pre>
       <h3>Serializing RDF Terms</h3>
       <p>The SPARQL Results TSV Results Format serializes RDF terms in the results table by using the syntax that SPARQL
        [<a href="#SPARQL11-QUERY">SPARQL11-QUERY</a>] and Turtle [<cite><a class="bibref" rel="biblioentry" href="#bib-TURTLE">TURTLE</a></cite>] use.</p>
-      <p>IRIs enclosed in <tt>&lt;...&gt;</tt>, literals are enclosed with double quotes <tt>"</tt>...<tt>"</tt> or single quotes <tt>'</tt> ...<tt>'</tt> with optional <tt>@lang</tt> or <tt>^^</tt>
+      <p>IRIs enclosed in <code>/&lt;...&gt;</code>, literals are enclosed with double quotes <code>/"</code>...<code>/"</code> or single quotes <code>/'</code> ...<code>/'</code> with optional <code>/@lang</code> or <code>/^^</code>
       for datatype. The quotes around the lexical form is required. Tab, newline and carriage return characters (Unicode codepoints 0x09, 0x0A (line feed) and 0x0D (Carriage Return)) are encoded in
-      strings as <tt>\t</tt>, <tt>\n</tt> and <tt>\r</tt> respectively. The long string forms using triple quotes <tt>"""</tt> and <tt>'''</tt> <em class="rfc2119" title="must not">must not</em> be
+      strings as <code>/\t</code>, <code>/\n</code> and <code>/\r</code> respectively. The long string forms using triple quotes <code>/"""</code> and <code>/'''</code> <em class="rfc2119" title="must not">must not</em> be
       used. <!--  Emacs: " --></p>
       <p>The abbreviated forms for numbers (XSD integers, decimals and doubles) <em class="rfc2119" title="should">should</em> be used.</p>
-      <p>Blank nodes use the <tt>_:label</tt> form from Turtle and SPARQL. Use of the same label indicates the same blank node within the results but has no significance outside the results.</p>
+      <p>Blank nodes use the <code>/_:label</code> form from Turtle and SPARQL. Use of the same label indicates the same blank node within the results but has no significance outside the results.</p>
       </section>
 
       <section id="tsv-example">
       <h3>Example of TSV-Serialized Results</h3>
-      <p>Writing <tt>&lt;TAB&gt;</tt> for a raw tab character (Unicode code point 9):</p>
+      <p>Writing <code>/&lt;TAB&gt;</code> for a raw tab character (Unicode code point 9):</p>
       <pre class="box tsv">?x&lt;TAB&gt;?literal
 &lt;http://example/x&gt;&lt;TAB&gt;"String"
 &lt;http://example/x&gt;&lt;TAB&gt;"String-with-dquote\"" 
@@ -280,6 +302,10 @@ _:blank0&lt;TAB&gt;"Blank node"
 _:blank1&lt;TAB&gt;"String-with-lang"@en
 _:blank1&lt;TAB&gt;123</pre>
       </section>
+    </section>
+
+    <section id="conformance">
+      <h2>Conformance</h2>
     </section>
 
     <section id="references-1">
@@ -304,11 +330,11 @@ href="http://www.iana.org/assignments/media-types/text/tab-separated-values"
             <a href="http://www.iana.org/assignments/media-types/text/tab-separated-values">http://www.iana.org/assignments/media-types/text/tab-separated-values</a>
             </dd>
  -->
-        <dt><a id="SPARQL11-JSON-RES">SPARQL11-JSON-RES</a></dt>
+        <dt><span class="doc=ref" id="SPARQL11-JSON-RES">SPARQL11-JSON-RES</span></dt>
         <dd><cite><a href="http://www.w3.org/TR/2013/REC-sparql11-results-json-20130321">SPARQL 1.1 Query Results JSON Format</a></cite>, A. Seaborne, Editor, W3C Recommendation, 21 March 2013,
         http://www.w3.org/TR/2013/REC-sparql11-results-json-20130321. <a href="http://www.w3.org/TR/sparql11-results-json/" title="Latest version of SPARQL 1.1 Query Results JSON Format">Latest
         version</a> available at http://www.w3.org/TR/sparql11-results-json.</dd>
-        <dt><a id="SPARQL11-QUERY">SPARQL11-QUERY</a></dt>
+        <dt><span class="doc-ref" id="SPARQL11-QUERY">SPARQL11-QUERY</span></dt>
         <dd><cite><a href="http://www.w3.org/TR/2013/REC-sparql11-query-20130321">SPARQL 1.1 Query Language</a></cite>, S. Harris, A. Seaborne, Editors, W3C Recommendation, 21 March 2013,
         http://www.w3.org/TR/2013/REC-sparql11-query-20130321. <a href="http://www.w3.org/TR/sparql11-query/" title="Latest version of SPARQL 1.1 Query Language">Latest version</a> available at
         http://www.w3.org/TR/sparql11-query.</dd>
@@ -372,8 +398,6 @@ href="http://www.iana.org/assignments/media-types/text/tab-separated-values"
       <h2>Change Log</h2>
       <p>TODO</p>
     </section>   
-
-  </div>
 
   </body>
 </html>

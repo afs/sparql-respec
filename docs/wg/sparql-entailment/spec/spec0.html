@@ -1955,8 +1955,6 @@ ex:p2 rdfs:subPropertyOf ex:p3 .</pre>
       an entailment regime other than simple entailment may support update queries, but the exact behavior of the system for such queries is not covered by this specification. SPARQL endpoints that
       use an entailment regime other than simple entailment and that do support update queries should describe the system behavior in the system's documentation.</p>
     </div>
-  </div>
-  
     <div class="div1">
       <h2><a name="sec-bibliography" id="sec-bibliography"></a>A References</h2>
       <div class="div2">
@@ -2184,20 +2182,7 @@ _:b2 ex:p ex:o</pre>and the BGP of the query is
       immediate that any BGP over any AG results in finite answers. The answer set is unique up to RDF graph equivalence since the entailed answers can only vary in their blank node identifiers,
       which still preserves graph equivalence. For the RIF entailment regime finiteness and uniqueness follows from the <a href="#RIFFiniteAnswers">safety conditions</a>.</p>
     </div>
+
     <div class="div1">
-      <h2><a name="changelog" id="changelog"></a>D Change Summary</h2>
-      <h3 id="changes-since-pr">Changes since Proposed Recommendation</h3>
-      <ul>
-        <li>Updated RIF references, given publication of RIF Second Edition</li>
-      </ul>
-      <h3 id="changes-since-lc">Changes since Last Call</h3>
-      <p>Since last call, the following changes have been made:</p>
-      <ol class="enumar">
-        <li>Since XML Schema Definition Language (XSD) 1.1 Part 2: Datatypes <a href="#XSD">[XML Schema Datatypes]</a> now has recommendation status, the reference to XML Schema Part 2: Datatypes
-        Second Edition, eds. Paul V. Biron, Ashok Malhotra (W3C Recommendation 28 October 2004) becomes obsolete as previously announced.</li>
-        <li>In the informative section "Entailment Regimes and Property Paths", the link to the property path translation in SPARQL Query 1.1 has been fixed and the example has been updated to
-        reflect the new algebra operators that SPARQL 1.1 Query introduced for property path expressions.</li>
-      </ol>
-      <p id="changes-since-cr">Since Candidate Recommendation, the only change has been to remove the "At Risk" notes, which labeled sections of the text which might potentially have been removed
-      during Candidate Recommendation (but were not).</p>
+      <h2><a id="conformance" name="conformance"></a>9 Conformance</h2>
     </div>

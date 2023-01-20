@@ -1,5 +1,5 @@
-    <div class="div1">
-      <h2><a id="introduction" name="introduction"></a>1 Introduction</h2>
+        <div class="div1">
+    <h2><a id="introduction" name="introduction"></a>1 Introduction</h2>
     <p>This document describes CSV and TSV formats for expressing the results of a SPARQL <code>SELECT</code> query. They provide lowest common denominator formats between systems using different
     implementation technologies.</p>
     <p>Other formats for expression SPARQL results are the SPARQL XML Results Format [<cite><a class="bibref" rel="biblioentry" href="#bib-RDF-SPARQL-XMLRES">RDF-SPARQL-XMLRES</a></cite>] and SPARQL
@@ -18,7 +18,7 @@
     2119 [<cite><a class="bibref" rel="biblioentry" href="#bib-RFC2119">RFC2119</a></cite>].</p>
 
     <div class="div2">
-      <h3><a href="example"></a>1.1 Example</h3>
+      <h3><a id="example1" name="example1"></a>1.1 Example</h3>
       <p>The following artificial example is used to illustrate the features of serializing results in each format.</p>
       <table class="result">
         <tbody>
@@ -70,10 +70,9 @@
         </tbody>
       </table>
     </div>
-    </div>
-    
+        </div>
         <div class="div1">
-    <h2><a id="general-comments"></a>2 Transmission issues using CSV and TSV Formats</h2>
+    <h2><a id="general-comments" name="general-comments"></a>2 Transmission issues using CSV and TSV Formats</h2>
     <p>The SPARQL results formats described here confirm to the formal specifications of the relevant formats, Comma Separated values (CSV) [<cite><a class="bibref" rel="biblioentry" href=
     "#bib-RFC4180">RFC4180</a></cite>] and Tab Separated Value (TSV) [<cite><a class="bibref" rel="biblioentry" href="#bib-IANA-TSV">IANA-TSV</a></cite>].</p>
     <p>Systems providing these formats should note that the content types for CSV is <tt>text/csv</tt> and for TSV <tt>text/tab-separated-values</tt>. Being <tt>text/*</tt>, the default character set
@@ -83,13 +82,13 @@
     <p>The end-of-line in TSV is <tt>EOL</tt> i.e. Unicode codepoint 10 (0x0A).</p>
     <p>Applications reading these formats are advised to cope with both CRLF and LF as end of line markers and not rely on conformance to the formal specifications.</p>
         </div>
-
+    
         <div class="div1">
-    <h2><a id="csv"></a>3 CSV - Comma Separated values</h2>
+    <h2><a id="csv-table" name="csv-table"></a>3 CSV - Comma Separated values</h2>
     <p>In the SPARQL Results CSV Format, the results table is serialized as one line listing the variables in the results, using the CSV header line, followed by one line for each query solution (a
     line may end up split by newlines in the data). Values in the results are strings, for URIs, literals and blank nodes, together with numbers when the literals are of numeric XSD datatype.</p>
-    <div id="csv-table" class="section">
-      <h3><span class="secno">3.1</span> Serializing the Results Table</h3>
+    <div class="div2">
+      <h3><a id="serializing-results" name="serializing-results"></a>3.1 Serializing the Results Table</h3>
       <p>The first line of a SPARQL CSV Results Format response is the header line giving the names of the variables used in the result set. The header line consists of the variable names, without
       leading <tt>?</tt>, separated by commas.</p>
       <p>While the <tt>text/csv</tt> format does not require a header row, the SPARQL CSV Results Format <em class="rfc2119" title="must">must</em> use a header row. If the content type parameter
@@ -98,22 +97,23 @@
       <p>If a variable is not bound, an empty field is used (e.g. <tt>,,</tt>). Each row <em class="rfc2119" title="must">must</em> have the same number of fields, with each field corresponding to a
       binding to the variable in the header line in the same field position.</p>
     </div>
-    <div id="csv-terms" class="section">
-      <h3><span class="secno">3.2</span> Serializing RDF Terms</h3>
+
+    <div class="div2">
+      <h3><a id="csv-terms" name="csv-terms"></a>3.2 Serializing RDF Terms</h3>
       <p>The entry in each field is the string corresponding to the RDF term value. (c.f. SPARQL STR()) without syntax to denote what kind of term it is. The encoding quoting rules of CSV format must
       be used.</p>
       <p>Blank nodes use the <tt>_:label</tt> form from Turtle and SPARQL. Use of the same label indicates the same blank node within the results but has no significance outside the results.</p>
       <p>Fields containing any of <tt>"</tt> (<small>QUOTATION MARK</small>, code point 34, 0x22 in Unicode[<cite><a class="bibref" rel="biblioentry" href="#bib-UNICODE">UNICODE</a></cite>]),
       <tt>,</tt> (<small>COMMA</small>, code point 44, 0x2C), <tt>LF</tt> (code point 10, 0x0A) or <tt>CR</tt> (code point 13, 0x0D) must be quoted using the quoting mechanism of RFC4180
       [<cite><a class="bibref" rel="biblioentry" href="#bib-RFC4180">RFC4180</a></cite>]. Fields are limited by a pair of quotation marks <tt>"</tt> (code point 0x22). Within quote strings, all
-      characters except <tt>"</tt>, including new line characters have their exact meaning - newlines do not end a CSV record. <tt>" <!--  For emacs " --></tt> is written using a pair of quotation
+      characters except <tt>"</tt>, including new line characters have their exact meaning - newlines do not end a CSV record. <tt>"</tt> is written using a pair of quotation
       marks <tt>""</tt>.</p>
       <p>The standard CSV format does not distinguish between missing values and empty strings. The SPARQL 1.1 CSV Results Format uses the same representation for unbound variables as for variables
       bound to an empty string literal. The other SPARQL Result formats (based on JSON, TSV or XML) can be used if this distinction is required.</p>
     </div>
-
+    
     <div class="div2">
-      <h3><a id="csv-example">3.3 Example of CSV-Serialized Results</h3>
+      <h3><a id="csv-example" name="csv-example"></a>3.3 Example of CSV-Serialized Results</h3>
       <pre class="box csv">x,literal
 http://example/x,String
 http://example/x,"String-with-dquote"""
@@ -127,14 +127,14 @@ _:b1,123</pre>
         </div>
 
         <div class="div1">
-    <h2><a id="tsv"></a>4 TSV - Tab Separated values</h2>
+    <h2><a id="tsv" name="tsv"></a>4 TSV - Tab Separated values</h2>
     <p>In the SPARQL Results TSV Format, the results table is serialized as one line listing the variables in the results, followed by one line for each query solution. All RDF terms used in the
     format are encoded in the format specified by Turtle [<cite><a class="bibref" rel="biblioentry" href="#bib-TURTLE">TURTLE</a></cite>] except that the triple quoted forms for the lexical part of
     literals <em class="rfc2119" title="must not">must not</em> be used. These forms would allow raw newlines and tabs that form part of the TSV format. A TSV format SPARQL result set must use the
     single quoted literal forms, together with any necessary escapes such as <tt>\t</tt>, <tt>\n</tt> and <tt>\r</tt>.</p>
 
     <div class="div2">
-      <h3><a id="tsv-table"></a>4.1 Serializing the Results Table</h3>
+      <h3><a id="tsv-table" name="tsv-table"></a>4.1 Serializing the Results Table</h3>
       <p>The results table is serialized as one line listing the variables in the results, followed by one line for each query solution. This first line is required by the TSV format [<cite><a class=
       "bibref" rel="biblioentry" href="#bib-IANA-TSV">IANA-TSV</a></cite>], unlike CSV, where it is optional.</p>
       <p>Variables are serialized in SPARQL syntax, using question mark <tt>?</tt> character followed by the variable name.</p>
@@ -144,7 +144,7 @@ _:b1,123</pre>
     </div>
 
     <div class="div2">
-      <h3><a id="tsv-terms"></a>4.2 Serializing RDF Terms</h3>
+      <h3><a id="tsv-terms" name="tsv-terms"></a>4.2 Serializing RDF Terms</h3>
       <p>The SPARQL Results TSV Results Format serializes RDF terms in the results table by using the syntax that SPARQL
        [<a href="#SPARQL11-QUERY">SPARQL11-QUERY</a>] and Turtle [<cite><a class="bibref" rel="biblioentry" href="#bib-TURTLE">TURTLE</a></cite>] use.</p>
       <p>IRIs enclosed in <tt>&lt;...&gt;</tt>, literals are enclosed with double quotes <tt>"</tt>...<tt>"</tt> or single quotes <tt>'</tt> ...<tt>'</tt> with optional <tt>@lang</tt> or <tt>^^</tt>
@@ -156,7 +156,7 @@ _:b1,123</pre>
     </div>
 
     <div class="div2">
-      <h3><a id="tsv-example"></a>4.3 Example of TSV-Serialized Results</h3>
+      <h3><a id="tsv-example" name="tsv-example"></a>4.3 Example of TSV-Serialized Results</h3>
       <p>Writing <tt>&lt;TAB&gt;</tt> for a raw tab character (Unicode code point 9):</p>
       <pre class="box tsv">?x&lt;TAB&gt;?literal
 &lt;http://example/x&gt;&lt;TAB&gt;"String"
@@ -172,12 +172,16 @@ _:blank1&lt;TAB&gt;123</pre>
     </div>
         </div>
 
+    <div class="div1">
+      <h2><a id="conformance" name="conformance"></a>9 Conformance</h2>
+    </div>
+
         <div class="div1">
-    <h2><a id="references-1"></a>A References (merge)</h2>
+    <h2><a id="references-1" name="references-1"></a>A References (merge)</h2>
     <p>This section includes references not yet included in the standard biblio DB</p>
 
     <div class="div2">
-      <h3><a id="normative-references-1"></a>A.1 Normative References</h3>
+      <h3><a id="normative-references-1" name="normative-references-1"></a>A.1 Normative References</h3>
       <dl class="biblography">
         <!-- 
           <dt>RFC4180</dt>
@@ -194,11 +198,11 @@ href="http://www.iana.org/assignments/media-types/text/tab-separated-values"
             <a href="http://www.iana.org/assignments/media-types/text/tab-separated-values">http://www.iana.org/assignments/media-types/text/tab-separated-values</a>
             </dd>
  -->
-        <dt><a id="SPARQL11-JSON-RES">SPARQL11-JSON-RES</a></dt>
+        <dt><span class="doc=ref" id="SPARQL11-JSON-RES">SPARQL11-JSON-RES</span></dt>
         <dd><cite><a href="http://www.w3.org/TR/2013/REC-sparql11-results-json-20130321">SPARQL 1.1 Query Results JSON Format</a></cite>, A. Seaborne, Editor, W3C Recommendation, 21 March 2013,
         http://www.w3.org/TR/2013/REC-sparql11-results-json-20130321. <a href="http://www.w3.org/TR/sparql11-results-json/" title="Latest version of SPARQL 1.1 Query Results JSON Format">Latest
         version</a> available at http://www.w3.org/TR/sparql11-results-json.</dd>
-        <dt><a id="SPARQL11-QUERY">SPARQL11-QUERY</a></dt>
+        <dt><span class="doc-ref" id="SPARQL11-QUERY">SPARQL11-QUERY</span></dt>
         <dd><cite><a href="http://www.w3.org/TR/2013/REC-sparql11-query-20130321">SPARQL 1.1 Query Language</a></cite>, S. Harris, A. Seaborne, Editors, W3C Recommendation, 21 March 2013,
         http://www.w3.org/TR/2013/REC-sparql11-query-20130321. <a href="http://www.w3.org/TR/sparql11-query/" title="Latest version of SPARQL 1.1 Query Language">Latest version</a> available at
         http://www.w3.org/TR/sparql11-query.</dd>
@@ -206,14 +210,14 @@ href="http://www.iana.org/assignments/media-types/text/tab-separated-values"
     </div>
 
     <div class="div2">
-      <h3><a id="non-normative-references-1"></a>A.2 Non-normative References</h3>
+      <h3><a id="non-normative-references-1" name="non-normative-references-1"></a>A.2 Non-normative References</h3>
     </div>
         </div>
 
         <div class="div1">
-    <h2><a id="references"></a>B References</h2>
+    <h2><a id="references" name="references"></a>B References</h2>
     <div class="div2">
-      <h3><a id="normative-references"></a>B.1 Normative references</h3>
+      <h3><a id="normative-references" name="normative-references"></a>B.1 Normative references</h3>
       <dl class="bibliography">
         <dt id="bib-IANA-TSV">[IANA-TSV]</dt>
         <dd>Paul Lindner. <a href="http://www.iana.org/assignments/media-types/text/tab-separated-values"><cite>Definition of tab-separated-values (tsv)</cite></a> June 1993. IANA Media Type
@@ -230,7 +234,7 @@ href="http://www.iana.org/assignments/media-types/text/tab-separated-values"
       </dl>
     </div>
     <div class="div2">
-      <h3><a id="informative-references"></a>B.2 Informative references</h3>
+      <h3><a id="informative-references" name="informative-references"></a>B.2 Informative references</h3>
       <dl class="bibliography">
         <dt id="bib-RDF-SPARQL-XMLRES">[RDF-SPARQL-XMLRES]</dt>
         <dd>Jeen Broekstra; Dave Beckett. <a href="http://www.w3.org/TR/2008/REC-rdf-sparql-XMLres-20080115"><cite>SPARQL Query Results XML Format.</cite></a> 15 January 2008. W3C Recommendation.

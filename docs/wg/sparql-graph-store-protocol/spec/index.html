@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-<html>
   <head>
     <meta charset="utf-8" />
     <title>SPARQL 1.2 Graph Store Protocol</title>
@@ -111,6 +110,25 @@
         update of specifications for format and errata.
       </p>
     </section>
+
+    <section id="sparql12-documents" class="introductory">
+      <h2>SPARQL 1.2 Documents</h2>
+      <ul>
+        <li><a href="../../sparql-new/spec/index.html">SPARQL 1.2 New</a></li>
+        <li><a href="../../sparql-concepts/spec/index.html">SPARQL 1.2 Overview</a></li>
+        <li><a href="../../sparql-query/spec/index.html">SPARQL 1.2 Query Language</a></li>
+        <li><a href="../../sparql-update/spec/index.html">SPARQL 1.2 Update</a></li>
+        <li><a href="../../sparql-entailment/spec/index.html">SPARQL 1.2 Entailment Regimes</a></li>
+        <li><a href="../../sparql-service-description/spec/index.html">SPARQL 1.2 Service Description</a></li>
+        <li><a href="../../sparql-federated-query/spec/index.html">SPARQL 1.2 Federated Query</a></li>
+        <li><a href="../../sparql-results-json/spec/index.html">SPARQL 1.2 Query Results JSON Format</a></li>
+        <li><a href="../../sparql-results-csv-tsv/spec/index.html">SPARQL 1.2 Query Results CSV and TSV Formats</a></li>
+        <li><a href="../../sparql-results-xml/spec/index.html">SPARQL 1.2 Query Results XML Format</a></li>
+        <li><a href="../../sparql-graph-store-protocol/spec/index.html">SPARQL 1.2 Graph Store Protocol</a></li>
+        <li><a href="../../sparql-protocol/spec/index.html">SPARQL 1.2 Protocol</a></li>
+      </ul>
+    </section>
+    
 <!-- BODY -->
     <section id="introduction">
   <h2>Introduction</h2>
@@ -134,7 +152,7 @@ href="#rfc2119">[RFC2119]</a>.</p>
   <p>The following terminology is used in this document:</p>
   <ul>
     <li><em>Architectural style</em> - An architectural design perspective that limits a system in order to induce harmonous behavior</li>
-    <li><em>Representation State Transfer architectural style (REST) <a href="#REST">[REST]</a></em> - An architectural style for distributed hypermedia systems.</li>
+    <li><em>Representation State Transfer architectural style (REST) <span class="doc-ref">[REST]</span></em> - An architectural style for distributed hypermedia systems.</li>
     <li><em>URI</em> - A Uniform Resource Identifier as defined in <a href="#rfc3986">[RFC3986]</a>.</li>
     <li><em>IRI</em> - An Internationalized Resource Identifier as defined in <a href="#rfc3987">[RFC3987]</a>. Before an IRI found in a document is used by HTTP, the IRI is first converted to a
     URI.</li>
@@ -423,6 +441,15 @@ href="#rfc2119">[RFC2119]</a>.</p>
   to indicate this failure to meet the access control policy.</p>
     </section>
 
+    <section id="conformance">
+      <h2>Conformance</h2>
+    </section>
+
+    <section id="changes">
+      <h2>Changes</h2>
+      The document title changed from "SPARQL 1.1 Graph Store HTTP Protocol" to "SPARQL 1.2 Graph Store Protocol".
+    </section>
+
     <section id="sec-bibliography">
   <h2>References</h2>
 
@@ -439,12 +466,12 @@ href="#rfc2119">[RFC2119]</a>.</p>
     <dt id="rfc2616">RFC2616</dt>
     <dd><cite><a href="http://www.ietf.org/rfc/rfc2616.txt">Hypertext Transfer Protocol - HTTP/1.1</a></cite>. J. Gettys, J. Mogul, H. Frystyk, L. Masinter, P. Leach, T. Berners-Lee, June 1999.
     Available at http://www.ietf.org/rfc/rfc2616.txt.</dd>
-    <dt><div name="WEBARCH" id="WEBARCH">WEBARCH</div></dt>
+    <dt><span class="doc-ref" id="WEBARCH">WEBARCH</span></dt>
     <dd><cite><a href="http://www.w3.org/TR/2004/REC-webarch-20041215/">Architecture of the World Wide Web, Volume One</a></cite> , N. Walsh, I. Jacobs, Editors, W3C Recommendation, 15 December 2004,
     http://www.w3.org/TR/2004/REC-webarch-20041215/ . <a href="http://www.w3.org/TR/webarch/">Latest version</a> available at http://www.w3.org/TR/webarch/ .</dd>
     <dt id="rfc3987">RFC3987</dt>
     <dd><cite><a href="http://www.ietf.org/rfc/rfc3987.txt">Internationalized Resource Identifiers (IRIs)</a></cite>, Duerst, Suignard, January 2005.</dd>
-    <dt><div name="SPARQL-UPDATE" id="SPARQL-UPDATE">SPARQL-UPDATE</div></dt>
+    <dt><span class="doc-ref" id="SPARQL-UPDATE">SPARQL-UPDATE</span></dt>
     <dd><cite><a href="http://www.w3.org/TR/2013/REC-sparql11-update-20130321">SPARQL 1.1 Update</a></cite>, P. Gearon, A. Passant, A. Polleres, Editors, W3C Recommendation, 21 March 2013,
     http://www.w3.org/TR/2013/REC-sparql11-update-20130321. <a href="http://www.w3.org/TR/sparql11-update/" title="Latest version of SPARQL 1.1 Update">Latest version</a> available at
     http://www.w3.org/TR/sparql11-update.</dd>
@@ -454,10 +481,10 @@ href="#rfc2119">[RFC2119]</a>.</p>
       <section id="section-informative-references">
   <h3>Informative References</h3>
   <dl>
-    <dt><div name="RDF-MT" id="RDF-MT">RDF-MT</div></dt>
+    <dt><span class="doc-ref" id="RDF-MT">RDF-MT</span></dt>
     <dd><cite><a href="http://www.w3.org/TR/2004/REC-rdf-mt-20040210/">RDF Semantics</a></cite> , P. Hayes, Editor, W3C Recommendation, 10 February 2004,
     http://www.w3.org/TR/2004/REC-rdf-mt-20040210/ . <a href="http://www.w3.org/TR/rdf-mt/" title="Latest version of RDF Semantics">Latest version</a> available at http://www.w3.org/TR/rdf-mt/ .</dd>
-    <dt><div name="SPARQL" id="SPARQL">SPARQL</div></dt>
+    <dt><span class="doc-ref" id="SPARQL">SPARQL</span></dt>
     <dd><cite><a href="http://www.w3.org/TR/2013/REC-sparql11-query-20130321">SPARQL 1.1 Query Language</a></cite>, S. Harris, A. Seaborne, Editors, W3C Recommendation, 21 March 2013,
     http://www.w3.org/TR/2013/REC-sparql11-query-20130321. <a href="http://www.w3.org/TR/sparql11-query/" title="Latest version of SPARQL 1.1 Query Language">Latest version</a> available at
     http://www.w3.org/TR/sparql11-query.</dd>
@@ -490,8 +517,6 @@ href="#rfc2119">[RFC2119]</a>.</p>
       <h2>Change Log</h2>
       <p>TODO</p>
     </section>   
-
-  </div>
 
   </body>
 </html>
