@@ -4,53 +4,44 @@
     <meta charset="utf-8" />
     <title>SPARQL 1.2 Query Results XML Format</title>
 
-    <script src="https://www.w3.org/Tools/respec/respec-w3c" class="remove" defer>
-    </script>
+    <script src="https://www.w3.org/Tools/respec/respec-w3c" class="remove"></script>
+    <script src="./common/local-biblio.js" class="remove"></script>
+    <script src="./common/fixup.js" class="remove"></script>
+
     <script class="remove">
       // All config options at https://respec.org/docs/
       var respecConfig = {
-        // extend the bibliography entries
-        //localBiblio:            "sparql.localBiblio",
-        
-        // specification status (e.g. WD, LCWD, NOTE, etc.). If in doubt use ED.
-        specStatus:             "ED",
+        group:                "rdf-star" ,
+        localBiblio:          localBibliography,
+        specStatus:           "ED",
+        edDraftURI:           "https://w3c.github.io/sparql12-results-xml/spec/",
+        testSuiteURI:         "https://w3c.github.io/rdf-tests/",
+        shortName:            "sparql12-results-xml",
+        copyrightStart:       "2008",
+         
+        github:               "https://github.com/w3c/sparql-results-xml",
+        wgPublicList:         "public-rdf-star-wg",
 
-        // if you wish the publication date to be other than today, set this
-        //publishDate:          "2023-08-24",
+//        implementationReportURI: "https://w3c.github.io/sparql12-results-xml/reports/",
+//        errata:               "https://w3c.github.io/sparql12-results-xml/errata/",
+
+        previousPublishDate:  "2013-03-21",
+        prevRecURI:           "http://www.w3.org/TR/2013/REC-rdf-sparql-XMLres-20130321",
+        prevRecShortname:     "sparql11-results-xml",
+        previousPublishDate:  "2013-03-21",
+        previousMaturity:     "REC",
         
-        editors: [
-            { name: "Andy Seaborne",
-              url: "https://www.linkedin.com/in/andyseaborne/",
-              w3cid: "29909"
-            }
-        ],
+         editors: [
+           { name: "RDF Star Working Group" }
+         ],
         formerEditors: [
           { name: "Sandro Hawke" },
           { name: "Dave Beckett" },
           { name: "Jeen Broekstra" },
         ],
 
-        github: { repoURL: "https://github.com/w3c/sparql-results-xml", branch: "main"},
-
-        shortName: "sparql12-results-xml",
-        xref: "web-platform",
-        group: "rdf-star" ,
-        wgPublicList: "public-rdf-star-wg",
-
-// Only for publication        
-//         prevVersion:          "http://www.w3.org/TR/2013/REC-rdf-sparql-XMLres-20130321",
-//         previousPublishDate:  "2013-03-21",
-//         previousMaturity:     "TR",
-//         prevRecURI:           "http://www.w3.org/TR/2013/REC-rdf-sparql-XMLres-20130321",
+        //doJsonLd:     true,
         
-        errata:               "https://w3c.github.io/rdf-star-wg/errata",
-        edDraftURI:           "https://w3c.github.io/sparql12-results-xml/",
-        testSuiteURI:         "https://w3c.github.io/rdf-tests/",
-//        implementationReportURI: "https://w3c.github.io/sparql12-results-xml/reports/",
-
-        includePermalinks:      true,
-        //pluralize:              true,
-
         lint: { "no-unused-dfns": false }
       };
     </script>
@@ -110,6 +101,11 @@
         update of specifications for format and errata.
       </p>
     </section>
+
+    <!--
+        @@ Includes too much - all RDF documents.
+    <section id="related" data-include="./common/related.html"></section>
+    -->
 
     <section id="sparql12-documents" class="introductory">
       <h2>SPARQL 1.2 Documents</h2>
@@ -486,6 +482,8 @@
       <h2>Change Log</h2>
       <p>TODO</p>
     </section>   
+
+    <section id="index"></section>
 
   </body>
 </html>
