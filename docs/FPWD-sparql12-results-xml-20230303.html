@@ -1,0 +1,1501 @@
+<!DOCTYPE html><html lang="en" dir="ltr"><head>
+<meta charset="utf-8">
+<meta name="generator" content="ReSpec 32.8.0">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<style>
+dfn{cursor:pointer}
+.dfn-panel{position:absolute;z-index:35;min-width:300px;max-width:500px;padding:.5em .75em;margin-top:.6em;font-family:"Helvetica Neue",sans-serif;font-size:small;background:#fff;color:#000;box-shadow:0 1em 3em -.4em rgba(0,0,0,.3),0 0 1px 1px rgba(0,0,0,.05);border-radius:2px}
+.dfn-panel:not(.docked)>.caret{position:absolute;top:-9px}
+.dfn-panel:not(.docked)>.caret::after,.dfn-panel:not(.docked)>.caret::before{content:"";position:absolute;border:10px solid transparent;border-top:0;border-bottom:10px solid #fff;top:0}
+.dfn-panel:not(.docked)>.caret::before{border-bottom:9px solid #a2a9b1}
+.dfn-panel *{margin:0}
+.dfn-panel b{display:block;color:#000;margin-top:.25em}
+.dfn-panel ul a[href]{color:#333}
+.dfn-panel>div{display:flex}
+.dfn-panel a.self-link{font-weight:700;margin-right:auto}
+.dfn-panel .marker{padding:.1em;margin-left:.5em;border-radius:.2em;text-align:center;white-space:nowrap;font-size:90%;color:#040b1c}
+.dfn-panel .marker.dfn-exported{background:#d1edfd;box-shadow:0 0 0 .125em #1ca5f940}
+.dfn-panel .marker.idl-block{background:#8ccbf2;box-shadow:0 0 0 .125em #0670b161}
+.dfn-panel a:not(:hover){text-decoration:none!important;border-bottom:none!important}
+.dfn-panel a[href]:hover{border-bottom-width:1px}
+.dfn-panel ul{padding:0}
+.dfn-panel li{margin-left:1em}
+.dfn-panel.docked{position:fixed;left:.5em;top:unset;bottom:2em;margin:0 auto;max-width:calc(100vw - .75em * 2 - .5em - .2em * 2);max-height:30vh;overflow:auto}
+</style>
+    
+    
+<title>SPARQL 1.2 Query Results XML Format</title>
+
+    
+<style id="respec-mainstyle">
+@keyframes pop{
+0%{transform:scale(1,1)}
+25%{transform:scale(1.25,1.25);opacity:.75}
+100%{transform:scale(1,1)}
+}
+:is(h1,h2,h3,h4,h5,h6,a) abbr{border:none}
+dfn{font-weight:700}
+a.internalDFN{color:inherit;border-bottom:1px solid #99c;text-decoration:none}
+a.externalDFN{color:inherit;border-bottom:1px dotted #ccc;text-decoration:none}
+a.bibref{text-decoration:none}
+.respec-offending-element:target{animation:pop .25s ease-in-out 0s 1}
+.respec-offending-element,a[href].respec-offending-element{text-decoration:red wavy underline}
+@supports not (text-decoration:red wavy underline){
+.respec-offending-element:not(pre){display:inline-block}
+.respec-offending-element{background:url(data:image/gif;base64,R0lGODdhBAADAPEAANv///8AAP///wAAACwAAAAABAADAEACBZQjmIAFADs=) bottom repeat-x}
+}
+#references :target{background:#eaf3ff;animation:pop .4s ease-in-out 0s 1}
+cite .bibref{font-style:normal}
+a[href].orcid{padding-left:4px;padding-right:4px}
+a[href].orcid>svg{margin-bottom:-2px}
+.toc a,.tof a{text-decoration:none}
+a .figno,a .secno{color:#000}
+ol.tof,ul.tof{list-style:none outside none}
+.caption{margin-top:.5em;font-style:italic}
+table.simple{border-spacing:0;border-collapse:collapse;border-bottom:3px solid #005a9c}
+.simple th{background:#005a9c;color:#fff;padding:3px 5px;text-align:left}
+.simple th a{color:#fff;padding:3px 5px;text-align:left}
+.simple th[scope=row]{background:inherit;color:inherit;border-top:1px solid #ddd}
+.simple td{padding:3px 10px;border-top:1px solid #ddd}
+.simple tr:nth-child(even){background:#f0f6ff}
+.section dd>p:first-child{margin-top:0}
+.section dd>p:last-child{margin-bottom:0}
+.section dd{margin-bottom:1em}
+.section dl.attrs dd,.section dl.eldef dd{margin-bottom:0}
+#issue-summary>ul{column-count:2}
+#issue-summary li{list-style:none;display:inline-block}
+details.respec-tests-details{margin-left:1em;display:inline-block;vertical-align:top}
+details.respec-tests-details>*{padding-right:2em}
+details.respec-tests-details[open]{z-index:999999;position:absolute;border:thin solid #cad3e2;border-radius:.3em;background-color:#fff;padding-bottom:.5em}
+details.respec-tests-details[open]>summary{border-bottom:thin solid #cad3e2;padding-left:1em;margin-bottom:1em;line-height:2em}
+details.respec-tests-details>ul{width:100%;margin-top:-.3em}
+details.respec-tests-details>li{padding-left:1em}
+.self-link:hover{opacity:1;text-decoration:none;background-color:transparent}
+aside.example .marker>a.self-link{color:inherit}
+.header-wrapper{display:flex;align-items:baseline}
+:is(h2,h3,h4,h5,h6):not(#toc>h2,#abstract>h2,#sotd>h2,.head>h2){position:relative;left:-.5em}
+:is(h2,h3,h4,h5,h6):not(#toch2)+a.self-link{color:inherit;order:-1;position:relative;left:-1.1em;font-size:1rem;opacity:.5}
+:is(h2,h3,h4,h5,h6)+a.self-link::before{content:"§";text-decoration:none;color:var(--heading-text)}
+:is(h2,h3)+a.self-link{top:-.2em}
+:is(h4,h5,h6)+a.self-link::before{color:#000}
+@media (max-width:767px){
+dd{margin-left:0}
+}
+@media print{
+.removeOnSave{display:none}
+}
+</style>
+    
+    
+
+    
+
+    
+<style>
+
+      @import url("local.css");
+
+      /* ReSpec */
+      dfn { font-style: normal ; }
+      /* ReSpec */
+
+  code           { font-family: monospace; }
+
+  div.constraint,
+  div.issue,
+  div.note,
+  div.notice     { margin-left: 2em; }
+
+  ol.enumar      { list-style-type: decimal; }
+  ol.enumla      { list-style-type: lower-alpha; }
+  ol.enumlr      { list-style-type: lower-roman; }
+  ol.enumua      { list-style-type: upper-alpha; }
+  ol.enumur      { list-style-type: upper-roman; }
+
+
+  div.exampleInner pre { margin-left: 1em;
+                       margin-top: 0em; margin-bottom: 0em}
+  div.exampleOuter {border: 4px double gray;
+                  margin: 0em; padding: 0em}
+  div.exampleInner { background-color: #d5dee3;
+                   border-top-width: 4px;
+                   border-top-style: double;
+                   border-top-color: #d3d3d3;
+                   border-bottom-width: 4px;
+                   border-bottom-style: double;
+                   border-bottom-color: #d3d3d3;
+                   padding: 4px; margin: 0em }
+  div.exampleWrapper { margin: 4px }
+  div.exampleHeader { font-weight: bold;
+                    margin: 4px}
+
+  em.rfc2119 { text-transform: lowercase;
+             font-variant: small-caps;
+             font-style: normal; }
+    
+</style>
+  
+<style>
+ul.index{columns:30ch;column-gap:1.5em}
+ul.index li{list-style:inherit}
+ul.index li span{color:inherit;cursor:pointer;white-space:normal}
+#index-defined-here ul.index li{font-size:.9rem}
+ul.index code{color:inherit}
+#index-defined-here .print-only{display:none}
+@media print{
+#index-defined-here .print-only{display:initial}
+}
+</style>
+<link rel="canonical" href="https://www.w3.org/TR/sparql12-results-xml/">
+<style>
+.hljs{display:block;overflow-x:auto;padding:.5em;color:#383a42;background:#fafafa}
+.hljs-comment,.hljs-quote{color:#717277;font-style:italic}
+.hljs-doctag,.hljs-formula,.hljs-keyword{color:#a626a4}
+.hljs-deletion,.hljs-name,.hljs-section,.hljs-selector-tag,.hljs-subst{color:#ca4706;font-weight:700}
+.hljs-literal{color:#0b76c5}
+.hljs-addition,.hljs-attribute,.hljs-meta-string,.hljs-regexp,.hljs-string{color:#42803c}
+.hljs-built_in,.hljs-class .hljs-title{color:#9a6a01}
+.hljs-attr,.hljs-number,.hljs-selector-attr,.hljs-selector-class,.hljs-selector-pseudo,.hljs-template-variable,.hljs-type,.hljs-variable{color:#986801}
+.hljs-bullet,.hljs-link,.hljs-meta,.hljs-selector-id,.hljs-symbol,.hljs-title{color:#336ae3}
+.hljs-emphasis{font-style:italic}
+.hljs-strong{font-weight:700}
+.hljs-link{text-decoration:underline}
+</style>
+<style>
+var{position:relative;cursor:pointer}
+var[data-type]::after,var[data-type]::before{position:absolute;left:50%;top:-6px;opacity:0;transition:opacity .4s;pointer-events:none}
+var[data-type]::before{content:"";transform:translateX(-50%);border-width:4px 6px 0 6px;border-style:solid;border-color:transparent;border-top-color:#000}
+var[data-type]::after{content:attr(data-type);transform:translateX(-50%) translateY(-100%);background:#000;text-align:center;font-family:"Dank Mono","Fira Code",monospace;font-style:normal;padding:6px;border-radius:3px;color:#daca88;text-indent:0;font-weight:400}
+var[data-type]:hover::after,var[data-type]:hover::before{opacity:1}
+</style>
+<script id="initialUserConfig" type="application/json">{
+  "group": "rdf-star",
+  "localBiblio": {
+    "ISO24707": {
+      "id": "ISO24707",
+      "title": "Information technology — Common Logic (CL) — A framework for a family of logic-based languages",
+      "date": "2018-07",
+      "href": "https://www.iso.org/standard/66249.html",
+      "status": "Published",
+      "publisher": "ISO/EIC"
+    },
+    "HORST04": {
+      "id": "HORST04",
+      "title": "Extending the RDFS Entailment Lemma",
+      "authors": [
+        "Herman J. ter Horst"
+      ],
+      "date": "2004",
+      "isbn": "978-3-540-30475-3",
+      "href": "https://doi.org/10.1007/978-3-540-30475-3_7",
+      "status": "Conference Proceeding",
+      "publisher": "Springer, Berlin, Heidelberg"
+    },
+    "HORST05": {
+      "id": "HORST05",
+      "title": "Completeness, Decidability and Complexity of Entailment for RDF Schema and a Semantic Extension Involving the OWL Vocabulary",
+      "authors": [
+        "Herman J. ter Horst"
+      ],
+      "date": "2005",
+      "href": "https://dx.doi.org/10.2139/ssrn.3199251",
+      "status": "Conference Proceeding",
+      "publisher": "Journal of Web Semantics"
+    },
+    "SAFETY": {
+      "title": "Saftety of recursive horn clauses with infinite relations",
+      "href": "http://arxiv.org/abs/cs.LO/9809032",
+      "authors": [
+        "R. Ramakrishnan",
+        "F. Bancilhon",
+        "A. Silberschatz"
+      ],
+      "date": "1987",
+      "publisher": "ACM New York"
+    },
+    "STRIPEDRDF": {
+      "id": "STRIPEDRDF",
+      "title": "RDF: Understanding the Striped RDF/XML Syntax",
+      "editors": [
+        "D. Brickley"
+      ],
+      "date": "2001",
+      "href": "http://www.w3.org/2001/10/stripes/",
+      "status": "Team Submission",
+      "publisher": "W3C"
+    },
+    "RDF12-CONCEPTS": {
+      "authors": [
+        "Richard Cyganiak",
+        "David Wood",
+        "Markus Lanthaler"
+      ],
+      "href": "https://w3c.github.io/rdf-concepts/spec/",
+      "title": "RDF 1.2 Concepts and Abstract Syntax",
+      "rawDate": "2022-01-01",
+      "status": "WD",
+      "publisher": "W3C"
+    },
+    "RDF12-SEMANTICS": {
+      "authors": [
+        "Patrick Hayes",
+        "Peter Patel-Schneider"
+      ],
+      "href": "https://w3c.github.io/rdf-semantics/spec/",
+      "title": "RDF 1.2 Semantics",
+      "rawDate": "2022-01-01",
+      "status": "WD",
+      "publisher": "W3C"
+    },
+    "RDF12-N-QUADS": {
+      "authors": [
+        "Gavin Carothers"
+      ],
+      "href": "https://w3c.github.io/rdf-n-quads/spec/",
+      "title": "RDF 1.2 N-Quads",
+      "rawDate": "2022-01-01",
+      "status": "WD",
+      "publisher": "W3C"
+    },
+    "RDF12-N-TRIPLES": {
+      "authors": [
+        "Gavin Carothers",
+        "Andy Seaborne"
+      ],
+      "href": "https://w3c.github.io/rdf-n-triples/spec/",
+      "title": "RDF 1.2 N-Triples",
+      "rawDate": "2022-01-01",
+      "status": "WD",
+      "publisher": "W3C"
+    },
+    "RDF12-NEW": {
+      "authors": [
+        "David Wood"
+      ],
+      "href": "https://w3c.github.io/rdf-new/spec/",
+      "title": "What’s New in RDF 1.2",
+      "rawDate": "2022-01-01",
+      "status": "DNOTE",
+      "publisher": "W3C"
+    },
+    "RDF12-PRIMER": {
+      "authors": [
+        "Guus Schreiber",
+        "Yves Raimond"
+      ],
+      "href": "https://w3c.github.io/rdf-primer/spec/",
+      "title": "RDF 1.2 Primer",
+      "rawDate": "2022-01-01",
+      "status": "DNOTE",
+      "publisher": "W3C"
+    },
+    "RDF12-SCHEMA": {
+      "authors": [
+        "Dan Brickley",
+        "Ramanathan Guha"
+      ],
+      "href": "https://w3c.github.io/rdf-schema/spec/",
+      "title": "RDF 1.2 Schema",
+      "rawDate": "2022-01-01",
+      "status": "WD",
+      "publisher": "W3C"
+    },
+    "RDF12-TRIG": {
+      "authors": [
+        "Gavin Carothers",
+        "Andy Seaborne"
+      ],
+      "href": "https://w3c.github.io/rdf-trig/spec/",
+      "title": "RDF 1.2 TriG",
+      "rawDate": "2022-01-01",
+      "status": "WD",
+      "publisher": "W3C"
+    },
+    "RDF12-TURTLE": {
+      "authors": [
+        "Eric Prud'hommeaux",
+        "Gavin Carothers"
+      ],
+      "href": "https://w3c.github.io/rdf-turtle/spec/",
+      "title": "RDF 1.2 Turtle",
+      "rawDate": "2022-01-01",
+      "status": "WD",
+      "publisher": "W3C"
+    },
+    "RDF12-XML": {
+      "authors": [
+        "Fabien Gandon",
+        "Guus Schreiber"
+      ],
+      "href": "https://w3c.github.io/rdf-xml/spec/",
+      "title": "RDF 1.2 XML Syntax",
+      "rawDate": "2022-01-01",
+      "status": "WD",
+      "publisher": "W3C"
+    },
+    "SPARQL12-NEW": {
+      "authors": [
+        "The W3C RDF-star Working Group"
+      ],
+      "href": "https://w3c.github.io/sparql-new/spec/",
+      "title": "What’s New in SPARQL 1.2",
+      "rawDate": "2022-01-01",
+      "status": "WD",
+      "publisher": "W3C",
+      "id": "sparql12-new"
+    },
+    "SPARQL12-CONCEPTS": {
+      "authors": [
+        "The W3C RDF-star Working Group"
+      ],
+      "href": "https://w3c.github.io/sparql-concepts/spec/",
+      "title": "SPARQL 1.2 Concepts",
+      "rawDate": "2022-01-01",
+      "status": "WD",
+      "publisher": "W3C",
+      "id": "sparql12-concepts"
+    },
+    "SPARQL12-QUERY": {
+      "authors": [
+        "Steven Harris",
+        "Andy Seaborne"
+      ],
+      "href": "https://w3c.github.io/sparql-query/spec/",
+      "title": "SPARQL 1.2 Query Language",
+      "rawDate": "2022-01-01",
+      "status": "WD",
+      "publisher": "W3C",
+      "id": "sparql12-query"
+    },
+    "SPARQL12-UPDATE": {
+      "authors": [
+        "Paula Gearon",
+        "Alexandre Passant",
+        "Axel Polleres"
+      ],
+      "href": "https://w3c.github.io/sparql-update/spec/",
+      "title": "SPARQL 1.2 Update",
+      "rawDate": "2022-01-01",
+      "status": "WD",
+      "publisher": "W3C",
+      "id": "sparql12-update"
+    },
+    "SPARQL12-SERVICE-DESCRIPTION": {
+      "authors": [
+        "Gregory Williams"
+      ],
+      "href": "https://w3c.github.io/sparql-service-description/spec/",
+      "title": "SPARQL 1.2 Service Description",
+      "rawDate": "2022-01-01",
+      "status": "WD",
+      "publisher": "W3C",
+      "id": "sparql12-service-description"
+    },
+    "SPARQL12-FEDERATED-QUERY": {
+      "authors": [
+        "Eric Prud'hommeaux",
+        "Carlos Buil Aranda"
+      ],
+      "href": "https://w3c.github.io/sparql-federated-query/spec/",
+      "title": "SPARQL 1.2 Federated Query",
+      "rawDate": "2022-01-01",
+      "status": "WD",
+      "publisher": "W3C",
+      "id": "sparql12-federated-query"
+    },
+    "SPARQL12-RESULTS-JSON": {
+      "authors": [
+        "Andy Seaborne"
+      ],
+      "href": "https://w3c.github.io/sparql-results-json/spec/",
+      "title": "SPARQL 1.2 Query Results JSON Format",
+      "rawDate": "2022-01-01",
+      "status": "WD",
+      "publisher": "W3C",
+      "id": "sparql12-results-json"
+    },
+    "SPARQL12-RESULTS-CSV-TSV": {
+      "authors": [
+        "Andy Seaborne"
+      ],
+      "href": "https://w3c.github.io/sparql-results-csv-tsv/spec/",
+      "title": "SPARQL 1.2 Query Results CSV and TSV Formats",
+      "rawDate": "2022-01-01",
+      "status": "WD",
+      "publisher": "W3C",
+      "id": "sparql12-results-csv-tsv"
+    },
+    "SPARQL12-RESULTS-XML": {
+      "authors": [
+        "Sandro Hawke",
+        "Dave Beckett",
+        "Jeen Broekstra"
+      ],
+      "href": "https://w3c.github.io/sparql-results-xml/spec/",
+      "title": "SPARQL 1.2 Query Results XML Formats",
+      "rawDate": "2022-01-01",
+      "status": "WD",
+      "publisher": "W3C"
+    },
+    "SPARQL12-ENTAILMENT": {
+      "authors": [
+        "Birte Glimm",
+        "Chimezie Ogbuji"
+      ],
+      "href": "https://w3c.github.io/sparql-entailment/spec/",
+      "title": "SPARQL 1.2 Entailment Regimes",
+      "rawDate": "2022-01-01",
+      "status": "WD",
+      "publisher": "W3C",
+      "id": "sparql12-entailment"
+    },
+    "SPARQL12-PROTOCOL": {
+      "authors": [
+        "Lee Feigenbaum",
+        "Gregory Williams",
+        "Kendall Clark",
+        "Elias Torres"
+      ],
+      "href": "https://w3c.github.io/sparql-protocol/spec/",
+      "title": "SPARQL 1.2 Protocol",
+      "rawDate": "2022-01-01",
+      "status": "WD",
+      "publisher": "W3C",
+      "id": "sparql12-protocol"
+    },
+    "SPARQL12-GRAPH-STORE-PROTOCOL": {
+      "authors": [
+        "Chimezie Ogbuji"
+      ],
+      "href": "https://w3c.github.io/sparql-graph-store-protocol/spec/",
+      "title": "SPARQL 1.2 Graph Store HTTP Protocol",
+      "rawDate": "2022-01-01",
+      "status": "WD",
+      "publisher": "W3C",
+      "id": "sparql12-graph-store-protocol"
+    }
+  },
+  "specStatus": "FPWD",
+  "edDraftURI": "https://w3c.github.io/sparql-results-xml/spec/",
+  "testSuiteURI": "https://w3c.github.io/rdf-tests/",
+  "shortName": "sparql12-results-xml",
+  "copyrightStart": "2008",
+  "github": "https://github.com/w3c/sparql-results-xml",
+  "wgPublicList": "public-rdf-star-wg",
+  "previousPublishDate": "2013-03-21",
+  "prevRecURI": "https://www.w3.org/TR/2013/REC-rdf-sparql-XMLres-20130321",
+  "prevRecShortname": "sparql11-results-xml",
+  "previousMaturity": "REC",
+  "editors": [
+    {
+      "name": "Ruben Taelman",
+      "w3cid": "84199"
+    },
+    {
+      "name": "Dominik Tomaszuk",
+      "w3cid": "44239"
+    }
+  ],
+  "formerEditors": [
+    {
+      "name": "Sandro Hawke"
+    },
+    {
+      "name": "Dave Beckett"
+    },
+    {
+      "name": "Jeen Broekstra"
+    }
+  ],
+  "lint": {
+    "no-unused-dfns": false
+  },
+  "pubDate": "2023-04-01",
+  "publishISODate": "2023-03-03T00:00:00.000Z",
+  "generatedSubtitle": "W3C First Public Working Draft 03 March 2023"
+}</script>
+<link rel="stylesheet" href="https://www.w3.org/StyleSheets/TR/2021/W3C-WD"></head>
+  <body class="h-entry informative"><div class="head">
+    <p class="logos"><a class="logo" href="https://www.w3.org/"><img crossorigin="" alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2021/logos/W3C" width="72">
+  </a></p>
+    <h1 id="title" class="title">SPARQL 1.2 Query Results XML Format</h1> 
+    <p id="w3c-state"><a href="https://www.w3.org/standards/types#FPWD">W3C First Public Working Draft</a> <time class="dt-published" datetime="2023-03-03">03 March 2023</time></p>
+    <details open="">
+      <summary>More details about this document</summary>
+      <dl>
+        <dt>This version:</dt><dd>
+                <a class="u-url" href="https://www.w3.org/TR/2023/WD-sparql12-results-xml-20230303/">https://www.w3.org/TR/2023/WD-sparql12-results-xml-20230303/</a>
+              </dd>
+        <dt>Latest published version:</dt><dd>
+                <a href="https://www.w3.org/TR/sparql12-results-xml/">https://www.w3.org/TR/sparql12-results-xml/</a>
+              </dd>
+        <dt>Latest editor's draft:</dt><dd><a href="https://w3c.github.io/sparql-results-xml/spec/">https://w3c.github.io/sparql-results-xml/spec/</a></dd>
+        <dt>History:</dt><dd>
+                    <a href="https://www.w3.org/standards/history/sparql12-results-xml">https://www.w3.org/standards/history/sparql12-results-xml</a>
+                  </dd><dd>
+                    <a href="https://github.com/w3c/sparql-results-xml/commits/">Commit history</a>
+                  </dd>
+        <dt>Test suite:</dt><dd><a href="https://w3c.github.io/rdf-tests/">https://w3c.github.io/rdf-tests/</a></dd>
+        
+        
+        
+        <dt>Latest Recommendation:</dt><dd><a href="https://www.w3.org/TR/2013/REC-rdf-sparql-XMLres-20130321">https://www.w3.org/TR/2013/REC-rdf-sparql-XMLres-20130321</a></dd>
+        <dt>Editors:</dt><dd class="editor p-author h-card vcard" data-editor-id="84199">
+    <span class="p-name fn">Ruben Taelman</span>
+  </dd><dd class="editor p-author h-card vcard" data-editor-id="44239">
+    <span class="p-name fn">Dominik Tomaszuk</span>
+  </dd>
+        <dt>
+                Former editors:
+              </dt><dd class="editor p-author h-card vcard">
+    <span class="p-name fn">Sandro Hawke</span>
+  </dd><dd class="editor p-author h-card vcard">
+    <span class="p-name fn">Dave Beckett</span>
+  </dd><dd class="editor p-author h-card vcard">
+    <span class="p-name fn">Jeen Broekstra</span>
+  </dd>
+        
+        <dt>Feedback:</dt><dd>
+        <a href="https://github.com/w3c/sparql-results-xml/">GitHub w3c/sparql-results-xml</a>
+        (<a href="https://github.com/w3c/sparql-results-xml/pulls/">pull requests</a>,
+        <a href="https://github.com/w3c/sparql-results-xml/issues/new/choose">new issue</a>,
+        <a href="https://github.com/w3c/sparql-results-xml/issues/">open issues</a>)
+      </dd><dd><a href="mailto:public-rdf-star-wg@w3.org?subject=%5Bsparql12-results-xml%5D%20YOUR%20TOPIC%20HERE">public-rdf-star-wg@w3.org</a> with subject line <kbd>[sparql12-results-xml] <em>… message topic …</em></kbd> (<a rel="discussion" href="https://lists.w3.org/Archives/Public/public-rdf-star-wg">archives</a>)</dd>
+        
+        
+      </dl>
+    </details>
+    
+    
+    <p class="copyright">
+    <a href="https://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Copyright</a>
+    ©
+    2008-2023
+    
+    <a href="https://www.w3.org/">World Wide Web Consortium</a>.
+    <abbr title="World Wide Web Consortium">W3C</abbr><sup>®</sup>
+    <a href="https://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer">liability</a>,
+    <a href="https://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks">trademark</a> and
+    <a rel="license" href="https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document" title="W3C Software and Document Notice and License">permissive document license</a> rules apply.
+  </p>
+    <hr title="Separator for header">
+  </div>
+    <section id="abstract" class="introductory"><h2>Abstract</h2>
+      
+
+    </section>
+
+    <section id="sotd" class="introductory"><h2>Status of This Document</h2><p><em>This section describes the status of this
+      document at the time of its publication. A list of current <abbr title="World Wide Web Consortium">W3C</abbr>
+      publications and the latest revision of this technical report can be found
+      in the <a href="https://www.w3.org/TR/"><abbr title="World Wide Web Consortium">W3C</abbr> technical reports index</a> at
+      https://www.w3.org/TR/.</em></p>
+      <p>
+        This specification is published by the
+        <a href="https://www.w3.org/groups/wg/rdf-star">RDF Star Working Group</a> as part of the
+        update of specifications for format and errata.
+      </p>
+    <p>
+    This document was published by the <a href="https://www.w3.org/groups/wg/rdf-star">RDF-star Working Group</a> as
+    a First Public Working Draft using the
+        <a href="https://www.w3.org/2021/Process-20211102/#recs-and-notes">Recommendation track</a>. 
+  </p><p>Publication as a First Public Working Draft does not
+  imply endorsement by <abbr title="World Wide Web Consortium">W3C</abbr> and its Members. </p><p>
+    This is a draft document and may be updated, replaced or obsoleted by other
+    documents at any time. It is inappropriate to cite this document as other
+    than work in progress.
+    
+  </p><p>
+    
+        This document was produced by a group
+        operating under the
+        <a href="https://www.w3.org/Consortium/Patent-Policy/"><abbr title="World Wide Web Consortium">W3C</abbr> Patent
+          Policy</a>.
+      
+    
+                <abbr title="World Wide Web Consortium">W3C</abbr> maintains a
+                <a rel="disclosure" href="https://www.w3.org/groups/wg/rdf-star/ipr">public list of any patent disclosures</a>
+          made in connection with the deliverables of
+          the group; that page also includes
+          instructions for disclosing a patent. An individual who has actual
+          knowledge of a patent which the individual believes contains
+          <a href="https://www.w3.org/Consortium/Patent-Policy/#def-essential">Essential Claim(s)</a>
+          must disclose the information in accordance with
+          <a href="https://www.w3.org/Consortium/Patent-Policy/#sec-Disclosure">section 6 of the <abbr title="World Wide Web Consortium">W3C</abbr> Patent Policy</a>.
+        
+  </p><p>
+                  This document is governed by the
+                  <a id="w3c_process_revision" href="https://www.w3.org/2021/Process-20211102/">2 November 2021 <abbr title="World Wide Web Consortium">W3C</abbr> Process Document</a>.
+                </p></section><nav id="toc"><h2 class="introductory" id="table-of-contents">Table of Contents</h2><ol class="toc"><li class="tocline"><a class="tocxref" href="#abstract">Abstract</a></li><li class="tocline"><a class="tocxref" href="#sotd">Status of This Document</a></li><li class="tocline"><a class="tocxref" href="#related"><bdi class="secno">1. </bdi>Set of Documents</a></li><li class="tocline"><a class="tocxref" href="#sparql12-documents">SPARQL 1.2 Documents</a></li><li class="tocline"><a class="tocxref" href="#introduction"><bdi class="secno">2. </bdi>Introduction</a></li><li class="tocline"><a class="tocxref" href="#definition"><bdi class="secno">3. </bdi>Definition</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#docElement"><bdi class="secno">3.1 </bdi>Document Element</a></li><li class="tocline"><a class="tocxref" href="#head"><bdi class="secno">3.2 </bdi>Header</a></li><li class="tocline"><a class="tocxref" href="#results"><bdi class="secno">3.3 </bdi>Results</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#vb-results"><bdi class="secno">3.3.1 </bdi>Variable Binding Results</a></li><li class="tocline"><a class="tocxref" href="#boolean-results"><bdi class="secno">3.3.2 </bdi>Boolean Results</a></li></ol></li></ol></li><li class="tocline"><a class="tocxref" href="#examples"><bdi class="secno">4. </bdi>Examples</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#vb-examples"><bdi class="secno">4.1 </bdi>Variable Binding Results Examples</a></li><li class="tocline"><a class="tocxref" href="#boolean-examples"><bdi class="secno">4.2 </bdi>Boolean Results Examples</a></li></ol></li><li class="tocline"><a class="tocxref" href="#schemas"><bdi class="secno">5. </bdi>XML Schemas</a></li><li class="tocline"><a class="tocxref" href="#changes"><bdi class="secno">6. </bdi>Changes</a></li><li class="tocline"><a class="tocxref" href="#mime"><bdi class="secno">7. </bdi>Internet Media Type, File Extension and Macintosh File Type</a></li><li class="tocline"><a class="tocxref" href="#privacy"><bdi class="secno">8. </bdi>Privacy Considerations</a></li><li class="tocline"><a class="tocxref" href="#security"><bdi class="secno">9. </bdi>Security Considerations</a></li><li class="tocline"><a class="tocxref" href="#internationalization"><bdi class="secno">10. </bdi>Internationalization Considerations</a></li><li class="tocline"><a class="tocxref" href="#changes-from-sparql11"><bdi class="secno">A. </bdi>Change Log</a></li><li class="tocline"><a class="tocxref" href="#index"><bdi class="secno">B. </bdi>Index</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#index-defined-here"><bdi class="secno">B.1 </bdi>Terms defined by this specification</a></li><li class="tocline"><a class="tocxref" href="#index-defined-elsewhere"><bdi class="secno">B.2 </bdi>Terms defined by reference</a></li></ol></li><li class="tocline"><a class="tocxref" href="#references"><bdi class="secno">C. </bdi>References</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#informative-references"><bdi class="secno">C.1 </bdi>Informative references</a></li></ol></li></ol></nav>
+
+    <section id="related"><div class="header-wrapper"><h2 id="x1-set-of-documents"><bdi class="secno">1. </bdi>Set of Documents</h2><a class="self-link" href="#related" aria-label="Permalink for Section 1."></a></div>
+<p>This document is one of twelve SPARQL 1.2 Recommendations produced by the <a href="https://www.w3.org/groups/wg/rdf-star">RDF-star Working Group</a>:</p>
+
+<p>SPARQL 1.2 Recommendations:</p>
+<ol>
+  <li><cite><a data-matched-text="[[[SPARQL12-NEW]]]" href="https://w3c.github.io/sparql-new/spec/" id="ref-for-index-term-what-s-new-in-sparql-1-2-1">What’s New in SPARQL 1.2</a></cite></li>
+  <li><cite><a data-matched-text="[[[SPARQL12-CONCEPTS]]]" href="https://w3c.github.io/sparql-concepts/spec/" id="ref-for-index-term-sparql-1-2-concepts-1">SPARQL 1.2 Concepts</a></cite></li>
+  <li><cite><a data-matched-text="[[[SPARQL12-QUERY]]]" href="https://w3c.github.io/sparql-query/spec/" id="ref-for-index-term-sparql-1-2-query-language-1">SPARQL 1.2 Query Language</a></cite></li>
+  <li><cite><a data-matched-text="[[[SPARQL12-UPDATE]]]" href="https://w3c.github.io/sparql-update/spec/" id="ref-for-index-term-sparql-1-2-update-1">SPARQL 1.2 Update</a></cite></li>
+  <li><cite><a data-matched-text="[[[SPARQL12-SERVICE-DESCRIPTION]]]" href="https://w3c.github.io/sparql-service-description/spec/" id="ref-for-index-term-sparql-1-2-service-description-1">SPARQL 1.2 Service Description</a></cite></li>
+  <li><cite><a data-matched-text="[[[SPARQL12-FEDERATED-QUERY]]]" href="https://w3c.github.io/sparql-federated-query/spec/" id="ref-for-index-term-sparql-1-2-federated-query-1">SPARQL 1.2 Federated Query</a></cite></li>
+  <li><cite><a data-matched-text="[[[SPARQL12-RESULTS-JSON]]]" href="https://w3c.github.io/sparql-results-json/spec/" id="ref-for-index-term-sparql-1-2-query-results-json-format-1">SPARQL 1.2 Query Results JSON Format</a></cite></li>
+  <li><cite><a data-matched-text="[[[SPARQL12-RESULTS-CSV-TSV]]]" href="https://w3c.github.io/sparql-results-csv-tsv/spec/" id="ref-for-index-term-sparql-1-2-query-results-csv-and-tsv-formats-1">SPARQL 1.2 Query Results CSV and TSV Formats</a></cite></li>
+  <li>SPARQL 1.2 Query Results XML Format(this document)</li>
+  <li><cite><a data-matched-text="[[[SPARQL12-ENTAILMENT]]]" href="https://w3c.github.io/sparql-entailment/spec/" id="ref-for-index-term-sparql-1-2-entailment-regimes-1">SPARQL 1.2 Entailment Regimes</a></cite></li>
+  <li><cite><a data-matched-text="[[[SPARQL12-PROTOCOL]]]" href="https://w3c.github.io/sparql-protocol/spec/" id="ref-for-index-term-sparql-1-2-protocol-1">SPARQL 1.2 Protocol</a></cite></li>
+  <li><cite><a data-matched-text="[[[SPARQL12-GRAPH-STORE-PROTOCOL]]]" href="https://w3c.github.io/sparql-graph-store-protocol/spec/" id="ref-for-index-term-sparql-1-2-graph-store-http-protocol-1">SPARQL 1.2 Graph Store HTTP Protocol</a></cite></li>
+</ol>
+</section>
+
+    <section id="sparql12-documents" class="introductory"><div class="header-wrapper"><h2 id="sparql-1-2-documents">SPARQL 1.2 Documents</h2><a class="self-link" href="#sparql12-documents" aria-label="Permalink for this Section"></a></div>
+      
+      <ul>
+        <li><a href="../../sparql-new/spec/index.html">SPARQL 1.2 New</a></li>
+        <li><a href="../../sparql-concepts/spec/index.html">SPARQL 1.2 Overview</a></li>
+        <li><a href="../../sparql-query/spec/index.html">SPARQL 1.2 Query Language</a></li>
+        <li><a href="../../sparql-update/spec/index.html">SPARQL 1.2 Update</a></li>
+        <li><a href="../../sparql-entailment/spec/index.html">SPARQL 1.2 Entailment Regimes</a></li>
+        <li><a href="../../sparql-service-description/spec/index.html">SPARQL 1.2 Service Description</a></li>
+        <li><a href="../../sparql-federated-query/spec/index.html">SPARQL 1.2 Federated Query</a></li>
+        <li><a href="../../sparql-results-json/spec/index.html">SPARQL 1.2 Query Results JSON Format</a></li>
+        <li><a href="../../sparql-results-csv-tsv/spec/index.html">SPARQL 1.2 Query Results CSV and TSV Formats</a></li>
+        <li><a href="../../sparql-results-xml/spec/index.html">SPARQL 1.2 Query Results XML Format</a></li>
+        <li><a href="../../sparql-graph-store-protocol/spec/index.html">SPARQL 1.2 Graph Store Protocol</a></li>
+        <li><a href="../../sparql-protocol/spec/index.html">SPARQL 1.2 Protocol</a></li>
+      </ul>
+    </section>
+    
+
+    <section id="introduction"><div class="header-wrapper"><h2 id="x2-introduction"><bdi class="secno">2. </bdi>Introduction</h2><a class="self-link" href="#introduction" aria-label="Permalink for Section 2."></a></div>
+  
+  <p>The <cite><a href="http://www.w3.org/TR/2008/REC-rdf-sparql-query-20080115/">SPARQL Query Language for RDF</a></cite> <a href="#ref-sparql-query">[SPARQL-QUERY]</a> defines several <em>Query
+  Result Forms</em> (<a href="http://www.w3.org/TR/2008/REC-rdf-sparql-query-20080115/#QueryForms">SPARQL Query section 10</a>). This document defines a <a href="#defn-srd">SPARQL Results
+  Document</a> that encodes the variable binding query results from <code>SELECT</code> queries (<a href="http://www.w3.org/TR/2008/REC-rdf-sparql-query-20080115/#select">SPARQL Query section
+  10.2</a>) and boolean query results from <code>ASK</code> queries (<a href="http://www.w3.org/TR/2008/REC-rdf-sparql-query-20080115/#ask">SPARQL Query section 10.5</a>) in <a href="http://www.w3.org/TR/2004/REC-xml-20040204/">XML</a> @@fixupref XML@@.</p>
+  <p>
+    There are two other results formats which follow a similar design but do not use XML: 
+    <a href="http://www.w3.org/TR/sparql11-results-json/">SPARQL 1.1 Query Results JSON Format</a> @@fixup@@ and 
+    <a href="http://www.w3.org/TR/sparql11-results-csv-tsv/">SPARQL 1.1 Query Results CSV and TSV Formats</a> @@fixup@@.
+  </p>
+    </section>
+      
+    <section id="definition"><div class="header-wrapper"><h2 id="x3-definition"><bdi class="secno">3. </bdi>Definition</h2><a class="self-link" href="#definition" aria-label="Permalink for Section 3."></a></div>
+  
+  <div class="defn">
+      <p><b>Definition:</b> <span class="doc-ref" id="defn-srd">SPARQL Results Document</span></p>
+      <p>A <span class="definedTerm">SPARQL Results Document</span> is an XML document that is valid with respect to either the RELAX NG XML Schema or the <abbr title="World Wide Web Consortium">W3C</abbr> XML Schema in <a href="#schemas">Section
+    4.</a></p>
+  </div>
+
+      <section id="docElement"><div class="header-wrapper"><h3 id="x3-1-document-element"><bdi class="secno">3.1 </bdi>Document Element</h3><a class="self-link" href="#docElement" aria-label="Permalink for Section 3.1"></a></div>
+  
+  <p>The <a href="#defn-srd">SPARQL Results Document</a> begins with <code>sparql</code> document element in the <code>http://www.w3.org/2005/sparql-results#</code> namespace, written as follows:</p>
+  <pre aria-busy="false"><code class="hljs xml"><span class="hljs-meta">&lt;?xml version="1.0"?&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">sparql</span> <span class="hljs-attr">xmlns</span>=<span class="hljs-string">"http://www.w3.org/2005/sparql-results#"</span>&gt;</span>
+ ...
+<span class="hljs-tag">&lt;/<span class="hljs-name">sparql</span>&gt;</span></code></pre>
+  <p>Inside the <code>sparql</code> element are two sub-elements, <code>head</code> and a results element (either <code>results</code> or <code>boolean</code>) which must appear in that order.</p>
+      </section>
+
+      <section id="head"><div class="header-wrapper"><h3 id="x3-2-header"><bdi class="secno">3.2 </bdi>Header</h3><a class="self-link" href="#head" aria-label="Permalink for Section 3.2"></a></div>
+    
+    <p>The <code>head</code> element is the first child element of the <code>sparql</code> element.</p>
+    <p>For a variable binding query result, <code>head</code> must contain a sequence of elements describing the set of 
+      <a href="http://www.w3.org/TR/2008/REC-rdf-sparql-query-20080115/#defn_QueryVariable">Query Variable</a> names in the 
+      <a href="http://www.w3.org/TR/2008/REC-rdf-sparql-query-20080115/#defn_sparqlSolutionSequence">Solution Sequence</a> (here called query results).
+    </p>
+    <p>The order of the variable names in the sequence is the order of the variable names given to the argument of the <code>SELECT</code> statement in the SPARQL query. If <code>SELECT *</code> is
+      used, the order of the names is undefined.</p>
+    <p>Inside the <code>head</code> element, the ordered sequence of variable names chosen are used to create empty child elements <code>variable</code> with the variable name as the value of an
+      attribute <code>name</code> giving a document like this:</p>
+  <pre aria-busy="false"><code class="hljs xml"><span class="hljs-meta">&lt;?xml version="1.0"?&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">sparql</span> <span class="hljs-attr">xmlns</span>=<span class="hljs-string">"http://www.w3.org/2005/sparql-results#"</span>&gt;</span>
+
+  <span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">variable</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"x"</span>/&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">variable</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"hpage"</span>/&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">variable</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"name"</span>/&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">variable</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"mbox"</span>/&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">variable</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"blurb"</span>/&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span>
+...
+<span class="hljs-tag">&lt;/<span class="hljs-name">sparql</span>&gt;</span></code></pre>
+
+  <p>For a boolean query result, no elements are required inside <code>head</code> and <code>variable</code> must not be present.</p>
+
+  <p>For any query result, <code>head</code> may also contain <code>link</code> child elements with an <code>href</code> attribute containing a relative URI that provides a link to some additional
+  metadata about the query results. The relative URI is resolved against the in-scope base URI which is usually the query results format document URI. <code>link</code> elements must appear after any
+  <code>variable</code> elements that are present.</p>
+  <pre aria-busy="false"><code class="hljs xml"><span class="hljs-meta">&lt;?xml version="1.0"?&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">sparql</span> <span class="hljs-attr">xmlns</span>=<span class="hljs-string">"http://www.w3.org/2005/sparql-results#"</span>&gt;</span>
+
+  <span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
+    ...
+    <span class="hljs-tag">&lt;<span class="hljs-name">link</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"metadata.rdf"</span>/&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span>
+...
+<span class="hljs-tag">&lt;/<span class="hljs-name">sparql</span>&gt;</span></code></pre>
+      </section>
+
+      <section id="results"><div class="header-wrapper"><h3 id="x3-3-results"><bdi class="secno">3.3 </bdi>Results</h3><a class="self-link" href="#results" aria-label="Permalink for Section 3.3"></a></div>
+  
+  <p>The second child-element of <code>sparql</code> must appear after <code>head</code> and is either <code>results</code> or <code>boolean</code>. It is written even if the query results are
+  empty.</p>
+
+        <section id="vb-results"><div class="header-wrapper"><h4 id="x3-3-1-variable-binding-results"><bdi class="secno">3.3.1 </bdi>Variable Binding Results</h4><a class="self-link" href="#vb-results" aria-label="Permalink for Section 3.3.1"></a></div>
+  
+  <p>The <code>results</code> element contains the complete sequence of query results.</p>
+  <p>For each <a href="http://www.w3.org/TR/2008/REC-rdf-sparql-query-20080115/#defn_sparqlSolutionMapping">Query Solution</a> in the query results, a <code>result</code> child-element of
+  <code>results</code> is added giving a document like:</p>
+  <pre aria-busy="false"><code class="hljs xml"><span class="hljs-meta">&lt;?xml version="1.0"?&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">sparql</span> <span class="hljs-attr">xmlns</span>=<span class="hljs-string">"http://www.w3.org/2005/sparql-results#"</span>&gt;</span>
+  ...  head ...
+
+  <span class="hljs-tag">&lt;<span class="hljs-name">results</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">result</span>&gt;</span>...
+    <span class="hljs-tag">&lt;/<span class="hljs-name">result</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">result</span>&gt;</span>...
+    <span class="hljs-tag">&lt;/<span class="hljs-name">result</span>&gt;</span>
+    ...
+  <span class="hljs-tag">&lt;/<span class="hljs-name">results</span>&gt;</span>
+
+<span class="hljs-tag">&lt;/<span class="hljs-name">sparql</span>&gt;</span></code></pre>
+  <p>Each <code>result</code> element corresponds to one <em>Query Solution</em> in a result and contains child elements (in no particular order) for each <em>Query Variable</em> that appears in the
+  solution. It is used to record how the query variables bind to <a href="http://www.w3.org/TR/2008/REC-rdf-sparql-query-20080115/#defn_RDFTerm">RDF Term</a>s.</p>
+  <p>Each binding inside a solution is written as an element <code>binding</code> as a child of <code>result</code> with the query variable name as the value of the <code>name</code> attribute. So
+  for a result binding two variables <em>x</em> and <em>hpage</em> it would look like:</p>
+  <pre aria-busy="false"><code class="hljs xml"><span class="hljs-meta">&lt;?xml version="1.0"?&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">sparql</span> <span class="hljs-attr">xmlns</span>=<span class="hljs-string">"http://www.w3.org/2005/sparql-results#"</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">variable</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"x"</span>/&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">variable</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"hpage"</span>/&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span>
+
+  <span class="hljs-tag">&lt;<span class="hljs-name">results</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">result</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">binding</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"x"</span>&gt;</span> ... <span class="hljs-tag">&lt;/<span class="hljs-name">binding</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">binding</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"hpage"</span>&gt;</span> ... <span class="hljs-tag">&lt;/<span class="hljs-name">binding</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">result</span>&gt;</span>
+
+    <span class="hljs-tag">&lt;<span class="hljs-name">result</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">binding</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"x"</span>&gt;</span> ... <span class="hljs-tag">&lt;/<span class="hljs-name">binding</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">binding</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"hpage"</span>&gt;</span> ... <span class="hljs-tag">&lt;/<span class="hljs-name">binding</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">result</span>&gt;</span>
+    ...
+  <span class="hljs-tag">&lt;/<span class="hljs-name">results</span>&gt;</span>
+
+<span class="hljs-tag">&lt;/<span class="hljs-name">sparql</span>&gt;</span></code></pre>
+  <p>The value of a query variable binding, which is an <em>RDF Term</em>, is included as the content of the <code>binding</code> as follows:</p>
+  <dl>
+    <dt>RDF URI Reference <em>U</em><br></dt>
+    <dd><code>&lt;binding&gt;&lt;uri&gt;</code><em>U</em><code>&lt;/uri&gt;&lt;/binding&gt;</code></dd>
+    <dt>RDF Literal <em>S</em><br></dt>
+    <dd><code>&lt;binding&gt;&lt;literal&gt;</code><em>S</em><code>&lt;/literal&gt;&lt;/binding&gt;</code></dd>
+    <dt>RDF Literal <em>S</em> with language <em>L</em><br></dt>
+    <dd><code>&lt;binding&gt;&lt;literal xml:lang="</code><em>L</em><code>"&gt;</code><em>S</em><code>&lt;/literal&gt;&lt;/binding&gt;</code></dd>
+    <dt>RDF Typed Literal <em>S</em> with datatype URI <em>D</em><br></dt>
+    <dd><code>&lt;binding&gt;&lt;literal datatype="</code><em>D</em><code>"&gt;</code><em>S</em><code>&lt;/literal&gt;&lt;/binding&gt;</code></dd>
+    <dt>Blank Node label <em>I</em><br></dt>
+    <dd><code>&lt;binding&gt;&lt;bnode&gt;</code><em>I</em><code>&lt;/bnode&gt;&lt;/binding&gt;</code></dd>
+  </dl>
+  <p>If, for a particular solution, a variable is <em>unbound</em>, no <code>binding</code> element for that variable is included in the <code>result</code> element.</p>
+  <p><strong>Note:</strong> The blank node label <em>I</em> is scoped to the result set XML document and need not have any association to the blank node label for that RDF Term in the query
+  graph.</p>
+  <p>An example of a query solution encoded in this format is as follows:</p>
+  <pre aria-busy="false"><code class="hljs xml"><span class="hljs-meta">&lt;?xml version="1.0"?&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">sparql</span> <span class="hljs-attr">xmlns</span>=<span class="hljs-string">"http://www.w3.org/2005/sparql-results#"</span>&gt;</span>
+
+  <span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">variable</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"x"</span>/&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">variable</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"hpage"</span>/&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">variable</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"name"</span>/&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">variable</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"age"</span>/&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">variable</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"mbox"</span>/&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">variable</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"friend"</span>/&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span>
+
+  <span class="hljs-tag">&lt;<span class="hljs-name">results</span>&gt;</span>
+
+    <span class="hljs-tag">&lt;<span class="hljs-name">result</span>&gt;</span> 
+      <span class="hljs-tag">&lt;<span class="hljs-name">binding</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"x"</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">bnode</span>&gt;</span>r2<span class="hljs-tag">&lt;/<span class="hljs-name">bnode</span>&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-name">binding</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">binding</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"hpage"</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">uri</span>&gt;</span>http://work.example.org/bob/<span class="hljs-tag">&lt;/<span class="hljs-name">uri</span>&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-name">binding</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">binding</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"name"</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">literal</span> <span class="hljs-attr">xml:lang</span>=<span class="hljs-string">"en"</span>&gt;</span>Bob<span class="hljs-tag">&lt;/<span class="hljs-name">literal</span>&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-name">binding</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">binding</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"age"</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">literal</span> <span class="hljs-attr">datatype</span>=<span class="hljs-string">"http://www.w3.org/2001/XMLSchema#integer"</span>&gt;</span>30<span class="hljs-tag">&lt;/<span class="hljs-name">literal</span>&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-name">binding</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">binding</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"mbox"</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">uri</span>&gt;</span>mailto:bob@work.example.org<span class="hljs-tag">&lt;/<span class="hljs-name">uri</span>&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-name">binding</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">result</span>&gt;</span>
+
+    ...
+  <span class="hljs-tag">&lt;/<span class="hljs-name">results</span>&gt;</span>
+
+<span class="hljs-tag">&lt;/<span class="hljs-name">sparql</span>&gt;</span></code></pre>
+        </section>
+
+        <section id="boolean-results"><div class="header-wrapper"><h4 id="x3-3-2-boolean-results"><bdi class="secno">3.3.2 </bdi>Boolean Results</h4><a class="self-link" href="#boolean-results" aria-label="Permalink for Section 3.3.2"></a></div>
+  
+  <p>A boolean result is written as the element content of a <code>boolean</code> child-element of the <code>sparql</code> element directly after a <code>head</code>, containing either
+  <code>true</code> or <code>false</code> as follows:</p>
+  <pre aria-busy="false"><code class="hljs xml"><span class="hljs-meta">&lt;?xml version="1.0"?&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">sparql</span> <span class="hljs-attr">xmlns</span>=<span class="hljs-string">"http://www.w3.org/2005/sparql-results#"</span>&gt;</span>
+  ...  head ...
+
+  <span class="hljs-tag">&lt;<span class="hljs-name">boolean</span>&gt;</span>true<span class="hljs-tag">&lt;/<span class="hljs-name">boolean</span>&gt;</span>
+
+<span class="hljs-tag">&lt;/<span class="hljs-name">sparql</span>&gt;</span></code></pre>
+        </section>
+      </section>
+    </section>
+
+    <section id="examples"><div class="header-wrapper"><h2 id="x4-examples"><bdi class="secno">4. </bdi>Examples</h2><a class="self-link" href="#examples" aria-label="Permalink for Section 4."></a></div>
+  
+
+      <section id="vb-examples"><div class="header-wrapper"><h3 id="x4-1-variable-binding-results-examples"><bdi class="secno">4.1 </bdi>Variable Binding Results Examples</h3><a class="self-link" href="#vb-examples" aria-label="Permalink for Section 4.1"></a></div>
+  
+  <p>An example <code>SELECT</code> SPARQL Query in <a href="http://www.w3.org/2009/sparql/xml-results/example.rq">example.rq</a> operating on query graph Turtle/N3 data in <a href="http://www.w3.org/2009/sparql/xml-results/data.n3">data.n3</a> providing ordered variable binding query results written in XML in <a href="http://www.w3.org/2009/sparql/xml-results/output.srx">output.srx</a>.</p>
+  <p>This XML can be transformed into XHTML using the sample XML Query script <a href="http://www.w3.org/2009/sparql/xml-results/result-to-html.xq">result-to-html.xq</a> giving <a href="http://www.w3.org/2009/sparql/xml-results/output-xquery.html">output-xquery.html</a> or with XSLT sheet <a href="http://www.w3.org/2009/sparql/xml-results/result-to-html.xsl">result-to-html.xsl</a> giving <a href="http://www.w3.org/2009/sparql/xml-results/output-xslt.html">output-xslt.html</a></p>
+      </section>
+
+      <section id="boolean-examples"><div class="header-wrapper"><h3 id="x4-2-boolean-results-examples"><bdi class="secno">4.2 </bdi>Boolean Results Examples</h3><a class="self-link" href="#boolean-examples" aria-label="Permalink for Section 4.2"></a></div>
+  
+  <p>An example <code>ASK</code> SPARQL Query in <a href="http://www.w3.org/2009/sparql/xml-results/example2.rq">example2.rq</a> operating on query graph Turtle/N3 data in <a href="http://www.w3.org/2009/sparql/xml-results/data.n3">data.n3</a> provides a boolean query result written in XML in <a href="http://www.w3.org/2009/sparql/xml-results/output2.srx">output2.srx</a>.</p>
+  <p>This XML can be transformed into XHTML using the sample XML Query script <a href="http://www.w3.org/2009/sparql/xml-results/result-to-html.xq">result-to-html.xq</a> giving <a href="http://www.w3.org/2009/sparql/xml-results/output-xquery2.html">output-xquery2.html</a> or with XSLT sheet <a href="http://www.w3.org/2009/sparql/xml-results/result-to-html.xsl">result-to-html.xsl</a> giving <a href="http://www.w3.org/2009/sparql/xml-results/output-xslt2.html">output-xslt2.html</a></p>
+      </section>
+    </section>
+
+    <section id="schemas"><div class="header-wrapper"><h2 id="x5-xml-schemas"><bdi class="secno">5. </bdi>XML Schemas</h2><a class="self-link" href="#schemas" aria-label="Permalink for Section 5."></a></div>
+  
+  <p>There are normative XML schemas provided in the following formats:</p>
+  <ol>
+    <li>RELAX NG<a href="#ref-relaxng">[RELAXNG]</a> Compact<a href="#ref-relaxng-nx">[RELAXNG-COMPACT]</a> in <a href="http://www.w3.org/2007/SPARQL/result.rnc">result.rnc</a></li>
+    <li>RELAX NG XML in <a href="http://www.w3.org/2007/SPARQL/result.rng">result.rng</a></li>
+    <li><abbr title="World Wide Web Consortium">W3C</abbr> XML Schema<a href="#ref-xmlschema-1">[XMLSCHEMA-1]</a> in <a href="http://www.w3.org/2007/SPARQL/result.xsd">result.xsd</a><br>
+    Note: this schema is machine-generated from the RELAX NG XML schema.</li>
+  </ol>
+  <p>If <abbr title="World Wide Web Consortium">W3C</abbr> XML Schema is used, an <code>xsi:schemaLocation</code> attribute can be used pointing to the schema as follows:</p>
+  <pre aria-busy="false"><code class="hljs xml"><span class="hljs-meta">&lt;?xml version="1.0"?&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">sparql</span> <span class="hljs-attr">xmlns</span>=<span class="hljs-string">"http://www.w3.org/2005/sparql-results#"</span>
+        <span class="hljs-attr">xmlns:xsi</span>=<span class="hljs-string">"http://www.w3.org/2001/XMLSchema-instance"</span>
+        <span class="hljs-attr">xsi:schemaLocation</span>=<span class="hljs-string">"http://www.w3.org/2005/sparql-results# http://www.w3.org/2007/SPARQL/result.xsd"</span>&gt;</span>
+
+  ...
+
+<span class="hljs-tag">&lt;/<span class="hljs-name">sparql</span>&gt;</span></code></pre>
+    </section>
+
+    <section id="changes"><div class="header-wrapper"><h2 id="x6-changes"><bdi class="secno">6. </bdi>Changes</h2><a class="self-link" href="#changes" aria-label="Permalink for Section 6."></a></div>
+      
+      The document title changed from "SPARQL Query Results XML Format (Second Edition)" to "SPARQL 1.2 Query Results XML Format".
+    </section>
+
+    <section id="mime"><div class="header-wrapper"><h2 id="x7-internet-media-type-file-extension-and-macintosh-file-type"><bdi class="secno">7. </bdi>Internet Media Type, File Extension and Macintosh File Type</h2><a class="self-link" href="#mime" aria-label="Permalink for Section 7."></a></div>
+  
+  <p>The Internet Media Type / MIME Type for the SPARQL Query Results XML Format is "application/sparql-results+xml".</p>
+  <p>It is recommended that result files have the extension ".srx" (all lowercase) on all platforms.</p>
+  <p>It is recommended that result files stored on Macintosh HFS file systems be given a file type of "TEXT".</p>
+  <div class="mime">
+    <div class="header-wrapper"><h2 id="internet-media-type-registration-form"><span class="doc-ref" id="mime-form">Internet Media Type Registration Form</span></h2><a class="self-link" href="#internet-media-type-registration-form" aria-label="Permalink for this Section"></a></div>
+    <dl>
+      <dt>Type name:<br></dt>
+      <dd>application</dd>
+      <dt>Subtype name:<br></dt>
+      <dd>sparql-results+xml</dd>
+      <dt>Required parameters:<br></dt>
+      <dd>None</dd>
+      <dt>Optional parameters:<br></dt>
+      <dd>"charset": This parameter has identical semantics to the charset parameter of the "application/xml" media type as specified in <a href="#mime-rfc-3023">[RFC3023]</a>, section 3.2.</dd>
+      <dt>Encoding considerations:<br></dt>
+      <dd>Identical to those of "application/xml" as specified in <a href="#mime-rfc-3023">[RFC3023]</a>, section 3.2.</dd>
+      <dt>Security considerations:<br></dt>
+      <dd>
+        <p>SPARQL query results uses URIs. See Section 7 of <a href="#mime-rfc-3986">[RFC3986]</a>.</p>
+        <p>SPARQL query results uses IRIs. See Section 8 of <a href="#mime-rfc-3987">[RFC3987]</a>.</p>
+        <p>As this media type uses the "+xml" convention, it shares the same security considerations as described in <a href="#mime-rfc-3023">[RFC3023]</a>, section 10.</p>
+      </dd>
+      <dt>Interoperability considerations:<br></dt>
+      <dd>There are no known interoperability issues.</dd>
+      <dt>Published specification:<br></dt>
+      <dd>This specification.</dd>
+      <dt>Applications which use this media type:<br></dt>
+      <dd>No known applications currently use this media type.</dd>
+      <dt>Additional information:<br></dt>
+      <dt>Magic number(s):<br></dt>
+      <dd>As specified for "application/xml" in <a href="#mime-rfc-3023">[RFC3023]</a>, section 3.2.</dd>
+      <dt>File extension(s):<br></dt>
+      <dd>".srx"</dd>
+      <dt>Fragment identifiers:<br></dt>
+      <dd>Identical to that of "application/xml" as described in RFC 3023 <a href="#mime-rfc-3023">[RFC3023]</a>, section 5.</dd>
+      <dt>Base URI:<br></dt>
+      <dd>As specified in <a href="#mime-rfc-3023">[RFC3023]</a>, section 6.</dd>
+      <dt>Macintosh file type code(s):<br></dt>
+      <dd>"TEXT"</dd>
+      <dt>Person &amp; email address to contact for further information:<br></dt>
+      <dd>Dave Beckett, Eric Prud'hommeaux &lt;public-rdf-dawg-comments@w3.org&gt;</dd>
+      <dt>Intended usage:<br></dt>
+      <dd>COMMON</dd>
+      <dt>Restrictions on usage:<br></dt>
+      <dd>None</dd>
+      <dt>Author/Change controller:<br></dt>
+      <dd>The SPARQL specification is a work product of the World Wide Web Consortium's RDF Data Access Working Group. The <abbr title="World Wide Web Consortium">W3C</abbr> has change control over these specifications.</dd>
+    </dl>
+    <div class="header-wrapper"><h3 id="references-0"><span class="doc-ref" id="mime-references">References</span></h3><a class="self-link" href="#references-0" aria-label="Permalink for this Section"></a></div>
+    <p>[<span class="doc-ref" id="mime-rfc-3023">[RFC3023]</span> Murata, M., St. Laurent, S., and D. Kohn, "XML Media Types", RFC 3023, January 2001.</p>
+    <p><span class="doc-ref" id="mime-rfc-3986">[RFC3986]</span> Berners-Lee, T., Fielding, R., and L. Masinter, "Uniform Resource Identifier (URI): Generic Syntax", STD 66, RFC 3986, January 2005.</p>
+    <p><span class="doc-ref" id="mime-rfc-3987">[RFC3987]</span> Duerst, M. and M. Suignard, "Internationalized Resource Identifiers (IRIs)", RFC 3987, January 2005.</p>
+  </div>
+    </section>
+
+    
+
+    <section id="privacy"><div class="header-wrapper"><h2 id="x8-privacy-considerations"><bdi class="secno">8. </bdi>Privacy Considerations</h2><a class="self-link" href="#privacy" aria-label="Permalink for Section 8."></a></div>
+      
+      <p>TODO</p>
+    </section>
+
+    <section id="security"><div class="header-wrapper"><h2 id="x9-security-considerations"><bdi class="secno">9. </bdi>Security Considerations</h2><a class="self-link" href="#security" aria-label="Permalink for Section 9."></a></div>
+      
+      <p>TODO</p>
+    </section>
+
+    <section id="internationalization"><div class="header-wrapper"><h2 id="x10-internationalization-considerations"><bdi class="secno">10. </bdi>Internationalization Considerations</h2><a class="self-link" href="#internationalization" aria-label="Permalink for Section 10."></a></div>
+      
+      <p>TODO</p>                
+    </section>
+
+    <section class="appendix informative" id="changes-from-sparql11"><div class="header-wrapper"><h2 id="a-change-log"><bdi class="secno">A. </bdi>Change Log</h2><a class="self-link" href="#changes-from-sparql11" aria-label="Permalink for Appendix A."></a></div><p><em>This section is non-normative.</em></p>
+      
+      <p>TODO</p>
+    </section>   
+
+    <section id="index" class="appendix"><div class="header-wrapper"><h2 id="b-index"><bdi class="secno">B. </bdi>Index</h2><a class="self-link" href="#index" aria-label="Permalink for Appendix B."></a></div><section id="index-defined-here"><div class="header-wrapper"><h3 id="b-1-terms-defined-by-this-specification"><bdi class="secno">B.1 </bdi>Terms defined by this specification</h3><a class="self-link" href="#index-defined-here" aria-label="Permalink for Appendix B.1"></a></div>
+    
+    <ul class="index">
+    
+  </ul>
+  </section><section id="index-defined-elsewhere"><div class="header-wrapper"><h3 id="b-2-terms-defined-by-reference"><bdi class="secno">B.2 </bdi>Terms defined by reference</h3><a class="self-link" href="#index-defined-elsewhere" aria-label="Permalink for Appendix B.2"></a></div>
+    
+    <ul class="index">
+    <li>
+        [<cite><a class="bibref" data-link-type="biblio" href="#bib-sparql12-concepts">SPARQL12-CONCEPTS</a></cite>] defines the following:
+        <ul>
+          <li>
+    <span class="index-term" data-href="https://w3c.github.io/sparql-concepts/spec/" id="index-term-sparql-1-2-concepts" tabindex="0" aria-haspopup="dialog">SPARQL 1.2 Concepts</span>
+  </li>
+        </ul>
+      </li><li>
+        [<cite><a class="bibref" data-link-type="biblio" href="#bib-sparql12-entailment">SPARQL12-ENTAILMENT</a></cite>] defines the following:
+        <ul>
+          <li>
+    <span class="index-term" data-href="https://w3c.github.io/sparql-entailment/spec/" id="index-term-sparql-1-2-entailment-regimes" tabindex="0" aria-haspopup="dialog">SPARQL 1.2 Entailment Regimes</span>
+  </li>
+        </ul>
+      </li><li>
+        [<cite><a class="bibref" data-link-type="biblio" href="#bib-sparql12-federated-query">SPARQL12-FEDERATED-QUERY</a></cite>] defines the following:
+        <ul>
+          <li>
+    <span class="index-term" data-href="https://w3c.github.io/sparql-federated-query/spec/" id="index-term-sparql-1-2-federated-query" tabindex="0" aria-haspopup="dialog">SPARQL 1.2 Federated Query</span>
+  </li>
+        </ul>
+      </li><li>
+        [<cite><a class="bibref" data-link-type="biblio" href="#bib-sparql12-graph-store-protocol">SPARQL12-GRAPH-STORE-PROTOCOL</a></cite>] defines the following:
+        <ul>
+          <li>
+    <span class="index-term" data-href="https://w3c.github.io/sparql-graph-store-protocol/spec/" id="index-term-sparql-1-2-graph-store-http-protocol" tabindex="0" aria-haspopup="dialog">SPARQL 1.2 Graph Store HTTP Protocol</span>
+  </li>
+        </ul>
+      </li><li>
+        [<cite><a class="bibref" data-link-type="biblio" href="#bib-sparql12-new">SPARQL12-NEW</a></cite>] defines the following:
+        <ul>
+          <li>
+    <span class="index-term" data-href="https://w3c.github.io/sparql-new/spec/" id="index-term-what-s-new-in-sparql-1-2" tabindex="0" aria-haspopup="dialog">What’s New in SPARQL 1.2</span>
+  </li>
+        </ul>
+      </li><li>
+        [<cite><a class="bibref" data-link-type="biblio" href="#bib-sparql12-protocol">SPARQL12-PROTOCOL</a></cite>] defines the following:
+        <ul>
+          <li>
+    <span class="index-term" data-href="https://w3c.github.io/sparql-protocol/spec/" id="index-term-sparql-1-2-protocol" tabindex="0" aria-haspopup="dialog">SPARQL 1.2 Protocol</span>
+  </li>
+        </ul>
+      </li><li>
+        [<cite><a class="bibref" data-link-type="biblio" href="#bib-sparql12-query">SPARQL12-QUERY</a></cite>] defines the following:
+        <ul>
+          <li>
+    <span class="index-term" data-href="https://w3c.github.io/sparql-query/spec/" id="index-term-sparql-1-2-query-language" tabindex="0" aria-haspopup="dialog">SPARQL 1.2 Query Language</span>
+  </li>
+        </ul>
+      </li><li>
+        [<cite><a class="bibref" data-link-type="biblio" href="#bib-sparql12-results-csv-tsv">SPARQL12-RESULTS-CSV-TSV</a></cite>] defines the following:
+        <ul>
+          <li>
+    <span class="index-term" data-href="https://w3c.github.io/sparql-results-csv-tsv/spec/" id="index-term-sparql-1-2-query-results-csv-and-tsv-formats" tabindex="0" aria-haspopup="dialog">SPARQL 1.2 Query Results CSV and TSV Formats</span>
+  </li>
+        </ul>
+      </li><li>
+        [<cite><a class="bibref" data-link-type="biblio" href="#bib-sparql12-results-json">SPARQL12-RESULTS-JSON</a></cite>] defines the following:
+        <ul>
+          <li>
+    <span class="index-term" data-href="https://w3c.github.io/sparql-results-json/spec/" id="index-term-sparql-1-2-query-results-json-format" tabindex="0" aria-haspopup="dialog">SPARQL 1.2 Query Results JSON Format</span>
+  </li>
+        </ul>
+      </li><li>
+        [<cite><a class="bibref" data-link-type="biblio" href="#bib-sparql12-service-description">SPARQL12-SERVICE-DESCRIPTION</a></cite>] defines the following:
+        <ul>
+          <li>
+    <span class="index-term" data-href="https://w3c.github.io/sparql-service-description/spec/" id="index-term-sparql-1-2-service-description" tabindex="0" aria-haspopup="dialog">SPARQL 1.2 Service Description</span>
+  </li>
+        </ul>
+      </li><li>
+        [<cite><a class="bibref" data-link-type="biblio" href="#bib-sparql12-update">SPARQL12-UPDATE</a></cite>] defines the following:
+        <ul>
+          <li>
+    <span class="index-term" data-href="https://w3c.github.io/sparql-update/spec/" id="index-term-sparql-1-2-update" tabindex="0" aria-haspopup="dialog">SPARQL 1.2 Update</span>
+  </li>
+        </ul>
+      </li>
+  </ul>
+  </section></section>
+
+  
+
+<section id="references" class="appendix"><div class="header-wrapper"><h2 id="c-references"><bdi class="secno">C. </bdi>References</h2><a class="self-link" href="#references" aria-label="Permalink for Appendix C."></a></div>
+  
+  <dl class="bib">
+    <dt><span class="doc-ref" id="ref-xml">[XML]</span></dt>
+    <dd><cite><a href="http://www.w3.org/TR/2004/REC-xml-20040204/">Extensible Markup Language (XML) 1.0, Third Edition</a></cite>, T. Bray, J. Paoli, C.M. Sperberg-McQueen, E. Maler, F. Yergeau,
+    Editors, <abbr title="World Wide Web Consortium">W3C</abbr> Recommendation, 4 February 2004. This document is http://www.w3.org/TR/2004/REC-xml-20040204 . The <a href="http://www.w3.org/TR/REC-xml/" title="Latest version of XML">latest
+    version</a> is available at http://www.w3.org/TR/REC-xml .</dd>
+    <dt><span class="doc-ref" id="ref-sparql-query">[SPARQL-QUERY]</span></dt>
+    <dd><cite><a href="http://www.w3.org/TR/2013/REC-sparql11-query-20130321">SPARQL 1.1 Query Language</a></cite>, S. Harris, A. Seaborne, Editors, <abbr title="World Wide Web Consortium">W3C</abbr> Recommendation, 21 March 2013,
+    http://www.w3.org/TR/2013/REC-sparql11-query-20130321. <a href="http://www.w3.org/TR/sparql11-query/" title="Latest version of SPARQL 1.1 Query Language">Latest version</a> available at
+    http://www.w3.org/TR/sparql11-query.</dd>
+    <dt><span class="doc-ref" id="ref-relaxng">[RELAXNG]</span></dt>
+    <dd><cite><a href="http://www.oasis-open.org/committees/relax-ng/spec-20011203.html">RELAX NG Specification</a></cite>, James Clark and MURATA Makoto, Editors, OASIS Committee Specification, 3
+    December 2001. This document is http://www.oasis-open.org/committees/relax-ng/spec-20011203.html . The <a href="http://www.oasis-open.org/committees/relax-ng/spec.html" title="Latest version of RELAX NG Specification">latest version</a> is available at http://www.oasis-open.org/committees/relax-ng/spec.html .</dd>
+    <dt><span class="doc-ref" id="ref-relaxng-nx">[RELAXNG-COMPACT]</span></dt>
+    <dd><cite><a href="http://www.oasis-open.org/committees/relax-ng/compact-20021121.html">RELAX NG Compact Syntax</a></cite>, James Clark, Editor. OASIS Committee Specification, 21 November 2002.
+    This document is http://www.oasis-open.org/committees/relax-ng/compact-20021121.html .</dd>
+    <dt><span class="doc-ref" id="ref-xmlschema-1">[XMLSCHEMA-1]</span></dt>
+    <dd><cite><a href="http://www.w3.org/TR/2004/REC-xmlschema-1-20041028/">XML Schema Part 1: Structures Second Edition</a></cite>, D. Beech, N. Mendelsohn, M. Maloney, H. S. Thompson, Editors, <abbr title="World Wide Web Consortium">W3C</abbr>
+    Recommendation, 28 October 2004. This document is http://www.w3.org/TR/2004/REC-xmlschema-1-20041028/ . The <a href="http://www.w3.org/TR/xmlschema-1/" title="Latest version of XML Schema Part 1: Structures Second Edition">latest version</a> is available at http://www.w3.org/TR/xmlschema-1/ .</dd>
+    <dt><span class="doc-ref" id="ref-srj">[SRJ]</span></dt>
+    <dd><cite><a href="http://www.w3.org/TR/2013/REC-sparql11-results-json-20130321">SPARQL 1.1 Query Results JSON Format</a></cite>, A. Seaborne, Editor, <abbr title="World Wide Web Consortium">W3C</abbr> Recommendation, 21 March 2013,
+    http://www.w3.org/TR/2013/REC-sparql11-results-json-20130321. <a href="http://www.w3.org/TR/sparql11-results-json/" title="Latest version of SPARQL 1.1 Query Results JSON Format">Latest
+    version</a> available at http://www.w3.org/TR/sparql11-results-json.</dd>
+    <dt><span class="doc-ref" id="ref-src">[SRC]</span></dt>
+    <dd><cite><a href="http://www.w3.org/TR/2013/REC-sparql11-results-csv-tsv-20130321">SPARQL 1.1 Query Results CSV and TSV Formats</a></cite>, A. Seaborne, Editor, <abbr title="World Wide Web Consortium">W3C</abbr> Recommendation, 21 March
+    2013, http://www.w3.org/TR/2013/REC-sparql11-results-csv-tsv-20130321. <a href="http://www.w3.org/TR/sparql11-results-csv-tsv/" title="Latest version of SPARQL 1.1 Query Results CSV and TSV Formats">Latest version</a> available at http://www.w3.org/TR/sparql11-results-csv-tsv.</dd>
+  </dl>
+    <section id="informative-references"><div class="header-wrapper"><h3 id="c-1-informative-references"><bdi class="secno">C.1 </bdi>Informative references</h3><a class="self-link" href="#informative-references" aria-label="Permalink for Appendix C.1"></a></div>
+    
+    <dl class="bibliography"><dt id="bib-sparql12-concepts">[SPARQL12-CONCEPTS]</dt><dd>
+      <a href="https://w3c.github.io/sparql-concepts/spec/" id="ref-for-index-term-sparql-1-2-concepts-2"><cite>SPARQL 1.2 Concepts</cite></a>. The W3C RDF-star Working Group.  W3C. W3C Working Draft. URL: <a href="https://w3c.github.io/sparql-concepts/spec/" id="ref-for-index-term-sparql-1-2-concepts-3">https://w3c.github.io/sparql-concepts/spec/</a>
+    </dd><dt id="bib-sparql12-entailment">[SPARQL12-ENTAILMENT]</dt><dd>
+      <a href="https://w3c.github.io/sparql-entailment/spec/" id="ref-for-index-term-sparql-1-2-entailment-regimes-2"><cite>SPARQL 1.2 Entailment Regimes</cite></a>. Birte Glimm; Chimezie Ogbuji.  W3C. W3C Working Draft. URL: <a href="https://w3c.github.io/sparql-entailment/spec/" id="ref-for-index-term-sparql-1-2-entailment-regimes-3">https://w3c.github.io/sparql-entailment/spec/</a>
+    </dd><dt id="bib-sparql12-federated-query">[SPARQL12-FEDERATED-QUERY]</dt><dd>
+      <a href="https://w3c.github.io/sparql-federated-query/spec/" id="ref-for-index-term-sparql-1-2-federated-query-2"><cite>SPARQL 1.2 Federated Query</cite></a>. Eric Prud'hommeaux; Carlos Buil Aranda.  W3C. W3C Working Draft. URL: <a href="https://w3c.github.io/sparql-federated-query/spec/" id="ref-for-index-term-sparql-1-2-federated-query-3">https://w3c.github.io/sparql-federated-query/spec/</a>
+    </dd><dt id="bib-sparql12-graph-store-protocol">[SPARQL12-GRAPH-STORE-PROTOCOL]</dt><dd>
+      <a href="https://w3c.github.io/sparql-graph-store-protocol/spec/" id="ref-for-index-term-sparql-1-2-graph-store-http-protocol-2"><cite>SPARQL 1.2 Graph Store HTTP Protocol</cite></a>. Chimezie Ogbuji.  W3C. W3C Working Draft. URL: <a href="https://w3c.github.io/sparql-graph-store-protocol/spec/" id="ref-for-index-term-sparql-1-2-graph-store-http-protocol-3">https://w3c.github.io/sparql-graph-store-protocol/spec/</a>
+    </dd><dt id="bib-sparql12-new">[SPARQL12-NEW]</dt><dd>
+      <a href="https://w3c.github.io/sparql-new/spec/" id="ref-for-index-term-what-s-new-in-sparql-1-2-2"><cite>What’s New in SPARQL 1.2</cite></a>. The W3C RDF-star Working Group.  W3C. W3C Working Draft. URL: <a href="https://w3c.github.io/sparql-new/spec/" id="ref-for-index-term-what-s-new-in-sparql-1-2-3">https://w3c.github.io/sparql-new/spec/</a>
+    </dd><dt id="bib-sparql12-protocol">[SPARQL12-PROTOCOL]</dt><dd>
+      <a href="https://w3c.github.io/sparql-protocol/spec/" id="ref-for-index-term-sparql-1-2-protocol-2"><cite>SPARQL 1.2 Protocol</cite></a>. Lee Feigenbaum; Gregory Williams; Kendall Clark; Elias Torres.  W3C. W3C Working Draft. URL: <a href="https://w3c.github.io/sparql-protocol/spec/" id="ref-for-index-term-sparql-1-2-protocol-3">https://w3c.github.io/sparql-protocol/spec/</a>
+    </dd><dt id="bib-sparql12-query">[SPARQL12-QUERY]</dt><dd>
+      <a href="https://w3c.github.io/sparql-query/spec/" id="ref-for-index-term-sparql-1-2-query-language-2"><cite>SPARQL 1.2 Query Language</cite></a>. Steven Harris; Andy Seaborne.  W3C. W3C Working Draft. URL: <a href="https://w3c.github.io/sparql-query/spec/" id="ref-for-index-term-sparql-1-2-query-language-3">https://w3c.github.io/sparql-query/spec/</a>
+    </dd><dt id="bib-sparql12-results-csv-tsv">[SPARQL12-RESULTS-CSV-TSV]</dt><dd>
+      <a href="https://w3c.github.io/sparql-results-csv-tsv/spec/" id="ref-for-index-term-sparql-1-2-query-results-csv-and-tsv-formats-2"><cite>SPARQL 1.2 Query Results CSV and TSV Formats</cite></a>. Andy Seaborne.  W3C. W3C Working Draft. URL: <a href="https://w3c.github.io/sparql-results-csv-tsv/spec/" id="ref-for-index-term-sparql-1-2-query-results-csv-and-tsv-formats-3">https://w3c.github.io/sparql-results-csv-tsv/spec/</a>
+    </dd><dt id="bib-sparql12-results-json">[SPARQL12-RESULTS-JSON]</dt><dd>
+      <a href="https://w3c.github.io/sparql-results-json/spec/" id="ref-for-index-term-sparql-1-2-query-results-json-format-2"><cite>SPARQL 1.2 Query Results JSON Format</cite></a>. Andy Seaborne.  W3C. W3C Working Draft. URL: <a href="https://w3c.github.io/sparql-results-json/spec/" id="ref-for-index-term-sparql-1-2-query-results-json-format-3">https://w3c.github.io/sparql-results-json/spec/</a>
+    </dd><dt id="bib-sparql12-service-description">[SPARQL12-SERVICE-DESCRIPTION]</dt><dd>
+      <a href="https://w3c.github.io/sparql-service-description/spec/" id="ref-for-index-term-sparql-1-2-service-description-2"><cite>SPARQL 1.2 Service Description</cite></a>. Gregory Williams.  W3C. W3C Working Draft. URL: <a href="https://w3c.github.io/sparql-service-description/spec/" id="ref-for-index-term-sparql-1-2-service-description-3">https://w3c.github.io/sparql-service-description/spec/</a>
+    </dd><dt id="bib-sparql12-update">[SPARQL12-UPDATE]</dt><dd>
+      <a href="https://w3c.github.io/sparql-update/spec/" id="ref-for-index-term-sparql-1-2-update-2"><cite>SPARQL 1.2 Update</cite></a>. Paula Gearon; Alexandre Passant; Axel Polleres.  W3C. W3C Working Draft. URL: <a href="https://w3c.github.io/sparql-update/spec/" id="ref-for-index-term-sparql-1-2-update-3">https://w3c.github.io/sparql-update/spec/</a>
+    </dd></dl>
+  </section></section><p role="navigation" id="back-to-top">
+    <a href="#title"><abbr title="Back to Top">↑</abbr></a>
+  </p><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-sparql-1-2-concepts" aria-label="Links in this document to definition: SPARQL 1.2 Concepts">
+      <span class="caret"></span>
+      <div>
+        <a class="self-link" href="https://w3c.github.io/sparql-concepts/spec/" aria-label="Permalink for definition: SPARQL 1.2 Concepts. Activate to close this dialog.">Permalink</a>
+         
+      </div>
+      <p><b>Referenced in:</b></p>
+      <ul>
+    <li>
+    <a href="#ref-for-index-term-sparql-1-2-concepts-1" title="§ 1. Set of Documents">§ 1. Set of Documents</a> 
+  </li><li>
+    <a href="#ref-for-index-term-sparql-1-2-concepts-2" title="§ C.1 Informative references">§ C.1 Informative references</a> <a href="#ref-for-index-term-sparql-1-2-concepts-3" title="Reference 2">(2)</a> 
+  </li>
+  </ul>
+    </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-sparql-1-2-entailment-regimes" aria-label="Links in this document to definition: SPARQL 1.2 Entailment Regimes">
+      <span class="caret"></span>
+      <div>
+        <a class="self-link" href="https://w3c.github.io/sparql-entailment/spec/" aria-label="Permalink for definition: SPARQL 1.2 Entailment Regimes. Activate to close this dialog.">Permalink</a>
+         
+      </div>
+      <p><b>Referenced in:</b></p>
+      <ul>
+    <li>
+    <a href="#ref-for-index-term-sparql-1-2-entailment-regimes-1" title="§ 1. Set of Documents">§ 1. Set of Documents</a> 
+  </li><li>
+    <a href="#ref-for-index-term-sparql-1-2-entailment-regimes-2" title="§ C.1 Informative references">§ C.1 Informative references</a> <a href="#ref-for-index-term-sparql-1-2-entailment-regimes-3" title="Reference 2">(2)</a> 
+  </li>
+  </ul>
+    </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-sparql-1-2-federated-query" aria-label="Links in this document to definition: SPARQL 1.2 Federated Query">
+      <span class="caret"></span>
+      <div>
+        <a class="self-link" href="https://w3c.github.io/sparql-federated-query/spec/" aria-label="Permalink for definition: SPARQL 1.2 Federated Query. Activate to close this dialog.">Permalink</a>
+         
+      </div>
+      <p><b>Referenced in:</b></p>
+      <ul>
+    <li>
+    <a href="#ref-for-index-term-sparql-1-2-federated-query-1" title="§ 1. Set of Documents">§ 1. Set of Documents</a> 
+  </li><li>
+    <a href="#ref-for-index-term-sparql-1-2-federated-query-2" title="§ C.1 Informative references">§ C.1 Informative references</a> <a href="#ref-for-index-term-sparql-1-2-federated-query-3" title="Reference 2">(2)</a> 
+  </li>
+  </ul>
+    </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-sparql-1-2-graph-store-http-protocol" aria-label="Links in this document to definition: SPARQL 1.2 Graph Store HTTP Protocol">
+      <span class="caret"></span>
+      <div>
+        <a class="self-link" href="https://w3c.github.io/sparql-graph-store-protocol/spec/" aria-label="Permalink for definition: SPARQL 1.2 Graph Store HTTP Protocol. Activate to close this dialog.">Permalink</a>
+         
+      </div>
+      <p><b>Referenced in:</b></p>
+      <ul>
+    <li>
+    <a href="#ref-for-index-term-sparql-1-2-graph-store-http-protocol-1" title="§ 1. Set of Documents">§ 1. Set of Documents</a> 
+  </li><li>
+    <a href="#ref-for-index-term-sparql-1-2-graph-store-http-protocol-2" title="§ C.1 Informative references">§ C.1 Informative references</a> <a href="#ref-for-index-term-sparql-1-2-graph-store-http-protocol-3" title="Reference 2">(2)</a> 
+  </li>
+  </ul>
+    </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-what-s-new-in-sparql-1-2" aria-label="Links in this document to definition: What’s New in SPARQL 1.2">
+      <span class="caret"></span>
+      <div>
+        <a class="self-link" href="https://w3c.github.io/sparql-new/spec/" aria-label="Permalink for definition: What’s New in SPARQL 1.2. Activate to close this dialog.">Permalink</a>
+         
+      </div>
+      <p><b>Referenced in:</b></p>
+      <ul>
+    <li>
+    <a href="#ref-for-index-term-what-s-new-in-sparql-1-2-1" title="§ 1. Set of Documents">§ 1. Set of Documents</a> 
+  </li><li>
+    <a href="#ref-for-index-term-what-s-new-in-sparql-1-2-2" title="§ C.1 Informative references">§ C.1 Informative references</a> <a href="#ref-for-index-term-what-s-new-in-sparql-1-2-3" title="Reference 2">(2)</a> 
+  </li>
+  </ul>
+    </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-sparql-1-2-protocol" aria-label="Links in this document to definition: SPARQL 1.2 Protocol">
+      <span class="caret"></span>
+      <div>
+        <a class="self-link" href="https://w3c.github.io/sparql-protocol/spec/" aria-label="Permalink for definition: SPARQL 1.2 Protocol. Activate to close this dialog.">Permalink</a>
+         
+      </div>
+      <p><b>Referenced in:</b></p>
+      <ul>
+    <li>
+    <a href="#ref-for-index-term-sparql-1-2-protocol-1" title="§ 1. Set of Documents">§ 1. Set of Documents</a> 
+  </li><li>
+    <a href="#ref-for-index-term-sparql-1-2-protocol-2" title="§ C.1 Informative references">§ C.1 Informative references</a> <a href="#ref-for-index-term-sparql-1-2-protocol-3" title="Reference 2">(2)</a> 
+  </li>
+  </ul>
+    </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-sparql-1-2-query-language" aria-label="Links in this document to definition: SPARQL 1.2 Query Language">
+      <span class="caret"></span>
+      <div>
+        <a class="self-link" href="https://w3c.github.io/sparql-query/spec/" aria-label="Permalink for definition: SPARQL 1.2 Query Language. Activate to close this dialog.">Permalink</a>
+         
+      </div>
+      <p><b>Referenced in:</b></p>
+      <ul>
+    <li>
+    <a href="#ref-for-index-term-sparql-1-2-query-language-1" title="§ 1. Set of Documents">§ 1. Set of Documents</a> 
+  </li><li>
+    <a href="#ref-for-index-term-sparql-1-2-query-language-2" title="§ C.1 Informative references">§ C.1 Informative references</a> <a href="#ref-for-index-term-sparql-1-2-query-language-3" title="Reference 2">(2)</a> 
+  </li>
+  </ul>
+    </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-sparql-1-2-query-results-csv-and-tsv-formats" aria-label="Links in this document to definition: SPARQL 1.2 Query Results CSV and TSV Formats">
+      <span class="caret"></span>
+      <div>
+        <a class="self-link" href="https://w3c.github.io/sparql-results-csv-tsv/spec/" aria-label="Permalink for definition: SPARQL 1.2 Query Results CSV and TSV Formats. Activate to close this dialog.">Permalink</a>
+         
+      </div>
+      <p><b>Referenced in:</b></p>
+      <ul>
+    <li>
+    <a href="#ref-for-index-term-sparql-1-2-query-results-csv-and-tsv-formats-1" title="§ 1. Set of Documents">§ 1. Set of Documents</a> 
+  </li><li>
+    <a href="#ref-for-index-term-sparql-1-2-query-results-csv-and-tsv-formats-2" title="§ C.1 Informative references">§ C.1 Informative references</a> <a href="#ref-for-index-term-sparql-1-2-query-results-csv-and-tsv-formats-3" title="Reference 2">(2)</a> 
+  </li>
+  </ul>
+    </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-sparql-1-2-query-results-json-format" aria-label="Links in this document to definition: SPARQL 1.2 Query Results JSON Format">
+      <span class="caret"></span>
+      <div>
+        <a class="self-link" href="https://w3c.github.io/sparql-results-json/spec/" aria-label="Permalink for definition: SPARQL 1.2 Query Results JSON Format. Activate to close this dialog.">Permalink</a>
+         
+      </div>
+      <p><b>Referenced in:</b></p>
+      <ul>
+    <li>
+    <a href="#ref-for-index-term-sparql-1-2-query-results-json-format-1" title="§ 1. Set of Documents">§ 1. Set of Documents</a> 
+  </li><li>
+    <a href="#ref-for-index-term-sparql-1-2-query-results-json-format-2" title="§ C.1 Informative references">§ C.1 Informative references</a> <a href="#ref-for-index-term-sparql-1-2-query-results-json-format-3" title="Reference 2">(2)</a> 
+  </li>
+  </ul>
+    </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-sparql-1-2-service-description" aria-label="Links in this document to definition: SPARQL 1.2 Service Description">
+      <span class="caret"></span>
+      <div>
+        <a class="self-link" href="https://w3c.github.io/sparql-service-description/spec/" aria-label="Permalink for definition: SPARQL 1.2 Service Description. Activate to close this dialog.">Permalink</a>
+         
+      </div>
+      <p><b>Referenced in:</b></p>
+      <ul>
+    <li>
+    <a href="#ref-for-index-term-sparql-1-2-service-description-1" title="§ 1. Set of Documents">§ 1. Set of Documents</a> 
+  </li><li>
+    <a href="#ref-for-index-term-sparql-1-2-service-description-2" title="§ C.1 Informative references">§ C.1 Informative references</a> <a href="#ref-for-index-term-sparql-1-2-service-description-3" title="Reference 2">(2)</a> 
+  </li>
+  </ul>
+    </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-sparql-1-2-update" aria-label="Links in this document to definition: SPARQL 1.2 Update">
+      <span class="caret"></span>
+      <div>
+        <a class="self-link" href="https://w3c.github.io/sparql-update/spec/" aria-label="Permalink for definition: SPARQL 1.2 Update. Activate to close this dialog.">Permalink</a>
+         
+      </div>
+      <p><b>Referenced in:</b></p>
+      <ul>
+    <li>
+    <a href="#ref-for-index-term-sparql-1-2-update-1" title="§ 1. Set of Documents">§ 1. Set of Documents</a> 
+  </li><li>
+    <a href="#ref-for-index-term-sparql-1-2-update-2" title="§ C.1 Informative references">§ C.1 Informative references</a> <a href="#ref-for-index-term-sparql-1-2-update-3" title="Reference 2">(2)</a> 
+  </li>
+  </ul>
+    </div><script id="respec-dfn-panel">(() => {
+// @ts-check
+if (document.respec) {
+  document.respec.ready.then(setupPanel);
+} else {
+  setupPanel();
+}
+
+function setupPanel() {
+  const listener = panelListener();
+  document.body.addEventListener("keydown", listener);
+  document.body.addEventListener("click", listener);
+}
+
+function panelListener() {
+  /** @type {HTMLElement} */
+  let panel = null;
+  return event => {
+    const { target, type } = event;
+
+    if (!(target instanceof HTMLElement)) return;
+
+    // For keys, we only care about Enter key to activate the panel
+    // otherwise it's activated via a click.
+    if (type === "keydown" && event.key !== "Enter") return;
+
+    const action = deriveAction(event);
+
+    switch (action) {
+      case "show": {
+        hidePanel(panel);
+        /** @type {HTMLElement} */
+        const dfn = target.closest("dfn, .index-term");
+        panel = document.getElementById(`dfn-panel-for-${dfn.id}`);
+        const coords = deriveCoordinates(event);
+        displayPanel(dfn, panel, coords);
+        break;
+      }
+      case "dock": {
+        panel.style.left = null;
+        panel.style.top = null;
+        panel.classList.add("docked");
+        break;
+      }
+      case "hide": {
+        hidePanel(panel);
+        panel = null;
+        break;
+      }
+    }
+  };
+}
+
+/**
+ * @param {MouseEvent|KeyboardEvent} event
+ */
+function deriveCoordinates(event) {
+  const target = /** @type HTMLElement */ (event.target);
+
+  // We prevent synthetic AT clicks from putting
+  // the dialog in a weird place. The AT events sometimes
+  // lack coordinates, so they have clientX/Y = 0
+  const rect = target.getBoundingClientRect();
+  if (
+    event instanceof MouseEvent &&
+    event.clientX >= rect.left &&
+    event.clientY >= rect.top
+  ) {
+    // The event probably happened inside the bounding rect...
+    return { x: event.clientX, y: event.clientY };
+  }
+
+  // Offset to the middle of the element
+  const x = rect.x + rect.width / 2;
+  // Placed at the bottom of the element
+  const y = rect.y + rect.height;
+  return { x, y };
+}
+
+/**
+ * @param {Event} event
+ */
+function deriveAction(event) {
+  const target = /** @type {HTMLElement} */ (event.target);
+  const hitALink = !!target.closest("a");
+  if (target.closest("dfn:not([data-cite]), .index-term")) {
+    return hitALink ? "none" : "show";
+  }
+  if (target.closest(".dfn-panel")) {
+    if (hitALink) {
+      return target.classList.contains("self-link") ? "hide" : "dock";
+    }
+    const panel = target.closest(".dfn-panel");
+    return panel.classList.contains("docked") ? "hide" : "none";
+  }
+  if (document.querySelector(".dfn-panel:not([hidden])")) {
+    return "hide";
+  }
+  return "none";
+}
+
+/**
+ * @param {HTMLElement} dfn
+ * @param {HTMLElement} panel
+ * @param {{ x: number, y: number }} clickPosition
+ */
+function displayPanel(dfn, panel, { x, y }) {
+  panel.hidden = false;
+  // distance (px) between edge of panel and the pointing triangle (caret)
+  const MARGIN = 20;
+
+  const dfnRects = dfn.getClientRects();
+  // Find the `top` offset when the `dfn` can be spread across multiple lines
+  let closestTop = 0;
+  let minDiff = Infinity;
+  for (const rect of dfnRects) {
+    const { top, bottom } = rect;
+    const diffFromClickY = Math.abs((top + bottom) / 2 - y);
+    if (diffFromClickY < minDiff) {
+      minDiff = diffFromClickY;
+      closestTop = top;
+    }
+  }
+
+  const top = window.scrollY + closestTop + dfnRects[0].height;
+  const left = x - MARGIN;
+  panel.style.left = `${left}px`;
+  panel.style.top = `${top}px`;
+
+  // Find if the panel is flowing out of the window
+  const panelRect = panel.getBoundingClientRect();
+  const SCREEN_WIDTH = Math.min(window.innerWidth, window.screen.width);
+  if (panelRect.right > SCREEN_WIDTH) {
+    const newLeft = Math.max(MARGIN, x + MARGIN - panelRect.width);
+    const newCaretOffset = left - newLeft;
+    panel.style.left = `${newLeft}px`;
+    /** @type {HTMLElement} */
+    const caret = panel.querySelector(".caret");
+    caret.style.left = `${newCaretOffset}px`;
+  }
+
+  // As it's a dialog, we trap focus.
+  // TODO: when <dialog> becomes a implemented, we should really
+  // use that.
+  trapFocus(panel, dfn);
+}
+
+/**
+ * @param {HTMLElement} panel
+ * @param {HTMLElement} dfn
+ * @returns
+ */
+function trapFocus(panel, dfn) {
+  /** @type NodeListOf<HTMLAnchorElement> elements */
+  const anchors = panel.querySelectorAll("a[href]");
+  // No need to trap focus
+  if (!anchors.length) return;
+
+  // Move focus to first anchor element
+  const first = anchors.item(0);
+  first.focus();
+
+  const trapListener = createTrapListener(anchors, panel, dfn);
+  panel.addEventListener("keydown", trapListener);
+
+  // Hiding the panel releases the trap
+  const mo = new MutationObserver(records => {
+    const [record] = records;
+    const target = /** @type HTMLElement */ (record.target);
+    if (target.hidden) {
+      panel.removeEventListener("keydown", trapListener);
+      mo.disconnect();
+    }
+  });
+  mo.observe(panel, { attributes: true, attributeFilter: ["hidden"] });
+}
+
+/**
+ *
+ * @param {NodeListOf<HTMLAnchorElement>} anchors
+ * @param {HTMLElement} panel
+ * @param {HTMLElement} dfn
+ * @returns
+ */
+function createTrapListener(anchors, panel, dfn) {
+  const lastIndex = anchors.length - 1;
+  let currentIndex = 0;
+  return event => {
+    switch (event.key) {
+      // Hitting "Tab" traps us in a nice loop around elements.
+      case "Tab": {
+        event.preventDefault();
+        currentIndex += event.shiftKey ? -1 : +1;
+        if (currentIndex < 0) {
+          currentIndex = lastIndex;
+        } else if (currentIndex > lastIndex) {
+          currentIndex = 0;
+        }
+        anchors.item(currentIndex).focus();
+        break;
+      }
+
+      // Hitting "Enter" on an anchor releases the trap.
+      case "Enter":
+        hidePanel(panel);
+        break;
+
+      // Hitting "Escape" returns focus to dfn.
+      case "Escape":
+        hidePanel(panel);
+        dfn.focus();
+        return;
+    }
+  };
+}
+
+/** @param {HTMLElement} panel */
+function hidePanel(panel) {
+  if (!panel) return;
+  panel.hidden = true;
+  panel.classList.remove("docked");
+}
+})()</script><script src="https://www.w3.org/scripts/TR/2021/fixup.js"></script></body></html>

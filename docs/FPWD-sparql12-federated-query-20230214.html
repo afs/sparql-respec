@@ -1,0 +1,1753 @@
+<!DOCTYPE html><html lang="en" dir="ltr"><head>
+<meta charset="utf-8">
+<meta name="generator" content="ReSpec 32.8.0">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<style>
+dfn{cursor:pointer}
+.dfn-panel{position:absolute;z-index:35;min-width:300px;max-width:500px;padding:.5em .75em;margin-top:.6em;font-family:"Helvetica Neue",sans-serif;font-size:small;background:#fff;color:#000;box-shadow:0 1em 3em -.4em rgba(0,0,0,.3),0 0 1px 1px rgba(0,0,0,.05);border-radius:2px}
+.dfn-panel:not(.docked)>.caret{position:absolute;top:-9px}
+.dfn-panel:not(.docked)>.caret::after,.dfn-panel:not(.docked)>.caret::before{content:"";position:absolute;border:10px solid transparent;border-top:0;border-bottom:10px solid #fff;top:0}
+.dfn-panel:not(.docked)>.caret::before{border-bottom:9px solid #a2a9b1}
+.dfn-panel *{margin:0}
+.dfn-panel b{display:block;color:#000;margin-top:.25em}
+.dfn-panel ul a[href]{color:#333}
+.dfn-panel>div{display:flex}
+.dfn-panel a.self-link{font-weight:700;margin-right:auto}
+.dfn-panel .marker{padding:.1em;margin-left:.5em;border-radius:.2em;text-align:center;white-space:nowrap;font-size:90%;color:#040b1c}
+.dfn-panel .marker.dfn-exported{background:#d1edfd;box-shadow:0 0 0 .125em #1ca5f940}
+.dfn-panel .marker.idl-block{background:#8ccbf2;box-shadow:0 0 0 .125em #0670b161}
+.dfn-panel a:not(:hover){text-decoration:none!important;border-bottom:none!important}
+.dfn-panel a[href]:hover{border-bottom-width:1px}
+.dfn-panel ul{padding:0}
+.dfn-panel li{margin-left:1em}
+.dfn-panel.docked{position:fixed;left:.5em;top:unset;bottom:2em;margin:0 auto;max-width:calc(100vw - .75em * 2 - .5em - .2em * 2);max-height:30vh;overflow:auto}
+</style>
+    
+    
+<title>SPARQL 1.2 Federated Query</title>
+
+    
+<style id="respec-mainstyle">
+@keyframes pop{
+0%{transform:scale(1,1)}
+25%{transform:scale(1.25,1.25);opacity:.75}
+100%{transform:scale(1,1)}
+}
+:is(h1,h2,h3,h4,h5,h6,a) abbr{border:none}
+dfn{font-weight:700}
+a.internalDFN{color:inherit;border-bottom:1px solid #99c;text-decoration:none}
+a.externalDFN{color:inherit;border-bottom:1px dotted #ccc;text-decoration:none}
+a.bibref{text-decoration:none}
+.respec-offending-element:target{animation:pop .25s ease-in-out 0s 1}
+.respec-offending-element,a[href].respec-offending-element{text-decoration:red wavy underline}
+@supports not (text-decoration:red wavy underline){
+.respec-offending-element:not(pre){display:inline-block}
+.respec-offending-element{background:url(data:image/gif;base64,R0lGODdhBAADAPEAANv///8AAP///wAAACwAAAAABAADAEACBZQjmIAFADs=) bottom repeat-x}
+}
+#references :target{background:#eaf3ff;animation:pop .4s ease-in-out 0s 1}
+cite .bibref{font-style:normal}
+a[href].orcid{padding-left:4px;padding-right:4px}
+a[href].orcid>svg{margin-bottom:-2px}
+.toc a,.tof a{text-decoration:none}
+a .figno,a .secno{color:#000}
+ol.tof,ul.tof{list-style:none outside none}
+.caption{margin-top:.5em;font-style:italic}
+table.simple{border-spacing:0;border-collapse:collapse;border-bottom:3px solid #005a9c}
+.simple th{background:#005a9c;color:#fff;padding:3px 5px;text-align:left}
+.simple th a{color:#fff;padding:3px 5px;text-align:left}
+.simple th[scope=row]{background:inherit;color:inherit;border-top:1px solid #ddd}
+.simple td{padding:3px 10px;border-top:1px solid #ddd}
+.simple tr:nth-child(even){background:#f0f6ff}
+.section dd>p:first-child{margin-top:0}
+.section dd>p:last-child{margin-bottom:0}
+.section dd{margin-bottom:1em}
+.section dl.attrs dd,.section dl.eldef dd{margin-bottom:0}
+#issue-summary>ul{column-count:2}
+#issue-summary li{list-style:none;display:inline-block}
+details.respec-tests-details{margin-left:1em;display:inline-block;vertical-align:top}
+details.respec-tests-details>*{padding-right:2em}
+details.respec-tests-details[open]{z-index:999999;position:absolute;border:thin solid #cad3e2;border-radius:.3em;background-color:#fff;padding-bottom:.5em}
+details.respec-tests-details[open]>summary{border-bottom:thin solid #cad3e2;padding-left:1em;margin-bottom:1em;line-height:2em}
+details.respec-tests-details>ul{width:100%;margin-top:-.3em}
+details.respec-tests-details>li{padding-left:1em}
+.self-link:hover{opacity:1;text-decoration:none;background-color:transparent}
+aside.example .marker>a.self-link{color:inherit}
+.header-wrapper{display:flex;align-items:baseline}
+:is(h2,h3,h4,h5,h6):not(#toc>h2,#abstract>h2,#sotd>h2,.head>h2){position:relative;left:-.5em}
+:is(h2,h3,h4,h5,h6):not(#toch2)+a.self-link{color:inherit;order:-1;position:relative;left:-1.1em;font-size:1rem;opacity:.5}
+:is(h2,h3,h4,h5,h6)+a.self-link::before{content:"§";text-decoration:none;color:var(--heading-text)}
+:is(h2,h3)+a.self-link{top:-.2em}
+:is(h4,h5,h6)+a.self-link::before{color:#000}
+@media (max-width:767px){
+dd{margin-left:0}
+}
+@media print{
+.removeOnSave{display:none}
+}
+</style>
+    
+    
+
+    
+
+    
+<style>
+
+      @import url("local.css");
+
+      /* ReSpec */
+      dfn { font-style: normal ; }
+      /* ReSpec */
+
+  code           { font-family: monospace; }
+
+  div.constraint,
+  div.issue,
+  div.note,
+  div.notice     { margin-left: 2em; }
+
+  ol.enumar      { list-style-type: decimal; }
+  ol.enumla      { list-style-type: lower-alpha; }
+  ol.enumlr      { list-style-type: lower-roman; }
+  ol.enumua      { list-style-type: upper-alpha; }
+  ol.enumur      { list-style-type: upper-roman; }
+
+
+  div.exampleInner pre { margin-left: 1em;
+                       margin-top: 0em; margin-bottom: 0em}
+  div.exampleOuter {border: 4px double gray;
+                  margin: 0em; padding: 0em}
+  div.exampleInner { background-color: #d5dee3;
+                   border-top-width: 4px;
+                   border-top-style: double;
+                   border-top-color: #d3d3d3;
+                   border-bottom-width: 4px;
+                   border-bottom-style: double;
+                   border-bottom-color: #d3d3d3;
+                   padding: 4px; margin: 0em }
+  div.exampleWrapper { margin: 4px }
+  div.exampleHeader { font-weight: bold;
+                    margin: 4px}
+
+  em.rfc2119 { text-transform: lowercase;
+             font-variant: small-caps;
+             font-style: normal; }
+    
+</style>
+  
+<style>
+ul.index{columns:30ch;column-gap:1.5em}
+ul.index li{list-style:inherit}
+ul.index li span{color:inherit;cursor:pointer;white-space:normal}
+#index-defined-here ul.index li{font-size:.9rem}
+ul.index code{color:inherit}
+#index-defined-here .print-only{display:none}
+@media print{
+#index-defined-here .print-only{display:initial}
+}
+</style>
+<meta name="description" content="RDF is a directed, labeled graph data format for representing information in the Web. SPARQL can be used to express queries across diverse data sources, whether the data is stored natively as
+    RDF or viewed as RDF via middleware. This specification defines the syntax and semantics of SPARQL 1.1 Federated Query extension for executing queries distributed over different SPARQL endpoints.
+    The SERVICE keyword extends SPARQL 1.1 to support queries that merge data distributed across the Web.">
+<link rel="canonical" href="https://www.w3.org/TR/sparql12-federated-query/">
+<style>
+.hljs{display:block;overflow-x:auto;padding:.5em;color:#383a42;background:#fafafa}
+.hljs-comment,.hljs-quote{color:#717277;font-style:italic}
+.hljs-doctag,.hljs-formula,.hljs-keyword{color:#a626a4}
+.hljs-deletion,.hljs-name,.hljs-section,.hljs-selector-tag,.hljs-subst{color:#ca4706;font-weight:700}
+.hljs-literal{color:#0b76c5}
+.hljs-addition,.hljs-attribute,.hljs-meta-string,.hljs-regexp,.hljs-string{color:#42803c}
+.hljs-built_in,.hljs-class .hljs-title{color:#9a6a01}
+.hljs-attr,.hljs-number,.hljs-selector-attr,.hljs-selector-class,.hljs-selector-pseudo,.hljs-template-variable,.hljs-type,.hljs-variable{color:#986801}
+.hljs-bullet,.hljs-link,.hljs-meta,.hljs-selector-id,.hljs-symbol,.hljs-title{color:#336ae3}
+.hljs-emphasis{font-style:italic}
+.hljs-strong{font-weight:700}
+.hljs-link{text-decoration:underline}
+</style>
+<style>
+var{position:relative;cursor:pointer}
+var[data-type]::after,var[data-type]::before{position:absolute;left:50%;top:-6px;opacity:0;transition:opacity .4s;pointer-events:none}
+var[data-type]::before{content:"";transform:translateX(-50%);border-width:4px 6px 0 6px;border-style:solid;border-color:transparent;border-top-color:#000}
+var[data-type]::after{content:attr(data-type);transform:translateX(-50%) translateY(-100%);background:#000;text-align:center;font-family:"Dank Mono","Fira Code",monospace;font-style:normal;padding:6px;border-radius:3px;color:#daca88;text-indent:0;font-weight:400}
+var[data-type]:hover::after,var[data-type]:hover::before{opacity:1}
+</style>
+<script id="initialUserConfig" type="application/json">{
+  "group": "rdf-star",
+  "localBiblio": {
+    "ISO24707": {
+      "id": "ISO24707",
+      "title": "Information technology — Common Logic (CL) — A framework for a family of logic-based languages",
+      "date": "2018-07",
+      "href": "https://www.iso.org/standard/66249.html",
+      "status": "Published",
+      "publisher": "ISO/EIC"
+    },
+    "HORST04": {
+      "id": "HORST04",
+      "title": "Extending the RDFS Entailment Lemma",
+      "authors": [
+        "Herman J. ter Horst"
+      ],
+      "date": "2004",
+      "isbn": "978-3-540-30475-3",
+      "href": "https://doi.org/10.1007/978-3-540-30475-3_7",
+      "status": "Conference Proceeding",
+      "publisher": "Springer, Berlin, Heidelberg"
+    },
+    "HORST05": {
+      "id": "HORST05",
+      "title": "Completeness, Decidability and Complexity of Entailment for RDF Schema and a Semantic Extension Involving the OWL Vocabulary",
+      "authors": [
+        "Herman J. ter Horst"
+      ],
+      "date": "2005",
+      "href": "https://dx.doi.org/10.2139/ssrn.3199251",
+      "status": "Conference Proceeding",
+      "publisher": "Journal of Web Semantics"
+    },
+    "SAFETY": {
+      "title": "Saftety of recursive horn clauses with infinite relations",
+      "href": "http://arxiv.org/abs/cs.LO/9809032",
+      "authors": [
+        "R. Ramakrishnan",
+        "F. Bancilhon",
+        "A. Silberschatz"
+      ],
+      "date": "1987",
+      "publisher": "ACM New York"
+    },
+    "STRIPEDRDF": {
+      "id": "STRIPEDRDF",
+      "title": "RDF: Understanding the Striped RDF/XML Syntax",
+      "editors": [
+        "D. Brickley"
+      ],
+      "date": "2001",
+      "href": "http://www.w3.org/2001/10/stripes/",
+      "status": "Team Submission",
+      "publisher": "W3C"
+    },
+    "RDF12-CONCEPTS": {
+      "authors": [
+        "Richard Cyganiak",
+        "David Wood",
+        "Markus Lanthaler"
+      ],
+      "href": "https://w3c.github.io/rdf-concepts/spec/",
+      "title": "RDF 1.2 Concepts and Abstract Syntax",
+      "rawDate": "2022-01-01",
+      "status": "WD",
+      "publisher": "W3C"
+    },
+    "RDF12-SEMANTICS": {
+      "authors": [
+        "Patrick Hayes",
+        "Peter Patel-Schneider"
+      ],
+      "href": "https://w3c.github.io/rdf-semantics/spec/",
+      "title": "RDF 1.2 Semantics",
+      "rawDate": "2022-01-01",
+      "status": "WD",
+      "publisher": "W3C"
+    },
+    "RDF12-N-QUADS": {
+      "authors": [
+        "Gavin Carothers"
+      ],
+      "href": "https://w3c.github.io/rdf-n-quads/spec/",
+      "title": "RDF 1.2 N-Quads",
+      "rawDate": "2022-01-01",
+      "status": "WD",
+      "publisher": "W3C"
+    },
+    "RDF12-N-TRIPLES": {
+      "authors": [
+        "Gavin Carothers",
+        "Andy Seaborne"
+      ],
+      "href": "https://w3c.github.io/rdf-n-triples/spec/",
+      "title": "RDF 1.2 N-Triples",
+      "rawDate": "2022-01-01",
+      "status": "WD",
+      "publisher": "W3C"
+    },
+    "RDF12-NEW": {
+      "authors": [
+        "David Wood"
+      ],
+      "href": "https://w3c.github.io/rdf-new/spec/",
+      "title": "What’s New in RDF 1.2",
+      "rawDate": "2022-01-01",
+      "status": "DNOTE",
+      "publisher": "W3C"
+    },
+    "RDF12-PRIMER": {
+      "authors": [
+        "Guus Schreiber",
+        "Yves Raimond"
+      ],
+      "href": "https://w3c.github.io/rdf-primer/spec/",
+      "title": "RDF 1.2 Primer",
+      "rawDate": "2022-01-01",
+      "status": "DNOTE",
+      "publisher": "W3C"
+    },
+    "RDF12-SCHEMA": {
+      "authors": [
+        "Dan Brickley",
+        "Ramanathan Guha"
+      ],
+      "href": "https://w3c.github.io/rdf-schema/spec/",
+      "title": "RDF 1.2 Schema",
+      "rawDate": "2022-01-01",
+      "status": "WD",
+      "publisher": "W3C"
+    },
+    "RDF12-TRIG": {
+      "authors": [
+        "Gavin Carothers",
+        "Andy Seaborne"
+      ],
+      "href": "https://w3c.github.io/rdf-trig/spec/",
+      "title": "RDF 1.2 TriG",
+      "rawDate": "2022-01-01",
+      "status": "WD",
+      "publisher": "W3C"
+    },
+    "RDF12-TURTLE": {
+      "authors": [
+        "Eric Prud'hommeaux",
+        "Gavin Carothers"
+      ],
+      "href": "https://w3c.github.io/rdf-turtle/spec/",
+      "title": "RDF 1.2 Turtle",
+      "rawDate": "2022-01-01",
+      "status": "WD",
+      "publisher": "W3C"
+    },
+    "RDF12-XML": {
+      "authors": [
+        "Fabien Gandon",
+        "Guus Schreiber"
+      ],
+      "href": "https://w3c.github.io/rdf-xml/spec/",
+      "title": "RDF 1.2 XML Syntax",
+      "rawDate": "2022-01-01",
+      "status": "WD",
+      "publisher": "W3C"
+    },
+    "SPARQL12-NEW": {
+      "authors": [
+        "The W3C RDF-star Working Group"
+      ],
+      "href": "https://w3c.github.io/sparql-new/spec/",
+      "title": "What’s New in SPARQL 1.2",
+      "rawDate": "2022-01-01",
+      "status": "WD",
+      "publisher": "W3C",
+      "id": "sparql12-new"
+    },
+    "SPARQL12-CONCEPTS": {
+      "authors": [
+        "The W3C RDF-star Working Group"
+      ],
+      "href": "https://w3c.github.io/sparql-concepts/spec/",
+      "title": "SPARQL 1.2 Concepts",
+      "rawDate": "2022-01-01",
+      "status": "WD",
+      "publisher": "W3C",
+      "id": "sparql12-concepts"
+    },
+    "SPARQL12-QUERY": {
+      "authors": [
+        "Steven Harris",
+        "Andy Seaborne"
+      ],
+      "href": "https://w3c.github.io/sparql-query/spec/",
+      "title": "SPARQL 1.2 Query Language",
+      "rawDate": "2022-01-01",
+      "status": "WD",
+      "publisher": "W3C",
+      "id": "sparql12-query"
+    },
+    "SPARQL12-UPDATE": {
+      "authors": [
+        "Paula Gearon",
+        "Alexandre Passant",
+        "Axel Polleres"
+      ],
+      "href": "https://w3c.github.io/sparql-update/spec/",
+      "title": "SPARQL 1.2 Update",
+      "rawDate": "2022-01-01",
+      "status": "WD",
+      "publisher": "W3C",
+      "id": "sparql12-update"
+    },
+    "SPARQL12-SERVICE-DESCRIPTION": {
+      "authors": [
+        "Gregory Williams"
+      ],
+      "href": "https://w3c.github.io/sparql-service-description/spec/",
+      "title": "SPARQL 1.2 Service Description",
+      "rawDate": "2022-01-01",
+      "status": "WD",
+      "publisher": "W3C",
+      "id": "sparql12-service-description"
+    },
+    "SPARQL12-FEDERATED-QUERY": {
+      "authors": [
+        "Eric Prud'hommeaux",
+        "Carlos Buil Aranda"
+      ],
+      "href": "https://w3c.github.io/sparql-federated-query/spec/",
+      "title": "SPARQL 1.2 Federated Query",
+      "rawDate": "2022-01-01",
+      "status": "WD",
+      "publisher": "W3C"
+    },
+    "SPARQL12-RESULTS-JSON": {
+      "authors": [
+        "Andy Seaborne"
+      ],
+      "href": "https://w3c.github.io/sparql-results-json/spec/",
+      "title": "SPARQL 1.2 Query Results JSON Format",
+      "rawDate": "2022-01-01",
+      "status": "WD",
+      "publisher": "W3C",
+      "id": "sparql12-results-json"
+    },
+    "SPARQL12-RESULTS-CSV-TSV": {
+      "authors": [
+        "Andy Seaborne"
+      ],
+      "href": "https://w3c.github.io/sparql-results-csv-tsv/spec/",
+      "title": "SPARQL 1.2 Query Results CSV and TSV Formats",
+      "rawDate": "2022-01-01",
+      "status": "WD",
+      "publisher": "W3C",
+      "id": "sparql12-results-csv-tsv"
+    },
+    "SPARQL12-RESULTS-XML": {
+      "authors": [
+        "Sandro Hawke",
+        "Dave Beckett",
+        "Jeen Broekstra"
+      ],
+      "href": "https://w3c.github.io/sparql-results-xml/spec/",
+      "title": "SPARQL 1.2 Query Results XML Formats",
+      "rawDate": "2022-01-01",
+      "status": "WD",
+      "publisher": "W3C",
+      "id": "sparql12-results-xml"
+    },
+    "SPARQL12-ENTAILMENT": {
+      "authors": [
+        "Birte Glimm",
+        "Chimezie Ogbuji"
+      ],
+      "href": "https://w3c.github.io/sparql-entailment/spec/",
+      "title": "SPARQL 1.2 Entailment Regimes",
+      "rawDate": "2022-01-01",
+      "status": "WD",
+      "publisher": "W3C",
+      "id": "sparql12-entailment"
+    },
+    "SPARQL12-PROTOCOL": {
+      "authors": [
+        "Lee Feigenbaum",
+        "Gregory Williams",
+        "Kendall Clark",
+        "Elias Torres"
+      ],
+      "href": "https://w3c.github.io/sparql-protocol/spec/",
+      "title": "SPARQL 1.2 Protocol",
+      "rawDate": "2022-01-01",
+      "status": "WD",
+      "publisher": "W3C",
+      "id": "sparql12-protocol"
+    },
+    "SPARQL12-GRAPH-STORE-PROTOCOL": {
+      "authors": [
+        "Chimezie Ogbuji"
+      ],
+      "href": "https://w3c.github.io/sparql-graph-store-protocol/spec/",
+      "title": "SPARQL 1.2 Graph Store HTTP Protocol",
+      "rawDate": "2022-01-01",
+      "status": "WD",
+      "publisher": "W3C",
+      "id": "sparql12-graph-store-protocol"
+    }
+  },
+  "specStatus": "FPWD",
+  "edDraftURI": "https://w3c.github.io/sparql-federated-query/spec/",
+  "testSuiteURI": "https://w3c.github.io/rdf-tests/",
+  "shortName": "sparql12-federated-query",
+  "copyrightStart": "2012",
+  "github": "https://github.com/w3c/sparql-federated-query",
+  "wgPublicList": "public-rdf-star-wg",
+  "previousPublishDate": "2013-03-21",
+  "prevRecURI": "https://www.w3.org/TR/2013/REC-sparql11-federated-query-20130321",
+  "prevRecShortname": "sparql11-federated-query",
+  "previousMaturity": "REC",
+  "editors": [
+    {
+      "name": "Ruben Taelman",
+      "w3cid": "84199"
+    },
+    {
+      "name": "Gregory Williams",
+      "w3cid": "38870"
+    }
+  ],
+  "formerEditors": [
+    {
+      "name": "Eric Prud'hommeaux"
+    },
+    {
+      "name": "Carlos Buil-Aranda"
+    }
+  ],
+  "lint": {
+    "no-unused-dfns": false
+  },
+  "pubDate": "2023-04-01",
+  "publishISODate": "2023-02-14T00:00:00.000Z",
+  "generatedSubtitle": "W3C First Public Working Draft 14 February 2023"
+}</script>
+<link rel="stylesheet" href="https://www.w3.org/StyleSheets/TR/2021/W3C-WD"></head>
+  <body class="h-entry"><div class="head">
+    <p class="logos"><a class="logo" href="https://www.w3.org/"><img crossorigin="" alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2021/logos/W3C" width="72">
+  </a></p>
+    <h1 id="title" class="title">SPARQL 1.2 Federated Query</h1> 
+    <p id="w3c-state"><a href="https://www.w3.org/standards/types#FPWD">W3C First Public Working Draft</a> <time class="dt-published" datetime="2023-02-14">14 February 2023</time></p>
+    <details open="">
+      <summary>More details about this document</summary>
+      <dl>
+        <dt>This version:</dt><dd>
+                <a class="u-url" href="https://www.w3.org/TR/2023/WD-sparql12-federated-query-20230214/">https://www.w3.org/TR/2023/WD-sparql12-federated-query-20230214/</a>
+              </dd>
+        <dt>Latest published version:</dt><dd>
+                <a href="https://www.w3.org/TR/sparql12-federated-query/">https://www.w3.org/TR/sparql12-federated-query/</a>
+              </dd>
+        <dt>Latest editor's draft:</dt><dd><a href="https://w3c.github.io/sparql-federated-query/spec/">https://w3c.github.io/sparql-federated-query/spec/</a></dd>
+        <dt>History:</dt><dd>
+                    <a href="https://www.w3.org/standards/history/sparql12-federated-query">https://www.w3.org/standards/history/sparql12-federated-query</a>
+                  </dd><dd>
+                    <a href="https://github.com/w3c/sparql-federated-query/commits/">Commit history</a>
+                  </dd>
+        <dt>Test suite:</dt><dd><a href="https://w3c.github.io/rdf-tests/">https://w3c.github.io/rdf-tests/</a></dd>
+        
+        
+        
+        <dt>Latest Recommendation:</dt><dd><a href="https://www.w3.org/TR/2013/REC-sparql11-federated-query-20130321">https://www.w3.org/TR/2013/REC-sparql11-federated-query-20130321</a></dd>
+        <dt>Editors:</dt><dd class="editor p-author h-card vcard" data-editor-id="84199">
+    <span class="p-name fn">Ruben Taelman</span>
+  </dd><dd class="editor p-author h-card vcard" data-editor-id="38870">
+    <span class="p-name fn">Gregory Williams</span>
+  </dd>
+        <dt>
+                Former editors:
+              </dt><dd class="editor p-author h-card vcard">
+    <span class="p-name fn">Eric Prud'hommeaux</span>
+  </dd><dd class="editor p-author h-card vcard">
+    <span class="p-name fn">Carlos Buil-Aranda</span>
+  </dd>
+        
+        <dt>Feedback:</dt><dd>
+        <a href="https://github.com/w3c/sparql-federated-query/">GitHub w3c/sparql-federated-query</a>
+        (<a href="https://github.com/w3c/sparql-federated-query/pulls/">pull requests</a>,
+        <a href="https://github.com/w3c/sparql-federated-query/issues/new/choose">new issue</a>,
+        <a href="https://github.com/w3c/sparql-federated-query/issues/">open issues</a>)
+      </dd><dd><a href="mailto:public-rdf-star-wg@w3.org?subject=%5Bsparql12-federated-query%5D%20YOUR%20TOPIC%20HERE">public-rdf-star-wg@w3.org</a> with subject line <kbd>[sparql12-federated-query] <em>… message topic …</em></kbd> (<a rel="discussion" href="https://lists.w3.org/Archives/Public/public-rdf-star-wg">archives</a>)</dd>
+        
+        
+      </dl>
+    </details>
+    
+    
+    <p class="copyright">
+    <a href="https://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Copyright</a>
+    ©
+    2012-2023
+    
+    <a href="https://www.w3.org/">World Wide Web Consortium</a>.
+    <abbr title="World Wide Web Consortium">W3C</abbr><sup>®</sup>
+    <a href="https://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer">liability</a>,
+    <a href="https://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks">trademark</a> and
+    <a rel="license" href="https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document" title="W3C Software and Document Notice and License">permissive document license</a> rules apply.
+  </p>
+    <hr title="Separator for header">
+  </div>
+    <section id="abstract" class="introductory"><h2>Abstract</h2>
+      
+<p>RDF is a directed, labeled graph data format for representing information in the Web. SPARQL can be used to express queries across diverse data sources, whether the data is stored natively as
+    RDF or viewed as RDF via middleware. This specification defines the syntax and semantics of SPARQL 1.1 Federated Query extension for executing queries distributed over different SPARQL endpoints.
+    The <code>SERVICE</code> keyword extends SPARQL 1.1 to support queries that merge data distributed across the Web.</p>
+    </section>
+
+    <section id="sotd" class="introductory"><h2>Status of This Document</h2><p><em>This section describes the status of this
+      document at the time of its publication. A list of current <abbr title="World Wide Web Consortium">W3C</abbr>
+      publications and the latest revision of this technical report can be found
+      in the <a href="https://www.w3.org/TR/"><abbr title="World Wide Web Consortium">W3C</abbr> technical reports index</a> at
+      https://www.w3.org/TR/.</em></p>
+      <p>
+        This specification is published by the
+        <a href="https://www.w3.org/groups/wg/rdf-star">RDF Star Working Group</a> as part of the
+        update of specifications for format and errata.
+      </p>
+    <p>
+    This document was published by the <a href="https://www.w3.org/groups/wg/rdf-star">RDF-star Working Group</a> as
+    a First Public Working Draft using the
+        <a href="https://www.w3.org/2021/Process-20211102/#recs-and-notes">Recommendation track</a>. 
+  </p><p>Publication as a First Public Working Draft does not
+  imply endorsement by <abbr title="World Wide Web Consortium">W3C</abbr> and its Members. </p><p>
+    This is a draft document and may be updated, replaced or obsoleted by other
+    documents at any time. It is inappropriate to cite this document as other
+    than work in progress.
+    
+  </p><p>
+    
+        This document was produced by a group
+        operating under the
+        <a href="https://www.w3.org/Consortium/Patent-Policy/"><abbr title="World Wide Web Consortium">W3C</abbr> Patent
+          Policy</a>.
+      
+    
+                <abbr title="World Wide Web Consortium">W3C</abbr> maintains a
+                <a rel="disclosure" href="https://www.w3.org/groups/wg/rdf-star/ipr">public list of any patent disclosures</a>
+          made in connection with the deliverables of
+          the group; that page also includes
+          instructions for disclosing a patent. An individual who has actual
+          knowledge of a patent which the individual believes contains
+          <a href="https://www.w3.org/Consortium/Patent-Policy/#def-essential">Essential Claim(s)</a>
+          must disclose the information in accordance with
+          <a href="https://www.w3.org/Consortium/Patent-Policy/#sec-Disclosure">section 6 of the <abbr title="World Wide Web Consortium">W3C</abbr> Patent Policy</a>.
+        
+  </p><p>
+                  This document is governed by the
+                  <a id="w3c_process_revision" href="https://www.w3.org/2021/Process-20211102/">2 November 2021 <abbr title="World Wide Web Consortium">W3C</abbr> Process Document</a>.
+                </p></section><nav id="toc"><h2 class="introductory" id="table-of-contents">Table of Contents</h2><ol class="toc"><li class="tocline"><a class="tocxref" href="#abstract">Abstract</a></li><li class="tocline"><a class="tocxref" href="#sotd">Status of This Document</a></li><li class="tocline"><a class="tocxref" href="#related"><bdi class="secno">1. </bdi>Set of Documents</a></li><li class="tocline"><a class="tocxref" href="#sparql12-documents">SPARQL 1.2 Documents</a></li><li class="tocline"><a class="tocxref" href="#introduction"><bdi class="secno">2. </bdi>Introduction</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#docConventions"><bdi class="secno">2.1 </bdi>Document Conventions</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#docNamespaces"><bdi class="secno">2.1.1 </bdi>Namespaces</a></li><li class="tocline"><a class="tocxref" href="#docResultDesc"><bdi class="secno">2.1.2 </bdi>Result Descriptions</a></li><li class="tocline"><a class="tocxref" href="#docTerminology"><bdi class="secno">2.1.3 </bdi>Terminology</a></li></ol></li></ol></li><li class="tocline"><a class="tocxref" href="#service"><bdi class="secno">3. </bdi>SPARQL 1.1 Federated Query Extension</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#simpleService"><bdi class="secno">3.1 </bdi>Simple query to a remote SPARQL endpoint</a></li><li class="tocline"><a class="tocxref" href="#optionalTwoServices"><bdi class="secno">3.2 </bdi>SPARQL query with <em class="rfc2119">OPTIONAL</em> to two remote SPARQL endpoints</a></li><li class="tocline"><a class="tocxref" href="#serviceFailure"><bdi class="secno">3.3 </bdi>Service Execution Failure</a></li><li class="tocline"><a class="tocxref" href="#values"><bdi class="secno">3.4 </bdi>Interplay of SERVICE and VALUES (Informative)</a></li></ol></li><li class="tocline"><a class="tocxref" href="#fedSemantics"><bdi class="secno">4. </bdi>SPARQL 1.1 Simple Federation Extension: semantics</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#defn_service"><bdi class="secno">4.1 </bdi>Translation to the SPARQL Algebra</a></li><li class="tocline"><a class="tocxref" href="#algebra_service"><bdi class="secno">4.2 </bdi>SPARQL 1.1 Simple Federation Extension Algebra</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#algebra_service_examples"><bdi class="secno">4.2.1 </bdi>SERVICE Examples</a></li></ol></li></ol></li><li class="tocline"><a class="tocxref" href="#variableService"><bdi class="secno">5. </bdi>SERVICE Variables (Informative)</a></li><li class="tocline"><a class="tocxref" href="#conformance"><bdi class="secno">6. </bdi>Conformance</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#conformance-0"><bdi class="secno">6.1 </bdi>Conformance</a></li></ol></li><li class="tocline"><a class="tocxref" href="#security-original"><bdi class="secno">7. </bdi>Security Considerations (Informative)</a></li><li class="tocline"><a class="tocxref" href="#sec-bibliography"><bdi class="secno">8. </bdi>References</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#sec-normative-refs"><bdi class="secno">8.1 </bdi>Normative References</a></li><li class="tocline"><a class="tocxref" href="#sec-non-normative-refs"><bdi class="secno">8.2 </bdi>Other References</a></li></ol></li><li class="tocline"><a class="tocxref" href="#sec-acknowledgements"><bdi class="secno">9. </bdi>Acknowledgements</a></li><li class="tocline"><a class="tocxref" href="#sec-cvsLog"><bdi class="secno">10. </bdi>CVS History (Last Call and after)</a></li><li class="tocline"><a class="tocxref" href="#privacy"><bdi class="secno">11. </bdi>Privacy Considerations</a></li><li class="tocline"><a class="tocxref" href="#security"><bdi class="secno">12. </bdi>Security Considerations</a></li><li class="tocline"><a class="tocxref" href="#internationalization"><bdi class="secno">13. </bdi>Internationalization Considerations</a></li><li class="tocline"><a class="tocxref" href="#changes-from-sparql11"><bdi class="secno">A. </bdi>Change Log</a></li><li class="tocline"><a class="tocxref" href="#index"><bdi class="secno">B. </bdi>Index</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#index-defined-here"><bdi class="secno">B.1 </bdi>Terms defined by this specification</a></li><li class="tocline"><a class="tocxref" href="#index-defined-elsewhere"><bdi class="secno">B.2 </bdi>Terms defined by reference</a></li></ol></li><li class="tocline"><a class="tocxref" href="#references"><bdi class="secno">C. </bdi>References</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#normative-references"><bdi class="secno">C.1 </bdi>Normative references</a></li></ol></li></ol></nav>
+
+    <section id="related"><div class="header-wrapper"><h2 id="x1-set-of-documents"><bdi class="secno">1. </bdi>Set of Documents</h2><a class="self-link" href="#related" aria-label="Permalink for Section 1."></a></div>
+<p>This document is one of twelve SPARQL 1.2 Recommendations produced by the <a href="https://www.w3.org/groups/wg/rdf-star">RDF-star Working Group</a>:</p>
+
+<p>SPARQL 1.2 Recommendations:</p>
+<ol>
+  <li><cite><a data-matched-text="[[[SPARQL12-NEW]]]" href="https://w3c.github.io/sparql-new/spec/" id="ref-for-index-term-what-s-new-in-sparql-1-2-1">What’s New in SPARQL 1.2</a></cite></li>
+  <li><cite><a data-matched-text="[[[SPARQL12-CONCEPTS]]]" href="https://w3c.github.io/sparql-concepts/spec/" id="ref-for-index-term-sparql-1-2-concepts-1">SPARQL 1.2 Concepts</a></cite></li>
+  <li><cite><a data-matched-text="[[[SPARQL12-QUERY]]]" href="https://w3c.github.io/sparql-query/spec/" id="ref-for-index-term-sparql-1-2-query-language-1">SPARQL 1.2 Query Language</a></cite></li>
+  <li><cite><a data-matched-text="[[[SPARQL12-UPDATE]]]" href="https://w3c.github.io/sparql-update/spec/" id="ref-for-index-term-sparql-1-2-update-1">SPARQL 1.2 Update</a></cite></li>
+  <li><cite><a data-matched-text="[[[SPARQL12-SERVICE-DESCRIPTION]]]" href="https://w3c.github.io/sparql-service-description/spec/" id="ref-for-index-term-sparql-1-2-service-description-1">SPARQL 1.2 Service Description</a></cite></li>
+  <li>SPARQL 1.2 Federated Query(this document)</li>
+  <li><cite><a data-matched-text="[[[SPARQL12-RESULTS-JSON]]]" href="https://w3c.github.io/sparql-results-json/spec/" id="ref-for-index-term-sparql-1-2-query-results-json-format-1">SPARQL 1.2 Query Results JSON Format</a></cite></li>
+  <li><cite><a data-matched-text="[[[SPARQL12-RESULTS-CSV-TSV]]]" href="https://w3c.github.io/sparql-results-csv-tsv/spec/" id="ref-for-index-term-sparql-1-2-query-results-csv-and-tsv-formats-1">SPARQL 1.2 Query Results CSV and TSV Formats</a></cite></li>
+  <li><cite><a data-matched-text="[[[SPARQL12-RESULTS-XML]]]" href="https://w3c.github.io/sparql-results-xml/spec/" id="ref-for-index-term-sparql-1-2-query-results-xml-formats-1">SPARQL 1.2 Query Results XML Formats</a></cite></li>
+  <li><cite><a data-matched-text="[[[SPARQL12-ENTAILMENT]]]" href="https://w3c.github.io/sparql-entailment/spec/" id="ref-for-index-term-sparql-1-2-entailment-regimes-1">SPARQL 1.2 Entailment Regimes</a></cite></li>
+  <li><cite><a data-matched-text="[[[SPARQL12-PROTOCOL]]]" href="https://w3c.github.io/sparql-protocol/spec/" id="ref-for-index-term-sparql-1-2-protocol-1">SPARQL 1.2 Protocol</a></cite></li>
+  <li><cite><a data-matched-text="[[[SPARQL12-GRAPH-STORE-PROTOCOL]]]" href="https://w3c.github.io/sparql-graph-store-protocol/spec/" id="ref-for-index-term-sparql-1-2-graph-store-http-protocol-1">SPARQL 1.2 Graph Store HTTP Protocol</a></cite></li>
+</ol>
+</section>
+
+    <section id="sparql12-documents" class="introductory"><div class="header-wrapper"><h2 id="sparql-1-2-documents">SPARQL 1.2 Documents</h2><a class="self-link" href="#sparql12-documents" aria-label="Permalink for this Section"></a></div>
+      
+      <ul>
+        <li><a href="../../sparql-new/spec/index.html">SPARQL 1.2 New</a></li>
+        <li><a href="../../sparql-concepts/spec/index.html">SPARQL 1.2 Overview</a></li>
+        <li><a href="../../sparql-query/spec/index.html">SPARQL 1.2 Query Language</a></li>
+        <li><a href="../../sparql-update/spec/index.html">SPARQL 1.2 Update</a></li>
+        <li><a href="../../sparql-entailment/spec/index.html">SPARQL 1.2 Entailment Regimes</a></li>
+        <li><a href="../../sparql-service-description/spec/index.html">SPARQL 1.2 Service Description</a></li>
+        <li><a href="../../sparql-federated-query/spec/index.html">SPARQL 1.2 Federated Query</a></li>
+        <li><a href="../../sparql-results-json/spec/index.html">SPARQL 1.2 Query Results JSON Format</a></li>
+        <li><a href="../../sparql-results-csv-tsv/spec/index.html">SPARQL 1.2 Query Results CSV and TSV Formats</a></li>
+        <li><a href="../../sparql-results-xml/spec/index.html">SPARQL 1.2 Query Results XML Format</a></li>
+        <li><a href="../../sparql-graph-store-protocol/spec/index.html">SPARQL 1.2 Graph Store Protocol</a></li>
+        <li><a href="../../sparql-protocol/spec/index.html">SPARQL 1.2 Protocol</a></li>
+      </ul>
+    </section>
+    
+
+    <section id="introduction"><div class="header-wrapper"><h2 id="x2-introduction"><bdi class="secno">2. </bdi>Introduction</h2><a class="self-link" href="#introduction" aria-label="Permalink for Section 2."></a></div>
+      
+      <p>The growing number of SPARQL query services offer data consumers an opportunity to merge data distributed across the Web. This specification defines the syntax and semantics of the
+      <code>SERVICE</code> extension to the SPARQL 1.1 Query Language. This extension allows a query author to direct a portion of a query to a particular SPARQL endpoint. Results are returned to the
+      federated query processor and are combined with results from the rest of the query.</p>
+      <section id="docConventions"><div class="header-wrapper"><h3 id="x2-1-document-conventions"><bdi class="secno">2.1 </bdi>Document Conventions</h3><a class="self-link" href="#docConventions" aria-label="Permalink for Section 2.1"></a></div>
+        
+        <section id="docNamespaces"><div class="header-wrapper"><h4 id="x2-1-1-namespaces"><bdi class="secno">2.1.1 </bdi>Namespaces</h4><a class="self-link" href="#docNamespaces" aria-label="Permalink for Section 2.1.1"></a></div>
+          
+          <p>This document uses the same namespaces as from the <a class="inform" href="http://www.w3.org/TR/2011/WD-sparql11-query-20110512/#docNamespaces">SPARQL 1.1 Query document</a>.</p>
+        </section>
+        <section id="docResultDesc"><div class="header-wrapper"><h4 id="x2-1-2-result-descriptions"><bdi class="secno">2.1.2 </bdi>Result Descriptions</h4><a class="self-link" href="#docResultDesc" aria-label="Permalink for Section 2.1.2"></a></div>
+          
+          <p>Result sets are illustrated in tabular form as in the <a class="inform" href="http://www.w3.org/TR/2011/WD-sparql11-query-20110512/#docResultDesc">SPARQL 1.1 Query document</a>.</p>
+          <div class="result">
+            <span class="doc-ref" id="table39"></span>
+            <table class="resultTable">
+              <tbody>
+                <tr>
+                  <th>x</th>
+                  <th>y</th>
+                  <th>z</th>
+                </tr>
+                <tr>
+                  <td>"Alice"</td>
+                  <td><code>&lt;http://example/a&gt;</code></td>
+                  <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p>A 'binding' is a pair (<a href="http://www.w3.org/TR/sparql11-query/#defn_QueryVariable">variable</a>, <a href="http://www.w3.org/TR/sparql11-query/#defn_RDFTerm">RDF term</a>). There
+          are three variables: <code>x</code>, <code>y</code> and <code>z</code> (shown as column headers). Each solution is shown as one row in the body of the table.&nbsp; Here, there is a single
+          solution, in which variable <code>x</code> is bound to <code>"Alice"</code>, variable <code>y</code> is bound to <code>http://example/a</code>, and variable <code>z</code> is not bound to
+          an RDF term. Variables are not required to be bound in a solution.</p>
+        </section>
+        <section id="docTerminology"><div class="header-wrapper"><h4 id="x2-1-3-terminology"><bdi class="secno">2.1.3 </bdi>Terminology</h4><a class="self-link" href="#docTerminology" aria-label="Permalink for Section 2.1.3"></a></div>
+          
+          <p>The following terms are defined in <a class="norm" href="http://www.w3.org/TR/sparql11-query/">SPARQL 1.1 Query Language</a> <a href="#SQRY">[SQRY]</a> and reused in this document:</p>
+          <ul>
+            <li><a class="type IRI" href="http://www.w3.org/TR/2004/REC-rdf-concepts-20040210/#dfn-URI-reference">IRI</a> (corresponds to the Concepts and Abstract Syntax term <code>RDF URI
+            reference</code>)</li>
+            <li><a class="type SolutionMapping" href="http://www.w3.org/TR/sparql11-query/#defn_sparqlSolutionMapping">Solution Mapping</a></li>
+            <li><a class="type SolutionSequence" href="http://www.w3.org/TR/sparql11-query/#defn_sparqlSolutionSequence">Solution Sequence</a></li>
+          </ul>
+        </section>
+      </section>
+    </section>
+    <section id="service"><div class="header-wrapper"><h2 id="x3-sparql-1-1-federated-query-extension"><bdi class="secno">3. </bdi>SPARQL 1.1 Federated Query Extension</h2><a class="self-link" href="#service" aria-label="Permalink for Section 3."></a></div>
+      
+      <p>The <code>SERVICE</code> keyword instructs a federated query processor to invoke a portion of a SPARQL query against a remote SPARQL endpoint. This section presents examples of how to use
+      the <code>SERVICE</code> keyword. The following sections define the syntax and semantics of this extension.</p>
+      <section id="simpleService"><div class="header-wrapper"><h3 id="x3-1-simple-query-to-a-remote-sparql-endpoint"><bdi class="secno">3.1 </bdi>Simple query to a remote SPARQL endpoint</h3><a class="self-link" href="#simpleService" aria-label="Permalink for Section 3.1"></a></div>
+        
+        <div class="exampleGroup" id="fooService1">
+          <p>This example shows how to query a remote SPARQL endpoint and join the returned data with the data from the local RDF Dataset. Consider a query to find the names of the people we know.
+          Data about the names of various people is available at the <code>http://people.example.org/sparql</code> endpoint:</p>
+          <pre class="data" aria-busy="false"><code class="hljs">@prefix foaf:  &lt;http://xmlns.com/foaf/0.1/&gt; .
+@prefix : &lt;http://example.org/&gt; .
+
+:people15  foaf:name     "Alice" .
+:people16  foaf:name     "Bob" .
+:people17  foaf:name     "Charles" .
+:people18  foaf:name     "Daisy" .</code></pre>and one wants to combine with a local FOAF file <code>http://example.org/myfoaf.rdf</code> that contains the single triple:
+          <pre class="data" aria-busy="false"><code class="hljs">&lt;http://example.org/myfoaf/I&gt; &lt;http://xmlns.com/foaf/0.1/knows&gt;  &lt;http://example.org/people15&gt; .</code></pre>
+          <div class="queryGroup">
+            <p>Query:</p>
+            <pre class="query" aria-busy="false"><code class="hljs">PREFIX foaf:   &lt;http://xmlns.com/foaf/0.1/&gt;
+SELECT ?name
+FROM &lt;http://example.org/myfoaf.rdf&gt;
+WHERE
+{
+  &lt;http://example.org/myfoaf/I&gt; foaf:knows ?person .
+  SERVICE &lt;http://people.example.org/sparql&gt; { 
+    ?person foaf:name ?name . } 
+}</code></pre>
+            <p>This query, on the data above, has one solution:</p>
+            <p>Query Result:</p>
+            <div class="result">
+              <span class="doc-ref" id="table1"></span>
+              <table class="resultTable">
+                <tbody>
+                  <tr>
+                    <th>name</th>
+                  </tr>
+                  <tr>
+                    <td>"Alice"</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section id="optionalTwoServices"><div class="header-wrapper"><h3 id="x3-2-sparql-query-with-optional-to-two-remote-sparql-endpoints"><bdi class="secno">3.2 </bdi>SPARQL query with <em class="rfc2119">OPTIONAL</em> to two remote SPARQL endpoints</h3><a class="self-link" href="#optionalTwoServices" aria-label="Permalink for Section 3.2"></a></div>
+        
+        <p>Imagine we want to query people and optionally obtain their interests and the names of people they know. Imagine for instance, two endpoints containing data about people:</p>
+        <div class="exampleGroup" id="optionalService1">
+          <p>Data in the default graph at remote SPARQL endpoint: <code>http://people.example.org/sparql</code></p>
+          <pre class="data" aria-busy="false"><code class="hljs">@prefix foaf:  &lt;http://xmlns.com/foaf/0.1/&gt; .
+@prefix : &lt;http://example.org/&gt; .
+
+:people15  foaf:name     "Alice" .
+:people16  foaf:name     "Bob" .
+:people17  foaf:name     "Charles" .
+:people17  foaf:interest     &lt;http://www.w3.org/2001/sw/rdb2rdf/&gt; .</code></pre>
+          <p>and data in the default graph the remote SPARQL endpoint: <code>http://people2.example.org/sparql</code></p>
+          <pre class="data" aria-busy="false"><code class="hljs">@prefix foaf:  &lt;http://xmlns.com/foaf/0.1/&gt; .
+@prefix : &lt;http://example.org/&gt; .
+
+:people15  foaf:knows    :people18 . 
+:people18  foaf:name     "Mike" .
+:people17  foaf:knows    :people19 . 
+:people19  foaf:name     "Daisy" .</code></pre>
+          <div class="queryGroup">
+            <p>Query:</p>
+            <pre class="query" aria-busy="false"><code class="hljs">PREFIX foaf:   &lt;http://xmlns.com/foaf/0.1/&gt;
+SELECT ?person ?interest ?known
+WHERE
+{
+  SERVICE &lt;http://people.example.org/sparql&gt; { 
+    ?person foaf:name ?name .  
+    OPTIONAL { 
+      ?person foaf:interest ?interest .
+      SERVICE &lt;http://people2.example.org/sparql&gt; { 
+        ?person foaf:knows ?known . } }
+  }    
+}</code></pre>
+            <p>This query, on the data above, has three solutions:</p>
+            <p>Query Result:</p>
+            <div class="result">
+              <span class="doc-ref" id="table03"></span>
+              <table class="resultTable">
+                <tbody>
+                  <tr>
+                    <th>person</th>
+                    <th>interest</th>
+                    <th>known</th>
+                  </tr>
+                  <tr>
+                    <td>"Alice"</td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td>"Bob"</td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td>"Charles"</td>
+                    <td>&lt;http://www.w3.org/2001/sw/rdb2rdf/&gt;</td>
+                    <td>&lt;http://example.org/people19&gt;</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+        <p>Notice that in the query above there is a nested <code>SERVICE</code> in the <code><em class="rfc2119">OPTIONAL</em></code> clause. This query requires the SPARQL query service at
+        <code>http://people.example.org/sparql</code> to support basic federated query.</p>
+      </section>
+      <section id="serviceFailure"><div class="header-wrapper"><h3 id="x3-3-service-execution-failure"><bdi class="secno">3.3 </bdi>Service Execution Failure</h3><a class="self-link" href="#serviceFailure" aria-label="Permalink for Section 3.3"></a></div>
+        
+        <p>The execution of a <code>SERVICE</code> pattern may fail due to several reasons: the remote service may be down, the service IRI may not be dereferenceable, or the endpoint may return an
+        error to the query. Normally, under such circumstances the invoked query containing a <code>SERVICE</code> pattern fails as a whole. Queries may explicitly allow failed <code>SERVICE</code>
+        requests with the use of the <code>SILENT</code> keyword. The <code>SILENT</code> keyword indicates that errors encountered while accessing a remote SPARQL endpoint should be ignored while
+        processing the query. The failed <code>SERVICE</code> clause is treated as if it had a result of a single solution with no bindings.</p>
+        <p>In the following query the <code>SILENT</code> keyword is present. If the remote SPARQL endpoint is not available because the SPARQL endpoint does not exist, it is down or it is not
+        accessible the query will return a solution sequence of one empty solution mapping. If the <code>SILENT</code> keyword is not present, the query will stop and return the error.</p>
+        <div class="exampleGroup" id="fooService2">
+          <p>Data in <code>&lt;http://people.example.org/sparql&gt;</code> endpoint:</p>
+          <pre class="data" aria-busy="false"><code class="hljs">&lt;http://example.org/people15&gt;  &lt;http://xmlns.com/foaf/0.1/name&gt;     "Charles" .</code></pre>
+          <div class="queryGroup">
+            <p>Query:</p>
+            <pre class="query" aria-busy="false"><code class="hljs">PREFIX foaf:   &lt;http://xmlns.com/foaf/0.1/&gt;
+SELECT ?name
+WHERE
+{
+  SERVICE SILENT &lt;http://people.example.org/sparql&gt; { 
+    &lt;http://example.org/people15&gt; foaf:name ?name . }
+}</code></pre>
+            <p>Query result if an error occurs while querying the remote SPARQL endpoint:</p>
+            <div class="result">
+              <span class="doc-ref" id="table2"></span>
+              <table class="resultTable">
+                <tbody>
+                  <tr>
+                    <th>name</th>
+                  </tr>
+                  <tr>
+                    <td>&nbsp;</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section id="values"><div class="header-wrapper"><h3 id="x3-4-interplay-of-service-and-values-informative"><bdi class="secno">3.4 </bdi>Interplay of SERVICE and VALUES (Informative)</h3><a class="self-link" href="#values" aria-label="Permalink for Section 3.4"></a></div>
+        
+        <p>SPARQL 1.1 Query includes the <code>VALUES</code> clause (<a class="inform" href="http://www.w3.org/TR/sparql11-query/#inline-data">VALUES</a>), which can be used to provide an unordered
+        solution sequence that is joined with the results of the query evaluation. Implementers of SPARQL 1.1 Federated Query may use the <code>VALUES</code> clause to constrain the results received
+        from a remote endpoint based on solution bindings from evaluating other parts of the query.</p>
+        <p>The following example shows how <code>SERVICE</code> and <code>VALUES</code> can work together. Suppose a query that asks for all instances of foaf:Person in the default graph and also
+        their known people in the remote endpoint <code>http://example.org/sparql</code>:</p>
+        <p>Data in the default graph:</p>
+        <div class="exampleGroup" id="bindingsService1">
+          <pre class="data" aria-busy="false"><code class="hljs">@prefix foaf:  &lt;http://xmlns.com/foaf/0.1/&gt; .
+@prefix : &lt;http://example.org/&gt; .
+
+:a a foaf:Person  ;
+   foaf:name     "Alan" ;
+   foaf:mbox;     "alan@example.org" .
+:b a foaf:Person  ;
+   foaf:name     "Bob" ;
+   foaf:mbox     "bob@example.org" .</code></pre>
+          <p>and data in the default graph the remote SPARQL endpoint <code>http://example.org/sparql</code>:</p>
+          <pre class="data" aria-busy="false"><code class="hljs">@prefix foaf:  &lt;http://xmlns.com/foaf/0.1/&gt; .
+@prefix : &lt;http://example.org/&gt; .
+
+:a  foaf:knows     :b . 
+:b  foaf:knows     :c .
+:c  foaf:knows     :a .
+:a  foaf:interest  "SPARQL 1.1 Basic Federated Query" . 
+:b  foaf:interest  "SPARQL 1.1 Query" .
+:c  foaf:interest  "RDB2RDF Direct mapping" .</code></pre>
+          <p>Query:</p>
+          <pre class="query" aria-busy="false"><code class="hljs">PREFIX foaf:   &lt;http://xmlns.com/foaf/0.1/&gt;
+SELECT ?s
+{
+  ?s a foaf:Person .
+  SERVICE &lt;http://example.org/sparql&gt; {?s foaf:knows ?o }
+}</code></pre>
+        </div>
+        <p>When the original query is executed naively, with an unconstrained service call the endpoint may return more results than necessary. It may also happen that the SPARQL endpoint will not
+        return all of them. Many existing SPARQL endpoints have restrictions in the number of results they return and may miss the ones matching subjects <code>?s</code> from the local default graph.
+        Thus, an implementation of a query planner for federated queries may decide to decompose the query into two queries instead, where first the bindings from the local default graph are
+        evaluated:</p>
+        <div class="exampleGroup" id="bindingsService2">
+          <p>Query:</p>
+          <pre class="query" aria-busy="false"><code class="hljs">PREFIX : &lt;http://example.org/&gt;
+PREFIX foaf:   &lt;http://xmlns.com/foaf/0.1/&gt;
+SELECT ?s
+{
+  ?s a foaf:Person
+}</code></pre>
+          <p>This query, on the data above, has two solutions:</p>
+          <p>Query Result:</p>
+          <div class="result">
+            <span class="doc-ref" id="table04a"></span>
+            <table class="resultTable">
+              <tbody>
+                <tr>
+                  <th>s</th>
+                </tr>
+                <tr>
+                  <td>&lt;http://example.org/a&gt;</td>
+                </tr>
+                <tr>
+                  <td>&lt;http://example.org/b&gt;</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <p>Next, dispatch to the remote endpoint &lt;http://example.org/sparql&gt; a constrained query with the solutions for <code>?s</code>:</p>
+        <pre class="query" aria-busy="false"><code class="hljs">PREFIX foaf:   &lt;http://xmlns.com/foaf/0.1/&gt;
+PREFIX : &lt;http://example.org/&gt;
+SELECT * {?s foaf:knows ?o } VALUES (?s) { (:a) (:b) }</code></pre>
+        <p>The query process involving <code>SERVICE</code> limits the data returned to the data it needs for the overall query:</p>
+        <div class="queryGroup">
+          <p>Query:</p>
+          <pre class="query" aria-busy="false"><code class="hljs">PREFIX foaf:   &lt;http://xmlns.com/foaf/0.1/&gt;
+SELECT ?s ?o
+{
+  ?s a foaf:Person
+  SERVICE &lt;http://example.org/sparql&gt; {?s foaf:knows ?o }
+}</code></pre>
+          <p>This query, on the data above using <code>VALUES</code>, has the expected two solutions to the overall query:</p>
+          <p>Query Result:</p>
+          <div class="result">
+            <span class="doc-ref" id="table04b"></span>
+            <table class="resultTable">
+              <tbody>
+                <tr>
+                  <th>s</th>
+                  <th>o</th>
+                </tr>
+                <tr>
+                  <td>&lt;http://example.org/a&gt;</td>
+                  <td>&lt;http://example.org/b&gt;</td>
+                </tr>
+                <tr>
+                  <td>&lt;http://example.org/b&gt;</td>
+                  <td>&lt;http://example.org/c&gt;</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+    </section>
+    <section id="fedSemantics"><div class="header-wrapper"><h2 id="x4-sparql-1-1-simple-federation-extension-semantics"><bdi class="secno">4. </bdi>SPARQL 1.1 Simple Federation Extension: semantics</h2><a class="self-link" href="#fedSemantics" aria-label="Permalink for Section 4."></a></div>
+      
+      <section id="defn_service"><div class="header-wrapper"><h3 id="x4-1-translation-to-the-sparql-algebra"><bdi class="secno">4.1 </bdi>Translation to the SPARQL Algebra</h3><a class="self-link" href="#defn_service" aria-label="Permalink for Section 4.1"></a></div>
+        
+        <p>The <code>SERVICE</code> extension is defined as an additional type of GroupGraphPattern, with an accompanying addition to SPARQL Query 1.1's <a href="http://www.w3.org/TR/sparql11-query/#convertGraphPattern">Transform (syntax form)</a>:</p>
+        <blockquote>
+          <p>If the form is <code><a href="http://www.w3.org/TR/sparql11-query/#rGroupGraphPattern">GroupGraphPattern</a></code></p>
+          <blockquote>
+            <p>From the <a href="http://www.w3.org/TR/sparql11-query/#sparqlTranslateGraphPatterns">Translate Graph Patterns section</a> of [<a class="inform" href="http://www.w3.org/TR/sparql11-query/">SPARQL 1.1 Query Language</a>] we extend the transformation of GroupGraphPattern to define the transformation of <code>SERVICE</code> patterns:</p>
+          </blockquote>
+        </blockquote>
+        <pre class="codeBlock" aria-busy="false"><code class="hljs">Let FS := the empty set
+Let G := the empty pattern, Z, a basic graph pattern which is the empty set.
+Let SilentOp := boolean, indicating SERVICE error behavior.
+
+For each element E in the GroupGraphPattern
+    If E is of the form FILTER(expr)
+        FS := FS ∪ {expr}
+        End
+
+    If E is of the form OPTIONAL{P} 
+        Let A := Transform(P)
+        If A is of the form Filter(F, A2)
+            G := LeftJoin(G, A2, F)
+        Else 
+            G := LeftJoin(G, A, true)
+            End
+        End
+
+    If E is of the form MINUS{P}
+        G := Minus(G, Transform(P))
+        End
+
+    If E is of the form BIND(expr AS var)
+        G := Extend(G, var, expr)
+        End
+
+    If E is any other form 
+        Let A := Transform(E)
+        G := Join(G, A)
+        End
+
+    If E is of the form SERVICE [SILENT] IRI {P}
+        Let G := Join(G, Service(IRI, Transform(P), SilentOp))
+        End
+   
+   End
+   
+If FS is not empty:
+  Let X := Conjunction of expressions in FS
+  G := Filter(X, G)
+
+The result is G.</code></pre>
+      </section>
+      <section id="algebra_service"><div class="header-wrapper"><h3 id="x4-2-sparql-1-1-simple-federation-extension-algebra"><bdi class="secno">4.2 </bdi>SPARQL 1.1 Simple Federation Extension Algebra</h3><a class="self-link" href="#algebra_service" aria-label="Permalink for Section 4.2"></a></div>
+        
+        <p>The evaluation of <code>SERVICE</code> is defined in terms of the <a class="inform" href="http://www.w3.org/TR/rdf-sparql-XMLres/">SPARQL Results</a> [<a href="#RESULTS">RESULTS</a>]
+        returned by a SPARQL Protocol [<a href="#SPROT">SPROT</a>] execution of the nested graph pattern:</p>
+        <div class="defn">
+          <p><strong>Definition: <span class="doc-ref" id="defn_evalService">Evaluation of a Service Pattern</span></strong></p>Let
+          <ul>
+            <li>iri be an IRI,</li>
+            <li><code>Ω<sub>0</sub></code> the solution set with one empty solution, and</li>
+            <li>SilentOp be a boolean variable to indicate that SERVICE execution should ignore errors when true.</li>
+          </ul>
+          <p>then:</p>
+          <div class="defn">
+            eval(D(G), Service(IRI,P,SilentOp)) = Invocation( iri, P, SilentOp )
+          </div>where: Invocation(IRI, P, SilentOp) is
+          <ul>
+            <li>the multiset of solution mappings corresponding to the results of executing query <code>SELECT * WHERE Q</code> against the service endpoint with IRI iri where Q is the serialization
+            of P in SPARQL syntax, in case of a successful service invocation according to the SPARQL protocol, and otherwise</li>
+            <li><code>Ω<sub>0</sub>.</code> in case SilentOp is true, and otherwise</li>
+            <li>error.</li>
+          </ul>
+        </div>
+        <section id="algebra_service_examples"><div class="header-wrapper"><h4 id="x4-2-1-service-examples"><bdi class="secno">4.2.1 </bdi>SERVICE Examples</h4><a class="self-link" href="#algebra_service_examples" aria-label="Permalink for Section 4.2.1"></a></div>
+          
+          <p>In the folowing section we introduce two examples showing the evaluation of <code>SERVICE</code> patterns in the SPARQL algebra:</p>
+          <p>Example: a <code>SERVICE</code> graph pattern in a series of joins:</p>
+          <div class="algExample">
+            <div class="algExample1">
+              ... WHERE { { ?s :p1 ?v1 } SERVICE &lt;srvc&gt; {?s :p2 ?v2 } { ?s :p3 ?v2 } }
+            </div>
+            <div class="algExample2">
+              Join( Service( &lt;srvc&gt;,<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; BGP( ?s :p2 ?v2 ), false ),<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; BGP( ?s :p3 ?v2 ) )
+            </div>
+          </div>
+          <p>Example: a <code>SERVICE SILENT</code> graph pattern in a series of joins:</p>
+          <div class="algExample">
+            <div class="algExample1">
+              ... WHERE { { ?s :p1 ?v1 } SERVICE SILENT &lt;srvc&gt; {?s :p2 ?v2 } { ?s :p3 ?v2 } }
+            </div>
+            <div class="algExample2">
+              Join( Service( &lt;srvc&gt;,<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; BGP( ?s :p2 ?v2 ), true ),<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; BGP( ?s :p3 ?v2 ) )
+            </div>
+          </div>
+        </section>
+      </section>
+    </section>
+    <section id="variableService"><div class="header-wrapper"><h2 id="x5-service-variables-informative"><bdi class="secno">5. </bdi>SERVICE Variables (Informative)</h2><a class="self-link" href="#variableService" aria-label="Permalink for Section 5."></a></div>
+      
+      <p>In the this section we do not present official evaluation semantics for the SPARQL pattern <code>SERVICE VAR</code>. We only provide indications about how the evaluation of the SPARQL
+      pattern <code>SERVICE VAR</code> can be evaluated.</p>
+      <p>A variable used in place of a service IRI indicates that the service call for any solution depends on that variable's binding in that solution. For instance, the default graph may contain
+      data about which services contain data about project endpoints. We assume the following data on various projects that contains information about SPARQL endpoints where data about these projects
+      (using the <a href="https://github.com/edumbill/doap/wiki">DOAP vocabulary</a>) can be queried from:</p>
+      <pre class="data" aria-busy="false"><code class="hljs">@prefix void:    &lt;http://rdfs.org/ns/void#&gt; .
+@prefix dc: &lt;http://purl.org/dc/elements/1.1/&gt; .
+@prefix doap: &lt;http://usefulinc.com/ns/doap#&gt; .
+
+[] dc:subject "Querying RDF" ;
+   void:sparqlEndpoint &lt;http://projects1.example.org/sparql&gt; .
+[] dc:subject "Querying RDF remotely" ;
+   void:sparqlEndpoint &lt;http://projects2.example.org/sparql&gt; .
+[] dc:subject "Updating RDF remotely"  ;
+   void:sparqlEndpoint &lt;http://projects3.example.org/sparql&gt; .</code></pre>
+      <p>Data in the default graph at remote SPARQL endpoint http://projects2.example.org/sparql:</p>
+      <pre class="data" aria-busy="false"><code class="hljs">_:project1  doap:name    "Query remote RDF Data" .
+_:project1  doap:created "2011-02-12"^^xsd:date .
+_:project2  doap:name    "Querying multiple SPARQL endpoints" .
+_:project2  doap:created "2011-02-13"^^xsd:date .</code></pre>
+      <p>Data in the default graph at remote SPARQL endpoint http://projects3.example.org/sparql:</p>
+      <pre class="data" aria-busy="false"><code class="hljs">_:project3  doap:name    "Update remote RDF Data" .
+_:project3  doap:created "2011-02-14"^^xsd:date .</code></pre>
+      <p>We now want to query the project names of projects on the subject "remote":</p>
+      <div class="queryGroup">
+        <pre class="query" aria-busy="false"><code class="hljs">PREFIX  void: &lt;http://rdfs.org/ns/void#&gt;
+PREFIX  dc:   &lt;http://purl.org/dc/elements/1.1/&gt;
+PREFIX  doap: &lt;http://usefulinc.com/ns/doap#&gt; 
+
+SELECT ?service ?projectName
+WHERE {
+  # Find the service with subject "remote".
+  ?p dc:subject ?projectSubject ;
+     void:sparqlEndpoint ?service .
+     FILTER regex(?projectSubject, "remote")
+
+  # Query that service projects.
+  SERVICE ?service {
+     ?project  doap:name ?projectName . } 
+}</code></pre>
+        <p>In the following table we present the intuitive solutions for this query with the data above:</p>
+        <p>Query Result:</p>
+        <div class="result">
+          <span class="doc-ref" id="tableResultsVarEndpoint"></span>
+          <table class="resultTable">
+            <tbody>
+              <tr>
+                <th>service</th>
+                <th>title</th>
+              </tr>
+              <tr>
+                <td>&lt;http://projects2.example.org/sparql&gt;</td>
+                <td>"Query remote RDF Data"</td>
+              </tr>
+              <tr>
+                <td>&lt;http://projects2.example.org/sparql&gt;</td>
+                <td>"Querying multiple SPARQL endpoints"</td>
+              </tr>
+              <tr>
+                <td>&lt;http://projects3.example.org/sparql&gt;</td>
+                <td>"Update remote RDF Data"</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <p>A <code>SERVICE</code> clause involving a variable can be executed as a series of separate invocations of SPARQL query services. The results of each invocation are combined using union.</p>
+      <p>The query engine must determine the possible target SPARQL query services. The exact mechanism for doing this is not defined in this document. Execution order may also be used to determine
+      the list of services to to be tried. The example above suggests a specific order of execution: evaluating the basic graph pattern and filter outside the <code>SERVICE</code> block first will
+      yield bindings for <code>?service</code> which may then be used to evaluate the <code>SERVICE</code> block:</p>
+      <pre class="query" aria-busy="false"><code class="hljs">?p dc:subject ?projectSubject ;
+   void:sparqlEndpoint ?service
+   FILTER regex(?projectSubject, "remote")</code></pre>
+      <p>Once <code>?service</code> has been evaluated it is possible to execute <code>SERVICE</code> for each value of <code>?service</code>:</p>
+      <pre class="query" aria-busy="false"><code class="hljs">SERVICE ?service {
+?project doap:name ?projectName . }</code></pre>
+      <p>Note that blank nodes are unique to any document which serializes them. Also, <code>SERVICE</code> calls depend on the SPARQL Protocol [<a href="#SPROT">SPROT</a>] which transfers serialized
+      RDF documents making blank nodes unique between service calls.</p>
+    </section>
+    <section id="conformance"><div class="header-wrapper"><h2 id="x6-conformance"><bdi class="secno">6. </bdi>Conformance</h2><a class="self-link" href="#conformance" aria-label="Permalink for Section 6."></a></div><p>As well as sections marked as non-normative, all authoring guidelines, diagrams, examples, and notes in this specification are non-normative. Everything else in this specification is normative.</p><p>
+        The key word <em class="rfc2119">OPTIONAL</em> in this document
+        is to be interpreted as described in
+        <a href="https://datatracker.ietf.org/doc/html/bcp14">BCP 14</a>
+        [<cite><a class="bibref" data-link-type="biblio" href="#bib-rfc2119" title="Key words for use in RFCs to Indicate Requirement Levels">RFC2119</a></cite>] [<cite><a class="bibref" data-link-type="biblio" href="#bib-rfc8174" title="Ambiguity of Uppercase vs Lowercase in RFC 2119 Key Words">RFC8174</a></cite>]
+        when, and only when, they appear in all capitals, as shown here.
+      </p>
+      <section id="conformance-0"><div class="header-wrapper"><h3 id="x6-1-conformance"><bdi class="secno">6.1 </bdi>Conformance</h3><a class="self-link" href="#conformance-0" aria-label="Permalink for Section 6.1"></a></div>
+      <p>See section 4 <a href="http://www.w3.org/TR/sparql11-query/#grammar">SPARQL 1.1 Federated Query Grammar</a> regarding conformance of <a href="http://www.w3.org/TR/sparql11-query/#defn_SPARQLQueryString">SPARQL Query strings</a> that include the SPARQL 1.1 Federated Query Extensions. See section 3.1 <a href="#defn_service">Definition
+      of SERVICE</a> for conformance of query results for the <code>SERVICE</code> keyword.</p>
+      <p>This specification is intended for use in conjunction with the <a href="http://www.w3.org/TR/sparql11-query/">SPARQL 1.1 Query Language</a>. See that specification for its conformance
+      criteria.</p>
+    </section></section>
+    <section id="security-original"><div class="header-wrapper"><h2 id="x7-security-considerations-informative"><bdi class="secno">7. </bdi>Security Considerations (Informative)</h2><a class="self-link" href="#security-original" aria-label="Permalink for Section 7."></a></div>
+      
+      <p>SPARQL queries using <code>SERVICE</code> imply that a URI will be dereferenced, and that the result will be incorporated into a working data set. All of the security issues of <a class="norm" href="http://www.w3.org/TR/sparql11-protocol/#policy-security">SPARQL Protocol 1.1</a> [<a href="#SPROT">SPROT</a>] Section 3.1 <a class="norm" href="http://www.w3.org/TR/sparql11-query/#security-original">SPARQL 1.1 Query</a> [<a href="#SQRY">SQRY</a>] Section 21, and <a class="norm" href="http://www.ietf.org/rfc/rfc3986.txt">Uniform Resource
+      Identifier (URI): Generic Syntax</a> [<a href="#rfc3986">RFC3986</a>] Section 7 should be considered.</p>
+    </section>
+    <section id="sec-bibliography"><div class="header-wrapper"><h2 id="x8-references"><bdi class="secno">8. </bdi>References</h2><a class="self-link" href="#sec-bibliography" aria-label="Permalink for Section 8."></a></div>
+      
+      <section id="sec-normative-refs"><div class="header-wrapper"><h3 id="x8-1-normative-references"><bdi class="secno">8.1 </bdi>Normative References</h3><a class="self-link" href="#sec-normative-refs" aria-label="Permalink for Section 8.1"></a></div>
+        
+        <dl class="bib">
+          <dt><span class="doc-ref" id="SQRY">[SQRY]</span></dt>
+          <dd><cite><a href="http://www.w3.org/TR/2013/REC-sparql11-query-20130321">SPARQL 1.1 Query Language</a></cite>, S. Harris, A. Seaborne, Editors, <abbr title="World Wide Web Consortium">W3C</abbr> Recommendation, 21 March 2013,
+          http://www.w3.org/TR/2013/REC-sparql11-query-20130321. <a href="http://www.w3.org/TR/sparql11-query/" title="Latest version of SPARQL 1.1 Query Language">Latest version</a> available at
+          http://www.w3.org/TR/sparql11-query.</dd>
+          <dt><span class="doc-ref" id="SPROT">[SPROT]</span></dt>
+          <dd><cite><a href="http://www.w3.org/TR/2013/REC-sparql11-protocol-20130321">SPARQL 1.1 Protocol</a></cite>, L. Feigenbaum, G. Williams, K. Clark, E. Torres, Editors, <abbr title="World Wide Web Consortium">W3C</abbr> Recommendation, 21
+          March 2013, http://www.w3.org/TR/2013/REC-sparql11-protocol-20130321. <a href="http://www.w3.org/TR/sparql11-protocol/" title="Latest version of SPARQL 1.1 Protocol">Latest version</a>
+          available at http://www.w3.org/TR/sparql11-protocol.</dd>
+          <dt><span class="doc-ref" id="CHARMOD">[CHARMOD]</span></dt>
+          <dd>Character Model for the World Wide Web 1.0: Fundamentals, R. Ishida, F. Yergeau, M. J. Düst, M. Wolf, T. Texin, Editors, <abbr title="World Wide Web Consortium">W3C</abbr> Recommendation, 15 February 2005,
+          http://www.w3.org/TR/2005/REC-charmod-20050215/ . <a href="http://www.w3.org/TR/charmod/" title="Latest version of Character Model for the World Wide Web 1.0: Fundamentals">Latest
+          version</a> available at http://www.w3.org/TR/charmod/ .</dd>
+          <dt><span class="doc-ref" id="rfc3629">[RFC3629]</span></dt>
+          <dd>RFC 3629 UTF-8, a transformation format of ISO 10646, F. Yergeau November 2003</dd>
+          <dt><span class="doc-ref" id="rfc3986">[RFC3986]</span></dt>
+          <dd>RFC 3986 Uniform Resource Identifier (URI): Generic Syntax, T. Berners-Lee, R. Fielding, L. Masinter January 2005</dd>
+          <dt><span class="doc-ref" id="rfc3987">[RFC3987]</span></dt>
+          <dd><a href="http://www.ietf.org/rfc/rfc3987.txt">RFC 3987</a>, "Internationalized Resource Identifiers (IRIs)", M. Dürst , M. Suignard</dd>
+          <dt><span class="doc-ref" id="UNICODE">[UNICODE]</span></dt>
+          <dd>The Unicode Standard, Version 4. ISBN 0-321-18578-1, as updated from time to time by the publication of new versions. The latest version of Unicode and additional information on
+          versions of the standard and of the Unicode Character Database is available at <a href="http://www.unicode.org/unicode/standard/versions/">http://www.unicode.org/unicode/standard/versions/</a>.</dd>
+          <dt><span class="doc-ref" id="XML11">[XML11]</span></dt>
+          <dd>Extensible Markup Language (XML) 1.1, J. Cowan, J. Paoli, E. Maler, C. M. Sperberg-McQueen, F. Yergeau, T. Bray, Editors, <abbr title="World Wide Web Consortium">W3C</abbr> Recommendation, 4 February 2004,
+          http://www.w3.org/TR/2004/REC-xml11-20040204/ . <a href="http://www.w3.org/TR/xml11/" title="Latest version of Extensible Markup Language (XML) 1.1">Latest version</a> available at
+          http://www.w3.org/TR/xml11/ .</dd>
+          <dt><span class="doc-ref" id="BCP47">[BCP47]</span></dt>
+          <dd>Best Common Practice 47, P. V. Biron, A. Malhotra, Editors, <abbr title="World Wide Web Consortium">W3C</abbr> Recommendation, 28 October 2004, http://www.rfc-editor.org/rfc/bcp/bcp47.txt .</dd>
+        </dl>
+      </section>
+      <section id="sec-non-normative-refs"><div class="header-wrapper"><h3 id="x8-2-other-references"><bdi class="secno">8.2 </bdi>Other References</h3><a class="self-link" href="#sec-non-normative-refs" aria-label="Permalink for Section 8.2"></a></div>
+        
+        <dl class="bib">
+          <dt><span class="doc-ref" id="RESULTS">[RESULTS]</span></dt>
+          <dd><cite><a href="http://www.w3.org/TR/2013/REC-rdf-sparql-XMLres-20130321">SPARQL Query Results XML Format (Second Edition)</a></cite>, D. Beckett, J. Broekstra, Editors, <abbr title="World Wide Web Consortium">W3C</abbr>
+          Recommendation, 21 March 2013, http://www.w3.org/TR/2013/REC-rdf-sparql-XMLres-20130321. <a href="http://www.w3.org/TR/rdf-sparql-XMLres/" title="Latest version of SPARQL Query Results XML Format (Second Edition)">Latest version</a> available at http://www.w3.org/TR/rdf-sparql-XMLres.</dd>
+          <dt><span class="doc-ref" id="TURTLE">[TURTLE]</span></dt>
+          <dd><cite><a href="http://www.w3.org/TR/2013/CR-turtle-20130219/">Turtle: Terse RDF Triple Language</a></cite>, E Prud'hommeaux, G Carothers, Editors, <abbr title="World Wide Web Consortium">W3C</abbr> Candidate Recommendation, 19
+          February 2013, http://www.w3.org/TR/2013/CR-turtle-20130219/. <a href="http://www.w3.org/TR/turtle/" title="Latest version of Turtle">Latest version</a> available at
+          http://www.w3.org/TR/turtle/.</dd>
+        </dl>
+      </section>
+    </section>
+    <section id="sec-acknowledgements"><div class="header-wrapper"><h2 id="x9-acknowledgements"><bdi class="secno">9. </bdi>Acknowledgements</h2><a class="self-link" href="#sec-acknowledgements" aria-label="Permalink for Section 9."></a></div>
+      
+      <p>The SPARQL 1.1 Federated Query document is a product of the whole of the <a href="http://www.w3.org/2009/sparql/wiki/Main_Page"><abbr title="World Wide Web Consortium">W3C</abbr> SPARQL Working Group</a>, and our thanks for discussions,
+      comments and reviews go to all present and past members.</p>
+      <p>In addition, we have had comments and discussions with many people through the working group comments list. All comments go to making a better document. Carlos would also like to
+      particularly thank Jorge Pérez, Oscar Corcho and Marcelo Arenas for their discussions on the syntax and semantics of the Federated query extension.</p>
+    </section>
+    <section id="sec-cvsLog"><div class="header-wrapper"><h2 id="x10-cvs-history-last-call-and-after"><bdi class="secno">10. </bdi>CVS History (Last Call and after)</h2><a class="self-link" href="#sec-cvsLog" aria-label="Permalink for Section 10."></a></div>
+      
+    </section>
+    
+
+    <section id="privacy"><div class="header-wrapper"><h2 id="x11-privacy-considerations"><bdi class="secno">11. </bdi>Privacy Considerations</h2><a class="self-link" href="#privacy" aria-label="Permalink for Section 11."></a></div>
+      
+      <p>TODO</p>
+    </section>
+
+    <section id="security"><div class="header-wrapper"><h2 id="x12-security-considerations"><bdi class="secno">12. </bdi>Security Considerations</h2><a class="self-link" href="#security" aria-label="Permalink for Section 12."></a></div>
+      
+      <p>TODO</p>
+    </section>
+
+    <section id="internationalization"><div class="header-wrapper"><h2 id="x13-internationalization-considerations"><bdi class="secno">13. </bdi>Internationalization Considerations</h2><a class="self-link" href="#internationalization" aria-label="Permalink for Section 13."></a></div>
+      
+      <p>TODO</p>                
+    </section>
+
+    <section class="appendix informative" id="changes-from-sparql11"><div class="header-wrapper"><h2 id="a-change-log"><bdi class="secno">A. </bdi>Change Log</h2><a class="self-link" href="#changes-from-sparql11" aria-label="Permalink for Appendix A."></a></div><p><em>This section is non-normative.</em></p>
+      
+      <p>TODO</p>
+    </section>   
+
+    <section id="index" class="appendix"><div class="header-wrapper"><h2 id="b-index"><bdi class="secno">B. </bdi>Index</h2><a class="self-link" href="#index" aria-label="Permalink for Appendix B."></a></div><section id="index-defined-here"><div class="header-wrapper"><h3 id="b-1-terms-defined-by-this-specification"><bdi class="secno">B.1 </bdi>Terms defined by this specification</h3><a class="self-link" href="#index-defined-here" aria-label="Permalink for Appendix B.1"></a></div>
+    
+    <ul class="index">
+    
+  </ul>
+  </section><section id="index-defined-elsewhere"><div class="header-wrapper"><h3 id="b-2-terms-defined-by-reference"><bdi class="secno">B.2 </bdi>Terms defined by reference</h3><a class="self-link" href="#index-defined-elsewhere" aria-label="Permalink for Appendix B.2"></a></div>
+    
+    <ul class="index">
+    <li>
+        [<cite><a class="bibref" data-link-type="biblio" href="#bib-sparql12-concepts">SPARQL12-CONCEPTS</a></cite>] defines the following:
+        <ul>
+          <li>
+    <span class="index-term" data-href="https://w3c.github.io/sparql-concepts/spec/" id="index-term-sparql-1-2-concepts" tabindex="0" aria-haspopup="dialog">SPARQL 1.2 Concepts</span>
+  </li>
+        </ul>
+      </li><li>
+        [<cite><a class="bibref" data-link-type="biblio" href="#bib-sparql12-entailment">SPARQL12-ENTAILMENT</a></cite>] defines the following:
+        <ul>
+          <li>
+    <span class="index-term" data-href="https://w3c.github.io/sparql-entailment/spec/" id="index-term-sparql-1-2-entailment-regimes" tabindex="0" aria-haspopup="dialog">SPARQL 1.2 Entailment Regimes</span>
+  </li>
+        </ul>
+      </li><li>
+        [<cite><a class="bibref" data-link-type="biblio" href="#bib-sparql12-graph-store-protocol">SPARQL12-GRAPH-STORE-PROTOCOL</a></cite>] defines the following:
+        <ul>
+          <li>
+    <span class="index-term" data-href="https://w3c.github.io/sparql-graph-store-protocol/spec/" id="index-term-sparql-1-2-graph-store-http-protocol" tabindex="0" aria-haspopup="dialog">SPARQL 1.2 Graph Store HTTP Protocol</span>
+  </li>
+        </ul>
+      </li><li>
+        [<cite><a class="bibref" data-link-type="biblio" href="#bib-sparql12-new">SPARQL12-NEW</a></cite>] defines the following:
+        <ul>
+          <li>
+    <span class="index-term" data-href="https://w3c.github.io/sparql-new/spec/" id="index-term-what-s-new-in-sparql-1-2" tabindex="0" aria-haspopup="dialog">What’s New in SPARQL 1.2</span>
+  </li>
+        </ul>
+      </li><li>
+        [<cite><a class="bibref" data-link-type="biblio" href="#bib-sparql12-protocol">SPARQL12-PROTOCOL</a></cite>] defines the following:
+        <ul>
+          <li>
+    <span class="index-term" data-href="https://w3c.github.io/sparql-protocol/spec/" id="index-term-sparql-1-2-protocol" tabindex="0" aria-haspopup="dialog">SPARQL 1.2 Protocol</span>
+  </li>
+        </ul>
+      </li><li>
+        [<cite><a class="bibref" data-link-type="biblio" href="#bib-sparql12-query">SPARQL12-QUERY</a></cite>] defines the following:
+        <ul>
+          <li>
+    <span class="index-term" data-href="https://w3c.github.io/sparql-query/spec/" id="index-term-sparql-1-2-query-language" tabindex="0" aria-haspopup="dialog">SPARQL 1.2 Query Language</span>
+  </li>
+        </ul>
+      </li><li>
+        [<cite><a class="bibref" data-link-type="biblio" href="#bib-sparql12-results-csv-tsv">SPARQL12-RESULTS-CSV-TSV</a></cite>] defines the following:
+        <ul>
+          <li>
+    <span class="index-term" data-href="https://w3c.github.io/sparql-results-csv-tsv/spec/" id="index-term-sparql-1-2-query-results-csv-and-tsv-formats" tabindex="0" aria-haspopup="dialog">SPARQL 1.2 Query Results CSV and TSV Formats</span>
+  </li>
+        </ul>
+      </li><li>
+        [<cite><a class="bibref" data-link-type="biblio" href="#bib-sparql12-results-json">SPARQL12-RESULTS-JSON</a></cite>] defines the following:
+        <ul>
+          <li>
+    <span class="index-term" data-href="https://w3c.github.io/sparql-results-json/spec/" id="index-term-sparql-1-2-query-results-json-format" tabindex="0" aria-haspopup="dialog">SPARQL 1.2 Query Results JSON Format</span>
+  </li>
+        </ul>
+      </li><li>
+        [<cite><a class="bibref" data-link-type="biblio" href="#bib-sparql12-results-xml">SPARQL12-RESULTS-XML</a></cite>] defines the following:
+        <ul>
+          <li>
+    <span class="index-term" data-href="https://w3c.github.io/sparql-results-xml/spec/" id="index-term-sparql-1-2-query-results-xml-formats" tabindex="0" aria-haspopup="dialog">SPARQL 1.2 Query Results XML Formats</span>
+  </li>
+        </ul>
+      </li><li>
+        [<cite><a class="bibref" data-link-type="biblio" href="#bib-sparql12-service-description">SPARQL12-SERVICE-DESCRIPTION</a></cite>] defines the following:
+        <ul>
+          <li>
+    <span class="index-term" data-href="https://w3c.github.io/sparql-service-description/spec/" id="index-term-sparql-1-2-service-description" tabindex="0" aria-haspopup="dialog">SPARQL 1.2 Service Description</span>
+  </li>
+        </ul>
+      </li><li>
+        [<cite><a class="bibref" data-link-type="biblio" href="#bib-sparql12-update">SPARQL12-UPDATE</a></cite>] defines the following:
+        <ul>
+          <li>
+    <span class="index-term" data-href="https://w3c.github.io/sparql-update/spec/" id="index-term-sparql-1-2-update" tabindex="0" aria-haspopup="dialog">SPARQL 1.2 Update</span>
+  </li>
+        </ul>
+      </li>
+  </ul>
+  </section></section>
+
+  
+
+<section id="references" class="appendix"><div class="header-wrapper"><h2 id="c-references"><bdi class="secno">C. </bdi>References</h2><a class="self-link" href="#references" aria-label="Permalink for Appendix C."></a></div><section id="normative-references"><div class="header-wrapper"><h3 id="c-1-normative-references"><bdi class="secno">C.1 </bdi>Normative references</h3><a class="self-link" href="#normative-references" aria-label="Permalink for Appendix C.1"></a></div>
+    
+    <dl class="bibliography"><dt id="bib-rfc2119">[RFC2119]</dt><dd>
+      <a href="https://www.rfc-editor.org/rfc/rfc2119"><cite>Key words for use in RFCs to Indicate Requirement Levels</cite></a>. S. Bradner.  IETF. March 1997. Best Current Practice. URL: <a href="https://www.rfc-editor.org/rfc/rfc2119">https://www.rfc-editor.org/rfc/rfc2119</a>
+    </dd><dt id="bib-rfc8174">[RFC8174]</dt><dd>
+      <a href="https://www.rfc-editor.org/rfc/rfc8174"><cite>Ambiguity of Uppercase vs Lowercase in RFC 2119 Key Words</cite></a>. B. Leiba.  IETF. May 2017. Best Current Practice. URL: <a href="https://www.rfc-editor.org/rfc/rfc8174">https://www.rfc-editor.org/rfc/rfc8174</a>
+    </dd><dt id="bib-sparql12-concepts">[SPARQL12-CONCEPTS]</dt><dd>
+      <a href="https://w3c.github.io/sparql-concepts/spec/" id="ref-for-index-term-sparql-1-2-concepts-2"><cite>SPARQL 1.2 Concepts</cite></a>. The W3C RDF-star Working Group.  W3C. W3C Working Draft. URL: <a href="https://w3c.github.io/sparql-concepts/spec/" id="ref-for-index-term-sparql-1-2-concepts-3">https://w3c.github.io/sparql-concepts/spec/</a>
+    </dd><dt id="bib-sparql12-entailment">[SPARQL12-ENTAILMENT]</dt><dd>
+      <a href="https://w3c.github.io/sparql-entailment/spec/" id="ref-for-index-term-sparql-1-2-entailment-regimes-2"><cite>SPARQL 1.2 Entailment Regimes</cite></a>. Birte Glimm; Chimezie Ogbuji.  W3C. W3C Working Draft. URL: <a href="https://w3c.github.io/sparql-entailment/spec/" id="ref-for-index-term-sparql-1-2-entailment-regimes-3">https://w3c.github.io/sparql-entailment/spec/</a>
+    </dd><dt id="bib-sparql12-graph-store-protocol">[SPARQL12-GRAPH-STORE-PROTOCOL]</dt><dd>
+      <a href="https://w3c.github.io/sparql-graph-store-protocol/spec/" id="ref-for-index-term-sparql-1-2-graph-store-http-protocol-2"><cite>SPARQL 1.2 Graph Store HTTP Protocol</cite></a>. Chimezie Ogbuji.  W3C. W3C Working Draft. URL: <a href="https://w3c.github.io/sparql-graph-store-protocol/spec/" id="ref-for-index-term-sparql-1-2-graph-store-http-protocol-3">https://w3c.github.io/sparql-graph-store-protocol/spec/</a>
+    </dd><dt id="bib-sparql12-new">[SPARQL12-NEW]</dt><dd>
+      <a href="https://w3c.github.io/sparql-new/spec/" id="ref-for-index-term-what-s-new-in-sparql-1-2-2"><cite>What’s New in SPARQL 1.2</cite></a>. The W3C RDF-star Working Group.  W3C. W3C Working Draft. URL: <a href="https://w3c.github.io/sparql-new/spec/" id="ref-for-index-term-what-s-new-in-sparql-1-2-3">https://w3c.github.io/sparql-new/spec/</a>
+    </dd><dt id="bib-sparql12-protocol">[SPARQL12-PROTOCOL]</dt><dd>
+      <a href="https://w3c.github.io/sparql-protocol/spec/" id="ref-for-index-term-sparql-1-2-protocol-2"><cite>SPARQL 1.2 Protocol</cite></a>. Lee Feigenbaum; Gregory Williams; Kendall Clark; Elias Torres.  W3C. W3C Working Draft. URL: <a href="https://w3c.github.io/sparql-protocol/spec/" id="ref-for-index-term-sparql-1-2-protocol-3">https://w3c.github.io/sparql-protocol/spec/</a>
+    </dd><dt id="bib-sparql12-query">[SPARQL12-QUERY]</dt><dd>
+      <a href="https://w3c.github.io/sparql-query/spec/" id="ref-for-index-term-sparql-1-2-query-language-2"><cite>SPARQL 1.2 Query Language</cite></a>. Steven Harris; Andy Seaborne.  W3C. W3C Working Draft. URL: <a href="https://w3c.github.io/sparql-query/spec/" id="ref-for-index-term-sparql-1-2-query-language-3">https://w3c.github.io/sparql-query/spec/</a>
+    </dd><dt id="bib-sparql12-results-csv-tsv">[SPARQL12-RESULTS-CSV-TSV]</dt><dd>
+      <a href="https://w3c.github.io/sparql-results-csv-tsv/spec/" id="ref-for-index-term-sparql-1-2-query-results-csv-and-tsv-formats-2"><cite>SPARQL 1.2 Query Results CSV and TSV Formats</cite></a>. Andy Seaborne.  W3C. W3C Working Draft. URL: <a href="https://w3c.github.io/sparql-results-csv-tsv/spec/" id="ref-for-index-term-sparql-1-2-query-results-csv-and-tsv-formats-3">https://w3c.github.io/sparql-results-csv-tsv/spec/</a>
+    </dd><dt id="bib-sparql12-results-json">[SPARQL12-RESULTS-JSON]</dt><dd>
+      <a href="https://w3c.github.io/sparql-results-json/spec/" id="ref-for-index-term-sparql-1-2-query-results-json-format-2"><cite>SPARQL 1.2 Query Results JSON Format</cite></a>. Andy Seaborne.  W3C. W3C Working Draft. URL: <a href="https://w3c.github.io/sparql-results-json/spec/" id="ref-for-index-term-sparql-1-2-query-results-json-format-3">https://w3c.github.io/sparql-results-json/spec/</a>
+    </dd><dt id="bib-sparql12-results-xml">[SPARQL12-RESULTS-XML]</dt><dd>
+      <a href="https://w3c.github.io/sparql-results-xml/spec/" id="ref-for-index-term-sparql-1-2-query-results-xml-formats-2"><cite>SPARQL 1.2 Query Results XML Formats</cite></a>. Sandro Hawke; Dave Beckett; Jeen Broekstra.  W3C. W3C Working Draft. URL: <a href="https://w3c.github.io/sparql-results-xml/spec/" id="ref-for-index-term-sparql-1-2-query-results-xml-formats-3">https://w3c.github.io/sparql-results-xml/spec/</a>
+    </dd><dt id="bib-sparql12-service-description">[SPARQL12-SERVICE-DESCRIPTION]</dt><dd>
+      <a href="https://w3c.github.io/sparql-service-description/spec/" id="ref-for-index-term-sparql-1-2-service-description-2"><cite>SPARQL 1.2 Service Description</cite></a>. Gregory Williams.  W3C. W3C Working Draft. URL: <a href="https://w3c.github.io/sparql-service-description/spec/" id="ref-for-index-term-sparql-1-2-service-description-3">https://w3c.github.io/sparql-service-description/spec/</a>
+    </dd><dt id="bib-sparql12-update">[SPARQL12-UPDATE]</dt><dd>
+      <a href="https://w3c.github.io/sparql-update/spec/" id="ref-for-index-term-sparql-1-2-update-2"><cite>SPARQL 1.2 Update</cite></a>. Paula Gearon; Alexandre Passant; Axel Polleres.  W3C. W3C Working Draft. URL: <a href="https://w3c.github.io/sparql-update/spec/" id="ref-for-index-term-sparql-1-2-update-3">https://w3c.github.io/sparql-update/spec/</a>
+    </dd></dl>
+  </section></section><p role="navigation" id="back-to-top">
+    <a href="#title"><abbr title="Back to Top">↑</abbr></a>
+  </p><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-sparql-1-2-concepts" aria-label="Links in this document to definition: SPARQL 1.2 Concepts">
+      <span class="caret"></span>
+      <div>
+        <a class="self-link" href="https://w3c.github.io/sparql-concepts/spec/" aria-label="Permalink for definition: SPARQL 1.2 Concepts. Activate to close this dialog.">Permalink</a>
+         
+      </div>
+      <p><b>Referenced in:</b></p>
+      <ul>
+    <li>
+    <a href="#ref-for-index-term-sparql-1-2-concepts-1" title="§ 1. Set of Documents">§ 1. Set of Documents</a> 
+  </li><li>
+    <a href="#ref-for-index-term-sparql-1-2-concepts-2" title="§ C.1 Normative references">§ C.1 Normative references</a> <a href="#ref-for-index-term-sparql-1-2-concepts-3" title="Reference 2">(2)</a> 
+  </li>
+  </ul>
+    </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-sparql-1-2-entailment-regimes" aria-label="Links in this document to definition: SPARQL 1.2 Entailment Regimes">
+      <span class="caret"></span>
+      <div>
+        <a class="self-link" href="https://w3c.github.io/sparql-entailment/spec/" aria-label="Permalink for definition: SPARQL 1.2 Entailment Regimes. Activate to close this dialog.">Permalink</a>
+         
+      </div>
+      <p><b>Referenced in:</b></p>
+      <ul>
+    <li>
+    <a href="#ref-for-index-term-sparql-1-2-entailment-regimes-1" title="§ 1. Set of Documents">§ 1. Set of Documents</a> 
+  </li><li>
+    <a href="#ref-for-index-term-sparql-1-2-entailment-regimes-2" title="§ C.1 Normative references">§ C.1 Normative references</a> <a href="#ref-for-index-term-sparql-1-2-entailment-regimes-3" title="Reference 2">(2)</a> 
+  </li>
+  </ul>
+    </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-sparql-1-2-graph-store-http-protocol" aria-label="Links in this document to definition: SPARQL 1.2 Graph Store HTTP Protocol">
+      <span class="caret"></span>
+      <div>
+        <a class="self-link" href="https://w3c.github.io/sparql-graph-store-protocol/spec/" aria-label="Permalink for definition: SPARQL 1.2 Graph Store HTTP Protocol. Activate to close this dialog.">Permalink</a>
+         
+      </div>
+      <p><b>Referenced in:</b></p>
+      <ul>
+    <li>
+    <a href="#ref-for-index-term-sparql-1-2-graph-store-http-protocol-1" title="§ 1. Set of Documents">§ 1. Set of Documents</a> 
+  </li><li>
+    <a href="#ref-for-index-term-sparql-1-2-graph-store-http-protocol-2" title="§ C.1 Normative references">§ C.1 Normative references</a> <a href="#ref-for-index-term-sparql-1-2-graph-store-http-protocol-3" title="Reference 2">(2)</a> 
+  </li>
+  </ul>
+    </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-what-s-new-in-sparql-1-2" aria-label="Links in this document to definition: What’s New in SPARQL 1.2">
+      <span class="caret"></span>
+      <div>
+        <a class="self-link" href="https://w3c.github.io/sparql-new/spec/" aria-label="Permalink for definition: What’s New in SPARQL 1.2. Activate to close this dialog.">Permalink</a>
+         
+      </div>
+      <p><b>Referenced in:</b></p>
+      <ul>
+    <li>
+    <a href="#ref-for-index-term-what-s-new-in-sparql-1-2-1" title="§ 1. Set of Documents">§ 1. Set of Documents</a> 
+  </li><li>
+    <a href="#ref-for-index-term-what-s-new-in-sparql-1-2-2" title="§ C.1 Normative references">§ C.1 Normative references</a> <a href="#ref-for-index-term-what-s-new-in-sparql-1-2-3" title="Reference 2">(2)</a> 
+  </li>
+  </ul>
+    </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-sparql-1-2-protocol" aria-label="Links in this document to definition: SPARQL 1.2 Protocol">
+      <span class="caret"></span>
+      <div>
+        <a class="self-link" href="https://w3c.github.io/sparql-protocol/spec/" aria-label="Permalink for definition: SPARQL 1.2 Protocol. Activate to close this dialog.">Permalink</a>
+         
+      </div>
+      <p><b>Referenced in:</b></p>
+      <ul>
+    <li>
+    <a href="#ref-for-index-term-sparql-1-2-protocol-1" title="§ 1. Set of Documents">§ 1. Set of Documents</a> 
+  </li><li>
+    <a href="#ref-for-index-term-sparql-1-2-protocol-2" title="§ C.1 Normative references">§ C.1 Normative references</a> <a href="#ref-for-index-term-sparql-1-2-protocol-3" title="Reference 2">(2)</a> 
+  </li>
+  </ul>
+    </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-sparql-1-2-query-language" aria-label="Links in this document to definition: SPARQL 1.2 Query Language">
+      <span class="caret"></span>
+      <div>
+        <a class="self-link" href="https://w3c.github.io/sparql-query/spec/" aria-label="Permalink for definition: SPARQL 1.2 Query Language. Activate to close this dialog.">Permalink</a>
+         
+      </div>
+      <p><b>Referenced in:</b></p>
+      <ul>
+    <li>
+    <a href="#ref-for-index-term-sparql-1-2-query-language-1" title="§ 1. Set of Documents">§ 1. Set of Documents</a> 
+  </li><li>
+    <a href="#ref-for-index-term-sparql-1-2-query-language-2" title="§ C.1 Normative references">§ C.1 Normative references</a> <a href="#ref-for-index-term-sparql-1-2-query-language-3" title="Reference 2">(2)</a> 
+  </li>
+  </ul>
+    </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-sparql-1-2-query-results-csv-and-tsv-formats" aria-label="Links in this document to definition: SPARQL 1.2 Query Results CSV and TSV Formats">
+      <span class="caret"></span>
+      <div>
+        <a class="self-link" href="https://w3c.github.io/sparql-results-csv-tsv/spec/" aria-label="Permalink for definition: SPARQL 1.2 Query Results CSV and TSV Formats. Activate to close this dialog.">Permalink</a>
+         
+      </div>
+      <p><b>Referenced in:</b></p>
+      <ul>
+    <li>
+    <a href="#ref-for-index-term-sparql-1-2-query-results-csv-and-tsv-formats-1" title="§ 1. Set of Documents">§ 1. Set of Documents</a> 
+  </li><li>
+    <a href="#ref-for-index-term-sparql-1-2-query-results-csv-and-tsv-formats-2" title="§ C.1 Normative references">§ C.1 Normative references</a> <a href="#ref-for-index-term-sparql-1-2-query-results-csv-and-tsv-formats-3" title="Reference 2">(2)</a> 
+  </li>
+  </ul>
+    </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-sparql-1-2-query-results-json-format" aria-label="Links in this document to definition: SPARQL 1.2 Query Results JSON Format">
+      <span class="caret"></span>
+      <div>
+        <a class="self-link" href="https://w3c.github.io/sparql-results-json/spec/" aria-label="Permalink for definition: SPARQL 1.2 Query Results JSON Format. Activate to close this dialog.">Permalink</a>
+         
+      </div>
+      <p><b>Referenced in:</b></p>
+      <ul>
+    <li>
+    <a href="#ref-for-index-term-sparql-1-2-query-results-json-format-1" title="§ 1. Set of Documents">§ 1. Set of Documents</a> 
+  </li><li>
+    <a href="#ref-for-index-term-sparql-1-2-query-results-json-format-2" title="§ C.1 Normative references">§ C.1 Normative references</a> <a href="#ref-for-index-term-sparql-1-2-query-results-json-format-3" title="Reference 2">(2)</a> 
+  </li>
+  </ul>
+    </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-sparql-1-2-query-results-xml-formats" aria-label="Links in this document to definition: SPARQL 1.2 Query Results XML Formats">
+      <span class="caret"></span>
+      <div>
+        <a class="self-link" href="https://w3c.github.io/sparql-results-xml/spec/" aria-label="Permalink for definition: SPARQL 1.2 Query Results XML Formats. Activate to close this dialog.">Permalink</a>
+         
+      </div>
+      <p><b>Referenced in:</b></p>
+      <ul>
+    <li>
+    <a href="#ref-for-index-term-sparql-1-2-query-results-xml-formats-1" title="§ 1. Set of Documents">§ 1. Set of Documents</a> 
+  </li><li>
+    <a href="#ref-for-index-term-sparql-1-2-query-results-xml-formats-2" title="§ C.1 Normative references">§ C.1 Normative references</a> <a href="#ref-for-index-term-sparql-1-2-query-results-xml-formats-3" title="Reference 2">(2)</a> 
+  </li>
+  </ul>
+    </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-sparql-1-2-service-description" aria-label="Links in this document to definition: SPARQL 1.2 Service Description">
+      <span class="caret"></span>
+      <div>
+        <a class="self-link" href="https://w3c.github.io/sparql-service-description/spec/" aria-label="Permalink for definition: SPARQL 1.2 Service Description. Activate to close this dialog.">Permalink</a>
+         
+      </div>
+      <p><b>Referenced in:</b></p>
+      <ul>
+    <li>
+    <a href="#ref-for-index-term-sparql-1-2-service-description-1" title="§ 1. Set of Documents">§ 1. Set of Documents</a> 
+  </li><li>
+    <a href="#ref-for-index-term-sparql-1-2-service-description-2" title="§ C.1 Normative references">§ C.1 Normative references</a> <a href="#ref-for-index-term-sparql-1-2-service-description-3" title="Reference 2">(2)</a> 
+  </li>
+  </ul>
+    </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-sparql-1-2-update" aria-label="Links in this document to definition: SPARQL 1.2 Update">
+      <span class="caret"></span>
+      <div>
+        <a class="self-link" href="https://w3c.github.io/sparql-update/spec/" aria-label="Permalink for definition: SPARQL 1.2 Update. Activate to close this dialog.">Permalink</a>
+         
+      </div>
+      <p><b>Referenced in:</b></p>
+      <ul>
+    <li>
+    <a href="#ref-for-index-term-sparql-1-2-update-1" title="§ 1. Set of Documents">§ 1. Set of Documents</a> 
+  </li><li>
+    <a href="#ref-for-index-term-sparql-1-2-update-2" title="§ C.1 Normative references">§ C.1 Normative references</a> <a href="#ref-for-index-term-sparql-1-2-update-3" title="Reference 2">(2)</a> 
+  </li>
+  </ul>
+    </div><script id="respec-dfn-panel">(() => {
+// @ts-check
+if (document.respec) {
+  document.respec.ready.then(setupPanel);
+} else {
+  setupPanel();
+}
+
+function setupPanel() {
+  const listener = panelListener();
+  document.body.addEventListener("keydown", listener);
+  document.body.addEventListener("click", listener);
+}
+
+function panelListener() {
+  /** @type {HTMLElement} */
+  let panel = null;
+  return event => {
+    const { target, type } = event;
+
+    if (!(target instanceof HTMLElement)) return;
+
+    // For keys, we only care about Enter key to activate the panel
+    // otherwise it's activated via a click.
+    if (type === "keydown" && event.key !== "Enter") return;
+
+    const action = deriveAction(event);
+
+    switch (action) {
+      case "show": {
+        hidePanel(panel);
+        /** @type {HTMLElement} */
+        const dfn = target.closest("dfn, .index-term");
+        panel = document.getElementById(`dfn-panel-for-${dfn.id}`);
+        const coords = deriveCoordinates(event);
+        displayPanel(dfn, panel, coords);
+        break;
+      }
+      case "dock": {
+        panel.style.left = null;
+        panel.style.top = null;
+        panel.classList.add("docked");
+        break;
+      }
+      case "hide": {
+        hidePanel(panel);
+        panel = null;
+        break;
+      }
+    }
+  };
+}
+
+/**
+ * @param {MouseEvent|KeyboardEvent} event
+ */
+function deriveCoordinates(event) {
+  const target = /** @type HTMLElement */ (event.target);
+
+  // We prevent synthetic AT clicks from putting
+  // the dialog in a weird place. The AT events sometimes
+  // lack coordinates, so they have clientX/Y = 0
+  const rect = target.getBoundingClientRect();
+  if (
+    event instanceof MouseEvent &&
+    event.clientX >= rect.left &&
+    event.clientY >= rect.top
+  ) {
+    // The event probably happened inside the bounding rect...
+    return { x: event.clientX, y: event.clientY };
+  }
+
+  // Offset to the middle of the element
+  const x = rect.x + rect.width / 2;
+  // Placed at the bottom of the element
+  const y = rect.y + rect.height;
+  return { x, y };
+}
+
+/**
+ * @param {Event} event
+ */
+function deriveAction(event) {
+  const target = /** @type {HTMLElement} */ (event.target);
+  const hitALink = !!target.closest("a");
+  if (target.closest("dfn:not([data-cite]), .index-term")) {
+    return hitALink ? "none" : "show";
+  }
+  if (target.closest(".dfn-panel")) {
+    if (hitALink) {
+      return target.classList.contains("self-link") ? "hide" : "dock";
+    }
+    const panel = target.closest(".dfn-panel");
+    return panel.classList.contains("docked") ? "hide" : "none";
+  }
+  if (document.querySelector(".dfn-panel:not([hidden])")) {
+    return "hide";
+  }
+  return "none";
+}
+
+/**
+ * @param {HTMLElement} dfn
+ * @param {HTMLElement} panel
+ * @param {{ x: number, y: number }} clickPosition
+ */
+function displayPanel(dfn, panel, { x, y }) {
+  panel.hidden = false;
+  // distance (px) between edge of panel and the pointing triangle (caret)
+  const MARGIN = 20;
+
+  const dfnRects = dfn.getClientRects();
+  // Find the `top` offset when the `dfn` can be spread across multiple lines
+  let closestTop = 0;
+  let minDiff = Infinity;
+  for (const rect of dfnRects) {
+    const { top, bottom } = rect;
+    const diffFromClickY = Math.abs((top + bottom) / 2 - y);
+    if (diffFromClickY < minDiff) {
+      minDiff = diffFromClickY;
+      closestTop = top;
+    }
+  }
+
+  const top = window.scrollY + closestTop + dfnRects[0].height;
+  const left = x - MARGIN;
+  panel.style.left = `${left}px`;
+  panel.style.top = `${top}px`;
+
+  // Find if the panel is flowing out of the window
+  const panelRect = panel.getBoundingClientRect();
+  const SCREEN_WIDTH = Math.min(window.innerWidth, window.screen.width);
+  if (panelRect.right > SCREEN_WIDTH) {
+    const newLeft = Math.max(MARGIN, x + MARGIN - panelRect.width);
+    const newCaretOffset = left - newLeft;
+    panel.style.left = `${newLeft}px`;
+    /** @type {HTMLElement} */
+    const caret = panel.querySelector(".caret");
+    caret.style.left = `${newCaretOffset}px`;
+  }
+
+  // As it's a dialog, we trap focus.
+  // TODO: when <dialog> becomes a implemented, we should really
+  // use that.
+  trapFocus(panel, dfn);
+}
+
+/**
+ * @param {HTMLElement} panel
+ * @param {HTMLElement} dfn
+ * @returns
+ */
+function trapFocus(panel, dfn) {
+  /** @type NodeListOf<HTMLAnchorElement> elements */
+  const anchors = panel.querySelectorAll("a[href]");
+  // No need to trap focus
+  if (!anchors.length) return;
+
+  // Move focus to first anchor element
+  const first = anchors.item(0);
+  first.focus();
+
+  const trapListener = createTrapListener(anchors, panel, dfn);
+  panel.addEventListener("keydown", trapListener);
+
+  // Hiding the panel releases the trap
+  const mo = new MutationObserver(records => {
+    const [record] = records;
+    const target = /** @type HTMLElement */ (record.target);
+    if (target.hidden) {
+      panel.removeEventListener("keydown", trapListener);
+      mo.disconnect();
+    }
+  });
+  mo.observe(panel, { attributes: true, attributeFilter: ["hidden"] });
+}
+
+/**
+ *
+ * @param {NodeListOf<HTMLAnchorElement>} anchors
+ * @param {HTMLElement} panel
+ * @param {HTMLElement} dfn
+ * @returns
+ */
+function createTrapListener(anchors, panel, dfn) {
+  const lastIndex = anchors.length - 1;
+  let currentIndex = 0;
+  return event => {
+    switch (event.key) {
+      // Hitting "Tab" traps us in a nice loop around elements.
+      case "Tab": {
+        event.preventDefault();
+        currentIndex += event.shiftKey ? -1 : +1;
+        if (currentIndex < 0) {
+          currentIndex = lastIndex;
+        } else if (currentIndex > lastIndex) {
+          currentIndex = 0;
+        }
+        anchors.item(currentIndex).focus();
+        break;
+      }
+
+      // Hitting "Enter" on an anchor releases the trap.
+      case "Enter":
+        hidePanel(panel);
+        break;
+
+      // Hitting "Escape" returns focus to dfn.
+      case "Escape":
+        hidePanel(panel);
+        dfn.focus();
+        return;
+    }
+  };
+}
+
+/** @param {HTMLElement} panel */
+function hidePanel(panel) {
+  if (!panel) return;
+  panel.hidden = true;
+  panel.classList.remove("docked");
+}
+})()</script><script src="https://www.w3.org/scripts/TR/2021/fixup.js"></script></body></html>
