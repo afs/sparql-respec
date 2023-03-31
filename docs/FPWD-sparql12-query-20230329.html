@@ -1,6 +1,6 @@
 <!DOCTYPE html><html lang="en" dir="ltr"><head>
 <meta charset="utf-8">
-<meta name="generator" content="ReSpec 32.8.0">
+<meta name="generator" content="ReSpec 32.8.1">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <style>
 .issue-label{text-transform:initial}
@@ -552,20 +552,20 @@ var[data-type]:hover::after,var[data-type]:hover::before{opacity:1}
     "no-unused-dfns": false
   },
   "pubDate": "2023-04-01",
-  "publishISODate": "2023-03-07T00:00:00.000Z",
-  "generatedSubtitle": "W3C First Public Working Draft 07 March 2023"
+  "publishISODate": "2023-03-29T00:00:00.000Z",
+  "generatedSubtitle": "W3C First Public Working Draft 29 March 2023"
 }</script>
 <link rel="stylesheet" href="https://www.w3.org/StyleSheets/TR/2021/W3C-WD"></head>
   <body class="h-entry"><div class="head">
     <p class="logos"><a class="logo" href="https://www.w3.org/"><img crossorigin="" alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2021/logos/W3C" width="72">
   </a></p>
     <h1 id="title" class="title">SPARQL 1.2 Query Language</h1> 
-    <p id="w3c-state"><a href="https://www.w3.org/standards/types#FPWD">W3C First Public Working Draft</a> <time class="dt-published" datetime="2023-03-07">07 March 2023</time></p>
+    <p id="w3c-state"><a href="https://www.w3.org/standards/types#FPWD">W3C First Public Working Draft</a> <time class="dt-published" datetime="2023-03-29">29 March 2023</time></p>
     <details open="">
       <summary>More details about this document</summary>
       <dl>
         <dt>This version:</dt><dd>
-                <a class="u-url" href="https://www.w3.org/TR/2023/WD-sparql12-query-20230307/">https://www.w3.org/TR/2023/WD-sparql12-query-20230307/</a>
+                <a class="u-url" href="https://www.w3.org/TR/2023/WD-sparql12-query-20230329/">https://www.w3.org/TR/2023/WD-sparql12-query-20230329/</a>
               </dd>
         <dt>Latest published version:</dt><dd>
                 <a href="https://www.w3.org/TR/sparql12-query/">https://www.w3.org/TR/sparql12-query/</a>
@@ -700,7 +700,7 @@ var[data-type]:hover::after,var[data-type]:hover::before{opacity:1}
   <li><cite><a data-matched-text="[[[SPARQL12-GRAPH-STORE-PROTOCOL]]]" href="https://w3c.github.io/sparql-graph-store-protocol/spec/" id="ref-for-index-term-sparql-1-2-graph-store-http-protocol-1">SPARQL 1.2 Graph Store HTTP Protocol</a></cite></li>
 </ol>
 </section>
-    </section><nav id="toc"><h2 class="introductory" id="table-of-contents">Table of Contents</h2><ol class="toc"><li class="tocline"><a class="tocxref" href="#abstract">Abstract</a></li><li class="tocline"><a class="tocxref" href="#sotd">Status of This Document</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#related">Set of Documents</a></li></ol></li><li class="tocline"><a class="tocxref" href="#introduction"><bdi class="secno">1. </bdi>Introduction</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#docOutline"><bdi class="secno">1.1 </bdi>Document Outline</a></li><li class="tocline"><a class="tocxref" href="#docConventions"><bdi class="secno">1.2 </bdi>Document Conventions</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#docNamespaces"><bdi class="secno">1.2.1 </bdi>Namespaces</a></li><li class="tocline"><a class="tocxref" href="#docDataDesc"><bdi class="secno">1.2.2 </bdi>Data Descriptions</a></li><li class="tocline"><a class="tocxref" href="#docResultDesc"><bdi class="secno">1.2.3 </bdi>Result Descriptions</a></li><li class="tocline"><a class="tocxref" href="#docTerminology"><bdi class="secno">1.2.4 </bdi>Terminology</a></li></ol></li></ol></li><li class="tocline"><a class="tocxref" href="#basicpatterns"><bdi class="secno">2. </bdi>Making Simple Queries (Informative)</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#WritingSimpleQueries"><bdi class="secno">2.1 </bdi>Writing a Simple Query</a></li><li class="tocline"><a class="tocxref" href="#MultipleMatches"><bdi class="secno">2.2 </bdi>Multiple Matches</a></li><li class="tocline"><a class="tocxref" href="#matchingRDFLiterals"><bdi class="secno">2.3 </bdi>Matching RDF Literals</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#matchLangTags"><bdi class="secno">2.3.1 </bdi>Matching Literals with Language Tags</a></li><li class="tocline"><a class="tocxref" href="#matchNumber"><bdi class="secno">2.3.2 </bdi>Matching Literals with Numeric Types</a></li><li class="tocline"><a class="tocxref" href="#matchArbDT"><bdi class="secno">2.3.3 </bdi>Matching Literals with Arbitrary Datatypes</a></li></ol></li><li class="tocline"><a class="tocxref" href="#BlankNodesInResults"><bdi class="secno">2.4 </bdi>Blank Node Labels in Query Results</a></li><li class="tocline"><a class="tocxref" href="#CreatingValuesWithExpressions"><bdi class="secno">2.5 </bdi>Creating Values with Expressions</a></li><li class="tocline"><a class="tocxref" href="#constructGraph"><bdi class="secno">2.6 </bdi>Building RDF Graphs</a></li></ol></li><li class="tocline"><a class="tocxref" href="#termConstraint"><bdi class="secno">3. </bdi>RDF Term Constraints (Informative)</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#restrictString"><bdi class="secno">3.1 </bdi>Restricting the Value of Strings</a></li><li class="tocline"><a class="tocxref" href="#restrictNumber"><bdi class="secno">3.2 </bdi>Restricting Numeric Values</a></li><li class="tocline"><a class="tocxref" href="#otherTermConstraints"><bdi class="secno">3.3 </bdi>Other Term Constraints</a></li></ol></li><li class="tocline"><a class="tocxref" href="#sparqlSyntax"><bdi class="secno">4. </bdi>SPARQL Syntax</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#syntaxTerms"><bdi class="secno">4.1 </bdi>RDF Term Syntax</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#QSynIRI"><bdi class="secno">4.1.1 </bdi>Syntax for IRIs</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#prefNames"><bdi class="secno">4.1.1.1 </bdi>Prefixed Names</a></li><li class="tocline"><a class="tocxref" href="#relIRIs"><bdi class="secno">4.1.1.2 </bdi>Relative IRIs</a></li></ol></li><li class="tocline"><a class="tocxref" href="#QSynLiterals"><bdi class="secno">4.1.2 </bdi>Syntax for Literals</a></li><li class="tocline"><a class="tocxref" href="#QSynVariables"><bdi class="secno">4.1.3 </bdi>Syntax for Query Variables</a></li><li class="tocline"><a class="tocxref" href="#QSynBlankNodes"><bdi class="secno">4.1.4 </bdi>Syntax for Blank Nodes</a></li></ol></li><li class="tocline"><a class="tocxref" href="#QSynTriples"><bdi class="secno">4.2 </bdi>Syntax for Triple Patterns</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#predObjLists"><bdi class="secno">4.2.1 </bdi>Predicate-Object Lists</a></li><li class="tocline"><a class="tocxref" href="#objLists"><bdi class="secno">4.2.2 </bdi>Object Lists</a></li><li class="tocline"><a class="tocxref" href="#collections"><bdi class="secno">4.2.3 </bdi>RDF Collections</a></li><li class="tocline"><a class="tocxref" href="#abbrevRdfType"><bdi class="secno">4.2.4 </bdi>rdf:type</a></li></ol></li></ol></li><li class="tocline"><a class="tocxref" href="#GraphPattern"><bdi class="secno">5. </bdi>Graph Patterns</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#BasicGraphPatterns"><bdi class="secno">5.1 </bdi>Basic Graph Patterns</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#bgpBNodeLabels"><bdi class="secno">5.1.1 </bdi>Blank Node Labels</a></li><li class="tocline"><a class="tocxref" href="#bgpExtend"><bdi class="secno">5.1.2 </bdi>Extending Basic Graph Pattern Matching</a></li></ol></li><li class="tocline"><a class="tocxref" href="#GroupPatterns"><bdi class="secno">5.2 </bdi>Group Graph Patterns</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#emptyGroupPattern"><bdi class="secno">5.2.1 </bdi>Empty Group Pattern</a></li><li class="tocline"><a class="tocxref" href="#scopeFilters"><bdi class="secno">5.2.2 </bdi>Scope of Filters</a></li><li class="tocline"><a class="tocxref" href="#groupExamples"><bdi class="secno">5.2.3 </bdi>Group Graph Pattern Examples</a></li></ol></li></ol></li><li class="tocline"><a class="tocxref" href="#optionals"><bdi class="secno">6. </bdi>Including Optional Values</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#OptionalMatching"><bdi class="secno">6.1 </bdi>Optional Pattern Matching</a></li><li class="tocline"><a class="tocxref" href="#OptionalAndConstraints"><bdi class="secno">6.2 </bdi>Constraints in Optional Pattern Matching</a></li><li class="tocline"><a class="tocxref" href="#MultipleOptionals"><bdi class="secno">6.3 </bdi>Multiple Optional Graph Patterns</a></li></ol></li><li class="tocline"><a class="tocxref" href="#alternatives"><bdi class="secno">7. </bdi>Matching Alternatives</a></li><li class="tocline"><a class="tocxref" href="#negation"><bdi class="secno">8. </bdi>Negation</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#neg-pattern"><bdi class="secno">8.1 </bdi>Filtering Using Graph Patterns</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#neg-notexists"><bdi class="secno">8.1.1 </bdi>Testing For the Absence of a Pattern</a></li><li class="tocline"><a class="tocxref" href="#neg-exists"><bdi class="secno">8.1.2 </bdi>Testing For the Presence of a Pattern</a></li></ol></li><li class="tocline"><a class="tocxref" href="#neg-minus"><bdi class="secno">8.2 </bdi>Removing Possible Solutions</a></li><li class="tocline"><a class="tocxref" href="#neg-notexists-minus"><bdi class="secno">8.3 </bdi>Relationship and differences between NOT EXISTS and MINUS</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#neg-example-1"><bdi class="secno">8.3.1 </bdi>Example: Sharing of variables</a></li><li class="tocline"><a class="tocxref" href="#neg-example-2"><bdi class="secno">8.3.2 </bdi>Example: Fixed pattern</a></li><li class="tocline"><a class="tocxref" href="#idp899488"><bdi class="secno">8.3.3 </bdi>Example: Inner FILTERs</a></li></ol></li></ol></li><li class="tocline"><a class="tocxref" href="#propertypaths"><bdi class="secno">9. </bdi>Property Paths</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#pp-language"><bdi class="secno">9.1 </bdi>Property Path Syntax</a></li><li class="tocline"><a class="tocxref" href="#propertypath-examples"><bdi class="secno">9.2 </bdi>Examples</a></li><li class="tocline"><a class="tocxref" href="#propertypath-syntaxforms"><bdi class="secno">9.3 </bdi>Property Paths and Equivalent Patterns</a></li><li class="tocline"><a class="tocxref" href="#propertypath-arbitrary-length"><bdi class="secno">9.4 </bdi>Arbitrary Length Path Matching</a></li></ol></li><li class="tocline"><a class="tocxref" href="#assignment"><bdi class="secno">10. </bdi>Assignment</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#bind"><bdi class="secno">10.1 </bdi>BIND: Assigning to Variables</a></li><li class="tocline"><a class="tocxref" href="#inline-data"><bdi class="secno">10.2 </bdi>VALUES: Providing inline data</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#inline-data-syntax"><bdi class="secno">10.2.1 </bdi>VALUES syntax</a></li><li class="tocline"><a class="tocxref" href="#inline-data-examples"><bdi class="secno">10.2.2 </bdi>VALUES Examples</a></li></ol></li></ol></li><li class="tocline"><a class="tocxref" href="#aggregates"><bdi class="secno">11. </bdi>Aggregates</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#aggregateExample"><bdi class="secno">11.1 </bdi>Aggregate Example</a></li><li class="tocline"><a class="tocxref" href="#groupby"><bdi class="secno">11.2 </bdi>GROUP BY</a></li><li class="tocline"><a class="tocxref" href="#having"><bdi class="secno">11.3 </bdi>HAVING</a></li><li class="tocline"><a class="tocxref" href="#aggregateRestrictions"><bdi class="secno">11.4 </bdi>Aggregate Projection Restrictions</a></li><li class="tocline"><a class="tocxref" href="#aggregateExample2"><bdi class="secno">11.5 </bdi>Aggregate Example (with errors)</a></li></ol></li><li class="tocline"><a class="tocxref" href="#subqueries"><bdi class="secno">12. </bdi>Subqueries</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#subquery-example"><bdi class="secno">12.1 </bdi>Example</a></li></ol></li><li class="tocline"><a class="tocxref" href="#rdfDataset"><bdi class="secno">13. </bdi>RDF Dataset</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#exampleDatasets"><bdi class="secno">13.1 </bdi>Examples of RDF Datasets</a></li><li class="tocline"><a class="tocxref" href="#specifyingDataset"><bdi class="secno">13.2 </bdi>Specifying RDF Datasets</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#unnamedGraph"><bdi class="secno">13.2.1 </bdi>Specifying the Default Graph</a></li><li class="tocline"><a class="tocxref" href="#namedGraphs"><bdi class="secno">13.2.2 </bdi>Specifying Named Graphs</a></li><li class="tocline"><a class="tocxref" href="#specDataset"><bdi class="secno">13.2.3 </bdi>Combining FROM and FROM NAMED</a></li></ol></li><li class="tocline"><a class="tocxref" href="#queryDataset"><bdi class="secno">13.3 </bdi>Querying the Dataset</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#accessByLabel"><bdi class="secno">13.3.1 </bdi>Accessing Graph Names</a></li><li class="tocline"><a class="tocxref" href="#restrictByLabel"><bdi class="secno">13.3.2 </bdi>Restricting by Graph IRI</a></li><li class="tocline"><a class="tocxref" href="#restrictInQuery"><bdi class="secno">13.3.3 </bdi>Restricting Possible Graph IRIs</a></li><li class="tocline"><a class="tocxref" href="#namedAndDefaultGraph"><bdi class="secno">13.3.4 </bdi>Named and Default Graphs</a></li></ol></li></ol></li><li class="tocline"><a class="tocxref" href="#basic-federated-query"><bdi class="secno">14. </bdi>Basic Federated Query</a></li><li class="tocline"><a class="tocxref" href="#solutionModifiers"><bdi class="secno">15. </bdi>Solution Sequences and Modifiers</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#modOrderBy"><bdi class="secno">15.1 </bdi>ORDER BY</a></li><li class="tocline"><a class="tocxref" href="#modProjection"><bdi class="secno">15.2 </bdi>Projection</a></li><li class="tocline"><a class="tocxref" href="#modDuplicates"><bdi class="secno">15.3 </bdi>Duplicate Solutions</a></li><li class="tocline"><a class="tocxref" href="#modOffset"><bdi class="secno">15.4 </bdi>OFFSET</a></li><li class="tocline"><a class="tocxref" href="#modResultLimit"><bdi class="secno">15.5 </bdi>LIMIT</a></li></ol></li><li class="tocline"><a class="tocxref" href="#QueryForms"><bdi class="secno">16. </bdi>Query Forms</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#select"><bdi class="secno">16.1 </bdi>SELECT</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#selectproject"><bdi class="secno">16.1.1 </bdi>Projection</a></li><li class="tocline"><a class="tocxref" href="#selectExpressions"><bdi class="secno">16.1.2 </bdi>SELECT Expressions</a></li></ol></li><li class="tocline"><a class="tocxref" href="#construct"><bdi class="secno">16.2 </bdi>CONSTRUCT</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#templatesWithBNodes"><bdi class="secno">16.2.1 </bdi>Templates with Blank Nodes</a></li><li class="tocline"><a class="tocxref" href="#accessingRdfGraphs"><bdi class="secno">16.2.2 </bdi>Accessing Graphs in the RDF Dataset</a></li><li class="tocline"><a class="tocxref" href="#SolModandCONSTRUCT"><bdi class="secno">16.2.3 </bdi>Solution Modifiers and CONSTRUCT</a></li><li class="tocline"><a class="tocxref" href="#constructWhere"><bdi class="secno">16.2.4 </bdi>CONSTRUCT WHERE</a></li></ol></li><li class="tocline"><a class="tocxref" href="#ask"><bdi class="secno">16.3 </bdi>ASK</a></li><li class="tocline"><a class="tocxref" href="#describe"><bdi class="secno">16.4 </bdi>DESCRIBE (Informative)</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#explicitIRIs"><bdi class="secno">16.4.1 </bdi>Explicit IRIs</a></li><li class="tocline"><a class="tocxref" href="#identifyingResources"><bdi class="secno">16.4.2 </bdi>Identifying Resources</a></li><li class="tocline"><a class="tocxref" href="#descriptionsOfResources"><bdi class="secno">16.4.3 </bdi>Descriptions of Resources</a></li></ol></li></ol></li><li class="tocline"><a class="tocxref" href="#expressions"><bdi class="secno">17. </bdi>Expressions and Testing Values</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#operandDataTypes"><bdi class="secno">17.1 </bdi>Operand Data Types</a></li><li class="tocline"><a class="tocxref" href="#evaluation"><bdi class="secno">17.2 </bdi>Filter Evaluation</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#invocation"><bdi class="secno">17.2.1 </bdi>Invocation</a></li><li class="tocline"><a class="tocxref" href="#ebv"><bdi class="secno">17.2.2 </bdi>Effective Boolean Value (EBV)</a></li></ol></li><li class="tocline"><a class="tocxref" href="#OperatorMapping"><bdi class="secno">17.3 </bdi>Operator Mapping</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#operatorExtensibility"><bdi class="secno">17.3.1 </bdi>Operator Extensibility</a></li></ol></li><li class="tocline"><a class="tocxref" href="#SparqlOps"><bdi class="secno">17.4 </bdi>Function Definitions</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#func-forms"><bdi class="secno">17.4.1 </bdi>Functional Forms</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#func-bound"><bdi class="secno">17.4.1.1 </bdi>bound</a></li><li class="tocline"><a class="tocxref" href="#func-if"><bdi class="secno">17.4.1.2 </bdi>IF</a></li><li class="tocline"><a class="tocxref" href="#func-coalesce"><bdi class="secno">17.4.1.3 </bdi>COALESCE</a></li><li class="tocline"><a class="tocxref" href="#func-filter-exists"><bdi class="secno">17.4.1.4 </bdi>NOT EXISTS and EXISTS</a></li><li class="tocline"><a class="tocxref" href="#func-logical-or"><bdi class="secno">17.4.1.5 </bdi>logical-or</a></li><li class="tocline"><a class="tocxref" href="#func-logical-and"><bdi class="secno">17.4.1.6 </bdi>logical-and</a></li><li class="tocline"><a class="tocxref" href="#func-RDFterm-equal"><bdi class="secno">17.4.1.7 </bdi>RDFterm-equal</a></li><li class="tocline"><a class="tocxref" href="#func-sameTerm"><bdi class="secno">17.4.1.8 </bdi>sameTerm</a></li><li class="tocline"><a class="tocxref" href="#func-in"><bdi class="secno">17.4.1.9 </bdi>IN</a></li><li class="tocline"><a class="tocxref" href="#func-not-in"><bdi class="secno">17.4.1.10 </bdi>NOT IN</a></li></ol></li><li class="tocline"><a class="tocxref" href="#func-rdfTerms"><bdi class="secno">17.4.2 </bdi>Functions on RDF Terms</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#func-isIRI"><bdi class="secno">17.4.2.1 </bdi>isIRI</a></li><li class="tocline"><a class="tocxref" href="#func-isBlank"><bdi class="secno">17.4.2.2 </bdi>isBlank</a></li><li class="tocline"><a class="tocxref" href="#func-isLiteral"><bdi class="secno">17.4.2.3 </bdi>isLiteral</a></li><li class="tocline"><a class="tocxref" href="#func-isNumeric"><bdi class="secno">17.4.2.4 </bdi>isNumeric</a></li><li class="tocline"><a class="tocxref" href="#func-str"><bdi class="secno">17.4.2.5 </bdi>str</a></li><li class="tocline"><a class="tocxref" href="#func-lang"><bdi class="secno">17.4.2.6 </bdi>lang</a></li><li class="tocline"><a class="tocxref" href="#func-datatype"><bdi class="secno">17.4.2.7 </bdi>datatype</a></li><li class="tocline"><a class="tocxref" href="#func-iri"><bdi class="secno">17.4.2.8 </bdi>IRI</a></li><li class="tocline"><a class="tocxref" href="#func-bnode"><bdi class="secno">17.4.2.9 </bdi>BNODE</a></li><li class="tocline"><a class="tocxref" href="#func-strdt"><bdi class="secno">17.4.2.10 </bdi>STRDT</a></li><li class="tocline"><a class="tocxref" href="#func-strlang"><bdi class="secno">17.4.2.11 </bdi>STRLANG</a></li><li class="tocline"><a class="tocxref" href="#func-uuid"><bdi class="secno">17.4.2.12 </bdi>UUID</a></li><li class="tocline"><a class="tocxref" href="#func-struuid"><bdi class="secno">17.4.2.13 </bdi>STRUUID</a></li></ol></li><li class="tocline"><a class="tocxref" href="#func-strings"><bdi class="secno">17.4.3 </bdi>Functions on Strings</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#idp1887976"><bdi class="secno">17.4.3.1 </bdi>Strings in SPARQL Functions</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#func-string"><bdi class="secno">17.4.3.1.1 </bdi>String arguments</a></li><li class="tocline"><a class="tocxref" href="#func-arg-compatibility"><bdi class="secno">17.4.3.1.2 </bdi>Argument Compatibility Rules</a></li><li class="tocline"><a class="tocxref" href="#idp1915512"><bdi class="secno">17.4.3.1.3 </bdi>String Literal Return Type</a></li></ol></li><li class="tocline"><a class="tocxref" href="#func-strlen"><bdi class="secno">17.4.3.2 </bdi>STRLEN</a></li><li class="tocline"><a class="tocxref" href="#func-substr"><bdi class="secno">17.4.3.3 </bdi>SUBSTR</a></li><li class="tocline"><a class="tocxref" href="#func-ucase"><bdi class="secno">17.4.3.4 </bdi>UCASE</a></li><li class="tocline"><a class="tocxref" href="#func-lcase"><bdi class="secno">17.4.3.5 </bdi>LCASE</a></li><li class="tocline"><a class="tocxref" href="#func-strstarts"><bdi class="secno">17.4.3.6 </bdi>STRSTARTS</a></li><li class="tocline"><a class="tocxref" href="#func-strends"><bdi class="secno">17.4.3.7 </bdi>STRENDS</a></li><li class="tocline"><a class="tocxref" href="#func-contains"><bdi class="secno">17.4.3.8 </bdi>CONTAINS</a></li><li class="tocline"><a class="tocxref" href="#func-strbefore"><bdi class="secno">17.4.3.9 </bdi>STRBEFORE</a></li><li class="tocline"><a class="tocxref" href="#func-strafter"><bdi class="secno">17.4.3.10 </bdi>STRAFTER</a></li><li class="tocline"><a class="tocxref" href="#func-encode"><bdi class="secno">17.4.3.11 </bdi>ENCODE_FOR_URI</a></li><li class="tocline"><a class="tocxref" href="#func-concat"><bdi class="secno">17.4.3.12 </bdi>CONCAT</a></li><li class="tocline"><a class="tocxref" href="#func-langMatches"><bdi class="secno">17.4.3.13 </bdi>langMatches</a></li><li class="tocline"><a class="tocxref" href="#func-regex"><bdi class="secno">17.4.3.14 </bdi>REGEX</a></li><li class="tocline"><a class="tocxref" href="#func-replace"><bdi class="secno">17.4.3.15 </bdi>REPLACE</a></li></ol></li><li class="tocline"><a class="tocxref" href="#func-numerics"><bdi class="secno">17.4.4 </bdi>Functions on Numerics</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#func-abs"><bdi class="secno">17.4.4.1 </bdi>abs</a></li><li class="tocline"><a class="tocxref" href="#func-round"><bdi class="secno">17.4.4.2 </bdi>round</a></li><li class="tocline"><a class="tocxref" href="#func-ceil"><bdi class="secno">17.4.4.3 </bdi>ceil</a></li><li class="tocline"><a class="tocxref" href="#func-floor"><bdi class="secno">17.4.4.4 </bdi>floor</a></li><li class="tocline"><a class="tocxref" href="#idp2130040"><bdi class="secno">17.4.4.5 </bdi>RAND</a></li></ol></li><li class="tocline"><a class="tocxref" href="#func-date-time"><bdi class="secno">17.4.5 </bdi>Functions on Dates and Times</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#func-now"><bdi class="secno">17.4.5.1 </bdi>now</a></li><li class="tocline"><a class="tocxref" href="#func-year"><bdi class="secno">17.4.5.2 </bdi>year</a></li><li class="tocline"><a class="tocxref" href="#func-month"><bdi class="secno">17.4.5.3 </bdi>month</a></li><li class="tocline"><a class="tocxref" href="#func-day"><bdi class="secno">17.4.5.4 </bdi>day</a></li><li class="tocline"><a class="tocxref" href="#func-hours"><bdi class="secno">17.4.5.5 </bdi>hours</a></li><li class="tocline"><a class="tocxref" href="#func-minutes"><bdi class="secno">17.4.5.6 </bdi>minutes</a></li><li class="tocline"><a class="tocxref" href="#func-seconds"><bdi class="secno">17.4.5.7 </bdi>seconds</a></li><li class="tocline"><a class="tocxref" href="#func-timezone"><bdi class="secno">17.4.5.8 </bdi>timezone</a></li><li class="tocline"><a class="tocxref" href="#func-tz"><bdi class="secno">17.4.5.9 </bdi>tz</a></li></ol></li><li class="tocline"><a class="tocxref" href="#func-hash"><bdi class="secno">17.4.6 </bdi>Hash Functions</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#func-md5"><bdi class="secno">17.4.6.1 </bdi>MD5</a></li><li class="tocline"><a class="tocxref" href="#func-sha1"><bdi class="secno">17.4.6.2 </bdi>SHA1</a></li><li class="tocline"><a class="tocxref" href="#func-sha256"><bdi class="secno">17.4.6.3 </bdi>SHA256</a></li><li class="tocline"><a class="tocxref" href="#func-sha384"><bdi class="secno">17.4.6.4 </bdi>SHA384</a></li><li class="tocline"><a class="tocxref" href="#func-sha512"><bdi class="secno">17.4.6.5 </bdi>SHA512</a></li></ol></li></ol></li><li class="tocline"><a class="tocxref" href="#FunctionMapping"><bdi class="secno">17.5 </bdi>XPath Constructor Functions</a></li><li class="tocline"><a class="tocxref" href="#extensionFunctions"><bdi class="secno">17.6 </bdi>Extensible Value Testing</a></li></ol></li><li class="tocline"><a class="tocxref" href="#sparqlDefinition"><bdi class="secno">18. </bdi>Definition of SPARQL</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#initDefinitions"><bdi class="secno">18.1 </bdi>Initial Definitions</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#sparqlBasicTerms"><bdi class="secno">18.1.1 </bdi>RDF Terms</a></li><li class="tocline"><a class="tocxref" href="#simple_literal"><bdi class="secno">18.1.2 </bdi>Simple Literal</a></li><li class="tocline"><a class="tocxref" href="#sparqlDataset"><bdi class="secno">18.1.3 </bdi>RDF Dataset</a></li><li class="tocline"><a class="tocxref" href="#sparqlQueryVariables"><bdi class="secno">18.1.4 </bdi>Query Variables</a></li><li class="tocline"><a class="tocxref" href="#sparqlTriplePatterns"><bdi class="secno">18.1.5 </bdi>Triple Patterns</a></li><li class="tocline"><a class="tocxref" href="#sparqlBasicGraphPatterns"><bdi class="secno">18.1.6 </bdi>Basic Graph Patterns</a></li><li class="tocline"><a class="tocxref" href="#sparqlPropertyPaths"><bdi class="secno">18.1.7 </bdi>Property Path Patterns</a></li><li class="tocline"><a class="tocxref" href="#sparqlSolutions"><bdi class="secno">18.1.8 </bdi>Solution Mapping</a></li><li class="tocline"><a class="tocxref" href="#sparqlSolMod"><bdi class="secno">18.1.9 </bdi>Solution Sequence Modifiers</a></li><li class="tocline"><a class="tocxref" href="#idp2427544"><bdi class="secno">18.1.10 </bdi>SPARQL Query</a></li></ol></li><li class="tocline"><a class="tocxref" href="#sparqlQuery"><bdi class="secno">18.2 </bdi>Translation to the SPARQL Algebra</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#variableScope"><bdi class="secno">18.2.1 </bdi>Variable Scope</a></li><li class="tocline"><a class="tocxref" href="#convertGraphPattern"><bdi class="secno">18.2.2 </bdi>Converting Graph Patterns</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#sparqlExpandForms"><bdi class="secno">18.2.2.1 </bdi>Expand Syntax Forms</a></li><li class="tocline"><a class="tocxref" href="#sparqlCollectFilters"><bdi class="secno">18.2.2.2 </bdi>Collect <code>FILTER</code> Elements</a></li><li class="tocline"><a class="tocxref" href="#sparqlTranslatePathExpressions"><bdi class="secno">18.2.2.3 </bdi>Translate Property Path Expressions</a></li><li class="tocline"><a class="tocxref" href="#sparqlTranslatePathPatterns"><bdi class="secno">18.2.2.4 </bdi>Translate Property Path Patterns</a></li><li class="tocline"><a class="tocxref" href="#sparqlTranslateBasicGraphPatterns"><bdi class="secno">18.2.2.5 </bdi>Translate Basic Graph Patterns</a></li><li class="tocline"><a class="tocxref" href="#sparqlTranslateGraphPatterns"><bdi class="secno">18.2.2.6 </bdi>Translate Graph Patterns</a></li><li class="tocline"><a class="tocxref" href="#sparqlAddFilters"><bdi class="secno">18.2.2.7 </bdi>Filters of Group</a></li><li class="tocline"><a class="tocxref" href="#sparqlSimplification"><bdi class="secno">18.2.2.8 </bdi>Simplification step</a></li></ol></li><li class="tocline"><a class="tocxref" href="#sparqlAlgebraExamples"><bdi class="secno">18.2.3 </bdi>Examples of Mapped Graph Patterns</a></li><li class="tocline"><a class="tocxref" href="#convertGroupAggSelectExpressions"><bdi class="secno">18.2.4 </bdi>Converting Groups, Aggregates, HAVING, final VALUES clause and SELECT Expressions</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#sparqlGroupAggregate"><bdi class="secno">18.2.4.1 </bdi>Grouping and Aggregation</a></li><li class="tocline"><a class="tocxref" href="#sparqlHavingClause"><bdi class="secno">18.2.4.2 </bdi>HAVING</a></li><li class="tocline"><a class="tocxref" href="#sparqlAlgebraFinalValues"><bdi class="secno">18.2.4.3 </bdi>VALUES</a></li><li class="tocline"><a class="tocxref" href="#sparqlSelectExpressions"><bdi class="secno">18.2.4.4 </bdi>SELECT Expressions</a></li></ol></li><li class="tocline"><a class="tocxref" href="#convertSolMod"><bdi class="secno">18.2.5 </bdi>Converting Solution Modifiers</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#sparqlOrderBy"><bdi class="secno">18.2.5.1 </bdi>ORDER BY</a></li><li class="tocline"><a class="tocxref" href="#sparqlProjection"><bdi class="secno">18.2.5.2 </bdi>Projection</a></li><li class="tocline"><a class="tocxref" href="#sparqlDistinct"><bdi class="secno">18.2.5.3 </bdi>DISTINCT</a></li><li class="tocline"><a class="tocxref" href="#sparqlReduced"><bdi class="secno">18.2.5.4 </bdi>REDUCED</a></li><li class="tocline"><a class="tocxref" href="#sparqlOffsetLimit"><bdi class="secno">18.2.5.5 </bdi>OFFSET and LIMIT</a></li><li class="tocline"><a class="tocxref" href="#sparqlAlgebraOutcome"><bdi class="secno">18.2.5.6 </bdi>Final Algebra Expression</a></li></ol></li></ol></li><li class="tocline"><a class="tocxref" href="#BasicGraphPattern"><bdi class="secno">18.3 </bdi>Basic Graph Patterns</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#BGPsparql"><bdi class="secno">18.3.1 </bdi>SPARQL Basic Graph Pattern Matching</a></li><li class="tocline"><a class="tocxref" href="#BGPsparqlBNodes"><bdi class="secno">18.3.2 </bdi>Treatment of Blank Nodes</a></li></ol></li><li class="tocline"><a class="tocxref" href="#PropertyPathPatterns"><bdi class="secno">18.4 </bdi>Property Path Patterns</a></li><li class="tocline"><a class="tocxref" href="#sparqlAlgebra"><bdi class="secno">18.5 </bdi>SPARQL Algebra</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#aggregateAlgebra"><bdi class="secno">18.5.1 </bdi>Aggregate Algebra</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#setFunctions"><bdi class="secno">18.5.1.1 </bdi>Set Functions</a></li><li class="tocline"><a class="tocxref" href="#defn_aggCount"><bdi class="secno">18.5.1.2 </bdi>Count</a></li><li class="tocline"><a class="tocxref" href="#defn_aggSum"><bdi class="secno">18.5.1.3 </bdi>Sum</a></li><li class="tocline"><a class="tocxref" href="#defn_aggAvg"><bdi class="secno">18.5.1.4 </bdi>Avg</a></li><li class="tocline"><a class="tocxref" href="#defn_aggMin"><bdi class="secno">18.5.1.5 </bdi>Min</a></li><li class="tocline"><a class="tocxref" href="#defn_aggMax"><bdi class="secno">18.5.1.6 </bdi>Max</a></li><li class="tocline"><a class="tocxref" href="#defn_aggGroupConcat"><bdi class="secno">18.5.1.7 </bdi>GroupConcat</a></li><li class="tocline"><a class="tocxref" href="#defn_aggSample"><bdi class="secno">18.5.1.8 </bdi>Sample</a></li></ol></li><li class="tocline"><a class="tocxref" href="#sparqlAlgebraEval"><bdi class="secno">18.5.2 </bdi>Evaluation Semantics</a></li><li class="tocline"><a class="tocxref" href="#sparqlBGPExtend"><bdi class="secno">18.5.3 </bdi>Extending SPARQL Basic Graph Matching</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#sparqlBGPExtend-notes"><bdi class="secno">18.5.3.1 </bdi>Notes</a></li></ol></li></ol></li></ol></li><li class="tocline"><a class="tocxref" href="#grammar"><bdi class="secno">19. </bdi>SPARQL Grammar</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#queryString"><bdi class="secno">19.1 </bdi>SPARQL Request String</a></li><li class="tocline"><a class="tocxref" href="#codepointEscape"><bdi class="secno">19.2 </bdi>Codepoint Escape Sequences</a></li><li class="tocline"><a class="tocxref" href="#whitespace"><bdi class="secno">19.3 </bdi>White Space</a></li><li class="tocline"><a class="tocxref" href="#grammarComments"><bdi class="secno">19.4 </bdi>Comments</a></li><li class="tocline"><a class="tocxref" href="#iriRefs"><bdi class="secno">19.5 </bdi>IRI References</a></li><li class="tocline"><a class="tocxref" href="#grammarBNodes"><bdi class="secno">19.6 </bdi>Blank Nodes and Blank Node Labels</a></li><li class="tocline"><a class="tocxref" href="#grammarEscapes"><bdi class="secno">19.7 </bdi>Escape sequences in strings</a></li><li class="tocline"><a class="tocxref" href="#sparqlGrammar"><bdi class="secno">19.8 </bdi>Grammar</a></li></ol></li><li class="tocline"><a class="tocxref" href="#conformance"><bdi class="secno">20. </bdi>Conformance</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#conformance-0"><bdi class="secno">20.1 </bdi>Conformance</a></li></ol></li><li class="tocline"><a class="tocxref" href="#mediaType"><bdi class="secno">21. </bdi>Internet Media Type, File Extension and Macintosh File Type</a></li><li class="tocline"><a class="tocxref" href="#privacy"><bdi class="secno">22. </bdi>Privacy Considerations</a></li><li class="tocline"><a class="tocxref" href="#security"><bdi class="secno">23. </bdi>Security Considerations (Informative)</a></li><li class="tocline"><a class="tocxref" href="#internationalization"><bdi class="secno">24. </bdi>Internationalization Considerations</a></li><li class="tocline"><a class="tocxref" href="#changes-from-sparql11"><bdi class="secno">A. </bdi>Change Log</a></li><li class="tocline"><a class="tocxref" href="#index"><bdi class="secno">B. </bdi>Index</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#index-defined-here"><bdi class="secno">B.1 </bdi>Terms defined by this specification</a></li><li class="tocline"><a class="tocxref" href="#index-defined-elsewhere"><bdi class="secno">B.2 </bdi>Terms defined by reference</a></li></ol></li><li class="tocline"><a class="tocxref" href="#references"><bdi class="secno">C. </bdi>References</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#normative-references"><bdi class="secno">C.1 </bdi>Normative references</a></li><li class="tocline"><a class="tocxref" href="#informative-references"><bdi class="secno">C.2 </bdi>Informative references</a></li></ol></li></ol></nav>
+    </section><nav id="toc"><h2 class="introductory" id="table-of-contents">Table of Contents</h2><ol class="toc"><li class="tocline"><a class="tocxref" href="#abstract">Abstract</a></li><li class="tocline"><a class="tocxref" href="#sotd">Status of This Document</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#related">Set of Documents</a></li></ol></li><li class="tocline"><a class="tocxref" href="#introduction"><bdi class="secno">1. </bdi>Introduction</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#docOutline"><bdi class="secno">1.1 </bdi>Document Outline</a></li><li class="tocline"><a class="tocxref" href="#docConventions"><bdi class="secno">1.2 </bdi>Document Conventions</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#docNamespaces"><bdi class="secno">1.2.1 </bdi>Namespaces</a></li><li class="tocline"><a class="tocxref" href="#docDataDesc"><bdi class="secno">1.2.2 </bdi>Data Descriptions</a></li><li class="tocline"><a class="tocxref" href="#docResultDesc"><bdi class="secno">1.2.3 </bdi>Result Descriptions</a></li><li class="tocline"><a class="tocxref" href="#docTerminology"><bdi class="secno">1.2.4 </bdi>Terminology</a></li></ol></li></ol></li><li class="tocline"><a class="tocxref" href="#basicpatterns"><bdi class="secno">2. </bdi>Making Simple Queries (Informative)</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#WritingSimpleQueries"><bdi class="secno">2.1 </bdi>Writing a Simple Query</a></li><li class="tocline"><a class="tocxref" href="#MultipleMatches"><bdi class="secno">2.2 </bdi>Multiple Matches</a></li><li class="tocline"><a class="tocxref" href="#matchingRDFLiterals"><bdi class="secno">2.3 </bdi>Matching RDF Literals</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#matchLangTags"><bdi class="secno">2.3.1 </bdi>Matching Literals with Language Tags</a></li><li class="tocline"><a class="tocxref" href="#matchNumber"><bdi class="secno">2.3.2 </bdi>Matching Literals with Numeric Types</a></li><li class="tocline"><a class="tocxref" href="#matchArbDT"><bdi class="secno">2.3.3 </bdi>Matching Literals with Arbitrary Datatypes</a></li></ol></li><li class="tocline"><a class="tocxref" href="#BlankNodesInResults"><bdi class="secno">2.4 </bdi>Blank Node Labels in Query Results</a></li><li class="tocline"><a class="tocxref" href="#CreatingValuesWithExpressions"><bdi class="secno">2.5 </bdi>Creating Values with Expressions</a></li><li class="tocline"><a class="tocxref" href="#constructGraph"><bdi class="secno">2.6 </bdi>Building RDF Graphs</a></li></ol></li><li class="tocline"><a class="tocxref" href="#termConstraint"><bdi class="secno">3. </bdi>RDF Term Constraints (Informative)</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#restrictString"><bdi class="secno">3.1 </bdi>Restricting the Value of Strings</a></li><li class="tocline"><a class="tocxref" href="#restrictNumber"><bdi class="secno">3.2 </bdi>Restricting Numeric Values</a></li><li class="tocline"><a class="tocxref" href="#otherTermConstraints"><bdi class="secno">3.3 </bdi>Other Term Constraints</a></li></ol></li><li class="tocline"><a class="tocxref" href="#sparqlSyntax"><bdi class="secno">4. </bdi>SPARQL Syntax</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#syntaxTerms"><bdi class="secno">4.1 </bdi>RDF Term Syntax</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#QSynIRI"><bdi class="secno">4.1.1 </bdi>Syntax for IRIs</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#prefNames"><bdi class="secno">4.1.1.1 </bdi>Prefixed Names</a></li><li class="tocline"><a class="tocxref" href="#relIRIs"><bdi class="secno">4.1.1.2 </bdi>Relative IRIs</a></li></ol></li><li class="tocline"><a class="tocxref" href="#QSynLiterals"><bdi class="secno">4.1.2 </bdi>Syntax for Literals</a></li><li class="tocline"><a class="tocxref" href="#QSynVariables"><bdi class="secno">4.1.3 </bdi>Syntax for Query Variables</a></li><li class="tocline"><a class="tocxref" href="#QSynBlankNodes"><bdi class="secno">4.1.4 </bdi>Syntax for Blank Nodes</a></li></ol></li><li class="tocline"><a class="tocxref" href="#QSynTriples"><bdi class="secno">4.2 </bdi>Syntax for Triple Patterns</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#predObjLists"><bdi class="secno">4.2.1 </bdi>Predicate-Object Lists</a></li><li class="tocline"><a class="tocxref" href="#objLists"><bdi class="secno">4.2.2 </bdi>Object Lists</a></li><li class="tocline"><a class="tocxref" href="#collections"><bdi class="secno">4.2.3 </bdi>RDF Collections</a></li><li class="tocline"><a class="tocxref" href="#abbrevRdfType"><bdi class="secno">4.2.4 </bdi>rdf:type</a></li></ol></li></ol></li><li class="tocline"><a class="tocxref" href="#GraphPattern"><bdi class="secno">5. </bdi>Graph Patterns</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#BasicGraphPatterns"><bdi class="secno">5.1 </bdi>Basic Graph Patterns</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#bgpBNodeLabels"><bdi class="secno">5.1.1 </bdi>Blank Node Labels</a></li><li class="tocline"><a class="tocxref" href="#bgpExtend"><bdi class="secno">5.1.2 </bdi>Extending Basic Graph Pattern Matching</a></li></ol></li><li class="tocline"><a class="tocxref" href="#GroupPatterns"><bdi class="secno">5.2 </bdi>Group Graph Patterns</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#emptyGroupPattern"><bdi class="secno">5.2.1 </bdi>Empty Group Pattern</a></li><li class="tocline"><a class="tocxref" href="#scopeFilters"><bdi class="secno">5.2.2 </bdi>Scope of Filters</a></li><li class="tocline"><a class="tocxref" href="#groupExamples"><bdi class="secno">5.2.3 </bdi>Group Graph Pattern Examples</a></li></ol></li></ol></li><li class="tocline"><a class="tocxref" href="#optionals"><bdi class="secno">6. </bdi>Including Optional Values</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#OptionalMatching"><bdi class="secno">6.1 </bdi>Optional Pattern Matching</a></li><li class="tocline"><a class="tocxref" href="#OptionalAndConstraints"><bdi class="secno">6.2 </bdi>Constraints in Optional Pattern Matching</a></li><li class="tocline"><a class="tocxref" href="#MultipleOptionals"><bdi class="secno">6.3 </bdi>Multiple Optional Graph Patterns</a></li></ol></li><li class="tocline"><a class="tocxref" href="#alternatives"><bdi class="secno">7. </bdi>Matching Alternatives</a></li><li class="tocline"><a class="tocxref" href="#negation"><bdi class="secno">8. </bdi>Negation</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#neg-pattern"><bdi class="secno">8.1 </bdi>Filtering Using Graph Patterns</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#neg-notexists"><bdi class="secno">8.1.1 </bdi>Testing For the Absence of a Pattern</a></li><li class="tocline"><a class="tocxref" href="#neg-exists"><bdi class="secno">8.1.2 </bdi>Testing For the Presence of a Pattern</a></li></ol></li><li class="tocline"><a class="tocxref" href="#neg-minus"><bdi class="secno">8.2 </bdi>Removing Possible Solutions</a></li><li class="tocline"><a class="tocxref" href="#neg-notexists-minus"><bdi class="secno">8.3 </bdi>Relationship and differences between NOT EXISTS and MINUS</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#neg-example-1"><bdi class="secno">8.3.1 </bdi>Example: Sharing of variables</a></li><li class="tocline"><a class="tocxref" href="#neg-example-2"><bdi class="secno">8.3.2 </bdi>Example: Fixed pattern</a></li><li class="tocline"><a class="tocxref" href="#idp899488"><bdi class="secno">8.3.3 </bdi>Example: Inner FILTERs</a></li></ol></li></ol></li><li class="tocline"><a class="tocxref" href="#propertypaths"><bdi class="secno">9. </bdi>Property Paths</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#pp-language"><bdi class="secno">9.1 </bdi>Property Path Syntax</a></li><li class="tocline"><a class="tocxref" href="#propertypath-examples"><bdi class="secno">9.2 </bdi>Examples</a></li><li class="tocline"><a class="tocxref" href="#propertypath-syntaxforms"><bdi class="secno">9.3 </bdi>Property Paths and Equivalent Patterns</a></li><li class="tocline"><a class="tocxref" href="#propertypath-arbitrary-length"><bdi class="secno">9.4 </bdi>Arbitrary Length Path Matching</a></li></ol></li><li class="tocline"><a class="tocxref" href="#assignment"><bdi class="secno">10. </bdi>Assignment</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#bind"><bdi class="secno">10.1 </bdi>BIND: Assigning to Variables</a></li><li class="tocline"><a class="tocxref" href="#inline-data"><bdi class="secno">10.2 </bdi>VALUES: Providing inline data</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#inline-data-syntax"><bdi class="secno">10.2.1 </bdi>VALUES syntax</a></li><li class="tocline"><a class="tocxref" href="#inline-data-examples"><bdi class="secno">10.2.2 </bdi>VALUES Examples</a></li></ol></li></ol></li><li class="tocline"><a class="tocxref" href="#aggregates"><bdi class="secno">11. </bdi>Aggregates</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#aggregateExample"><bdi class="secno">11.1 </bdi>Aggregate Example</a></li><li class="tocline"><a class="tocxref" href="#groupby"><bdi class="secno">11.2 </bdi>GROUP BY</a></li><li class="tocline"><a class="tocxref" href="#having"><bdi class="secno">11.3 </bdi>HAVING</a></li><li class="tocline"><a class="tocxref" href="#aggregateRestrictions"><bdi class="secno">11.4 </bdi>Aggregate Projection Restrictions</a></li><li class="tocline"><a class="tocxref" href="#aggregateExample2"><bdi class="secno">11.5 </bdi>Aggregate Example (with errors)</a></li></ol></li><li class="tocline"><a class="tocxref" href="#subqueries"><bdi class="secno">12. </bdi>Subqueries</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#subquery-example"><bdi class="secno">12.1 </bdi>Example</a></li></ol></li><li class="tocline"><a class="tocxref" href="#rdfDataset"><bdi class="secno">13. </bdi>RDF Dataset</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#exampleDatasets"><bdi class="secno">13.1 </bdi>Examples of RDF Datasets</a></li><li class="tocline"><a class="tocxref" href="#specifyingDataset"><bdi class="secno">13.2 </bdi>Specifying RDF Datasets</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#unnamedGraph"><bdi class="secno">13.2.1 </bdi>Specifying the Default Graph</a></li><li class="tocline"><a class="tocxref" href="#namedGraphs"><bdi class="secno">13.2.2 </bdi>Specifying Named Graphs</a></li><li class="tocline"><a class="tocxref" href="#specDataset"><bdi class="secno">13.2.3 </bdi>Combining FROM and FROM NAMED</a></li></ol></li><li class="tocline"><a class="tocxref" href="#queryDataset"><bdi class="secno">13.3 </bdi>Querying the Dataset</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#accessByLabel"><bdi class="secno">13.3.1 </bdi>Accessing Graph Names</a></li><li class="tocline"><a class="tocxref" href="#restrictByLabel"><bdi class="secno">13.3.2 </bdi>Restricting by Graph IRI</a></li><li class="tocline"><a class="tocxref" href="#restrictInQuery"><bdi class="secno">13.3.3 </bdi>Restricting Possible Graph IRIs</a></li><li class="tocline"><a class="tocxref" href="#namedAndDefaultGraph"><bdi class="secno">13.3.4 </bdi>Named and Default Graphs</a></li></ol></li></ol></li><li class="tocline"><a class="tocxref" href="#basic-federated-query"><bdi class="secno">14. </bdi>Basic Federated Query</a></li><li class="tocline"><a class="tocxref" href="#solutionModifiers"><bdi class="secno">15. </bdi>Solution Sequences and Modifiers</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#modOrderBy"><bdi class="secno">15.1 </bdi>ORDER BY</a></li><li class="tocline"><a class="tocxref" href="#modProjection"><bdi class="secno">15.2 </bdi>Projection</a></li><li class="tocline"><a class="tocxref" href="#modDuplicates"><bdi class="secno">15.3 </bdi>Duplicate Solutions</a></li><li class="tocline"><a class="tocxref" href="#modOffset"><bdi class="secno">15.4 </bdi>OFFSET</a></li><li class="tocline"><a class="tocxref" href="#modResultLimit"><bdi class="secno">15.5 </bdi>LIMIT</a></li></ol></li><li class="tocline"><a class="tocxref" href="#QueryForms"><bdi class="secno">16. </bdi>Query Forms</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#select"><bdi class="secno">16.1 </bdi>SELECT</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#selectproject"><bdi class="secno">16.1.1 </bdi>Projection</a></li><li class="tocline"><a class="tocxref" href="#selectExpressions"><bdi class="secno">16.1.2 </bdi>SELECT Expressions</a></li></ol></li><li class="tocline"><a class="tocxref" href="#construct"><bdi class="secno">16.2 </bdi>CONSTRUCT</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#templatesWithBNodes"><bdi class="secno">16.2.1 </bdi>Templates with Blank Nodes</a></li><li class="tocline"><a class="tocxref" href="#accessingRdfGraphs"><bdi class="secno">16.2.2 </bdi>Accessing Graphs in the RDF Dataset</a></li><li class="tocline"><a class="tocxref" href="#SolModandCONSTRUCT"><bdi class="secno">16.2.3 </bdi>Solution Modifiers and CONSTRUCT</a></li><li class="tocline"><a class="tocxref" href="#constructWhere"><bdi class="secno">16.2.4 </bdi>CONSTRUCT WHERE</a></li></ol></li><li class="tocline"><a class="tocxref" href="#ask"><bdi class="secno">16.3 </bdi>ASK</a></li><li class="tocline"><a class="tocxref" href="#describe"><bdi class="secno">16.4 </bdi>DESCRIBE (Informative)</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#explicitIRIs"><bdi class="secno">16.4.1 </bdi>Explicit IRIs</a></li><li class="tocline"><a class="tocxref" href="#identifyingResources"><bdi class="secno">16.4.2 </bdi>Identifying Resources</a></li><li class="tocline"><a class="tocxref" href="#descriptionsOfResources"><bdi class="secno">16.4.3 </bdi>Descriptions of Resources</a></li></ol></li></ol></li><li class="tocline"><a class="tocxref" href="#expressions"><bdi class="secno">17. </bdi>Expressions and Testing Values</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#operandDataTypes"><bdi class="secno">17.1 </bdi>Operand Data Types</a></li><li class="tocline"><a class="tocxref" href="#evaluation"><bdi class="secno">17.2 </bdi>Filter Evaluation</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#invocation"><bdi class="secno">17.2.1 </bdi>Invocation</a></li><li class="tocline"><a class="tocxref" href="#ebv"><bdi class="secno">17.2.2 </bdi>Effective Boolean Value (EBV)</a></li></ol></li><li class="tocline"><a class="tocxref" href="#OperatorMapping"><bdi class="secno">17.3 </bdi>Operator Mapping</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#operatorExtensibility"><bdi class="secno">17.3.1 </bdi>Operator Extensibility</a></li></ol></li><li class="tocline"><a class="tocxref" href="#SparqlOps"><bdi class="secno">17.4 </bdi>Function Definitions</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#func-forms"><bdi class="secno">17.4.1 </bdi>Functional Forms</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#func-bound"><bdi class="secno">17.4.1.1 </bdi>bound</a></li><li class="tocline"><a class="tocxref" href="#func-if"><bdi class="secno">17.4.1.2 </bdi>IF</a></li><li class="tocline"><a class="tocxref" href="#func-coalesce"><bdi class="secno">17.4.1.3 </bdi>COALESCE</a></li><li class="tocline"><a class="tocxref" href="#func-filter-exists"><bdi class="secno">17.4.1.4 </bdi>NOT EXISTS and EXISTS</a></li><li class="tocline"><a class="tocxref" href="#func-logical-or"><bdi class="secno">17.4.1.5 </bdi>logical-or</a></li><li class="tocline"><a class="tocxref" href="#func-logical-and"><bdi class="secno">17.4.1.6 </bdi>logical-and</a></li><li class="tocline"><a class="tocxref" href="#func-RDFterm-equal"><bdi class="secno">17.4.1.7 </bdi>RDFterm-equal</a></li><li class="tocline"><a class="tocxref" href="#func-sameTerm"><bdi class="secno">17.4.1.8 </bdi>sameTerm</a></li><li class="tocline"><a class="tocxref" href="#func-in"><bdi class="secno">17.4.1.9 </bdi>IN</a></li><li class="tocline"><a class="tocxref" href="#func-not-in"><bdi class="secno">17.4.1.10 </bdi>NOT IN</a></li></ol></li><li class="tocline"><a class="tocxref" href="#func-rdfTerms"><bdi class="secno">17.4.2 </bdi>Functions on RDF Terms</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#func-isIRI"><bdi class="secno">17.4.2.1 </bdi>isIRI</a></li><li class="tocline"><a class="tocxref" href="#func-isBlank"><bdi class="secno">17.4.2.2 </bdi>isBlank</a></li><li class="tocline"><a class="tocxref" href="#func-isLiteral"><bdi class="secno">17.4.2.3 </bdi>isLiteral</a></li><li class="tocline"><a class="tocxref" href="#func-isNumeric"><bdi class="secno">17.4.2.4 </bdi>isNumeric</a></li><li class="tocline"><a class="tocxref" href="#func-str"><bdi class="secno">17.4.2.5 </bdi>str</a></li><li class="tocline"><a class="tocxref" href="#func-lang"><bdi class="secno">17.4.2.6 </bdi>lang</a></li><li class="tocline"><a class="tocxref" href="#func-datatype"><bdi class="secno">17.4.2.7 </bdi>datatype</a></li><li class="tocline"><a class="tocxref" href="#func-iri"><bdi class="secno">17.4.2.8 </bdi>IRI</a></li><li class="tocline"><a class="tocxref" href="#func-bnode"><bdi class="secno">17.4.2.9 </bdi>BNODE</a></li><li class="tocline"><a class="tocxref" href="#func-strdt"><bdi class="secno">17.4.2.10 </bdi>STRDT</a></li><li class="tocline"><a class="tocxref" href="#func-strlang"><bdi class="secno">17.4.2.11 </bdi>STRLANG</a></li><li class="tocline"><a class="tocxref" href="#func-uuid"><bdi class="secno">17.4.2.12 </bdi>UUID</a></li><li class="tocline"><a class="tocxref" href="#func-struuid"><bdi class="secno">17.4.2.13 </bdi>STRUUID</a></li></ol></li><li class="tocline"><a class="tocxref" href="#func-strings"><bdi class="secno">17.4.3 </bdi>Functions on Strings</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#idp1887976"><bdi class="secno">17.4.3.1 </bdi>Strings in SPARQL Functions</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#func-string"><bdi class="secno">17.4.3.1.1 </bdi>String arguments</a></li><li class="tocline"><a class="tocxref" href="#func-arg-compatibility"><bdi class="secno">17.4.3.1.2 </bdi>Argument Compatibility Rules</a></li><li class="tocline"><a class="tocxref" href="#idp1915512"><bdi class="secno">17.4.3.1.3 </bdi>String Literal Return Type</a></li></ol></li><li class="tocline"><a class="tocxref" href="#func-strlen"><bdi class="secno">17.4.3.2 </bdi>STRLEN</a></li><li class="tocline"><a class="tocxref" href="#func-substr"><bdi class="secno">17.4.3.3 </bdi>SUBSTR</a></li><li class="tocline"><a class="tocxref" href="#func-ucase"><bdi class="secno">17.4.3.4 </bdi>UCASE</a></li><li class="tocline"><a class="tocxref" href="#func-lcase"><bdi class="secno">17.4.3.5 </bdi>LCASE</a></li><li class="tocline"><a class="tocxref" href="#func-strstarts"><bdi class="secno">17.4.3.6 </bdi>STRSTARTS</a></li><li class="tocline"><a class="tocxref" href="#func-strends"><bdi class="secno">17.4.3.7 </bdi>STRENDS</a></li><li class="tocline"><a class="tocxref" href="#func-contains"><bdi class="secno">17.4.3.8 </bdi>CONTAINS</a></li><li class="tocline"><a class="tocxref" href="#func-strbefore"><bdi class="secno">17.4.3.9 </bdi>STRBEFORE</a></li><li class="tocline"><a class="tocxref" href="#func-strafter"><bdi class="secno">17.4.3.10 </bdi>STRAFTER</a></li><li class="tocline"><a class="tocxref" href="#func-encode"><bdi class="secno">17.4.3.11 </bdi>ENCODE_FOR_URI</a></li><li class="tocline"><a class="tocxref" href="#func-concat"><bdi class="secno">17.4.3.12 </bdi>CONCAT</a></li><li class="tocline"><a class="tocxref" href="#func-langMatches"><bdi class="secno">17.4.3.13 </bdi>langMatches</a></li><li class="tocline"><a class="tocxref" href="#func-regex"><bdi class="secno">17.4.3.14 </bdi>REGEX</a></li><li class="tocline"><a class="tocxref" href="#func-replace"><bdi class="secno">17.4.3.15 </bdi>REPLACE</a></li></ol></li><li class="tocline"><a class="tocxref" href="#func-numerics"><bdi class="secno">17.4.4 </bdi>Functions on Numerics</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#func-abs"><bdi class="secno">17.4.4.1 </bdi>abs</a></li><li class="tocline"><a class="tocxref" href="#func-round"><bdi class="secno">17.4.4.2 </bdi>round</a></li><li class="tocline"><a class="tocxref" href="#func-ceil"><bdi class="secno">17.4.4.3 </bdi>ceil</a></li><li class="tocline"><a class="tocxref" href="#func-floor"><bdi class="secno">17.4.4.4 </bdi>floor</a></li><li class="tocline"><a class="tocxref" href="#idp2130040"><bdi class="secno">17.4.4.5 </bdi>RAND</a></li></ol></li><li class="tocline"><a class="tocxref" href="#func-date-time"><bdi class="secno">17.4.5 </bdi>Functions on Dates and Times</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#func-now"><bdi class="secno">17.4.5.1 </bdi>now</a></li><li class="tocline"><a class="tocxref" href="#func-year"><bdi class="secno">17.4.5.2 </bdi>year</a></li><li class="tocline"><a class="tocxref" href="#func-month"><bdi class="secno">17.4.5.3 </bdi>month</a></li><li class="tocline"><a class="tocxref" href="#func-day"><bdi class="secno">17.4.5.4 </bdi>day</a></li><li class="tocline"><a class="tocxref" href="#func-hours"><bdi class="secno">17.4.5.5 </bdi>hours</a></li><li class="tocline"><a class="tocxref" href="#func-minutes"><bdi class="secno">17.4.5.6 </bdi>minutes</a></li><li class="tocline"><a class="tocxref" href="#func-seconds"><bdi class="secno">17.4.5.7 </bdi>seconds</a></li><li class="tocline"><a class="tocxref" href="#func-timezone"><bdi class="secno">17.4.5.8 </bdi>timezone</a></li><li class="tocline"><a class="tocxref" href="#func-tz"><bdi class="secno">17.4.5.9 </bdi>tz</a></li></ol></li><li class="tocline"><a class="tocxref" href="#func-hash"><bdi class="secno">17.4.6 </bdi>Hash Functions</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#func-md5"><bdi class="secno">17.4.6.1 </bdi>MD5</a></li><li class="tocline"><a class="tocxref" href="#func-sha1"><bdi class="secno">17.4.6.2 </bdi>SHA1</a></li><li class="tocline"><a class="tocxref" href="#func-sha256"><bdi class="secno">17.4.6.3 </bdi>SHA256</a></li><li class="tocline"><a class="tocxref" href="#func-sha384"><bdi class="secno">17.4.6.4 </bdi>SHA384</a></li><li class="tocline"><a class="tocxref" href="#func-sha512"><bdi class="secno">17.4.6.5 </bdi>SHA512</a></li></ol></li></ol></li><li class="tocline"><a class="tocxref" href="#FunctionMapping"><bdi class="secno">17.5 </bdi>XPath Constructor Functions</a></li><li class="tocline"><a class="tocxref" href="#extensionFunctions"><bdi class="secno">17.6 </bdi>Extensible Value Testing</a></li></ol></li><li class="tocline"><a class="tocxref" href="#sparqlDefinition"><bdi class="secno">18. </bdi>Definition of SPARQL</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#initDefinitions"><bdi class="secno">18.1 </bdi>Initial Definitions</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#sparqlBasicTerms"><bdi class="secno">18.1.1 </bdi>RDF Terms</a></li><li class="tocline"><a class="tocxref" href="#simple_literal"><bdi class="secno">18.1.2 </bdi>Simple Literal</a></li><li class="tocline"><a class="tocxref" href="#sparqlDataset"><bdi class="secno">18.1.3 </bdi>RDF Dataset</a></li><li class="tocline"><a class="tocxref" href="#sparqlQueryVariables"><bdi class="secno">18.1.4 </bdi>Query Variables</a></li><li class="tocline"><a class="tocxref" href="#sparqlTriplePatterns"><bdi class="secno">18.1.5 </bdi>Triple Patterns</a></li><li class="tocline"><a class="tocxref" href="#sparqlBasicGraphPatterns"><bdi class="secno">18.1.6 </bdi>Basic Graph Patterns</a></li><li class="tocline"><a class="tocxref" href="#sparqlPropertyPaths"><bdi class="secno">18.1.7 </bdi>Property Path Patterns</a></li><li class="tocline"><a class="tocxref" href="#sparqlSolutions"><bdi class="secno">18.1.8 </bdi>Solution Mapping</a></li><li class="tocline"><a class="tocxref" href="#sparqlSolMod"><bdi class="secno">18.1.9 </bdi>Solution Sequence Modifiers</a></li><li class="tocline"><a class="tocxref" href="#idp2427544"><bdi class="secno">18.1.10 </bdi>SPARQL Query</a></li></ol></li><li class="tocline"><a class="tocxref" href="#sparqlQuery"><bdi class="secno">18.2 </bdi>Translation to the SPARQL Algebra</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#variableScope"><bdi class="secno">18.2.1 </bdi>Variable Scope</a></li><li class="tocline"><a class="tocxref" href="#convertGraphPattern"><bdi class="secno">18.2.2 </bdi>Converting Graph Patterns</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#sparqlExpandForms"><bdi class="secno">18.2.2.1 </bdi>Expand Syntax Forms</a></li><li class="tocline"><a class="tocxref" href="#sparqlCollectFilters"><bdi class="secno">18.2.2.2 </bdi>Collect <code>FILTER</code> Elements</a></li><li class="tocline"><a class="tocxref" href="#sparqlTranslatePathExpressions"><bdi class="secno">18.2.2.3 </bdi>Translate Property Path Expressions</a></li><li class="tocline"><a class="tocxref" href="#sparqlTranslatePathPatterns"><bdi class="secno">18.2.2.4 </bdi>Translate Property Path Patterns</a></li><li class="tocline"><a class="tocxref" href="#sparqlTranslateBasicGraphPatterns"><bdi class="secno">18.2.2.5 </bdi>Translate Basic Graph Patterns</a></li><li class="tocline"><a class="tocxref" href="#sparqlTranslateGraphPatterns"><bdi class="secno">18.2.2.6 </bdi>Translate Graph Patterns</a></li><li class="tocline"><a class="tocxref" href="#sparqlAddFilters"><bdi class="secno">18.2.2.7 </bdi>Filters of Group</a></li><li class="tocline"><a class="tocxref" href="#sparqlSimplification"><bdi class="secno">18.2.2.8 </bdi>Simplification step</a></li></ol></li><li class="tocline"><a class="tocxref" href="#sparqlAlgebraExamples"><bdi class="secno">18.2.3 </bdi>Examples of Mapped Graph Patterns</a></li><li class="tocline"><a class="tocxref" href="#convertGroupAggSelectExpressions"><bdi class="secno">18.2.4 </bdi>Converting Groups, Aggregates, HAVING, final VALUES clause and SELECT Expressions</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#sparqlGroupAggregate"><bdi class="secno">18.2.4.1 </bdi>Grouping and Aggregation</a></li><li class="tocline"><a class="tocxref" href="#sparqlHavingClause"><bdi class="secno">18.2.4.2 </bdi>HAVING</a></li><li class="tocline"><a class="tocxref" href="#sparqlAlgebraFinalValues"><bdi class="secno">18.2.4.3 </bdi>VALUES</a></li><li class="tocline"><a class="tocxref" href="#sparqlSelectExpressions"><bdi class="secno">18.2.4.4 </bdi>SELECT Expressions</a></li></ol></li><li class="tocline"><a class="tocxref" href="#convertSolMod"><bdi class="secno">18.2.5 </bdi>Converting Solution Modifiers</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#sparqlOrderBy"><bdi class="secno">18.2.5.1 </bdi>ORDER BY</a></li><li class="tocline"><a class="tocxref" href="#sparqlProjection"><bdi class="secno">18.2.5.2 </bdi>Projection</a></li><li class="tocline"><a class="tocxref" href="#sparqlDistinct"><bdi class="secno">18.2.5.3 </bdi>DISTINCT</a></li><li class="tocline"><a class="tocxref" href="#sparqlReduced"><bdi class="secno">18.2.5.4 </bdi>REDUCED</a></li><li class="tocline"><a class="tocxref" href="#sparqlOffsetLimit"><bdi class="secno">18.2.5.5 </bdi>OFFSET and LIMIT</a></li><li class="tocline"><a class="tocxref" href="#sparqlAlgebraOutcome"><bdi class="secno">18.2.5.6 </bdi>Final Algebra Expression</a></li></ol></li></ol></li><li class="tocline"><a class="tocxref" href="#BasicGraphPattern"><bdi class="secno">18.3 </bdi>Basic Graph Patterns</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#BGPsparql"><bdi class="secno">18.3.1 </bdi>SPARQL Basic Graph Pattern Matching</a></li><li class="tocline"><a class="tocxref" href="#BGPsparqlBNodes"><bdi class="secno">18.3.2 </bdi>Treatment of Blank Nodes</a></li></ol></li><li class="tocline"><a class="tocxref" href="#PropertyPathPatterns"><bdi class="secno">18.4 </bdi>Property Path Patterns</a></li><li class="tocline"><a class="tocxref" href="#sparqlAlgebra"><bdi class="secno">18.5 </bdi>SPARQL Algebra</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#aggregateAlgebra"><bdi class="secno">18.5.1 </bdi>Aggregate Algebra</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#setFunctions"><bdi class="secno">18.5.1.1 </bdi>Set Functions</a></li><li class="tocline"><a class="tocxref" href="#aggCount"><bdi class="secno">18.5.1.2 </bdi>Count</a></li><li class="tocline"><a class="tocxref" href="#aggSum"><bdi class="secno">18.5.1.3 </bdi>Sum</a></li><li class="tocline"><a class="tocxref" href="#aggAvg"><bdi class="secno">18.5.1.4 </bdi>Avg</a></li><li class="tocline"><a class="tocxref" href="#aggMin"><bdi class="secno">18.5.1.5 </bdi>Min</a></li><li class="tocline"><a class="tocxref" href="#aggMax"><bdi class="secno">18.5.1.6 </bdi>Max</a></li><li class="tocline"><a class="tocxref" href="#aggGroupConcat"><bdi class="secno">18.5.1.7 </bdi>GroupConcat</a></li><li class="tocline"><a class="tocxref" href="#aggSample"><bdi class="secno">18.5.1.8 </bdi>Sample</a></li></ol></li><li class="tocline"><a class="tocxref" href="#sparqlAlgebraEval"><bdi class="secno">18.5.2 </bdi>Evaluation Semantics</a></li><li class="tocline"><a class="tocxref" href="#sparqlBGPExtend"><bdi class="secno">18.5.3 </bdi>Extending SPARQL Basic Graph Matching</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#sparqlBGPExtend-notes"><bdi class="secno">18.5.3.1 </bdi>Notes</a></li></ol></li></ol></li></ol></li><li class="tocline"><a class="tocxref" href="#grammar"><bdi class="secno">19. </bdi>SPARQL Grammar</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#queryString"><bdi class="secno">19.1 </bdi>SPARQL Request String</a></li><li class="tocline"><a class="tocxref" href="#codepointEscape"><bdi class="secno">19.2 </bdi>Codepoint Escape Sequences</a></li><li class="tocline"><a class="tocxref" href="#whitespace"><bdi class="secno">19.3 </bdi>White Space</a></li><li class="tocline"><a class="tocxref" href="#grammarComments"><bdi class="secno">19.4 </bdi>Comments</a></li><li class="tocline"><a class="tocxref" href="#iriRefs"><bdi class="secno">19.5 </bdi>IRI References</a></li><li class="tocline"><a class="tocxref" href="#grammarBNodes"><bdi class="secno">19.6 </bdi>Blank Nodes and Blank Node Labels</a></li><li class="tocline"><a class="tocxref" href="#grammarEscapes"><bdi class="secno">19.7 </bdi>Escape sequences in strings</a></li><li class="tocline"><a class="tocxref" href="#sparqlGrammar"><bdi class="secno">19.8 </bdi>Grammar</a></li></ol></li><li class="tocline"><a class="tocxref" href="#conformance"><bdi class="secno">20. </bdi>Conformance</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#conformance-0"><bdi class="secno">20.1 </bdi>Conformance</a></li></ol></li><li class="tocline"><a class="tocxref" href="#mediaType"><bdi class="secno">21. </bdi>Internet Media Type, File Extension and Macintosh File Type</a></li><li class="tocline"><a class="tocxref" href="#privacy"><bdi class="secno">22. </bdi>Privacy Considerations</a></li><li class="tocline"><a class="tocxref" href="#security"><bdi class="secno">23. </bdi>Security Considerations</a></li><li class="tocline"><a class="tocxref" href="#internationalization"><bdi class="secno">24. </bdi>Internationalization Considerations</a></li><li class="tocline"><a class="tocxref" href="#changes-from-sparql11"><bdi class="secno">A. </bdi>Change Log</a></li><li class="tocline"><a class="tocxref" href="#index"><bdi class="secno">B. </bdi>Index</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#index-defined-here"><bdi class="secno">B.1 </bdi>Terms defined by this specification</a></li><li class="tocline"><a class="tocxref" href="#index-defined-elsewhere"><bdi class="secno">B.2 </bdi>Terms defined by reference</a></li></ol></li><li class="tocline"><a class="tocxref" href="#references"><bdi class="secno">C. </bdi>References</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#normative-references"><bdi class="secno">C.1 </bdi>Normative references</a></li><li class="tocline"><a class="tocxref" href="#informative-references"><bdi class="secno">C.2 </bdi>Informative references</a></li></ol></li></ol></nav>
 
     
     <section id="introduction"><div class="header-wrapper"><h2 id="x1-introduction"><bdi class="secno">1. </bdi>Introduction</h2><a class="self-link" href="#introduction" aria-label="Permalink for Section 1."></a></div>
@@ -5547,27 +5547,51 @@ WHERE {
           <section id="func-RDFterm-equal"><div class="header-wrapper"><h5 id="x17-4-1-7-rdfterm-equal"><bdi class="secno">17.4.1.7 </bdi>RDFterm-equal</h5><a class="self-link" href="#func-RDFterm-equal" aria-label="Permalink for Section 17.4.1.7"></a></div>
             
             <pre class="prototype" aria-busy="false"><code class="hljs">xsd:boolean  RDF term term1 = RDF term term2</code></pre>
-            <p>Returns TRUE if <code>term1</code> and <code>term2</code> are the same RDF term as
-              defined in <cite><a data-matched-text="[[[RDF12-CONCEPTS]]]" href="https://w3c.github.io/rdf-concepts/spec/" id="ref-for-index-term-rdf-1-2-concepts-and-abstract-syntax-3">RDF 1.2 Concepts and Abstract Syntax</a></cite> [<cite><a class="bibref" data-link-type="biblio" href="#bib-rdf12-concepts" title="RDF 1.2 Concepts and Abstract Syntax">RDF12-CONCEPTS</a></cite>]; produces a type error if the
-              arguments are both literal but are not the same RDF term <sup><a href="#func-RDFterm-equal-foot1" class="footnote">*</a></sup>; returns FALSE otherwise.
-              <code>term1</code> and <code>term2</code> are the same if any of the following is
+            <p>This function is defined as follows:</p>
+            <ul>
+                <li>Returns TRUE if <code>term1</code> and <code>term2</code> are <em>equal</em> RDF terms, as defined below.</li>
+                <li>Produces a type error if <code>term1</code> and <code>term2</code> are both literals having the
+              same <a href="https://w3c.github.io/rdf-concepts/spec/#dfn-datatype-iri" id="ref-for-index-term-datatype-iri-0-1">datatype IRI</a>; this datatype IRI is <em>not</em> in the
+              set of <a href="https://w3c.github.io/rdf-concepts/spec/#dfn-recognized-datatype-iri" id="ref-for-index-term-datatype-iri-2">recognized datatype IRIs</a>; and the
+              <a href="https://w3c.github.io/rdf-concepts/spec/#dfn-lexical-form" id="ref-for-index-term-lexical-form-2">lexical forms</a> of the two literals are different from one another.</li>
+                <li>Returns FALSE otherwise.</li>
+            </ul>
+            <p>
+              <code>term1</code> and <code>term2</code> are <em>equal</em> RDF terms if any of the following is
               true:</p>
             <ul>
               <li>
-                <span class="name">term1</span> and <span class="name">term2</span> are equivalent
-                <span class="IRI type">IRIs</span> as defined in <a href="https://w3c.github.io/rdf-concepts/spec/#section-Graph-URIref" id="ref-for-index-term-6-4-rdf-uri-references-1">6.4 RDF URI References</a> of
+                <span class="name">term1</span> is an <span class="IRI type">IRI</span> and <span class="name">term2</span> is an <span class="IRI type">IRI</span>
+                such that these two <span class="IRI type">IRIs</span> are equal as per the notion of <a href="https://w3c.github.io/rdf-concepts/spec/#dfn-iri-equality" id="ref-for-index-term-iri-equality-1">IRI equality</a> of
                 [<cite><a class="bibref" data-link-type="biblio" href="#bib-rdf12-concepts" title="RDF 1.2 Concepts and Abstract Syntax">RDF12-CONCEPTS</a></cite>].
               </li>
               <li>
-                <span class="name">term1</span> and <span class="name">term2</span> are equivalent
-                <span class="literal type">literals</span> as defined in <a href="https://w3c.github.io/rdf-concepts/spec/#section-Literal-Equality" id="ref-for-index-term-6-5-1-literal-equality-1">6.5.1 Literal Equality</a> of
+                <span class="name">term1</span> is a <span class="literal type">literal</span> and
+                <span class="name">term2</span> is a <span class="literal type">literal</span> such that
+                these two <span class="literal type">literals</span> are equal as per the notion of <a href="https://w3c.github.io/rdf-concepts/spec/#dfn-term-equal" id="ref-for-index-term-literal-term-equality-1">Literal term equality</a> of
                 [<cite><a class="bibref" data-link-type="biblio" href="#bib-rdf12-concepts" title="RDF 1.2 Concepts and Abstract Syntax">RDF12-CONCEPTS</a></cite>].
+              </li>
+              <li>
+                <span class="name">term1</span> is a <span class="literal type">literal</span> and
+                <span class="name">term2</span> is a <span class="literal type">literal</span>
+                such that the <a href="https://w3c.github.io/rdf-concepts/spec/#dfn-datatype-iri" id="ref-for-index-term-datatype-iri-0-2">datatype IRI</a>
+                of each of these two literals is in the set of
+                <a href="https://w3c.github.io/rdf-concepts/spec/#dfn-recognized-datatype-iri" id="ref-for-index-term-datatype-iri-3">recognized datatype IRIs</a>
+                and both literals have the same <a href="https://w3c.github.io/rdf-concepts/spec/#dfn-literal-value" id="ref-for-index-term-literal-value-1">literal value</a>.
               </li>
               <li>
                 <span class="name">term1</span> and <span class="name">term2</span> are the same
-                <span class="bnode type">blank node</span> as described in <a href="https://w3c.github.io/rdf-concepts/spec/#section-blank-nodes" id="ref-for-index-term-6-6-blank-nodes-1">6.6 Blank Nodes</a> of [<cite><a class="bibref" data-link-type="biblio" href="#bib-rdf12-concepts" title="RDF 1.2 Concepts and Abstract Syntax">RDF12-CONCEPTS</a></cite>].
+                <span class="bnode type">blank node</span>.
               </li>
             </ul>
+            <div class="note" role="note" id="func-RDFterm-equal-note1"><div role="heading" class="note-title marker" id="h-note-1" aria-level="6"><span>Note</span></div><p class="">
+              An extended implementation may support additional datatypes for literals. An
+              implementation processing a query that tests for equivalence of literals with non-recognized datatypes
+              (and non-identical lexical form and datatype IRI) returns an error, indicating that it
+              is unable to determine whether or not the values of the compared literals are equivalent. For example, an
+              unextended implementation will produce an error when testing either <span class="queryExcerpt"><code>"iiii"^^my:romanNumeral =
+                  "iv"^^my:romanNumeral</code></span> or <span class="queryExcerpt"><code>"iiii"^^my:romanNumeral !=
+                  "iv"^^my:romanNumeral</code></span>.</p></div>
             <div class="exampleGroup">
               <pre class="data" aria-busy="false"><code class="hljs">@prefix foaf:       &lt;http://xmlns.com/foaf/0.1/&gt; .
 
@@ -5610,7 +5634,7 @@ WHERE {
             </div>
             <p>In this query for documents that were annotated at a specific date and time (New
               Year's Day 2005, measures in timezone +00:00), the RDF terms are not the same, but have
-              equivalent values:</p>
+              equivalent values according to their datatype:</p>
             <div class="exampleGroup">
               <pre class="data" aria-busy="false"><code class="hljs">@prefix a:          &lt;http://www.w3.org/2000/10/annotation-ns#&gt; .
 @prefix dc:         &lt;http://purl.org/dc/elements/1.1/&gt; .
@@ -5642,22 +5666,12 @@ WHERE {
                 </div>
               </div>
             </div>
-            <div id="func-RDFterm-equal-foot1" class="footnote">
-              <p><sup>*</sup> Invoking RDFterm-equal on two typed literals tests for equivalent
-                values. An extended implementation may have support for additional datatypes. An
-                implementation processing a query that tests for equivalence on unsupported datatypes
-                (and non-identical lexical form and datatype IRI) returns an error, indicating that it
-                was unable to determine whether or not the values are equivalent. For example, an
-                unextended implementation will produce an error when testing either <span class="queryExcerpt"><code>"iiii"^^my:romanNumeral =
-                    "iv"^^my:romanNumeral</code></span> or <span class="queryExcerpt"><code>"iiii"^^my:romanNumeral !=
-                    "iv"^^my:romanNumeral</code></span>.</p>
-            </div>
           </section>
           <section id="func-sameTerm"><div class="header-wrapper"><h5 id="x17-4-1-8-sameterm"><bdi class="secno">17.4.1.8 </bdi>sameTerm</h5><a class="self-link" href="#func-sameTerm" aria-label="Permalink for Section 17.4.1.8"></a></div>
             
             <pre class="prototype" aria-busy="false"><code class="hljs">xsd:boolean  SAMETERM (RDF term term1, RDF term term2)</code></pre>
             <p>Returns TRUE if <code>term1</code> and <code>term2</code> are the same RDF term as
-              defined in <cite><a data-matched-text="[[[RDF12-CONCEPTS]]]" href="https://w3c.github.io/rdf-concepts/spec/" id="ref-for-index-term-rdf-1-2-concepts-and-abstract-syntax-4">RDF 1.2 Concepts and Abstract Syntax</a></cite> [<cite><a class="bibref" data-link-type="biblio" href="#bib-rdf12-concepts" title="RDF 1.2 Concepts and Abstract Syntax">RDF12-CONCEPTS</a></cite>]; returns FALSE otherwise.</p>
+              defined in <cite><a data-matched-text="[[[RDF12-CONCEPTS]]]" href="https://w3c.github.io/rdf-concepts/spec/" id="ref-for-index-term-rdf-1-2-concepts-and-abstract-syntax-3">RDF 1.2 Concepts and Abstract Syntax</a></cite> [<cite><a class="bibref" data-link-type="biblio" href="#bib-rdf12-concepts" title="RDF 1.2 Concepts and Abstract Syntax">RDF12-CONCEPTS</a></cite>]; returns FALSE otherwise.</p>
             <div class="exampleGroup">
               <pre class="data" aria-busy="false"><code class="hljs">@prefix foaf:       &lt;http://xmlns.com/foaf/0.1/&gt; .
 
@@ -6167,7 +6181,7 @@ WHERE {
                 </div>
               </div>
             </div>
-            <div class="note" role="note" id="issue-container-generatedID-1"><div role="heading" class="note-title marker" id="h-note-1" aria-level="6"><span>Note</span></div><div class="">
+            <div class="note" role="note" id="issue-container-generatedID-1"><div role="heading" class="note-title marker" id="h-note-2" aria-level="6"><span>Note</span></div><div class="">
               <p>In <cite><a data-matched-text="[[[RDF-SPARQL-QUERY]]]" href="https://www.w3.org/TR/rdf-sparql-query/" id="ref-for-index-term-sparql-query-language-for-rdf-1">SPARQL Query Language for RDF</a></cite> the <code>DATATYPE</code> function was not defined for
                 literals with a language tag. Therefore, an unextended implementation would raise an
                 error when <code>DATATYPE</code> was called with a literal with a language tag.
@@ -7590,10 +7604,7 @@ WHERE {
           <p>SPARQL is defined in terms of IRIs [<cite><a class="bibref" data-link-type="biblio" href="#bib-rfc3987" title="Internationalized Resource Identifiers (IRIs)">RFC3987</a></cite>]. IRIs are a subset of RDF URI References
             that omits the use of spaces.</p>
           <div class="defn">
-            <b>Definition:</b>
-            <div id="defn_RDFTerm">
-              <b>RDF Term</b>
-            </div>
+            <p><b>Definition: <span id="defn_RDFTerm">RDF Term</span></b></p>
             <p>Let I be the set of all IRIs.<br>
               Let RDF-L be the set of all <a href="https://w3c.github.io/rdf-concepts/spec/#literal" id="ref-for-index-term-rdf-literals-1">RDF Literals</a><br>
               Let RDF-B be the set of all <a href="https://w3c.github.io/rdf-concepts/spec/#dfn-blank-node" id="ref-for-index-term-blank-node-3">blank nodes</a> in RDF graphs</p>
@@ -7602,16 +7613,13 @@ WHERE {
           </div>
           <p>This definition of <span class="definedTerm">RDF Term</span> collects together several
             basic notions from the <a href="https://w3c.github.io/rdf-concepts/spec/#section-data-model" id="ref-for-index-term-rdf-data-model-1">RDF data model</a>,
-            but <a href="https://w3c.github.io/rdf-concepts/spec/#section-Graph-URIref" id="ref-for-index-term-6-4-rdf-uri-references-2">updated</a> to refer to IRIs rather
+            but <a href="https://w3c.github.io/rdf-concepts/spec/#section-Graph-URIref" id="ref-for-index-term-updated-1">updated</a> to refer to IRIs rather
             than RDF URI references.</p>
         </section>
         <section id="simple_literal"><div class="header-wrapper"><h4 id="x18-1-2-simple-literal"><bdi class="secno">18.1.2 </bdi>Simple Literal</h4><a class="self-link" href="#simple_literal" aria-label="Permalink for Section 18.1.2"></a></div>
           
           <div class="defn">
-            <p><b>Definition:</b></p>
-            <div id="defn_SimpleLiteral">
-              <b>Simple Literal</b>
-            </div>
+            <p><b>Definition: <span id="defn_SimpleLiteral">Simple Literal</span></b></p>
             <p>The set of <b>Simple Literals</b> is the set of all 
               <a href="https://w3c.github.io/rdf-concepts/spec/#dfn-rdf-literal" id="ref-for-index-term-literal-2">RDF Literals</a>
               with no language tag or datatype IRI.</p>
@@ -7620,10 +7628,7 @@ WHERE {
         <section id="sparqlDataset"><div class="header-wrapper"><h4 id="x18-1-3-rdf-dataset"><bdi class="secno">18.1.3 </bdi>RDF Dataset</h4><a class="self-link" href="#sparqlDataset" aria-label="Permalink for Section 18.1.3"></a></div>
           
           <div class="defn">
-            <b>Definition:</b>
-            <div id="defn_RDFDataset">
-              <b>RDF Dataset</b>
-            </div>
+            <p><b>Definition: <span id="defn_RDFDataset">RDF Dataset</span></b></p>
             <p>An RDF dataset is a set:<br>
               { G, (&lt;u<sub>1</sub>&gt;, G<sub>1</sub>), (&lt;u<sub>2</sub>&gt;, G<sub>2</sub>), . .
               . (&lt;u<sub>n</sub>&gt;, G<sub>n</sub>) }<br>
@@ -7633,10 +7638,7 @@ WHERE {
               graphs.</p>
           </div>
           <div class="defn">
-            <b>Definition:</b>
-            <div id="defn_ActiveGraph">
-              <b>Active Graph</b>
-            </div>
+            <p><b>Definition: <span id="defn_ActiveGraph">Active Graph</span></b></p>
             <p>The <b>active graph</b> is the graph from the dataset used for basic graph pattern
               matching.</p>
           </div>
@@ -7671,10 +7673,7 @@ WHERE {
         <section id="sparqlQueryVariables"><div class="header-wrapper"><h4 id="x18-1-4-query-variables"><bdi class="secno">18.1.4 </bdi>Query Variables</h4><a class="self-link" href="#sparqlQueryVariables" aria-label="Permalink for Section 18.1.4"></a></div>
           
           <div class="defn">
-            <b>Definition:</b>
-            <div id="defn_QueryVariable">
-              <b>Query Variable</b>
-            </div>
+            <p><b>Definition: <span id="defn_QueryVariable">Query Variable</span></b></p>
             <p>A <span class="definedTerm">query variable</span> is a member of the set V where V is
               infinite and disjoint from RDF-T.</p>
           </div>
@@ -7682,10 +7681,7 @@ WHERE {
         <section id="sparqlTriplePatterns"><div class="header-wrapper"><h4 id="x18-1-5-triple-patterns"><bdi class="secno">18.1.5 </bdi>Triple Patterns</h4><a class="self-link" href="#sparqlTriplePatterns" aria-label="Permalink for Section 18.1.5"></a></div>
           
           <div class="defn">
-            <b>Definition:</b>
-            <div id="defn_TriplePattern">
-              <b>Triple Pattern</b>
-            </div>
+            <p><b>Definition: <span id="defn_TriplePattern">Triple Pattern</span></b></p>
             <p>A <span class="definedTerm">triple pattern</span> is member of the set:<br>
               (RDF-T ∪ V) x (I ∪ V) x (RDF-T ∪ V)</p>
           </div>
@@ -7702,10 +7698,7 @@ WHERE {
         <section id="sparqlBasicGraphPatterns"><div class="header-wrapper"><h4 id="x18-1-6-basic-graph-patterns"><bdi class="secno">18.1.6 </bdi>Basic Graph Patterns</h4><a class="self-link" href="#sparqlBasicGraphPatterns" aria-label="Permalink for Section 18.1.6"></a></div>
           
           <div class="defn">
-            <b>Definition:</b>
-            <div id="defn_BasicGraphPattern">
-              <b>Basic Graph Pattern</b>
-            </div>
+            <p><b>Definition: <span id="defn_BasicGraphPattern">Basic Graph Pattern</span></b></p>
             <p>A <span class="definedTerm">Basic Graph Pattern</span> is a set of <a href="#defn_TriplePattern">Triple Patterns</a>.</p>
           </div>
           <p>The empty graph pattern is a basic graph pattern which is the empty set.</p>
@@ -7713,10 +7706,7 @@ WHERE {
         <section id="sparqlPropertyPaths"><div class="header-wrapper"><h4 id="x18-1-7-property-path-patterns"><bdi class="secno">18.1.7 </bdi>Property Path Patterns</h4><a class="self-link" href="#sparqlPropertyPaths" aria-label="Permalink for Section 18.1.7"></a></div>
           
           <div class="defn">
-            <b>Definition:</b>
-            <div id="defn_PropertyPath">
-              <b>Property Path</b>
-            </div>
+            <p><b>Definition: <span id="defn_PropertyPath">Property Path</span></b></p>
             <p>A Property Path is a sequence of triples, t<sub>i</sub> in sequence ST, with n =
               length(ST)-1, such that, for i=0 to n, the object of t<sub>i</sub> is the same term as
               the subject of t<sub>i+1</sub>.</p>
@@ -7726,20 +7716,14 @@ WHERE {
           </div>
           <p>A property path does not span multiple graphs in a dataset.</p>
           <div class="defn">
-            <b>Definition:</b>
-            <div id="defn_PropertyPathExpr">
-              <b>Property Path Expression</b>
-            </div>
+            <p><b>Definition: <span id="defn_PropertyPathExpr">Property Path Expression</span></b></p>
             <p>
               A property path expression is an expression using the property path forms described
               above.
             </p>
           </div>
           <div class="defn">
-            <b>Definition:</b>
-            <div id="defn_PropertyPathPattern">
-              <b>Property Path Pattern</b>
-            </div>
+            <p><b>Definition: <span id="defn_PropertyPathPattern">Property Path Pattern</span></b></p>
             <p>Let PP be the set of all property path expressions. A property path pattern is a
               member of the set:<br>
               (RDF-T ∪ V) x PP x (RDF-T ∪ V)</p>
@@ -7752,18 +7736,12 @@ WHERE {
           <p>A solution mapping is a mapping from a set of variables to a set of RDF terms. We use
             the term 'solution' where it is clear.</p>
           <div class="defn">
-            <b>Definition:</b>
-            <div id="defn_sparqlSolutionMapping">
-              <b>Solution Mapping</b>
-            </div>
+            <p><b>Definition: <span id="defn_sparqlSolutionMapping">Solution Mapping</span></b></p>
             <p>A <b>solution mapping</b>, μ, is a partial function μ : V -&gt; RDF-T.</p>
             <p>The domain of μ, dom(μ), is the subset of V where μ is defined.</p>
           </div>
           <div class="defn">
-            <b>Definition:</b>
-            <div id="defn_sparqlSolutionSequence">
-              <b>Solution Sequence</b>
-            </div>
+            <p><b>Definition: <span id="defn_sparqlSolutionSequence">Solution Sequence</span></b></p>
             <p>A <b>solution sequence</b> is a list of solutions, possibly unordered.</p>
           </div>
           <p>Write expr(μ) for the value of the expression expr, using the terms for variables given
@@ -7772,10 +7750,7 @@ WHERE {
         <section id="sparqlSolMod"><div class="header-wrapper"><h4 id="x18-1-9-solution-sequence-modifiers"><bdi class="secno">18.1.9 </bdi>Solution Sequence Modifiers</h4><a class="self-link" href="#sparqlSolMod" aria-label="Permalink for Section 18.1.9"></a></div>
           
           <div class="defn">
-            <b>Definition:</b>
-            <div id="defn_SolutionModifier">
-              <b>Solution Sequence Modifier</b>
-            </div>
+            <p><b>Definition: <span id="defn_SolutionModifier">Solution Sequence Modifier</span></b></p>
             <p>A <span class="definedTerm">solution sequence modifier</span> is one of:</p>
             <ul>
               <li>
@@ -7805,10 +7780,7 @@ WHERE {
         <section id="idp2427544"><div class="header-wrapper"><h4 id="x18-1-10-sparql-query"><bdi class="secno">18.1.10 </bdi>SPARQL Query</h4><a class="self-link" href="#idp2427544" aria-label="Permalink for Section 18.1.10"></a></div>
           
           <div class="defn">
-            <b>Definition:</b>
-            <div id="defn_SPARQLQuery">
-              <b>SPARQL Query</b>
-            </div>
+            <p><b>Definition: <span id="defn_SPARQLQuery">SPARQL Query</span></b></p>
             <p>A <span class="definedTerm">SPARQL Abstract Query</span> is a tuple (E, DS, QF)
               where:</p>
             <ul>
@@ -7821,10 +7793,7 @@ WHERE {
             </ul>
           </div>
           <div class="defn">
-            <b>Definition:</b>
-            <div id="defn_QueryUnit">
-              <b>Query Level</b>
-            </div>
+            <p><b>Definition: <span id="defn_QueryUnit">Query Level</span></b></p>
             <p>A query level is a graph pattern, a set of group and aggregation, and a set of
               solution modifiers.</p>
           </div>
@@ -8275,7 +8244,7 @@ For each form FILTER(expr) in the group graph pattern:
                 </tr>
                 <tr>
                   <td><code>X seq(P, Q) Y</code></td>
-                  <td><code>X P ?V . ?V Q P</code></td>
+                  <td><code>X P ?V . ?V Q Y</code></td>
                 </tr>
                 <tr>
                   <td><code>X P Y</code></td>
@@ -8352,7 +8321,7 @@ The result is A</code></pre>
 <pre class="codeBlock" aria-busy="false"><code class="hljs">Let FS := the empty set
 Let G := the empty pattern, a basic graph pattern which is the empty set.
 
-For each element E in the GroupGraphPattern
+For each element E in the sequence of elements in the GroupGraphPattern
 
     If E is of the form OPTIONAL{P} 
         Let A := Translate(P)
@@ -8387,7 +8356,8 @@ The result is G.</code></pre>
               <blockquote>
                 <i>data</i> is formed by forming a solution mapping from the variable in the
                 corresponding position in list of variables (or single variable), omitting a binding
-                if the <code>BindingValue</code> is the word <code>UNDEF</code>.
+                if the <a href="#rDataBlockValue">DataBlockValue</a>
+                is the word <code>UNDEF</code>.
               </blockquote>
             </div>
             <blockquote>
@@ -8556,16 +8526,25 @@ Replace join(A, Z) by A</code></pre>
               &nbsp;&nbsp; BGP(?s :p1 ?v2) )
             </div>
           </div>
-          <p>Example: Pattern involving BIND:</p>
+          <p>Example: Pattern involving BIND, with a 
+            <a href="#sparqlSimplification">simplification</a> step:</p>
           <div class="algExample">
             <div class="algExample1">
               { ?s :p ?v . {} BIND (2*?v AS ?v2) }
             </div>
             <div class="algExample2">
-              Join(<br>
-              &nbsp;&nbsp; BGP(?s :p ?v), ?v2, 2*?v) ,<br>
-              &nbsp;&nbsp; Extend({}, ?v2, 2*?v)<br>
+              Extend(<br>
+              &nbsp;&nbsp; Join( <br>
+              &nbsp;&nbsp;&nbsp;&nbsp; Join( {}, BGP(?s :p ?v)),<br>
+              &nbsp;&nbsp;&nbsp;&nbsp; {}),<br>
+              &nbsp;&nbsp; ?v2, 2*?v<br>
               )
+            </div>
+            <div class="algExample2">
+              Extend(<br>
+              &nbsp;&nbsp; BGP(?s :p ?v) ,<br>
+              &nbsp;&nbsp; ?v2, 2*?v<br>
+            )
             </div>
           </div>
           <p>Example: Pattern involving MINUS:</p>
@@ -8576,7 +8555,8 @@ Replace join(A, Z) by A</code></pre>
             <div class="algExample2">
               Minus(<br>
               &nbsp;&nbsp; BGP(?s :p ?v)<br>
-              &nbsp;&nbsp; BGP(?s :p1 ?v2))
+              &nbsp;&nbsp; BGP(?s :p1 ?v2)<br>
+              )
             </div>
           </div>
           <p>Example: Pattern involving a subquery:</p>
@@ -8809,10 +8789,7 @@ The set PV is used later for projection.</pre>
         <p>Write Ω(x) for the multiset consisting of exactly μ(?x-&gt;t), that is, { { (x, t) } }
           with cardinality 1.</p>
         <div class="defn">
-          <b>Definition:</b>
-          <div id="defn_algCompatibleMapping">
-            <b>Compatible Mappings</b>
-          </div>
+          <p><b>Definition: <span id="defn_algCompatibleMapping">Compatible Mappings</span></b></p>
           <p>Two solution mappings μ<sub>1</sub> and μ<sub>2</sub> are compatible if, for every
             variable v in dom(μ<sub>1</sub>) and in dom(μ<sub>2</sub>), μ<sub>1</sub>(v) =
             μ<sub>2</sub>(v).</p>
@@ -8831,10 +8808,7 @@ The set PV is used later for projection.</pre>
             terms, giving two notions of instance. Blank nodes are replaced using an <a href="https://w3c.github.io/rdf-semantics/spec/#definst" id="ref-for-index-term-rdf-instance-mapping-1">RDF instance mapping</a>, &nbsp;σ, from blank nodes to RDF terms;
             variables are replaced by a solution mapping from query variables to RDF terms.</p>
           <div class="defn">
-            <b>Definition:</b>
-            <div id="defn_PatternInstanceMapping">
-              <b>Pattern Instance Mapping</b>
-            </div>
+            <p><b>Definition: <span id="defn_PatternInstanceMapping">Pattern Instance Mapping</span></b></p>
             <p>A <b>Pattern Instance Mapping</b>, P, is the combination of an RDF instance mapping,
               σ, and solution mapping, μ. P(x) = μ(σ(x))</p>
           </div>
@@ -8926,10 +8900,7 @@ The set PV is used later for projection.</pre>
           at that point in the overall query evaluation. We omit explicitly including the active graph
           in each definition for clarity.</p>
         <div class="defn">
-          <p><b>Definition:</b></p>
-          <div id="defn_evalPP_predicate">
-            <b>Evaluation of Predicate Property Path</b>
-          </div>
+          <p><b>Definition: <span id="defn_evalPP_predicate">Evaluation of Predicate Property Path</span></b></p>
           <p>Let Path(X, link(iri), Y) be an predicate inverse property path pattern, using some IRI
             iri.</p>
             <pre aria-busy="false"><code class="hljs javascript"><span class="hljs-built_in">eval</span>(Path(X, link(iri), Y)) = evaluation <span class="hljs-keyword">of</span> basic graph pattern {X iri Y}</code></pre>
@@ -8951,18 +8922,12 @@ The set PV is used later for projection.</pre>
         <p>Informally, evaluating a Predicate Property Path is the same as executing a subquery
           <code>SELECT * { <i>X P Y</i> }</code> at that point in the query evaluation.</p>
         <div class="defn">
-          <p><b>Definition:</b></p>
-          <div id="defn_evalPP_inverse">
-            <b>Evaluation of Inverse Property Path</b>
-          </div>
+          <p><b>Definition: <span id="defn_evalPP_inverse">Evaluation of Inverse Property Path</span></b></p>
           <p>Let P be a property path expression, then:</p>
           <pre aria-busy="false"><code class="hljs javascript"><span class="hljs-built_in">eval</span>(Path(X, inv(P), Y)) = <span class="hljs-built_in">eval</span>(Path(Y, P, X))</code></pre>
         </div>
         <div class="defn">
-          <p><b>Definition:</b></p>
-          <div id="defn_evalPP_sequence">
-            <b>Evaluation of Sequence Property Path</b>
-          </div>
+          <p><b>Definition: <span id="defn_evalPP_sequence">Evaluation of Sequence Property Path</span></b></p>
           <p>Let P and Q be property path expressions. Let V be a fresh variable.</p>
           <pre aria-busy="false"><code class="hljs javascript">A = Join( <span class="hljs-built_in">eval</span>(Path(X, P, V)), <span class="hljs-built_in">eval</span>(Path(V, Q, Y)) )</code></pre>
           <pre aria-busy="false"><code class="hljs javascript"><span class="hljs-built_in">eval</span>(Path(X, seq(P,Q), Y)) = Project(A, Var(X,Y))</code></pre>
@@ -8972,10 +8937,7 @@ The set PV is used later for projection.</pre>
         <p>using the fact that a blank node <code>_:a</code> acts like a variable (under simple
           entailment) except it does not appear in the results from <code>SELECT *</code>.</p>
         <div class="defn">
-          <p><b>Definition:</b></p>
-          <div id="defn_evalPP_alternative">
-            <b>Evaluation of Alternative Property Path</b>
-          </div>
+          <p><b>Definition: <span id="defn_evalPP_alternative">Evaluation of Alternative Property Path</span></b></p>
           <p>Let P and Q be property path expressions.</p>
           <pre aria-busy="false"><code class="hljs javascript"><span class="hljs-built_in">eval</span>(Path(X, alt(P,Q), Y)) = 
     Union(<span class="hljs-built_in">eval</span>(Path(X, P, Y)), <span class="hljs-built_in">eval</span>(Path(X, Q, Y)))</code></pre>
@@ -8983,19 +8945,13 @@ The set PV is used later for projection.</pre>
         <p>Informally, this is the same as:</p>
         <pre aria-busy="false"><code class="hljs css">SELECT * { { X <span class="hljs-selector-tag">P</span> Y } UNION { X <span class="hljs-selector-tag">Q</span> Y } }</code></pre>
         <div class="defn">
-          <p><b>Definition:</b></p>
-          <div id="defn_nodeSet">
-            <b>Node set of a graph</b>
-          </div>
+          <p><b>Definition: <span id="defn_nodeSet">Node set of a graph</span></b></p>
           <p>The node set of a graph G, nodes(G), is:</p>
           <p>nodes(G) = { n | n is an RDF term that is used as a subject or object of a triple of
             G}</p>
         </div>
         <div class="defn">
-          <p><b>Definition:</b></p>
-          <div id="defn_evalPP_ZeroOrOnePath">
-            <b>Evaluation of ZeroOrOnePath</b>
-          </div>
+          <p><b>Definition: <span id="defn_evalPP_ZeroOrOnePath">Evaluation of ZeroOrOnePath</span></b></p>
           <pre aria-busy="false"><code class="hljs css">eval(Path(X:term, <span class="hljs-built_in">ZeroOrOnePath</span>(P), Y:var)) = 
     { (Y, yn) | yn = X or {(Y, yn)} in eval(Path(X,<span class="hljs-selector-tag">P</span>,Y)) }</code></pre>
           <pre aria-busy="false"><code class="hljs css">eval(Path(X:var, <span class="hljs-built_in">ZeroOrOnePath</span>(P), Y:term)) =
@@ -9018,10 +8974,7 @@ The set PV is used later for projection.</pre>
           a node has been visited for the path under consideration, it is not a candidate for another
           step.</p>
         <div class="defn">
-          <p><b>Definition:</b></p>
-          <div id="defn_evalALP_1">
-            <b>Function ALP</b>
-          </div>
+          <p><b>Definition: <span id="defn_evalALP_1">Function ALP</span></b></p>
           <pre aria-busy="false"><code class="hljs javascript">Let <span class="hljs-built_in">eval</span>(x:term, path) be the evaluation <span class="hljs-keyword">of</span> <span class="hljs-string">'path'</span>, starting at RDF term x, 
  and returning a multiset <span class="hljs-keyword">of</span> RDF terms reached 
  by repeated matches <span class="hljs-keyword">of</span> path.
@@ -9087,10 +9040,7 @@ eval(Path(x:term, OneOrMorePath(path), y:term)) =
     { } otherwise</code></pre>
         </div>
         <div class="defn">
-          <p><b>Definition:</b></p>
-          <div id="eval_negatedPropertySet">
-            <b>Evaluation of NegatedPropertySet</b>
-          </div>
+          <p><b>Definition: <span id="eval_negatedPropertySet">Evaluation of NegatedPropertySet</span></b></p>
           <pre class="code" aria-busy="false"><code class="hljs">Write μ' as the extension of a solution mapping:
 μ'(μ,x) = μ(x)   if x is a variable
 μ'(μ,t) = t      if t is a RDF term</code></pre>
@@ -9107,10 +9057,7 @@ eval(Path(x:term, OneOrMorePath(path), y:term)) =
             Semantics</a>". Evaluation of basic graph patterns and property path patterns has been
           described above.</p>
         <div class="defn">
-          <p><b>Definition:</b></p>
-          <div id="defn_algFilter">
-            <b>Filter</b>
-          </div>
+          <p><b>Definition: <span id="defn_algFilter">Filter</span></b></p>
           <p>Let Ω be a multiset of solution mappings and expr be an expression. We define:</p>
           <p>Filter(expr, Ω, D(G)) = { μ | μ in Ω and expr(μ) is an expression that has an
             effective boolean value of true }</p>
@@ -9121,10 +9068,7 @@ eval(Path(x:term, OneOrMorePath(path), y:term)) =
           </blockquote>
         </div>
         <div class="defn">
-          <p><b>Definition:</b></p>
-          <div id="defn_algJoin">
-            <b>Join</b>
-          </div>
+          <p><b>Definition: <span id="defn_algJoin">Join</span></b></p>
           <p>Let Ω<sub>1</sub> and Ω<sub>2</sub> be multisets of solution mappings. We define:</p>
           <p>Join(Ω<sub>1</sub>, Ω<sub>2</sub>) = { merge(μ<sub>1</sub>, μ<sub>2</sub>) |
             μ<sub>1</sub> in Ω<sub>1</sub> and μ<sub>2</sub> in Ω<sub>2</sub>, and μ<sub>1</sub> and
@@ -9140,23 +9084,19 @@ eval(Path(x:term, OneOrMorePath(path), y:term)) =
           mappings, μ<sub>1</sub> and μ<sub>2</sub> in the multisets being joined. The cardinality
           of&nbsp; μ is the sum of the cardinalities from all possibilities.</p>
         <div class="defn">
-          <p><b>Definition:</b></p>
-          <div id="defn_algDiff">
-            <b>Diff</b>
-          </div>
+          <p><b>Definition: <span id="defn_algDiff">Diff</span></b></p>
           <p>Let Ω<sub>1</sub> and Ω<sub>2</sub> be multisets of solution mappings and expr be an
             expression. We define:</p>
           <p>Diff(Ω<sub>1</sub>, Ω<sub>2</sub>, expr) = { μ | μ in Ω<sub>1</sub> such that ∀ μ′ in
             Ω<sub>2</sub>, either μ and μ′ are not compatible or μ and μ' are compatible and
-            expr(merge(μ, μ')) has an effective boolean value of false }</p>
+            expr(merge(μ, μ')) does not have an effective boolean value of true }</p>
           <p>card[Diff(Ω<sub>1</sub>, Ω<sub>2</sub>, expr)](μ) = card[Ω<sub>1</sub>](μ)</p>
         </div>
+        <p>The evaluation of expr(merge(μ, μ')) does not have an effective boolean
+          value of true if it evaluates to false or if it raises an error.</p>
         <p>Diff is used internally for the definition of LeftJoin.</p>
         <div class="defn">
-          <p><b>Definition:</b></p>
-          <div id="defn_algLeftJoin">
-            <b>LeftJoin</b>
-          </div>
+          <p><b>Definition: <span id="defn_algLeftJoin">LeftJoin</span></b></p>
           <p>Let Ω<sub>1</sub> and Ω<sub>2</sub> be multisets of solution mappings and expr be an
             expression. We define:</p>
           <p>LeftJoin(Ω<sub>1</sub>, Ω<sub>2</sub>, expr) = Filter(expr, Join(Ω<sub>1</sub>,
@@ -9165,26 +9105,9 @@ eval(Path(x:term, OneOrMorePath(path), y:term)) =
             Join(Ω<sub>1</sub>, Ω<sub>2</sub>))](μ) + card[Diff(Ω<sub>1</sub>, Ω<sub>2</sub>,
             expr)](μ)</p>
         </div>
-        <p>Written in full that is:</p>
-        <p>LeftJoin(Ω<sub>1</sub>, Ω<sub>2</sub>, expr) =<br>
-          &nbsp;&nbsp;&nbsp; { merge(μ<sub>1,</sub> μ<sub>2</sub>) | μ<sub>1</sub> in Ω<sub>1</sub>
-          and μ<sub>2</sub> in Ω<sub>2</sub>, μ<sub>1</sub> and μ<sub>2</sub> are compatible and
-          expr(merge(μ<sub>1</sub>, μ<sub>2</sub>)) is true }<br>
-          ∪<br>
-          &nbsp;&nbsp;&nbsp; { μ<sub>1</sub> | μ<sub>1</sub> in Ω<sub>1</sub>, ∀ μ<sub>2</sub> in
-          Ω<sub>2</sub>, μ<sub>1</sub> and μ<sub>2</sub> are not compatible, or Ω<sub>2</sub> is
-          empty }<br>
-          ∪<br>
-          &nbsp;&nbsp;&nbsp; { μ<sub>1</sub> | μ<sub>1</sub> in Ω<sub>1</sub>, ∃ μ<sub>2</sub> in
-          Ω<sub>2</sub>, μ<sub>1</sub> and μ<sub>2</sub> are compatible and expr(merge(μ<sub>1</sub>,
-          μ<sub>2</sub>)) is false. }</p>
-        <p>As these are distinct, the cardinality of LeftJoin is cardinality of these individual
-          components of the definition.</p>
+
         <div class="defn">
-          <p><b>Definition:</b></p>
-          <div id="defn_algUnion">
-            <b>Union</b>
-          </div>
+          <p><b>Definition: <span id="defn_algUnion">Union</span></b></p>
           <p>Let Ω<sub>1</sub> and Ω<sub>2</sub> be multisets of solution mappings. We define:</p>
           <p>Union(Ω<sub>1</sub>, Ω<sub>2</sub>) = { μ | μ in Ω<sub>1</sub> or μ in Ω<sub>2</sub>
             }</p>
@@ -9192,10 +9115,7 @@ eval(Path(x:term, OneOrMorePath(path), y:term)) =
             card[Ω<sub>2</sub>](μ)</p>
         </div>
         <div class="defn">
-          <p><b>Definition:</b></p>
-          <div id="defn_algMinus">
-            <b>Minus</b>
-          </div>
+          <p><b>Definition: <span id="defn_algMinus">Minus</span></b></p>
           <p>Let Ω<sub>1</sub> and Ω<sub>2</sub> be multisets of solution mappings. We define:</p>
           <p>Minus(Ω<sub>1</sub>, Ω<sub>2</sub>) = { μ | μ in Ω<sub>1</sub> . ∀ μ' in
             Ω<sub>2</sub>, either μ and μ' are not compatible or dom(μ) and dom(μ') are disjoint
@@ -9209,10 +9129,7 @@ eval(Path(x:term, OneOrMorePath(path), y:term)) =
           every other solution mapping so <code>P MINUS {}</code> would otherwise be empty for any
           pattern <code>P</code>.</p>
         <div class="defn">
-          <b>Definition:</b>
-          <div id="defn_extend">
-            <b>Extend</b>
-          </div>
+          <p><b>Definition: <span id="defn_extend">Extend</span></b></p>
           <p>Let μ be a solution mapping, Ω a multiset of solution mappings, <i>var</i> a variable
             and <i>expr</i> be an <a href="#expressions">expression</a>, then we define:</p>
           <p>Extend(μ, var, expr) = μ ∪ { (var,value) | var not in dom(μ) and value = expr(μ) }</p>
@@ -9223,20 +9140,14 @@ eval(Path(x:term, OneOrMorePath(path), y:term)) =
         <p>Write [ x | C ] for a sequence of elements where C is a condition on x.</p>
         <p>Write card[L](x) to be the cardinality of x in L.</p>
         <div class="defn">
-          <b>Definition:</b>
-          <div id="defn_algToList">
-            <b>ToList</b>
-          </div>
+          <p><b>Definition: <span id="defn_algToList">ToList</span></b></p>
           <p>Let Ω be a multiset of solution mappings. We define:</p>
           <p>ToList(Ω) = a sequence of mappings μ in Ω in any order, with card[Ω](μ) occurrences of
             μ</p>
           <p>card[ToList(Ω)](μ) = card[Ω](μ)</p>
         </div>
         <div class="defn">
-          <b>Definition:</b>
-          <div id="defn_algOrdered">
-            <b>OrderBy</b>
-          </div>
+          <p><b>Definition: <span id="defn_algOrdered">OrderBy</span></b></p>
           <p>Let Ψ be a sequence of solution mappings. We define:</p>
           <div id="defn_algOrderBy">
             OrderBy
@@ -9244,10 +9155,7 @@ eval(Path(x:term, OneOrMorePath(path), y:term)) =
           <p>card[OrderBy(Ψ, condition)](μ) = card[Ψ](μ)</p>
         </div>
         <div class="defn">
-          <b>Definition:</b>
-          <div id="defn_algProjection">
-            <b>Project</b>
-          </div>
+          <p><b>Definition: <span id="defn_algProjection">Project</span></b></p>
           <p>Let Ψ be a sequence of solution mappings and PV a set of variables.</p>
           <p>For mapping μ, write Proj(μ, PV) to be the restriction of μ to variables in PV.</p>
           <p>Project(Ψ, PV) = [ Proj(Ψ[μ], PV) | μ in Ψ ]</p>
@@ -9255,20 +9163,14 @@ eval(Path(x:term, OneOrMorePath(path), y:term)) =
           <p>The order of Project(Ψ, PV) must preserve any ordering given by OrderBy.</p>
         </div>
         <div class="defn">
-          <b>Definition:</b>
-          <div id="defn_algDistinct">
-            <b>Distinct</b>
-          </div>
+          <p><b>Definition: <span id="defn_algDistinct">Distinct</span></b></p>
           <p>Let Ψ be a sequence of solution mappings. We define:</p>
           <p>Distinct(Ψ) = [ μ | μ in Ψ ]</p>
           <p>card[Distinct(Ψ)](μ) = 1</p>
           <p>The order of Distinct(Ψ) must preserve any ordering given by OrderBy.</p>
         </div>
         <div class="defn">
-          <b>Definition:</b>
-          <div id="defn_algReduced">
-            <b>Reduced</b>
-          </div>
+          <p><b>Definition: <span id="defn_algReduced">Reduced</span></b></p>
           <p>Let Ψ be a sequence of solution mappings. We define:</p>
           <p>Reduced(Ψ) = [ μ | μ in Ψ ]</p>
           <p>card[Reduced(Ψ)](μ) is between 1 and card[Ψ](μ)</p>
@@ -9276,20 +9178,14 @@ eval(Path(x:term, OneOrMorePath(path), y:term)) =
         </div>
         <p>The Reduced solution sequence modifier does not guarantee a defined cardinality.</p>
         <div class="defn">
-          <b>Definition:</b>
-          <div id="defn_algSlice">
-            <b>Slice</b>
-          </div>
+          <p><b>Definition: <span id="defn_algSlice">Slice</span></b></p>
           <p>Let Ψ be a sequence of solution mappings. We define:</p>
           <div id="defn_algOrderBy2">
             Slice
           </div>(Ψ, start, length)[i] = Ψ[start+i] for i = 0 to (length-1)
         </div>
         <div class="defn">
-          <b>Definition:</b>
-          <div id="defn_algToMultiSet">
-            <b>ToMultiSet</b>
-          </div>
+          <p><b>Definition: <span id="defn_algToMultiSet">ToMultiSet</span></b></p>
           <p>Let Ψ be a solution sequence. We define:</p>
           <p>ToMultiSet(Ψ) = { μ | μ in Ψ }</p>
           <p>card[ToMultiSet(Ψ)](μ) = card[Ψ](μ)</p>
@@ -9305,10 +9201,7 @@ eval(Path(x:term, OneOrMorePath(path), y:term)) =
             duplicates are preserved.</p>
         </div>
         <div class="defn">
-          <p><b>Definition:</b></p>
-          <div id="defn_exists">
-            <b>Exists</b>
-          </div>
+          <p><b>Definition: <span id="defn_exists">Exists</span></b></p>
           <p>exists(pattern) is a function that returns true if the pattern <a href="#defn_evalExists">evaluates</a> to a non-empty solution sequence, given the current
             solution mapping and active graph at the time of evaluation; otherwise it returns
             false.</p>
@@ -9445,27 +9338,29 @@ eval(Path(x:term, OneOrMorePath(path), y:term)) =
               aggregate before it can determine if there are any errors in a query where aggregates
               are used.</p>
           </section>
-          <section id="defn_aggCount"><div class="header-wrapper"><h5 id="x18-5-1-2-count"><bdi class="secno">18.5.1.2 </bdi>Count</h5><a class="self-link" href="#defn_aggCount" aria-label="Permalink for Section 18.5.1.2"></a></div>
+
+          <section id="aggCount"><div class="header-wrapper"><h5 id="x18-5-1-2-count"><bdi class="secno">18.5.1.2 </bdi>Count</h5><a class="self-link" href="#aggCount" aria-label="Permalink for Section 18.5.1.2"></a></div>
             
             <p>Count is a SPARQL set function which counts the number of times a given expression
-              has a bound, and non-error value within the aggregate group.</p>
+              has a bound, non-error value within the aggregate group.</p>
             <div class="defn">
-              <p><b>Definition: Count</b></p>xsd:integer Count(multiset M)
+              <p><b>Definition: <span id="defn_aggCount">Count</span></b></p>
+              <pre class="code" aria-busy="false"><code class="hljs">xsd:integer Count(multiset M)</code></pre>
               <p>N = Flatten(M)</p>
               <p>remove error elements from N</p>
               <p>Count(M) = card[N]</p>
             </div>
           </section>
-          <section id="defn_aggSum"><div class="header-wrapper"><h5 id="x18-5-1-3-sum"><bdi class="secno">18.5.1.3 </bdi>Sum</h5><a class="self-link" href="#defn_aggSum" aria-label="Permalink for Section 18.5.1.3"></a></div>
+          <section id="aggSum"><div class="header-wrapper"><h5 id="x18-5-1-3-sum"><bdi class="secno">18.5.1.3 </bdi>Sum</h5><a class="self-link" href="#aggSum" aria-label="Permalink for Section 18.5.1.3"></a></div>
             
-            <p>Sum is a SPARQL set function that will return the numeric value obtained by summing
+            <p>Sum is a SPARQL set function that returns the numeric value obtained by summing
               the values within the aggregate group. Type promotion happens as per the op:numeric-add
               function, applied transitively, (see definition below) so the value of SUM(?x), in an
               aggregate group where ?x has values 1 (integer), 2.0e0 (float), and 3.0 (decimal) will
               be 6.0 (float).</p>
             <div class="defn">
-              <p><b>Definition: Sum</b></p>numeric Sum(multiset M)
-              <p>The Sum set function is used by the <code>SUM</code> aggregate in the syntax.</p>
+              <p><b>Definition: <span id="defn_aggSum">Sum</span></b></p>
+              <pre class="code" aria-busy="false"><code class="hljs">numeric Sum(multiset M)</code></pre>
               <p>Sum(M) = Sum(ToList(Flatten(M))).</p>
               <p>Sum(S) = op:numeric-add(S<sub>1</sub>, Sum(S<sub>2..n</sub>)) when card[S] &gt;
                 1<br>
@@ -9475,25 +9370,27 @@ eval(Path(x:term, OneOrMorePath(path), y:term)) =
                 op:numeric-add(3, 0))).</p>
             </div>
           </section>
-          <section id="defn_aggAvg"><div class="header-wrapper"><h5 id="x18-5-1-4-avg"><bdi class="secno">18.5.1.4 </bdi>Avg</h5><a class="self-link" href="#defn_aggAvg" aria-label="Permalink for Section 18.5.1.4"></a></div>
+          <section id="aggAvg"><div class="header-wrapper"><h5 id="x18-5-1-4-avg"><bdi class="secno">18.5.1.4 </bdi>Avg</h5><a class="self-link" href="#aggAvg" aria-label="Permalink for Section 18.5.1.4"></a></div>
             
             <div id="defn_algAvg"></div>The Avg set function calculates the
             average value for an expression over a group. It is defined in terms of Sum and Count.
             <div class="defn">
-              <p><b>Definition: Avg</b></p>numeric Avg(multiset M)
+              <p><b>Definition: <span id="defn_aggAvg">Avg</span></b></p>
+              <pre class="code" aria-busy="false"><code class="hljs">numeric Avg(multiset M)</code></pre>
               <p>Avg(M) = "0"^^xsd:integer, where Count(M) = 0</p>
               <p>Avg(M) = Sum(M) / Count(M), where Count(M) &gt; 0</p>
             </div>
             <p>For example, Avg({1, 2, 3}) = Sum({1, 2, 3})/Count({1, 2, 3}) = 6/3 = 2.</p>
           </section>
-          <section id="defn_aggMin"><div class="header-wrapper"><h5 id="x18-5-1-5-min"><bdi class="secno">18.5.1.5 </bdi>Min</h5><a class="self-link" href="#defn_aggMin" aria-label="Permalink for Section 18.5.1.5"></a></div>
+          <section id="aggMin"><div class="header-wrapper"><h5 id="x18-5-1-5-min"><bdi class="secno">18.5.1.5 </bdi>Min</h5><a class="self-link" href="#aggMin" aria-label="Permalink for Section 18.5.1.5"></a></div>
             
-            <p>Min is a SPARQL set functions that returns the minimum value from a group
+            <p>Min is a SPARQL set function that returns the minimum value from a group
               respectively.</p>
             <p>It makes use of the SPARQL ORDER BY ordering definition, to allow ordering over
               arbitrarily typed expressions.</p>
             <div class="defn">
-              <p><b>Definition: Min</b></p>term Min(multiset M)
+              <p><b>Definition: <span id="defn_aggMin">Min</span></b></p>
+              <pre class="code" aria-busy="false"><code class="hljs">term Min(multiset M)</code></pre>
               <p>Min(M) = Min(ToList(Flatten(M)))</p>
               <p>Min({}) = error.</p>
               <p>The flattened multiset of values passed as an argument is converted to a sequence
@@ -9501,14 +9398,15 @@ eval(Path(x:term, OneOrMorePath(path), y:term)) =
               <p>Min(S) = S<sub>0</sub></p>
             </div>
           </section>
-          <section id="defn_aggMax"><div class="header-wrapper"><h5 id="x18-5-1-6-max"><bdi class="secno">18.5.1.6 </bdi>Max</h5><a class="self-link" href="#defn_aggMax" aria-label="Permalink for Section 18.5.1.6"></a></div>
+          <section id="aggMax"><div class="header-wrapper"><h5 id="x18-5-1-6-max"><bdi class="secno">18.5.1.6 </bdi>Max</h5><a class="self-link" href="#aggMax" aria-label="Permalink for Section 18.5.1.6"></a></div>
             
-            <p>Max is a SPARQL set function that return the maximum value from a group
+            <p>Max is a SPARQL set function that returns the maximum value from a group
               respectively.</p>
             <p>It makes use of the SPARQL ORDER BY ordering definition, to allow ordering over
               arbitrarily typed expressions.</p>
             <div class="defn">
-              <p><b>Definition: Max</b></p>term Max(multiset M)
+              <p><b>Definition: <span id="defn_aggMax">Max</span></b></p>
+              <pre class="code" aria-busy="false"><code class="hljs">term Max(multiset M)</code></pre>
               <p>Max(M) = Max(ToList(Flatten(M)))</p>
               <p>Max({}) = error.</p>
               <p>The multiset of values passed as an argument is converted to a sequence S, this
@@ -9516,14 +9414,15 @@ eval(Path(x:term, OneOrMorePath(path), y:term)) =
               <p>Max(S) = S<sub>0</sub></p>
             </div>
           </section>
-          <section id="defn_aggGroupConcat"><div class="header-wrapper"><h5 id="x18-5-1-7-groupconcat"><bdi class="secno">18.5.1.7 </bdi>GroupConcat</h5><a class="self-link" href="#defn_aggGroupConcat" aria-label="Permalink for Section 18.5.1.7"></a></div>
+          <section id="aggGroupConcat"><div class="header-wrapper"><h5 id="x18-5-1-7-groupconcat"><bdi class="secno">18.5.1.7 </bdi>GroupConcat</h5><a class="self-link" href="#aggGroupConcat" aria-label="Permalink for Section 18.5.1.7"></a></div>
             
             <p>GroupConcat is a set function which performs a string concatenation across the
               values of an expression with a group. The order of the strings is not specified. The
               separator character used in the concatenation may be given with the scalar argument
               SEPARATOR.</p>
             <div class="defn">
-              <p><b>Definition: GroupConcat</b></p>literal GroupConcat(multiset M)
+              <p><b>Definition: <span id="defn_aggGroupConcat">GroupConcat</span></b></p>
+              <pre class="code" aria-busy="false"><code class="hljs">literal GroupConcat(multiset M)</code></pre>
               <p>If the "separator" scalar argument is absent from GROUP_CONCAT then it is taken to
                 be the "space" character, unicode codepoint U+0020.</p>
               <p>The multiset of values, M passed as an argument is converted to a sequence S.</p>
@@ -9535,12 +9434,13 @@ eval(Path(x:term, OneOrMorePath(path), y:term)) =
             </div>
             <p>For example, GroupConcat({"a", "b", "c"}, {"separator" → "."}) = "a.b.c".</p>
           </section>
-          <section id="defn_aggSample"><div class="header-wrapper"><h5 id="x18-5-1-8-sample"><bdi class="secno">18.5.1.8 </bdi>Sample</h5><a class="self-link" href="#defn_aggSample" aria-label="Permalink for Section 18.5.1.8"></a></div>
+          <section id="aggSample"><div class="header-wrapper"><h5 id="x18-5-1-8-sample"><bdi class="secno">18.5.1.8 </bdi>Sample</h5><a class="self-link" href="#aggSample" aria-label="Permalink for Section 18.5.1.8"></a></div>
             
             <p>Sample is a set function which returns an arbitrary value from the multiset passed
               to it.</p>
             <div class="defn">
-              <p><b>Definition: Sample</b></p>RDFTerm Sample(multiset M)
+              <p><b>Definition: <span id="defn_aggSample">Sample</span></b></p>
+              <pre class="code" aria-busy="false"><code class="hljs">RDFTerm Sample(multiset M)</code></pre>
               <p>Sample(M) = v, where v in Flatten(M)</p>
               <p>Sample({}) = error</p>
             </div>
@@ -9561,35 +9461,23 @@ P, P1, P2 : graph patterns
 L : a solution sequence
 F : an expression</code></pre>
           <div class="defn">
-            <b>Definition:</b>
-            <div id="defn_evalBasicGraphPattern">
-              <b>Evaluation of a Basic Graph Pattern</b>
-            </div>
+            <p><b>Definition: <span id="defn_evalBasicGraphPattern">Evaluation of a Basic Graph Pattern</span></b></p>
             <pre class="code" aria-busy="false"><code class="hljs">eval(D(G), BGP) = multiset of solution mappings</code></pre>
             <p>See section <a href="#BasicGraphPattern">Basic Graph Patterns</a></p>
           </div>
           <div class="defn">
-            <b>Definition:</b>
-            <div id="defn_evalPropertyPathPattern">
-              <b>Evaluation of a Property Path Pattern</b>
-            </div>
+            <p><b>Definition: <span id="defn_evalPropertyPathPattern">Evaluation of a Property Path Pattern</span></b></p>
             <pre class="code" aria-busy="false"><code class="hljs">eval(D(G), Path(X, path, Y)) = multiset of solution mappings</code></pre>
             <p>See section <a href="#defn_PropertyPathExpr">Property Path Expresions</a></p>
           </div>
           <div class="defn">
-            <b>Definition:</b>
-            <div id="defn_evalFilter">
-              <b>Evaluation of Filter</b>
-            </div>
+            <p><b>Definition: <span id="defn_evalFilter">Evaluation of Filter</span></b></p>
             <pre class="code" aria-busy="false"><code class="hljs">eval(D(G), Filter(F, P)) = Filter(F, eval(D(G),P), D(G))</code></pre>
           </div>
           <p>'substitute' is a filter function in support of the evaluation of <a href="#func-filter-exists"><code>EXISTS</code> and <code>NOT EXISTS</code></a> forms which were
             translated to <code>exists</code>.</p>
           <div class="defn">
-            <p><b>Definition:</b></p>
-            <div id="defn_substitute">
-              <b>Substitute</b>
-            </div>
+            <p><b>Definition: <span id="defn_substitute">Substitute</span></b></p>
             <p>Let μ be a solution mapping.</p>
             <blockquote>
               <p>substitute(<i>pattern</i>, μ) = the pattern formed by replacing every occurrence of
@@ -9597,10 +9485,7 @@ F : an expression</code></pre>
             </blockquote>
           </div>
           <div class="defn">
-            <p><b>Definition:</b></p>
-            <div id="defn_evalExists">
-              <b>Evaluation of Exists</b>
-            </div>
+            <p><b>Definition: <span id="defn_evalExists">Evaluation of Exists</span></b></p>
             <p>Let μ be the current solution mapping for a filter and P a graph pattern:</p>
             <blockquote>
               The value exists(P), given D(G) is true if and only if eval(D(G), substitute(P, μ)) is
@@ -9608,31 +9493,19 @@ F : an expression</code></pre>
             </blockquote>
           </div>
           <div class="defn">
-            <b>Definition:</b>
-            <div id="defn_evalJoin">
-              <b>Evaluation of Join</b>
-            </div>
+            <p><b>Definition: <span id="defn_evalJoin">Evaluation of Join</span></b></p>
             <pre class="code" aria-busy="false"><code class="hljs">eval(D(G), Join(P1, P2)) = Join(eval(D(G), P1), eval(D(G), P2))</code></pre>
           </div>
           <div class="defn">
-            <b>Definition:</b>
-            <div id="defn_evalLeftJoin">
-              <b>Evaluation of LeftJoin</b>
-            </div>
+            <p><b>Definition: <span id="defn_evalLeftJoin">Evaluation of LeftJoin</span></b></p>
             <pre class="code" aria-busy="false"><code class="hljs">eval(D(G), LeftJoin(P1, P2, F)) = LeftJoin(eval(D(G), P1), eval(D(G), P2), F)</code></pre>
           </div>
           <div class="defn">
-            <b>Definition:</b>
-            <div id="defn_evalUnion">
-              <b>Evaluation of Union</b>
-            </div>
+            <p><b>Definition: <span id="defn_evalUnion">Evaluation of Union</span></b></p>
             <pre class="code" aria-busy="false"><code class="hljs">eval(D(G), Union(P1,P2)) = Union(eval(D(G), P1), eval(D(G), P2))</code></pre>
           </div>
           <div class="defn">
-            <b>Definition:</b>
-            <div id="defn_evalGraph">
-              <b>Evaluation of Graph</b>
-            </div>
+            <p><b>Definition: <span id="defn_evalGraph">Evaluation of Graph</span></b></p>
             <pre class="code" aria-busy="false"><code class="hljs">if IRI is a graph name in D
     eval(D(G), Graph(IRI,P)) = eval(D(D[IRI]), P)</code></pre>
             <pre class="code" aria-busy="false"><code class="hljs">if IRI is not a graph name in D
@@ -9668,59 +9541,35 @@ F : an expression</code></pre>
           </div>
           <p>Note that if eval(D(G), A<sub>i</sub>) is an error, it is ignored.</p>
           <div class="defn">
-            <b>Definition:</b>
-            <div id="defn_evalExtend">
-              <b>Evaluation of Extend</b>
-            </div>
+            <p><b>Definition: <span id="defn_evalExtend">Evaluation of Extend</span></b></p>
             <pre class="code" aria-busy="false"><code class="hljs">eval(D(G), Extend(P, var, expr)) = Extend(eval(D(G), P), var, expr)</code></pre>
           </div>
           <div class="defn">
-            <b>Definition:</b>
-            <div id="defn_evalList">
-              <b>Evaluation of ToList</b>
-            </div>
+            <p><b>Definition: <span id="defn_evalList">Evaluation of ToList</span></b></p>
             <pre class="code" aria-busy="false"><code class="hljs">eval(D(G), ToList(P)) = ToList(eval(D(G), P))</code></pre>
           </div>
           <div class="defn">
-            <b>Definition:</b>
-            <div id="defn_evalDistinct">
-              <b>Evaluation of Distinct</b>
-            </div>
+            <p><b>Definition: <span id="defn_evalDistinct">Evaluation of Distinct</span></b></p>
             <pre class="code" aria-busy="false"><code class="hljs">eval(D(G), Distinct(L)) = Distinct(eval(D(G), L))</code></pre>
           </div>
           <div class="defn">
-            <b>Definition:</b>
-            <div id="defn_evalReduced">
-              <b>Evaluation of Reduced</b>
-            </div>
+            <p><b>Definition: <span id="defn_evalReduced">Evaluation of Reduced</span></b></p>
             <pre class="code" aria-busy="false"><code class="hljs">eval(D(G), Reduced(L)) = Reduced(eval(D(G), L))</code></pre>
           </div>
           <div class="defn">
-            <b>Definition:</b>
-            <div id="defn_evalProject">
-              <b>Evaluation of Project</b>
-            </div>
+            <p><b>Definition: <span id="defn_evalProject">Evaluation of Project</span></b></p>
             <pre class="code" aria-busy="false"><code class="hljs">eval(D(G), Project(L, vars)) = Project(eval(D(G), L), vars)</code></pre>
           </div>
           <div class="defn">
-            <b>Definition:</b>
-            <div id="defn_evalOrderBy">
-              <b>Evaluation of OrderBy</b>
-            </div>
+            <p><b>Definition: <span id="defn_evalOrderBy">Evaluation of OrderBy</span></b></p>
             <pre class="code" aria-busy="false"><code class="hljs">eval(D(G), OrderBy(L, condition)) = OrderBy(eval(D(G), L), condition)</code></pre>
           </div>
           <div class="defn">
-            <b>Definition:</b>
-            <div id="defn_evalToMultiSet">
-              <b>Evaluation of ToMultiSet</b>
-            </div>
+            <p><b>Definition: <span id="defn_evalToMultiSet">Evaluation of ToMultiSet</span></b></p>
             <pre class="code" aria-busy="false"><code class="hljs">eval(D(G), ToMultiSet(L)) = ToMultiSet(eval(D), M))</code></pre>
           </div>
           <div class="defn">
-            <b>Definition:</b>
-            <div id="defn_evalSlice">
-              <b>Evaluation of Slice</b>
-            </div>
+            <p><b>Definition: <span id="defn_evalSlice">Evaluation of Slice</span></b></p>
             <pre class="code" aria-busy="false"><code class="hljs">eval(D(G), Slice(L, start, length)) = Slice(eval(D(G), L), start, length)</code></pre>
           </div>
         </section>
@@ -11296,7 +11145,7 @@ a\u003Ab            # a:b -- codepoint x3A is colon</code></pre>
       <p>TODO</p>
     </section>
 
-    <section id="security"><div class="header-wrapper"><h2 id="x23-security-considerations-informative"><bdi class="secno">23. </bdi>Security Considerations (Informative)</h2><a class="self-link" href="#security" aria-label="Permalink for Section 23."></a></div>
+    <section id="security"><div class="header-wrapper"><h2 id="x23-security-considerations"><bdi class="secno">23. </bdi>Security Considerations</h2><a class="self-link" href="#security" aria-label="Permalink for Section 23."></a></div>
       
       <p>SPARQL queries using FROM, FROM NAMED, or GRAPH may cause the specified URI to be
           dereferenced. This may cause additional use of network, disk or CPU resources along with
@@ -11361,17 +11210,15 @@ a\u003Ab            # a:b -- codepoint x3A is colon</code></pre>
         [<cite><a class="bibref" data-link-type="biblio" href="#bib-rdf12-concepts">RDF12-CONCEPTS</a></cite>] defines the following:
         <ul>
           <li>
-    <span class="index-term" data-href="https://w3c.github.io/rdf-concepts/spec/#section-Graph-URIref" id="index-term-6-4-rdf-uri-references" tabindex="0" aria-haspopup="dialog">6.4 RDF URI References</span>
-  </li><li>
-    <span class="index-term" data-href="https://w3c.github.io/rdf-concepts/spec/#section-Literal-Equality" id="index-term-6-5-1-literal-equality" tabindex="0" aria-haspopup="dialog">6.5.1 Literal Equality</span>
-  </li><li>
-    <span class="index-term" data-href="https://w3c.github.io/rdf-concepts/spec/#section-blank-nodes" id="index-term-6-6-blank-nodes" tabindex="0" aria-haspopup="dialog">6.6 Blank Nodes</span>
-  </li><li>
     <span class="index-term" data-href="https://w3c.github.io/rdf-concepts/spec/#dfn-blank-node" id="index-term-blank-node" tabindex="0" aria-haspopup="dialog">blank node</span>
   </li><li>
     <span class="index-term" data-href="https://w3c.github.io/rdf-concepts/spec/#dfn-recognized-datatype-iri" id="index-term-datatype-iri" tabindex="0" aria-haspopup="dialog">datatype IRI</span>
   </li><li>
+    <span class="index-term" data-href="https://w3c.github.io/rdf-concepts/spec/#dfn-datatype-iri" id="index-term-datatype-iri-0" tabindex="0" aria-haspopup="dialog">datatype IRI</span>
+  </li><li>
     <span class="index-term" data-href="https://w3c.github.io/rdf-concepts/spec/#dfn-internationalized-resource-identifier" id="index-term-iri" tabindex="0" aria-haspopup="dialog">IRI</span>
+  </li><li>
+    <span class="index-term" data-href="https://w3c.github.io/rdf-concepts/spec/#dfn-iri-equality" id="index-term-iri-equality" tabindex="0" aria-haspopup="dialog">IRI equality</span>
   </li><li>
     <span class="index-term" data-href="https://w3c.github.io/rdf-concepts/spec/#dfn-language-tag" id="index-term-language-tag" tabindex="0" aria-haspopup="dialog">language tag</span>
   </li><li>
@@ -11379,11 +11226,17 @@ a\u003Ab            # a:b -- codepoint x3A is colon</code></pre>
   </li><li>
     <span class="index-term" data-href="https://w3c.github.io/rdf-concepts/spec/#dfn-rdf-literal" id="index-term-literal" tabindex="0" aria-haspopup="dialog">literal</span>
   </li><li>
+    <span class="index-term" data-href="https://w3c.github.io/rdf-concepts/spec/#dfn-term-equal" id="index-term-literal-term-equality" tabindex="0" aria-haspopup="dialog">Literal term equality</span>
+  </li><li>
+    <span class="index-term" data-href="https://w3c.github.io/rdf-concepts/spec/#dfn-literal-value" id="index-term-literal-value" tabindex="0" aria-haspopup="dialog">literal value</span>
+  </li><li>
     <span class="index-term" data-href="https://w3c.github.io/rdf-concepts/spec/" id="index-term-rdf-1-2-concepts-and-abstract-syntax" tabindex="0" aria-haspopup="dialog">RDF 1.2 Concepts and Abstract Syntax</span>
   </li><li>
     <span class="index-term" data-href="https://w3c.github.io/rdf-concepts/spec/#section-data-model" id="index-term-rdf-data-model" tabindex="0" aria-haspopup="dialog">RDF data model</span>
   </li><li>
     <span class="index-term" data-href="https://w3c.github.io/rdf-concepts/spec/#literal" id="index-term-rdf-literals" tabindex="0" aria-haspopup="dialog">RDF Literals</span>
+  </li><li>
+    <span class="index-term" data-href="https://w3c.github.io/rdf-concepts/spec/#section-Graph-URIref" id="index-term-updated" tabindex="0" aria-haspopup="dialog">updated</span>
   </li>
         </ul>
       </li><li>
@@ -11824,7 +11677,7 @@ a\u003Ab            # a:b -- codepoint x3A is colon</code></pre>
     </dd><dt id="bib-rdf-sparql-xmlres">[RDF-SPARQL-XMLRES]</dt><dd>
       <a href="https://www.w3.org/TR/rdf-sparql-XMLres/" id="ref-for-index-term-sparql-query-results-xml-format-second-edition-7"><cite>SPARQL Query Results XML Format (Second Edition)</cite></a>. Dave Beckett; Jeen Broekstra.  W3C. 21 March 2013. W3C Recommendation. URL: <a href="https://www.w3.org/TR/rdf-sparql-XMLres/" id="ref-for-index-term-sparql-query-results-xml-format-second-edition-8">https://www.w3.org/TR/rdf-sparql-XMLres/</a>
     </dd><dt id="bib-rdf12-concepts">[RDF12-CONCEPTS]</dt><dd>
-      <a href="https://w3c.github.io/rdf-concepts/spec/" id="ref-for-index-term-rdf-1-2-concepts-and-abstract-syntax-5"><cite>RDF 1.2 Concepts and Abstract Syntax</cite></a>. Richard Cyganiak; David Wood; Markus Lanthaler.  W3C. W3C Working Draft. URL: <a href="https://w3c.github.io/rdf-concepts/spec/" id="ref-for-index-term-rdf-1-2-concepts-and-abstract-syntax-6">https://w3c.github.io/rdf-concepts/spec/</a>
+      <a href="https://w3c.github.io/rdf-concepts/spec/" id="ref-for-index-term-rdf-1-2-concepts-and-abstract-syntax-4"><cite>RDF 1.2 Concepts and Abstract Syntax</cite></a>. Richard Cyganiak; David Wood; Markus Lanthaler.  W3C. W3C Working Draft. URL: <a href="https://w3c.github.io/rdf-concepts/spec/" id="ref-for-index-term-rdf-1-2-concepts-and-abstract-syntax-5">https://w3c.github.io/rdf-concepts/spec/</a>
     </dd><dt id="bib-rdf12-semantics">[RDF12-SEMANTICS]</dt><dd>
       <a href="https://w3c.github.io/rdf-semantics/spec/"><cite>RDF 1.2 Semantics</cite></a>. Patrick Hayes; Peter Patel-Schneider.  W3C. W3C Working Draft. URL: <a href="https://w3c.github.io/rdf-semantics/spec/">https://w3c.github.io/rdf-semantics/spec/</a>
     </dd><dt id="bib-rfc2119">[RFC2119]</dt><dd>
@@ -11963,44 +11816,6 @@ a\u003Ab            # a:b -- codepoint x3A is colon</code></pre>
     <a href="#ref-for-index-term-sparql-query-results-xml-format-second-edition-7" title="§ C.1 Normative references">§ C.1 Normative references</a> <a href="#ref-for-index-term-sparql-query-results-xml-format-second-edition-8" title="Reference 2">(2)</a> 
   </li>
   </ul>
-    </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-6-4-rdf-uri-references" aria-label="Links in this document to definition: 6.4 RDF URI References">
-      <span class="caret"></span>
-      <div>
-        <a class="self-link" href="https://w3c.github.io/rdf-concepts/spec/#section-Graph-URIref" aria-label="Permalink for definition: 6.4 RDF URI References. Activate to close this dialog.">Permalink</a>
-         
-      </div>
-      <p><b>Referenced in:</b></p>
-      <ul>
-    <li>
-    <a href="#ref-for-index-term-6-4-rdf-uri-references-1" title="§ 17.4.1.7 RDFterm-equal">§ 17.4.1.7 RDFterm-equal</a> 
-  </li><li>
-    <a href="#ref-for-index-term-6-4-rdf-uri-references-2" title="§ 18.1.1 RDF Terms">§ 18.1.1 RDF Terms</a> 
-  </li>
-  </ul>
-    </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-6-5-1-literal-equality" aria-label="Links in this document to definition: 6.5.1 Literal Equality">
-      <span class="caret"></span>
-      <div>
-        <a class="self-link" href="https://w3c.github.io/rdf-concepts/spec/#section-Literal-Equality" aria-label="Permalink for definition: 6.5.1 Literal Equality. Activate to close this dialog.">Permalink</a>
-         
-      </div>
-      <p><b>Referenced in:</b></p>
-      <ul>
-    <li>
-    <a href="#ref-for-index-term-6-5-1-literal-equality-1" title="§ 17.4.1.7 RDFterm-equal">§ 17.4.1.7 RDFterm-equal</a> 
-  </li>
-  </ul>
-    </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-6-6-blank-nodes" aria-label="Links in this document to definition: 6.6 Blank Nodes">
-      <span class="caret"></span>
-      <div>
-        <a class="self-link" href="https://w3c.github.io/rdf-concepts/spec/#section-blank-nodes" aria-label="Permalink for definition: 6.6 Blank Nodes. Activate to close this dialog.">Permalink</a>
-         
-      </div>
-      <p><b>Referenced in:</b></p>
-      <ul>
-    <li>
-    <a href="#ref-for-index-term-6-6-blank-nodes-1" title="§ 17.4.1.7 RDFterm-equal">§ 17.4.1.7 RDFterm-equal</a> 
-  </li>
-  </ul>
     </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-blank-node" aria-label="Links in this document to definition: blank node">
       <span class="caret"></span>
       <div>
@@ -12027,6 +11842,20 @@ a\u003Ab            # a:b -- codepoint x3A is colon</code></pre>
       <ul>
     <li>
     <a href="#ref-for-index-term-datatype-iri-1" title="§ 1.2.4 Terminology">§ 1.2.4 Terminology</a> 
+  </li><li>
+    <a href="#ref-for-index-term-datatype-iri-2" title="§ 17.4.1.7 RDFterm-equal">§ 17.4.1.7 RDFterm-equal</a> <a href="#ref-for-index-term-datatype-iri-3" title="Reference 2">(2)</a> 
+  </li>
+  </ul>
+    </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-datatype-iri-0" aria-label="Links in this document to definition: datatype IRI">
+      <span class="caret"></span>
+      <div>
+        <a class="self-link" href="https://w3c.github.io/rdf-concepts/spec/#dfn-datatype-iri" aria-label="Permalink for definition: datatype IRI. Activate to close this dialog.">Permalink</a>
+         
+      </div>
+      <p><b>Referenced in:</b></p>
+      <ul>
+    <li>
+    <a href="#ref-for-index-term-datatype-iri-0-1" title="§ 17.4.1.7 RDFterm-equal">§ 17.4.1.7 RDFterm-equal</a> <a href="#ref-for-index-term-datatype-iri-0-2" title="Reference 2">(2)</a> 
   </li>
   </ul>
     </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-iri" aria-label="Links in this document to definition: IRI">
@@ -12039,6 +11868,18 @@ a\u003Ab            # a:b -- codepoint x3A is colon</code></pre>
       <ul>
     <li>
     <a href="#ref-for-index-term-iri-1" title="§ 1.2.4 Terminology">§ 1.2.4 Terminology</a> 
+  </li>
+  </ul>
+    </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-iri-equality" aria-label="Links in this document to definition: IRI equality">
+      <span class="caret"></span>
+      <div>
+        <a class="self-link" href="https://w3c.github.io/rdf-concepts/spec/#dfn-iri-equality" aria-label="Permalink for definition: IRI equality. Activate to close this dialog.">Permalink</a>
+         
+      </div>
+      <p><b>Referenced in:</b></p>
+      <ul>
+    <li>
+    <a href="#ref-for-index-term-iri-equality-1" title="§ 17.4.1.7 RDFterm-equal">§ 17.4.1.7 RDFterm-equal</a> 
   </li>
   </ul>
     </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-language-tag" aria-label="Links in this document to definition: language tag">
@@ -12063,6 +11904,8 @@ a\u003Ab            # a:b -- codepoint x3A is colon</code></pre>
       <ul>
     <li>
     <a href="#ref-for-index-term-lexical-form-1" title="§ 1.2.4 Terminology">§ 1.2.4 Terminology</a> 
+  </li><li>
+    <a href="#ref-for-index-term-lexical-form-2" title="§ 17.4.1.7 RDFterm-equal">§ 17.4.1.7 RDFterm-equal</a> 
   </li>
   </ul>
     </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-literal" aria-label="Links in this document to definition: literal">
@@ -12079,6 +11922,30 @@ a\u003Ab            # a:b -- codepoint x3A is colon</code></pre>
     <a href="#ref-for-index-term-literal-2" title="§ 18.1.2 Simple Literal">§ 18.1.2 Simple Literal</a> 
   </li>
   </ul>
+    </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-literal-term-equality" aria-label="Links in this document to definition: Literal term equality">
+      <span class="caret"></span>
+      <div>
+        <a class="self-link" href="https://w3c.github.io/rdf-concepts/spec/#dfn-term-equal" aria-label="Permalink for definition: Literal term equality. Activate to close this dialog.">Permalink</a>
+         
+      </div>
+      <p><b>Referenced in:</b></p>
+      <ul>
+    <li>
+    <a href="#ref-for-index-term-literal-term-equality-1" title="§ 17.4.1.7 RDFterm-equal">§ 17.4.1.7 RDFterm-equal</a> 
+  </li>
+  </ul>
+    </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-literal-value" aria-label="Links in this document to definition: literal value">
+      <span class="caret"></span>
+      <div>
+        <a class="self-link" href="https://w3c.github.io/rdf-concepts/spec/#dfn-literal-value" aria-label="Permalink for definition: literal value. Activate to close this dialog.">Permalink</a>
+         
+      </div>
+      <p><b>Referenced in:</b></p>
+      <ul>
+    <li>
+    <a href="#ref-for-index-term-literal-value-1" title="§ 17.4.1.7 RDFterm-equal">§ 17.4.1.7 RDFterm-equal</a> 
+  </li>
+  </ul>
     </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-rdf-1-2-concepts-and-abstract-syntax" aria-label="Links in this document to definition: RDF 1.2 Concepts and Abstract Syntax">
       <span class="caret"></span>
       <div>
@@ -12092,11 +11959,9 @@ a\u003Ab            # a:b -- codepoint x3A is colon</code></pre>
   </li><li>
     <a href="#ref-for-index-term-rdf-1-2-concepts-and-abstract-syntax-2" title="§ 4.1.1 Syntax for IRIs">§ 4.1.1 Syntax for IRIs</a> 
   </li><li>
-    <a href="#ref-for-index-term-rdf-1-2-concepts-and-abstract-syntax-3" title="§ 17.4.1.7 RDFterm-equal">§ 17.4.1.7 RDFterm-equal</a> 
+    <a href="#ref-for-index-term-rdf-1-2-concepts-and-abstract-syntax-3" title="§ 17.4.1.8 sameTerm">§ 17.4.1.8 sameTerm</a> 
   </li><li>
-    <a href="#ref-for-index-term-rdf-1-2-concepts-and-abstract-syntax-4" title="§ 17.4.1.8 sameTerm">§ 17.4.1.8 sameTerm</a> 
-  </li><li>
-    <a href="#ref-for-index-term-rdf-1-2-concepts-and-abstract-syntax-5" title="§ C.1 Normative references">§ C.1 Normative references</a> <a href="#ref-for-index-term-rdf-1-2-concepts-and-abstract-syntax-6" title="Reference 2">(2)</a> 
+    <a href="#ref-for-index-term-rdf-1-2-concepts-and-abstract-syntax-4" title="§ C.1 Normative references">§ C.1 Normative references</a> <a href="#ref-for-index-term-rdf-1-2-concepts-and-abstract-syntax-5" title="Reference 2">(2)</a> 
   </li>
   </ul>
     </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-rdf-data-model" aria-label="Links in this document to definition: RDF data model">
@@ -12121,6 +11986,18 @@ a\u003Ab            # a:b -- codepoint x3A is colon</code></pre>
       <ul>
     <li>
     <a href="#ref-for-index-term-rdf-literals-1" title="§ 18.1.1 RDF Terms">§ 18.1.1 RDF Terms</a> 
+  </li>
+  </ul>
+    </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-updated" aria-label="Links in this document to definition: updated">
+      <span class="caret"></span>
+      <div>
+        <a class="self-link" href="https://w3c.github.io/rdf-concepts/spec/#section-Graph-URIref" aria-label="Permalink for definition: updated. Activate to close this dialog.">Permalink</a>
+         
+      </div>
+      <p><b>Referenced in:</b></p>
+      <ul>
+    <li>
+    <a href="#ref-for-index-term-updated-1" title="§ 18.1.1 RDF Terms">§ 18.1.1 RDF Terms</a> 
   </li>
   </ul>
     </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-lean" aria-label="Links in this document to definition: lean">
@@ -12222,7 +12099,7 @@ a\u003Ab            # a:b -- codepoint x3A is colon</code></pre>
     <li>
     <a href="#ref-for-index-term-uniform-resource-identifier-uri-generic-syntax-1" title="§ 4.1.1.2 Relative IRIs">§ 4.1.1.2 Relative IRIs</a> 
   </li><li>
-    <a href="#ref-for-index-term-uniform-resource-identifier-uri-generic-syntax-2" title="§ 23. Security Considerations (Informative)">§ 23. Security Considerations (Informative)</a> 
+    <a href="#ref-for-index-term-uniform-resource-identifier-uri-generic-syntax-2" title="§ 23. Security Considerations">§ 23. Security Considerations</a> 
   </li><li>
     <a href="#ref-for-index-term-uniform-resource-identifier-uri-generic-syntax-3" title="§ C.1 Normative references">§ C.1 Normative references</a> <a href="#ref-for-index-term-uniform-resource-identifier-uri-generic-syntax-4" title="Reference 2">(2)</a> 
   </li>
@@ -12238,7 +12115,7 @@ a\u003Ab            # a:b -- codepoint x3A is colon</code></pre>
     <li>
     <a href="#ref-for-index-term-internationalized-resource-identifiers-iris-1" title="§ 4.1.1.2 Relative IRIs">§ 4.1.1.2 Relative IRIs</a> 
   </li><li>
-    <a href="#ref-for-index-term-internationalized-resource-identifiers-iris-2" title="§ 23. Security Considerations (Informative)">§ 23. Security Considerations (Informative)</a> 
+    <a href="#ref-for-index-term-internationalized-resource-identifiers-iris-2" title="§ 23. Security Considerations">§ 23. Security Considerations</a> 
   </li><li>
     <a href="#ref-for-index-term-internationalized-resource-identifiers-iris-3" title="§ C.1 Normative references">§ C.1 Normative references</a> <a href="#ref-for-index-term-internationalized-resource-identifiers-iris-4" title="Reference 2">(2)</a> 
   </li>
@@ -12602,7 +12479,7 @@ a\u003Ab            # a:b -- codepoint x3A is colon</code></pre>
       <p><b>Referenced in:</b></p>
       <ul>
     <li>
-    <a href="#ref-for-index-term-unicode-security-considerations-1" title="§ 23. Security Considerations (Informative)">§ 23. Security Considerations (Informative)</a> 
+    <a href="#ref-for-index-term-unicode-security-considerations-1" title="§ 23. Security Considerations">§ 23. Security Considerations</a> 
   </li><li>
     <a href="#ref-for-index-term-unicode-security-considerations-2" title="§ C.1 Normative references">§ C.1 Normative references</a> <a href="#ref-for-index-term-unicode-security-considerations-3" title="Reference 2">(2)</a> 
   </li>

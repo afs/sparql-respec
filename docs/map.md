@@ -5,10 +5,10 @@ title: Drafts
 
 ## SPARQL files, drafted for FPWD
 
-* [FPWD-sparql12-query-20230307](FPWD-sparql12-query-20230307.html)
+* [FPWD-sparql12-query-20230329](FPWD-sparql12-query-20230329.html)
 * [FPWD-sparql12-update-20230306](FPWD-sparql12-update-20230306.html)
 
-* [FPWD-sparql12-results-json-20230303](FPWD-sparql12-results-json-20230303.html)
+* [FPWD-sparql12-results-json-20230331](FPWD-sparql12-results-json-20230331.html)
 * [FPWD-sparql12-results-xml-20230303](FPWD-sparql12-results-xml-20230303.html)
 * [FPWD-sparql12-results-csv-tsv-20230308](FPWD-sparql12-results-csv-tsv-20230308.html)
 
