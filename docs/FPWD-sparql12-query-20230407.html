@@ -1,6 +1,6 @@
-<!DOCTYPE html><html dir="ltr" lang="en"><head>
+<!DOCTYPE html><html lang="en" dir="ltr"><head>
 <meta charset="utf-8">
-<meta name="generator" content="ReSpec 32.8.1">
+<meta name="generator" content="ReSpec 33.0.1">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <style>
 .issue-label{text-transform:initial}
@@ -798,21 +798,21 @@ var[data-type]:hover::after,var[data-type]:hover::before{opacity:1}
   "lint": {
     "no-unused-dfns": false
   },
-  "pubDate": "2023-04-30",
-  "publishISODate": "2023-04-02T00:00:00.000Z",
-  "generatedSubtitle": "W3C First Public Working Draft 02 April 2023"
+  "pubDate": "2023-05-01",
+  "publishISODate": "2023-04-07T00:00:00.000Z",
+  "generatedSubtitle": "W3C First Public Working Draft 07 April 2023"
 }</script>
 <link rel="stylesheet" href="https://www.w3.org/StyleSheets/TR/2021/W3C-WD"></head>
   <body class="h-entry"><div class="head">
-    <p class="logos"><a class="logo" href="https://www.w3.org/"><img crossorigin="" alt="W3C" src="https://www.w3.org/StyleSheets/TR/2021/logos/W3C" width="72" height="48">
+    <p class="logos"><a class="logo" href="https://www.w3.org/"><img crossorigin="" alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2021/logos/W3C" width="72">
   </a></p>
     <h1 id="title" class="title">SPARQL 1.2 Query Language</h1> 
-    <p id="w3c-state"><a href="https://www.w3.org/standards/types#FPWD">W3C First Public Working Draft</a> <time class="dt-published" datetime="2023-04-02">02 April 2023</time></p>
+    <p id="w3c-state"><a href="https://www.w3.org/standards/types#FPWD">W3C First Public Working Draft</a> <time class="dt-published" datetime="2023-04-07">07 April 2023</time></p>
     <details open="">
       <summary>More details about this document</summary>
       <dl>
         <dt>This version:</dt><dd>
-                <a class="u-url" href="https://www.w3.org/TR/2023/WD-sparql12-query-20230402/">https://www.w3.org/TR/2023/WD-sparql12-query-20230402/</a>
+                <a class="u-url" href="https://www.w3.org/TR/2023/WD-sparql12-query-20230407/">https://www.w3.org/TR/2023/WD-sparql12-query-20230407/</a>
               </dd>
         <dt>Latest published version:</dt><dd>
                 <a href="https://www.w3.org/TR/sparql12-query/">https://www.w3.org/TR/sparql12-query/</a>
@@ -928,7 +928,7 @@ var[data-type]:hover::after,var[data-type]:hover::before{opacity:1}
   </p><p>
                   This document is governed by the
                   <a id="w3c_process_revision" href="https://www.w3.org/2021/Process-20211102/">2 November 2021 <abbr title="World Wide Web Consortium">W3C</abbr> Process Document</a>.
-                </p><section id="related" data-include="common/sparql-related.html" data-include-id="include-7412508493892286" class="respec-offending-element" title="`data-include` failed: `common/sparql-related.html` (NetworkError when attempting to fetch resource.)."></section>
+                </p><section id="related" data-include="common/sparql-related.html" data-include-id="include-6590902171389506" class="respec-offending-element" title="`data-include` failed: `common/sparql-related.html` (Failed to fetch)."></section>
     </section><nav id="toc"><h2 class="introductory" id="table-of-contents">Table of Contents</h2><ol class="toc"><li class="tocline"><a class="tocxref" href="#abstract">Abstract</a></li><li class="tocline"><a class="tocxref" href="#sotd">Status of This Document</a></li><li class="tocline"><a class="tocxref" href="#introduction"><bdi class="secno">1. </bdi>Introduction</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#docOutline"><bdi class="secno">1.1 </bdi>Document Outline</a></li><li class="tocline"><a class="tocxref" href="#docConventions"><bdi class="secno">1.2 </bdi>Document Conventions</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#docNamespaces"><bdi class="secno">1.2.1 </bdi>Namespaces</a></li><li class="tocline"><a class="tocxref" href="#docDataDesc"><bdi class="secno">1.2.2 </bdi>Data Descriptions</a></li><li class="tocline"><a class="tocxref" href="#docResultDesc"><bdi class="secno">1.2.3 </bdi>Result Descriptions</a></li><li class="tocline"><a class="tocxref" href="#docTerminology"><bdi class="secno">1.2.4 </bdi>Terminology</a></li></ol></li></ol></li><li class="tocline"><a class="tocxref" href="#basicpatterns"><bdi class="secno">2. </bdi>Making Simple Queries (Informative)</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#WritingSimpleQueries"><bdi class="secno">2.1 </bdi>Writing a Simple Query</a></li><li class="tocline"><a class="tocxref" href="#MultipleMatches"><bdi class="secno">2.2 </bdi>Multiple Matches</a></li><li class="tocline"><a class="tocxref" href="#matchingRDFLiterals"><bdi class="secno">2.3 </bdi>Matching RDF Literals</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#matchLangTags"><bdi class="secno">2.3.1 </bdi>Matching Literals with Language Tags</a></li><li class="tocline"><a class="tocxref" href="#matchNumber"><bdi class="secno">2.3.2 </bdi>Matching Literals with Numeric Types</a></li><li class="tocline"><a class="tocxref" href="#matchArbDT"><bdi class="secno">2.3.3 </bdi>Matching Literals with Arbitrary Datatypes</a></li></ol></li><li class="tocline"><a class="tocxref" href="#BlankNodesInResults"><bdi class="secno">2.4 </bdi>Blank Node Labels in Query Results</a></li><li class="tocline"><a class="tocxref" href="#CreatingValuesWithExpressions"><bdi class="secno">2.5 </bdi>Creating Values with Expressions</a></li><li class="tocline"><a class="tocxref" href="#constructGraph"><bdi class="secno">2.6 </bdi>Building RDF Graphs</a></li></ol></li><li class="tocline"><a class="tocxref" href="#termConstraint"><bdi class="secno">3. </bdi>RDF Term Constraints (Informative)</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#restrictString"><bdi class="secno">3.1 </bdi>Restricting the Value of Strings</a></li><li class="tocline"><a class="tocxref" href="#restrictNumber"><bdi class="secno">3.2 </bdi>Restricting Numeric Values</a></li><li class="tocline"><a class="tocxref" href="#otherTermConstraints"><bdi class="secno">3.3 </bdi>Other Term Constraints</a></li></ol></li><li class="tocline"><a class="tocxref" href="#sparqlSyntax"><bdi class="secno">4. </bdi>SPARQL Syntax</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#syntaxTerms"><bdi class="secno">4.1 </bdi>RDF Term Syntax</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#QSynIRI"><bdi class="secno">4.1.1 </bdi>Syntax for IRIs</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#prefNames"><bdi class="secno">4.1.1.1 </bdi>Prefixed Names</a></li><li class="tocline"><a class="tocxref" href="#relIRIs"><bdi class="secno">4.1.1.2 </bdi>Relative IRIs</a></li></ol></li><li class="tocline"><a class="tocxref" href="#QSynLiterals"><bdi class="secno">4.1.2 </bdi>Syntax for Literals</a></li><li class="tocline"><a class="tocxref" href="#QSynVariables"><bdi class="secno">4.1.3 </bdi>Syntax for Query Variables</a></li><li class="tocline"><a class="tocxref" href="#QSynBlankNodes"><bdi class="secno">4.1.4 </bdi>Syntax for Blank Nodes</a></li></ol></li><li class="tocline"><a class="tocxref" href="#QSynTriples"><bdi class="secno">4.2 </bdi>Syntax for Triple Patterns</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#predObjLists"><bdi class="secno">4.2.1 </bdi>Predicate-Object Lists</a></li><li class="tocline"><a class="tocxref" href="#objLists"><bdi class="secno">4.2.2 </bdi>Object Lists</a></li><li class="tocline"><a class="tocxref" href="#collections"><bdi class="secno">4.2.3 </bdi>RDF Collections</a></li><li class="tocline"><a class="tocxref" href="#abbrevRdfType"><bdi class="secno">4.2.4 </bdi>rdf:type</a></li></ol></li></ol></li><li class="tocline"><a class="tocxref" href="#GraphPattern"><bdi class="secno">5. </bdi>Graph Patterns</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#BasicGraphPatterns"><bdi class="secno">5.1 </bdi>Basic Graph Patterns</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#bgpBNodeLabels"><bdi class="secno">5.1.1 </bdi>Blank Node Labels</a></li><li class="tocline"><a class="tocxref" href="#bgpExtend"><bdi class="secno">5.1.2 </bdi>Extending Basic Graph Pattern Matching</a></li></ol></li><li class="tocline"><a class="tocxref" href="#GroupPatterns"><bdi class="secno">5.2 </bdi>Group Graph Patterns</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#emptyGroupPattern"><bdi class="secno">5.2.1 </bdi>Empty Group Pattern</a></li><li class="tocline"><a class="tocxref" href="#scopeFilters"><bdi class="secno">5.2.2 </bdi>Scope of Filters</a></li><li class="tocline"><a class="tocxref" href="#groupExamples"><bdi class="secno">5.2.3 </bdi>Group Graph Pattern Examples</a></li></ol></li></ol></li><li class="tocline"><a class="tocxref" href="#optionals"><bdi class="secno">6. </bdi>Including Optional Values</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#OptionalMatching"><bdi class="secno">6.1 </bdi>Optional Pattern Matching</a></li><li class="tocline"><a class="tocxref" href="#OptionalAndConstraints"><bdi class="secno">6.2 </bdi>Constraints in Optional Pattern Matching</a></li><li class="tocline"><a class="tocxref" href="#MultipleOptionals"><bdi class="secno">6.3 </bdi>Multiple Optional Graph Patterns</a></li></ol></li><li class="tocline"><a class="tocxref" href="#alternatives"><bdi class="secno">7. </bdi>Matching Alternatives</a></li><li class="tocline"><a class="tocxref" href="#negation"><bdi class="secno">8. </bdi>Negation</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#neg-pattern"><bdi class="secno">8.1 </bdi>Filtering Using Graph Patterns</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#neg-notexists"><bdi class="secno">8.1.1 </bdi>Testing For the Absence of a Pattern</a></li><li class="tocline"><a class="tocxref" href="#neg-exists"><bdi class="secno">8.1.2 </bdi>Testing For the Presence of a Pattern</a></li></ol></li><li class="tocline"><a class="tocxref" href="#neg-minus"><bdi class="secno">8.2 </bdi>Removing Possible Solutions</a></li><li class="tocline"><a class="tocxref" href="#neg-notexists-minus"><bdi class="secno">8.3 </bdi>Relationship and differences between NOT EXISTS and MINUS</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#neg-example-1"><bdi class="secno">8.3.1 </bdi>Example: Sharing of variables</a></li><li class="tocline"><a class="tocxref" href="#neg-example-2"><bdi class="secno">8.3.2 </bdi>Example: Fixed pattern</a></li><li class="tocline"><a class="tocxref" href="#idp899488"><bdi class="secno">8.3.3 </bdi>Example: Inner FILTERs</a></li></ol></li></ol></li><li class="tocline"><a class="tocxref" href="#propertypaths"><bdi class="secno">9. </bdi>Property Paths</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#pp-language"><bdi class="secno">9.1 </bdi>Property Path Syntax</a></li><li class="tocline"><a class="tocxref" href="#propertypath-examples"><bdi class="secno">9.2 </bdi>Examples</a></li><li class="tocline"><a class="tocxref" href="#propertypath-syntaxforms"><bdi class="secno">9.3 </bdi>Property Paths and Equivalent Patterns</a></li><li class="tocline"><a class="tocxref" href="#propertypath-arbitrary-length"><bdi class="secno">9.4 </bdi>Arbitrary Length Path Matching</a></li></ol></li><li class="tocline"><a class="tocxref" href="#assignment"><bdi class="secno">10. </bdi>Assignment</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#bind"><bdi class="secno">10.1 </bdi>BIND: Assigning to Variables</a></li><li class="tocline"><a class="tocxref" href="#inline-data"><bdi class="secno">10.2 </bdi>VALUES: Providing inline data</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#inline-data-syntax"><bdi class="secno">10.2.1 </bdi>VALUES syntax</a></li><li class="tocline"><a class="tocxref" href="#inline-data-examples"><bdi class="secno">10.2.2 </bdi>VALUES Examples</a></li></ol></li></ol></li><li class="tocline"><a class="tocxref" href="#aggregates"><bdi class="secno">11. </bdi>Aggregates</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#aggregateExample"><bdi class="secno">11.1 </bdi>Aggregate Example</a></li><li class="tocline"><a class="tocxref" href="#groupby"><bdi class="secno">11.2 </bdi>GROUP BY</a></li><li class="tocline"><a class="tocxref" href="#having"><bdi class="secno">11.3 </bdi>HAVING</a></li><li class="tocline"><a class="tocxref" href="#aggregateRestrictions"><bdi class="secno">11.4 </bdi>Aggregate Projection Restrictions</a></li><li class="tocline"><a class="tocxref" href="#aggregateExample2"><bdi class="secno">11.5 </bdi>Aggregate Example (with errors)</a></li></ol></li><li class="tocline"><a class="tocxref" href="#subqueries"><bdi class="secno">12. </bdi>Subqueries</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#subquery-example"><bdi class="secno">12.1 </bdi>Example</a></li></ol></li><li class="tocline"><a class="tocxref" href="#rdfDataset"><bdi class="secno">13. </bdi>RDF Dataset</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#exampleDatasets"><bdi class="secno">13.1 </bdi>Examples of RDF Datasets</a></li><li class="tocline"><a class="tocxref" href="#specifyingDataset"><bdi class="secno">13.2 </bdi>Specifying RDF Datasets</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#unnamedGraph"><bdi class="secno">13.2.1 </bdi>Specifying the Default Graph</a></li><li class="tocline"><a class="tocxref" href="#namedGraphs"><bdi class="secno">13.2.2 </bdi>Specifying Named Graphs</a></li><li class="tocline"><a class="tocxref" href="#specDataset"><bdi class="secno">13.2.3 </bdi>Combining FROM and FROM NAMED</a></li></ol></li><li class="tocline"><a class="tocxref" href="#queryDataset"><bdi class="secno">13.3 </bdi>Querying the Dataset</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#accessByLabel"><bdi class="secno">13.3.1 </bdi>Accessing Graph Names</a></li><li class="tocline"><a class="tocxref" href="#restrictByLabel"><bdi class="secno">13.3.2 </bdi>Restricting by Graph IRI</a></li><li class="tocline"><a class="tocxref" href="#restrictInQuery"><bdi class="secno">13.3.3 </bdi>Restricting Possible Graph IRIs</a></li><li class="tocline"><a class="tocxref" href="#namedAndDefaultGraph"><bdi class="secno">13.3.4 </bdi>Named and Default Graphs</a></li></ol></li></ol></li><li class="tocline"><a class="tocxref" href="#basic-federated-query"><bdi class="secno">14. </bdi>Basic Federated Query</a></li><li class="tocline"><a class="tocxref" href="#solutionModifiers"><bdi class="secno">15. </bdi>Solution Sequences and Modifiers</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#modOrderBy"><bdi class="secno">15.1 </bdi>ORDER BY</a></li><li class="tocline"><a class="tocxref" href="#modProjection"><bdi class="secno">15.2 </bdi>Projection</a></li><li class="tocline"><a class="tocxref" href="#modDuplicates"><bdi class="secno">15.3 </bdi>Duplicate Solutions</a></li><li class="tocline"><a class="tocxref" href="#modOffset"><bdi class="secno">15.4 </bdi>OFFSET</a></li><li class="tocline"><a class="tocxref" href="#modResultLimit"><bdi class="secno">15.5 </bdi>LIMIT</a></li></ol></li><li class="tocline"><a class="tocxref" href="#QueryForms"><bdi class="secno">16. </bdi>Query Forms</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#select"><bdi class="secno">16.1 </bdi>SELECT</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#selectproject"><bdi class="secno">16.1.1 </bdi>Projection</a></li><li class="tocline"><a class="tocxref" href="#selectExpressions"><bdi class="secno">16.1.2 </bdi>SELECT Expressions</a></li></ol></li><li class="tocline"><a class="tocxref" href="#construct"><bdi class="secno">16.2 </bdi>CONSTRUCT</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#templatesWithBNodes"><bdi class="secno">16.2.1 </bdi>Templates with Blank Nodes</a></li><li class="tocline"><a class="tocxref" href="#accessingRdfGraphs"><bdi class="secno">16.2.2 </bdi>Accessing Graphs in the RDF Dataset</a></li><li class="tocline"><a class="tocxref" href="#SolModandCONSTRUCT"><bdi class="secno">16.2.3 </bdi>Solution Modifiers and CONSTRUCT</a></li><li class="tocline"><a class="tocxref" href="#constructWhere"><bdi class="secno">16.2.4 </bdi>CONSTRUCT WHERE</a></li></ol></li><li class="tocline"><a class="tocxref" href="#ask"><bdi class="secno">16.3 </bdi>ASK</a></li><li class="tocline"><a class="tocxref" href="#describe"><bdi class="secno">16.4 </bdi>DESCRIBE (Informative)</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#explicitIRIs"><bdi class="secno">16.4.1 </bdi>Explicit IRIs</a></li><li class="tocline"><a class="tocxref" href="#identifyingResources"><bdi class="secno">16.4.2 </bdi>Identifying Resources</a></li><li class="tocline"><a class="tocxref" href="#descriptionsOfResources"><bdi class="secno">16.4.3 </bdi>Descriptions of Resources</a></li></ol></li></ol></li><li class="tocline"><a class="tocxref" href="#expressions"><bdi class="secno">17. </bdi>Expressions and Testing Values</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#operandDataTypes"><bdi class="secno">17.1 </bdi>Operand Data Types</a></li><li class="tocline"><a class="tocxref" href="#evaluation"><bdi class="secno">17.2 </bdi>Filter Evaluation</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#invocation"><bdi class="secno">17.2.1 </bdi>Invocation</a></li><li class="tocline"><a class="tocxref" href="#ebv"><bdi class="secno">17.2.2 </bdi>Effective Boolean Value (EBV)</a></li></ol></li><li class="tocline"><a class="tocxref" href="#OperatorMapping"><bdi class="secno">17.3 </bdi>Operator Mapping</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#operatorExtensibility"><bdi class="secno">17.3.1 </bdi>Operator Extensibility</a></li></ol></li><li class="tocline"><a class="tocxref" href="#SparqlOps"><bdi class="secno">17.4 </bdi>Function Definitions</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#func-forms"><bdi class="secno">17.4.1 </bdi>Functional Forms</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#func-bound"><bdi class="secno">17.4.1.1 </bdi>bound</a></li><li class="tocline"><a class="tocxref" href="#func-if"><bdi class="secno">17.4.1.2 </bdi>IF</a></li><li class="tocline"><a class="tocxref" href="#func-coalesce"><bdi class="secno">17.4.1.3 </bdi>COALESCE</a></li><li class="tocline"><a class="tocxref" href="#func-filter-exists"><bdi class="secno">17.4.1.4 </bdi>NOT EXISTS and EXISTS</a></li><li class="tocline"><a class="tocxref" href="#func-logical-or"><bdi class="secno">17.4.1.5 </bdi>logical-or</a></li><li class="tocline"><a class="tocxref" href="#func-logical-and"><bdi class="secno">17.4.1.6 </bdi>logical-and</a></li><li class="tocline"><a class="tocxref" href="#func-RDFterm-equal"><bdi class="secno">17.4.1.7 </bdi>RDFterm-equal</a></li><li class="tocline"><a class="tocxref" href="#func-sameTerm"><bdi class="secno">17.4.1.8 </bdi>sameTerm</a></li><li class="tocline"><a class="tocxref" href="#func-in"><bdi class="secno">17.4.1.9 </bdi>IN</a></li><li class="tocline"><a class="tocxref" href="#func-not-in"><bdi class="secno">17.4.1.10 </bdi>NOT IN</a></li></ol></li><li class="tocline"><a class="tocxref" href="#func-rdfTerms"><bdi class="secno">17.4.2 </bdi>Functions on RDF Terms</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#func-isIRI"><bdi class="secno">17.4.2.1 </bdi>isIRI</a></li><li class="tocline"><a class="tocxref" href="#func-isBlank"><bdi class="secno">17.4.2.2 </bdi>isBlank</a></li><li class="tocline"><a class="tocxref" href="#func-isLiteral"><bdi class="secno">17.4.2.3 </bdi>isLiteral</a></li><li class="tocline"><a class="tocxref" href="#func-isNumeric"><bdi class="secno">17.4.2.4 </bdi>isNumeric</a></li><li class="tocline"><a class="tocxref" href="#func-str"><bdi class="secno">17.4.2.5 </bdi>str</a></li><li class="tocline"><a class="tocxref" href="#func-lang"><bdi class="secno">17.4.2.6 </bdi>lang</a></li><li class="tocline"><a class="tocxref" href="#func-datatype"><bdi class="secno">17.4.2.7 </bdi>datatype</a></li><li class="tocline"><a class="tocxref" href="#func-iri"><bdi class="secno">17.4.2.8 </bdi>IRI</a></li><li class="tocline"><a class="tocxref" href="#func-bnode"><bdi class="secno">17.4.2.9 </bdi>BNODE</a></li><li class="tocline"><a class="tocxref" href="#func-strdt"><bdi class="secno">17.4.2.10 </bdi>STRDT</a></li><li class="tocline"><a class="tocxref" href="#func-strlang"><bdi class="secno">17.4.2.11 </bdi>STRLANG</a></li><li class="tocline"><a class="tocxref" href="#func-uuid"><bdi class="secno">17.4.2.12 </bdi>UUID</a></li><li class="tocline"><a class="tocxref" href="#func-struuid"><bdi class="secno">17.4.2.13 </bdi>STRUUID</a></li></ol></li><li class="tocline"><a class="tocxref" href="#func-strings"><bdi class="secno">17.4.3 </bdi>Functions on Strings</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#idp1887976"><bdi class="secno">17.4.3.1 </bdi>Strings in SPARQL Functions</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#func-string"><bdi class="secno">17.4.3.1.1 </bdi>String arguments</a></li><li class="tocline"><a class="tocxref" href="#func-arg-compatibility"><bdi class="secno">17.4.3.1.2 </bdi>Argument Compatibility Rules</a></li><li class="tocline"><a class="tocxref" href="#idp1915512"><bdi class="secno">17.4.3.1.3 </bdi>String Literal Return Type</a></li></ol></li><li class="tocline"><a class="tocxref" href="#func-strlen"><bdi class="secno">17.4.3.2 </bdi>STRLEN</a></li><li class="tocline"><a class="tocxref" href="#func-substr"><bdi class="secno">17.4.3.3 </bdi>SUBSTR</a></li><li class="tocline"><a class="tocxref" href="#func-ucase"><bdi class="secno">17.4.3.4 </bdi>UCASE</a></li><li class="tocline"><a class="tocxref" href="#func-lcase"><bdi class="secno">17.4.3.5 </bdi>LCASE</a></li><li class="tocline"><a class="tocxref" href="#func-strstarts"><bdi class="secno">17.4.3.6 </bdi>STRSTARTS</a></li><li class="tocline"><a class="tocxref" href="#func-strends"><bdi class="secno">17.4.3.7 </bdi>STRENDS</a></li><li class="tocline"><a class="tocxref" href="#func-contains"><bdi class="secno">17.4.3.8 </bdi>CONTAINS</a></li><li class="tocline"><a class="tocxref" href="#func-strbefore"><bdi class="secno">17.4.3.9 </bdi>STRBEFORE</a></li><li class="tocline"><a class="tocxref" href="#func-strafter"><bdi class="secno">17.4.3.10 </bdi>STRAFTER</a></li><li class="tocline"><a class="tocxref" href="#func-encode"><bdi class="secno">17.4.3.11 </bdi>ENCODE_FOR_URI</a></li><li class="tocline"><a class="tocxref" href="#func-concat"><bdi class="secno">17.4.3.12 </bdi>CONCAT</a></li><li class="tocline"><a class="tocxref" href="#func-langMatches"><bdi class="secno">17.4.3.13 </bdi>langMatches</a></li><li class="tocline"><a class="tocxref" href="#func-regex"><bdi class="secno">17.4.3.14 </bdi>REGEX</a></li><li class="tocline"><a class="tocxref" href="#func-replace"><bdi class="secno">17.4.3.15 </bdi>REPLACE</a></li></ol></li><li class="tocline"><a class="tocxref" href="#func-numerics"><bdi class="secno">17.4.4 </bdi>Functions on Numerics</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#func-abs"><bdi class="secno">17.4.4.1 </bdi>abs</a></li><li class="tocline"><a class="tocxref" href="#func-round"><bdi class="secno">17.4.4.2 </bdi>round</a></li><li class="tocline"><a class="tocxref" href="#func-ceil"><bdi class="secno">17.4.4.3 </bdi>ceil</a></li><li class="tocline"><a class="tocxref" href="#func-floor"><bdi class="secno">17.4.4.4 </bdi>floor</a></li><li class="tocline"><a class="tocxref" href="#idp2130040"><bdi class="secno">17.4.4.5 </bdi>RAND</a></li></ol></li><li class="tocline"><a class="tocxref" href="#func-date-time"><bdi class="secno">17.4.5 </bdi>Functions on Dates and Times</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#func-now"><bdi class="secno">17.4.5.1 </bdi>now</a></li><li class="tocline"><a class="tocxref" href="#func-year"><bdi class="secno">17.4.5.2 </bdi>year</a></li><li class="tocline"><a class="tocxref" href="#func-month"><bdi class="secno">17.4.5.3 </bdi>month</a></li><li class="tocline"><a class="tocxref" href="#func-day"><bdi class="secno">17.4.5.4 </bdi>day</a></li><li class="tocline"><a class="tocxref" href="#func-hours"><bdi class="secno">17.4.5.5 </bdi>hours</a></li><li class="tocline"><a class="tocxref" href="#func-minutes"><bdi class="secno">17.4.5.6 </bdi>minutes</a></li><li class="tocline"><a class="tocxref" href="#func-seconds"><bdi class="secno">17.4.5.7 </bdi>seconds</a></li><li class="tocline"><a class="tocxref" href="#func-timezone"><bdi class="secno">17.4.5.8 </bdi>timezone</a></li><li class="tocline"><a class="tocxref" href="#func-tz"><bdi class="secno">17.4.5.9 </bdi>tz</a></li></ol></li><li class="tocline"><a class="tocxref" href="#func-hash"><bdi class="secno">17.4.6 </bdi>Hash Functions</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#func-md5"><bdi class="secno">17.4.6.1 </bdi>MD5</a></li><li class="tocline"><a class="tocxref" href="#func-sha1"><bdi class="secno">17.4.6.2 </bdi>SHA1</a></li><li class="tocline"><a class="tocxref" href="#func-sha256"><bdi class="secno">17.4.6.3 </bdi>SHA256</a></li><li class="tocline"><a class="tocxref" href="#func-sha384"><bdi class="secno">17.4.6.4 </bdi>SHA384</a></li><li class="tocline"><a class="tocxref" href="#func-sha512"><bdi class="secno">17.4.6.5 </bdi>SHA512</a></li></ol></li></ol></li><li class="tocline"><a class="tocxref" href="#FunctionMapping"><bdi class="secno">17.5 </bdi>XPath Constructor Functions</a></li><li class="tocline"><a class="tocxref" href="#extensionFunctions"><bdi class="secno">17.6 </bdi>Extensible Value Testing</a></li></ol></li><li class="tocline"><a class="tocxref" href="#sparqlDefinition"><bdi class="secno">18. </bdi>Definition of SPARQL</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#initDefinitions"><bdi class="secno">18.1 </bdi>Initial Definitions</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#sparqlBasicTerms"><bdi class="secno">18.1.1 </bdi>RDF Terms</a></li><li class="tocline"><a class="tocxref" href="#simple_literal"><bdi class="secno">18.1.2 </bdi>Simple Literal</a></li><li class="tocline"><a class="tocxref" href="#sparqlDataset"><bdi class="secno">18.1.3 </bdi>RDF Dataset</a></li><li class="tocline"><a class="tocxref" href="#sparqlQueryVariables"><bdi class="secno">18.1.4 </bdi>Query Variables</a></li><li class="tocline"><a class="tocxref" href="#sparqlTriplePatterns"><bdi class="secno">18.1.5 </bdi>Triple Patterns</a></li><li class="tocline"><a class="tocxref" href="#sparqlBasicGraphPatterns"><bdi class="secno">18.1.6 </bdi>Basic Graph Patterns</a></li><li class="tocline"><a class="tocxref" href="#sparqlPropertyPaths"><bdi class="secno">18.1.7 </bdi>Property Path Patterns</a></li><li class="tocline"><a class="tocxref" href="#sparqlSolutions"><bdi class="secno">18.1.8 </bdi>Solution Mapping</a></li><li class="tocline"><a class="tocxref" href="#sparqlSolMod"><bdi class="secno">18.1.9 </bdi>Solution Sequence Modifiers</a></li><li class="tocline"><a class="tocxref" href="#idp2427544"><bdi class="secno">18.1.10 </bdi>SPARQL Query</a></li></ol></li><li class="tocline"><a class="tocxref" href="#sparqlQuery"><bdi class="secno">18.2 </bdi>Translation to the SPARQL Algebra</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#variableScope"><bdi class="secno">18.2.1 </bdi>Variable Scope</a></li><li class="tocline"><a class="tocxref" href="#convertGraphPattern"><bdi class="secno">18.2.2 </bdi>Converting Graph Patterns</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#sparqlExpandForms"><bdi class="secno">18.2.2.1 </bdi>Expand Syntax Forms</a></li><li class="tocline"><a class="tocxref" href="#sparqlCollectFilters"><bdi class="secno">18.2.2.2 </bdi>Collect <code>FILTER</code> Elements</a></li><li class="tocline"><a class="tocxref" href="#sparqlTranslatePathExpressions"><bdi class="secno">18.2.2.3 </bdi>Translate Property Path Expressions</a></li><li class="tocline"><a class="tocxref" href="#sparqlTranslatePathPatterns"><bdi class="secno">18.2.2.4 </bdi>Translate Property Path Patterns</a></li><li class="tocline"><a class="tocxref" href="#sparqlTranslateBasicGraphPatterns"><bdi class="secno">18.2.2.5 </bdi>Translate Basic Graph Patterns</a></li><li class="tocline"><a class="tocxref" href="#sparqlTranslateGraphPatterns"><bdi class="secno">18.2.2.6 </bdi>Translate Graph Patterns</a></li><li class="tocline"><a class="tocxref" href="#sparqlAddFilters"><bdi class="secno">18.2.2.7 </bdi>Filters of Group</a></li><li class="tocline"><a class="tocxref" href="#sparqlSimplification"><bdi class="secno">18.2.2.8 </bdi>Simplification step</a></li></ol></li><li class="tocline"><a class="tocxref" href="#sparqlAlgebraExamples"><bdi class="secno">18.2.3 </bdi>Examples of Mapped Graph Patterns</a></li><li class="tocline"><a class="tocxref" href="#convertGroupAggSelectExpressions"><bdi class="secno">18.2.4 </bdi>Converting Groups, Aggregates, HAVING, final VALUES clause and SELECT Expressions</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#sparqlGroupAggregate"><bdi class="secno">18.2.4.1 </bdi>Grouping and Aggregation</a></li><li class="tocline"><a class="tocxref" href="#sparqlHavingClause"><bdi class="secno">18.2.4.2 </bdi>HAVING</a></li><li class="tocline"><a class="tocxref" href="#sparqlAlgebraFinalValues"><bdi class="secno">18.2.4.3 </bdi>VALUES</a></li><li class="tocline"><a class="tocxref" href="#sparqlSelectExpressions"><bdi class="secno">18.2.4.4 </bdi>SELECT Expressions</a></li></ol></li><li class="tocline"><a class="tocxref" href="#convertSolMod"><bdi class="secno">18.2.5 </bdi>Converting Solution Modifiers</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#sparqlOrderBy"><bdi class="secno">18.2.5.1 </bdi>ORDER BY</a></li><li class="tocline"><a class="tocxref" href="#sparqlProjection"><bdi class="secno">18.2.5.2 </bdi>Projection</a></li><li class="tocline"><a class="tocxref" href="#sparqlDistinct"><bdi class="secno">18.2.5.3 </bdi>DISTINCT</a></li><li class="tocline"><a class="tocxref" href="#sparqlReduced"><bdi class="secno">18.2.5.4 </bdi>REDUCED</a></li><li class="tocline"><a class="tocxref" href="#sparqlOffsetLimit"><bdi class="secno">18.2.5.5 </bdi>OFFSET and LIMIT</a></li><li class="tocline"><a class="tocxref" href="#sparqlAlgebraOutcome"><bdi class="secno">18.2.5.6 </bdi>Final Algebra Expression</a></li></ol></li></ol></li><li class="tocline"><a class="tocxref" href="#BasicGraphPattern"><bdi class="secno">18.3 </bdi>Basic Graph Patterns</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#BGPsparql"><bdi class="secno">18.3.1 </bdi>SPARQL Basic Graph Pattern Matching</a></li><li class="tocline"><a class="tocxref" href="#BGPsparqlBNodes"><bdi class="secno">18.3.2 </bdi>Treatment of Blank Nodes</a></li></ol></li><li class="tocline"><a class="tocxref" href="#PropertyPathPatterns"><bdi class="secno">18.4 </bdi>Property Path Patterns</a></li><li class="tocline"><a class="tocxref" href="#sparqlAlgebra"><bdi class="secno">18.5 </bdi>SPARQL Algebra</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#aggregateAlgebra"><bdi class="secno">18.5.1 </bdi>Aggregate Algebra</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#setFunctions"><bdi class="secno">18.5.1.1 </bdi>Set Functions</a></li><li class="tocline"><a class="tocxref" href="#aggCount"><bdi class="secno">18.5.1.2 </bdi>Count</a></li><li class="tocline"><a class="tocxref" href="#aggSum"><bdi class="secno">18.5.1.3 </bdi>Sum</a></li><li class="tocline"><a class="tocxref" href="#aggAvg"><bdi class="secno">18.5.1.4 </bdi>Avg</a></li><li class="tocline"><a class="tocxref" href="#aggMin"><bdi class="secno">18.5.1.5 </bdi>Min</a></li><li class="tocline"><a class="tocxref" href="#aggMax"><bdi class="secno">18.5.1.6 </bdi>Max</a></li><li class="tocline"><a class="tocxref" href="#aggGroupConcat"><bdi class="secno">18.5.1.7 </bdi>GroupConcat</a></li><li class="tocline"><a class="tocxref" href="#aggSample"><bdi class="secno">18.5.1.8 </bdi>Sample</a></li></ol></li><li class="tocline"><a class="tocxref" href="#sparqlAlgebraEval"><bdi class="secno">18.5.2 </bdi>Evaluation Semantics</a></li><li class="tocline"><a class="tocxref" href="#sparqlBGPExtend"><bdi class="secno">18.5.3 </bdi>Extending SPARQL Basic Graph Matching</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#sparqlBGPExtend-notes"><bdi class="secno">18.5.3.1 </bdi>Notes</a></li></ol></li></ol></li></ol></li><li class="tocline"><a class="tocxref" href="#grammar"><bdi class="secno">19. </bdi>SPARQL Grammar</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#queryString"><bdi class="secno">19.1 </bdi>SPARQL Request String</a></li><li class="tocline"><a class="tocxref" href="#codepointEscape"><bdi class="secno">19.2 </bdi>Codepoint Escape Sequences</a></li><li class="tocline"><a class="tocxref" href="#whitespace"><bdi class="secno">19.3 </bdi>White Space</a></li><li class="tocline"><a class="tocxref" href="#grammarComments"><bdi class="secno">19.4 </bdi>Comments</a></li><li class="tocline"><a class="tocxref" href="#iriRefs"><bdi class="secno">19.5 </bdi>IRI References</a></li><li class="tocline"><a class="tocxref" href="#grammarBNodes"><bdi class="secno">19.6 </bdi>Blank Nodes and Blank Node Labels</a></li><li class="tocline"><a class="tocxref" href="#grammarEscapes"><bdi class="secno">19.7 </bdi>Escape sequences in strings</a></li><li class="tocline"><a class="tocxref" href="#sparqlGrammar"><bdi class="secno">19.8 </bdi>Grammar</a></li></ol></li><li class="tocline"><a class="tocxref" href="#conformance"><bdi class="secno">20. </bdi>Conformance</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#conformance-0"><bdi class="secno">20.1 </bdi>Conformance</a></li></ol></li><li class="tocline"><a class="tocxref" href="#mediaType"><bdi class="secno">21. </bdi>Internet Media Type, File Extension and Macintosh File Type</a></li><li class="tocline"><a class="tocxref" href="#privacy"><bdi class="secno">22. </bdi>Privacy Considerations</a></li><li class="tocline"><a class="tocxref" href="#security"><bdi class="secno">23. </bdi>Security Considerations</a></li><li class="tocline"><a class="tocxref" href="#internationalization"><bdi class="secno">24. </bdi>Internationalization Considerations</a></li><li class="tocline"><a class="tocxref" href="#changes-from-sparql11"><bdi class="secno">A. </bdi>Change Log</a></li><li class="tocline"><a class="tocxref" href="#index"><bdi class="secno">B. </bdi>Index</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#index-defined-here"><bdi class="secno">B.1 </bdi>Terms defined by this specification</a></li><li class="tocline"><a class="tocxref" href="#index-defined-elsewhere"><bdi class="secno">B.2 </bdi>Terms defined by reference</a></li></ol></li><li class="tocline"><a class="tocxref" href="#references"><bdi class="secno">C. </bdi>References</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#normative-references"><bdi class="secno">C.1 </bdi>Normative references</a></li><li class="tocline"><a class="tocxref" href="#informative-references"><bdi class="secno">C.2 </bdi>Informative references</a></li></ol></li></ol></nav>
 
     
@@ -1120,11 +1120,11 @@ PREFIX :     &lt;http://example.org/book/&gt;
           </p></div>
           <ul>
             <li>
-              <a href="https://w3c.github.io/rdf-concepts/spec/#dfn-internationalized-resource-identifier" id="ref-for-index-term-iri-1">IRI</a>
+              <a href="https://w3c.github.io/rdf-concepts/spec/#dfn-iri" id="ref-for-index-term-iri-1">IRI</a>
               (corresponds to the Concepts and Abstract Syntax term "<code>RDF URI reference</code>")
             </li>
             <li>
-              <a href="https://w3c.github.io/rdf-concepts/spec/#dfn-rdf-literal" id="ref-for-index-term-literal-1">literal</a>
+              <a href="https://w3c.github.io/rdf-concepts/spec/#dfn-literal" id="ref-for-index-term-literal-1">literal</a>
             </li>
             <li>
               <a href="https://w3c.github.io/rdf-concepts/spec/#dfn-lexical-form" id="ref-for-index-term-lexical-form-1">lexical form</a>
@@ -5759,24 +5759,27 @@ WHERE {
           </section>
           <section id="func-logical-or"><div class="header-wrapper"><h5 id="x17-4-1-5-logical-or"><bdi class="secno">17.4.1.5 </bdi>logical-or</h5><a class="self-link" href="#func-logical-or" aria-label="Permalink for Section 17.4.1.5"></a></div>
             
-            <pre class="prototype" aria-busy="false"><code class="hljs">xsd:boolean  xsd:boolean left || xsd:boolean right</code></pre>
-            <p>Returns a logical <code>OR</code> of <code>left</code> and <code>right</code>. Note
+            <pre class="prototype" aria-busy="false"><code class="hljs">xsd:boolean logical-or (xsd:boolean left, xsd:boolean right)</code></pre>
+            <p>This function cannot be used directly in expressions. The purpose of this function is to define the semantics of the "<code>||</code>" operator.</p>
+            <p>The function returns a logical <code>OR</code> of <code>left</code> and <code>right</code>. Note
               that <span class="SPARQLoperator">logical-or</span> operates on the <a href="#ebv">effective boolean value</a> of its arguments.</p>
             <p>Note: see section 17.2, <a href="#evaluation">Filter Evaluation</a>, for the
               <code>||</code> operator's treatment of errors.</p>
           </section>
           <section id="func-logical-and"><div class="header-wrapper"><h5 id="x17-4-1-6-logical-and"><bdi class="secno">17.4.1.6 </bdi>logical-and</h5><a class="self-link" href="#func-logical-and" aria-label="Permalink for Section 17.4.1.6"></a></div>
             
-            <pre class="prototype" aria-busy="false"><code class="hljs">xsd:boolean  xsd:boolean left &amp;&amp; xsd:boolean right</code></pre>
-            <p>Returns a logical <code>AND</code> of <code>left</code> and <code>right</code>. Note
+            <pre class="prototype" aria-busy="false"><code class="hljs">xsd:boolean logical-and (xsd:boolean left, xsd:boolean right)</code></pre>
+            <p>This function cannot be used directly in expressions. The purpose of this function is to define the semantics of the "<code>&amp;&amp;</code>" operator.</p>
+            <p>The function returns a logical <code>AND</code> of <code>left</code> and <code>right</code>. Note
               that <span class="SPARQLoperator">logical-and</span> operates on the <a href="#ebv">effective boolean value</a> of its arguments.</p>
             <p>Note: see section 17.2, <a href="#evaluation">Filter Evaluation</a>, for the
               <code>&amp;&amp;</code> operator's treatment of errors.</p>
           </section>
           <section id="func-RDFterm-equal"><div class="header-wrapper"><h5 id="x17-4-1-7-rdfterm-equal"><bdi class="secno">17.4.1.7 </bdi>RDFterm-equal</h5><a class="self-link" href="#func-RDFterm-equal" aria-label="Permalink for Section 17.4.1.7"></a></div>
             
-            <pre class="prototype" aria-busy="false"><code class="hljs">xsd:boolean  RDF term term1 = RDF term term2</code></pre>
-            <p>This function is defined as follows:</p>
+            <pre class="prototype" aria-busy="false"><code class="hljs">xsd:boolean RDFterm-equal (RDF term term1, RDF term term2)</code></pre>
+            <p>This function cannot be used directly in expressions. The purpose of this function is to define the semantics of the "=" operator when applied to two RDF terms that do not fall into any of the other, more concrete cases covered in the operator mapping table in Section&nbsp;<a href="#OperatorMapping" class="sectionRef sec-ref"><bdi class="secno">17.3 </bdi>Operator Mapping</a>.</p>
+            <p>The function is defined as follows:</p>
             <ul>
                 <li>Returns TRUE if <code>term1</code> and <code>term2</code> are <em>equal</em> RDF terms, as defined below.</li>
                 <li>Produces a type error if <code>term1</code> and <code>term2</code> are both literals having the
@@ -5797,7 +5800,7 @@ WHERE {
               <li>
                 <span class="name">term1</span> is a <span class="literal type">literal</span> and
                 <span class="name">term2</span> is a <span class="literal type">literal</span> such that
-                these two <span class="literal type">literals</span> are equal as per the notion of <a href="https://w3c.github.io/rdf-concepts/spec/#dfn-term-equal" id="ref-for-index-term-literal-term-equality-1">Literal term equality</a> of
+                these two <span class="literal type">literals</span> are equal as per the notion of <a href="https://w3c.github.io/rdf-concepts/spec/#dfn-literal-term-equality" id="ref-for-index-term-literal-term-equality-1">Literal term equality</a> of
                 [<cite><a class="bibref" data-link-type="biblio" href="#bib-rdf12-concepts" title="RDF 1.2 Concepts and Abstract Syntax">RDF12-CONCEPTS</a></cite>].
               </li>
               <li>
@@ -7835,14 +7838,14 @@ WHERE {
           <div class="defn">
             <p><b>Definition: <span id="defn_RDFTerm">RDF Term</span></b></p>
             <p>Let I be the set of all IRIs.<br>
-              Let RDF-L be the set of all <a href="https://w3c.github.io/rdf-concepts/spec/#literal" id="ref-for-index-term-rdf-literals-1">RDF Literals</a><br>
+              Let RDF-L be the set of all <a href="https://w3c.github.io/rdf-concepts/spec/#dfn-literal" id="ref-for-index-term-literal-2">RDF Literals</a><br>
               Let RDF-B be the set of all <a href="https://w3c.github.io/rdf-concepts/spec/#dfn-blank-node" id="ref-for-index-term-blank-node-3">blank nodes</a> in RDF graphs</p>
             <p>The set of <span class="definedTerm">RDF Terms</span>, RDF-T, is I ∪ RDF-L ∪
               RDF-B.</p>
           </div>
           <p>This definition of <span class="definedTerm">RDF Term</span> collects together several
-            basic notions from the <a href="https://w3c.github.io/rdf-concepts/spec/#section-data-model" id="ref-for-index-term-rdf-data-model-1">RDF data model</a>,
-            but <a href="https://w3c.github.io/rdf-concepts/spec/#section-Graph-URIref" id="ref-for-index-term-updated-1">updated</a> to refer to IRIs rather
+            basic notions from the <a href="https://w3c.github.io/rdf-concepts/spec/#data-model" id="ref-for-index-term-rdf-data-model-1">RDF data model</a>,
+            but <a href="https://w3c.github.io/rdf-concepts/spec/#section-IRIs" id="ref-for-index-term-updated-1">updated</a> to refer to IRIs rather
             than RDF URI references.</p>
         </section>
         <section id="simple_literal"><div class="header-wrapper"><h4 id="x18-1-2-simple-literal"><bdi class="secno">18.1.2 </bdi>Simple Literal</h4><a class="self-link" href="#simple_literal" aria-label="Permalink for Section 18.1.2"></a></div>
@@ -7850,7 +7853,7 @@ WHERE {
           <div class="defn">
             <p><b>Definition: <span id="defn_SimpleLiteral">Simple Literal</span></b></p>
             <p>The set of <b>Simple Literals</b> is the set of all 
-              <a href="https://w3c.github.io/rdf-concepts/spec/#dfn-rdf-literal" id="ref-for-index-term-literal-2">RDF Literals</a>
+              <a href="https://w3c.github.io/rdf-concepts/spec/#dfn-literal" id="ref-for-index-term-literal-3">RDF Literals</a>
               with no language tag or datatype IRI.</p>
           </div>
         </section>
@@ -8931,7 +8934,7 @@ The set PV is used later for projection.</pre>
 
             <p>The syntax error arises for use of a variable as the named target of AS (e.g. ... AS
               ?x) when the variable is used inside the WHERE clause of the SELECT or if already used as
-              the traget of AS in this SELECT expression.</p>
+              the target of AS in this SELECT expression.</p>
           </section>
         </section>
         <section id="convertSolMod"><div class="header-wrapper"><h4 id="x18-2-5-converting-solution-modifiers"><bdi class="secno">18.2.5 </bdi>Converting Solution Modifiers</h4><a class="self-link" href="#convertSolMod" aria-label="Permalink for Section 18.2.5"></a></div>
@@ -9077,7 +9080,7 @@ The set PV is used later for projection.</pre>
             the basic graph pattern to a subset of the active graph.</p>
           <p>This is optimized for ease of computation rather than redundancy elimination. It allows
             query results to contain redundancies even when the active graph of the dataset is
-            <a href="https://w3c.github.io/rdf-semantics/spec/#def-lean" id="ref-for-index-term-lean-1">lean</a>, and it allows logically equivalent datasets to
+            <a href="https://w3c.github.io/rdf-semantics/spec/#dfn-lean" id="ref-for-index-term-lean-1">lean</a>, and it allows logically equivalent datasets to
             yield different query results.</p>
         </section>
       </section>
@@ -11445,7 +11448,7 @@ a\u003Ab            # a:b -- codepoint x3A is colon</code></pre>
   </li><li>
     <span class="index-term" data-href="https://w3c.github.io/rdf-concepts/spec/#dfn-datatype-iri" id="index-term-datatype-iri-0" tabindex="0" aria-haspopup="dialog">datatype IRI</span>
   </li><li>
-    <span class="index-term" data-href="https://w3c.github.io/rdf-concepts/spec/#dfn-internationalized-resource-identifier" id="index-term-iri" tabindex="0" aria-haspopup="dialog">IRI</span>
+    <span class="index-term" data-href="https://w3c.github.io/rdf-concepts/spec/#dfn-iri" id="index-term-iri" tabindex="0" aria-haspopup="dialog">IRI</span>
   </li><li>
     <span class="index-term" data-href="https://w3c.github.io/rdf-concepts/spec/#dfn-iri-equality" id="index-term-iri-equality" tabindex="0" aria-haspopup="dialog">IRI equality</span>
   </li><li>
@@ -11453,26 +11456,24 @@ a\u003Ab            # a:b -- codepoint x3A is colon</code></pre>
   </li><li>
     <span class="index-term" data-href="https://w3c.github.io/rdf-concepts/spec/#dfn-lexical-form" id="index-term-lexical-form" tabindex="0" aria-haspopup="dialog">lexical form</span>
   </li><li>
-    <span class="index-term" data-href="https://w3c.github.io/rdf-concepts/spec/#dfn-rdf-literal" id="index-term-literal" tabindex="0" aria-haspopup="dialog">literal</span>
+    <span class="index-term" data-href="https://w3c.github.io/rdf-concepts/spec/#dfn-literal" id="index-term-literal" tabindex="0" aria-haspopup="dialog">literal</span>
   </li><li>
-    <span class="index-term" data-href="https://w3c.github.io/rdf-concepts/spec/#dfn-term-equal" id="index-term-literal-term-equality" tabindex="0" aria-haspopup="dialog">Literal term equality</span>
+    <span class="index-term" data-href="https://w3c.github.io/rdf-concepts/spec/#dfn-literal-term-equality" id="index-term-literal-term-equality" tabindex="0" aria-haspopup="dialog">Literal term equality</span>
   </li><li>
     <span class="index-term" data-href="https://w3c.github.io/rdf-concepts/spec/#dfn-literal-value" id="index-term-literal-value" tabindex="0" aria-haspopup="dialog">literal value</span>
   </li><li>
     <span class="index-term" data-href="https://w3c.github.io/rdf-concepts/spec/" id="index-term-rdf-1-2-concepts-and-abstract-syntax" tabindex="0" aria-haspopup="dialog">RDF 1.2 Concepts and Abstract Syntax</span>
   </li><li>
-    <span class="index-term" data-href="https://w3c.github.io/rdf-concepts/spec/#section-data-model" id="index-term-rdf-data-model" tabindex="0" aria-haspopup="dialog">RDF data model</span>
+    <span class="index-term" data-href="https://w3c.github.io/rdf-concepts/spec/#data-model" id="index-term-rdf-data-model" tabindex="0" aria-haspopup="dialog">RDF data model</span>
   </li><li>
-    <span class="index-term" data-href="https://w3c.github.io/rdf-concepts/spec/#literal" id="index-term-rdf-literals" tabindex="0" aria-haspopup="dialog">RDF Literals</span>
-  </li><li>
-    <span class="index-term" data-href="https://w3c.github.io/rdf-concepts/spec/#section-Graph-URIref" id="index-term-updated" tabindex="0" aria-haspopup="dialog">updated</span>
+    <span class="index-term" data-href="https://w3c.github.io/rdf-concepts/spec/#section-IRIs" id="index-term-updated" tabindex="0" aria-haspopup="dialog">updated</span>
   </li>
         </ul>
       </li><li>
         [<cite><a class="bibref" data-link-type="biblio" href="#bib-rdf12-semantics">RDF12-SEMANTICS</a></cite>] defines the following:
         <ul>
           <li>
-    <span class="index-term" data-href="https://w3c.github.io/rdf-semantics/spec/#def-lean" id="index-term-lean" tabindex="0" aria-haspopup="dialog">lean</span>
+    <span class="index-term" data-href="https://w3c.github.io/rdf-semantics/spec/#dfn-lean" id="index-term-lean" tabindex="0" aria-haspopup="dialog">lean</span>
   </li><li>
     <span class="index-term" data-href="https://w3c.github.io/rdf-semantics/spec/#collections" id="index-term-rdf-collections" tabindex="0" aria-haspopup="dialog">RDF collections</span>
   </li><li>
@@ -11885,7 +11886,7 @@ a\u003Ab            # a:b -- codepoint x3A is colon</code></pre>
     </dd></dl>
   </section></section><p role="navigation" id="back-to-top">
     <a href="#title"><abbr title="Back to Top">↑</abbr></a>
-  </p><div class="dfn-panel" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-tags-for-identifying-languages" aria-label="Links in this document to definition: Tags for Identifying Languages" hidden="">
+  </p><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-tags-for-identifying-languages" aria-label="Links in this document to definition: Tags for Identifying Languages">
       <span class="caret"></span>
       <div>
         <a class="self-link" href="https://www.rfc-editor.org/rfc/rfc5646" aria-label="Permalink for definition: Tags for Identifying Languages. Activate to close this dialog.">Permalink</a>
@@ -11899,7 +11900,7 @@ a\u003Ab            # a:b -- codepoint x3A is colon</code></pre>
     <a href="#ref-for-index-term-tags-for-identifying-languages-2" title="§ C.1 Normative references">§ C.1 Normative references</a> <a href="#ref-for-index-term-tags-for-identifying-languages-3" title="Reference 2">(2)</a> 
   </li>
   </ul>
-    </div><div class="dfn-panel" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-sparql-query-language-for-rdf" aria-label="Links in this document to definition: SPARQL Query Language for RDF" hidden="">
+    </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-sparql-query-language-for-rdf" aria-label="Links in this document to definition: SPARQL Query Language for RDF">
       <span class="caret"></span>
       <div>
         <a class="self-link" href="https://www.w3.org/TR/rdf-sparql-query/" aria-label="Permalink for definition: SPARQL Query Language for RDF. Activate to close this dialog.">Permalink</a>
@@ -11913,7 +11914,7 @@ a\u003Ab            # a:b -- codepoint x3A is colon</code></pre>
     <a href="#ref-for-index-term-sparql-query-language-for-rdf-2" title="§ C.2 Informative references">§ C.2 Informative references</a> <a href="#ref-for-index-term-sparql-query-language-for-rdf-3" title="Reference 2">(2)</a> 
   </li>
   </ul>
-    </div><div class="dfn-panel" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-sparql-query-results-xml-format-second-edition" aria-label="Links in this document to definition: SPARQL Query Results XML Format (Second Edition)" hidden="">
+    </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-sparql-query-results-xml-format-second-edition" aria-label="Links in this document to definition: SPARQL Query Results XML Format (Second Edition)">
       <span class="caret"></span>
       <div>
         <a class="self-link" href="https://www.w3.org/TR/rdf-sparql-XMLres/" aria-label="Permalink for definition: SPARQL Query Results XML Format (Second Edition). Activate to close this dialog.">Permalink</a>
@@ -11937,7 +11938,7 @@ a\u003Ab            # a:b -- codepoint x3A is colon</code></pre>
     <a href="#ref-for-index-term-sparql-query-results-xml-format-second-edition-7" title="§ C.1 Normative references">§ C.1 Normative references</a> <a href="#ref-for-index-term-sparql-query-results-xml-format-second-edition-8" title="Reference 2">(2)</a> 
   </li>
   </ul>
-    </div><div class="dfn-panel" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-blank-node" aria-label="Links in this document to definition: blank node" hidden="">
+    </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-blank-node" aria-label="Links in this document to definition: blank node">
       <span class="caret"></span>
       <div>
         <a class="self-link" href="https://w3c.github.io/rdf-concepts/spec/#dfn-blank-node" aria-label="Permalink for definition: blank node. Activate to close this dialog.">Permalink</a>
@@ -11953,7 +11954,7 @@ a\u003Ab            # a:b -- codepoint x3A is colon</code></pre>
     <a href="#ref-for-index-term-blank-node-3" title="§ 18.1.1 RDF Terms">§ 18.1.1 RDF Terms</a> 
   </li>
   </ul>
-    </div><div class="dfn-panel" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-datatype-iri" aria-label="Links in this document to definition: datatype IRI" hidden="">
+    </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-datatype-iri" aria-label="Links in this document to definition: datatype IRI">
       <span class="caret"></span>
       <div>
         <a class="self-link" href="https://w3c.github.io/rdf-concepts/spec/#dfn-recognized-datatype-iri" aria-label="Permalink for definition: datatype IRI. Activate to close this dialog.">Permalink</a>
@@ -11967,7 +11968,7 @@ a\u003Ab            # a:b -- codepoint x3A is colon</code></pre>
     <a href="#ref-for-index-term-datatype-iri-2" title="§ 17.4.1.7 RDFterm-equal">§ 17.4.1.7 RDFterm-equal</a> <a href="#ref-for-index-term-datatype-iri-3" title="Reference 2">(2)</a> 
   </li>
   </ul>
-    </div><div class="dfn-panel" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-datatype-iri-0" aria-label="Links in this document to definition: datatype IRI" hidden="">
+    </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-datatype-iri-0" aria-label="Links in this document to definition: datatype IRI">
       <span class="caret"></span>
       <div>
         <a class="self-link" href="https://w3c.github.io/rdf-concepts/spec/#dfn-datatype-iri" aria-label="Permalink for definition: datatype IRI. Activate to close this dialog.">Permalink</a>
@@ -11979,10 +11980,10 @@ a\u003Ab            # a:b -- codepoint x3A is colon</code></pre>
     <a href="#ref-for-index-term-datatype-iri-0-1" title="§ 17.4.1.7 RDFterm-equal">§ 17.4.1.7 RDFterm-equal</a> <a href="#ref-for-index-term-datatype-iri-0-2" title="Reference 2">(2)</a> 
   </li>
   </ul>
-    </div><div class="dfn-panel" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-iri" aria-label="Links in this document to definition: IRI" hidden="">
+    </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-iri" aria-label="Links in this document to definition: IRI">
       <span class="caret"></span>
       <div>
-        <a class="self-link" href="https://w3c.github.io/rdf-concepts/spec/#dfn-internationalized-resource-identifier" aria-label="Permalink for definition: IRI. Activate to close this dialog.">Permalink</a>
+        <a class="self-link" href="https://w3c.github.io/rdf-concepts/spec/#dfn-iri" aria-label="Permalink for definition: IRI. Activate to close this dialog.">Permalink</a>
          
       </div>
       <p><b>Referenced in:</b></p>
@@ -11991,7 +11992,7 @@ a\u003Ab            # a:b -- codepoint x3A is colon</code></pre>
     <a href="#ref-for-index-term-iri-1" title="§ 1.2.4 Terminology">§ 1.2.4 Terminology</a> 
   </li>
   </ul>
-    </div><div class="dfn-panel" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-iri-equality" aria-label="Links in this document to definition: IRI equality" hidden="">
+    </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-iri-equality" aria-label="Links in this document to definition: IRI equality">
       <span class="caret"></span>
       <div>
         <a class="self-link" href="https://w3c.github.io/rdf-concepts/spec/#dfn-iri-equality" aria-label="Permalink for definition: IRI equality. Activate to close this dialog.">Permalink</a>
@@ -12003,7 +12004,7 @@ a\u003Ab            # a:b -- codepoint x3A is colon</code></pre>
     <a href="#ref-for-index-term-iri-equality-1" title="§ 17.4.1.7 RDFterm-equal">§ 17.4.1.7 RDFterm-equal</a> 
   </li>
   </ul>
-    </div><div class="dfn-panel" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-language-tag" aria-label="Links in this document to definition: language tag" hidden="">
+    </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-language-tag" aria-label="Links in this document to definition: language tag">
       <span class="caret"></span>
       <div>
         <a class="self-link" href="https://w3c.github.io/rdf-concepts/spec/#dfn-language-tag" aria-label="Permalink for definition: language tag. Activate to close this dialog.">Permalink</a>
@@ -12015,7 +12016,7 @@ a\u003Ab            # a:b -- codepoint x3A is colon</code></pre>
     <a href="#ref-for-index-term-language-tag-1" title="§ 1.2.4 Terminology">§ 1.2.4 Terminology</a> 
   </li>
   </ul>
-    </div><div class="dfn-panel" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-lexical-form" aria-label="Links in this document to definition: lexical form" hidden="">
+    </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-lexical-form" aria-label="Links in this document to definition: lexical form">
       <span class="caret"></span>
       <div>
         <a class="self-link" href="https://w3c.github.io/rdf-concepts/spec/#dfn-lexical-form" aria-label="Permalink for definition: lexical form. Activate to close this dialog.">Permalink</a>
@@ -12029,10 +12030,10 @@ a\u003Ab            # a:b -- codepoint x3A is colon</code></pre>
     <a href="#ref-for-index-term-lexical-form-2" title="§ 17.4.1.7 RDFterm-equal">§ 17.4.1.7 RDFterm-equal</a> 
   </li>
   </ul>
-    </div><div class="dfn-panel" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-literal" aria-label="Links in this document to definition: literal" hidden="">
+    </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-literal" aria-label="Links in this document to definition: literal">
       <span class="caret"></span>
       <div>
-        <a class="self-link" href="https://w3c.github.io/rdf-concepts/spec/#dfn-rdf-literal" aria-label="Permalink for definition: literal. Activate to close this dialog.">Permalink</a>
+        <a class="self-link" href="https://w3c.github.io/rdf-concepts/spec/#dfn-literal" aria-label="Permalink for definition: literal. Activate to close this dialog.">Permalink</a>
          
       </div>
       <p><b>Referenced in:</b></p>
@@ -12040,13 +12041,15 @@ a\u003Ab            # a:b -- codepoint x3A is colon</code></pre>
     <li>
     <a href="#ref-for-index-term-literal-1" title="§ 1.2.4 Terminology">§ 1.2.4 Terminology</a> 
   </li><li>
-    <a href="#ref-for-index-term-literal-2" title="§ 18.1.2 Simple Literal">§ 18.1.2 Simple Literal</a> 
+    <a href="#ref-for-index-term-literal-2" title="§ 18.1.1 RDF Terms">§ 18.1.1 RDF Terms</a> 
+  </li><li>
+    <a href="#ref-for-index-term-literal-3" title="§ 18.1.2 Simple Literal">§ 18.1.2 Simple Literal</a> 
   </li>
   </ul>
-    </div><div class="dfn-panel" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-literal-term-equality" aria-label="Links in this document to definition: Literal term equality" hidden="">
+    </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-literal-term-equality" aria-label="Links in this document to definition: Literal term equality">
       <span class="caret"></span>
       <div>
-        <a class="self-link" href="https://w3c.github.io/rdf-concepts/spec/#dfn-term-equal" aria-label="Permalink for definition: Literal term equality. Activate to close this dialog.">Permalink</a>
+        <a class="self-link" href="https://w3c.github.io/rdf-concepts/spec/#dfn-literal-term-equality" aria-label="Permalink for definition: Literal term equality. Activate to close this dialog.">Permalink</a>
          
       </div>
       <p><b>Referenced in:</b></p>
@@ -12055,7 +12058,7 @@ a\u003Ab            # a:b -- codepoint x3A is colon</code></pre>
     <a href="#ref-for-index-term-literal-term-equality-1" title="§ 17.4.1.7 RDFterm-equal">§ 17.4.1.7 RDFterm-equal</a> 
   </li>
   </ul>
-    </div><div class="dfn-panel" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-literal-value" aria-label="Links in this document to definition: literal value" hidden="">
+    </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-literal-value" aria-label="Links in this document to definition: literal value">
       <span class="caret"></span>
       <div>
         <a class="self-link" href="https://w3c.github.io/rdf-concepts/spec/#dfn-literal-value" aria-label="Permalink for definition: literal value. Activate to close this dialog.">Permalink</a>
@@ -12067,7 +12070,7 @@ a\u003Ab            # a:b -- codepoint x3A is colon</code></pre>
     <a href="#ref-for-index-term-literal-value-1" title="§ 17.4.1.7 RDFterm-equal">§ 17.4.1.7 RDFterm-equal</a> 
   </li>
   </ul>
-    </div><div class="dfn-panel" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-rdf-1-2-concepts-and-abstract-syntax" aria-label="Links in this document to definition: RDF 1.2 Concepts and Abstract Syntax" hidden="">
+    </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-rdf-1-2-concepts-and-abstract-syntax" aria-label="Links in this document to definition: RDF 1.2 Concepts and Abstract Syntax">
       <span class="caret"></span>
       <div>
         <a class="self-link" href="https://w3c.github.io/rdf-concepts/spec/" aria-label="Permalink for definition: RDF 1.2 Concepts and Abstract Syntax. Activate to close this dialog.">Permalink</a>
@@ -12085,10 +12088,10 @@ a\u003Ab            # a:b -- codepoint x3A is colon</code></pre>
     <a href="#ref-for-index-term-rdf-1-2-concepts-and-abstract-syntax-4" title="§ C.1 Normative references">§ C.1 Normative references</a> <a href="#ref-for-index-term-rdf-1-2-concepts-and-abstract-syntax-5" title="Reference 2">(2)</a> 
   </li>
   </ul>
-    </div><div class="dfn-panel" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-rdf-data-model" aria-label="Links in this document to definition: RDF data model" hidden="">
+    </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-rdf-data-model" aria-label="Links in this document to definition: RDF data model">
       <span class="caret"></span>
       <div>
-        <a class="self-link" href="https://w3c.github.io/rdf-concepts/spec/#section-data-model" aria-label="Permalink for definition: RDF data model. Activate to close this dialog.">Permalink</a>
+        <a class="self-link" href="https://w3c.github.io/rdf-concepts/spec/#data-model" aria-label="Permalink for definition: RDF data model. Activate to close this dialog.">Permalink</a>
          
       </div>
       <p><b>Referenced in:</b></p>
@@ -12097,22 +12100,10 @@ a\u003Ab            # a:b -- codepoint x3A is colon</code></pre>
     <a href="#ref-for-index-term-rdf-data-model-1" title="§ 18.1.1 RDF Terms">§ 18.1.1 RDF Terms</a> 
   </li>
   </ul>
-    </div><div class="dfn-panel" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-rdf-literals" aria-label="Links in this document to definition: RDF Literals" hidden="">
+    </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-updated" aria-label="Links in this document to definition: updated">
       <span class="caret"></span>
       <div>
-        <a class="self-link" href="https://w3c.github.io/rdf-concepts/spec/#literal" aria-label="Permalink for definition: RDF Literals. Activate to close this dialog.">Permalink</a>
-         
-      </div>
-      <p><b>Referenced in:</b></p>
-      <ul>
-    <li>
-    <a href="#ref-for-index-term-rdf-literals-1" title="§ 18.1.1 RDF Terms">§ 18.1.1 RDF Terms</a> 
-  </li>
-  </ul>
-    </div><div class="dfn-panel" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-updated" aria-label="Links in this document to definition: updated" hidden="">
-      <span class="caret"></span>
-      <div>
-        <a class="self-link" href="https://w3c.github.io/rdf-concepts/spec/#section-Graph-URIref" aria-label="Permalink for definition: updated. Activate to close this dialog.">Permalink</a>
+        <a class="self-link" href="https://w3c.github.io/rdf-concepts/spec/#section-IRIs" aria-label="Permalink for definition: updated. Activate to close this dialog.">Permalink</a>
          
       </div>
       <p><b>Referenced in:</b></p>
@@ -12121,10 +12112,10 @@ a\u003Ab            # a:b -- codepoint x3A is colon</code></pre>
     <a href="#ref-for-index-term-updated-1" title="§ 18.1.1 RDF Terms">§ 18.1.1 RDF Terms</a> 
   </li>
   </ul>
-    </div><div class="dfn-panel" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-lean" aria-label="Links in this document to definition: lean" hidden="">
+    </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-lean" aria-label="Links in this document to definition: lean">
       <span class="caret"></span>
       <div>
-        <a class="self-link" href="https://w3c.github.io/rdf-semantics/spec/#def-lean" aria-label="Permalink for definition: lean. Activate to close this dialog.">Permalink</a>
+        <a class="self-link" href="https://w3c.github.io/rdf-semantics/spec/#dfn-lean" aria-label="Permalink for definition: lean. Activate to close this dialog.">Permalink</a>
          
       </div>
       <p><b>Referenced in:</b></p>
@@ -12133,7 +12124,7 @@ a\u003Ab            # a:b -- codepoint x3A is colon</code></pre>
     <a href="#ref-for-index-term-lean-1" title="§ 18.3.2 Treatment of Blank Nodes">§ 18.3.2 Treatment of Blank Nodes</a> 
   </li>
   </ul>
-    </div><div class="dfn-panel" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-rdf-collections" aria-label="Links in this document to definition: RDF collections" hidden="">
+    </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-rdf-collections" aria-label="Links in this document to definition: RDF collections">
       <span class="caret"></span>
       <div>
         <a class="self-link" href="https://w3c.github.io/rdf-semantics/spec/#collections" aria-label="Permalink for definition: RDF collections. Activate to close this dialog.">Permalink</a>
@@ -12145,7 +12136,7 @@ a\u003Ab            # a:b -- codepoint x3A is colon</code></pre>
     <a href="#ref-for-index-term-rdf-collections-1" title="§ 4.2.3 RDF Collections">§ 4.2.3 RDF Collections</a> 
   </li>
   </ul>
-    </div><div class="dfn-panel" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-rdf-instance-mapping" aria-label="Links in this document to definition: RDF instance mapping" hidden="">
+    </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-rdf-instance-mapping" aria-label="Links in this document to definition: RDF instance mapping">
       <span class="caret"></span>
       <div>
         <a class="self-link" href="https://w3c.github.io/rdf-semantics/spec/#dfn-instance" aria-label="Permalink for definition: RDF instance mapping. Activate to close this dialog.">Permalink</a>
@@ -12157,7 +12148,7 @@ a\u003Ab            # a:b -- codepoint x3A is colon</code></pre>
     <a href="#ref-for-index-term-rdf-instance-mapping-1" title="§ 18.3.1 SPARQL Basic Graph Pattern Matching">§ 18.3.1 SPARQL Basic Graph Pattern Matching</a> 
   </li>
   </ul>
-    </div><div class="dfn-panel" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-rdf-interpolation-lemma" aria-label="Links in this document to definition: RDF interpolation lemma" hidden="">
+    </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-rdf-interpolation-lemma" aria-label="Links in this document to definition: RDF interpolation lemma">
       <span class="caret"></span>
       <div>
         <a class="self-link" href="https://w3c.github.io/rdf-semantics/spec/#dfn-interpolation" aria-label="Permalink for definition: RDF interpolation lemma. Activate to close this dialog.">Permalink</a>
@@ -12169,7 +12160,7 @@ a\u003Ab            # a:b -- codepoint x3A is colon</code></pre>
     <a href="#ref-for-index-term-rdf-interpolation-lemma-1" title="§ 18.5.3.1 Notes">§ 18.5.3.1 Notes</a> 
   </li>
   </ul>
-    </div><div class="dfn-panel" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-rdf-merge" aria-label="Links in this document to definition: RDF merge" hidden="">
+    </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-rdf-merge" aria-label="Links in this document to definition: RDF merge">
       <span class="caret"></span>
       <div>
         <a class="self-link" href="https://w3c.github.io/rdf-semantics/spec/#dfn-merge" aria-label="Permalink for definition: RDF merge. Activate to close this dialog.">Permalink</a>
@@ -12185,7 +12176,7 @@ a\u003Ab            # a:b -- codepoint x3A is colon</code></pre>
     <a href="#ref-for-index-term-rdf-merge-3" title="§ 18.1.3 RDF Dataset">§ 18.1.3 RDF Dataset</a> <a href="#ref-for-index-term-rdf-merge-4" title="Reference 2">(2)</a> 
   </li>
   </ul>
-    </div><div class="dfn-panel" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-utf-8-a-transformation-format-of-iso-10646" aria-label="Links in this document to definition: UTF-8, a transformation format of ISO 10646" hidden="">
+    </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-utf-8-a-transformation-format-of-iso-10646" aria-label="Links in this document to definition: UTF-8, a transformation format of ISO 10646">
       <span class="caret"></span>
       <div>
         <a class="self-link" href="https://www.rfc-editor.org/rfc/rfc3629" aria-label="Permalink for definition: UTF-8, a transformation format of ISO 10646. Activate to close this dialog.">Permalink</a>
@@ -12199,7 +12190,7 @@ a\u003Ab            # a:b -- codepoint x3A is colon</code></pre>
     <a href="#ref-for-index-term-utf-8-a-transformation-format-of-iso-10646-2" title="§ C.1 Normative references">§ C.1 Normative references</a> <a href="#ref-for-index-term-utf-8-a-transformation-format-of-iso-10646-3" title="Reference 2">(2)</a> 
   </li>
   </ul>
-    </div><div class="dfn-panel" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-uniform-resource-identifier-uri-generic-syntax" aria-label="Links in this document to definition: Uniform Resource Identifier (URI): Generic Syntax" hidden="">
+    </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-uniform-resource-identifier-uri-generic-syntax" aria-label="Links in this document to definition: Uniform Resource Identifier (URI): Generic Syntax">
       <span class="caret"></span>
       <div>
         <a class="self-link" href="https://www.rfc-editor.org/rfc/rfc3986" aria-label="Permalink for definition: Uniform Resource Identifier (URI): Generic Syntax. Activate to close this dialog.">Permalink</a>
@@ -12215,7 +12206,7 @@ a\u003Ab            # a:b -- codepoint x3A is colon</code></pre>
     <a href="#ref-for-index-term-uniform-resource-identifier-uri-generic-syntax-3" title="§ C.1 Normative references">§ C.1 Normative references</a> <a href="#ref-for-index-term-uniform-resource-identifier-uri-generic-syntax-4" title="Reference 2">(2)</a> 
   </li>
   </ul>
-    </div><div class="dfn-panel" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-internationalized-resource-identifiers-iris" aria-label="Links in this document to definition: Internationalized Resource Identifiers (IRIs)" hidden="">
+    </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-internationalized-resource-identifiers-iris" aria-label="Links in this document to definition: Internationalized Resource Identifiers (IRIs)">
       <span class="caret"></span>
       <div>
         <a class="self-link" href="https://www.rfc-editor.org/rfc/rfc3987" aria-label="Permalink for definition: Internationalized Resource Identifiers (IRIs). Activate to close this dialog.">Permalink</a>
@@ -12231,7 +12222,7 @@ a\u003Ab            # a:b -- codepoint x3A is colon</code></pre>
     <a href="#ref-for-index-term-internationalized-resource-identifiers-iris-3" title="§ C.1 Normative references">§ C.1 Normative references</a> <a href="#ref-for-index-term-internationalized-resource-identifiers-iris-4" title="Reference 2">(2)</a> 
   </li>
   </ul>
-    </div><div class="dfn-panel" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-a-universally-unique-identifier-uuid-urn-namespace" aria-label="Links in this document to definition: A Universally Unique IDentifier (UUID) URN Namespace" hidden="">
+    </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-a-universally-unique-identifier-uuid-urn-namespace" aria-label="Links in this document to definition: A Universally Unique IDentifier (UUID) URN Namespace">
       <span class="caret"></span>
       <div>
         <a class="self-link" href="https://www.rfc-editor.org/rfc/rfc4122" aria-label="Permalink for definition: A Universally Unique IDentifier (UUID) URN Namespace. Activate to close this dialog.">Permalink</a>
@@ -12245,7 +12236,7 @@ a\u003Ab            # a:b -- codepoint x3A is colon</code></pre>
     <a href="#ref-for-index-term-a-universally-unique-identifier-uuid-urn-namespace-2" title="§ C.1 Normative references">§ C.1 Normative references</a> <a href="#ref-for-index-term-a-universally-unique-identifier-uuid-urn-namespace-3" title="Reference 2">(2)</a> 
   </li>
   </ul>
-    </div><div class="dfn-panel" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-matching-of-language-tags" aria-label="Links in this document to definition: Matching of Language Tags" hidden="">
+    </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-matching-of-language-tags" aria-label="Links in this document to definition: Matching of Language Tags">
       <span class="caret"></span>
       <div>
         <a class="self-link" href="https://www.rfc-editor.org/rfc/rfc4647" aria-label="Permalink for definition: Matching of Language Tags. Activate to close this dialog.">Permalink</a>
@@ -12259,7 +12250,7 @@ a\u003Ab            # a:b -- codepoint x3A is colon</code></pre>
     <a href="#ref-for-index-term-matching-of-language-tags-2" title="§ C.1 Normative references">§ C.1 Normative references</a> <a href="#ref-for-index-term-matching-of-language-tags-3" title="Reference 2">(2)</a> 
   </li>
   </ul>
-    </div><div class="dfn-panel" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-sparql-1-1-entailment-regimes" aria-label="Links in this document to definition: SPARQL 1.1 Entailment Regimes" hidden="">
+    </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-sparql-1-1-entailment-regimes" aria-label="Links in this document to definition: SPARQL 1.1 Entailment Regimes">
       <span class="caret"></span>
       <div>
         <a class="self-link" href="https://www.w3.org/TR/sparql11-entailment/" aria-label="Permalink for definition: SPARQL 1.1 Entailment Regimes. Activate to close this dialog.">Permalink</a>
@@ -12275,7 +12266,7 @@ a\u003Ab            # a:b -- codepoint x3A is colon</code></pre>
     <a href="#ref-for-index-term-sparql-1-1-entailment-regimes-3" title="§ C.1 Normative references">§ C.1 Normative references</a> <a href="#ref-for-index-term-sparql-1-1-entailment-regimes-4" title="Reference 2">(2)</a> 
   </li>
   </ul>
-    </div><div class="dfn-panel" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-sparql-1-1-federated-query" aria-label="Links in this document to definition: SPARQL 1.1 Federated Query" hidden="">
+    </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-sparql-1-1-federated-query" aria-label="Links in this document to definition: SPARQL 1.1 Federated Query">
       <span class="caret"></span>
       <div>
         <a class="self-link" href="https://www.w3.org/TR/sparql11-federated-query/" aria-label="Permalink for definition: SPARQL 1.1 Federated Query. Activate to close this dialog.">Permalink</a>
@@ -12291,7 +12282,7 @@ a\u003Ab            # a:b -- codepoint x3A is colon</code></pre>
     <a href="#ref-for-index-term-sparql-1-1-federated-query-3" title="§ C.1 Normative references">§ C.1 Normative references</a> <a href="#ref-for-index-term-sparql-1-1-federated-query-4" title="Reference 2">(2)</a> 
   </li>
   </ul>
-    </div><div class="dfn-panel" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-sparql-1-1-protocol" aria-label="Links in this document to definition: SPARQL 1.1 Protocol" hidden="">
+    </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-sparql-1-1-protocol" aria-label="Links in this document to definition: SPARQL 1.1 Protocol">
       <span class="caret"></span>
       <div>
         <a class="self-link" href="https://www.w3.org/TR/sparql11-protocol/" aria-label="Permalink for definition: SPARQL 1.1 Protocol. Activate to close this dialog.">Permalink</a>
@@ -12305,7 +12296,7 @@ a\u003Ab            # a:b -- codepoint x3A is colon</code></pre>
     <a href="#ref-for-index-term-sparql-1-1-protocol-2" title="§ C.1 Normative references">§ C.1 Normative references</a> <a href="#ref-for-index-term-sparql-1-1-protocol-3" title="Reference 2">(2)</a> 
   </li>
   </ul>
-    </div><div class="dfn-panel" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-specified-in-a-sparql-protocol-request" aria-label="Links in this document to definition: specified in a SPARQL protocol request" hidden="">
+    </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-specified-in-a-sparql-protocol-request" aria-label="Links in this document to definition: specified in a SPARQL protocol request">
       <span class="caret"></span>
       <div>
         <a class="self-link" href="https://www.w3.org/TR/sparql11-protocol/#" aria-label="Permalink for definition: specified in a SPARQL protocol request. Activate to close this dialog.">Permalink</a>
@@ -12317,7 +12308,7 @@ a\u003Ab            # a:b -- codepoint x3A is colon</code></pre>
     <a href="#ref-for-index-term-specified-in-a-sparql-protocol-request-1" title="§ 13.2 Specifying RDF Datasets">§ 13.2 Specifying RDF Datasets</a> 
   </li>
   </ul>
-    </div><div class="dfn-panel" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-solution-mapping" aria-label="Links in this document to definition: solution mapping" hidden="">
+    </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-solution-mapping" aria-label="Links in this document to definition: solution mapping">
       <span class="caret"></span>
       <div>
         <a class="self-link" href="https://www.w3.org/TR/sparql11-query/#defn_sparqlSolutionMapping" aria-label="Permalink for definition: solution mapping. Activate to close this dialog.">Permalink</a>
@@ -12329,7 +12320,7 @@ a\u003Ab            # a:b -- codepoint x3A is colon</code></pre>
     <a href="#ref-for-index-term-solution-mapping-1" title="§ 17.4.1.4 NOT EXISTS and EXISTS">§ 17.4.1.4 NOT EXISTS and EXISTS</a> 
   </li>
   </ul>
-    </div><div class="dfn-panel" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-sparql-1-1-query-results-csv-and-tsv-formats" aria-label="Links in this document to definition: SPARQL 1.1 Query Results CSV and TSV Formats" hidden="">
+    </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-sparql-1-1-query-results-csv-and-tsv-formats" aria-label="Links in this document to definition: SPARQL 1.1 Query Results CSV and TSV Formats">
       <span class="caret"></span>
       <div>
         <a class="self-link" href="https://www.w3.org/TR/sparql11-results-csv-tsv/" aria-label="Permalink for definition: SPARQL 1.1 Query Results CSV and TSV Formats. Activate to close this dialog.">Permalink</a>
@@ -12347,7 +12338,7 @@ a\u003Ab            # a:b -- codepoint x3A is colon</code></pre>
     <a href="#ref-for-index-term-sparql-1-1-query-results-csv-and-tsv-formats-4" title="§ C.1 Normative references">§ C.1 Normative references</a> <a href="#ref-for-index-term-sparql-1-1-query-results-csv-and-tsv-formats-5" title="Reference 2">(2)</a> 
   </li>
   </ul>
-    </div><div class="dfn-panel" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-sparql-1-1-query-results-json-format" aria-label="Links in this document to definition: SPARQL 1.1 Query Results JSON Format" hidden="">
+    </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-sparql-1-1-query-results-json-format" aria-label="Links in this document to definition: SPARQL 1.1 Query Results JSON Format">
       <span class="caret"></span>
       <div>
         <a class="self-link" href="https://www.w3.org/TR/sparql11-results-json/" aria-label="Permalink for definition: SPARQL 1.1 Query Results JSON Format. Activate to close this dialog.">Permalink</a>
@@ -12369,7 +12360,7 @@ a\u003Ab            # a:b -- codepoint x3A is colon</code></pre>
     <a href="#ref-for-index-term-sparql-1-1-query-results-json-format-6" title="§ C.1 Normative references">§ C.1 Normative references</a> <a href="#ref-for-index-term-sparql-1-1-query-results-json-format-7" title="Reference 2">(2)</a> 
   </li>
   </ul>
-    </div><div class="dfn-panel" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-sparql-1-1-update" aria-label="Links in this document to definition: SPARQL 1.1 Update" hidden="">
+    </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-sparql-1-1-update" aria-label="Links in this document to definition: SPARQL 1.1 Update">
       <span class="caret"></span>
       <div>
         <a class="self-link" href="https://www.w3.org/TR/sparql11-update/" aria-label="Permalink for definition: SPARQL 1.1 Update. Activate to close this dialog.">Permalink</a>
@@ -12387,7 +12378,7 @@ a\u003Ab            # a:b -- codepoint x3A is colon</code></pre>
     <a href="#ref-for-index-term-sparql-1-1-update-4" title="§ C.1 Normative references">§ C.1 Normative references</a> <a href="#ref-for-index-term-sparql-1-1-update-5" title="Reference 2">(2)</a> 
   </li>
   </ul>
-    </div><div class="dfn-panel" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-sparql-update-request" aria-label="Links in this document to definition: SPARQL Update request" hidden="">
+    </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-sparql-update-request" aria-label="Links in this document to definition: SPARQL Update request">
       <span class="caret"></span>
       <div>
         <a class="self-link" href="https://www.w3.org/TR/sparql11-update/#terminology" aria-label="Permalink for definition: SPARQL Update request. Activate to close this dialog.">Permalink</a>
@@ -12399,7 +12390,7 @@ a\u003Ab            # a:b -- codepoint x3A is colon</code></pre>
     <a href="#ref-for-index-term-sparql-update-request-1" title="§ 19.6 Blank Nodes and Blank Node Labels">§ 19.6 Blank Nodes and Blank Node Labels</a> 
   </li>
   </ul>
-    </div><div class="dfn-panel" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-rdf-1-1-turtle" aria-label="Links in this document to definition: RDF 1.1 Turtle" hidden="">
+    </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-rdf-1-1-turtle" aria-label="Links in this document to definition: RDF 1.1 Turtle">
       <span class="caret"></span>
       <div>
         <a class="self-link" href="https://www.w3.org/TR/turtle/" aria-label="Permalink for definition: RDF 1.1 Turtle. Activate to close this dialog.">Permalink</a>
@@ -12413,7 +12404,7 @@ a\u003Ab            # a:b -- codepoint x3A is colon</code></pre>
     <a href="#ref-for-index-term-rdf-1-1-turtle-2" title="§ C.1 Normative references">§ C.1 Normative references</a> <a href="#ref-for-index-term-rdf-1-1-turtle-3" title="Reference 2">(2)</a> 
   </li>
   </ul>
-    </div><div class="dfn-panel" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-unicode-identifier-and-pattern-syntax" aria-label="Links in this document to definition: Unicode Identifier and Pattern Syntax" hidden="">
+    </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-unicode-identifier-and-pattern-syntax" aria-label="Links in this document to definition: Unicode Identifier and Pattern Syntax">
       <span class="caret"></span>
       <div>
         <a class="self-link" href="https://www.unicode.org/reports/tr31/tr31-37.html" aria-label="Permalink for definition: Unicode Identifier and Pattern Syntax. Activate to close this dialog.">Permalink</a>
@@ -12427,7 +12418,7 @@ a\u003Ab            # a:b -- codepoint x3A is colon</code></pre>
     <a href="#ref-for-index-term-unicode-identifier-and-pattern-syntax-2" title="§ C.1 Normative references">§ C.1 Normative references</a> <a href="#ref-for-index-term-unicode-identifier-and-pattern-syntax-3" title="Reference 2">(2)</a> 
   </li>
   </ul>
-    </div><div class="dfn-panel" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-unicode-security-considerations" aria-label="Links in this document to definition: Unicode Security Considerations" hidden="">
+    </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-unicode-security-considerations" aria-label="Links in this document to definition: Unicode Security Considerations">
       <span class="caret"></span>
       <div>
         <a class="self-link" href="https://www.unicode.org/reports/tr36/tr36-15.html" aria-label="Permalink for definition: Unicode Security Considerations. Activate to close this dialog.">Permalink</a>
@@ -12441,7 +12432,7 @@ a\u003Ab            # a:b -- codepoint x3A is colon</code></pre>
     <a href="#ref-for-index-term-unicode-security-considerations-2" title="§ C.1 Normative references">§ C.1 Normative references</a> <a href="#ref-for-index-term-unicode-security-considerations-3" title="Reference 2">(2)</a> 
   </li>
   </ul>
-    </div><div class="dfn-panel" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-further-details" aria-label="Links in this document to definition: further details" hidden="">
+    </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-further-details" aria-label="Links in this document to definition: further details">
       <span class="caret"></span>
       <div>
         <a class="self-link" href="https://www.w3.org/TR/webarch/#intro" aria-label="Permalink for definition: further details. Activate to close this dialog.">Permalink</a>
@@ -12453,7 +12444,7 @@ a\u003Ab            # a:b -- codepoint x3A is colon</code></pre>
     <a href="#ref-for-index-term-further-details-1" title="§ 13.2.2 Specifying Named Graphs">§ 13.2.2 Specifying Named Graphs</a> 
   </li>
   </ul>
-    </div><div class="dfn-panel" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-xml-local-names" aria-label="Links in this document to definition: XML local names" hidden="">
+    </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-xml-local-names" aria-label="Links in this document to definition: XML local names">
       <span class="caret"></span>
       <div>
         <a class="self-link" href="https://www.w3.org/TR/xml-names11/#NT-LocalPart" aria-label="Permalink for definition: XML local names. Activate to close this dialog.">Permalink</a>
@@ -12465,7 +12456,7 @@ a\u003Ab            # a:b -- codepoint x3A is colon</code></pre>
     <a href="#ref-for-index-term-xml-local-names-1" title="§ 4.1.1.1 Prefixed Names">§ 4.1.1.1 Prefixed Names</a> 
   </li>
   </ul>
-    </div><div class="dfn-panel" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-notation" aria-label="Links in this document to definition: Notation" hidden="">
+    </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-notation" aria-label="Links in this document to definition: Notation">
       <span class="caret"></span>
       <div>
         <a class="self-link" href="https://www.w3.org/TR/xml11/#sec-notation" aria-label="Permalink for definition: Notation. Activate to close this dialog.">Permalink</a>
@@ -12477,7 +12468,7 @@ a\u003Ab            # a:b -- codepoint x3A is colon</code></pre>
     <a href="#ref-for-index-term-notation-1" title="§ 19.8 Grammar">§ 19.8 Grammar</a> 
   </li>
   </ul>
-    </div><div class="dfn-panel" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-xml-schema-part-2-datatypes-second-edition" aria-label="Links in this document to definition: XML Schema Part 2: Datatypes Second Edition" hidden="">
+    </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-xml-schema-part-2-datatypes-second-edition" aria-label="Links in this document to definition: XML Schema Part 2: Datatypes Second Edition">
       <span class="caret"></span>
       <div>
         <a class="self-link" href="https://www.w3.org/TR/xmlschema-2/" aria-label="Permalink for definition: XML Schema Part 2: Datatypes Second Edition. Activate to close this dialog.">Permalink</a>
@@ -12491,7 +12482,7 @@ a\u003Ab            # a:b -- codepoint x3A is colon</code></pre>
     <a href="#ref-for-index-term-xml-schema-part-2-datatypes-second-edition-2" title="§ C.1 Normative references">§ C.1 Normative references</a> <a href="#ref-for-index-term-xml-schema-part-2-datatypes-second-edition-3" title="Reference 2">(2)</a> 
   </li>
   </ul>
-    </div><div class="dfn-panel" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-xml-schema-regular-expressions" aria-label="Links in this document to definition: XML Schema Regular Expressions" hidden="">
+    </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-xml-schema-regular-expressions" aria-label="Links in this document to definition: XML Schema Regular Expressions">
       <span class="caret"></span>
       <div>
         <a class="self-link" href="https://www.w3.org/TR/xmlschema-2/#regexs" aria-label="Permalink for definition: XML Schema Regular Expressions. Activate to close this dialog.">Permalink</a>
@@ -12503,7 +12494,7 @@ a\u003Ab            # a:b -- codepoint x3A is colon</code></pre>
     <a href="#ref-for-index-term-xml-schema-regular-expressions-1" title="§ 3.1 Restricting the Value of Strings">§ 3.1 Restricting the Value of Strings</a> 
   </li>
   </ul>
-    </div><div class="dfn-panel" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-xsd-boolean" aria-label="Links in this document to definition: xsd:boolean" hidden="">
+    </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-xsd-boolean" aria-label="Links in this document to definition: xsd:boolean">
       <span class="caret"></span>
       <div>
         <a class="self-link" href="https://www.w3.org/TR/xmlschema-2/#dt-boolean" aria-label="Permalink for definition: xsd:boolean. Activate to close this dialog.">Permalink</a>
@@ -12515,7 +12506,7 @@ a\u003Ab            # a:b -- codepoint x3A is colon</code></pre>
     <a href="#ref-for-index-term-xsd-boolean-1" title="§ 17.1 Operand Data Types">§ 17.1 Operand Data Types</a> 
   </li>
   </ul>
-    </div><div class="dfn-panel" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-xsd-boolean-0" aria-label="Links in this document to definition: xsd:boolean" hidden="">
+    </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-xsd-boolean-0" aria-label="Links in this document to definition: xsd:boolean">
       <span class="caret"></span>
       <div>
         <a class="self-link" href="https://www.w3.org/TR/xmlschema-2/#boolean" aria-label="Permalink for definition: xsd:boolean. Activate to close this dialog.">Permalink</a>
@@ -12527,7 +12518,7 @@ a\u003Ab            # a:b -- codepoint x3A is colon</code></pre>
     <a href="#ref-for-index-term-xsd-boolean-0-1" title="§ 17.5 XPath Constructor Functions">§ 17.5 XPath Constructor Functions</a> 
   </li>
   </ul>
-    </div><div class="dfn-panel" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-xsd-byte" aria-label="Links in this document to definition: xsd:byte" hidden="">
+    </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-xsd-byte" aria-label="Links in this document to definition: xsd:byte">
       <span class="caret"></span>
       <div>
         <a class="self-link" href="https://www.w3.org/TR/xmlschema-2/#dt-byte" aria-label="Permalink for definition: xsd:byte. Activate to close this dialog.">Permalink</a>
@@ -12539,7 +12530,7 @@ a\u003Ab            # a:b -- codepoint x3A is colon</code></pre>
     <a href="#ref-for-index-term-xsd-byte-1" title="§ 17.1 Operand Data Types">§ 17.1 Operand Data Types</a> 
   </li>
   </ul>
-    </div><div class="dfn-panel" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-xsd-datetime" aria-label="Links in this document to definition: xsd:dateTime" hidden="">
+    </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-xsd-datetime" aria-label="Links in this document to definition: xsd:dateTime">
       <span class="caret"></span>
       <div>
         <a class="self-link" href="https://www.w3.org/TR/xmlschema-2/#dt-dateTime" aria-label="Permalink for definition: xsd:dateTime. Activate to close this dialog.">Permalink</a>
@@ -12551,7 +12542,7 @@ a\u003Ab            # a:b -- codepoint x3A is colon</code></pre>
     <a href="#ref-for-index-term-xsd-datetime-1" title="§ 17.1 Operand Data Types">§ 17.1 Operand Data Types</a> 
   </li>
   </ul>
-    </div><div class="dfn-panel" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-xsd-datetime-0" aria-label="Links in this document to definition: xsd:dateTime" hidden="">
+    </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-xsd-datetime-0" aria-label="Links in this document to definition: xsd:dateTime">
       <span class="caret"></span>
       <div>
         <a class="self-link" href="https://www.w3.org/TR/xmlschema-2/#dateTime" aria-label="Permalink for definition: xsd:dateTime. Activate to close this dialog.">Permalink</a>
@@ -12563,7 +12554,7 @@ a\u003Ab            # a:b -- codepoint x3A is colon</code></pre>
     <a href="#ref-for-index-term-xsd-datetime-0-1" title="§ 17.5 XPath Constructor Functions">§ 17.5 XPath Constructor Functions</a> 
   </li>
   </ul>
-    </div><div class="dfn-panel" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-xsd-decimal" aria-label="Links in this document to definition: xsd:decimal" hidden="">
+    </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-xsd-decimal" aria-label="Links in this document to definition: xsd:decimal">
       <span class="caret"></span>
       <div>
         <a class="self-link" href="https://www.w3.org/TR/xmlschema-2/#dt-decimal" aria-label="Permalink for definition: xsd:decimal. Activate to close this dialog.">Permalink</a>
@@ -12575,7 +12566,7 @@ a\u003Ab            # a:b -- codepoint x3A is colon</code></pre>
     <a href="#ref-for-index-term-xsd-decimal-1" title="§ 17.1 Operand Data Types">§ 17.1 Operand Data Types</a> 
   </li>
   </ul>
-    </div><div class="dfn-panel" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-xsd-decimal-0" aria-label="Links in this document to definition: xsd:decimal" hidden="">
+    </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-xsd-decimal-0" aria-label="Links in this document to definition: xsd:decimal">
       <span class="caret"></span>
       <div>
         <a class="self-link" href="https://www.w3.org/TR/xmlschema-2/#decimal" aria-label="Permalink for definition: xsd:decimal. Activate to close this dialog.">Permalink</a>
@@ -12587,7 +12578,7 @@ a\u003Ab            # a:b -- codepoint x3A is colon</code></pre>
     <a href="#ref-for-index-term-xsd-decimal-0-1" title="§ 17.5 XPath Constructor Functions">§ 17.5 XPath Constructor Functions</a> 
   </li>
   </ul>
-    </div><div class="dfn-panel" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-xsd-double" aria-label="Links in this document to definition: xsd:double" hidden="">
+    </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-xsd-double" aria-label="Links in this document to definition: xsd:double">
       <span class="caret"></span>
       <div>
         <a class="self-link" href="https://www.w3.org/TR/xmlschema-2/#dt-double" aria-label="Permalink for definition: xsd:double. Activate to close this dialog.">Permalink</a>
@@ -12599,7 +12590,7 @@ a\u003Ab            # a:b -- codepoint x3A is colon</code></pre>
     <a href="#ref-for-index-term-xsd-double-1" title="§ 17.1 Operand Data Types">§ 17.1 Operand Data Types</a> 
   </li>
   </ul>
-    </div><div class="dfn-panel" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-xsd-double-0" aria-label="Links in this document to definition: xsd:double" hidden="">
+    </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-xsd-double-0" aria-label="Links in this document to definition: xsd:double">
       <span class="caret"></span>
       <div>
         <a class="self-link" href="https://www.w3.org/TR/xmlschema-2/#double" aria-label="Permalink for definition: xsd:double. Activate to close this dialog.">Permalink</a>
@@ -12611,7 +12602,7 @@ a\u003Ab            # a:b -- codepoint x3A is colon</code></pre>
     <a href="#ref-for-index-term-xsd-double-0-1" title="§ 17.5 XPath Constructor Functions">§ 17.5 XPath Constructor Functions</a> 
   </li>
   </ul>
-    </div><div class="dfn-panel" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-xsd-float" aria-label="Links in this document to definition: xsd:float" hidden="">
+    </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-xsd-float" aria-label="Links in this document to definition: xsd:float">
       <span class="caret"></span>
       <div>
         <a class="self-link" href="https://www.w3.org/TR/xmlschema-2/#dt-float" aria-label="Permalink for definition: xsd:float. Activate to close this dialog.">Permalink</a>
@@ -12623,7 +12614,7 @@ a\u003Ab            # a:b -- codepoint x3A is colon</code></pre>
     <a href="#ref-for-index-term-xsd-float-1" title="§ 17.1 Operand Data Types">§ 17.1 Operand Data Types</a> 
   </li>
   </ul>
-    </div><div class="dfn-panel" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-xsd-float-0" aria-label="Links in this document to definition: xsd:float" hidden="">
+    </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-xsd-float-0" aria-label="Links in this document to definition: xsd:float">
       <span class="caret"></span>
       <div>
         <a class="self-link" href="https://www.w3.org/TR/xmlschema-2/#float" aria-label="Permalink for definition: xsd:float. Activate to close this dialog.">Permalink</a>
@@ -12635,7 +12626,7 @@ a\u003Ab            # a:b -- codepoint x3A is colon</code></pre>
     <a href="#ref-for-index-term-xsd-float-0-1" title="§ 17.5 XPath Constructor Functions">§ 17.5 XPath Constructor Functions</a> 
   </li>
   </ul>
-    </div><div class="dfn-panel" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-xsd-int" aria-label="Links in this document to definition: xsd:int" hidden="">
+    </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-xsd-int" aria-label="Links in this document to definition: xsd:int">
       <span class="caret"></span>
       <div>
         <a class="self-link" href="https://www.w3.org/TR/xmlschema-2/#dt-int" aria-label="Permalink for definition: xsd:int. Activate to close this dialog.">Permalink</a>
@@ -12647,7 +12638,7 @@ a\u003Ab            # a:b -- codepoint x3A is colon</code></pre>
     <a href="#ref-for-index-term-xsd-int-1" title="§ 17.1 Operand Data Types">§ 17.1 Operand Data Types</a> 
   </li>
   </ul>
-    </div><div class="dfn-panel" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-xsd-integer" aria-label="Links in this document to definition: xsd:integer" hidden="">
+    </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-xsd-integer" aria-label="Links in this document to definition: xsd:integer">
       <span class="caret"></span>
       <div>
         <a class="self-link" href="https://www.w3.org/TR/xmlschema-2/#dt-integer" aria-label="Permalink for definition: xsd:integer. Activate to close this dialog.">Permalink</a>
@@ -12659,7 +12650,7 @@ a\u003Ab            # a:b -- codepoint x3A is colon</code></pre>
     <a href="#ref-for-index-term-xsd-integer-1" title="§ 17.1 Operand Data Types">§ 17.1 Operand Data Types</a> 
   </li>
   </ul>
-    </div><div class="dfn-panel" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-xsd-integer-0" aria-label="Links in this document to definition: xsd:integer" hidden="">
+    </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-xsd-integer-0" aria-label="Links in this document to definition: xsd:integer">
       <span class="caret"></span>
       <div>
         <a class="self-link" href="https://www.w3.org/TR/xmlschema-2/#integer" aria-label="Permalink for definition: xsd:integer. Activate to close this dialog.">Permalink</a>
@@ -12671,7 +12662,7 @@ a\u003Ab            # a:b -- codepoint x3A is colon</code></pre>
     <a href="#ref-for-index-term-xsd-integer-0-1" title="§ 17.5 XPath Constructor Functions">§ 17.5 XPath Constructor Functions</a> 
   </li>
   </ul>
-    </div><div class="dfn-panel" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-xsd-long" aria-label="Links in this document to definition: xsd:long" hidden="">
+    </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-xsd-long" aria-label="Links in this document to definition: xsd:long">
       <span class="caret"></span>
       <div>
         <a class="self-link" href="https://www.w3.org/TR/xmlschema-2/#dt-long" aria-label="Permalink for definition: xsd:long. Activate to close this dialog.">Permalink</a>
@@ -12683,7 +12674,7 @@ a\u003Ab            # a:b -- codepoint x3A is colon</code></pre>
     <a href="#ref-for-index-term-xsd-long-1" title="§ 17.1 Operand Data Types">§ 17.1 Operand Data Types</a> 
   </li>
   </ul>
-    </div><div class="dfn-panel" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-xsd-negativeinteger" aria-label="Links in this document to definition: xsd:negativeInteger" hidden="">
+    </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-xsd-negativeinteger" aria-label="Links in this document to definition: xsd:negativeInteger">
       <span class="caret"></span>
       <div>
         <a class="self-link" href="https://www.w3.org/TR/xmlschema-2/#dt-negativeInteger" aria-label="Permalink for definition: xsd:negativeInteger. Activate to close this dialog.">Permalink</a>
@@ -12695,7 +12686,7 @@ a\u003Ab            # a:b -- codepoint x3A is colon</code></pre>
     <a href="#ref-for-index-term-xsd-negativeinteger-1" title="§ 17.1 Operand Data Types">§ 17.1 Operand Data Types</a> 
   </li>
   </ul>
-    </div><div class="dfn-panel" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-xsd-nonnegativeinteger" aria-label="Links in this document to definition: xsd:nonNegativeInteger" hidden="">
+    </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-xsd-nonnegativeinteger" aria-label="Links in this document to definition: xsd:nonNegativeInteger">
       <span class="caret"></span>
       <div>
         <a class="self-link" href="https://www.w3.org/TR/xmlschema-2/#dt-nonNegativeInteger" aria-label="Permalink for definition: xsd:nonNegativeInteger. Activate to close this dialog.">Permalink</a>
@@ -12707,7 +12698,7 @@ a\u003Ab            # a:b -- codepoint x3A is colon</code></pre>
     <a href="#ref-for-index-term-xsd-nonnegativeinteger-1" title="§ 17.1 Operand Data Types">§ 17.1 Operand Data Types</a> 
   </li>
   </ul>
-    </div><div class="dfn-panel" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-xsd-nonpositiveinteger" aria-label="Links in this document to definition: xsd:nonPositiveInteger" hidden="">
+    </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-xsd-nonpositiveinteger" aria-label="Links in this document to definition: xsd:nonPositiveInteger">
       <span class="caret"></span>
       <div>
         <a class="self-link" href="https://www.w3.org/TR/xmlschema-2/#dt-nonPositiveInteger" aria-label="Permalink for definition: xsd:nonPositiveInteger. Activate to close this dialog.">Permalink</a>
@@ -12719,7 +12710,7 @@ a\u003Ab            # a:b -- codepoint x3A is colon</code></pre>
     <a href="#ref-for-index-term-xsd-nonpositiveinteger-1" title="§ 17.1 Operand Data Types">§ 17.1 Operand Data Types</a> 
   </li>
   </ul>
-    </div><div class="dfn-panel" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-xsd-positiveinteger" aria-label="Links in this document to definition: xsd:positiveInteger" hidden="">
+    </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-xsd-positiveinteger" aria-label="Links in this document to definition: xsd:positiveInteger">
       <span class="caret"></span>
       <div>
         <a class="self-link" href="https://www.w3.org/TR/xmlschema-2/#dt-positiveInteger" aria-label="Permalink for definition: xsd:positiveInteger. Activate to close this dialog.">Permalink</a>
@@ -12731,7 +12722,7 @@ a\u003Ab            # a:b -- codepoint x3A is colon</code></pre>
     <a href="#ref-for-index-term-xsd-positiveinteger-1" title="§ 17.1 Operand Data Types">§ 17.1 Operand Data Types</a> 
   </li>
   </ul>
-    </div><div class="dfn-panel" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-xsd-short" aria-label="Links in this document to definition: xsd:short" hidden="">
+    </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-xsd-short" aria-label="Links in this document to definition: xsd:short">
       <span class="caret"></span>
       <div>
         <a class="self-link" href="https://www.w3.org/TR/xmlschema-2/#dt-short" aria-label="Permalink for definition: xsd:short. Activate to close this dialog.">Permalink</a>
@@ -12743,7 +12734,7 @@ a\u003Ab            # a:b -- codepoint x3A is colon</code></pre>
     <a href="#ref-for-index-term-xsd-short-1" title="§ 17.1 Operand Data Types">§ 17.1 Operand Data Types</a> 
   </li>
   </ul>
-    </div><div class="dfn-panel" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-xsd-string" aria-label="Links in this document to definition: xsd:string" hidden="">
+    </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-xsd-string" aria-label="Links in this document to definition: xsd:string">
       <span class="caret"></span>
       <div>
         <a class="self-link" href="https://www.w3.org/TR/xmlschema-2/#dt-string" aria-label="Permalink for definition: xsd:string. Activate to close this dialog.">Permalink</a>
@@ -12755,7 +12746,7 @@ a\u003Ab            # a:b -- codepoint x3A is colon</code></pre>
     <a href="#ref-for-index-term-xsd-string-1" title="§ 17.1 Operand Data Types">§ 17.1 Operand Data Types</a> 
   </li>
   </ul>
-    </div><div class="dfn-panel" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-xsd-string-0" aria-label="Links in this document to definition: xsd:string" hidden="">
+    </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-xsd-string-0" aria-label="Links in this document to definition: xsd:string">
       <span class="caret"></span>
       <div>
         <a class="self-link" href="https://www.w3.org/TR/xmlschema-2/#string" aria-label="Permalink for definition: xsd:string. Activate to close this dialog.">Permalink</a>
@@ -12767,7 +12758,7 @@ a\u003Ab            # a:b -- codepoint x3A is colon</code></pre>
     <a href="#ref-for-index-term-xsd-string-0-1" title="§ 17.5 XPath Constructor Functions">§ 17.5 XPath Constructor Functions</a> 
   </li>
   </ul>
-    </div><div class="dfn-panel" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-xsd-unsignedbyte" aria-label="Links in this document to definition: xsd:unsignedByte" hidden="">
+    </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-xsd-unsignedbyte" aria-label="Links in this document to definition: xsd:unsignedByte">
       <span class="caret"></span>
       <div>
         <a class="self-link" href="https://www.w3.org/TR/xmlschema-2/#dt-unsignedByte" aria-label="Permalink for definition: xsd:unsignedByte. Activate to close this dialog.">Permalink</a>
@@ -12779,7 +12770,7 @@ a\u003Ab            # a:b -- codepoint x3A is colon</code></pre>
     <a href="#ref-for-index-term-xsd-unsignedbyte-1" title="§ 17.1 Operand Data Types">§ 17.1 Operand Data Types</a> 
   </li>
   </ul>
-    </div><div class="dfn-panel" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-xsd-unsignedint" aria-label="Links in this document to definition: xsd:unsignedInt" hidden="">
+    </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-xsd-unsignedint" aria-label="Links in this document to definition: xsd:unsignedInt">
       <span class="caret"></span>
       <div>
         <a class="self-link" href="https://www.w3.org/TR/xmlschema-2/#dt-unsignedInt" aria-label="Permalink for definition: xsd:unsignedInt. Activate to close this dialog.">Permalink</a>
@@ -12791,7 +12782,7 @@ a\u003Ab            # a:b -- codepoint x3A is colon</code></pre>
     <a href="#ref-for-index-term-xsd-unsignedint-1" title="§ 17.1 Operand Data Types">§ 17.1 Operand Data Types</a> 
   </li>
   </ul>
-    </div><div class="dfn-panel" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-xsd-unsignedlong" aria-label="Links in this document to definition: xsd:unsignedLong" hidden="">
+    </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-xsd-unsignedlong" aria-label="Links in this document to definition: xsd:unsignedLong">
       <span class="caret"></span>
       <div>
         <a class="self-link" href="https://www.w3.org/TR/xmlschema-2/#dt-unsignedLong" aria-label="Permalink for definition: xsd:unsignedLong. Activate to close this dialog.">Permalink</a>
@@ -12803,7 +12794,7 @@ a\u003Ab            # a:b -- codepoint x3A is colon</code></pre>
     <a href="#ref-for-index-term-xsd-unsignedlong-1" title="§ 17.1 Operand Data Types">§ 17.1 Operand Data Types</a> 
   </li>
   </ul>
-    </div><div class="dfn-panel" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-xsd-unsignedshort" aria-label="Links in this document to definition: xsd:unsignedShort" hidden="">
+    </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-xsd-unsignedshort" aria-label="Links in this document to definition: xsd:unsignedShort">
       <span class="caret"></span>
       <div>
         <a class="self-link" href="https://www.w3.org/TR/xmlschema-2/#dt-unsignedShort" aria-label="Permalink for definition: xsd:unsignedShort. Activate to close this dialog.">Permalink</a>
@@ -12815,7 +12806,7 @@ a\u003Ab            # a:b -- codepoint x3A is colon</code></pre>
     <a href="#ref-for-index-term-xsd-unsignedshort-1" title="§ 17.1 Operand Data Types">§ 17.1 Operand Data Types</a> 
   </li>
   </ul>
-    </div><div class="dfn-panel" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-17-1-casting-from-primitive-types-to-primitive-types" aria-label="Links in this document to definition: 17.1 Casting from primitive types to primitive types" hidden="">
+    </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-17-1-casting-from-primitive-types-to-primitive-types" aria-label="Links in this document to definition: 17.1 Casting from primitive types to primitive types">
       <span class="caret"></span>
       <div>
         <a class="self-link" href="https://www.w3.org/TR/xpath-functions/#casting-from-primitive-to-primitive" aria-label="Permalink for definition: 17.1 Casting from primitive types to primitive types. Activate to close this dialog.">Permalink</a>
@@ -12827,7 +12818,7 @@ a\u003Ab            # a:b -- codepoint x3A is colon</code></pre>
     <a href="#ref-for-index-term-17-1-casting-from-primitive-types-to-primitive-types-1" title="§ 17.5 XPath Constructor Functions">§ 17.5 XPath Constructor Functions</a> 
   </li>
   </ul>
-    </div><div class="dfn-panel" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-defined-by-xpath" aria-label="Links in this document to definition: defined by XPath" hidden="">
+    </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-defined-by-xpath" aria-label="Links in this document to definition: defined by XPath">
       <span class="caret"></span>
       <div>
         <a class="self-link" href="https://www.w3.org/TR/xpath-functions/#collations" aria-label="Permalink for definition: defined by XPath. Activate to close this dialog.">Permalink</a>
@@ -12839,7 +12830,7 @@ a\u003Ab            # a:b -- codepoint x3A is colon</code></pre>
     <a href="#ref-for-index-term-defined-by-xpath-1" title="§ 17.3 Operator Mapping">§ 17.3 Operator Mapping</a> 
   </li>
   </ul>
-    </div><div class="dfn-panel" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-defined-by-xquery-1-0-and-xpath-2-0-functions-and-operators" aria-label="Links in this document to definition: defined by XQuery 1.0 and XPath 2.0 Functions and Operators" hidden="">
+    </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-defined-by-xquery-1-0-and-xpath-2-0-functions-and-operators" aria-label="Links in this document to definition: defined by XQuery 1.0 and XPath 2.0 Functions and Operators">
       <span class="caret"></span>
       <div>
         <a class="self-link" href="https://www.w3.org/TR/xpath-functions/#regex-syntax" aria-label="Permalink for definition: defined by XQuery 1.0 and XPath 2.0 Functions and Operators. Activate to close this dialog.">Permalink</a>
@@ -12853,7 +12844,7 @@ a\u003Ab            # a:b -- codepoint x3A is colon</code></pre>
     <a href="#ref-for-index-term-defined-by-xquery-1-0-and-xpath-2-0-functions-and-operators-2" title="§ 17.4.3.14 REGEX">§ 17.4.3.14 REGEX</a> 
   </li>
   </ul>
-    </div><div class="dfn-panel" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-fn-boolean" aria-label="Links in this document to definition: fn:boolean" hidden="">
+    </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-fn-boolean" aria-label="Links in this document to definition: fn:boolean">
       <span class="caret"></span>
       <div>
         <a class="self-link" href="https://www.w3.org/TR/xpath-functions/#func-boolean" aria-label="Permalink for definition: fn:boolean. Activate to close this dialog.">Permalink</a>
@@ -12865,7 +12856,7 @@ a\u003Ab            # a:b -- codepoint x3A is colon</code></pre>
     <a href="#ref-for-index-term-fn-boolean-1" title="§ 17.2.2 Effective Boolean Value (EBV)">§ 17.2.2 Effective Boolean Value (EBV)</a> 
   </li>
   </ul>
-    </div><div class="dfn-panel" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-fn-compare" aria-label="Links in this document to definition: fn:compare" hidden="">
+    </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-fn-compare" aria-label="Links in this document to definition: fn:compare">
       <span class="caret"></span>
       <div>
         <a class="self-link" href="https://www.w3.org/TR/xpath-functions/#func-compare" aria-label="Permalink for definition: fn:compare. Activate to close this dialog.">Permalink</a>
@@ -12877,7 +12868,7 @@ a\u003Ab            # a:b -- codepoint x3A is colon</code></pre>
     <a href="#ref-for-index-term-fn-compare-1" title="§ 17.3 Operator Mapping">§ 17.3 Operator Mapping</a> <a href="#ref-for-index-term-fn-compare-2" title="Reference 2">(2)</a> <a href="#ref-for-index-term-fn-compare-3" title="Reference 3">(3)</a> <a href="#ref-for-index-term-fn-compare-4" title="Reference 4">(4)</a> <a href="#ref-for-index-term-fn-compare-5" title="Reference 5">(5)</a> <a href="#ref-for-index-term-fn-compare-6" title="Reference 6">(6)</a> <a href="#ref-for-index-term-fn-compare-7" title="Reference 7">(7)</a> <a href="#ref-for-index-term-fn-compare-8" title="Reference 8">(8)</a> <a href="#ref-for-index-term-fn-compare-9" title="Reference 9">(9)</a> <a href="#ref-for-index-term-fn-compare-10" title="Reference 10">(10)</a> <a href="#ref-for-index-term-fn-compare-11" title="Reference 11">(11)</a> <a href="#ref-for-index-term-fn-compare-12" title="Reference 12">(12)</a> 
   </li>
   </ul>
-    </div><div class="dfn-panel" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-fn-concat" aria-label="Links in this document to definition: fn:concat" hidden="">
+    </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-fn-concat" aria-label="Links in this document to definition: fn:concat">
       <span class="caret"></span>
       <div>
         <a class="self-link" href="https://www.w3.org/TR/xpath-functions/#func-concat" aria-label="Permalink for definition: fn:concat. Activate to close this dialog.">Permalink</a>
@@ -12889,7 +12880,7 @@ a\u003Ab            # a:b -- codepoint x3A is colon</code></pre>
     <a href="#ref-for-index-term-fn-concat-1" title="§ 17.4.3.12 CONCAT">§ 17.4.3.12 CONCAT</a> 
   </li>
   </ul>
-    </div><div class="dfn-panel" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-fn-contains" aria-label="Links in this document to definition: fn:contains" hidden="">
+    </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-fn-contains" aria-label="Links in this document to definition: fn:contains">
       <span class="caret"></span>
       <div>
         <a class="self-link" href="https://www.w3.org/TR/xpath-functions/#func-contains" aria-label="Permalink for definition: fn:contains. Activate to close this dialog.">Permalink</a>
@@ -12901,7 +12892,7 @@ a\u003Ab            # a:b -- codepoint x3A is colon</code></pre>
     <a href="#ref-for-index-term-fn-contains-1" title="§ 17.4.3.8 CONTAINS">§ 17.4.3.8 CONTAINS</a> 
   </li>
   </ul>
-    </div><div class="dfn-panel" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-fn-day-from-datetime" aria-label="Links in this document to definition: fn:day-from-dateTime" hidden="">
+    </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-fn-day-from-datetime" aria-label="Links in this document to definition: fn:day-from-dateTime">
       <span class="caret"></span>
       <div>
         <a class="self-link" href="https://www.w3.org/TR/xpath-functions/#func-day-from-dateTime" aria-label="Permalink for definition: fn:day-from-dateTime. Activate to close this dialog.">Permalink</a>
@@ -12913,7 +12904,7 @@ a\u003Ab            # a:b -- codepoint x3A is colon</code></pre>
     <a href="#ref-for-index-term-fn-day-from-datetime-1" title="§ 17.4.5.4 day">§ 17.4.5.4 day</a> 
   </li>
   </ul>
-    </div><div class="dfn-panel" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-fn-encode-for-uri" aria-label="Links in this document to definition: fn:encode-for-uri" hidden="">
+    </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-fn-encode-for-uri" aria-label="Links in this document to definition: fn:encode-for-uri">
       <span class="caret"></span>
       <div>
         <a class="self-link" href="https://www.w3.org/TR/xpath-functions/#func-encode-for-uri" aria-label="Permalink for definition: fn:encode-for-uri. Activate to close this dialog.">Permalink</a>
@@ -12925,7 +12916,7 @@ a\u003Ab            # a:b -- codepoint x3A is colon</code></pre>
     <a href="#ref-for-index-term-fn-encode-for-uri-1" title="§ 17.4.3.11 ENCODE_FOR_URI">§ 17.4.3.11 ENCODE_FOR_URI</a> 
   </li>
   </ul>
-    </div><div class="dfn-panel" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-fn-ends-with" aria-label="Links in this document to definition: fn:ends-with" hidden="">
+    </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-fn-ends-with" aria-label="Links in this document to definition: fn:ends-with">
       <span class="caret"></span>
       <div>
         <a class="self-link" href="https://www.w3.org/TR/xpath-functions/#func-ends-with" aria-label="Permalink for definition: fn:ends-with. Activate to close this dialog.">Permalink</a>
@@ -12937,7 +12928,7 @@ a\u003Ab            # a:b -- codepoint x3A is colon</code></pre>
     <a href="#ref-for-index-term-fn-ends-with-1" title="§ 17.4.3.7 STRENDS">§ 17.4.3.7 STRENDS</a> 
   </li>
   </ul>
-    </div><div class="dfn-panel" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-fn-hours-from-datetime" aria-label="Links in this document to definition: fn:hours-from-dateTime" hidden="">
+    </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-fn-hours-from-datetime" aria-label="Links in this document to definition: fn:hours-from-dateTime">
       <span class="caret"></span>
       <div>
         <a class="self-link" href="https://www.w3.org/TR/xpath-functions/#func-hours-from-dateTime" aria-label="Permalink for definition: fn:hours-from-dateTime. Activate to close this dialog.">Permalink</a>
@@ -12949,7 +12940,7 @@ a\u003Ab            # a:b -- codepoint x3A is colon</code></pre>
     <a href="#ref-for-index-term-fn-hours-from-datetime-1" title="§ 17.4.5.5 hours">§ 17.4.5.5 hours</a> 
   </li>
   </ul>
-    </div><div class="dfn-panel" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-fn-lower-case" aria-label="Links in this document to definition: fn:lower-case" hidden="">
+    </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-fn-lower-case" aria-label="Links in this document to definition: fn:lower-case">
       <span class="caret"></span>
       <div>
         <a class="self-link" href="https://www.w3.org/TR/xpath-functions/#func-lower-case" aria-label="Permalink for definition: fn:lower-case. Activate to close this dialog.">Permalink</a>
@@ -12961,7 +12952,7 @@ a\u003Ab            # a:b -- codepoint x3A is colon</code></pre>
     <a href="#ref-for-index-term-fn-lower-case-1" title="§ 17.4.3.5 LCASE">§ 17.4.3.5 LCASE</a> 
   </li>
   </ul>
-    </div><div class="dfn-panel" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-fn-matches" aria-label="Links in this document to definition: fn:matches" hidden="">
+    </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-fn-matches" aria-label="Links in this document to definition: fn:matches">
       <span class="caret"></span>
       <div>
         <a class="self-link" href="https://www.w3.org/TR/xpath-functions/#func-matches" aria-label="Permalink for definition: fn:matches. Activate to close this dialog.">Permalink</a>
@@ -12973,7 +12964,7 @@ a\u003Ab            # a:b -- codepoint x3A is colon</code></pre>
     <a href="#ref-for-index-term-fn-matches-1" title="§ 17.4.3.14 REGEX">§ 17.4.3.14 REGEX</a> 
   </li>
   </ul>
-    </div><div class="dfn-panel" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-fn-minutes-from-datetime" aria-label="Links in this document to definition: fn:minutes-from-dateTime" hidden="">
+    </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-fn-minutes-from-datetime" aria-label="Links in this document to definition: fn:minutes-from-dateTime">
       <span class="caret"></span>
       <div>
         <a class="self-link" href="https://www.w3.org/TR/xpath-functions/#func-minutes-from-dateTime" aria-label="Permalink for definition: fn:minutes-from-dateTime. Activate to close this dialog.">Permalink</a>
@@ -12985,7 +12976,7 @@ a\u003Ab            # a:b -- codepoint x3A is colon</code></pre>
     <a href="#ref-for-index-term-fn-minutes-from-datetime-1" title="§ 17.4.5.6 minutes">§ 17.4.5.6 minutes</a> 
   </li>
   </ul>
-    </div><div class="dfn-panel" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-fn-month-from-datetime" aria-label="Links in this document to definition: fn:month-from-dateTime" hidden="">
+    </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-fn-month-from-datetime" aria-label="Links in this document to definition: fn:month-from-dateTime">
       <span class="caret"></span>
       <div>
         <a class="self-link" href="https://www.w3.org/TR/xpath-functions/#func-month-from-dateTime" aria-label="Permalink for definition: fn:month-from-dateTime. Activate to close this dialog.">Permalink</a>
@@ -12997,7 +12988,7 @@ a\u003Ab            # a:b -- codepoint x3A is colon</code></pre>
     <a href="#ref-for-index-term-fn-month-from-datetime-1" title="§ 17.4.5.3 month">§ 17.4.5.3 month</a> 
   </li>
   </ul>
-    </div><div class="dfn-panel" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-fn-not" aria-label="Links in this document to definition: fn:not" hidden="">
+    </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-fn-not" aria-label="Links in this document to definition: fn:not">
       <span class="caret"></span>
       <div>
         <a class="self-link" href="https://www.w3.org/TR/xpath-functions/#func-not" aria-label="Permalink for definition: fn:not. Activate to close this dialog.">Permalink</a>
@@ -13011,7 +13002,7 @@ a\u003Ab            # a:b -- codepoint x3A is colon</code></pre>
     <a href="#ref-for-index-term-fn-not-2" title="§ 17.3 Operator Mapping">§ 17.3 Operator Mapping</a> <a href="#ref-for-index-term-fn-not-3" title="Reference 2">(2)</a> <a href="#ref-for-index-term-fn-not-4" title="Reference 3">(3)</a> <a href="#ref-for-index-term-fn-not-5" title="Reference 4">(4)</a> <a href="#ref-for-index-term-fn-not-6" title="Reference 5">(5)</a> <a href="#ref-for-index-term-fn-not-7" title="Reference 6">(6)</a> <a href="#ref-for-index-term-fn-not-8" title="Reference 7">(7)</a> <a href="#ref-for-index-term-fn-not-9" title="Reference 8">(8)</a> <a href="#ref-for-index-term-fn-not-10" title="Reference 9">(9)</a> <a href="#ref-for-index-term-fn-not-11" title="Reference 10">(10)</a> <a href="#ref-for-index-term-fn-not-12" title="Reference 11">(11)</a> <a href="#ref-for-index-term-fn-not-13" title="Reference 12">(12)</a> <a href="#ref-for-index-term-fn-not-14" title="Reference 13">(13)</a> <a href="#ref-for-index-term-fn-not-15" title="Reference 14">(14)</a> <a href="#ref-for-index-term-fn-not-16" title="Reference 15">(15)</a> 
   </li>
   </ul>
-    </div><div class="dfn-panel" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-fn-numeric-abs" aria-label="Links in this document to definition: fn:numeric-abs" hidden="">
+    </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-fn-numeric-abs" aria-label="Links in this document to definition: fn:numeric-abs">
       <span class="caret"></span>
       <div>
         <a class="self-link" href="https://www.w3.org/TR/xpath-functions/#func-abs" aria-label="Permalink for definition: fn:numeric-abs. Activate to close this dialog.">Permalink</a>
@@ -13023,7 +13014,7 @@ a\u003Ab            # a:b -- codepoint x3A is colon</code></pre>
     <a href="#ref-for-index-term-fn-numeric-abs-1" title="§ 17.4.4.1 abs">§ 17.4.4.1 abs</a> 
   </li>
   </ul>
-    </div><div class="dfn-panel" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-fn-numeric-ceil" aria-label="Links in this document to definition: fn:numeric-ceil" hidden="">
+    </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-fn-numeric-ceil" aria-label="Links in this document to definition: fn:numeric-ceil">
       <span class="caret"></span>
       <div>
         <a class="self-link" href="https://www.w3.org/TR/xpath-functions/#func-ceiling" aria-label="Permalink for definition: fn:numeric-ceil. Activate to close this dialog.">Permalink</a>
@@ -13035,7 +13026,7 @@ a\u003Ab            # a:b -- codepoint x3A is colon</code></pre>
     <a href="#ref-for-index-term-fn-numeric-ceil-1" title="§ 17.4.4.3 ceil">§ 17.4.4.3 ceil</a> 
   </li>
   </ul>
-    </div><div class="dfn-panel" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-fn-numeric-floor" aria-label="Links in this document to definition: fn:numeric-floor" hidden="">
+    </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-fn-numeric-floor" aria-label="Links in this document to definition: fn:numeric-floor">
       <span class="caret"></span>
       <div>
         <a class="self-link" href="https://www.w3.org/TR/xpath-functions/#func-floor" aria-label="Permalink for definition: fn:numeric-floor. Activate to close this dialog.">Permalink</a>
@@ -13047,7 +13038,7 @@ a\u003Ab            # a:b -- codepoint x3A is colon</code></pre>
     <a href="#ref-for-index-term-fn-numeric-floor-1" title="§ 17.4.4.4 floor">§ 17.4.4.4 floor</a> 
   </li>
   </ul>
-    </div><div class="dfn-panel" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-fn-numeric-round" aria-label="Links in this document to definition: fn:numeric-round" hidden="">
+    </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-fn-numeric-round" aria-label="Links in this document to definition: fn:numeric-round">
       <span class="caret"></span>
       <div>
         <a class="self-link" href="https://www.w3.org/TR/xpath-functions/#func-round" aria-label="Permalink for definition: fn:numeric-round. Activate to close this dialog.">Permalink</a>
@@ -13059,7 +13050,7 @@ a\u003Ab            # a:b -- codepoint x3A is colon</code></pre>
     <a href="#ref-for-index-term-fn-numeric-round-1" title="§ 17.4.4.2 round">§ 17.4.4.2 round</a> 
   </li>
   </ul>
-    </div><div class="dfn-panel" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-fn-replace" aria-label="Links in this document to definition: fn:replace" hidden="">
+    </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-fn-replace" aria-label="Links in this document to definition: fn:replace">
       <span class="caret"></span>
       <div>
         <a class="self-link" href="https://www.w3.org/TR/xpath-functions/#func-replace" aria-label="Permalink for definition: fn:replace. Activate to close this dialog.">Permalink</a>
@@ -13071,7 +13062,7 @@ a\u003Ab            # a:b -- codepoint x3A is colon</code></pre>
     <a href="#ref-for-index-term-fn-replace-1" title="§ 17.4.3.15 REPLACE">§ 17.4.3.15 REPLACE</a> 
   </li>
   </ul>
-    </div><div class="dfn-panel" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-fn-seconds-from-datetime" aria-label="Links in this document to definition: fn:seconds-from-dateTime" hidden="">
+    </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-fn-seconds-from-datetime" aria-label="Links in this document to definition: fn:seconds-from-dateTime">
       <span class="caret"></span>
       <div>
         <a class="self-link" href="https://www.w3.org/TR/xpath-functions/#func-seconds-from-dateTime" aria-label="Permalink for definition: fn:seconds-from-dateTime. Activate to close this dialog.">Permalink</a>
@@ -13083,7 +13074,7 @@ a\u003Ab            # a:b -- codepoint x3A is colon</code></pre>
     <a href="#ref-for-index-term-fn-seconds-from-datetime-1" title="§ 17.4.5.7 seconds">§ 17.4.5.7 seconds</a> 
   </li>
   </ul>
-    </div><div class="dfn-panel" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-fn-starts-with" aria-label="Links in this document to definition: fn:starts-with" hidden="">
+    </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-fn-starts-with" aria-label="Links in this document to definition: fn:starts-with">
       <span class="caret"></span>
       <div>
         <a class="self-link" href="https://www.w3.org/TR/xpath-functions/#func-starts-with" aria-label="Permalink for definition: fn:starts-with. Activate to close this dialog.">Permalink</a>
@@ -13095,7 +13086,7 @@ a\u003Ab            # a:b -- codepoint x3A is colon</code></pre>
     <a href="#ref-for-index-term-fn-starts-with-1" title="§ 17.4.3.6 STRSTARTS">§ 17.4.3.6 STRSTARTS</a> 
   </li>
   </ul>
-    </div><div class="dfn-panel" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-fn-string-length" aria-label="Links in this document to definition: fn:string-length" hidden="">
+    </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-fn-string-length" aria-label="Links in this document to definition: fn:string-length">
       <span class="caret"></span>
       <div>
         <a class="self-link" href="https://www.w3.org/TR/xpath-functions/#func-string-length" aria-label="Permalink for definition: fn:string-length. Activate to close this dialog.">Permalink</a>
@@ -13107,7 +13098,7 @@ a\u003Ab            # a:b -- codepoint x3A is colon</code></pre>
     <a href="#ref-for-index-term-fn-string-length-1" title="§ 17.4.3.2 STRLEN">§ 17.4.3.2 STRLEN</a> 
   </li>
   </ul>
-    </div><div class="dfn-panel" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-fn-substring" aria-label="Links in this document to definition: fn:substring" hidden="">
+    </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-fn-substring" aria-label="Links in this document to definition: fn:substring">
       <span class="caret"></span>
       <div>
         <a class="self-link" href="https://www.w3.org/TR/xpath-functions/#func-substring" aria-label="Permalink for definition: fn:substring. Activate to close this dialog.">Permalink</a>
@@ -13119,7 +13110,7 @@ a\u003Ab            # a:b -- codepoint x3A is colon</code></pre>
     <a href="#ref-for-index-term-fn-substring-1" title="§ 17.4.3.3 SUBSTR">§ 17.4.3.3 SUBSTR</a> 
   </li>
   </ul>
-    </div><div class="dfn-panel" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-fn-substring-after" aria-label="Links in this document to definition: fn:substring-after" hidden="">
+    </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-fn-substring-after" aria-label="Links in this document to definition: fn:substring-after">
       <span class="caret"></span>
       <div>
         <a class="self-link" href="https://www.w3.org/TR/xpath-functions/#func-substring-after" aria-label="Permalink for definition: fn:substring-after. Activate to close this dialog.">Permalink</a>
@@ -13131,7 +13122,7 @@ a\u003Ab            # a:b -- codepoint x3A is colon</code></pre>
     <a href="#ref-for-index-term-fn-substring-after-1" title="§ 17.4.3.10 STRAFTER">§ 17.4.3.10 STRAFTER</a> 
   </li>
   </ul>
-    </div><div class="dfn-panel" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-fn-substring-before" aria-label="Links in this document to definition: fn:substring-before" hidden="">
+    </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-fn-substring-before" aria-label="Links in this document to definition: fn:substring-before">
       <span class="caret"></span>
       <div>
         <a class="self-link" href="https://www.w3.org/TR/xpath-functions/#func-substring-before" aria-label="Permalink for definition: fn:substring-before. Activate to close this dialog.">Permalink</a>
@@ -13143,7 +13134,7 @@ a\u003Ab            # a:b -- codepoint x3A is colon</code></pre>
     <a href="#ref-for-index-term-fn-substring-before-1" title="§ 17.4.3.9 STRBEFORE">§ 17.4.3.9 STRBEFORE</a> 
   </li>
   </ul>
-    </div><div class="dfn-panel" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-fn-timezone-from-datetime" aria-label="Links in this document to definition: fn:timezone-from-dateTime" hidden="">
+    </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-fn-timezone-from-datetime" aria-label="Links in this document to definition: fn:timezone-from-dateTime">
       <span class="caret"></span>
       <div>
         <a class="self-link" href="https://www.w3.org/TR/xpath-functions/#func-timezone-from-dateTime" aria-label="Permalink for definition: fn:timezone-from-dateTime. Activate to close this dialog.">Permalink</a>
@@ -13155,7 +13146,7 @@ a\u003Ab            # a:b -- codepoint x3A is colon</code></pre>
     <a href="#ref-for-index-term-fn-timezone-from-datetime-1" title="§ 17.4.5.8 timezone">§ 17.4.5.8 timezone</a> 
   </li>
   </ul>
-    </div><div class="dfn-panel" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-fn-upper-case" aria-label="Links in this document to definition: fn:upper-case" hidden="">
+    </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-fn-upper-case" aria-label="Links in this document to definition: fn:upper-case">
       <span class="caret"></span>
       <div>
         <a class="self-link" href="https://www.w3.org/TR/xpath-functions/#func-upper-case" aria-label="Permalink for definition: fn:upper-case. Activate to close this dialog.">Permalink</a>
@@ -13167,7 +13158,7 @@ a\u003Ab            # a:b -- codepoint x3A is colon</code></pre>
     <a href="#ref-for-index-term-fn-upper-case-1" title="§ 17.4.3.4 UCASE">§ 17.4.3.4 UCASE</a> 
   </li>
   </ul>
-    </div><div class="dfn-panel" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-fn-year-from-datetime" aria-label="Links in this document to definition: fn:year-from-dateTime" hidden="">
+    </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-fn-year-from-datetime" aria-label="Links in this document to definition: fn:year-from-dateTime">
       <span class="caret"></span>
       <div>
         <a class="self-link" href="https://www.w3.org/TR/xpath-functions/#func-year-from-dateTime" aria-label="Permalink for definition: fn:year-from-dateTime. Activate to close this dialog.">Permalink</a>
@@ -13179,7 +13170,7 @@ a\u003Ab            # a:b -- codepoint x3A is colon</code></pre>
     <a href="#ref-for-index-term-fn-year-from-datetime-1" title="§ 17.4.5.2 year">§ 17.4.5.2 year</a> 
   </li>
   </ul>
-    </div><div class="dfn-panel" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-op-boolean-equal" aria-label="Links in this document to definition: op:boolean-equal" hidden="">
+    </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-op-boolean-equal" aria-label="Links in this document to definition: op:boolean-equal">
       <span class="caret"></span>
       <div>
         <a class="self-link" href="https://www.w3.org/TR/xpath-functions/#func-boolean-equal" aria-label="Permalink for definition: op:boolean-equal. Activate to close this dialog.">Permalink</a>
@@ -13191,7 +13182,7 @@ a\u003Ab            # a:b -- codepoint x3A is colon</code></pre>
     <a href="#ref-for-index-term-op-boolean-equal-1" title="§ 17.3 Operator Mapping">§ 17.3 Operator Mapping</a> <a href="#ref-for-index-term-op-boolean-equal-2" title="Reference 2">(2)</a> 
   </li>
   </ul>
-    </div><div class="dfn-panel" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-op-boolean-greater-than" aria-label="Links in this document to definition: op:boolean-greater-than" hidden="">
+    </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-op-boolean-greater-than" aria-label="Links in this document to definition: op:boolean-greater-than">
       <span class="caret"></span>
       <div>
         <a class="self-link" href="https://www.w3.org/TR/xpath-functions/#func-boolean-greater-than" aria-label="Permalink for definition: op:boolean-greater-than. Activate to close this dialog.">Permalink</a>
@@ -13203,7 +13194,7 @@ a\u003Ab            # a:b -- codepoint x3A is colon</code></pre>
     <a href="#ref-for-index-term-op-boolean-greater-than-1" title="§ 17.3 Operator Mapping">§ 17.3 Operator Mapping</a> <a href="#ref-for-index-term-op-boolean-greater-than-2" title="Reference 2">(2)</a> 
   </li>
   </ul>
-    </div><div class="dfn-panel" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-op-boolean-less-than" aria-label="Links in this document to definition: op:boolean-less-than" hidden="">
+    </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-op-boolean-less-than" aria-label="Links in this document to definition: op:boolean-less-than">
       <span class="caret"></span>
       <div>
         <a class="self-link" href="https://www.w3.org/TR/xpath-functions/#func-boolean-less-than" aria-label="Permalink for definition: op:boolean-less-than. Activate to close this dialog.">Permalink</a>
@@ -13215,7 +13206,7 @@ a\u003Ab            # a:b -- codepoint x3A is colon</code></pre>
     <a href="#ref-for-index-term-op-boolean-less-than-1" title="§ 17.3 Operator Mapping">§ 17.3 Operator Mapping</a> <a href="#ref-for-index-term-op-boolean-less-than-2" title="Reference 2">(2)</a> 
   </li>
   </ul>
-    </div><div class="dfn-panel" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-op-datetime-equal" aria-label="Links in this document to definition: op:dateTime-equal" hidden="">
+    </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-op-datetime-equal" aria-label="Links in this document to definition: op:dateTime-equal">
       <span class="caret"></span>
       <div>
         <a class="self-link" href="https://www.w3.org/TR/xpath-functions/#func-dateTime-equal" aria-label="Permalink for definition: op:dateTime-equal. Activate to close this dialog.">Permalink</a>
@@ -13227,7 +13218,7 @@ a\u003Ab            # a:b -- codepoint x3A is colon</code></pre>
     <a href="#ref-for-index-term-op-datetime-equal-1" title="§ 17.3 Operator Mapping">§ 17.3 Operator Mapping</a> <a href="#ref-for-index-term-op-datetime-equal-2" title="Reference 2">(2)</a> 
   </li>
   </ul>
-    </div><div class="dfn-panel" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-op-datetime-greater-than" aria-label="Links in this document to definition: op:dateTime-greater-than" hidden="">
+    </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-op-datetime-greater-than" aria-label="Links in this document to definition: op:dateTime-greater-than">
       <span class="caret"></span>
       <div>
         <a class="self-link" href="https://www.w3.org/TR/xpath-functions/#func-dateTime-greater-than" aria-label="Permalink for definition: op:dateTime-greater-than. Activate to close this dialog.">Permalink</a>
@@ -13239,7 +13230,7 @@ a\u003Ab            # a:b -- codepoint x3A is colon</code></pre>
     <a href="#ref-for-index-term-op-datetime-greater-than-1" title="§ 17.3 Operator Mapping">§ 17.3 Operator Mapping</a> <a href="#ref-for-index-term-op-datetime-greater-than-2" title="Reference 2">(2)</a> 
   </li>
   </ul>
-    </div><div class="dfn-panel" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-op-datetime-less-than" aria-label="Links in this document to definition: op:dateTime-less-than" hidden="">
+    </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-op-datetime-less-than" aria-label="Links in this document to definition: op:dateTime-less-than">
       <span class="caret"></span>
       <div>
         <a class="self-link" href="https://www.w3.org/TR/xpath-functions/#func-dateTime-less-than" aria-label="Permalink for definition: op:dateTime-less-than. Activate to close this dialog.">Permalink</a>
@@ -13251,7 +13242,7 @@ a\u003Ab            # a:b -- codepoint x3A is colon</code></pre>
     <a href="#ref-for-index-term-op-datetime-less-than-1" title="§ 17.3 Operator Mapping">§ 17.3 Operator Mapping</a> <a href="#ref-for-index-term-op-datetime-less-than-2" title="Reference 2">(2)</a> 
   </li>
   </ul>
-    </div><div class="dfn-panel" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-op-numeric-add" aria-label="Links in this document to definition: op:numeric-add" hidden="">
+    </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-op-numeric-add" aria-label="Links in this document to definition: op:numeric-add">
       <span class="caret"></span>
       <div>
         <a class="self-link" href="https://www.w3.org/TR/xpath-functions/#func-numeric-add" aria-label="Permalink for definition: op:numeric-add. Activate to close this dialog.">Permalink</a>
@@ -13263,7 +13254,7 @@ a\u003Ab            # a:b -- codepoint x3A is colon</code></pre>
     <a href="#ref-for-index-term-op-numeric-add-1" title="§ 17.3 Operator Mapping">§ 17.3 Operator Mapping</a> 
   </li>
   </ul>
-    </div><div class="dfn-panel" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-op-numeric-divide" aria-label="Links in this document to definition: op:numeric-divide" hidden="">
+    </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-op-numeric-divide" aria-label="Links in this document to definition: op:numeric-divide">
       <span class="caret"></span>
       <div>
         <a class="self-link" href="https://www.w3.org/TR/xpath-functions/#func-numeric-divide" aria-label="Permalink for definition: op:numeric-divide. Activate to close this dialog.">Permalink</a>
@@ -13275,7 +13266,7 @@ a\u003Ab            # a:b -- codepoint x3A is colon</code></pre>
     <a href="#ref-for-index-term-op-numeric-divide-1" title="§ 17.3 Operator Mapping">§ 17.3 Operator Mapping</a> 
   </li>
   </ul>
-    </div><div class="dfn-panel" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-op-numeric-equal" aria-label="Links in this document to definition: op:numeric-equal" hidden="">
+    </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-op-numeric-equal" aria-label="Links in this document to definition: op:numeric-equal">
       <span class="caret"></span>
       <div>
         <a class="self-link" href="https://www.w3.org/TR/xpath-functions/#func-numeric-equal" aria-label="Permalink for definition: op:numeric-equal. Activate to close this dialog.">Permalink</a>
@@ -13287,7 +13278,7 @@ a\u003Ab            # a:b -- codepoint x3A is colon</code></pre>
     <a href="#ref-for-index-term-op-numeric-equal-1" title="§ 17.3 Operator Mapping">§ 17.3 Operator Mapping</a> <a href="#ref-for-index-term-op-numeric-equal-2" title="Reference 2">(2)</a> <a href="#ref-for-index-term-op-numeric-equal-3" title="Reference 3">(3)</a> <a href="#ref-for-index-term-op-numeric-equal-4" title="Reference 4">(4)</a> <a href="#ref-for-index-term-op-numeric-equal-5" title="Reference 5">(5)</a> <a href="#ref-for-index-term-op-numeric-equal-6" title="Reference 6">(6)</a> <a href="#ref-for-index-term-op-numeric-equal-7" title="Reference 7">(7)</a> <a href="#ref-for-index-term-op-numeric-equal-8" title="Reference 8">(8)</a> <a href="#ref-for-index-term-op-numeric-equal-9" title="Reference 9">(9)</a> <a href="#ref-for-index-term-op-numeric-equal-10" title="Reference 10">(10)</a> <a href="#ref-for-index-term-op-numeric-equal-11" title="Reference 11">(11)</a> <a href="#ref-for-index-term-op-numeric-equal-12" title="Reference 12">(12)</a> <a href="#ref-for-index-term-op-numeric-equal-13" title="Reference 13">(13)</a> <a href="#ref-for-index-term-op-numeric-equal-14" title="Reference 14">(14)</a> <a href="#ref-for-index-term-op-numeric-equal-15" title="Reference 15">(15)</a> <a href="#ref-for-index-term-op-numeric-equal-16" title="Reference 16">(16)</a> 
   </li>
   </ul>
-    </div><div class="dfn-panel" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-op-numeric-greater-than" aria-label="Links in this document to definition: op:numeric-greater-than" hidden="">
+    </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-op-numeric-greater-than" aria-label="Links in this document to definition: op:numeric-greater-than">
       <span class="caret"></span>
       <div>
         <a class="self-link" href="https://www.w3.org/TR/xpath-functions/#func-numeric-greater-than" aria-label="Permalink for definition: op:numeric-greater-than. Activate to close this dialog.">Permalink</a>
@@ -13299,7 +13290,7 @@ a\u003Ab            # a:b -- codepoint x3A is colon</code></pre>
     <a href="#ref-for-index-term-op-numeric-greater-than-1" title="§ 17.3 Operator Mapping">§ 17.3 Operator Mapping</a> <a href="#ref-for-index-term-op-numeric-greater-than-2" title="Reference 2">(2)</a> 
   </li>
   </ul>
-    </div><div class="dfn-panel" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-op-numeric-less-than" aria-label="Links in this document to definition: op:numeric-less-than" hidden="">
+    </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-op-numeric-less-than" aria-label="Links in this document to definition: op:numeric-less-than">
       <span class="caret"></span>
       <div>
         <a class="self-link" href="https://www.w3.org/TR/xpath-functions/#func-numeric-less-than" aria-label="Permalink for definition: op:numeric-less-than. Activate to close this dialog.">Permalink</a>
@@ -13311,7 +13302,7 @@ a\u003Ab            # a:b -- codepoint x3A is colon</code></pre>
     <a href="#ref-for-index-term-op-numeric-less-than-1" title="§ 17.3 Operator Mapping">§ 17.3 Operator Mapping</a> <a href="#ref-for-index-term-op-numeric-less-than-2" title="Reference 2">(2)</a> 
   </li>
   </ul>
-    </div><div class="dfn-panel" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-op-numeric-multiply" aria-label="Links in this document to definition: op:numeric-multiply" hidden="">
+    </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-op-numeric-multiply" aria-label="Links in this document to definition: op:numeric-multiply">
       <span class="caret"></span>
       <div>
         <a class="self-link" href="https://www.w3.org/TR/xpath-functions/#func-numeric-multiply" aria-label="Permalink for definition: op:numeric-multiply. Activate to close this dialog.">Permalink</a>
@@ -13323,7 +13314,7 @@ a\u003Ab            # a:b -- codepoint x3A is colon</code></pre>
     <a href="#ref-for-index-term-op-numeric-multiply-1" title="§ 17.3 Operator Mapping">§ 17.3 Operator Mapping</a> 
   </li>
   </ul>
-    </div><div class="dfn-panel" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-op-numeric-subtract" aria-label="Links in this document to definition: op:numeric-subtract" hidden="">
+    </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-op-numeric-subtract" aria-label="Links in this document to definition: op:numeric-subtract">
       <span class="caret"></span>
       <div>
         <a class="self-link" href="https://www.w3.org/TR/xpath-functions/#func-numeric-subtract" aria-label="Permalink for definition: op:numeric-subtract. Activate to close this dialog.">Permalink</a>
@@ -13335,7 +13326,7 @@ a\u003Ab            # a:b -- codepoint x3A is colon</code></pre>
     <a href="#ref-for-index-term-op-numeric-subtract-1" title="§ 17.3 Operator Mapping">§ 17.3 Operator Mapping</a> 
   </li>
   </ul>
-    </div><div class="dfn-panel" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-op-numeric-unary-minus" aria-label="Links in this document to definition: op:numeric-unary-minus" hidden="">
+    </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-op-numeric-unary-minus" aria-label="Links in this document to definition: op:numeric-unary-minus">
       <span class="caret"></span>
       <div>
         <a class="self-link" href="https://www.w3.org/TR/xpath-functions/#func-numeric-unary-minus" aria-label="Permalink for definition: op:numeric-unary-minus. Activate to close this dialog.">Permalink</a>
@@ -13347,7 +13338,7 @@ a\u003Ab            # a:b -- codepoint x3A is colon</code></pre>
     <a href="#ref-for-index-term-op-numeric-unary-minus-1" title="§ 17.3 Operator Mapping">§ 17.3 Operator Mapping</a> 
   </li>
   </ul>
-    </div><div class="dfn-panel" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-op-numeric-unary-plus" aria-label="Links in this document to definition: op:numeric-unary-plus" hidden="">
+    </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-op-numeric-unary-plus" aria-label="Links in this document to definition: op:numeric-unary-plus">
       <span class="caret"></span>
       <div>
         <a class="self-link" href="https://www.w3.org/TR/xpath-functions/#func-numeric-unary-plus" aria-label="Permalink for definition: op:numeric-unary-plus. Activate to close this dialog.">Permalink</a>
@@ -13359,7 +13350,7 @@ a\u003Ab            # a:b -- codepoint x3A is colon</code></pre>
     <a href="#ref-for-index-term-op-numeric-unary-plus-1" title="§ 17.3 Operator Mapping">§ 17.3 Operator Mapping</a> 
   </li>
   </ul>
-    </div><div class="dfn-panel" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-xquery-1-0-and-xpath-2-0-functions-and-operators-second-edition" aria-label="Links in this document to definition: XQuery 1.0 and XPath 2.0 Functions and Operators (Second Edition)" hidden="">
+    </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-xquery-1-0-and-xpath-2-0-functions-and-operators-second-edition" aria-label="Links in this document to definition: XQuery 1.0 and XPath 2.0 Functions and Operators (Second Edition)">
       <span class="caret"></span>
       <div>
         <a class="self-link" href="https://www.w3.org/TR/xpath-functions/" aria-label="Permalink for definition: XQuery 1.0 and XPath 2.0 Functions and Operators (Second Edition). Activate to close this dialog.">Permalink</a>
@@ -13377,7 +13368,7 @@ a\u003Ab            # a:b -- codepoint x3A is colon</code></pre>
     <a href="#ref-for-index-term-xquery-1-0-and-xpath-2-0-functions-and-operators-second-edition-4" title="§ C.1 Normative references">§ C.1 Normative references</a> <a href="#ref-for-index-term-xquery-1-0-and-xpath-2-0-functions-and-operators-second-edition-5" title="Reference 2">(2)</a> 
   </li>
   </ul>
-    </div><div class="dfn-panel" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-numeric-type-promotions" aria-label="Links in this document to definition: numeric type promotions" hidden="">
+    </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-numeric-type-promotions" aria-label="Links in this document to definition: numeric type promotions">
       <span class="caret"></span>
       <div>
         <a class="self-link" href="https://www.w3.org/TR/xpath20/#promotion" aria-label="Permalink for definition: numeric type promotions. Activate to close this dialog.">Permalink</a>
@@ -13389,7 +13380,7 @@ a\u003Ab            # a:b -- codepoint x3A is colon</code></pre>
     <a href="#ref-for-index-term-numeric-type-promotions-1" title="§ 17.3 Operator Mapping">§ 17.3 Operator Mapping</a> 
   </li>
   </ul>
-    </div><div class="dfn-panel" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-string-value" aria-label="Links in this document to definition: string value" hidden="">
+    </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-string-value" aria-label="Links in this document to definition: string value">
       <span class="caret"></span>
       <div>
         <a class="self-link" href="https://www.w3.org/TR/xpath20/#dt-string-value" aria-label="Permalink for definition: string value. Activate to close this dialog.">Permalink</a>
@@ -13403,7 +13394,7 @@ a\u003Ab            # a:b -- codepoint x3A is colon</code></pre>
     <a href="#ref-for-index-term-string-value-2" title="§ 17.5 XPath Constructor Functions">§ 17.5 XPath Constructor Functions</a> 
   </li>
   </ul>
-    </div><div class="dfn-panel" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-subtype-substitution" aria-label="Links in this document to definition: subtype substitution" hidden="">
+    </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-subtype-substitution" aria-label="Links in this document to definition: subtype substitution">
       <span class="caret"></span>
       <div>
         <a class="self-link" href="https://www.w3.org/TR/xpath20/#dt-subtype-substitution" aria-label="Permalink for definition: subtype substitution. Activate to close this dialog.">Permalink</a>
@@ -13415,7 +13406,7 @@ a\u003Ab            # a:b -- codepoint x3A is colon</code></pre>
     <a href="#ref-for-index-term-subtype-substitution-1" title="§ 17.3 Operator Mapping">§ 17.3 Operator Mapping</a> 
   </li>
   </ul>
-    </div><div class="dfn-panel" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-typed-value" aria-label="Links in this document to definition: typed value" hidden="">
+    </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-typed-value" aria-label="Links in this document to definition: typed value">
       <span class="caret"></span>
       <div>
         <a class="self-link" href="https://www.w3.org/TR/xpath20/#dt-typed-value" aria-label="Permalink for definition: typed value. Activate to close this dialog.">Permalink</a>
@@ -13427,7 +13418,7 @@ a\u003Ab            # a:b -- codepoint x3A is colon</code></pre>
     <a href="#ref-for-index-term-typed-value-1" title="§ 17.1 Operand Data Types">§ 17.1 Operand Data Types</a> 
   </li>
   </ul>
-    </div><div class="dfn-panel" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-xml-path-language-xpath-2-0-second-edition" aria-label="Links in this document to definition: XML Path Language (XPath) 2.0 (Second Edition)" hidden="">
+    </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-xml-path-language-xpath-2-0-second-edition" aria-label="Links in this document to definition: XML Path Language (XPath) 2.0 (Second Edition)">
       <span class="caret"></span>
       <div>
         <a class="self-link" href="https://www.w3.org/TR/xpath20/" aria-label="Permalink for definition: XML Path Language (XPath) 2.0 (Second Edition). Activate to close this dialog.">Permalink</a>
@@ -13441,7 +13432,7 @@ a\u003Ab            # a:b -- codepoint x3A is colon</code></pre>
     <a href="#ref-for-index-term-xml-path-language-xpath-2-0-second-edition-2" title="§ C.1 Normative references">§ C.1 Normative references</a> <a href="#ref-for-index-term-xml-path-language-xpath-2-0-second-edition-3" title="Reference 2">(2)</a> 
   </li>
   </ul>
-    </div><div class="dfn-panel" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-xpath-operator-mapping" aria-label="Links in this document to definition: XPath Operator Mapping" hidden="">
+    </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-xpath-operator-mapping" aria-label="Links in this document to definition: XPath Operator Mapping">
       <span class="caret"></span>
       <div>
         <a class="self-link" href="https://www.w3.org/TR/xpath20/#mapping" aria-label="Permalink for definition: XPath Operator Mapping. Activate to close this dialog.">Permalink</a>
@@ -13453,7 +13444,7 @@ a\u003Ab            # a:b -- codepoint x3A is colon</code></pre>
     <a href="#ref-for-index-term-xpath-operator-mapping-1" title="§ 17.3 Operator Mapping">§ 17.3 Operator Mapping</a> 
   </li>
   </ul>
-    </div><div class="dfn-panel" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-2-2-3-expression-processing" aria-label="Links in this document to definition: 2.2.3 Expression Processing" hidden="">
+    </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-2-2-3-expression-processing" aria-label="Links in this document to definition: 2.2.3 Expression Processing">
       <span class="caret"></span>
       <div>
         <a class="self-link" href="https://www.w3.org/TR/xquery-31/#id-expression-processing" aria-label="Permalink for definition: 2.2.3 Expression Processing. Activate to close this dialog.">Permalink</a>
@@ -13465,7 +13456,7 @@ a\u003Ab            # a:b -- codepoint x3A is colon</code></pre>
     <a href="#ref-for-index-term-2-2-3-expression-processing-1" title="§ 17.2 Filter Evaluation">§ 17.2 Filter Evaluation</a> 
   </li>
   </ul>
-    </div><div class="dfn-panel" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-2-3-1-kinds-of-errors" aria-label="Links in this document to definition: 2.3.1, Kinds of Errors" hidden="">
+    </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-2-3-1-kinds-of-errors" aria-label="Links in this document to definition: 2.3.1, Kinds of Errors">
       <span class="caret"></span>
       <div>
         <a class="self-link" href="https://www.w3.org/TR/xquery-31/#dt-type-error" aria-label="Permalink for definition: 2.3.1, Kinds of Errors. Activate to close this dialog.">Permalink</a>
@@ -13479,7 +13470,7 @@ a\u003Ab            # a:b -- codepoint x3A is colon</code></pre>
     <a href="#ref-for-index-term-2-3-1-kinds-of-errors-2" title="§ 17.2 Filter Evaluation">§ 17.2 Filter Evaluation</a> 
   </li>
   </ul>
-    </div><div class="dfn-panel" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-effective-boolean-value" aria-label="Links in this document to definition: Effective Boolean Value" hidden="">
+    </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-effective-boolean-value" aria-label="Links in this document to definition: Effective Boolean Value">
       <span class="caret"></span>
       <div>
         <a class="self-link" href="https://www.w3.org/TR/xquery-31/#id-ebv" aria-label="Permalink for definition: Effective Boolean Value. Activate to close this dialog.">Permalink</a>
@@ -13491,7 +13482,7 @@ a\u003Ab            # a:b -- codepoint x3A is colon</code></pre>
     <a href="#ref-for-index-term-effective-boolean-value-1" title="§ 17.2.2 Effective Boolean Value (EBV)">§ 17.2.2 Effective Boolean Value (EBV)</a> 
   </li>
   </ul>
-    </div><div class="dfn-panel" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-operator-mapping" aria-label="Links in this document to definition: Operator Mapping" hidden="">
+    </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-operator-mapping" aria-label="Links in this document to definition: Operator Mapping">
       <span class="caret"></span>
       <div>
         <a class="self-link" href="https://www.w3.org/TR/xquery-31/#mapping" aria-label="Permalink for definition: Operator Mapping. Activate to close this dialog.">Permalink</a>
@@ -13503,7 +13494,7 @@ a\u003Ab            # a:b -- codepoint x3A is colon</code></pre>
     <a href="#ref-for-index-term-operator-mapping-1" title="§ 17.2 Filter Evaluation">§ 17.2 Filter Evaluation</a> 
   </li>
   </ul>
-    </div><div class="dfn-panel" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-xquery-3-1-an-xml-query-language" aria-label="Links in this document to definition: XQuery 3.1: An XML Query Language" hidden="">
+    </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-xquery-3-1-an-xml-query-language" aria-label="Links in this document to definition: XQuery 3.1: An XML Query Language">
       <span class="caret"></span>
       <div>
         <a class="self-link" href="https://www.w3.org/TR/xquery-31/" aria-label="Permalink for definition: XQuery 3.1: An XML Query Language. Activate to close this dialog.">Permalink</a>
