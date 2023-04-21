@@ -1,6 +1,6 @@
 <!DOCTYPE html><html lang="en" dir="ltr"><head>
 <meta charset="utf-8">
-<meta name="generator" content="ReSpec 32.8.0">
+<meta name="generator" content="ReSpec 34.0.0">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <style>
 dfn{cursor:pointer}
@@ -93,7 +93,263 @@ dd{margin-left:0}
     
 <style>
 
-      @import url("local.css");
+      /* @import url("local.css"); */
+      /* Inlined to make preview work */
+
+/* CSS For SPARQL Query */
+
+/* In-progress working draft artifacts - to be removed eventually */
+  .issue	{ background-color: #fdd;
+                  font-size: 88% ; }
+  .add		{ background-color: #7fff7f }
+  .remove	{ background-color: #ff7f7f }
+ul.issue	{}
+  .issueBlock	{ margin: 1em 4em 1em 2.5em ; /* Top Right Bottom Left */
+                  padding: 1ex;
+	          /*overflow: auto;*/
+                  page-break-inside: avoid ; }
+  .issueTopic	{ font-weight: bold ; }
+
+ .todo		{ font-size: 80% ; color: #444 ; }
+p.todo		{}
+
+.wgNote	{ border: 0.2em solid red;
+      padding: 0.5em ;
+      margin: 1em 4em 1em 2em ; }
+
+.box     { border: thin solid #888888;
+           page-break-inside: avoid ;
+           background-color: #F8F8F8 ; padding:1em ;
+           margin-left:0 ; margin-right: 2ex; 
+           margin-top: 0.1ex ; margin-bottom: 0.1ex ;
+         }
+
+/* Misc WD stuff */
+span.cvs-id     {color: gray; font-size:80%; display: block; }
+
+/* == General Tag Treatment == */
+pre		 { margin: 1em 4em 1em 2.5em ; /* Top Right Bottom Left */
+                   padding: 1ex;
+	           /*overflow: auto;*/
+                   page-break-inside: avoid ; }
+
+/* Tables */
+table, td	{ text-align: left; }
+td, th   { border-style: solid;
+                  border-width: 1px;
+                  border-color: black;
+                  border-bottom-color: gray;
+                  border-right-color: gray; }
+td.annotation, th.annotation { border-style: none; border-bottom-style: dotted; }
+table.plain	{ border-spacing: 0px; padding: 0px ; border-collapse: collapse ; }
+                  /* cellpadding="0" cellspacing="1" style="border-collapse: collapse */
+
+
+th.major	{ background-color: #005a9c;
+                  color: white; }
+.subHeading	{ text-align: left;
+                  background-color: #CCCCCC; }
+th, td		{ padding: 3px; }
+td		{ font-size: 85%; }
+th a:link	{ text-decoration: none; }
+th a:hover	{ background-color:#FFFF99;
+                  text-decoration: underline; }
+
+/* == Prototypes == */
+pre.prototype	{ background-color:#f7f8ff;
+                  border:thin solid #8888aa;
+                  margin: 1em 4em 1em 0em ; }
+.return, .type	{ color: #177 }
+
+/* == Notes ==  */
+.note		{ margin-left: 2.5em; margin-right: 4ex ; font-size: 85% ; font-style: italic ; }
+
+/* Definitions */
+.defn		{ margin-left:0 ; margin-right: 2ex; 
+                  margin-top: 0.1ex ; margin-bottom: 0.1ex ;
+                  /*border: double 1px #888888; *//* Buggy */
+                  border: thin solid #888888;
+                  padding: 1ex 2ex 0.5ex 2ex ; /* top, right, bottom, left */
+                  page-break-inside: avoid ;
+                  background-color: #F0F8F8 ; }
+div.defn p	{ margin-top: 1ex ; margin-bottom: 1.5ex ;}
+div.defn ul	{ margin-top: 1ex ; margin-bottom: 1.5ex ; }
+@media print	{ .defn { margin: 1em 1em 1em 1em ; } }
+span.definedTerm	{font-weight: bold;}
+
+div.grammarExtract
+                { border: thin solid #888888;
+                  padding: 1ex 2ex 1ex 2ex ; /* top, right, bottom, left */
+                  margin: 1em 6em 1em 2em ; 
+                  page-break-inside: avoid ;
+                  background-color: #F8F8F8 ; }
+
+pre.codeBlock  { font-family:monospace ; page-break-inside: avoid ; 
+                 margin: 0 ;
+	         margin-right: 2ex ;
+                 border: thin solid #888888; }
+
+
+
+
+/* Examples */
+pre.data	{ border: thin solid #88AA88;
+                  background-color: #E8F0E8;
+                  margin: 1em 4em 1em 0em ; }
+
+pre.dataExcerpt	{ border: thin solid #88AA88;
+                  background-color: #E8F0E8;
+                  margin: 1em 4em 1em 0em ; }
+/* Example Queries */
+.query          { background-color:#f7f8ff; }
+.queryExcerpt   { background-color:#f7f8ff; }
+pre.query	{ border:thin solid #8888aa;
+                  margin: 1em 4em 1em 0em ; }
+/* Example Results */
+.result		{ border: thin solid  #888888 ;
+                  background-color: #F0F0F0 ; }
+pre.resultGraph	{  margin: 0em 0em 0em 0em ; /* Top Right Bottom Left */
+                   padding: 0ex;
+                   font-size: 100% ;
+                   page-break-inside: avoid ; }
+pre.resultSet	{  margin: 0em 0em 0em 0em ; /* Top Right Bottom Left */
+                   padding: 0ex;
+                   font-size: 100% ;
+                   page-break-inside: avoid ; }
+pre.resultAsk	{  margin: 0em 0em 0em 0em ; /* Top Right Bottom Left */
+                   padding: 0ex;
+                   font-size: 100% ;
+                   page-break-inside: avoid ; }
+pre.resultTurtle{  margin: 0em 0em 0em 0em ; /* Top Right Bottom Left */
+                   padding: 0ex;
+                   font-size: 100% ;
+                   page-break-inside: avoid ; }
+
+pre.result	{ margin: 1em 4em 1em 0em ; }
+
+div.result	{ font-family: monospace;
+                  margin:  1em 4em 1em 0em ;
+                  padding: 1ex ; }
+
+.result table	{ border-collapse: collapse; }
+.result table td{ border-width: 1px ;
+                  border-color : black ; 
+                  font-family: monospace ;
+                  empty-cells: show;
+                  padding-left: 1ex ; padding-right: 1ex ;
+                  vertical-align:top;
+                  text-align: left ; } 
+/*  spacing: 0 ;*/
+.result table th{ border-width: 1px ;
+                  font-family: monospace ;
+                  border-color: black ;
+                  empty-cells: show;
+                  padding-left: 1ex ; padding-right: 1ex ;
+                  vertical-align:top;
+                  text-align:center; } 
+
+/* Examples : Algebra */
+div.algExample {  border: thin solid #888888;
+                  page-break-inside: avoid ;
+                  padding:0.5em ; margin:0.5em ;
+                  margin-left: 2em ; margin-right: 2em ;
+                  font-family:monospace ; }
+
+div.algExample1 { padding:0.5em ; background-color: #F0F0FF ; }
+div.algExample2 { padding:0.5em ; margin-top: 0.5em ; background-color: #F0FFF0 ; }
+
+/* Grammar Mark-up */
+.operator	{ color: #3f3f5f;
+                  text-transform: uppercase; }
+.function	{ color: #3f3f5f;
+                }
+
+/* Tuned to cope with different browsers behaviours */
+div.grammarTable table	{ border-style: solid ;
+			  border-width: 1px ;
+			  border-color: #AAA ;
+			  border-spacing: 0px ; 
+			  border-collapse: collapse ; }
+
+div.grammarTable table * { border-left-width: 0px ;
+			   border-right-width: 0px ;
+			   border-color: #AAA ; } 
+
+div.grammarTable table * tr   { border-top-style: solid ;
+			  border-top-width: 1px ;
+			  border-top-color: #AAA ; } 
+
+.grammar	{ text-align: left ;
+                  vertical-align: top ; }
+.token		{ color: #3f3f5f; }
+table.FAndOTable .token		{ color: #00c; }
+table.FAndOTable .token:visited		{ color: #a0c; }
+.gRuleHead	{ font-style: italic ;
+                  font-family: monospace ; }
+.gRuleBody	{ font-family: monospace ; }
+.gRuleLabel	{ font-family: monospace ; }
+
+.code		{ font-family: monospace; font-size: 100%; }
+pre.code	{ font-family: monospace; font-size: 100%; margin: 0 ; }
+
+/* Table of Contents */
+.toc		{ text-indent: 0; }
+DIV.toc UL UL, DIV.toc OL OL {margin-left: 0}
+DIV.toc UL UL UL, DIV.toc OL OL OL {margin-left: 1em}
+DIV.toc UL UL UL UL, DIV.toc OL OL OL OL {margin-left: 0}
+LI.tocline1	{ font-weight: bold}
+LI.tocline2	{ font-weight: normal}
+LI.tocline4	{ font-style: italic}
+/* The border in the following rule crashes NN4 on fonts.html :-(
+DIV.subtoc	{ padding: 1em; border: solid black thin; margin: 1em 0;
+                  background: #ddd} */
+DIV.toc, UL.index, DT { text-align: left; }
+
+
+/* References to the Rdf Data Model */
+span.rdfDM	{ color: #11d; }
+
+
+/* Truth Table */
+  .truth	{ font-family: monospace; }
+  .error	{ color: #ff1f1f; }
+  table.truthTable td	{ text-align: center; font-family: monospace; }
+  table.truthTable th	{ background-color: #dfdfdf; }
+  table.truthTable tbody th	{ font-weight: normal; font-family: monospace; }
+
+/* Casting table */
+table.casting	{ font-size: x-small; }
+
+.castY	{ background-color: #7FFF7F;
+                  color: black; }
+
+.castN	{ background-color: #FF7F7F;
+                  color: black; }
+
+.castM	{ background-color: white;
+                  color: black; }
+
+span.cancast:hover { background-color: #ffa;
+                     color: black; }
+
+.SPARQLoperator	{ background-color: #FFFFbf; /* yellow */
+          }
+
+.owlnonterminal {
+    font-weight: bold;
+    font-family: sans-serif;
+    font-size: 95%;
+}
+.owlgrammar {
+    margin-top: 1ex;
+    margin-bottom: 1ex;
+    padding-left: 1ex;
+    padding-right: 1ex;
+    padding-top: 1ex;
+    padding-bottom: 0.6ex;
+    border: 1px dashed #2f6fab;
+    font-family: monospace;
+}
 
       /* ReSpec */
       dfn { font-style: normal ; }
@@ -149,20 +405,6 @@ ul.index code{color:inherit}
 <meta name="description" content="The formats CSV [RFC4180] (comma separated values) and TSV [IANA-TSV] (tab separated values) provide simple, easy to process formats for the transmission of tabular data. They are supported as input datat formats to many tools,
     particularly spreadsheets. This document describes their use for expressing SPARQL query results from SELECT queries.">
 <link rel="canonical" href="https://www.w3.org/TR/sparql12-results-csv-tsv/">
-<style>
-.hljs{display:block;overflow-x:auto;padding:.5em;color:#383a42;background:#fafafa}
-.hljs-comment,.hljs-quote{color:#717277;font-style:italic}
-.hljs-doctag,.hljs-formula,.hljs-keyword{color:#a626a4}
-.hljs-deletion,.hljs-name,.hljs-section,.hljs-selector-tag,.hljs-subst{color:#ca4706;font-weight:700}
-.hljs-literal{color:#0b76c5}
-.hljs-addition,.hljs-attribute,.hljs-meta-string,.hljs-regexp,.hljs-string{color:#42803c}
-.hljs-built_in,.hljs-class .hljs-title{color:#9a6a01}
-.hljs-attr,.hljs-number,.hljs-selector-attr,.hljs-selector-class,.hljs-selector-pseudo,.hljs-template-variable,.hljs-type,.hljs-variable{color:#986801}
-.hljs-bullet,.hljs-link,.hljs-meta,.hljs-selector-id,.hljs-symbol,.hljs-title{color:#336ae3}
-.hljs-emphasis{font-style:italic}
-.hljs-strong{font-weight:700}
-.hljs-link{text-decoration:underline}
-</style>
 <style>
 var{position:relative;cursor:pointer}
 var[data-type]::after,var[data-type]::before{position:absolute;left:50%;top:-6px;opacity:0;transition:opacity .4s;pointer-events:none}
@@ -322,7 +564,8 @@ var[data-type]:hover::after,var[data-type]:hover::before{opacity:1}
       "title": "RDF 1.2 Turtle",
       "rawDate": "2022-01-01",
       "status": "WD",
-      "publisher": "W3C"
+      "publisher": "W3C",
+      "id": "rdf12-turtle"
     },
     "RDF12-XML": {
       "authors": [
@@ -475,6 +718,16 @@ var[data-type]:hover::after,var[data-type]:hover::before{opacity:1}
       "status": "WD",
       "publisher": "W3C",
       "id": "sparql12-graph-store-protocol"
+    },
+    "CBD": {
+      "title": "CBD - Concise Bounded Description",
+      "href": "https://www.w3.org/Submission/CBD/",
+      "authors": [
+        "Patrick Stickler, Nokia"
+      ],
+      "rawDate": "2005-06-03",
+      "publisher": "W3C",
+      "status": "W3C Member Submission"
     }
   },
   "specStatus": "FPWD",
@@ -506,21 +759,21 @@ var[data-type]:hover::after,var[data-type]:hover::before{opacity:1}
   "lint": {
     "no-unused-dfns": false
   },
-  "pubDate": "2023-04-01",
-  "publishISODate": "2023-03-08T00:00:00.000Z",
-  "generatedSubtitle": "W3C First Public Working Draft 08 March 2023"
+  "pubDate": "2023-05-04",
+  "publishISODate": "2023-04-07T00:00:00.000Z",
+  "generatedSubtitle": "W3C First Public Working Draft 07 April 2023"
 }</script>
 <link rel="stylesheet" href="https://www.w3.org/StyleSheets/TR/2021/W3C-WD"></head>
   <body class="h-entry"><div class="head">
     <p class="logos"><a class="logo" href="https://www.w3.org/"><img crossorigin="" alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2021/logos/W3C" width="72">
   </a></p>
     <h1 id="title" class="title">SPARQL 1.2 Query Results CSV and TSV Formats</h1> 
-    <p id="w3c-state"><a href="https://www.w3.org/standards/types#FPWD">W3C First Public Working Draft</a> <time class="dt-published" datetime="2023-03-08">08 March 2023</time></p>
+    <p id="w3c-state"><a href="https://www.w3.org/standards/types#FPWD">W3C First Public Working Draft</a> <time class="dt-published" datetime="2023-04-07">07 April 2023</time></p>
     <details open="">
       <summary>More details about this document</summary>
       <dl>
         <dt>This version:</dt><dd>
-                <a class="u-url" href="https://www.w3.org/TR/2023/WD-sparql12-results-csv-tsv-20230308/">https://www.w3.org/TR/2023/WD-sparql12-results-csv-tsv-20230308/</a>
+                <a class="u-url" href="https://www.w3.org/TR/2023/WD-sparql12-results-csv-tsv-20230407/">https://www.w3.org/TR/2023/WD-sparql12-results-csv-tsv-20230407/</a>
               </dd>
         <dt>Latest published version:</dt><dd>
                 <a href="https://www.w3.org/TR/sparql12-results-csv-tsv/">https://www.w3.org/TR/sparql12-results-csv-tsv/</a>
@@ -574,7 +827,7 @@ var[data-type]:hover::after,var[data-type]:hover::before{opacity:1}
   </div>
     <section id="abstract" class="introductory"><h2>Abstract</h2>
       
-<p>The formats CSV [<cite><a class="bibref" rel="biblioentry" href="#bib-RFC4180">RFC4180</a></cite>] (comma separated values) and TSV [<cite><a class="bibref" rel="biblioentry" href="#bib-IANA-TSV">IANA-TSV</a></cite>] (tab separated values) provide simple, easy to process formats for the transmission of tabular data. They are supported as input datat formats to many tools,
+<p>The formats CSV [<cite><a class="bibref" data-link-type="biblio" href="#bib-rfc4180" title="Common Format and MIME Type for Comma-Separated Values (CSV) Files">RFC4180</a></cite>] (comma separated values) and TSV [<cite><a class="bibref" data-link-type="biblio" href="#bib-iana-tsv" title="Definition of tab-separated-values (tsv)">IANA-TSV</a></cite>] (tab separated values) provide simple, easy to process formats for the transmission of tabular data. They are supported as input datat formats to many tools,
     particularly spreadsheets. This document describes their use for expressing SPARQL query results from <code>SELECT</code> queries.</p>
     </section>
 
@@ -619,7 +872,7 @@ var[data-type]:hover::after,var[data-type]:hover::before{opacity:1}
   </p><p>
                   This document is governed by the
                   <a id="w3c_process_revision" href="https://www.w3.org/2021/Process-20211102/">2 November 2021 <abbr title="World Wide Web Consortium">W3C</abbr> Process Document</a>.
-                </p></section><nav id="toc"><h2 class="introductory" id="table-of-contents">Table of Contents</h2><ol class="toc"><li class="tocline"><a class="tocxref" href="#abstract">Abstract</a></li><li class="tocline"><a class="tocxref" href="#sotd">Status of This Document</a></li><li class="tocline"><a class="tocxref" href="#related"><bdi class="secno">1. </bdi>Set of Documents</a></li><li class="tocline"><a class="tocxref" href="#sparql12-documents">SPARQL 1.2 Documents</a></li><li class="tocline"><a class="tocxref" href="#introduction"><bdi class="secno">2. </bdi>Introduction</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#example1"><bdi class="secno">2.1 </bdi>Example</a></li></ol></li><li class="tocline"><a class="tocxref" href="#general-comments"><bdi class="secno">3. </bdi>Transmission issues using CSV and TSV Formats</a></li><li class="tocline"><a class="tocxref" href="#csv-table"><bdi class="secno">4. </bdi>CSV - Comma Separated values</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#serializing-results"><bdi class="secno">4.1 </bdi>Serializing the Results Table</a></li><li class="tocline"><a class="tocxref" href="#csv-terms"><bdi class="secno">4.2 </bdi>Serializing RDF Terms</a></li><li class="tocline"><a class="tocxref" href="#csv-example"><bdi class="secno">4.3 </bdi>Example of CSV-Serialized Results</a></li></ol></li><li class="tocline"><a class="tocxref" href="#tsv"><bdi class="secno">5. </bdi>TSV - Tab Separated values</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#tsv-table"><bdi class="secno">5.1 </bdi>Serializing the Results Table</a></li><li class="tocline"><a class="tocxref" href="#tsv-terms"><bdi class="secno">5.2 </bdi>Serializing RDF Terms</a></li><li class="tocline"><a class="tocxref" href="#tsv-example"><bdi class="secno">5.3 </bdi>Example of TSV-Serialized Results</a></li></ol></li><li class="tocline"><a class="tocxref" href="#conformance"><bdi class="secno">6. </bdi>Conformance</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#conformance-0"><bdi class="secno">6.1 </bdi>Conformance</a></li></ol></li><li class="tocline"><a class="tocxref" href="#references-1"><bdi class="secno">7. </bdi>References (merge)</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#normative-references-1"><bdi class="secno">7.1 </bdi>Normative References</a></li><li class="tocline"><a class="tocxref" href="#non-normative-references-1"><bdi class="secno">7.2 </bdi>Non-normative References</a></li></ol></li><li class="tocline"><a class="tocxref" href="#privacy"><bdi class="secno">8. </bdi>Privacy Considerations</a></li><li class="tocline"><a class="tocxref" href="#security"><bdi class="secno">9. </bdi>Security Considerations</a></li><li class="tocline"><a class="tocxref" href="#internationalization"><bdi class="secno">10. </bdi>Internationalization Considerations</a></li><li class="tocline"><a class="tocxref" href="#changes-from-sparql11"><bdi class="secno">A. </bdi>Change Log</a></li><li class="tocline"><a class="tocxref" href="#index"><bdi class="secno">B. </bdi>Index</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#index-defined-here"><bdi class="secno">B.1 </bdi>Terms defined by this specification</a></li><li class="tocline"><a class="tocxref" href="#index-defined-elsewhere"><bdi class="secno">B.2 </bdi>Terms defined by reference</a></li></ol></li><li class="tocline"><a class="tocxref" href="#references"><bdi class="secno">C. </bdi>References</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#normative-references"><bdi class="secno">C.1 </bdi>Normative references</a></li><li class="tocline"><a class="tocxref" href="#informative-references"><bdi class="secno">C.2 </bdi>Informative references</a></li><li class="tocline"><a class="tocxref" href="#normative-references-0"><bdi class="secno">C.3 </bdi>Normative references</a></li></ol></li></ol></nav>
+                </p></section><nav id="toc"><h2 class="introductory" id="table-of-contents">Table of Contents</h2><ol class="toc"><li class="tocline"><a class="tocxref" href="#abstract">Abstract</a></li><li class="tocline"><a class="tocxref" href="#sotd">Status of This Document</a></li><li class="tocline"><a class="tocxref" href="#related"><bdi class="secno">1. </bdi>Set of Documents</a></li><li class="tocline"><a class="tocxref" href="#introduction"><bdi class="secno">2. </bdi>Introduction</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#example1"><bdi class="secno">2.1 </bdi>Example</a></li></ol></li><li class="tocline"><a class="tocxref" href="#general-comments"><bdi class="secno">3. </bdi>Transmission issues using CSV and TSV Formats</a></li><li class="tocline"><a class="tocxref" href="#csv-table"><bdi class="secno">4. </bdi>CSV - Comma Separated values</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#serializing-results"><bdi class="secno">4.1 </bdi>Serializing the Results Table</a></li><li class="tocline"><a class="tocxref" href="#csv-terms"><bdi class="secno">4.2 </bdi>Serializing RDF Terms</a></li><li class="tocline"><a class="tocxref" href="#csv-example"><bdi class="secno">4.3 </bdi>Example of CSV-Serialized Results</a></li></ol></li><li class="tocline"><a class="tocxref" href="#tsv"><bdi class="secno">5. </bdi>TSV - Tab Separated values</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#tsv-table"><bdi class="secno">5.1 </bdi>Serializing the Results Table</a></li><li class="tocline"><a class="tocxref" href="#tsv-terms"><bdi class="secno">5.2 </bdi>Serializing RDF Terms</a></li><li class="tocline"><a class="tocxref" href="#tsv-example"><bdi class="secno">5.3 </bdi>Example of TSV-Serialized Results</a></li></ol></li><li class="tocline"><a class="tocxref" href="#conformance"><bdi class="secno">6. </bdi>Conformance</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#conformance-0"><bdi class="secno">6.1 </bdi>Conformance</a></li></ol></li><li class="tocline"><a class="tocxref" href="#privacy"><bdi class="secno">7. </bdi>Privacy Considerations</a></li><li class="tocline"><a class="tocxref" href="#security"><bdi class="secno">8. </bdi>Security Considerations</a></li><li class="tocline"><a class="tocxref" href="#internationalization"><bdi class="secno">9. </bdi>Internationalization Considerations</a></li><li class="tocline"><a class="tocxref" href="#changes-from-sparql11"><bdi class="secno">A. </bdi>Change Log</a></li><li class="tocline"><a class="tocxref" href="#index"><bdi class="secno">B. </bdi>Index</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#index-defined-here"><bdi class="secno">B.1 </bdi>Terms defined by this specification</a></li><li class="tocline"><a class="tocxref" href="#index-defined-elsewhere"><bdi class="secno">B.2 </bdi>Terms defined by reference</a></li></ol></li><li class="tocline"><a class="tocxref" href="#references"><bdi class="secno">C. </bdi>References</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#normative-references"><bdi class="secno">C.1 </bdi>Normative references</a></li></ol></li></ol></nav>
 
     <section id="related"><div class="header-wrapper"><h2 id="x1-set-of-documents"><bdi class="secno">1. </bdi>Set of Documents</h2><a class="self-link" href="#related" aria-label="Permalink for Section 1."></a></div>
 <p>This document is one of twelve SPARQL 1.2 Recommendations produced by the <a href="https://www.w3.org/groups/wg/rdf-star">RDF-star Working Group</a>:</p>
@@ -640,43 +893,25 @@ var[data-type]:hover::after,var[data-type]:hover::before{opacity:1}
   <li><cite><a data-matched-text="[[[SPARQL12-GRAPH-STORE-PROTOCOL]]]" href="https://w3c.github.io/sparql-graph-store-protocol/spec/" id="ref-for-index-term-sparql-1-2-graph-store-http-protocol-1">SPARQL 1.2 Graph Store HTTP Protocol</a></cite></li>
 </ol>
 </section>
-
-    <section id="sparql12-documents" class="introductory"><div class="header-wrapper"><h2 id="sparql-1-2-documents">SPARQL 1.2 Documents</h2><a class="self-link" href="#sparql12-documents" aria-label="Permalink for this Section"></a></div>
-      
-      <ul>
-        <li><a href="../../sparql-new/spec/index.html">SPARQL 1.2 New</a></li>
-        <li><a href="../../sparql-concepts/spec/index.html">SPARQL 1.2 Overview</a></li>
-        <li><a href="../../sparql-query/spec/index.html">SPARQL 1.2 Query Language</a></li>
-        <li><a href="../../sparql-update/spec/index.html">SPARQL 1.2 Update</a></li>
-        <li><a href="../../sparql-entailment/spec/index.html">SPARQL 1.2 Entailment Regimes</a></li>
-        <li><a href="../../sparql-service-description/spec/index.html">SPARQL 1.2 Service Description</a></li>
-        <li><a href="../../sparql-federated-query/spec/index.html">SPARQL 1.2 Federated Query</a></li>
-        <li><a href="../../sparql-results-json/spec/index.html">SPARQL 1.2 Query Results JSON Format</a></li>
-        <li><a href="../../sparql-results-csv-tsv/spec/index.html">SPARQL 1.2 Query Results CSV and TSV Formats</a></li>
-        <li><a href="../../sparql-results-xml/spec/index.html">SPARQL 1.2 Query Results XML Format</a></li>
-        <li><a href="../../sparql-graph-store-protocol/spec/index.html">SPARQL 1.2 Graph Store Protocol</a></li>
-        <li><a href="../../sparql-protocol/spec/index.html">SPARQL 1.2 Protocol</a></li>
-      </ul>
-    </section>
     
 
     <section id="introduction"><div class="header-wrapper"><h2 id="x2-introduction"><bdi class="secno">2. </bdi>Introduction</h2><a class="self-link" href="#introduction" aria-label="Permalink for Section 2."></a></div>
     
     <p>This document describes CSV and TSV formats for expressing the results of a SPARQL <code>SELECT</code> query. They provide lowest common denominator formats between systems using different
     implementation technologies.</p>
-    <p>Other formats for expression SPARQL results are the SPARQL XML Results Format [<cite><a class="bibref" rel="biblioentry" href="#bib-RDF-SPARQL-XMLRES">RDF-SPARQL-XMLRES</a></cite>] and SPARQL
+    <p>Other formats for expression SPARQL results are the SPARQL XML Results Format [<cite><a class="bibref" data-link-type="biblio" href="#bib-sparql12-results-xml" title="SPARQL 1.2 Query Results XML Formats">SPARQL12-RESULTS-XML</a></cite>] and SPARQL
     JSON Results Format
-     [<a href="#SPARQL11-JSON-RES">SPARQL11-JSON-RES</a>]. Each format is useful in different application scenarios.</p>
+     [<cite><a class="bibref" data-link-type="biblio" href="#bib-sparql12-results-json" title="SPARQL 1.2 Query Results JSON Format">SPARQL12-RESULTS-JSON</a></cite>]. Each format is useful in different application scenarios.</p>
     <p>The SPARQL Results CSV Results Format is a lossy encoding of a table of results. It does not encode all the details of each RDF term in the results but instead just gives a string without
     indicating the type of the term (IRI, Literal, Literal with datatype, Literal with language, or blank node). This makes it simple to consume data, such as text and numbers, in applications
     without needing to understand the details of RDF. In some applications, guesses as to which elements are hyperlinks are made pragmatically, for example, guessing that strings starting "http://"
     are links.</p>
     <p>The SPARQL Results TSV Results Format does encode the details of RDF terms in the results table by using the syntax that SPARQL
-     [<a href="#SPARQL11-QUERY">SPARQL11-QUERY</a>] and Turtle [<cite><a class="bibref" rel="biblioentry" href="#bib-TURTLE">TURTLE</a></cite>] use. An application receiving a TSV-encoded results set
+     [<cite><a class="bibref" data-link-type="biblio" href="#bib-sparql12-query" title="SPARQL 1.2 Query Language">SPARQL12-QUERY</a></cite>] and Turtle [<cite><a class="bibref" data-link-type="biblio" href="#bib-rdf12-turtle" title="RDF 1.2 Turtle">RDF12-TURTLE</a></cite>] use. An application receiving a TSV-encoded results set
     can split each line into elements of the result row, and extract all the details it wishes to process of the RDF terms by simple string processing, without a complete XML or JSON parser required
     by the more complex SPARQL result formats.</p>
     <p>When this document uses the words <em class="rfc2119" title="must">must</em>, <em class="rfc2119" title="must not">must not</em>, <em class="rfc2119" title="should">should</em>, <em class="rfc2119" title="should not">should not</em>, <em class="rfc2119" title="may">may</em> and <em class="rfc2119" title="recommended">recommended</em>, they must be interpreted as described in RFC
-    2119 [<cite><a class="bibref" rel="biblioentry" href="#bib-RFC2119">RFC2119</a></cite>].</p>
+    2119 [<cite><a class="bibref" data-link-type="biblio" href="#bib-rfc2119" title="Key words for use in RFCs to Indicate Requirement Levels">RFC2119</a></cite>].</p>
 
       <section id="example1"><div class="header-wrapper"><h3 id="x2-1-example"><bdi class="secno">2.1 </bdi>Example</h3><a class="self-link" href="#example1" aria-label="Permalink for Section 2.1"></a></div>
       
@@ -734,7 +969,7 @@ var[data-type]:hover::after,var[data-type]:hover::before{opacity:1}
     </section>
     <section id="general-comments"><div class="header-wrapper"><h2 id="x3-transmission-issues-using-csv-and-tsv-formats"><bdi class="secno">3. </bdi>Transmission issues using CSV and TSV Formats</h2><a class="self-link" href="#general-comments" aria-label="Permalink for Section 3."></a></div>
     
-    <p>The SPARQL results formats described here confirm to the formal specifications of the relevant formats, Comma Separated values (CSV) [<cite><a class="bibref" rel="biblioentry" href="#bib-RFC4180">RFC4180</a></cite>] and Tab Separated Value (TSV) [<cite><a class="bibref" rel="biblioentry" href="#bib-IANA-TSV">IANA-TSV</a></cite>].</p>
+    <p>The SPARQL results formats described here confirm to the formal specifications of the relevant formats, Comma Separated values (CSV) [<cite><a class="bibref" data-link-type="biblio" href="#bib-rfc4180" title="Common Format and MIME Type for Comma-Separated Values (CSV) Files">RFC4180</a></cite>] and Tab Separated Value (TSV) [<cite><a class="bibref" data-link-type="biblio" href="#bib-iana-tsv" title="Definition of tab-separated-values (tsv)">IANA-TSV</a></cite>].</p>
     <p>Systems providing these formats should note that the content types for CSV is <code>text/csv</code> and for TSV <code>text/tab-separated-values</code>. Being <code>text/*</code>, the default character set
     is US-ASCII. The <code>charset</code> parameter <em class="rfc2119" title="should">should</em> be used in conjunction with SPARQL Results; UTF-8 is recommended: <code>text/csv; charset=utf-8</code> and
     <code>text/tab-separated-values; charset=utf-8</code>.</p>
@@ -763,18 +998,18 @@ var[data-type]:hover::after,var[data-type]:hover::before{opacity:1}
       <p>The entry in each field is the string corresponding to the RDF term value. (c.f. SPARQL STR()) without syntax to denote what kind of term it is. The encoding quoting rules of CSV format must
       be used.</p>
       <p>Blank nodes use the <code>_:label</code> form from Turtle and SPARQL. Use of the same label indicates the same blank node within the results but has no significance outside the results.</p>
-      <p>Fields containing any of <code>"</code> (<small>QUOTATION MARK</small>, code point 34, 0x22 in Unicode[<cite><a class="bibref" rel="biblioentry" href="#bib-UNICODE">UNICODE</a></cite>]),
-      <code>,</code> (<small>COMMA</small>, code point 44, 0x2C), <code>LF</code> (code point 10, 0x0A) or <code>CR</code> (code point 13, 0x0D) must be quoted using the quoting mechanism of RFC4180
-      [<cite><a class="bibref" rel="biblioentry" href="#bib-RFC4180">RFC4180</a></cite>]. Fields are limited by a pair of quotation marks <code>"</code> (code point 0x22). Within quote strings, all
+      <p>Fields containing any of <code>"</code> (<small>QUOTATION MARK</small>, code point 34, 0x22 in Unicode [<cite><a class="bibref" data-link-type="biblio" href="#bib-unicode" title="The Unicode Standard">UNICODE</a></cite>]),
+      <code>,</code> (<small>COMMA</small>, code point 44, 0x2C), <code>LF</code> (code point 10, 0x0A) or <code>CR</code> (code point 13, 0x0D) must be quoted using the quoting mechanism of [<cite><a class="bibref" data-link-type="biblio" href="#bib-rfc4180" title="Common Format and MIME Type for Comma-Separated Values (CSV) Files">RFC4180</a></cite>].
+      Fields are limited by a pair of quotation marks <code>"</code> (code point 0x22). Within quote strings, all
       characters except <code>"</code>, including new line characters have their exact meaning - newlines do not end a CSV record. <code>"</code> is written using a pair of quotation
       marks <code>""</code>.</p>
-      <p>The standard CSV format does not distinguish between missing values and empty strings. The SPARQL 1.1 CSV Results Format uses the same representation for unbound variables as for variables
+      <p>The standard CSV format does not distinguish between missing values and empty strings. The SPARQL 1.2 CSV Results Format uses the same representation for unbound variables as for variables
       bound to an empty string literal. The other SPARQL Result formats (based on JSON, TSV or XML) can be used if this distinction is required.</p>
       </section>
     
       <section id="csv-example"><div class="header-wrapper"><h3 id="x4-3-example-of-csv-serialized-results"><bdi class="secno">4.3 </bdi>Example of CSV-Serialized Results</h3><a class="self-link" href="#csv-example" aria-label="Permalink for Section 4.3"></a></div>
       
-      <pre class="box csv" aria-busy="false"><code class="hljs">x,literal
+      <pre class="box csv nohighlight">x,literal
 http://example/x,String
 http://example/x,"String-with-dquote"""
 _:b0,Blank node
@@ -782,20 +1017,20 @@ _:b0,Blank node
 ,
 http://example/x,
 _:b1,String-with-lang
-_:b1,123</code></pre>
+_:b1,123</pre>
       </section>
     </section>
 
     <section id="tsv"><div class="header-wrapper"><h2 id="x5-tsv-tab-separated-values"><bdi class="secno">5. </bdi>TSV - Tab Separated values</h2><a class="self-link" href="#tsv" aria-label="Permalink for Section 5."></a></div>
     
     <p>In the SPARQL Results TSV Format, the results table is serialized as one line listing the variables in the results, followed by one line for each query solution. All RDF terms used in the
-    format are encoded in the format specified by Turtle [<cite><a class="bibref" rel="biblioentry" href="#bib-TURTLE">TURTLE</a></cite>] except that the triple quoted forms for the lexical part of
+    format are encoded in the format specified by Turtle [<cite><a class="bibref" data-link-type="biblio" href="#bib-rdf12-turtle" title="RDF 1.2 Turtle">RDF12-TURTLE</a></cite>] except that the triple quoted forms for the lexical part of
     literals <em class="rfc2119" title="must not">must not</em> be used. These forms would allow raw newlines and tabs that form part of the TSV format. A TSV format SPARQL result set must use the
     single quoted literal forms, together with any necessary escapes such as <code>\t</code>, <code>\n</code> and <code>\r</code>.</p>
 
       <section id="tsv-table"><div class="header-wrapper"><h3 id="x5-1-serializing-the-results-table"><bdi class="secno">5.1 </bdi>Serializing the Results Table</h3><a class="self-link" href="#tsv-table" aria-label="Permalink for Section 5.1"></a></div>
       
-      <p>The results table is serialized as one line listing the variables in the results, followed by one line for each query solution. This first line is required by the TSV format [<cite><a class="bibref" rel="biblioentry" href="#bib-IANA-TSV">IANA-TSV</a></cite>], unlike CSV, where it is optional.</p>
+      <p>The results table is serialized as one line listing the variables in the results, followed by one line for each query solution. This first line is required by the TSV format [<cite><a class="bibref" data-link-type="biblio" href="#bib-iana-tsv" title="Definition of tab-separated-values (tsv)">IANA-TSV</a></cite>], unlike CSV, where it is optional.</p>
       <p>Variables are serialized in SPARQL syntax, using question mark <code>?</code> character followed by the variable name.</p>
       <p>Each row of the result set is serialized by sequence of RDF terms in SPARQL syntax, separated by a tab (Horizontal Tab, Unicode codepoint 9) character.</p>
       <p>If a variable is not bound in a row, an empty field is used. Each row <em class="rfc2119" title="must">must</em> have the same number of fields, corresponding to the variables listed in the
@@ -805,12 +1040,12 @@ _:b1,123</code></pre>
       <section id="tsv-terms"><div class="header-wrapper"><h3 id="x5-2-serializing-rdf-terms"><bdi class="secno">5.2 </bdi>Serializing RDF Terms</h3><a class="self-link" href="#tsv-terms" aria-label="Permalink for Section 5.2"></a></div>
       
       <p>The SPARQL Results TSV Results Format serializes RDF terms in the results table by using the syntax that SPARQL
-       [<a href="#SPARQL11-QUERY">SPARQL11-QUERY</a>] and Turtle [<cite><a class="bibref" rel="biblioentry" href="#bib-TURTLE">TURTLE</a></cite>] use.</p>
+       [<cite><a class="bibref" data-link-type="biblio" href="#bib-sparql12-query" title="SPARQL 1.2 Query Language">SPARQL12-QUERY</a></cite>] and Turtle [<cite><a class="bibref" data-link-type="biblio" href="#bib-rdf12-turtle" title="RDF 1.2 Turtle">RDF12-TURTLE</a></cite>] use.</p>
       <p>IRIs are enclosed in <code>&lt;...&gt;</code>, literals are enclosed with double quotes <code>"</code>...<code>"</code> or single quotes <code>'</code> ...<code>'</code> with optional <code>@lang</code> or <code>^^</code>
       for datatype.
       IRIs are written enclosed in <code>&lt;...&gt;</code>.
-      They <em class="rfc2119" title="must">must</em> conform to the <a href="https://www.rfc-editor.org/rfc/rfc3987#section-2.2">IRI rule</a> of <cite><a data-matched-text="[[[RFC3987]]]" href="https://www.rfc-editor.org/rfc/rfc3987" id="ref-for-index-term-internationalized-resource-identifiers-iris-1">Internationalized Resource Identifiers (IRIs)</a></cite>.
-      Such IRIs include the IRI scheme and <em class="rfc2119" title="must not">must not</em> be a <a href="https://www.rfc-editor.org/rfc/rfc3986#section-4.2">Relative Reference</a>.
+      They <em class="rfc2119" title="must">must</em> conform to the <a href="https://www.rfc-editor.org/rfc/rfc3987#section-2.2" id="ref-for-index-term-iri-rule-1">IRI rule</a> of <cite><a data-matched-text="[[[RFC3987]]]" href="https://www.rfc-editor.org/rfc/rfc3987" id="ref-for-index-term-internationalized-resource-identifiers-iris-1">Internationalized Resource Identifiers (IRIs)</a></cite>.
+      Such IRIs include the IRI scheme and <em class="rfc2119" title="must not">must not</em> be a <a href="https://www.rfc-editor.org/rfc/rfc3986#section-4.2" id="ref-for-index-term-relative-reference-1">Relative Reference</a>.
       This includes IRIs used as datatypes.
       </p>
       <p>
@@ -824,7 +1059,7 @@ _:b1,123</code></pre>
       <section id="tsv-example"><div class="header-wrapper"><h3 id="x5-3-example-of-tsv-serialized-results"><bdi class="secno">5.3 </bdi>Example of TSV-Serialized Results</h3><a class="self-link" href="#tsv-example" aria-label="Permalink for Section 5.3"></a></div>
       
       <p>Writing <code>&lt;TAB&gt;</code> for a raw tab character (Unicode code point 9):</p>
-      <pre class="box tsv" aria-busy="false"><code class="hljs">?x&lt;TAB&gt;?literal
+      <pre class="box tsv nohighlight">?x&lt;TAB&gt;?literal
 &lt;http://example/x&gt;&lt;TAB&gt;"String"
 &lt;http://example/x&gt;&lt;TAB&gt;"String-with-dquote\"" 
 
@@ -834,57 +1069,25 @@ _:blank0&lt;TAB&gt;"Blank node"
 &lt;TAB&gt;
 &lt;http://example/x&gt;&lt;TAB&gt;
 _:blank1&lt;TAB&gt;"String-with-lang"@en
-_:blank1&lt;TAB&gt;123</code></pre>
+_:blank1&lt;TAB&gt;123</pre>
       </section>
     </section>
 
-    <section id="conformance"><div class="header-wrapper"><h2 id="x6-conformance"><bdi class="secno">6. </bdi>Conformance</h2><a class="self-link" href="#conformance" aria-label="Permalink for Section 6."></a></div><p>As well as sections marked as non-normative, all authoring guidelines, diagrams, examples, and notes in this specification are non-normative. Everything else in this specification is normative.</p><p>
-        The key word <em class="rfc2119">MA</em> in this document
-        is to be interpreted as described in
-        <a href="https://datatracker.ietf.org/doc/html/bcp14">BCP 14</a>
-        [<cite><a class="bibref" data-link-type="biblio" href="#bib-rfc2119" title="Key words for use in RFCs to Indicate Requirement Levels">RFC2119</a></cite>] [<cite><a class="bibref" data-link-type="biblio" href="#bib-rfc8174" title="Ambiguity of Uppercase vs Lowercase in RFC 2119 Key Words">RFC8174</a></cite>]
-        when, and only when, they appear in all capitals, as shown here.
-      </p>
+    <section id="conformance"><div class="header-wrapper"><h2 id="x6-conformance"><bdi class="secno">6. </bdi>Conformance</h2><a class="self-link" href="#conformance" aria-label="Permalink for Section 6."></a></div><p>As well as sections marked as non-normative, all authoring guidelines, diagrams, examples, and notes in this specification are non-normative. Everything else in this specification is normative.</p>
       <section id="conformance-0"><div class="header-wrapper"><h3 id="x6-1-conformance"><bdi class="secno">6.1 </bdi>Conformance</h3><a class="self-link" href="#conformance-0" aria-label="Permalink for Section 6.1"></a></div>
     </section></section>
 
-    <section id="references-1"><div class="header-wrapper"><h2 id="x7-references-merge"><bdi class="secno">7. </bdi>References (merge)</h2><a class="self-link" href="#references-1" aria-label="Permalink for Section 7."></a></div>
-    
-    <p>This section includes references not yet included in the standard biblio DB</p>
-
-      <section id="normative-references-1"><div class="header-wrapper"><h3 id="x7-1-normative-references"><bdi class="secno">7.1 </bdi>Normative References</h3><a class="self-link" href="#normative-references-1" aria-label="Permalink for Section 7.1"></a></div>
-      
-      <dl class="biblography">
-        
-        <dt><span class="doc=ref" id="SPARQL11-JSON-RES">SPARQL11-JSON-RES</span></dt>
-        <dd><cite><a href="http://www.w3.org/TR/2013/REC-sparql11-results-json-20130321">SPARQL 1.1 Query Results JSON Format</a></cite>, A. Seaborne, Editor, <abbr title="World Wide Web Consortium">W3C</abbr> Recommendation, 21 March 2013,
-        http://www.w3.org/TR/2013/REC-sparql11-results-json-20130321. <a href="http://www.w3.org/TR/sparql11-results-json/" title="Latest version of SPARQL 1.1 Query Results JSON Format">Latest
-        version</a> available at http://www.w3.org/TR/sparql11-results-json.</dd>
-        <dt><span class="doc-ref" id="SPARQL11-QUERY">SPARQL11-QUERY</span></dt>
-        <dd><cite><a href="http://www.w3.org/TR/2013/REC-sparql11-query-20130321">SPARQL 1.1 Query Language</a></cite>, S. Harris, A. Seaborne, Editors, <abbr title="World Wide Web Consortium">W3C</abbr> Recommendation, 21 March 2013,
-        http://www.w3.org/TR/2013/REC-sparql11-query-20130321. <a href="http://www.w3.org/TR/sparql11-query/" title="Latest version of SPARQL 1.1 Query Language">Latest version</a> available at
-        http://www.w3.org/TR/sparql11-query.</dd>
-      </dl>
-      </section>
-
-      <section id="non-normative-references-1"><div class="header-wrapper"><h3 id="x7-2-non-normative-references"><bdi class="secno">7.2 </bdi>Non-normative References</h3><a class="self-link" href="#non-normative-references-1" aria-label="Permalink for Section 7.2"></a></div>
-      
-      </section>
-    </section>
-
-    
-
-    <section id="privacy"><div class="header-wrapper"><h2 id="x8-privacy-considerations"><bdi class="secno">8. </bdi>Privacy Considerations</h2><a class="self-link" href="#privacy" aria-label="Permalink for Section 8."></a></div>
+    <section id="privacy"><div class="header-wrapper"><h2 id="x7-privacy-considerations"><bdi class="secno">7. </bdi>Privacy Considerations</h2><a class="self-link" href="#privacy" aria-label="Permalink for Section 7."></a></div>
       
       <p>TODO</p>
     </section>
 
-    <section id="security"><div class="header-wrapper"><h2 id="x9-security-considerations"><bdi class="secno">9. </bdi>Security Considerations</h2><a class="self-link" href="#security" aria-label="Permalink for Section 9."></a></div>
+    <section id="security"><div class="header-wrapper"><h2 id="x8-security-considerations"><bdi class="secno">8. </bdi>Security Considerations</h2><a class="self-link" href="#security" aria-label="Permalink for Section 8."></a></div>
       
       <p>TODO</p>
     </section>
 
-    <section id="internationalization"><div class="header-wrapper"><h2 id="x10-internationalization-considerations"><bdi class="secno">10. </bdi>Internationalization Considerations</h2><a class="self-link" href="#internationalization" aria-label="Permalink for Section 10."></a></div>
+    <section id="internationalization"><div class="header-wrapper"><h2 id="x9-internationalization-considerations"><bdi class="secno">9. </bdi>Internationalization Considerations</h2><a class="self-link" href="#internationalization" aria-label="Permalink for Section 9."></a></div>
       
       <p>TODO</p>                
     </section>
@@ -903,10 +1106,19 @@ _:blank1&lt;TAB&gt;123</code></pre>
     
     <ul class="index">
     <li>
+        [<cite><a class="bibref" data-link-type="biblio" href="#bib-rfc3986">RFC3986</a></cite>] defines the following:
+        <ul>
+          <li>
+    <span class="index-term" data-href="https://www.rfc-editor.org/rfc/rfc3986#section-4.2" id="index-term-relative-reference" tabindex="0" aria-haspopup="dialog">Relative Reference</span>
+  </li>
+        </ul>
+      </li><li>
         [<cite><a class="bibref" data-link-type="biblio" href="#bib-rfc3987">RFC3987</a></cite>] defines the following:
         <ul>
           <li>
     <span class="index-term" data-href="https://www.rfc-editor.org/rfc/rfc3987" id="index-term-internationalized-resource-identifiers-iris" tabindex="0" aria-haspopup="dialog">Internationalized Resource Identifiers (IRIs)</span>
+  </li><li>
+    <span class="index-term" data-href="https://www.rfc-editor.org/rfc/rfc3987#section-2.2" id="index-term-iri-rule" tabindex="0" aria-haspopup="dialog">IRI rule</span>
   </li>
         </ul>
       </li><li>
@@ -992,42 +1204,20 @@ _:blank1&lt;TAB&gt;123</code></pre>
 
   
 
-<section id="references" class="appendix"><div class="header-wrapper"><h2 id="c-references"><bdi class="secno">C. </bdi>References</h2><a class="self-link" href="#references" aria-label="Permalink for Appendix C."></a></div>
+<section id="references" class="appendix"><div class="header-wrapper"><h2 id="c-references"><bdi class="secno">C. </bdi>References</h2><a class="self-link" href="#references" aria-label="Permalink for Appendix C."></a></div><section id="normative-references"><div class="header-wrapper"><h3 id="c-1-normative-references"><bdi class="secno">C.1 </bdi>Normative references</h3><a class="self-link" href="#normative-references" aria-label="Permalink for Appendix C.1"></a></div>
     
-      <section id="normative-references"><div class="header-wrapper"><h3 id="c-1-normative-references"><bdi class="secno">C.1 </bdi>Normative references</h3><a class="self-link" href="#normative-references" aria-label="Permalink for Appendix C.1"></a></div>
-      
-      <dl class="bibliography">
-        <dt id="bib-IANA-TSV">[IANA-TSV]</dt>
-        <dd>Paul Lindner. <a href="http://www.iana.org/assignments/media-types/text/tab-separated-values"><cite>Definition of tab-separated-values (tsv)</cite></a> June 1993. IANA Media Type
-        Registration. URL: <a href="http://www.iana.org/assignments/media-types/text/tab-separated-values">http://www.iana.org/assignments/media-types/text/tab-separated-values</a></dd>
-        <dt id="bib-RFC2119">[RFC2119]</dt>
-        <dd>S. Bradner. <a href="http://www.ietf.org/rfc/rfc2119.txt"><cite>Key words for use in RFCs to Indicate Requirement Levels.</cite></a> March 1997. Internet RFC 2119. URL: <a href="http://www.ietf.org/rfc/rfc2119.txt">http://www.ietf.org/rfc/rfc2119.txt</a></dd>
-        <dt id="bib-RFC4180">[RFC4180]</dt>
-        <dd>Y. Shafranovich. <a href="http://www.ietf.org/rfc/rfc4180.txt"><cite>Common Format and MIME Type for Comma-Separated Values (CSV) Files</cite></a> October 2005. Internet RFC 3987. URL:
-        <a href="http://www.ietf.org/rfc/rfc4180.txt">http://www.ietf.org/rfc/rfc4180.txt</a></dd>
-        <dt id="bib-TURTLE">[TURTLE]</dt>
-        <dd>David Beckett, Tim Berners-Lee. <a href="http://www.w3.org/TeamSubmission/turtle/"><cite>Turtle: Terse RDF Triple Language.</cite></a> January 2008. <abbr title="World Wide Web Consortium">W3C</abbr> Team Submission. URL: <a href="http://www.w3.org/TeamSubmission/turtle/">http://www.w3.org/TeamSubmission/turtle/</a></dd>
-      </dl>
-      </section>
-      <section id="informative-references"><div class="header-wrapper"><h3 id="c-2-informative-references"><bdi class="secno">C.2 </bdi>Informative references</h3><a class="self-link" href="#informative-references" aria-label="Permalink for Appendix C.2"></a></div>
-      
-      <dl class="bibliography">
-        <dt id="bib-RDF-SPARQL-XMLRES">[RDF-SPARQL-XMLRES]</dt>
-        <dd>Jeen Broekstra; Dave Beckett. <a href="http://www.w3.org/TR/2008/REC-rdf-sparql-XMLres-20080115"><cite>SPARQL Query Results XML Format.</cite></a> 15 January 2008. <abbr title="World Wide Web Consortium">W3C</abbr> Recommendation.
-        URL: <a href="http://www.w3.org/TR/2008/REC-rdf-sparql-XMLres-20080115">http://www.w3.org/TR/2008/REC-rdf-sparql-XMLres-20080115</a></dd>
-        <dt id="bib-UNICODE">[UNICODE]</dt>
-        <dd>The Unicode Consortium. <a href="http://www.unicode.org/unicode/standard/versions/enumeratedversions.html"><cite>The Unicode Standard.</cite></a> 2003. Defined by: The Unicode Standard,
-        Version 4.0 (Boston, <em class="rfc2119">MA</em>, Addison-Wesley, ISBN 0-321-18578-1), as updated from time to time by the publication of new versions URL: <a href="http://www.unicode.org/unicode/standard/versions/enumeratedversions.html">http://www.unicode.org/unicode/standard/versions/enumeratedversions.html</a></dd>
-      </dl>
-      </section>
-    <section id="normative-references-0"><div class="header-wrapper"><h3 id="c-3-normative-references"><bdi class="secno">C.3 </bdi>Normative references</h3><a class="self-link" href="#normative-references-0" aria-label="Permalink for Appendix C.3"></a></div>
-    
-    <dl class="bibliography"><dt id="bib-rfc2119">[RFC2119]</dt><dd>
+    <dl class="bibliography"><dt id="bib-iana-tsv">[IANA-TSV]</dt><dd>
+      <a href="https://www.iana.org/assignments/media-types/text/tab-separated-values"><cite>Definition of tab-separated-values (tsv)</cite></a>. Paul Lindner.  IANA. June 1993. IANA Media Type Registration. URL: <a href="https://www.iana.org/assignments/media-types/text/tab-separated-values">https://www.iana.org/assignments/media-types/text/tab-separated-values</a>
+    </dd><dt id="bib-rdf12-turtle">[RDF12-TURTLE]</dt><dd>
+      <a href="https://w3c.github.io/rdf-turtle/spec/"><cite>RDF 1.2 Turtle</cite></a>. Eric Prud'hommeaux; Gavin Carothers.  W3C. W3C Working Draft. URL: <a href="https://w3c.github.io/rdf-turtle/spec/">https://w3c.github.io/rdf-turtle/spec/</a>
+    </dd><dt id="bib-rfc2119">[RFC2119]</dt><dd>
       <a href="https://www.rfc-editor.org/rfc/rfc2119"><cite>Key words for use in RFCs to Indicate Requirement Levels</cite></a>. S. Bradner.  IETF. March 1997. Best Current Practice. URL: <a href="https://www.rfc-editor.org/rfc/rfc2119">https://www.rfc-editor.org/rfc/rfc2119</a>
-    </dd><dt id="bib-rfc3987">[RFC3987]</dt><dd>
+    </dd><dt id="bib-rfc3986">[rfc3986]</dt><dd>
+      <a href="https://www.rfc-editor.org/rfc/rfc3986"><cite>Uniform Resource Identifier (URI): Generic Syntax</cite></a>. T. Berners-Lee; R. Fielding; L. Masinter.  IETF. January 2005. Internet Standard. URL: <a href="https://www.rfc-editor.org/rfc/rfc3986">https://www.rfc-editor.org/rfc/rfc3986</a>
+    </dd><dt id="bib-rfc3987">[rfc3987]</dt><dd>
       <a href="https://www.rfc-editor.org/rfc/rfc3987" id="ref-for-index-term-internationalized-resource-identifiers-iris-2"><cite>Internationalized Resource Identifiers (IRIs)</cite></a>. M. Duerst; M. Suignard.  IETF. January 2005. Proposed Standard. URL: <a href="https://www.rfc-editor.org/rfc/rfc3987" id="ref-for-index-term-internationalized-resource-identifiers-iris-3">https://www.rfc-editor.org/rfc/rfc3987</a>
-    </dd><dt id="bib-rfc8174">[RFC8174]</dt><dd>
-      <a href="https://www.rfc-editor.org/rfc/rfc8174"><cite>Ambiguity of Uppercase vs Lowercase in RFC 2119 Key Words</cite></a>. B. Leiba.  IETF. May 2017. Best Current Practice. URL: <a href="https://www.rfc-editor.org/rfc/rfc8174">https://www.rfc-editor.org/rfc/rfc8174</a>
+    </dd><dt id="bib-rfc4180">[RFC4180]</dt><dd>
+      <a href="https://www.rfc-editor.org/rfc/rfc4180"><cite>Common Format and MIME Type for Comma-Separated Values (CSV) Files</cite></a>. Y. Shafranovich.  IETF. October 2005. Informational. URL: <a href="https://www.rfc-editor.org/rfc/rfc4180">https://www.rfc-editor.org/rfc/rfc4180</a>
     </dd><dt id="bib-sparql12-concepts">[SPARQL12-CONCEPTS]</dt><dd>
       <a href="https://w3c.github.io/sparql-concepts/spec/" id="ref-for-index-term-sparql-1-2-concepts-2"><cite>SPARQL 1.2 Concepts</cite></a>. The W3C RDF-star Working Group.  W3C. W3C Working Draft. URL: <a href="https://w3c.github.io/sparql-concepts/spec/" id="ref-for-index-term-sparql-1-2-concepts-3">https://w3c.github.io/sparql-concepts/spec/</a>
     </dd><dt id="bib-sparql12-entailment">[SPARQL12-ENTAILMENT]</dt><dd>
@@ -1050,10 +1240,24 @@ _:blank1&lt;TAB&gt;123</code></pre>
       <a href="https://w3c.github.io/sparql-service-description/spec/" id="ref-for-index-term-sparql-1-2-service-description-2"><cite>SPARQL 1.2 Service Description</cite></a>. Gregory Williams.  W3C. W3C Working Draft. URL: <a href="https://w3c.github.io/sparql-service-description/spec/" id="ref-for-index-term-sparql-1-2-service-description-3">https://w3c.github.io/sparql-service-description/spec/</a>
     </dd><dt id="bib-sparql12-update">[SPARQL12-UPDATE]</dt><dd>
       <a href="https://w3c.github.io/sparql-update/spec/" id="ref-for-index-term-sparql-1-2-update-2"><cite>SPARQL 1.2 Update</cite></a>. Paula Gearon; Alexandre Passant; Axel Polleres.  W3C. W3C Working Draft. URL: <a href="https://w3c.github.io/sparql-update/spec/" id="ref-for-index-term-sparql-1-2-update-3">https://w3c.github.io/sparql-update/spec/</a>
+    </dd><dt id="bib-unicode">[UNICODE]</dt><dd>
+      <a href="https://www.unicode.org/versions/latest/"><cite>The Unicode Standard</cite></a>.  Unicode Consortium. URL: <a href="https://www.unicode.org/versions/latest/">https://www.unicode.org/versions/latest/</a>
     </dd></dl>
   </section></section><p role="navigation" id="back-to-top">
     <a href="#title"><abbr title="Back to Top">↑</abbr></a>
-  </p><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-internationalized-resource-identifiers-iris" aria-label="Links in this document to definition: Internationalized Resource Identifiers (IRIs)">
+  </p><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-relative-reference" aria-label="Links in this document to definition: Relative Reference">
+      <span class="caret"></span>
+      <div>
+        <a class="self-link" href="https://www.rfc-editor.org/rfc/rfc3986#section-4.2" aria-label="Permalink for definition: Relative Reference. Activate to close this dialog.">Permalink</a>
+         
+      </div>
+      <p><b>Referenced in:</b></p>
+      <ul>
+    <li>
+    <a href="#ref-for-index-term-relative-reference-1" title="§ 5.2 Serializing RDF Terms">§ 5.2 Serializing RDF Terms</a> 
+  </li>
+  </ul>
+    </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-internationalized-resource-identifiers-iris" aria-label="Links in this document to definition: Internationalized Resource Identifiers (IRIs)">
       <span class="caret"></span>
       <div>
         <a class="self-link" href="https://www.rfc-editor.org/rfc/rfc3987" aria-label="Permalink for definition: Internationalized Resource Identifiers (IRIs). Activate to close this dialog.">Permalink</a>
@@ -1064,7 +1268,19 @@ _:blank1&lt;TAB&gt;123</code></pre>
     <li>
     <a href="#ref-for-index-term-internationalized-resource-identifiers-iris-1" title="§ 5.2 Serializing RDF Terms">§ 5.2 Serializing RDF Terms</a> 
   </li><li>
-    <a href="#ref-for-index-term-internationalized-resource-identifiers-iris-2" title="§ C.3 Normative references">§ C.3 Normative references</a> <a href="#ref-for-index-term-internationalized-resource-identifiers-iris-3" title="Reference 2">(2)</a> 
+    <a href="#ref-for-index-term-internationalized-resource-identifiers-iris-2" title="§ C.1 Normative references">§ C.1 Normative references</a> <a href="#ref-for-index-term-internationalized-resource-identifiers-iris-3" title="Reference 2">(2)</a> 
+  </li>
+  </ul>
+    </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-iri-rule" aria-label="Links in this document to definition: IRI rule">
+      <span class="caret"></span>
+      <div>
+        <a class="self-link" href="https://www.rfc-editor.org/rfc/rfc3987#section-2.2" aria-label="Permalink for definition: IRI rule. Activate to close this dialog.">Permalink</a>
+         
+      </div>
+      <p><b>Referenced in:</b></p>
+      <ul>
+    <li>
+    <a href="#ref-for-index-term-iri-rule-1" title="§ 5.2 Serializing RDF Terms">§ 5.2 Serializing RDF Terms</a> 
   </li>
   </ul>
     </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-sparql-1-2-concepts" aria-label="Links in this document to definition: SPARQL 1.2 Concepts">
@@ -1078,7 +1294,7 @@ _:blank1&lt;TAB&gt;123</code></pre>
     <li>
     <a href="#ref-for-index-term-sparql-1-2-concepts-1" title="§ 1. Set of Documents">§ 1. Set of Documents</a> 
   </li><li>
-    <a href="#ref-for-index-term-sparql-1-2-concepts-2" title="§ C.3 Normative references">§ C.3 Normative references</a> <a href="#ref-for-index-term-sparql-1-2-concepts-3" title="Reference 2">(2)</a> 
+    <a href="#ref-for-index-term-sparql-1-2-concepts-2" title="§ C.1 Normative references">§ C.1 Normative references</a> <a href="#ref-for-index-term-sparql-1-2-concepts-3" title="Reference 2">(2)</a> 
   </li>
   </ul>
     </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-sparql-1-2-entailment-regimes" aria-label="Links in this document to definition: SPARQL 1.2 Entailment Regimes">
@@ -1092,7 +1308,7 @@ _:blank1&lt;TAB&gt;123</code></pre>
     <li>
     <a href="#ref-for-index-term-sparql-1-2-entailment-regimes-1" title="§ 1. Set of Documents">§ 1. Set of Documents</a> 
   </li><li>
-    <a href="#ref-for-index-term-sparql-1-2-entailment-regimes-2" title="§ C.3 Normative references">§ C.3 Normative references</a> <a href="#ref-for-index-term-sparql-1-2-entailment-regimes-3" title="Reference 2">(2)</a> 
+    <a href="#ref-for-index-term-sparql-1-2-entailment-regimes-2" title="§ C.1 Normative references">§ C.1 Normative references</a> <a href="#ref-for-index-term-sparql-1-2-entailment-regimes-3" title="Reference 2">(2)</a> 
   </li>
   </ul>
     </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-sparql-1-2-federated-query" aria-label="Links in this document to definition: SPARQL 1.2 Federated Query">
@@ -1106,7 +1322,7 @@ _:blank1&lt;TAB&gt;123</code></pre>
     <li>
     <a href="#ref-for-index-term-sparql-1-2-federated-query-1" title="§ 1. Set of Documents">§ 1. Set of Documents</a> 
   </li><li>
-    <a href="#ref-for-index-term-sparql-1-2-federated-query-2" title="§ C.3 Normative references">§ C.3 Normative references</a> <a href="#ref-for-index-term-sparql-1-2-federated-query-3" title="Reference 2">(2)</a> 
+    <a href="#ref-for-index-term-sparql-1-2-federated-query-2" title="§ C.1 Normative references">§ C.1 Normative references</a> <a href="#ref-for-index-term-sparql-1-2-federated-query-3" title="Reference 2">(2)</a> 
   </li>
   </ul>
     </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-sparql-1-2-graph-store-http-protocol" aria-label="Links in this document to definition: SPARQL 1.2 Graph Store HTTP Protocol">
@@ -1120,7 +1336,7 @@ _:blank1&lt;TAB&gt;123</code></pre>
     <li>
     <a href="#ref-for-index-term-sparql-1-2-graph-store-http-protocol-1" title="§ 1. Set of Documents">§ 1. Set of Documents</a> 
   </li><li>
-    <a href="#ref-for-index-term-sparql-1-2-graph-store-http-protocol-2" title="§ C.3 Normative references">§ C.3 Normative references</a> <a href="#ref-for-index-term-sparql-1-2-graph-store-http-protocol-3" title="Reference 2">(2)</a> 
+    <a href="#ref-for-index-term-sparql-1-2-graph-store-http-protocol-2" title="§ C.1 Normative references">§ C.1 Normative references</a> <a href="#ref-for-index-term-sparql-1-2-graph-store-http-protocol-3" title="Reference 2">(2)</a> 
   </li>
   </ul>
     </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-what-s-new-in-sparql-1-2" aria-label="Links in this document to definition: What’s New in SPARQL 1.2">
@@ -1134,7 +1350,7 @@ _:blank1&lt;TAB&gt;123</code></pre>
     <li>
     <a href="#ref-for-index-term-what-s-new-in-sparql-1-2-1" title="§ 1. Set of Documents">§ 1. Set of Documents</a> 
   </li><li>
-    <a href="#ref-for-index-term-what-s-new-in-sparql-1-2-2" title="§ C.3 Normative references">§ C.3 Normative references</a> <a href="#ref-for-index-term-what-s-new-in-sparql-1-2-3" title="Reference 2">(2)</a> 
+    <a href="#ref-for-index-term-what-s-new-in-sparql-1-2-2" title="§ C.1 Normative references">§ C.1 Normative references</a> <a href="#ref-for-index-term-what-s-new-in-sparql-1-2-3" title="Reference 2">(2)</a> 
   </li>
   </ul>
     </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-sparql-1-2-protocol" aria-label="Links in this document to definition: SPARQL 1.2 Protocol">
@@ -1148,7 +1364,7 @@ _:blank1&lt;TAB&gt;123</code></pre>
     <li>
     <a href="#ref-for-index-term-sparql-1-2-protocol-1" title="§ 1. Set of Documents">§ 1. Set of Documents</a> 
   </li><li>
-    <a href="#ref-for-index-term-sparql-1-2-protocol-2" title="§ C.3 Normative references">§ C.3 Normative references</a> <a href="#ref-for-index-term-sparql-1-2-protocol-3" title="Reference 2">(2)</a> 
+    <a href="#ref-for-index-term-sparql-1-2-protocol-2" title="§ C.1 Normative references">§ C.1 Normative references</a> <a href="#ref-for-index-term-sparql-1-2-protocol-3" title="Reference 2">(2)</a> 
   </li>
   </ul>
     </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-sparql-1-2-query-language" aria-label="Links in this document to definition: SPARQL 1.2 Query Language">
@@ -1162,7 +1378,7 @@ _:blank1&lt;TAB&gt;123</code></pre>
     <li>
     <a href="#ref-for-index-term-sparql-1-2-query-language-1" title="§ 1. Set of Documents">§ 1. Set of Documents</a> 
   </li><li>
-    <a href="#ref-for-index-term-sparql-1-2-query-language-2" title="§ C.3 Normative references">§ C.3 Normative references</a> <a href="#ref-for-index-term-sparql-1-2-query-language-3" title="Reference 2">(2)</a> 
+    <a href="#ref-for-index-term-sparql-1-2-query-language-2" title="§ C.1 Normative references">§ C.1 Normative references</a> <a href="#ref-for-index-term-sparql-1-2-query-language-3" title="Reference 2">(2)</a> 
   </li>
   </ul>
     </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-sparql-1-2-query-results-json-format" aria-label="Links in this document to definition: SPARQL 1.2 Query Results JSON Format">
@@ -1176,7 +1392,7 @@ _:blank1&lt;TAB&gt;123</code></pre>
     <li>
     <a href="#ref-for-index-term-sparql-1-2-query-results-json-format-1" title="§ 1. Set of Documents">§ 1. Set of Documents</a> 
   </li><li>
-    <a href="#ref-for-index-term-sparql-1-2-query-results-json-format-2" title="§ C.3 Normative references">§ C.3 Normative references</a> <a href="#ref-for-index-term-sparql-1-2-query-results-json-format-3" title="Reference 2">(2)</a> 
+    <a href="#ref-for-index-term-sparql-1-2-query-results-json-format-2" title="§ C.1 Normative references">§ C.1 Normative references</a> <a href="#ref-for-index-term-sparql-1-2-query-results-json-format-3" title="Reference 2">(2)</a> 
   </li>
   </ul>
     </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-sparql-1-2-query-results-xml-formats" aria-label="Links in this document to definition: SPARQL 1.2 Query Results XML Formats">
@@ -1190,7 +1406,7 @@ _:blank1&lt;TAB&gt;123</code></pre>
     <li>
     <a href="#ref-for-index-term-sparql-1-2-query-results-xml-formats-1" title="§ 1. Set of Documents">§ 1. Set of Documents</a> 
   </li><li>
-    <a href="#ref-for-index-term-sparql-1-2-query-results-xml-formats-2" title="§ C.3 Normative references">§ C.3 Normative references</a> <a href="#ref-for-index-term-sparql-1-2-query-results-xml-formats-3" title="Reference 2">(2)</a> 
+    <a href="#ref-for-index-term-sparql-1-2-query-results-xml-formats-2" title="§ C.1 Normative references">§ C.1 Normative references</a> <a href="#ref-for-index-term-sparql-1-2-query-results-xml-formats-3" title="Reference 2">(2)</a> 
   </li>
   </ul>
     </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-sparql-1-2-service-description" aria-label="Links in this document to definition: SPARQL 1.2 Service Description">
@@ -1204,7 +1420,7 @@ _:blank1&lt;TAB&gt;123</code></pre>
     <li>
     <a href="#ref-for-index-term-sparql-1-2-service-description-1" title="§ 1. Set of Documents">§ 1. Set of Documents</a> 
   </li><li>
-    <a href="#ref-for-index-term-sparql-1-2-service-description-2" title="§ C.3 Normative references">§ C.3 Normative references</a> <a href="#ref-for-index-term-sparql-1-2-service-description-3" title="Reference 2">(2)</a> 
+    <a href="#ref-for-index-term-sparql-1-2-service-description-2" title="§ C.1 Normative references">§ C.1 Normative references</a> <a href="#ref-for-index-term-sparql-1-2-service-description-3" title="Reference 2">(2)</a> 
   </li>
   </ul>
     </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-sparql-1-2-update" aria-label="Links in this document to definition: SPARQL 1.2 Update">
@@ -1218,7 +1434,7 @@ _:blank1&lt;TAB&gt;123</code></pre>
     <li>
     <a href="#ref-for-index-term-sparql-1-2-update-1" title="§ 1. Set of Documents">§ 1. Set of Documents</a> 
   </li><li>
-    <a href="#ref-for-index-term-sparql-1-2-update-2" title="§ C.3 Normative references">§ C.3 Normative references</a> <a href="#ref-for-index-term-sparql-1-2-update-3" title="Reference 2">(2)</a> 
+    <a href="#ref-for-index-term-sparql-1-2-update-2" title="§ C.1 Normative references">§ C.1 Normative references</a> <a href="#ref-for-index-term-sparql-1-2-update-3" title="Reference 2">(2)</a> 
   </li>
   </ul>
     </div><script id="respec-dfn-panel">(() => {

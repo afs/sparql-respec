@@ -1,6 +1,6 @@
 <!DOCTYPE html><html lang="en" dir="ltr"><head>
 <meta charset="utf-8">
-<meta name="generator" content="ReSpec 32.8.1">
+<meta name="generator" content="ReSpec 34.0.0">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <style>
 dfn{cursor:pointer}
@@ -731,6 +731,16 @@ var[data-type]:hover::after,var[data-type]:hover::before{opacity:1}
       "status": "WD",
       "publisher": "W3C",
       "id": "sparql12-graph-store-protocol"
+    },
+    "CBD": {
+      "title": "CBD - Concise Bounded Description",
+      "href": "https://www.w3.org/Submission/CBD/",
+      "authors": [
+        "Patrick Stickler, Nokia"
+      ],
+      "rawDate": "2005-06-03",
+      "publisher": "W3C",
+      "status": "W3C Member Submission"
     }
   },
   "specStatus": "FPWD",
@@ -775,21 +785,21 @@ var[data-type]:hover::after,var[data-type]:hover::before{opacity:1}
   "lint": {
     "no-unused-dfns": false
   },
-  "pubDate": "2023-04-01",
-  "publishISODate": "2023-03-31T00:00:00.000Z",
-  "generatedSubtitle": "W3C First Public Working Draft 31 March 2023"
+  "pubDate": "2023-05-04",
+  "publishISODate": "2023-04-12T00:00:00.000Z",
+  "generatedSubtitle": "W3C First Public Working Draft 12 April 2023"
 }</script>
 <link rel="stylesheet" href="https://www.w3.org/StyleSheets/TR/2021/W3C-WD"></head>
   <body class="h-entry informative"><div class="head">
     <p class="logos"><a class="logo" href="https://www.w3.org/"><img crossorigin="" alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2021/logos/W3C" width="72">
   </a></p>
     <h1 id="title" class="title">SPARQL 1.2 Query Results JSON Format</h1> 
-    <p id="w3c-state"><a href="https://www.w3.org/standards/types#FPWD">W3C First Public Working Draft</a> <time class="dt-published" datetime="2023-03-31">31 March 2023</time></p>
+    <p id="w3c-state"><a href="https://www.w3.org/standards/types#FPWD">W3C First Public Working Draft</a> <time class="dt-published" datetime="2023-04-12">12 April 2023</time></p>
     <details open="">
       <summary>More details about this document</summary>
       <dl>
         <dt>This version:</dt><dd>
-                <a class="u-url" href="https://www.w3.org/TR/2023/WD-sparql12-results-json-20230331/">https://www.w3.org/TR/2023/WD-sparql12-results-json-20230331/</a>
+                <a class="u-url" href="https://www.w3.org/TR/2023/WD-sparql12-results-json-20230412/">https://www.w3.org/TR/2023/WD-sparql12-results-json-20230412/</a>
               </dd>
         <dt>Latest published version:</dt><dd>
                 <a href="https://www.w3.org/TR/sparql12-results-json/">https://www.w3.org/TR/sparql12-results-json/</a>
@@ -851,8 +861,8 @@ var[data-type]:hover::after,var[data-type]:hover::before{opacity:1}
   </div>
     <section id="abstract" class="introductory"><h2>Abstract</h2>
       
-<p><a href="http://www.w3.org/TR/sparql11-query/">SPARQL</a> is a set of standards for the query and update of RDF data, along with ways to access such data over the web. This document describes
-    the representation of SELECT and ASK query results using <a href="http://www.ietf.org/rfc/rfc4627.txt">JSON</a>.</p>
+<p><a href="https://w3c.github.io/sparql-concepts/spec/#" id="ref-for-index-term-sparql-1">SPARQL</a> is a set of standards for the query and update of RDF data, along with ways to access such data over the web. This document describes
+    the representation of SELECT and ASK query results using <a href="https://www.rfc-editor.org/rfc/rfc4627#" id="ref-for-index-term-json-1">JSON</a>.</p>
     </section>
 
     <section id="sotd" class="introductory"><h2>Status of This Document</h2><p><em>This section describes the status of this
@@ -896,7 +906,7 @@ var[data-type]:hover::after,var[data-type]:hover::before{opacity:1}
   </p><p>
                   This document is governed by the
                   <a id="w3c_process_revision" href="https://www.w3.org/2021/Process-20211102/">2 November 2021 <abbr title="World Wide Web Consortium">W3C</abbr> Process Document</a>.
-                </p></section><nav id="toc"><h2 class="introductory" id="table-of-contents">Table of Contents</h2><ol class="toc"><li class="tocline"><a class="tocxref" href="#abstract">Abstract</a></li><li class="tocline"><a class="tocxref" href="#sotd">Status of This Document</a></li><li class="tocline"><a class="tocxref" href="#related"><bdi class="secno">1. </bdi>Set of Documents</a></li><li class="tocline"><a class="tocxref" href="#sparql12-documents">SPARQL 1.2 Documents</a></li><li class="tocline"><a class="tocxref" href="#introduction"><bdi class="secno">2. </bdi>Introduction</a></li><li class="tocline"><a class="tocxref" href="#json-result-object"><bdi class="secno">3. </bdi>JSON Results Object</a></li><li class="tocline"><a class="tocxref" href="#select-results-form"><bdi class="secno">4. </bdi>Variable Binding Results</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#select-head"><bdi class="secno">4.1 </bdi>"head"</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#select-vars"><bdi class="secno">4.1.1 </bdi>"vars"</a></li><li class="tocline"><a class="tocxref" href="#select-link"><bdi class="secno">4.1.2 </bdi>"link"</a></li></ol></li><li class="tocline"><a class="tocxref" href="#select-results"><bdi class="secno">4.2 </bdi>"results"</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#select-bindings"><bdi class="secno">4.2.1 </bdi>"bindings"</a></li><li class="tocline"><a class="tocxref" href="#select-encode-terms"><bdi class="secno">4.2.2 </bdi>Encoding RDF terms</a></li></ol></li></ol></li><li class="tocline"><a class="tocxref" href="#ask-result-form"><bdi class="secno">5. </bdi>Boolean Results</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#ask-head"><bdi class="secno">5.1 </bdi>"head"</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#ask-link"><bdi class="secno">5.1.1 </bdi>"link"</a></li></ol></li><li class="tocline"><a class="tocxref" href="#ask-boolean"><bdi class="secno">5.2 </bdi>"boolean"</a></li></ol></li><li class="tocline"><a class="tocxref" href="#example"><bdi class="secno">6. </bdi>Example</a></li><li class="tocline"><a class="tocxref" href="#content-type"><bdi class="secno">7. </bdi>Internet Media Type, File Extension and Macintosh File Type</a></li><li class="tocline"><a class="tocxref" href="#sec-bibliography"><bdi class="secno">8. </bdi>References</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#sec-normative-refs"><bdi class="secno">8.1 </bdi>Normative References</a></li><li class="tocline"><a class="tocxref" href="#sec-non-normative-refs"><bdi class="secno">8.2 </bdi>Other References</a></li></ol></li><li class="tocline"><a class="tocxref" href="#privacy"><bdi class="secno">9. </bdi>Privacy Considerations</a></li><li class="tocline"><a class="tocxref" href="#security"><bdi class="secno">10. </bdi>Security Considerations</a></li><li class="tocline"><a class="tocxref" href="#internationalization"><bdi class="secno">11. </bdi>Internationalization Considerations</a></li><li class="tocline"><a class="tocxref" href="#changes-from-sparql11"><bdi class="secno">A. </bdi>Change Log</a></li><li class="tocline"><a class="tocxref" href="#index"><bdi class="secno">B. </bdi>Index</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#index-defined-here"><bdi class="secno">B.1 </bdi>Terms defined by this specification</a></li><li class="tocline"><a class="tocxref" href="#index-defined-elsewhere"><bdi class="secno">B.2 </bdi>Terms defined by reference</a></li></ol></li><li class="tocline"><a class="tocxref" href="#references"><bdi class="secno">C. </bdi>References</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#informative-references"><bdi class="secno">C.1 </bdi>Informative references</a></li></ol></li></ol></nav>
+                </p></section><nav id="toc"><h2 class="introductory" id="table-of-contents">Table of Contents</h2><ol class="toc"><li class="tocline"><a class="tocxref" href="#abstract">Abstract</a></li><li class="tocline"><a class="tocxref" href="#sotd">Status of This Document</a></li><li class="tocline"><a class="tocxref" href="#related"><bdi class="secno">1. </bdi>Set of Documents</a></li><li class="tocline"><a class="tocxref" href="#introduction"><bdi class="secno">2. </bdi>Introduction</a></li><li class="tocline"><a class="tocxref" href="#json-result-object"><bdi class="secno">3. </bdi>JSON Results Object</a></li><li class="tocline"><a class="tocxref" href="#select-results-form"><bdi class="secno">4. </bdi>Variable Binding Results</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#select-head"><bdi class="secno">4.1 </bdi>"head"</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#select-vars"><bdi class="secno">4.1.1 </bdi>"vars"</a></li><li class="tocline"><a class="tocxref" href="#select-link"><bdi class="secno">4.1.2 </bdi>"link"</a></li></ol></li><li class="tocline"><a class="tocxref" href="#select-results"><bdi class="secno">4.2 </bdi>"results"</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#select-bindings"><bdi class="secno">4.2.1 </bdi>"bindings"</a></li><li class="tocline"><a class="tocxref" href="#select-encode-terms"><bdi class="secno">4.2.2 </bdi>Encoding RDF terms</a></li></ol></li></ol></li><li class="tocline"><a class="tocxref" href="#ask-result-form"><bdi class="secno">5. </bdi>Boolean Results</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#ask-head"><bdi class="secno">5.1 </bdi>"head"</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#ask-link"><bdi class="secno">5.1.1 </bdi>"link"</a></li></ol></li><li class="tocline"><a class="tocxref" href="#ask-boolean"><bdi class="secno">5.2 </bdi>"boolean"</a></li></ol></li><li class="tocline"><a class="tocxref" href="#example"><bdi class="secno">6. </bdi>Example</a></li><li class="tocline"><a class="tocxref" href="#content-type"><bdi class="secno">7. </bdi>Internet Media Type, File Extension and Macintosh File Type</a></li><li class="tocline"><a class="tocxref" href="#privacy"><bdi class="secno">8. </bdi>Privacy Considerations</a></li><li class="tocline"><a class="tocxref" href="#security"><bdi class="secno">9. </bdi>Security Considerations</a></li><li class="tocline"><a class="tocxref" href="#internationalization"><bdi class="secno">10. </bdi>Internationalization Considerations</a></li><li class="tocline"><a class="tocxref" href="#changes-from-sparql11"><bdi class="secno">A. </bdi>Change Log</a></li><li class="tocline"><a class="tocxref" href="#index"><bdi class="secno">B. </bdi>Index</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#index-defined-here"><bdi class="secno">B.1 </bdi>Terms defined by this specification</a></li><li class="tocline"><a class="tocxref" href="#index-defined-elsewhere"><bdi class="secno">B.2 </bdi>Terms defined by reference</a></li></ol></li><li class="tocline"><a class="tocxref" href="#references"><bdi class="secno">C. </bdi>References</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#informative-references"><bdi class="secno">C.1 </bdi>Informative references</a></li></ol></li></ol></nav>
 
     <section id="related"><div class="header-wrapper"><h2 id="x1-set-of-documents"><bdi class="secno">1. </bdi>Set of Documents</h2><a class="self-link" href="#related" aria-label="Permalink for Section 1."></a></div>
 <p>This document is one of twelve SPARQL 1.2 Recommendations produced by the <a href="https://www.w3.org/groups/wg/rdf-star">RDF-star Working Group</a>:</p>
@@ -917,33 +927,15 @@ var[data-type]:hover::after,var[data-type]:hover::before{opacity:1}
   <li><cite><a data-matched-text="[[[SPARQL12-GRAPH-STORE-PROTOCOL]]]" href="https://w3c.github.io/sparql-graph-store-protocol/spec/" id="ref-for-index-term-sparql-1-2-graph-store-http-protocol-1">SPARQL 1.2 Graph Store HTTP Protocol</a></cite></li>
 </ol>
 </section>
-
-    <section id="sparql12-documents" class="introductory"><div class="header-wrapper"><h2 id="sparql-1-2-documents">SPARQL 1.2 Documents</h2><a class="self-link" href="#sparql12-documents" aria-label="Permalink for this Section"></a></div>
-      
-      <ul>
-        <li><a href="../../sparql-new/spec/index.html">SPARQL 1.2 New</a></li>
-        <li><a href="../../sparql-concepts/spec/index.html">SPARQL 1.2 Overview</a></li>
-        <li><a href="../../sparql-query/spec/index.html">SPARQL 1.2 Query Language</a></li>
-        <li><a href="../../sparql-update/spec/index.html">SPARQL 1.2 Update</a></li>
-        <li><a href="../../sparql-entailment/spec/index.html">SPARQL 1.2 Entailment Regimes</a></li>
-        <li><a href="../../sparql-service-description/spec/index.html">SPARQL 1.2 Service Description</a></li>
-        <li><a href="../../sparql-federated-query/spec/index.html">SPARQL 1.2 Federated Query</a></li>
-        <li><a href="../../sparql-results-json/spec/index.html">SPARQL 1.2 Query Results JSON Format</a></li>
-        <li><a href="../../sparql-results-csv-tsv/spec/index.html">SPARQL 1.2 Query Results CSV and TSV Formats</a></li>
-        <li><a href="../../sparql-results-xml/spec/index.html">SPARQL 1.2 Query Results XML Format</a></li>
-        <li><a href="../../sparql-graph-store-protocol/spec/index.html">SPARQL 1.2 Graph Store Protocol</a></li>
-        <li><a href="../../sparql-protocol/spec/index.html">SPARQL 1.2 Protocol</a></li>
-      </ul>
-    </section>
     
 
     <section id="introduction"><div class="header-wrapper"><h2 id="x2-introduction"><bdi class="secno">2. </bdi>Introduction</h2><a class="self-link" href="#introduction" aria-label="Permalink for Section 2."></a></div>
       
-      <p>This document describes how to serialize SPARQL results (SELECT and ASK query forms) in a <a href="http://www.ietf.org/rfc/rfc4627.txt">JSON</a> format. The format is designed to be a
+      <p>This document describes how to serialize SPARQL results (SELECT and ASK query forms) in a <a href="https://www.rfc-editor.org/rfc/rfc4627#" id="ref-for-index-term-json-2">JSON</a> format. The format is designed to be a
       complete representation of the information in the query results. The results of a SELECT query are serilialized as an array, where each array element is one "row" of the query results; the
       results of an ASK query give the boolean value of the query result.</p>
       <p>An Internet Media Type is provied for <code>application/sparql-results+json</code>.</p>
-      <p>There is also a <a href="http://www.w3.org/TR/rdf-sparql-XMLres/">SPARQL Query Results XML Format</a> [<a href="#SRX">SRX</a>] which follows a similar design pattern but uses XML as the
+      <p>There is also a <cite><a data-matched-text="[[[SPARQL12-RESULTS-XML]]]" href="https://w3c.github.io/sparql-results-xml/spec/" id="ref-for-index-term-sparql-1-2-query-results-xml-formats-2">SPARQL 1.2 Query Results XML Formats</a></cite> which follows a similar design pattern but uses XML as the
       serialization.</p>
       <p>Unless otherwise noted in the section heading, all sections and appendices in this document are normative.</p>
     </section>
@@ -1168,11 +1160,11 @@ var[data-type]:hover::after,var[data-type]:hover::before{opacity:1}
         <dt>Optional parameters:</dt>
         <dd>None</dd>
         <dt>Encoding considerations:</dt>
-        <dd>The encoding considerations of the SPARQL Query Results JSON Format is identical to those of the "application/json" as specified in [<a href="#JSON-RFC">JSON-RFC</a>].</dd>
+        <dd>The encoding considerations of the SPARQL Query Results JSON Format is identical to those of the "application/json" as specified in [<cite><a class="bibref" data-link-type="biblio" href="#bib-rfc4627" title="The application/json Media Type for JavaScript Object Notation (JSON)">RFC4627</a></cite>].</dd>
         <dt>Security considerations:</dt>
-        <dd>SPARQL query results uses URIs. See Section 7 of [<a href="#RFC3986">RFC3986</a>].<br>
-        SPARQL query results uses IRIs. See Section 8 of [<a href="#RFC3987">RFC3987</a>].<br>
-        The security considerations of the SPARQL Query Results JSON Format is identical to those of the "application/json" as specified in [<a href="#JSON-RFC">JSON-RFC</a>].</dd>
+        <dd>SPARQL query results uses URIs. See Section 7 of [<cite><a class="bibref" data-link-type="biblio" href="#bib-rfc3986" title="Uniform Resource Identifier (URI): Generic Syntax">RFC3986</a></cite>].<br>
+        SPARQL query results uses IRIs. See Section 8 of [<cite><a class="bibref" data-link-type="biblio" href="#bib-rfc3987" title="Internationalized Resource Identifiers (IRIs)">RFC3987</a></cite>].<br>
+        The security considerations of the SPARQL Query Results JSON Format is identical to those of the "application/json" as specified in [<cite><a class="bibref" data-link-type="biblio" href="#bib-rfc4627" title="The application/json Media Type for JavaScript Object Notation (JSON)">RFC4627</a></cite>].</dd>
         <dt>Interoperability considerations:</dt>
         <dd>There are no known interoperability issues.</dd>
         <dt>Published specification:</dt>
@@ -1196,50 +1188,19 @@ var[data-type]:hover::after,var[data-type]:hover::before{opacity:1}
         <dd>The SPARQL specification is a work product of the World Wide Web Consortium's SPARQL Working Group. The <abbr title="World Wide Web Consortium">W3C</abbr> has change control over these specifications.</dd>
       </dl>
     </section>
-    <section id="sec-bibliography"><div class="header-wrapper"><h2 id="x8-references"><bdi class="secno">8. </bdi>References</h2><a class="self-link" href="#sec-bibliography" aria-label="Permalink for Section 8."></a></div>
-      
-      <section id="sec-normative-refs"><div class="header-wrapper"><h3 id="x8-1-normative-references"><bdi class="secno">8.1 </bdi>Normative References</h3><a class="self-link" href="#sec-normative-refs" aria-label="Permalink for Section 8.1"></a></div>
-        
-        <dl>
-          <dt><span class="doc-ref" id="JSON-RFC">[JSON-RFC]</span></dt>
-          <dd><a href="http://www.ietf.org/rfc/rfc4627.txt">RFC 4627</a>,<br>
-          The application/json Media Type for JavaScript Object Notation (JSON),<br>
-          D. Crockford,<br>
-          <a href="http://www.ietf.org/rfc/rfc4627.txt">http://www.ietf.org/rfc/rfc4627.txt</a></dd>
-          <dt><span class="doc-ref" id="RFC3986">[RFC3986]</span></dt>
-          <dd><a href="http://www.ietf.org/rfc/rfc3986.txt">RFC 3986</a>,<br>
-          Uniform Resource Identifier (URI): Generic Syntax,<br>
-          T. Berners-Lee, R. Fielding, L. Masinter,<br>
-          <a href="http://www.ietf.org/rfc/rfc3986.txt">http://www.ietf.org/rfc/rfc3986.txt</a></dd>
-          <dt><span class="doc-ref" id="RFC3987">[RFC3987]</span></dt>
-          <dd><a href="http://www.ietf.org/rfc/rfc3987.txt">RFC 3987</a>,<br>
-          Internationalized Resource Identifiers (IRIs),<br>
-          M. Dürst, M. Suignard,<br>
-          <a href="http://www.ietf.org/rfc/rfc3987.txt">http://www.ietf.org/rfc/rfc3987.txt</a></dd>
-        </dl>
-      </section>
-      <section id="sec-non-normative-refs"><div class="header-wrapper"><h3 id="x8-2-other-references"><bdi class="secno">8.2 </bdi>Other References</h3><a class="self-link" href="#sec-non-normative-refs" aria-label="Permalink for Section 8.2"></a></div>
-        
-        <dl>
-          <dt><span class="doc-ref" id="SRX">[SRX]</span></dt>
-          <dd><cite><a href="http://www.w3.org/TR/2013/REC-rdf-sparql-XMLres-20130321">SPARQL Query Results XML Format (Second Edition)</a></cite>, D. Beckett, J. Broekstra, Editors, <abbr title="World Wide Web Consortium">W3C</abbr>
-          Recommendation, 21 March 2013, http://www.w3.org/TR/2013/REC-rdf-sparql-XMLres-20130321. <a href="http://www.w3.org/TR/rdf-sparql-XMLres/" title="Latest version of SPARQL Query Results XML Format (Second Edition)">Latest version</a> available at http://www.w3.org/TR/rdf-sparql-XMLres.</dd>
-        </dl>
-      </section>
-    </section>
     
 
-    <section id="privacy"><div class="header-wrapper"><h2 id="x9-privacy-considerations"><bdi class="secno">9. </bdi>Privacy Considerations</h2><a class="self-link" href="#privacy" aria-label="Permalink for Section 9."></a></div>
+    <section id="privacy"><div class="header-wrapper"><h2 id="x8-privacy-considerations"><bdi class="secno">8. </bdi>Privacy Considerations</h2><a class="self-link" href="#privacy" aria-label="Permalink for Section 8."></a></div>
       
       <p>TODO</p>
     </section>
 
-    <section id="security"><div class="header-wrapper"><h2 id="x10-security-considerations"><bdi class="secno">10. </bdi>Security Considerations</h2><a class="self-link" href="#security" aria-label="Permalink for Section 10."></a></div>
+    <section id="security"><div class="header-wrapper"><h2 id="x9-security-considerations"><bdi class="secno">9. </bdi>Security Considerations</h2><a class="self-link" href="#security" aria-label="Permalink for Section 9."></a></div>
       
       <p>TODO</p>
     </section>
 
-    <section id="internationalization"><div class="header-wrapper"><h2 id="x11-internationalization-considerations"><bdi class="secno">11. </bdi>Internationalization Considerations</h2><a class="self-link" href="#internationalization" aria-label="Permalink for Section 11."></a></div>
+    <section id="internationalization"><div class="header-wrapper"><h2 id="x10-internationalization-considerations"><bdi class="secno">10. </bdi>Internationalization Considerations</h2><a class="self-link" href="#internationalization" aria-label="Permalink for Section 10."></a></div>
       
       <p>TODO</p>                
     </section>
@@ -1258,9 +1219,18 @@ var[data-type]:hover::after,var[data-type]:hover::before{opacity:1}
     
     <ul class="index">
     <li>
+        [<cite><a class="bibref" data-link-type="biblio" href="#bib-rfc4627">RFC4627</a></cite>] defines the following:
+        <ul>
+          <li>
+    <span class="index-term" data-href="https://www.rfc-editor.org/rfc/rfc4627#" id="index-term-json" tabindex="0" aria-haspopup="dialog">JSON</span>
+  </li>
+        </ul>
+      </li><li>
         [<cite><a class="bibref" data-link-type="biblio" href="#bib-sparql12-concepts">SPARQL12-CONCEPTS</a></cite>] defines the following:
         <ul>
           <li>
+    <span class="index-term" data-href="https://w3c.github.io/sparql-concepts/spec/#" id="index-term-sparql" tabindex="0" aria-haspopup="dialog">SPARQL</span>
+  </li><li>
     <span class="index-term" data-href="https://w3c.github.io/sparql-concepts/spec/" id="index-term-sparql-1-2-concepts" tabindex="0" aria-haspopup="dialog">SPARQL 1.2 Concepts</span>
   </li>
         </ul>
@@ -1342,7 +1312,13 @@ var[data-type]:hover::after,var[data-type]:hover::before{opacity:1}
 
 <section id="references" class="appendix"><div class="header-wrapper"><h2 id="c-references"><bdi class="secno">C. </bdi>References</h2><a class="self-link" href="#references" aria-label="Permalink for Appendix C."></a></div><section id="informative-references"><div class="header-wrapper"><h3 id="c-1-informative-references"><bdi class="secno">C.1 </bdi>Informative references</h3><a class="self-link" href="#informative-references" aria-label="Permalink for Appendix C.1"></a></div>
     
-    <dl class="bibliography"><dt id="bib-sparql12-concepts">[SPARQL12-CONCEPTS]</dt><dd>
+    <dl class="bibliography"><dt id="bib-rfc3986">[RFC3986]</dt><dd>
+      <a href="https://www.rfc-editor.org/rfc/rfc3986"><cite>Uniform Resource Identifier (URI): Generic Syntax</cite></a>. T. Berners-Lee; R. Fielding; L. Masinter.  IETF. January 2005. Internet Standard. URL: <a href="https://www.rfc-editor.org/rfc/rfc3986">https://www.rfc-editor.org/rfc/rfc3986</a>
+    </dd><dt id="bib-rfc3987">[RFC3987]</dt><dd>
+      <a href="https://www.rfc-editor.org/rfc/rfc3987"><cite>Internationalized Resource Identifiers (IRIs)</cite></a>. M. Duerst; M. Suignard.  IETF. January 2005. Proposed Standard. URL: <a href="https://www.rfc-editor.org/rfc/rfc3987">https://www.rfc-editor.org/rfc/rfc3987</a>
+    </dd><dt id="bib-rfc4627">[RFC4627]</dt><dd>
+      <a href="https://www.rfc-editor.org/rfc/rfc4627"><cite>The application/json Media Type for JavaScript Object Notation (JSON)</cite></a>. D. Crockford.  IETF. July 2006. Informational. URL: <a href="https://www.rfc-editor.org/rfc/rfc4627">https://www.rfc-editor.org/rfc/rfc4627</a>
+    </dd><dt id="bib-sparql12-concepts">[SPARQL12-CONCEPTS]</dt><dd>
       <a href="https://w3c.github.io/sparql-concepts/spec/" id="ref-for-index-term-sparql-1-2-concepts-2"><cite>SPARQL 1.2 Concepts</cite></a>. The W3C RDF-star Working Group.  W3C. W3C Working Draft. URL: <a href="https://w3c.github.io/sparql-concepts/spec/" id="ref-for-index-term-sparql-1-2-concepts-3">https://w3c.github.io/sparql-concepts/spec/</a>
     </dd><dt id="bib-sparql12-entailment">[SPARQL12-ENTAILMENT]</dt><dd>
       <a href="https://w3c.github.io/sparql-entailment/spec/" id="ref-for-index-term-sparql-1-2-entailment-regimes-2"><cite>SPARQL 1.2 Entailment Regimes</cite></a>. Birte Glimm; Chimezie Ogbuji.  W3C. W3C Working Draft. URL: <a href="https://w3c.github.io/sparql-entailment/spec/" id="ref-for-index-term-sparql-1-2-entailment-regimes-3">https://w3c.github.io/sparql-entailment/spec/</a>
@@ -1359,7 +1335,7 @@ var[data-type]:hover::after,var[data-type]:hover::before{opacity:1}
     </dd><dt id="bib-sparql12-results-csv-tsv">[SPARQL12-RESULTS-CSV-TSV]</dt><dd>
       <a href="https://w3c.github.io/sparql-results-csv-tsv/spec/" id="ref-for-index-term-sparql-1-2-query-results-csv-and-tsv-formats-2"><cite>SPARQL 1.2 Query Results CSV and TSV Formats</cite></a>. Andy Seaborne.  W3C. W3C Working Draft. URL: <a href="https://w3c.github.io/sparql-results-csv-tsv/spec/" id="ref-for-index-term-sparql-1-2-query-results-csv-and-tsv-formats-3">https://w3c.github.io/sparql-results-csv-tsv/spec/</a>
     </dd><dt id="bib-sparql12-results-xml">[SPARQL12-RESULTS-XML]</dt><dd>
-      <a href="https://w3c.github.io/sparql-results-xml/spec/" id="ref-for-index-term-sparql-1-2-query-results-xml-formats-2"><cite>SPARQL 1.2 Query Results XML Formats</cite></a>. Sandro Hawke; Dave Beckett; Jeen Broekstra.  W3C. W3C Working Draft. URL: <a href="https://w3c.github.io/sparql-results-xml/spec/" id="ref-for-index-term-sparql-1-2-query-results-xml-formats-3">https://w3c.github.io/sparql-results-xml/spec/</a>
+      <a href="https://w3c.github.io/sparql-results-xml/spec/" id="ref-for-index-term-sparql-1-2-query-results-xml-formats-3"><cite>SPARQL 1.2 Query Results XML Formats</cite></a>. Sandro Hawke; Dave Beckett; Jeen Broekstra.  W3C. W3C Working Draft. URL: <a href="https://w3c.github.io/sparql-results-xml/spec/" id="ref-for-index-term-sparql-1-2-query-results-xml-formats-4">https://w3c.github.io/sparql-results-xml/spec/</a>
     </dd><dt id="bib-sparql12-service-description">[SPARQL12-SERVICE-DESCRIPTION]</dt><dd>
       <a href="https://w3c.github.io/sparql-service-description/spec/" id="ref-for-index-term-sparql-1-2-service-description-2"><cite>SPARQL 1.2 Service Description</cite></a>. Gregory Williams.  W3C. W3C Working Draft. URL: <a href="https://w3c.github.io/sparql-service-description/spec/" id="ref-for-index-term-sparql-1-2-service-description-3">https://w3c.github.io/sparql-service-description/spec/</a>
     </dd><dt id="bib-sparql12-update">[SPARQL12-UPDATE]</dt><dd>
@@ -1367,7 +1343,33 @@ var[data-type]:hover::after,var[data-type]:hover::before{opacity:1}
     </dd></dl>
   </section></section><p role="navigation" id="back-to-top">
     <a href="#title"><abbr title="Back to Top">↑</abbr></a>
-  </p><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-sparql-1-2-concepts" aria-label="Links in this document to definition: SPARQL 1.2 Concepts">
+  </p><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-json" aria-label="Links in this document to definition: JSON">
+      <span class="caret"></span>
+      <div>
+        <a class="self-link" href="https://www.rfc-editor.org/rfc/rfc4627#" aria-label="Permalink for definition: JSON. Activate to close this dialog.">Permalink</a>
+         
+      </div>
+      <p><b>Referenced in:</b></p>
+      <ul>
+    <li>
+    <a href="#ref-for-index-term-json-1" title="§ Abstract">§ Abstract</a> 
+  </li><li>
+    <a href="#ref-for-index-term-json-2" title="§ 2. Introduction">§ 2. Introduction</a> 
+  </li>
+  </ul>
+    </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-sparql" aria-label="Links in this document to definition: SPARQL">
+      <span class="caret"></span>
+      <div>
+        <a class="self-link" href="https://w3c.github.io/sparql-concepts/spec/#" aria-label="Permalink for definition: SPARQL. Activate to close this dialog.">Permalink</a>
+         
+      </div>
+      <p><b>Referenced in:</b></p>
+      <ul>
+    <li>
+    <a href="#ref-for-index-term-sparql-1" title="§ Abstract">§ Abstract</a> 
+  </li>
+  </ul>
+    </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-sparql-1-2-concepts" aria-label="Links in this document to definition: SPARQL 1.2 Concepts">
       <span class="caret"></span>
       <div>
         <a class="self-link" href="https://w3c.github.io/sparql-concepts/spec/" aria-label="Permalink for definition: SPARQL 1.2 Concepts. Activate to close this dialog.">Permalink</a>
@@ -1490,7 +1492,9 @@ var[data-type]:hover::after,var[data-type]:hover::before{opacity:1}
     <li>
     <a href="#ref-for-index-term-sparql-1-2-query-results-xml-formats-1" title="§ 1. Set of Documents">§ 1. Set of Documents</a> 
   </li><li>
-    <a href="#ref-for-index-term-sparql-1-2-query-results-xml-formats-2" title="§ C.1 Informative references">§ C.1 Informative references</a> <a href="#ref-for-index-term-sparql-1-2-query-results-xml-formats-3" title="Reference 2">(2)</a> 
+    <a href="#ref-for-index-term-sparql-1-2-query-results-xml-formats-2" title="§ 2. Introduction">§ 2. Introduction</a> 
+  </li><li>
+    <a href="#ref-for-index-term-sparql-1-2-query-results-xml-formats-3" title="§ C.1 Informative references">§ C.1 Informative references</a> <a href="#ref-for-index-term-sparql-1-2-query-results-xml-formats-4" title="Reference 2">(2)</a> 
   </li>
   </ul>
     </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-sparql-1-2-service-description" aria-label="Links in this document to definition: SPARQL 1.2 Service Description">

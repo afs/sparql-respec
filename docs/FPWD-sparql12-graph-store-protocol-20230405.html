@@ -1,6 +1,6 @@
 <!DOCTYPE html><html lang="en" dir="ltr"><head>
 <meta charset="utf-8">
-<meta name="generator" content="ReSpec 32.8.0">
+<meta name="generator" content="ReSpec 34.0.0">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <style>
 dfn{cursor:pointer}
@@ -93,7 +93,263 @@ dd{margin-left:0}
     
 <style>
 
-      @import url("local.css");
+      /* @import url("local.css"); */
+      /* Inlined to make preview work */
+
+/* CSS For SPARQL Query */
+
+/* In-progress working draft artifacts - to be removed eventually */
+  .issue	{ background-color: #fdd;
+                  font-size: 88% ; }
+  .add		{ background-color: #7fff7f }
+  .remove	{ background-color: #ff7f7f }
+ul.issue	{}
+  .issueBlock	{ margin: 1em 4em 1em 2.5em ; /* Top Right Bottom Left */
+                  padding: 1ex;
+	          /*overflow: auto;*/
+                  page-break-inside: avoid ; }
+  .issueTopic	{ font-weight: bold ; }
+
+ .todo		{ font-size: 80% ; color: #444 ; }
+p.todo		{}
+
+.wgNote	{ border: 0.2em solid red;
+      padding: 0.5em ;
+      margin: 1em 4em 1em 2em ; }
+
+.box     { border: thin solid #888888;
+           page-break-inside: avoid ;
+           background-color: #F8F8F8 ; padding:1em ;
+           margin-left:0 ; margin-right: 2ex; 
+           margin-top: 0.1ex ; margin-bottom: 0.1ex ;
+         }
+
+/* Misc WD stuff */
+span.cvs-id     {color: gray; font-size:80%; display: block; }
+
+/* == General Tag Treatment == */
+pre		 { margin: 1em 4em 1em 2.5em ; /* Top Right Bottom Left */
+                   padding: 1ex;
+	           /*overflow: auto;*/
+                   page-break-inside: avoid ; }
+
+/* Tables */
+table, td	{ text-align: left; }
+td, th   { border-style: solid;
+                  border-width: 1px;
+                  border-color: black;
+                  border-bottom-color: gray;
+                  border-right-color: gray; }
+td.annotation, th.annotation { border-style: none; border-bottom-style: dotted; }
+table.plain	{ border-spacing: 0px; padding: 0px ; border-collapse: collapse ; }
+                  /* cellpadding="0" cellspacing="1" style="border-collapse: collapse */
+
+
+th.major	{ background-color: #005a9c;
+                  color: white; }
+.subHeading	{ text-align: left;
+                  background-color: #CCCCCC; }
+th, td		{ padding: 3px; }
+td		{ font-size: 85%; }
+th a:link	{ text-decoration: none; }
+th a:hover	{ background-color:#FFFF99;
+                  text-decoration: underline; }
+
+/* == Prototypes == */
+pre.prototype	{ background-color:#f7f8ff;
+                  border:thin solid #8888aa;
+                  margin: 1em 4em 1em 0em ; }
+.return, .type	{ color: #177 }
+
+/* == Notes ==  */
+.note		{ margin-left: 2.5em; margin-right: 4ex ; font-size: 85% ; font-style: italic ; }
+
+/* Definitions */
+.defn		{ margin-left:0 ; margin-right: 2ex; 
+                  margin-top: 0.1ex ; margin-bottom: 0.1ex ;
+                  /*border: double 1px #888888; *//* Buggy */
+                  border: thin solid #888888;
+                  padding: 1ex 2ex 0.5ex 2ex ; /* top, right, bottom, left */
+                  page-break-inside: avoid ;
+                  background-color: #F0F8F8 ; }
+div.defn p	{ margin-top: 1ex ; margin-bottom: 1.5ex ;}
+div.defn ul	{ margin-top: 1ex ; margin-bottom: 1.5ex ; }
+@media print	{ .defn { margin: 1em 1em 1em 1em ; } }
+span.definedTerm	{font-weight: bold;}
+
+div.grammarExtract
+                { border: thin solid #888888;
+                  padding: 1ex 2ex 1ex 2ex ; /* top, right, bottom, left */
+                  margin: 1em 6em 1em 2em ; 
+                  page-break-inside: avoid ;
+                  background-color: #F8F8F8 ; }
+
+pre.codeBlock  { font-family:monospace ; page-break-inside: avoid ; 
+                 margin: 0 ;
+	         margin-right: 2ex ;
+                 border: thin solid #888888; }
+
+
+
+
+/* Examples */
+pre.data	{ border: thin solid #88AA88;
+                  background-color: #E8F0E8;
+                  margin: 1em 4em 1em 0em ; }
+
+pre.dataExcerpt	{ border: thin solid #88AA88;
+                  background-color: #E8F0E8;
+                  margin: 1em 4em 1em 0em ; }
+/* Example Queries */
+.query          { background-color:#f7f8ff; }
+.queryExcerpt   { background-color:#f7f8ff; }
+pre.query	{ border:thin solid #8888aa;
+                  margin: 1em 4em 1em 0em ; }
+/* Example Results */
+.result		{ border: thin solid  #888888 ;
+                  background-color: #F0F0F0 ; }
+pre.resultGraph	{  margin: 0em 0em 0em 0em ; /* Top Right Bottom Left */
+                   padding: 0ex;
+                   font-size: 100% ;
+                   page-break-inside: avoid ; }
+pre.resultSet	{  margin: 0em 0em 0em 0em ; /* Top Right Bottom Left */
+                   padding: 0ex;
+                   font-size: 100% ;
+                   page-break-inside: avoid ; }
+pre.resultAsk	{  margin: 0em 0em 0em 0em ; /* Top Right Bottom Left */
+                   padding: 0ex;
+                   font-size: 100% ;
+                   page-break-inside: avoid ; }
+pre.resultTurtle{  margin: 0em 0em 0em 0em ; /* Top Right Bottom Left */
+                   padding: 0ex;
+                   font-size: 100% ;
+                   page-break-inside: avoid ; }
+
+pre.result	{ margin: 1em 4em 1em 0em ; }
+
+div.result	{ font-family: monospace;
+                  margin:  1em 4em 1em 0em ;
+                  padding: 1ex ; }
+
+.result table	{ border-collapse: collapse; }
+.result table td{ border-width: 1px ;
+                  border-color : black ; 
+                  font-family: monospace ;
+                  empty-cells: show;
+                  padding-left: 1ex ; padding-right: 1ex ;
+                  vertical-align:top;
+                  text-align: left ; } 
+/*  spacing: 0 ;*/
+.result table th{ border-width: 1px ;
+                  font-family: monospace ;
+                  border-color: black ;
+                  empty-cells: show;
+                  padding-left: 1ex ; padding-right: 1ex ;
+                  vertical-align:top;
+                  text-align:center; } 
+
+/* Examples : Algebra */
+div.algExample {  border: thin solid #888888;
+                  page-break-inside: avoid ;
+                  padding:0.5em ; margin:0.5em ;
+                  margin-left: 2em ; margin-right: 2em ;
+                  font-family:monospace ; }
+
+div.algExample1 { padding:0.5em ; background-color: #F0F0FF ; }
+div.algExample2 { padding:0.5em ; margin-top: 0.5em ; background-color: #F0FFF0 ; }
+
+/* Grammar Mark-up */
+.operator	{ color: #3f3f5f;
+                  text-transform: uppercase; }
+.function	{ color: #3f3f5f;
+                }
+
+/* Tuned to cope with different browsers behaviours */
+div.grammarTable table	{ border-style: solid ;
+			  border-width: 1px ;
+			  border-color: #AAA ;
+			  border-spacing: 0px ; 
+			  border-collapse: collapse ; }
+
+div.grammarTable table * { border-left-width: 0px ;
+			   border-right-width: 0px ;
+			   border-color: #AAA ; } 
+
+div.grammarTable table * tr   { border-top-style: solid ;
+			  border-top-width: 1px ;
+			  border-top-color: #AAA ; } 
+
+.grammar	{ text-align: left ;
+                  vertical-align: top ; }
+.token		{ color: #3f3f5f; }
+table.FAndOTable .token		{ color: #00c; }
+table.FAndOTable .token:visited		{ color: #a0c; }
+.gRuleHead	{ font-style: italic ;
+                  font-family: monospace ; }
+.gRuleBody	{ font-family: monospace ; }
+.gRuleLabel	{ font-family: monospace ; }
+
+.code		{ font-family: monospace; font-size: 100%; }
+pre.code	{ font-family: monospace; font-size: 100%; margin: 0 ; }
+
+/* Table of Contents */
+.toc		{ text-indent: 0; }
+DIV.toc UL UL, DIV.toc OL OL {margin-left: 0}
+DIV.toc UL UL UL, DIV.toc OL OL OL {margin-left: 1em}
+DIV.toc UL UL UL UL, DIV.toc OL OL OL OL {margin-left: 0}
+LI.tocline1	{ font-weight: bold}
+LI.tocline2	{ font-weight: normal}
+LI.tocline4	{ font-style: italic}
+/* The border in the following rule crashes NN4 on fonts.html :-(
+DIV.subtoc	{ padding: 1em; border: solid black thin; margin: 1em 0;
+                  background: #ddd} */
+DIV.toc, UL.index, DT { text-align: left; }
+
+
+/* References to the Rdf Data Model */
+span.rdfDM	{ color: #11d; }
+
+
+/* Truth Table */
+  .truth	{ font-family: monospace; }
+  .error	{ color: #ff1f1f; }
+  table.truthTable td	{ text-align: center; font-family: monospace; }
+  table.truthTable th	{ background-color: #dfdfdf; }
+  table.truthTable tbody th	{ font-weight: normal; font-family: monospace; }
+
+/* Casting table */
+table.casting	{ font-size: x-small; }
+
+.castY	{ background-color: #7FFF7F;
+                  color: black; }
+
+.castN	{ background-color: #FF7F7F;
+                  color: black; }
+
+.castM	{ background-color: white;
+                  color: black; }
+
+span.cancast:hover { background-color: #ffa;
+                     color: black; }
+
+.SPARQLoperator	{ background-color: #FFFFbf; /* yellow */
+          }
+
+.owlnonterminal {
+    font-weight: bold;
+    font-family: sans-serif;
+    font-size: 95%;
+}
+.owlgrammar {
+    margin-top: 1ex;
+    margin-bottom: 1ex;
+    padding-left: 1ex;
+    padding-right: 1ex;
+    padding-top: 1ex;
+    padding-bottom: 0.6ex;
+    border: 1px dashed #2f6fab;
+    font-family: monospace;
+}
 
       /* ReSpec */
       dfn { font-style: normal ; }
@@ -147,7 +403,8 @@ ul.index code{color:inherit}
 }
 </style>
 <meta name="description" content="This document describes the use of HTTP operations for the purpose of managing a
-        collection of RDF graphs.  This interface is an alternative to        SPARQL 1.2 Protocol. Most of the operations defined here can be performed
+        collection of RDF graphs. This interface is an alternative to
+        SPARQL 1.2 Protocol. Most of the operations defined here can be performed
         using that interface, but for some clients or servers, this interface may be
         easier to implement or work with. This specification may serve as a non-normative
         suggestion for HTTP operations on RDF graphs which are managed outside of a SPARQL
@@ -479,6 +736,16 @@ var[data-type]:hover::after,var[data-type]:hover::before{opacity:1}
       "rawDate": "2022-01-01",
       "status": "WD",
       "publisher": "W3C"
+    },
+    "CBD": {
+      "title": "CBD - Concise Bounded Description",
+      "href": "https://www.w3.org/Submission/CBD/",
+      "authors": [
+        "Patrick Stickler, Nokia"
+      ],
+      "rawDate": "2005-06-03",
+      "publisher": "W3C",
+      "status": "W3C Member Submission"
     }
   },
   "specStatus": "FPWD",
@@ -506,21 +773,21 @@ var[data-type]:hover::after,var[data-type]:hover::before{opacity:1}
   "lint": {
     "no-unused-dfns": false
   },
-  "pubDate": "2023-04-01",
-  "publishISODate": "2023-02-10T00:00:00.000Z",
-  "generatedSubtitle": "W3C First Public Working Draft 10 February 2023"
+  "pubDate": "2023-05-04",
+  "publishISODate": "2023-04-05T00:00:00.000Z",
+  "generatedSubtitle": "W3C First Public Working Draft 05 April 2023"
 }</script>
 <link rel="stylesheet" href="https://www.w3.org/StyleSheets/TR/2021/W3C-WD"></head>
   <body class="h-entry"><div class="head">
     <p class="logos"><a class="logo" href="https://www.w3.org/"><img crossorigin="" alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2021/logos/W3C" width="72">
   </a></p>
     <h1 id="title" class="title">SPARQL 1.2 Graph Store Protocol</h1> 
-    <p id="w3c-state"><a href="https://www.w3.org/standards/types#FPWD">W3C First Public Working Draft</a> <time class="dt-published" datetime="2023-02-10">10 February 2023</time></p>
+    <p id="w3c-state"><a href="https://www.w3.org/standards/types#FPWD">W3C First Public Working Draft</a> <time class="dt-published" datetime="2023-04-05">05 April 2023</time></p>
     <details open="">
       <summary>More details about this document</summary>
       <dl>
         <dt>This version:</dt><dd>
-                <a class="u-url" href="https://www.w3.org/TR/2023/WD-sparql12-graph-store-protocol-20230210/">https://www.w3.org/TR/2023/WD-sparql12-graph-store-protocol-20230210/</a>
+                <a class="u-url" href="https://www.w3.org/TR/2023/WD-sparql12-graph-store-protocol-20230405/">https://www.w3.org/TR/2023/WD-sparql12-graph-store-protocol-20230405/</a>
               </dd>
         <dt>Latest published version:</dt><dd>
                 <a href="https://www.w3.org/TR/sparql12-graph-store-protocol/">https://www.w3.org/TR/sparql12-graph-store-protocol/</a>
@@ -574,7 +841,8 @@ var[data-type]:hover::after,var[data-type]:hover::before{opacity:1}
       
       <p>
         This document describes the use of HTTP operations for the purpose of managing a
-        collection of RDF graphs.  This interface is an alternative to        <cite><a data-matched-text="[[[SPARQL12-PROTOCOL]]]" href="https://w3c.github.io/sparql-protocol/spec/" id="ref-for-index-term-sparql-1-2-protocol-1">SPARQL 1.2 Protocol</a></cite>. Most of the operations defined here can be performed
+        collection of RDF graphs. This interface is an alternative to
+        <cite><a data-matched-text="[[[SPARQL12-PROTOCOL]]]" href="https://w3c.github.io/sparql-protocol/spec/" id="ref-for-index-term-sparql-1-2-protocol-1">SPARQL 1.2 Protocol</a></cite>. Most of the operations defined here can be performed
         using that interface, but for some clients or servers, this interface may be
         easier to implement or work with. This specification may serve as a non-normative
         suggestion for HTTP operations on RDF graphs which are managed outside of a SPARQL
@@ -623,7 +891,7 @@ var[data-type]:hover::after,var[data-type]:hover::before{opacity:1}
   </p><p>
                   This document is governed by the
                   <a id="w3c_process_revision" href="https://www.w3.org/2021/Process-20211102/">2 November 2021 <abbr title="World Wide Web Consortium">W3C</abbr> Process Document</a>.
-                </p></section><nav id="toc"><h2 class="introductory" id="table-of-contents">Table of Contents</h2><ol class="toc"><li class="tocline"><a class="tocxref" href="#abstract">Abstract</a></li><li class="tocline"><a class="tocxref" href="#sotd">Status of This Document</a></li><li class="tocline"><a class="tocxref" href="#related"><bdi class="secno">1. </bdi>Set of Documents</a></li><li class="tocline"><a class="tocxref" href="#sparql12-documents">SPARQL 1.2 Documents</a></li><li class="tocline"><a class="tocxref" href="#introduction"><bdi class="secno">2. </bdi>Introduction</a></li><li class="tocline"><a class="tocxref" href="#terminology"><bdi class="secno">3. </bdi>Terminology</a></li><li class="tocline"><a class="tocxref" href="#protocol-model"><bdi class="secno">4. </bdi>Protocol Model</a></li><li class="tocline"><a class="tocxref" href="#graph-identification"><bdi class="secno">5. </bdi>Graph Identification</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#direct-graph-identification"><bdi class="secno">5.1 </bdi>Direct Graph Identification</a></li><li class="tocline"><a class="tocxref" href="#indirect-graph-identification"><bdi class="secno">5.2 </bdi>Indirect Graph Identification</a></li></ol></li><li class="tocline"><a class="tocxref" href="#graph-management"><bdi class="secno">6. </bdi>Graph Management Operations</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#status-codes"><bdi class="secno">6.1 </bdi>Status Codes</a></li><li class="tocline"><a class="tocxref" href="#http-get"><bdi class="secno">6.2 </bdi>HTTP GET</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#httpRange-14"><bdi class="secno">6.2.1 </bdi>Ambiguity Regarding the Range of HTTP GET (Informative)</a></li></ol></li><li class="tocline"><a class="tocxref" href="#http-put"><bdi class="secno">6.3 </bdi>HTTP PUT</a></li><li class="tocline"><a class="tocxref" href="#http-delete"><bdi class="secno">6.4 </bdi>HTTP DELETE</a></li><li class="tocline"><a class="tocxref" href="#http-post"><bdi class="secno">6.5 </bdi>HTTP POST</a></li><li class="tocline"><a class="tocxref" href="#http-head"><bdi class="secno">6.6 </bdi>HTTP HEAD</a></li><li class="tocline"><a class="tocxref" href="#http-patch"><bdi class="secno">6.7 </bdi>HTTP PATCH (Informative)</a></li></ol></li><li class="tocline"><a class="tocxref" href="#security-original"><bdi class="secno">7. </bdi>Security Considerations</a></li><li class="tocline"><a class="tocxref" href="#conformance"><bdi class="secno">8. </bdi>Conformance</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#conformance-0"><bdi class="secno">8.1 </bdi>Conformance</a></li></ol></li><li class="tocline"><a class="tocxref" href="#changes"><bdi class="secno">9. </bdi>Changes</a></li><li class="tocline"><a class="tocxref" href="#sec-bibliography"><bdi class="secno">10. </bdi>References</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#section-Normative-References"><bdi class="secno">10.1 </bdi>Normative References</a></li><li class="tocline"><a class="tocxref" href="#section-informative-references"><bdi class="secno">10.2 </bdi>Informative References</a></li></ol></li><li class="tocline"><a class="tocxref" href="#ackacknowledgements"><bdi class="secno">11. </bdi>Acknowledgements</a></li><li class="tocline"><a class="tocxref" href="#privacy"><bdi class="secno">12. </bdi>Privacy Considerations</a></li><li class="tocline"><a class="tocxref" href="#security"><bdi class="secno">13. </bdi>Security Considerations</a></li><li class="tocline"><a class="tocxref" href="#internationalization"><bdi class="secno">14. </bdi>Internationalization Considerations</a></li><li class="tocline"><a class="tocxref" href="#changes-from-sparql11"><bdi class="secno">A. </bdi>Change Log</a></li><li class="tocline"><a class="tocxref" href="#index"><bdi class="secno">B. </bdi>Index</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#index-defined-here"><bdi class="secno">B.1 </bdi>Terms defined by this specification</a></li><li class="tocline"><a class="tocxref" href="#index-defined-elsewhere"><bdi class="secno">B.2 </bdi>Terms defined by reference</a></li></ol></li><li class="tocline"><a class="tocxref" href="#references"><bdi class="secno">C. </bdi>References</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#normative-references"><bdi class="secno">C.1 </bdi>Normative references</a></li></ol></li></ol></nav>
+                </p></section><nav id="toc"><h2 class="introductory" id="table-of-contents">Table of Contents</h2><ol class="toc"><li class="tocline"><a class="tocxref" href="#abstract">Abstract</a></li><li class="tocline"><a class="tocxref" href="#sotd">Status of This Document</a></li><li class="tocline"><a class="tocxref" href="#related"><bdi class="secno">1. </bdi>Set of Documents</a></li><li class="tocline"><a class="tocxref" href="#introduction"><bdi class="secno">2. </bdi>Introduction</a></li><li class="tocline"><a class="tocxref" href="#terminology"><bdi class="secno">3. </bdi>Terminology</a></li><li class="tocline"><a class="tocxref" href="#protocol-model"><bdi class="secno">4. </bdi>Protocol Model</a></li><li class="tocline"><a class="tocxref" href="#graph-identification"><bdi class="secno">5. </bdi>Graph Identification</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#direct-graph-identification"><bdi class="secno">5.1 </bdi>Direct Graph Identification</a></li><li class="tocline"><a class="tocxref" href="#indirect-graph-identification"><bdi class="secno">5.2 </bdi>Indirect Graph Identification</a></li></ol></li><li class="tocline"><a class="tocxref" href="#graph-management"><bdi class="secno">6. </bdi>Graph Management Operations</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#status-codes"><bdi class="secno">6.1 </bdi>Status Codes</a></li><li class="tocline"><a class="tocxref" href="#http-get"><bdi class="secno">6.2 </bdi>HTTP GET</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#httpRange-14"><bdi class="secno">6.2.1 </bdi>Ambiguity Regarding the Range of HTTP GET (Informative)</a></li></ol></li><li class="tocline"><a class="tocxref" href="#http-put"><bdi class="secno">6.3 </bdi>HTTP PUT</a></li><li class="tocline"><a class="tocxref" href="#http-delete"><bdi class="secno">6.4 </bdi>HTTP DELETE</a></li><li class="tocline"><a class="tocxref" href="#http-post"><bdi class="secno">6.5 </bdi>HTTP POST</a></li><li class="tocline"><a class="tocxref" href="#http-head"><bdi class="secno">6.6 </bdi>HTTP HEAD</a></li><li class="tocline"><a class="tocxref" href="#http-patch"><bdi class="secno">6.7 </bdi>HTTP PATCH (Informative)</a></li></ol></li><li class="tocline"><a class="tocxref" href="#security-original"><bdi class="secno">7. </bdi>Security Considerations</a></li><li class="tocline"><a class="tocxref" href="#conformance"><bdi class="secno">8. </bdi>Conformance</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#conformance-0"><bdi class="secno">8.1 </bdi>Conformance</a></li></ol></li><li class="tocline"><a class="tocxref" href="#changes"><bdi class="secno">9. </bdi>Changes</a></li><li class="tocline"><a class="tocxref" href="#sec-bibliography"><bdi class="secno">10. </bdi>References</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#section-Normative-References"><bdi class="secno">10.1 </bdi>Normative References</a></li><li class="tocline"><a class="tocxref" href="#section-informative-references"><bdi class="secno">10.2 </bdi>Informative References</a></li></ol></li><li class="tocline"><a class="tocxref" href="#ackacknowledgements"><bdi class="secno">11. </bdi>Acknowledgements</a></li><li class="tocline"><a class="tocxref" href="#privacy"><bdi class="secno">12. </bdi>Privacy Considerations</a></li><li class="tocline"><a class="tocxref" href="#security"><bdi class="secno">13. </bdi>Security Considerations</a></li><li class="tocline"><a class="tocxref" href="#internationalization"><bdi class="secno">14. </bdi>Internationalization Considerations</a></li><li class="tocline"><a class="tocxref" href="#changes-from-sparql11"><bdi class="secno">A. </bdi>Change Log</a></li><li class="tocline"><a class="tocxref" href="#index"><bdi class="secno">B. </bdi>Index</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#index-defined-here"><bdi class="secno">B.1 </bdi>Terms defined by this specification</a></li><li class="tocline"><a class="tocxref" href="#index-defined-elsewhere"><bdi class="secno">B.2 </bdi>Terms defined by reference</a></li></ol></li><li class="tocline"><a class="tocxref" href="#references"><bdi class="secno">C. </bdi>References</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#normative-references"><bdi class="secno">C.1 </bdi>Normative references</a></li></ol></li></ol></nav>
 
     <section id="related"><div class="header-wrapper"><h2 id="x1-set-of-documents"><bdi class="secno">1. </bdi>Set of Documents</h2><a class="self-link" href="#related" aria-label="Permalink for Section 1."></a></div>
 <p>This document is one of twelve SPARQL 1.2 Recommendations produced by the <a href="https://www.w3.org/groups/wg/rdf-star">RDF-star Working Group</a>:</p>
@@ -644,24 +912,6 @@ var[data-type]:hover::after,var[data-type]:hover::before{opacity:1}
   <li>SPARQL 1.2 Graph Store Protocol(this document)</li>
 </ol>
 </section>
-
-    <section id="sparql12-documents" class="introductory"><div class="header-wrapper"><h2 id="sparql-1-2-documents">SPARQL 1.2 Documents</h2><a class="self-link" href="#sparql12-documents" aria-label="Permalink for this Section"></a></div>
-      
-      <ul>
-        <li><a href="../../sparql-new/spec/index.html">SPARQL 1.2 New</a></li>
-        <li><a href="../../sparql-concepts/spec/index.html">SPARQL 1.2 Overview</a></li>
-        <li><a href="../../sparql-query/spec/index.html">SPARQL 1.2 Query Language</a></li>
-        <li><a href="../../sparql-update/spec/index.html">SPARQL 1.2 Update</a></li>
-        <li><a href="../../sparql-entailment/spec/index.html">SPARQL 1.2 Entailment Regimes</a></li>
-        <li><a href="../../sparql-service-description/spec/index.html">SPARQL 1.2 Service Description</a></li>
-        <li><a href="../../sparql-federated-query/spec/index.html">SPARQL 1.2 Federated Query</a></li>
-        <li><a href="../../sparql-results-json/spec/index.html">SPARQL 1.2 Query Results JSON Format</a></li>
-        <li><a href="../../sparql-results-csv-tsv/spec/index.html">SPARQL 1.2 Query Results CSV and TSV Formats</a></li>
-        <li><a href="../../sparql-results-xml/spec/index.html">SPARQL 1.2 Query Results XML Format</a></li>
-        <li><a href="../../sparql-graph-store-protocol/spec/index.html">SPARQL 1.2 Graph Store Protocol</a></li>
-        <li><a href="../../sparql-protocol/spec/index.html">SPARQL 1.2 Protocol</a></li>
-      </ul>
-    </section>
     
 
     <section id="introduction"><div class="header-wrapper"><h2 id="x2-introduction"><bdi class="secno">2. </bdi>Introduction</h2><a class="self-link" href="#introduction" aria-label="Permalink for Section 2."></a></div>
@@ -759,7 +1009,7 @@ Accept: text/turtle; charset=utf-8</code></pre>
   to manipulate. Any server that implements this protocol and receives a request IRI in this form <em class="rfc2119">MUST</em> perform the indicated operation on the RDF graph content identified by the IRI embedded in the
   query component where the IRI is the result of percent-decoding the value associated with the <em>graph</em> key. The query string IRI <em class="rfc2119">MUST</em> be an absolute IRI and the server <em class="rfc2119">MUST</em> respond with a
   <code>400 Bad Request</code> if it is not. The diagram below illustrates this.</p>
-  <p><img src="./ProtocolModelIndirect.jpg" alt="Protocol model diagram for indirect manipulation" height="196" width="508"><br>
+  <p><img src="./ProtocolModelIndirect.jpg" alt="Protocol model diagram for indirect manipulation"><br>
   <b>Figure 2</b>: A diagram of the protocol model for indirect graph references (uses the same legend as the previous diagramT).</p>
   <p>As indicated in <a href="http://www.apps.ietf.org/rfc/rfc3986.html#sec-3.3">section 3.3</a> of <a href="#rfc3986">[RFC3986]</a>, the path component (of an IRI) contains data, usually organized
   in hierarchical form, that, along with data in the non-hierarchical query component, serves to identify a resource within the scope of the IRI's scheme and naming authority. As a result, the full
