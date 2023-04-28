@@ -1,6 +1,6 @@
 <!DOCTYPE html><html lang="en" dir="ltr"><head>
 <meta charset="utf-8">
-<meta name="generator" content="ReSpec 34.0.0">
+<meta name="generator" content="ReSpec 34.1.0">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <style>
 dfn{cursor:pointer}
@@ -773,7 +773,7 @@ var[data-type]:hover::after,var[data-type]:hover::before{opacity:1}
   "lint": {
     "no-unused-dfns": false
   },
-  "pubDate": "2023-05-04",
+  "pubDate": "2023-04-04",
   "publishISODate": "2023-04-07T00:00:00.000Z",
   "generatedSubtitle": "W3C First Public Working Draft 07 April 2023"
 }</script>
@@ -841,7 +841,7 @@ var[data-type]:hover::after,var[data-type]:hover::before{opacity:1}
   </div>
     <section id="abstract" class="introductory"><h2>Abstract</h2>
       
-<p>This document describes SPARQL service description, a method for discovering, and vocabulary for describing SPARQL services made available via the <cite><a data-matched-text="[[[SPARQL12-PROTOCOL]]]" href="https://w3c.github.io/sparql-protocol/spec/" id="ref-for-index-term-sparql-1-2-protocol-1">SPARQL 1.2 Protocol</a></cite>. These descriptions provide a mechanism by which a client or end user can discover
+<p>This document describes SPARQL service description, a method for discovering, and vocabulary for describing SPARQL services made available via the <cite><a data-matched-text="[[[SPARQL12-PROTOCOL]]]" href="https://w3c.github.io/sparql-protocol/spec/">SPARQL 1.2 Protocol</a></cite>. These descriptions provide a mechanism by which a client or end user can discover
     information about the SPARQL service such as supported extension functions and details about the available dataset.</p>
     </section>
 
@@ -893,32 +893,32 @@ var[data-type]:hover::after,var[data-type]:hover::before{opacity:1}
 
 <p>SPARQL 1.2 Recommendations:</p>
 <ol>
-  <li><cite><a data-matched-text="[[[SPARQL12-NEW]]]" href="https://w3c.github.io/sparql-new/spec/" id="ref-for-index-term-what-s-new-in-sparql-1-2-1">What’s New in SPARQL 1.2</a></cite></li>
-  <li><cite><a data-matched-text="[[[SPARQL12-CONCEPTS]]]" href="https://w3c.github.io/sparql-concepts/spec/" id="ref-for-index-term-sparql-1-2-concepts-1">SPARQL 1.2 Concepts</a></cite></li>
-  <li><cite><a data-matched-text="[[[SPARQL12-QUERY]]]" href="https://w3c.github.io/sparql-query/spec/" id="ref-for-index-term-sparql-1-2-query-language-1">SPARQL 1.2 Query Language</a></cite></li>
-  <li><cite><a data-matched-text="[[[SPARQL12-UPDATE]]]" href="https://w3c.github.io/sparql-update/spec/" id="ref-for-index-term-sparql-1-2-update-1">SPARQL 1.2 Update</a></cite></li>
+  <li><cite><a data-matched-text="[[[SPARQL12-NEW]]]" href="https://w3c.github.io/sparql-new/spec/">What’s New in SPARQL 1.2</a></cite></li>
+  <li><cite><a data-matched-text="[[[SPARQL12-CONCEPTS]]]" href="https://w3c.github.io/sparql-concepts/spec/">SPARQL 1.2 Concepts</a></cite></li>
+  <li><cite><a data-matched-text="[[[SPARQL12-QUERY]]]" href="https://w3c.github.io/sparql-query/spec/">SPARQL 1.2 Query Language</a></cite></li>
+  <li><cite><a data-matched-text="[[[SPARQL12-UPDATE]]]" href="https://w3c.github.io/sparql-update/spec/">SPARQL 1.2 Update</a></cite></li>
   <li>SPARQL 1.2 Service Description(this document)</li>
-  <li><cite><a data-matched-text="[[[SPARQL12-FEDERATED-QUERY]]]" href="https://w3c.github.io/sparql-federated-query/spec/" id="ref-for-index-term-sparql-1-2-federated-query-1">SPARQL 1.2 Federated Query</a></cite></li>
-  <li><cite><a data-matched-text="[[[SPARQL12-RESULTS-JSON]]]" href="https://w3c.github.io/sparql-results-json/spec/" id="ref-for-index-term-sparql-1-2-query-results-json-format-1">SPARQL 1.2 Query Results JSON Format</a></cite></li>
-  <li><cite><a data-matched-text="[[[SPARQL12-RESULTS-CSV-TSV]]]" href="https://w3c.github.io/sparql-results-csv-tsv/spec/" id="ref-for-index-term-sparql-1-2-query-results-csv-and-tsv-formats-1">SPARQL 1.2 Query Results CSV and TSV Formats</a></cite></li>
-  <li><cite><a data-matched-text="[[[SPARQL12-RESULTS-XML]]]" href="https://w3c.github.io/sparql-results-xml/spec/" id="ref-for-index-term-sparql-1-2-query-results-xml-formats-1">SPARQL 1.2 Query Results XML Formats</a></cite></li>
-  <li><cite><a data-matched-text="[[[SPARQL12-ENTAILMENT]]]" href="https://w3c.github.io/sparql-entailment/spec/" id="ref-for-index-term-sparql-1-2-entailment-regimes-1">SPARQL 1.2 Entailment Regimes</a></cite></li>
-  <li><cite><a data-matched-text="[[[SPARQL12-PROTOCOL]]]" href="https://w3c.github.io/sparql-protocol/spec/" id="ref-for-index-term-sparql-1-2-protocol-2">SPARQL 1.2 Protocol</a></cite></li>
-  <li><cite><a data-matched-text="[[[SPARQL12-GRAPH-STORE-PROTOCOL]]]" href="https://w3c.github.io/sparql-graph-store-protocol/spec/" id="ref-for-index-term-sparql-1-2-graph-store-http-protocol-1">SPARQL 1.2 Graph Store HTTP Protocol</a></cite></li>
+  <li><cite><a data-matched-text="[[[SPARQL12-FEDERATED-QUERY]]]" href="https://w3c.github.io/sparql-federated-query/spec/">SPARQL 1.2 Federated Query</a></cite></li>
+  <li><cite><a data-matched-text="[[[SPARQL12-RESULTS-JSON]]]" href="https://w3c.github.io/sparql-results-json/spec/">SPARQL 1.2 Query Results JSON Format</a></cite></li>
+  <li><cite><a data-matched-text="[[[SPARQL12-RESULTS-CSV-TSV]]]" href="https://w3c.github.io/sparql-results-csv-tsv/spec/">SPARQL 1.2 Query Results CSV and TSV Formats</a></cite></li>
+  <li><cite><a data-matched-text="[[[SPARQL12-RESULTS-XML]]]" href="https://w3c.github.io/sparql-results-xml/spec/">SPARQL 1.2 Query Results XML Formats</a></cite></li>
+  <li><cite><a data-matched-text="[[[SPARQL12-ENTAILMENT]]]" href="https://w3c.github.io/sparql-entailment/spec/">SPARQL 1.2 Entailment Regimes</a></cite></li>
+  <li><cite><a data-matched-text="[[[SPARQL12-PROTOCOL]]]" href="https://w3c.github.io/sparql-protocol/spec/">SPARQL 1.2 Protocol</a></cite></li>
+  <li><cite><a data-matched-text="[[[SPARQL12-GRAPH-STORE-PROTOCOL]]]" href="https://w3c.github.io/sparql-graph-store-protocol/spec/">SPARQL 1.2 Graph Store HTTP Protocol</a></cite></li>
 </ol>
 </section>
     
 
     <section id="intro"><div class="header-wrapper"><h2 id="x2-introduction"><bdi class="secno">2. </bdi>Introduction</h2><a class="self-link" href="#intro" aria-label="Permalink for Section 2."></a></div>
       
-      <p>A SPARQL service description lists the features of a SPARQL service made available via the <cite><a data-matched-text="[[[SPARQL12-QUERY]]]" href="https://w3c.github.io/sparql-query/spec/" id="ref-for-index-term-sparql-1-2-query-language-2">SPARQL 1.2 Query Language</a></cite>. This document describes both a method for discovering a service description from a specific SPARQL service and an RDF schema for encoding such descriptions in RDF.</p>
+      <p>A SPARQL service description lists the features of a SPARQL service made available via the <cite><a data-matched-text="[[[SPARQL12-QUERY]]]" href="https://w3c.github.io/sparql-query/spec/">SPARQL 1.2 Query Language</a></cite>. This document describes both a method for discovering a service description from a specific SPARQL service and an RDF schema for encoding such descriptions in RDF.</p>
       <section id="terminology"><div class="header-wrapper"><h3 id="x2-1-terminology"><bdi class="secno">2.1 </bdi>Terminology</h3><a class="self-link" href="#terminology" aria-label="Permalink for Section 2.1"></a></div>
         
         <p>When this document uses the words <em class="rfc2119" title="Keyword in RFC 2119 context"><em class="rfc2119">MUST</em></em>, <em class="rfc2119" title="Keyword in RFC 2119 context"><em class="rfc2119">SHOULD</em></em> and <em class="rfc2119" title="Keyword in RFC 2119 context"><em class="rfc2119">MAY</em></em>, and the words appear as emphasized text, they must be interpreted as described in [<cite><a class="bibref" data-link-type="biblio" href="#bib-rfc2119" title="Key words for use in RFCs to Indicate Requirement Levels">RFC2119</a></cite>].</p>
         <p>The following terms are also in use throughout this document:</p>
         <dl>
           <dt>SPARQL Service</dt>
-          <dd>Any implementation conforming to the <cite><a data-matched-text="[[[SPARQL12-PROTOCOL]]]" href="https://w3c.github.io/sparql-protocol/spec/" id="ref-for-index-term-sparql-1-2-protocol-3">SPARQL 1.2 Protocol</a></cite> (this document's use of "SPARQL Service" is the same as "<a href="https://w3c.github.io/sparql-protocol/spec/#terminology" id="ref-for-index-term-sparql-protocol-service-1">SPARQL Protocol service</a>" as defined in the SPARQL 1.2 Protocol) [<cite><a class="bibref" data-link-type="biblio" href="#bib-sparql12-protocol" title="SPARQL 1.2 Protocol">SPARQL12-PROTOCOL</a></cite>].</dd>
+          <dd>Any implementation conforming to the <cite><a data-matched-text="[[[SPARQL12-PROTOCOL]]]" href="https://w3c.github.io/sparql-protocol/spec/">SPARQL 1.2 Protocol</a></cite> (this document's use of "SPARQL Service" is the same as "<a href="https://w3c.github.io/sparql-protocol/spec/#terminology" id="ref-for-index-term-sparql-protocol-service-1">SPARQL Protocol service</a>" as defined in the SPARQL 1.2 Protocol) [<cite><a class="bibref" data-link-type="biblio" href="#bib-sparql12-protocol" title="SPARQL 1.2 Protocol">SPARQL12-PROTOCOL</a></cite>].</dd>
           <dt>SPARQL endpoint</dt>
           <dd>The URI at which a SPARQL Service listens for requests from clients.</dd>
         </dl>
@@ -928,7 +928,7 @@ var[data-type]:hover::after,var[data-type]:hover::before{opacity:1}
       
       <p>SPARQL services made available via the SPARQL Protocol <em class="rfc2119" title="Keyword in RFC 2119 context"><em class="rfc2119">SHOULD</em></em> return a service description document at the service endpoint when
       dereferenced using the HTTP GET operation without any query parameter strings provided. This service description <em class="rfc2119" title="Keyword in RFC 2119 context"><em class="rfc2119">MUST</em></em> be made
-      available in an RDF serialization, <em class="rfc2119" title="Keyword in RFC 2119 context"><em class="rfc2119">MAY</em></em> be embedded in (X)HTML by way of <cite><a data-matched-text="[[[RDFa-core]]]" href="https://www.w3.org/TR/rdfa-core/" id="ref-for-index-term-rdfa-core-1-1-third-edition-1">RDFa Core 1.1 - Third Edition</a></cite>, and <em class="rfc2119" title="Keyword in RFC 2119 context"><em class="rfc2119">SHOULD</em></em> use <a href="https://www.rfc-editor.org/rfc/rfc9110#section-12" id="ref-for-index-term-content-negotiation-1">content negotiation</a> if available in other RDF representations.</p>
+      available in an RDF serialization, <em class="rfc2119" title="Keyword in RFC 2119 context"><em class="rfc2119">MAY</em></em> be embedded in (X)HTML by way of <cite><a data-matched-text="[[[RDFa-core]]]" href="https://www.w3.org/TR/rdfa-core/">RDFa Core 1.1 - Third Edition</a></cite>, and <em class="rfc2119" title="Keyword in RFC 2119 context"><em class="rfc2119">SHOULD</em></em> use <a href="https://www.rfc-editor.org/rfc/rfc9110#section-12" id="ref-for-index-term-content-negotiation-1">content negotiation</a> if available in other RDF representations.</p>
     </section>
     <section id="vocab"><div class="header-wrapper"><h2 id="x4-service-description-vocabulary"><bdi class="secno">4. </bdi>Service Description Vocabulary</h2><a class="self-link" href="#vocab" aria-label="Permalink for Section 4."></a></div>
       
@@ -1014,7 +1014,7 @@ var[data-type]:hover::after,var[data-type]:hover::before{opacity:1}
         </section>
         <section id="sd-defaultSupportedEntailmentProfile"><div class="header-wrapper"><h4 id="x4-2-5-sd-defaultsupportedentailmentprofile"><bdi class="secno">4.2.5 </bdi>sd:defaultSupportedEntailmentProfile</h4><a class="self-link" href="#sd-defaultSupportedEntailmentProfile" aria-label="Permalink for Section 4.2.5"></a></div>
           
-          <p>Relates an instance of <a href="#sd-Service"><code>sd:Service</code></a> with a resource representing a supported profile of the default entailment regime (as declared by <a href="#sd-defaultEntailmentRegime"><code>sd:defaultEntailmentRegime</code></a>). Entailment profiles are discussed more in <a href="https://w3c.github.io/sparql-entailment/spec/#OWL2ProfilesDS" id="ref-for-index-term-sparql-1-2-entailment-regimes-0-1">SPARQL 1.2 Entailment Regimes</a> [<cite><a class="bibref" data-link-type="biblio" href="#bib-sparql12-entailment" title="SPARQL 1.2 Entailment Regimes">SPARQL12-ENTAILMENT</a></cite>].</p>
+          <p>Relates an instance of <a href="#sd-Service"><code>sd:Service</code></a> with a resource representing a supported profile of the default entailment regime (as declared by <a href="#sd-defaultEntailmentRegime"><code>sd:defaultEntailmentRegime</code></a>). Entailment profiles are discussed more in <a href="https://w3c.github.io/sparql-entailment/spec/#OWL2ProfilesDS" id="ref-for-index-term-sparql-1-2-entailment-regimes-1">SPARQL 1.2 Entailment Regimes</a> [<cite><a class="bibref" data-link-type="biblio" href="#bib-sparql12-entailment" title="SPARQL 1.2 Entailment Regimes">SPARQL12-ENTAILMENT</a></cite>].</p>
           <p>Note that this specification does not make any conformance requirements on the compatibility of an advertised entailment profile with the advertised entailment regime in a service
           description. Providing a reasonable combination of values to the <a href="#sd-entailmentRegime">sd:entailmentRegime</a>/<a href="#sd-defaultEntailmentRegime">sd:defaultEntailmentRegime</a>
           and <a href="#sd-supportedEntailmentProfile">sd:supportedEntailmentProfile</a>/<a href="#sd-defaultSupportedEntailmentProfile">sd:defaultSupportedEntailmentProfile</a> properties is up to
@@ -1477,7 +1477,7 @@ var[data-type]:hover::after,var[data-type]:hover::before{opacity:1}
         </section>
         <section id="lang-sparql11query"><div class="header-wrapper"><h4 id="x4-4-2-sd-sparql11query"><bdi class="secno">4.4.2 </bdi>sd:SPARQL11Query</h4><a class="self-link" href="#lang-sparql11query" aria-label="Permalink for Section 4.4.2"></a></div>
           
-          <p><code>sd:SPARQL11Query</code> is an <a href="#sd-Language"><code>sd:Language</code></a> representing the <cite><a data-matched-text="[[[SPARQL11-QUERY]]]" href="https://www.w3.org/TR/sparql11-query/" id="ref-for-index-term-sparql-1-1-query-language-1">SPARQL 1.1 Query Language</a></cite>.</p>
+          <p><code>sd:SPARQL11Query</code> is an <a href="#sd-Language"><code>sd:Language</code></a> representing the <cite><a data-matched-text="[[[SPARQL11-QUERY]]]" href="https://www.w3.org/TR/sparql11-query/">SPARQL 1.1 Query Language</a></cite>.</p>
           <table>
             <tbody>
               <tr>
@@ -1489,7 +1489,7 @@ var[data-type]:hover::after,var[data-type]:hover::before{opacity:1}
         </section>
         <section id="lang-sparql11update"><div class="header-wrapper"><h4 id="x4-4-3-sd-sparql11update"><bdi class="secno">4.4.3 </bdi>sd:SPARQL11Update</h4><a class="self-link" href="#lang-sparql11update" aria-label="Permalink for Section 4.4.3"></a></div>
           
-          <p><code>sd:SPARQL11Update</code> is an <a href="#sd-Language"><code>sd:Language</code></a> representing the <cite><a data-matched-text="[[[SPARQL11-UPDATE]]]" href="https://www.w3.org/TR/sparql11-update/" id="ref-for-index-term-sparql-1-1-update-1">SPARQL 1.1 Update</a></cite> language.</p>
+          <p><code>sd:SPARQL11Update</code> is an <a href="#sd-Language"><code>sd:Language</code></a> representing the <cite><a data-matched-text="[[[SPARQL11-UPDATE]]]" href="https://www.w3.org/TR/sparql11-update/">SPARQL 1.1 Update</a></cite> language.</p>
           <table>
             <tbody>
               <tr>
@@ -1501,7 +1501,7 @@ var[data-type]:hover::after,var[data-type]:hover::before{opacity:1}
         </section>
         <section id="lang-sparql12query"><div class="header-wrapper"><h4 id="x4-4-4-sd-sparql12query"><bdi class="secno">4.4.4 </bdi>sd:SPARQL12Query</h4><a class="self-link" href="#lang-sparql12query" aria-label="Permalink for Section 4.4.4"></a></div>
           
-          <p><code>sd:SPARQL12Query</code> is an <a href="#sd-Language"><code>sd:Language</code></a> representing the <cite><a data-matched-text="[[[SPARQL12-QUERY]]]" href="https://w3c.github.io/sparql-query/spec/" id="ref-for-index-term-sparql-1-2-query-language-3">SPARQL 1.2 Query Language</a></cite>.</p>
+          <p><code>sd:SPARQL12Query</code> is an <a href="#sd-Language"><code>sd:Language</code></a> representing the <cite><a data-matched-text="[[[SPARQL12-QUERY]]]" href="https://w3c.github.io/sparql-query/spec/">SPARQL 1.2 Query Language</a></cite>.</p>
           <table>
             <tbody>
               <tr>
@@ -1513,7 +1513,7 @@ var[data-type]:hover::after,var[data-type]:hover::before{opacity:1}
         </section>
         <section id="lang-sparql12update"><div class="header-wrapper"><h4 id="x4-4-5-sd-sparql12update"><bdi class="secno">4.4.5 </bdi>sd:SPARQL12Update</h4><a class="self-link" href="#lang-sparql12update" aria-label="Permalink for Section 4.4.5"></a></div>
           
-          <p><code>sd:SPARQL12Update</code> is an <a href="#sd-Language"><code>sd:Language</code></a> representing the <cite><a data-matched-text="[[[SPARQL12-UPDATE]]]" href="https://w3c.github.io/sparql-update/spec/" id="ref-for-index-term-sparql-1-2-update-2">SPARQL 1.2 Update</a></cite> language.</p>
+          <p><code>sd:SPARQL12Update</code> is an <a href="#sd-Language"><code>sd:Language</code></a> representing the <cite><a data-matched-text="[[[SPARQL12-UPDATE]]]" href="https://w3c.github.io/sparql-update/spec/">SPARQL 1.2 Update</a></cite> language.</p>
           <table>
             <tbody>
               <tr>
@@ -1579,7 +1579,7 @@ var[data-type]:hover::after,var[data-type]:hover::before{opacity:1}
         <section id="sd-basicfederatedquery"><div class="header-wrapper"><h4 id="x4-4-10-sd-basicfederatedquery"><bdi class="secno">4.4.10 </bdi>sd:BasicFederatedQuery</h4><a class="self-link" href="#sd-basicfederatedquery" aria-label="Permalink for Section 4.4.10"></a></div>
           
           <p><code>sd:BasicFederatedQuery</code>, when used as the object of the <a href="#sd-feature">sd:feature</a> property, indicates that the SPARQL service supports basic federated query using
-          the <a href="https://w3c.github.io/sparql-federated-query/spec/#service" id="ref-for-index-term-service-keyword-1">SERVICE keyword</a> as defined by <cite><a data-matched-text="[[[SPARQL12-FEDERATED-QUERY]]]" href="https://w3c.github.io/sparql-federated-query/spec/" id="ref-for-index-term-sparql-1-2-federated-query-2">SPARQL 1.2 Federated Query</a></cite>.</p>
+          the <a href="https://w3c.github.io/sparql-federated-query/spec/#service" id="ref-for-index-term-service-keyword-1">SERVICE keyword</a> as defined by <cite><a data-matched-text="[[[SPARQL12-FEDERATED-QUERY]]]" href="https://w3c.github.io/sparql-federated-query/spec/">SPARQL 1.2 Federated Query</a></cite>.</p>
           <table>
             <tbody>
               <tr>
@@ -1765,13 +1765,6 @@ var[data-type]:hover::after,var[data-type]:hover::before{opacity:1}
   </li>
         </ul>
       </li><li>
-        [<cite><a class="bibref" data-link-type="biblio" href="#bib-rdfa-core">RDFA-CORE</a></cite>] defines the following:
-        <ul>
-          <li>
-    <span class="index-term" data-href="https://www.w3.org/TR/rdfa-core/" id="index-term-rdfa-core-1-1-third-edition" tabindex="0" aria-haspopup="dialog">RDFa Core 1.1 - Third Edition</span>
-  </li>
-        </ul>
-      </li><li>
         [<cite><a class="bibref" data-link-type="biblio" href="#bib-rfc9110">RFC9110</a></cite>] defines the following:
         <ul>
           <li>
@@ -1786,33 +1779,10 @@ var[data-type]:hover::after,var[data-type]:hover::before{opacity:1}
   </li>
         </ul>
       </li><li>
-        [<cite><a class="bibref" data-link-type="biblio" href="#bib-sparql11-query">SPARQL11-QUERY</a></cite>] defines the following:
-        <ul>
-          <li>
-    <span class="index-term" data-href="https://www.w3.org/TR/sparql11-query/" id="index-term-sparql-1-1-query-language" tabindex="0" aria-haspopup="dialog">SPARQL 1.1 Query Language</span>
-  </li>
-        </ul>
-      </li><li>
-        [<cite><a class="bibref" data-link-type="biblio" href="#bib-sparql11-update">SPARQL11-UPDATE</a></cite>] defines the following:
-        <ul>
-          <li>
-    <span class="index-term" data-href="https://www.w3.org/TR/sparql11-update/" id="index-term-sparql-1-1-update" tabindex="0" aria-haspopup="dialog">SPARQL 1.1 Update</span>
-  </li>
-        </ul>
-      </li><li>
-        [<cite><a class="bibref" data-link-type="biblio" href="#bib-sparql12-concepts">SPARQL12-CONCEPTS</a></cite>] defines the following:
-        <ul>
-          <li>
-    <span class="index-term" data-href="https://w3c.github.io/sparql-concepts/spec/" id="index-term-sparql-1-2-concepts" tabindex="0" aria-haspopup="dialog">SPARQL 1.2 Concepts</span>
-  </li>
-        </ul>
-      </li><li>
         [<cite><a class="bibref" data-link-type="biblio" href="#bib-sparql12-entailment">SPARQL12-ENTAILMENT</a></cite>] defines the following:
         <ul>
           <li>
-    <span class="index-term" data-href="https://w3c.github.io/sparql-entailment/spec/" id="index-term-sparql-1-2-entailment-regimes" tabindex="0" aria-haspopup="dialog">SPARQL 1.2 Entailment Regimes</span>
-  </li><li>
-    <span class="index-term" data-href="https://w3c.github.io/sparql-entailment/spec/#OWL2ProfilesDS" id="index-term-sparql-1-2-entailment-regimes-0" tabindex="0" aria-haspopup="dialog">SPARQL 1.2 Entailment Regimes</span>
+    <span class="index-term" data-href="https://w3c.github.io/sparql-entailment/spec/#OWL2ProfilesDS" id="index-term-sparql-1-2-entailment-regimes" tabindex="0" aria-haspopup="dialog">SPARQL 1.2 Entailment Regimes</span>
   </li>
         </ul>
       </li><li>
@@ -1820,22 +1790,6 @@ var[data-type]:hover::after,var[data-type]:hover::before{opacity:1}
         <ul>
           <li>
     <span class="index-term" data-href="https://w3c.github.io/sparql-federated-query/spec/#service" id="index-term-service-keyword" tabindex="0" aria-haspopup="dialog">SERVICE keyword</span>
-  </li><li>
-    <span class="index-term" data-href="https://w3c.github.io/sparql-federated-query/spec/" id="index-term-sparql-1-2-federated-query" tabindex="0" aria-haspopup="dialog">SPARQL 1.2 Federated Query</span>
-  </li>
-        </ul>
-      </li><li>
-        [<cite><a class="bibref" data-link-type="biblio" href="#bib-sparql12-graph-store-protocol">SPARQL12-GRAPH-STORE-PROTOCOL</a></cite>] defines the following:
-        <ul>
-          <li>
-    <span class="index-term" data-href="https://w3c.github.io/sparql-graph-store-protocol/spec/" id="index-term-sparql-1-2-graph-store-http-protocol" tabindex="0" aria-haspopup="dialog">SPARQL 1.2 Graph Store HTTP Protocol</span>
-  </li>
-        </ul>
-      </li><li>
-        [<cite><a class="bibref" data-link-type="biblio" href="#bib-sparql12-new">SPARQL12-NEW</a></cite>] defines the following:
-        <ul>
-          <li>
-    <span class="index-term" data-href="https://w3c.github.io/sparql-new/spec/" id="index-term-what-s-new-in-sparql-1-2" tabindex="0" aria-haspopup="dialog">What’s New in SPARQL 1.2</span>
   </li>
         </ul>
       </li><li>
@@ -1843,8 +1797,6 @@ var[data-type]:hover::after,var[data-type]:hover::before{opacity:1}
         <ul>
           <li>
     <span class="index-term" data-href="https://w3c.github.io/sparql-protocol/spec/#dataset" id="index-term-appropriate-sparql-protocol-parameters" tabindex="0" aria-haspopup="dialog">appropriate SPARQL Protocol parameters</span>
-  </li><li>
-    <span class="index-term" data-href="https://w3c.github.io/sparql-protocol/spec/" id="index-term-sparql-1-2-protocol" tabindex="0" aria-haspopup="dialog">SPARQL 1.2 Protocol</span>
   </li><li>
     <span class="index-term" data-href="https://w3c.github.io/sparql-protocol/spec/#terminology" id="index-term-sparql-protocol-service" tabindex="0" aria-haspopup="dialog">SPARQL Protocol service</span>
   </li>
@@ -1869,30 +1821,7 @@ var[data-type]:hover::after,var[data-type]:hover::before{opacity:1}
   </li><li>
     <span class="index-term" data-href="https://w3c.github.io/sparql-query/spec/#selectExpressions" id="index-term-select-expression" tabindex="0" aria-haspopup="dialog">SELECT expression</span>
   </li><li>
-    <span class="index-term" data-href="https://w3c.github.io/sparql-query/spec/" id="index-term-sparql-1-2-query-language" tabindex="0" aria-haspopup="dialog">SPARQL 1.2 Query Language</span>
-  </li><li>
     <span class="index-term" data-href="https://w3c.github.io/sparql-query/spec/#aggregates" id="index-term-supported-aggregates" tabindex="0" aria-haspopup="dialog">supported aggregates</span>
-  </li>
-        </ul>
-      </li><li>
-        [<cite><a class="bibref" data-link-type="biblio" href="#bib-sparql12-results-csv-tsv">SPARQL12-RESULTS-CSV-TSV</a></cite>] defines the following:
-        <ul>
-          <li>
-    <span class="index-term" data-href="https://w3c.github.io/sparql-results-csv-tsv/spec/" id="index-term-sparql-1-2-query-results-csv-and-tsv-formats" tabindex="0" aria-haspopup="dialog">SPARQL 1.2 Query Results CSV and TSV Formats</span>
-  </li>
-        </ul>
-      </li><li>
-        [<cite><a class="bibref" data-link-type="biblio" href="#bib-sparql12-results-json">SPARQL12-RESULTS-JSON</a></cite>] defines the following:
-        <ul>
-          <li>
-    <span class="index-term" data-href="https://w3c.github.io/sparql-results-json/spec/" id="index-term-sparql-1-2-query-results-json-format" tabindex="0" aria-haspopup="dialog">SPARQL 1.2 Query Results JSON Format</span>
-  </li>
-        </ul>
-      </li><li>
-        [<cite><a class="bibref" data-link-type="biblio" href="#bib-sparql12-results-xml">SPARQL12-RESULTS-XML</a></cite>] defines the following:
-        <ul>
-          <li>
-    <span class="index-term" data-href="https://w3c.github.io/sparql-results-xml/spec/" id="index-term-sparql-1-2-query-results-xml-formats" tabindex="0" aria-haspopup="dialog">SPARQL 1.2 Query Results XML Formats</span>
   </li>
         </ul>
       </li><li>
@@ -1902,8 +1831,6 @@ var[data-type]:hover::after,var[data-type]:hover::before{opacity:1}
     <span class="index-term" data-href="https://w3c.github.io/sparql-update/spec/#graphUpdate" id="index-term-3-1-graph-update-in-sparql-1-2-update" tabindex="0" aria-haspopup="dialog">3.1 Graph Update in SPARQL 1.2 Update</span>
   </li><li>
     <span class="index-term" data-href="https://w3c.github.io/sparql-update/spec/#load" id="index-term-load-statement" tabindex="0" aria-haspopup="dialog">LOAD statement</span>
-  </li><li>
-    <span class="index-term" data-href="https://w3c.github.io/sparql-update/spec/" id="index-term-sparql-1-2-update" tabindex="0" aria-haspopup="dialog">SPARQL 1.2 Update</span>
   </li><li>
     <span class="index-term" data-href="https://w3c.github.io/sparql-update/spec/#defUSING" id="index-term-using-using-named" tabindex="0" aria-haspopup="dialog">USING/USING NAMED</span>
   </li>
@@ -1926,7 +1853,7 @@ var[data-type]:hover::after,var[data-type]:hover::before{opacity:1}
     <dl class="bibliography"><dt id="bib-rdf12-turtle">[RDF12-TURTLE]</dt><dd>
       <a href="https://w3c.github.io/rdf-turtle/spec/"><cite>RDF 1.2 Turtle</cite></a>. Eric Prud'hommeaux; Gavin Carothers.  W3C. W3C Working Draft. URL: <a href="https://w3c.github.io/rdf-turtle/spec/">https://w3c.github.io/rdf-turtle/spec/</a>
     </dd><dt id="bib-rdfa-core">[RDFa-core]</dt><dd>
-      <a href="https://www.w3.org/TR/rdfa-core/" id="ref-for-index-term-rdfa-core-1-1-third-edition-2"><cite>RDFa Core 1.1 - Third Edition</cite></a>. Ben Adida; Mark Birbeck; Shane McCarron; Ivan Herman et al.  W3C. 17 March 2015. W3C Recommendation. URL: <a href="https://www.w3.org/TR/rdfa-core/" id="ref-for-index-term-rdfa-core-1-1-third-edition-3">https://www.w3.org/TR/rdfa-core/</a>
+      <a href="https://www.w3.org/TR/rdfa-core/"><cite>RDFa Core 1.1 - Third Edition</cite></a>. Ben Adida; Mark Birbeck; Shane McCarron; Ivan Herman et al.  W3C. 17 March 2015. W3C Recommendation. URL: <a href="https://www.w3.org/TR/rdfa-core/">https://www.w3.org/TR/rdfa-core/</a>
     </dd><dt id="bib-rfc2119">[RFC2119]</dt><dd>
       <a href="https://www.rfc-editor.org/rfc/rfc2119"><cite>Key words for use in RFCs to Indicate Requirement Levels</cite></a>. S. Bradner.  IETF. March 1997. Best Current Practice. URL: <a href="https://www.rfc-editor.org/rfc/rfc2119">https://www.rfc-editor.org/rfc/rfc2119</a>
     </dd><dt id="bib-rfc8174">[RFC8174]</dt><dd>
@@ -1936,31 +1863,31 @@ var[data-type]:hover::after,var[data-type]:hover::before{opacity:1}
     </dd><dt id="bib-sparql-query">[SPARQL-QUERY]</dt><dd>
       <a href="https://www.w3.org/TR/rdf-sparql-query/"><cite>SPARQL Query Language for RDF</cite></a>. Eric Prud'hommeaux; Andy Seaborne.  W3C. 15 January 2008. W3C Recommendation. URL: <a href="https://www.w3.org/TR/rdf-sparql-query/">https://www.w3.org/TR/rdf-sparql-query/</a>
     </dd><dt id="bib-sparql11-query">[SPARQL11-QUERY]</dt><dd>
-      <a href="https://www.w3.org/TR/sparql11-query/" id="ref-for-index-term-sparql-1-1-query-language-2"><cite>SPARQL 1.1 Query Language</cite></a>. Steven Harris; Andy Seaborne.  W3C. 21 March 2013. W3C Recommendation. URL: <a href="https://www.w3.org/TR/sparql11-query/" id="ref-for-index-term-sparql-1-1-query-language-3">https://www.w3.org/TR/sparql11-query/</a>
+      <a href="https://www.w3.org/TR/sparql11-query/"><cite>SPARQL 1.1 Query Language</cite></a>. Steven Harris; Andy Seaborne.  W3C. 21 March 2013. W3C Recommendation. URL: <a href="https://www.w3.org/TR/sparql11-query/">https://www.w3.org/TR/sparql11-query/</a>
     </dd><dt id="bib-sparql11-update">[SPARQL11-UPDATE]</dt><dd>
-      <a href="https://www.w3.org/TR/sparql11-update/" id="ref-for-index-term-sparql-1-1-update-2"><cite>SPARQL 1.1 Update</cite></a>. Paula Gearon; Alexandre Passant; Axel Polleres.  W3C. 21 March 2013. W3C Recommendation. URL: <a href="https://www.w3.org/TR/sparql11-update/" id="ref-for-index-term-sparql-1-1-update-3">https://www.w3.org/TR/sparql11-update/</a>
+      <a href="https://www.w3.org/TR/sparql11-update/"><cite>SPARQL 1.1 Update</cite></a>. Paula Gearon; Alexandre Passant; Axel Polleres.  W3C. 21 March 2013. W3C Recommendation. URL: <a href="https://www.w3.org/TR/sparql11-update/">https://www.w3.org/TR/sparql11-update/</a>
     </dd><dt id="bib-sparql12-concepts">[SPARQL12-CONCEPTS]</dt><dd>
-      <a href="https://w3c.github.io/sparql-concepts/spec/" id="ref-for-index-term-sparql-1-2-concepts-2"><cite>SPARQL 1.2 Concepts</cite></a>. The W3C RDF-star Working Group.  W3C. W3C Working Draft. URL: <a href="https://w3c.github.io/sparql-concepts/spec/" id="ref-for-index-term-sparql-1-2-concepts-3">https://w3c.github.io/sparql-concepts/spec/</a>
+      <a href="https://w3c.github.io/sparql-concepts/spec/"><cite>SPARQL 1.2 Concepts</cite></a>. The W3C RDF-star Working Group.  W3C. W3C Working Draft. URL: <a href="https://w3c.github.io/sparql-concepts/spec/">https://w3c.github.io/sparql-concepts/spec/</a>
     </dd><dt id="bib-sparql12-entailment">[SPARQL12-ENTAILMENT]</dt><dd>
-      <a href="https://w3c.github.io/sparql-entailment/spec/" id="ref-for-index-term-sparql-1-2-entailment-regimes-2"><cite>SPARQL 1.2 Entailment Regimes</cite></a>. Birte Glimm; Chimezie Ogbuji.  W3C. W3C Working Draft. URL: <a href="https://w3c.github.io/sparql-entailment/spec/" id="ref-for-index-term-sparql-1-2-entailment-regimes-3">https://w3c.github.io/sparql-entailment/spec/</a>
+      <a href="https://w3c.github.io/sparql-entailment/spec/"><cite>SPARQL 1.2 Entailment Regimes</cite></a>. Birte Glimm; Chimezie Ogbuji.  W3C. W3C Working Draft. URL: <a href="https://w3c.github.io/sparql-entailment/spec/">https://w3c.github.io/sparql-entailment/spec/</a>
     </dd><dt id="bib-sparql12-federated-query">[SPARQL12-FEDERATED-QUERY]</dt><dd>
-      <a href="https://w3c.github.io/sparql-federated-query/spec/" id="ref-for-index-term-sparql-1-2-federated-query-3"><cite>SPARQL 1.2 Federated Query</cite></a>. Eric Prud'hommeaux; Carlos Buil Aranda.  W3C. W3C Working Draft. URL: <a href="https://w3c.github.io/sparql-federated-query/spec/" id="ref-for-index-term-sparql-1-2-federated-query-4">https://w3c.github.io/sparql-federated-query/spec/</a>
+      <a href="https://w3c.github.io/sparql-federated-query/spec/"><cite>SPARQL 1.2 Federated Query</cite></a>. Eric Prud'hommeaux; Carlos Buil Aranda.  W3C. W3C Working Draft. URL: <a href="https://w3c.github.io/sparql-federated-query/spec/">https://w3c.github.io/sparql-federated-query/spec/</a>
     </dd><dt id="bib-sparql12-graph-store-protocol">[SPARQL12-GRAPH-STORE-PROTOCOL]</dt><dd>
-      <a href="https://w3c.github.io/sparql-graph-store-protocol/spec/" id="ref-for-index-term-sparql-1-2-graph-store-http-protocol-2"><cite>SPARQL 1.2 Graph Store HTTP Protocol</cite></a>. Chimezie Ogbuji.  W3C. W3C Working Draft. URL: <a href="https://w3c.github.io/sparql-graph-store-protocol/spec/" id="ref-for-index-term-sparql-1-2-graph-store-http-protocol-3">https://w3c.github.io/sparql-graph-store-protocol/spec/</a>
+      <a href="https://w3c.github.io/sparql-graph-store-protocol/spec/"><cite>SPARQL 1.2 Graph Store HTTP Protocol</cite></a>. Chimezie Ogbuji.  W3C. W3C Working Draft. URL: <a href="https://w3c.github.io/sparql-graph-store-protocol/spec/">https://w3c.github.io/sparql-graph-store-protocol/spec/</a>
     </dd><dt id="bib-sparql12-new">[SPARQL12-NEW]</dt><dd>
-      <a href="https://w3c.github.io/sparql-new/spec/" id="ref-for-index-term-what-s-new-in-sparql-1-2-2"><cite>What’s New in SPARQL 1.2</cite></a>. The W3C RDF-star Working Group.  W3C. W3C Working Draft. URL: <a href="https://w3c.github.io/sparql-new/spec/" id="ref-for-index-term-what-s-new-in-sparql-1-2-3">https://w3c.github.io/sparql-new/spec/</a>
+      <a href="https://w3c.github.io/sparql-new/spec/"><cite>What’s New in SPARQL 1.2</cite></a>. The W3C RDF-star Working Group.  W3C. W3C Working Draft. URL: <a href="https://w3c.github.io/sparql-new/spec/">https://w3c.github.io/sparql-new/spec/</a>
     </dd><dt id="bib-sparql12-protocol">[SPARQL12-PROTOCOL]</dt><dd>
-      <a href="https://w3c.github.io/sparql-protocol/spec/" id="ref-for-index-term-sparql-1-2-protocol-4"><cite>SPARQL 1.2 Protocol</cite></a>. Lee Feigenbaum; Gregory Williams; Kendall Clark; Elias Torres.  W3C. W3C Working Draft. URL: <a href="https://w3c.github.io/sparql-protocol/spec/" id="ref-for-index-term-sparql-1-2-protocol-5">https://w3c.github.io/sparql-protocol/spec/</a>
+      <a href="https://w3c.github.io/sparql-protocol/spec/"><cite>SPARQL 1.2 Protocol</cite></a>. Lee Feigenbaum; Gregory Williams; Kendall Clark; Elias Torres.  W3C. W3C Working Draft. URL: <a href="https://w3c.github.io/sparql-protocol/spec/">https://w3c.github.io/sparql-protocol/spec/</a>
     </dd><dt id="bib-sparql12-query">[SPARQL12-QUERY]</dt><dd>
-      <a href="https://w3c.github.io/sparql-query/spec/" id="ref-for-index-term-sparql-1-2-query-language-4"><cite>SPARQL 1.2 Query Language</cite></a>. Steven Harris; Andy Seaborne.  W3C. W3C Working Draft. URL: <a href="https://w3c.github.io/sparql-query/spec/" id="ref-for-index-term-sparql-1-2-query-language-5">https://w3c.github.io/sparql-query/spec/</a>
+      <a href="https://w3c.github.io/sparql-query/spec/"><cite>SPARQL 1.2 Query Language</cite></a>. Steven Harris; Andy Seaborne.  W3C. W3C Working Draft. URL: <a href="https://w3c.github.io/sparql-query/spec/">https://w3c.github.io/sparql-query/spec/</a>
     </dd><dt id="bib-sparql12-results-csv-tsv">[SPARQL12-RESULTS-CSV-TSV]</dt><dd>
-      <a href="https://w3c.github.io/sparql-results-csv-tsv/spec/" id="ref-for-index-term-sparql-1-2-query-results-csv-and-tsv-formats-2"><cite>SPARQL 1.2 Query Results CSV and TSV Formats</cite></a>. Andy Seaborne.  W3C. W3C Working Draft. URL: <a href="https://w3c.github.io/sparql-results-csv-tsv/spec/" id="ref-for-index-term-sparql-1-2-query-results-csv-and-tsv-formats-3">https://w3c.github.io/sparql-results-csv-tsv/spec/</a>
+      <a href="https://w3c.github.io/sparql-results-csv-tsv/spec/"><cite>SPARQL 1.2 Query Results CSV and TSV Formats</cite></a>. Andy Seaborne.  W3C. W3C Working Draft. URL: <a href="https://w3c.github.io/sparql-results-csv-tsv/spec/">https://w3c.github.io/sparql-results-csv-tsv/spec/</a>
     </dd><dt id="bib-sparql12-results-json">[SPARQL12-RESULTS-JSON]</dt><dd>
-      <a href="https://w3c.github.io/sparql-results-json/spec/" id="ref-for-index-term-sparql-1-2-query-results-json-format-2"><cite>SPARQL 1.2 Query Results JSON Format</cite></a>. Andy Seaborne.  W3C. W3C Working Draft. URL: <a href="https://w3c.github.io/sparql-results-json/spec/" id="ref-for-index-term-sparql-1-2-query-results-json-format-3">https://w3c.github.io/sparql-results-json/spec/</a>
+      <a href="https://w3c.github.io/sparql-results-json/spec/"><cite>SPARQL 1.2 Query Results JSON Format</cite></a>. Andy Seaborne.  W3C. W3C Working Draft. URL: <a href="https://w3c.github.io/sparql-results-json/spec/">https://w3c.github.io/sparql-results-json/spec/</a>
     </dd><dt id="bib-sparql12-results-xml">[SPARQL12-RESULTS-XML]</dt><dd>
-      <a href="https://w3c.github.io/sparql-results-xml/spec/" id="ref-for-index-term-sparql-1-2-query-results-xml-formats-2"><cite>SPARQL 1.2 Query Results XML Formats</cite></a>. Sandro Hawke; Dave Beckett; Jeen Broekstra.  W3C. W3C Working Draft. URL: <a href="https://w3c.github.io/sparql-results-xml/spec/" id="ref-for-index-term-sparql-1-2-query-results-xml-formats-3">https://w3c.github.io/sparql-results-xml/spec/</a>
+      <a href="https://w3c.github.io/sparql-results-xml/spec/"><cite>SPARQL 1.2 Query Results XML Formats</cite></a>. Sandro Hawke; Dave Beckett; Jeen Broekstra.  W3C. W3C Working Draft. URL: <a href="https://w3c.github.io/sparql-results-xml/spec/">https://w3c.github.io/sparql-results-xml/spec/</a>
     </dd><dt id="bib-sparql12-update">[SPARQL12-UPDATE]</dt><dd>
-      <a href="https://w3c.github.io/sparql-update/spec/" id="ref-for-index-term-sparql-1-2-update-3"><cite>SPARQL 1.2 Update</cite></a>. Paula Gearon; Alexandre Passant; Axel Polleres.  W3C. W3C Working Draft. URL: <a href="https://w3c.github.io/sparql-update/spec/" id="ref-for-index-term-sparql-1-2-update-4">https://w3c.github.io/sparql-update/spec/</a>
+      <a href="https://w3c.github.io/sparql-update/spec/"><cite>SPARQL 1.2 Update</cite></a>. Paula Gearon; Alexandre Passant; Axel Polleres.  W3C. W3C Working Draft. URL: <a href="https://w3c.github.io/sparql-update/spec/">https://w3c.github.io/sparql-update/spec/</a>
     </dd><dt id="bib-void">[VOID]</dt><dd>
       <a href="https://www.w3.org/TR/void/"><cite>Describing Linked Datasets with the VoID Vocabulary</cite></a>. Keith Alexander; Richard Cyganiak; Michael Hausenblas; Jun Zhao.  W3C. 3 March 2011. W3C Working Group Note. URL: <a href="https://www.w3.org/TR/void/">https://www.w3.org/TR/void/</a>
     </dd><dt id="bib-webarch">[WEBARCH]</dt><dd>
@@ -1978,20 +1905,6 @@ var[data-type]:hover::after,var[data-type]:hover::before{opacity:1}
       <ul>
     <li>
     <a href="#ref-for-index-term-turtle-1" title="§ 5.2 Turtle Service Description">§ 5.2 Turtle Service Description</a> 
-  </li>
-  </ul>
-    </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-rdfa-core-1-1-third-edition" aria-label="Links in this document to definition: RDFa Core 1.1 - Third Edition">
-      <span class="caret"></span>
-      <div>
-        <a class="self-link" href="https://www.w3.org/TR/rdfa-core/" aria-label="Permalink for definition: RDFa Core 1.1 - Third Edition. Activate to close this dialog.">Permalink</a>
-         
-      </div>
-      <p><b>Referenced in:</b></p>
-      <ul>
-    <li>
-    <a href="#ref-for-index-term-rdfa-core-1-1-third-edition-1" title="§ 3. Accessing a Service Description">§ 3. Accessing a Service Description</a> 
-  </li><li>
-    <a href="#ref-for-index-term-rdfa-core-1-1-third-edition-2" title="§ C.1 Normative references">§ C.1 Normative references</a> <a href="#ref-for-index-term-rdfa-core-1-1-third-edition-3" title="Reference 2">(2)</a> 
   </li>
   </ul>
     </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-content-negotiation" aria-label="Links in this document to definition: content negotiation">
@@ -2018,63 +1931,7 @@ var[data-type]:hover::after,var[data-type]:hover::before{opacity:1}
     <a href="#ref-for-index-term-sparql-1-0-query-language-1" title="§ 4.4.1 sd:SPARQL10Query">§ 4.4.1 sd:SPARQL10Query</a> 
   </li>
   </ul>
-    </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-sparql-1-1-query-language" aria-label="Links in this document to definition: SPARQL 1.1 Query Language">
-      <span class="caret"></span>
-      <div>
-        <a class="self-link" href="https://www.w3.org/TR/sparql11-query/" aria-label="Permalink for definition: SPARQL 1.1 Query Language. Activate to close this dialog.">Permalink</a>
-         
-      </div>
-      <p><b>Referenced in:</b></p>
-      <ul>
-    <li>
-    <a href="#ref-for-index-term-sparql-1-1-query-language-1" title="§ 4.4.2 sd:SPARQL11Query">§ 4.4.2 sd:SPARQL11Query</a> 
-  </li><li>
-    <a href="#ref-for-index-term-sparql-1-1-query-language-2" title="§ C.1 Normative references">§ C.1 Normative references</a> <a href="#ref-for-index-term-sparql-1-1-query-language-3" title="Reference 2">(2)</a> 
-  </li>
-  </ul>
-    </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-sparql-1-1-update" aria-label="Links in this document to definition: SPARQL 1.1 Update">
-      <span class="caret"></span>
-      <div>
-        <a class="self-link" href="https://www.w3.org/TR/sparql11-update/" aria-label="Permalink for definition: SPARQL 1.1 Update. Activate to close this dialog.">Permalink</a>
-         
-      </div>
-      <p><b>Referenced in:</b></p>
-      <ul>
-    <li>
-    <a href="#ref-for-index-term-sparql-1-1-update-1" title="§ 4.4.3 sd:SPARQL11Update">§ 4.4.3 sd:SPARQL11Update</a> 
-  </li><li>
-    <a href="#ref-for-index-term-sparql-1-1-update-2" title="§ C.1 Normative references">§ C.1 Normative references</a> <a href="#ref-for-index-term-sparql-1-1-update-3" title="Reference 2">(2)</a> 
-  </li>
-  </ul>
-    </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-sparql-1-2-concepts" aria-label="Links in this document to definition: SPARQL 1.2 Concepts">
-      <span class="caret"></span>
-      <div>
-        <a class="self-link" href="https://w3c.github.io/sparql-concepts/spec/" aria-label="Permalink for definition: SPARQL 1.2 Concepts. Activate to close this dialog.">Permalink</a>
-         
-      </div>
-      <p><b>Referenced in:</b></p>
-      <ul>
-    <li>
-    <a href="#ref-for-index-term-sparql-1-2-concepts-1" title="§ 1. Set of Documents">§ 1. Set of Documents</a> 
-  </li><li>
-    <a href="#ref-for-index-term-sparql-1-2-concepts-2" title="§ C.1 Normative references">§ C.1 Normative references</a> <a href="#ref-for-index-term-sparql-1-2-concepts-3" title="Reference 2">(2)</a> 
-  </li>
-  </ul>
     </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-sparql-1-2-entailment-regimes" aria-label="Links in this document to definition: SPARQL 1.2 Entailment Regimes">
-      <span class="caret"></span>
-      <div>
-        <a class="self-link" href="https://w3c.github.io/sparql-entailment/spec/" aria-label="Permalink for definition: SPARQL 1.2 Entailment Regimes. Activate to close this dialog.">Permalink</a>
-         
-      </div>
-      <p><b>Referenced in:</b></p>
-      <ul>
-    <li>
-    <a href="#ref-for-index-term-sparql-1-2-entailment-regimes-1" title="§ 1. Set of Documents">§ 1. Set of Documents</a> 
-  </li><li>
-    <a href="#ref-for-index-term-sparql-1-2-entailment-regimes-2" title="§ C.1 Normative references">§ C.1 Normative references</a> <a href="#ref-for-index-term-sparql-1-2-entailment-regimes-3" title="Reference 2">(2)</a> 
-  </li>
-  </ul>
-    </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-sparql-1-2-entailment-regimes-0" aria-label="Links in this document to definition: SPARQL 1.2 Entailment Regimes">
       <span class="caret"></span>
       <div>
         <a class="self-link" href="https://w3c.github.io/sparql-entailment/spec/#OWL2ProfilesDS" aria-label="Permalink for definition: SPARQL 1.2 Entailment Regimes. Activate to close this dialog.">Permalink</a>
@@ -2083,7 +1940,7 @@ var[data-type]:hover::after,var[data-type]:hover::before{opacity:1}
       <p><b>Referenced in:</b></p>
       <ul>
     <li>
-    <a href="#ref-for-index-term-sparql-1-2-entailment-regimes-0-1" title="§ 4.2.5 sd:defaultSupportedEntailmentProfile">§ 4.2.5 sd:defaultSupportedEntailmentProfile</a> 
+    <a href="#ref-for-index-term-sparql-1-2-entailment-regimes-1" title="§ 4.2.5 sd:defaultSupportedEntailmentProfile">§ 4.2.5 sd:defaultSupportedEntailmentProfile</a> 
   </li>
   </ul>
     </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-service-keyword" aria-label="Links in this document to definition: SERVICE keyword">
@@ -2098,50 +1955,6 @@ var[data-type]:hover::after,var[data-type]:hover::before{opacity:1}
     <a href="#ref-for-index-term-service-keyword-1" title="§ 4.4.10 sd:BasicFederatedQuery">§ 4.4.10 sd:BasicFederatedQuery</a> 
   </li>
   </ul>
-    </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-sparql-1-2-federated-query" aria-label="Links in this document to definition: SPARQL 1.2 Federated Query">
-      <span class="caret"></span>
-      <div>
-        <a class="self-link" href="https://w3c.github.io/sparql-federated-query/spec/" aria-label="Permalink for definition: SPARQL 1.2 Federated Query. Activate to close this dialog.">Permalink</a>
-         
-      </div>
-      <p><b>Referenced in:</b></p>
-      <ul>
-    <li>
-    <a href="#ref-for-index-term-sparql-1-2-federated-query-1" title="§ 1. Set of Documents">§ 1. Set of Documents</a> 
-  </li><li>
-    <a href="#ref-for-index-term-sparql-1-2-federated-query-2" title="§ 4.4.10 sd:BasicFederatedQuery">§ 4.4.10 sd:BasicFederatedQuery</a> 
-  </li><li>
-    <a href="#ref-for-index-term-sparql-1-2-federated-query-3" title="§ C.1 Normative references">§ C.1 Normative references</a> <a href="#ref-for-index-term-sparql-1-2-federated-query-4" title="Reference 2">(2)</a> 
-  </li>
-  </ul>
-    </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-sparql-1-2-graph-store-http-protocol" aria-label="Links in this document to definition: SPARQL 1.2 Graph Store HTTP Protocol">
-      <span class="caret"></span>
-      <div>
-        <a class="self-link" href="https://w3c.github.io/sparql-graph-store-protocol/spec/" aria-label="Permalink for definition: SPARQL 1.2 Graph Store HTTP Protocol. Activate to close this dialog.">Permalink</a>
-         
-      </div>
-      <p><b>Referenced in:</b></p>
-      <ul>
-    <li>
-    <a href="#ref-for-index-term-sparql-1-2-graph-store-http-protocol-1" title="§ 1. Set of Documents">§ 1. Set of Documents</a> 
-  </li><li>
-    <a href="#ref-for-index-term-sparql-1-2-graph-store-http-protocol-2" title="§ C.1 Normative references">§ C.1 Normative references</a> <a href="#ref-for-index-term-sparql-1-2-graph-store-http-protocol-3" title="Reference 2">(2)</a> 
-  </li>
-  </ul>
-    </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-what-s-new-in-sparql-1-2" aria-label="Links in this document to definition: What’s New in SPARQL 1.2">
-      <span class="caret"></span>
-      <div>
-        <a class="self-link" href="https://w3c.github.io/sparql-new/spec/" aria-label="Permalink for definition: What’s New in SPARQL 1.2. Activate to close this dialog.">Permalink</a>
-         
-      </div>
-      <p><b>Referenced in:</b></p>
-      <ul>
-    <li>
-    <a href="#ref-for-index-term-what-s-new-in-sparql-1-2-1" title="§ 1. Set of Documents">§ 1. Set of Documents</a> 
-  </li><li>
-    <a href="#ref-for-index-term-what-s-new-in-sparql-1-2-2" title="§ C.1 Normative references">§ C.1 Normative references</a> <a href="#ref-for-index-term-what-s-new-in-sparql-1-2-3" title="Reference 2">(2)</a> 
-  </li>
-  </ul>
     </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-appropriate-sparql-protocol-parameters" aria-label="Links in this document to definition: appropriate SPARQL Protocol parameters">
       <span class="caret"></span>
       <div>
@@ -2152,24 +1965,6 @@ var[data-type]:hover::after,var[data-type]:hover::before{opacity:1}
       <ul>
     <li>
     <a href="#ref-for-index-term-appropriate-sparql-protocol-parameters-1" title="§ 4.4.8 sd:RequiresDataset">§ 4.4.8 sd:RequiresDataset</a> 
-  </li>
-  </ul>
-    </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-sparql-1-2-protocol" aria-label="Links in this document to definition: SPARQL 1.2 Protocol">
-      <span class="caret"></span>
-      <div>
-        <a class="self-link" href="https://w3c.github.io/sparql-protocol/spec/" aria-label="Permalink for definition: SPARQL 1.2 Protocol. Activate to close this dialog.">Permalink</a>
-         
-      </div>
-      <p><b>Referenced in:</b></p>
-      <ul>
-    <li>
-    <a href="#ref-for-index-term-sparql-1-2-protocol-1" title="§ Abstract">§ Abstract</a> 
-  </li><li>
-    <a href="#ref-for-index-term-sparql-1-2-protocol-2" title="§ 1. Set of Documents">§ 1. Set of Documents</a> 
-  </li><li>
-    <a href="#ref-for-index-term-sparql-1-2-protocol-3" title="§ 2.1 Terminology">§ 2.1 Terminology</a> 
-  </li><li>
-    <a href="#ref-for-index-term-sparql-1-2-protocol-4" title="§ C.1 Normative references">§ C.1 Normative references</a> <a href="#ref-for-index-term-sparql-1-2-protocol-5" title="Reference 2">(2)</a> 
   </li>
   </ul>
     </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-sparql-protocol-service" aria-label="Links in this document to definition: SPARQL Protocol service">
@@ -2304,24 +2099,6 @@ var[data-type]:hover::after,var[data-type]:hover::before{opacity:1}
     <a href="#ref-for-index-term-select-expression-4" title="§ 4.3.5 sd:Aggregate">§ 4.3.5 sd:Aggregate</a> 
   </li>
   </ul>
-    </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-sparql-1-2-query-language" aria-label="Links in this document to definition: SPARQL 1.2 Query Language">
-      <span class="caret"></span>
-      <div>
-        <a class="self-link" href="https://w3c.github.io/sparql-query/spec/" aria-label="Permalink for definition: SPARQL 1.2 Query Language. Activate to close this dialog.">Permalink</a>
-         
-      </div>
-      <p><b>Referenced in:</b></p>
-      <ul>
-    <li>
-    <a href="#ref-for-index-term-sparql-1-2-query-language-1" title="§ 1. Set of Documents">§ 1. Set of Documents</a> 
-  </li><li>
-    <a href="#ref-for-index-term-sparql-1-2-query-language-2" title="§ 2. Introduction">§ 2. Introduction</a> 
-  </li><li>
-    <a href="#ref-for-index-term-sparql-1-2-query-language-3" title="§ 4.4.4 sd:SPARQL12Query">§ 4.4.4 sd:SPARQL12Query</a> 
-  </li><li>
-    <a href="#ref-for-index-term-sparql-1-2-query-language-4" title="§ C.1 Normative references">§ C.1 Normative references</a> <a href="#ref-for-index-term-sparql-1-2-query-language-5" title="Reference 2">(2)</a> 
-  </li>
-  </ul>
     </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-supported-aggregates" aria-label="Links in this document to definition: supported aggregates">
       <span class="caret"></span>
       <div>
@@ -2334,48 +2111,6 @@ var[data-type]:hover::after,var[data-type]:hover::before{opacity:1}
     <a href="#ref-for-index-term-supported-aggregates-1" title="§ 4.2.8 sd:extensionAggregate">§ 4.2.8 sd:extensionAggregate</a> 
   </li><li>
     <a href="#ref-for-index-term-supported-aggregates-2" title="§ 4.3.5 sd:Aggregate">§ 4.3.5 sd:Aggregate</a> 
-  </li>
-  </ul>
-    </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-sparql-1-2-query-results-csv-and-tsv-formats" aria-label="Links in this document to definition: SPARQL 1.2 Query Results CSV and TSV Formats">
-      <span class="caret"></span>
-      <div>
-        <a class="self-link" href="https://w3c.github.io/sparql-results-csv-tsv/spec/" aria-label="Permalink for definition: SPARQL 1.2 Query Results CSV and TSV Formats. Activate to close this dialog.">Permalink</a>
-         
-      </div>
-      <p><b>Referenced in:</b></p>
-      <ul>
-    <li>
-    <a href="#ref-for-index-term-sparql-1-2-query-results-csv-and-tsv-formats-1" title="§ 1. Set of Documents">§ 1. Set of Documents</a> 
-  </li><li>
-    <a href="#ref-for-index-term-sparql-1-2-query-results-csv-and-tsv-formats-2" title="§ C.1 Normative references">§ C.1 Normative references</a> <a href="#ref-for-index-term-sparql-1-2-query-results-csv-and-tsv-formats-3" title="Reference 2">(2)</a> 
-  </li>
-  </ul>
-    </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-sparql-1-2-query-results-json-format" aria-label="Links in this document to definition: SPARQL 1.2 Query Results JSON Format">
-      <span class="caret"></span>
-      <div>
-        <a class="self-link" href="https://w3c.github.io/sparql-results-json/spec/" aria-label="Permalink for definition: SPARQL 1.2 Query Results JSON Format. Activate to close this dialog.">Permalink</a>
-         
-      </div>
-      <p><b>Referenced in:</b></p>
-      <ul>
-    <li>
-    <a href="#ref-for-index-term-sparql-1-2-query-results-json-format-1" title="§ 1. Set of Documents">§ 1. Set of Documents</a> 
-  </li><li>
-    <a href="#ref-for-index-term-sparql-1-2-query-results-json-format-2" title="§ C.1 Normative references">§ C.1 Normative references</a> <a href="#ref-for-index-term-sparql-1-2-query-results-json-format-3" title="Reference 2">(2)</a> 
-  </li>
-  </ul>
-    </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-sparql-1-2-query-results-xml-formats" aria-label="Links in this document to definition: SPARQL 1.2 Query Results XML Formats">
-      <span class="caret"></span>
-      <div>
-        <a class="self-link" href="https://w3c.github.io/sparql-results-xml/spec/" aria-label="Permalink for definition: SPARQL 1.2 Query Results XML Formats. Activate to close this dialog.">Permalink</a>
-         
-      </div>
-      <p><b>Referenced in:</b></p>
-      <ul>
-    <li>
-    <a href="#ref-for-index-term-sparql-1-2-query-results-xml-formats-1" title="§ 1. Set of Documents">§ 1. Set of Documents</a> 
-  </li><li>
-    <a href="#ref-for-index-term-sparql-1-2-query-results-xml-formats-2" title="§ C.1 Normative references">§ C.1 Normative references</a> <a href="#ref-for-index-term-sparql-1-2-query-results-xml-formats-3" title="Reference 2">(2)</a> 
   </li>
   </ul>
     </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-3-1-graph-update-in-sparql-1-2-update" aria-label="Links in this document to definition: 3.1 Graph Update in SPARQL 1.2 Update">
@@ -2400,22 +2135,6 @@ var[data-type]:hover::after,var[data-type]:hover::before{opacity:1}
       <ul>
     <li>
     <a href="#ref-for-index-term-load-statement-1" title="§ 4.2.15 sd:inputFormat">§ 4.2.15 sd:inputFormat</a> 
-  </li>
-  </ul>
-    </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-sparql-1-2-update" aria-label="Links in this document to definition: SPARQL 1.2 Update">
-      <span class="caret"></span>
-      <div>
-        <a class="self-link" href="https://w3c.github.io/sparql-update/spec/" aria-label="Permalink for definition: SPARQL 1.2 Update. Activate to close this dialog.">Permalink</a>
-         
-      </div>
-      <p><b>Referenced in:</b></p>
-      <ul>
-    <li>
-    <a href="#ref-for-index-term-sparql-1-2-update-1" title="§ 1. Set of Documents">§ 1. Set of Documents</a> 
-  </li><li>
-    <a href="#ref-for-index-term-sparql-1-2-update-2" title="§ 4.4.5 sd:SPARQL12Update">§ 4.4.5 sd:SPARQL12Update</a> 
-  </li><li>
-    <a href="#ref-for-index-term-sparql-1-2-update-3" title="§ C.1 Normative references">§ C.1 Normative references</a> <a href="#ref-for-index-term-sparql-1-2-update-4" title="Reference 2">(2)</a> 
   </li>
   </ul>
     </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-using-using-named" aria-label="Links in this document to definition: USING/USING NAMED">
