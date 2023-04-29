@@ -505,7 +505,8 @@ var[data-type]:hover::after,var[data-type]:hover::before{opacity:1}
       "title": "RDF 1.2 Concepts and Abstract Syntax",
       "rawDate": "2022-01-01",
       "status": "WD",
-      "publisher": "W3C"
+      "publisher": "W3C",
+      "id": "rdf12-concepts"
     },
     "RDF12-SEMANTICS": {
       "authors": [
@@ -792,20 +793,20 @@ var[data-type]:hover::after,var[data-type]:hover::before{opacity:1}
     "no-unused-dfns": false
   },
   "pubDate": "2023-04-04",
-  "publishISODate": "2023-04-05T00:00:00.000Z",
-  "generatedSubtitle": "W3C First Public Working Draft 05 April 2023"
+  "publishISODate": "2023-04-29T00:00:00.000Z",
+  "generatedSubtitle": "W3C First Public Working Draft 29 April 2023"
 }</script>
 <link rel="stylesheet" href="https://www.w3.org/StyleSheets/TR/2021/W3C-WD"></head>
   <body class="h-entry"><div class="head">
     <p class="logos"><a class="logo" href="https://www.w3.org/"><img crossorigin="" alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2021/logos/W3C" width="72">
   </a></p>
     <h1 id="title" class="title">SPARQL 1.2 Update</h1> 
-    <p id="w3c-state"><a href="https://www.w3.org/standards/types#FPWD">W3C First Public Working Draft</a> <time class="dt-published" datetime="2023-04-05">05 April 2023</time></p>
+    <p id="w3c-state"><a href="https://www.w3.org/standards/types#FPWD">W3C First Public Working Draft</a> <time class="dt-published" datetime="2023-04-29">29 April 2023</time></p>
     <details open="">
       <summary>More details about this document</summary>
       <dl>
         <dt>This version:</dt><dd>
-                <a class="u-url" href="https://www.w3.org/TR/2023/WD-sparql12-update-20230405/">https://www.w3.org/TR/2023/WD-sparql12-update-20230405/</a>
+                <a class="u-url" href="https://www.w3.org/TR/2023/WD-sparql12-update-20230429/">https://www.w3.org/TR/2023/WD-sparql12-update-20230429/</a>
               </dd>
         <dt>Latest published version:</dt><dd>
                 <a href="https://www.w3.org/TR/sparql12-update/">https://www.w3.org/TR/sparql12-update/</a>
@@ -1899,7 +1900,7 @@ DROP</strong> ( <strong>GRAPH</strong> <em><a href="https://w3c.github.io/sparql
               </li>
               <li>
                 <p><code><span class="token">'{'</span> <a href="https://w3c.github.io/sparql-query/spec/#rTriplesTemplate" id="ref-for-index-term-triplestemplate-4">TriplesTemplate</a>? <span class="token">'}'</span></code></p>
-                <p>Dataset(<em>QuadPattern</em>, μ, DS, GS ) is the Dataset consisting of only a default graph composed by all <a href="https://www.w3.org/TR/rdf11-concepts/#dfn-triple" id="ref-for-index-term-valid-rdf-triples-1">valid RDF
+                <p>Dataset(<em>QuadPattern</em>, μ, DS, GS ) is the Dataset consisting of only a default graph composed by all <a href="https://w3c.github.io/rdf-concepts/spec/#dfn-rdf-triple" id="ref-for-index-term-valid-rdf-triples-1">valid RDF
                 triples</a> obtained from substituting the variables in sk<sub>μ</sub>(<code><a href="https://w3c.github.io/sparql-query/spec/#rTriplesTemplate" id="ref-for-index-term-triplestemplate-5">TriplesTemplate</a></code>) according to μ
                 and combining these triples into a single RDF graph by set union.</p>
               </li>
@@ -2361,10 +2362,10 @@ _:b a foaf:Person .
     
     <ul class="index">
     <li>
-        [<cite><a class="bibref" data-link-type="biblio" href="#bib-rdf11-concepts">RDF11-CONCEPTS</a></cite>] defines the following:
+        [<cite><a class="bibref" data-link-type="biblio" href="#bib-rdf12-concepts">RDF12-CONCEPTS</a></cite>] defines the following:
         <ul>
           <li>
-    <span class="index-term" data-href="https://www.w3.org/TR/rdf11-concepts/#dfn-triple" id="index-term-valid-rdf-triples" tabindex="0" aria-haspopup="dialog">valid RDF triples</span>
+    <span class="index-term" data-href="https://w3c.github.io/rdf-concepts/spec/#dfn-rdf-triple" id="index-term-valid-rdf-triples" tabindex="0" aria-haspopup="dialog">valid RDF triples</span>
   </li>
         </ul>
       </li><li>
@@ -2431,8 +2432,8 @@ _:b a foaf:Person .
 
 <section id="references" class="appendix"><div class="header-wrapper"><h2 id="c-references"><bdi class="secno">C. </bdi>References</h2><a class="self-link" href="#references" aria-label="Permalink for Appendix C."></a></div><section id="normative-references"><div class="header-wrapper"><h3 id="c-1-normative-references"><bdi class="secno">C.1 </bdi>Normative references</h3><a class="self-link" href="#normative-references" aria-label="Permalink for Appendix C.1"></a></div>
     
-    <dl class="bibliography"><dt id="bib-rdf11-concepts">[RDF11-CONCEPTS]</dt><dd>
-      <a href="https://www.w3.org/TR/rdf11-concepts/"><cite>RDF 1.1 Concepts and Abstract Syntax</cite></a>. Richard Cyganiak; David Wood; Markus Lanthaler.  W3C. 25 February 2014. W3C Recommendation. URL: <a href="https://www.w3.org/TR/rdf11-concepts/">https://www.w3.org/TR/rdf11-concepts/</a>
+    <dl class="bibliography"><dt id="bib-rdf12-concepts">[RDF12-CONCEPTS]</dt><dd>
+      <a href="https://w3c.github.io/rdf-concepts/spec/"><cite>RDF 1.2 Concepts and Abstract Syntax</cite></a>. Richard Cyganiak; David Wood; Markus Lanthaler.  W3C. W3C Working Draft. URL: <a href="https://w3c.github.io/rdf-concepts/spec/">https://w3c.github.io/rdf-concepts/spec/</a>
     </dd><dt id="bib-rfc2119">[RFC2119]</dt><dd>
       <a href="https://www.rfc-editor.org/rfc/rfc2119"><cite>Key words for use in RFCs to Indicate Requirement Levels</cite></a>. S. Bradner.  IETF. March 1997. Best Current Practice. URL: <a href="https://www.rfc-editor.org/rfc/rfc2119">https://www.rfc-editor.org/rfc/rfc2119</a>
     </dd><dt id="bib-rfc8174">[RFC8174]</dt><dd>
@@ -2465,7 +2466,7 @@ _:b a foaf:Person .
   </p><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-valid-rdf-triples" aria-label="Links in this document to definition: valid RDF triples">
       <span class="caret"></span>
       <div>
-        <a class="self-link" href="https://www.w3.org/TR/rdf11-concepts/#dfn-triple" aria-label="Permalink for definition: valid RDF triples. Activate to close this dialog.">Permalink</a>
+        <a class="self-link" href="https://w3c.github.io/rdf-concepts/spec/#dfn-rdf-triple" aria-label="Permalink for definition: valid RDF triples. Activate to close this dialog.">Permalink</a>
          
       </div>
       <p><b>Referenced in:</b></p>

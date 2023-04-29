@@ -3,7 +3,10 @@
 function func {
     local DOC="$1"
     local TS="$2"
-    local URL="https://afs.github.io/sparql-respec/FPWD-${DOC}-${TS}.html"
+    local URL="https://afs.github.io/sparql-respec/${DOC}FPWD-${DOC}-${TS}.html"
+
+    
+    
     echo
     echo "* [FPWD-$DOC-$TS](FPWD-$DOC-$TS.html)"
     echo "  * [$DOC PubRules](https://www.w3.org/pubrules/?url=${URL}&profile=FPWD&validation=simple-validation&informativeOnly=false&echidnaReady=false&patentPolicy=pp2020)"

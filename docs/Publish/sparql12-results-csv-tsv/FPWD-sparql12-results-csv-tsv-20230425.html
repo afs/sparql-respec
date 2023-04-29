@@ -1,6 +1,6 @@
 <!DOCTYPE html><html lang="en" dir="ltr"><head>
 <meta charset="utf-8">
-<meta name="generator" content="ReSpec 34.0.0">
+<meta name="generator" content="ReSpec 34.1.0">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <style>
 dfn{cursor:pointer}
@@ -402,8 +402,11 @@ ul.index code{color:inherit}
 #index-defined-here .print-only{display:initial}
 }
 </style>
-<meta name="description" content="The formats CSV [RFC4180] (comma separated values) and TSV [IANA-TSV] (tab separated values) provide simple, easy to process formats for the transmission of tabular data. They are supported as input datat formats to many tools,
-    particularly spreadsheets. This document describes their use for expressing SPARQL query results from SELECT queries.">
+<meta name="description" content="The formats CSV [RFC4180] (comma separated values) 
+        and TSV [IANA-TSV] (tab separated values) provide simple, easy to process formats
+        for the transmission of tabular data. They are supported as input datat formats by many tools,
+        particularly spreadsheets. This document describes their use for expressing SPARQL query results
+        from SELECT queries.">
 <link rel="canonical" href="https://www.w3.org/TR/sparql12-results-csv-tsv/">
 <style>
 var{position:relative;cursor:pointer}
@@ -759,21 +762,21 @@ var[data-type]:hover::after,var[data-type]:hover::before{opacity:1}
   "lint": {
     "no-unused-dfns": false
   },
-  "pubDate": "2023-05-04",
-  "publishISODate": "2023-04-07T00:00:00.000Z",
-  "generatedSubtitle": "W3C First Public Working Draft 07 April 2023"
+  "pubDate": "2023-04-04",
+  "publishISODate": "2023-04-25T00:00:00.000Z",
+  "generatedSubtitle": "W3C First Public Working Draft 25 April 2023"
 }</script>
 <link rel="stylesheet" href="https://www.w3.org/StyleSheets/TR/2021/W3C-WD"></head>
   <body class="h-entry"><div class="head">
     <p class="logos"><a class="logo" href="https://www.w3.org/"><img crossorigin="" alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2021/logos/W3C" width="72">
   </a></p>
     <h1 id="title" class="title">SPARQL 1.2 Query Results CSV and TSV Formats</h1> 
-    <p id="w3c-state"><a href="https://www.w3.org/standards/types#FPWD">W3C First Public Working Draft</a> <time class="dt-published" datetime="2023-04-07">07 April 2023</time></p>
+    <p id="w3c-state"><a href="https://www.w3.org/standards/types#FPWD">W3C First Public Working Draft</a> <time class="dt-published" datetime="2023-04-25">25 April 2023</time></p>
     <details open="">
       <summary>More details about this document</summary>
       <dl>
         <dt>This version:</dt><dd>
-                <a class="u-url" href="https://www.w3.org/TR/2023/WD-sparql12-results-csv-tsv-20230407/">https://www.w3.org/TR/2023/WD-sparql12-results-csv-tsv-20230407/</a>
+                <a class="u-url" href="https://www.w3.org/TR/2023/WD-sparql12-results-csv-tsv-20230425/">https://www.w3.org/TR/2023/WD-sparql12-results-csv-tsv-20230425/</a>
               </dd>
         <dt>Latest published version:</dt><dd>
                 <a href="https://www.w3.org/TR/sparql12-results-csv-tsv/">https://www.w3.org/TR/sparql12-results-csv-tsv/</a>
@@ -827,8 +830,11 @@ var[data-type]:hover::after,var[data-type]:hover::before{opacity:1}
   </div>
     <section id="abstract" class="introductory"><h2>Abstract</h2>
       
-<p>The formats CSV [<cite><a class="bibref" data-link-type="biblio" href="#bib-rfc4180" title="Common Format and MIME Type for Comma-Separated Values (CSV) Files">RFC4180</a></cite>] (comma separated values) and TSV [<cite><a class="bibref" data-link-type="biblio" href="#bib-iana-tsv" title="Definition of tab-separated-values (tsv)">IANA-TSV</a></cite>] (tab separated values) provide simple, easy to process formats for the transmission of tabular data. They are supported as input datat formats to many tools,
-    particularly spreadsheets. This document describes their use for expressing SPARQL query results from <code>SELECT</code> queries.</p>
+      <p>The formats CSV [<cite><a class="bibref" data-link-type="biblio" href="#bib-rfc4180" title="Common Format and MIME Type for Comma-Separated Values (CSV) Files">RFC4180</a></cite>] (comma separated values) 
+        and TSV [<cite><a class="bibref" data-link-type="biblio" href="#bib-iana-tsv" title="Definition of tab-separated-values (tsv)">IANA-TSV</a></cite>] (tab separated values) provide simple, easy to process formats
+        for the transmission of tabular data. They are supported as input datat formats by many tools,
+        particularly spreadsheets. This document describes their use for expressing SPARQL query results
+        from <code>SELECT</code> queries.</p>
     </section>
 
     <section id="sotd" class="introductory"><h2>Status of This Document</h2><p><em>This section describes the status of this
@@ -872,46 +878,50 @@ var[data-type]:hover::after,var[data-type]:hover::before{opacity:1}
   </p><p>
                   This document is governed by the
                   <a id="w3c_process_revision" href="https://www.w3.org/2021/Process-20211102/">2 November 2021 <abbr title="World Wide Web Consortium">W3C</abbr> Process Document</a>.
-                </p></section><nav id="toc"><h2 class="introductory" id="table-of-contents">Table of Contents</h2><ol class="toc"><li class="tocline"><a class="tocxref" href="#abstract">Abstract</a></li><li class="tocline"><a class="tocxref" href="#sotd">Status of This Document</a></li><li class="tocline"><a class="tocxref" href="#related"><bdi class="secno">1. </bdi>Set of Documents</a></li><li class="tocline"><a class="tocxref" href="#introduction"><bdi class="secno">2. </bdi>Introduction</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#example1"><bdi class="secno">2.1 </bdi>Example</a></li></ol></li><li class="tocline"><a class="tocxref" href="#general-comments"><bdi class="secno">3. </bdi>Transmission issues using CSV and TSV Formats</a></li><li class="tocline"><a class="tocxref" href="#csv-table"><bdi class="secno">4. </bdi>CSV - Comma Separated values</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#serializing-results"><bdi class="secno">4.1 </bdi>Serializing the Results Table</a></li><li class="tocline"><a class="tocxref" href="#csv-terms"><bdi class="secno">4.2 </bdi>Serializing RDF Terms</a></li><li class="tocline"><a class="tocxref" href="#csv-example"><bdi class="secno">4.3 </bdi>Example of CSV-Serialized Results</a></li></ol></li><li class="tocline"><a class="tocxref" href="#tsv"><bdi class="secno">5. </bdi>TSV - Tab Separated values</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#tsv-table"><bdi class="secno">5.1 </bdi>Serializing the Results Table</a></li><li class="tocline"><a class="tocxref" href="#tsv-terms"><bdi class="secno">5.2 </bdi>Serializing RDF Terms</a></li><li class="tocline"><a class="tocxref" href="#tsv-example"><bdi class="secno">5.3 </bdi>Example of TSV-Serialized Results</a></li></ol></li><li class="tocline"><a class="tocxref" href="#conformance"><bdi class="secno">6. </bdi>Conformance</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#conformance-0"><bdi class="secno">6.1 </bdi>Conformance</a></li></ol></li><li class="tocline"><a class="tocxref" href="#privacy"><bdi class="secno">7. </bdi>Privacy Considerations</a></li><li class="tocline"><a class="tocxref" href="#security"><bdi class="secno">8. </bdi>Security Considerations</a></li><li class="tocline"><a class="tocxref" href="#internationalization"><bdi class="secno">9. </bdi>Internationalization Considerations</a></li><li class="tocline"><a class="tocxref" href="#changes-from-sparql11"><bdi class="secno">A. </bdi>Change Log</a></li><li class="tocline"><a class="tocxref" href="#index"><bdi class="secno">B. </bdi>Index</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#index-defined-here"><bdi class="secno">B.1 </bdi>Terms defined by this specification</a></li><li class="tocline"><a class="tocxref" href="#index-defined-elsewhere"><bdi class="secno">B.2 </bdi>Terms defined by reference</a></li></ol></li><li class="tocline"><a class="tocxref" href="#references"><bdi class="secno">C. </bdi>References</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#normative-references"><bdi class="secno">C.1 </bdi>Normative references</a></li></ol></li></ol></nav>
+                </p></section><nav id="toc"><h2 class="introductory" id="table-of-contents">Table of Contents</h2><ol class="toc"><li class="tocline"><a class="tocxref" href="#abstract">Abstract</a></li><li class="tocline"><a class="tocxref" href="#sotd">Status of This Document</a></li><li class="tocline"><a class="tocxref" href="#related"><bdi class="secno">1. </bdi>Set of Documents</a></li><li class="tocline"><a class="tocxref" href="#introduction"><bdi class="secno">2. </bdi>Introduction</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#example1"><bdi class="secno">2.1 </bdi>Example</a></li></ol></li><li class="tocline"><a class="tocxref" href="#general-comments"><bdi class="secno">3. </bdi>Transmission issues using CSV and TSV Formats</a></li><li class="tocline"><a class="tocxref" href="#csv-table"><bdi class="secno">4. </bdi>CSV — Comma Separated values</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#serializing-results"><bdi class="secno">4.1 </bdi>Serializing the Results Table</a></li><li class="tocline"><a class="tocxref" href="#csv-terms"><bdi class="secno">4.2 </bdi>Serializing RDF Terms</a></li><li class="tocline"><a class="tocxref" href="#csv-example"><bdi class="secno">4.3 </bdi>Example of CSV-Serialized Results</a></li></ol></li><li class="tocline"><a class="tocxref" href="#tsv"><bdi class="secno">5. </bdi>TSV — Tab Separated values</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#tsv-table"><bdi class="secno">5.1 </bdi>Serializing the Results Table</a></li><li class="tocline"><a class="tocxref" href="#tsv-terms"><bdi class="secno">5.2 </bdi>Serializing RDF Terms</a></li><li class="tocline"><a class="tocxref" href="#tsv-example"><bdi class="secno">5.3 </bdi>Example of TSV-Serialized Results</a></li></ol></li><li class="tocline"><a class="tocxref" href="#conformance"><bdi class="secno">6. </bdi>Conformance</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#conformance-0"><bdi class="secno">6.1 </bdi>Conformance</a></li></ol></li><li class="tocline"><a class="tocxref" href="#privacy"><bdi class="secno">7. </bdi>Privacy Considerations</a></li><li class="tocline"><a class="tocxref" href="#security"><bdi class="secno">8. </bdi>Security Considerations</a></li><li class="tocline"><a class="tocxref" href="#internationalization"><bdi class="secno">9. </bdi>Internationalization Considerations</a></li><li class="tocline"><a class="tocxref" href="#changes-from-sparql11"><bdi class="secno">A. </bdi>Change Log</a></li><li class="tocline"><a class="tocxref" href="#index"><bdi class="secno">B. </bdi>Index</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#index-defined-here"><bdi class="secno">B.1 </bdi>Terms defined by this specification</a></li><li class="tocline"><a class="tocxref" href="#index-defined-elsewhere"><bdi class="secno">B.2 </bdi>Terms defined by reference</a></li></ol></li><li class="tocline"><a class="tocxref" href="#references"><bdi class="secno">C. </bdi>References</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#normative-references"><bdi class="secno">C.1 </bdi>Normative references</a></li></ol></li></ol></nav>
 
     <section id="related"><div class="header-wrapper"><h2 id="x1-set-of-documents"><bdi class="secno">1. </bdi>Set of Documents</h2><a class="self-link" href="#related" aria-label="Permalink for Section 1."></a></div>
 <p>This document is one of twelve SPARQL 1.2 Recommendations produced by the <a href="https://www.w3.org/groups/wg/rdf-star">RDF-star Working Group</a>:</p>
 
 <p>SPARQL 1.2 Recommendations:</p>
 <ol>
-  <li><cite><a data-matched-text="[[[SPARQL12-NEW]]]" href="https://w3c.github.io/sparql-new/spec/" id="ref-for-index-term-what-s-new-in-sparql-1-2-1">What’s New in SPARQL 1.2</a></cite></li>
-  <li><cite><a data-matched-text="[[[SPARQL12-CONCEPTS]]]" href="https://w3c.github.io/sparql-concepts/spec/" id="ref-for-index-term-sparql-1-2-concepts-1">SPARQL 1.2 Concepts</a></cite></li>
-  <li><cite><a data-matched-text="[[[SPARQL12-QUERY]]]" href="https://w3c.github.io/sparql-query/spec/" id="ref-for-index-term-sparql-1-2-query-language-1">SPARQL 1.2 Query Language</a></cite></li>
-  <li><cite><a data-matched-text="[[[SPARQL12-UPDATE]]]" href="https://w3c.github.io/sparql-update/spec/" id="ref-for-index-term-sparql-1-2-update-1">SPARQL 1.2 Update</a></cite></li>
-  <li><cite><a data-matched-text="[[[SPARQL12-SERVICE-DESCRIPTION]]]" href="https://w3c.github.io/sparql-service-description/spec/" id="ref-for-index-term-sparql-1-2-service-description-1">SPARQL 1.2 Service Description</a></cite></li>
-  <li><cite><a data-matched-text="[[[SPARQL12-FEDERATED-QUERY]]]" href="https://w3c.github.io/sparql-federated-query/spec/" id="ref-for-index-term-sparql-1-2-federated-query-1">SPARQL 1.2 Federated Query</a></cite></li>
-  <li><cite><a data-matched-text="[[[SPARQL12-RESULTS-JSON]]]" href="https://w3c.github.io/sparql-results-json/spec/" id="ref-for-index-term-sparql-1-2-query-results-json-format-1">SPARQL 1.2 Query Results JSON Format</a></cite></li>
+  <li><cite><a data-matched-text="[[[SPARQL12-NEW]]]" href="https://w3c.github.io/sparql-new/spec/">What’s New in SPARQL 1.2</a></cite></li>
+  <li><cite><a data-matched-text="[[[SPARQL12-CONCEPTS]]]" href="https://w3c.github.io/sparql-concepts/spec/">SPARQL 1.2 Concepts</a></cite></li>
+  <li><cite><a data-matched-text="[[[SPARQL12-QUERY]]]" href="https://w3c.github.io/sparql-query/spec/">SPARQL 1.2 Query Language</a></cite></li>
+  <li><cite><a data-matched-text="[[[SPARQL12-UPDATE]]]" href="https://w3c.github.io/sparql-update/spec/">SPARQL 1.2 Update</a></cite></li>
+  <li><cite><a data-matched-text="[[[SPARQL12-SERVICE-DESCRIPTION]]]" href="https://w3c.github.io/sparql-service-description/spec/">SPARQL 1.2 Service Description</a></cite></li>
+  <li><cite><a data-matched-text="[[[SPARQL12-FEDERATED-QUERY]]]" href="https://w3c.github.io/sparql-federated-query/spec/">SPARQL 1.2 Federated Query</a></cite></li>
+  <li><cite><a data-matched-text="[[[SPARQL12-RESULTS-JSON]]]" href="https://w3c.github.io/sparql-results-json/spec/">SPARQL 1.2 Query Results JSON Format</a></cite></li>
   <li>SPARQL 1.2 Query Results CSV and TSV Formats(this document)</li>
-  <li><cite><a data-matched-text="[[[SPARQL12-RESULTS-XML]]]" href="https://w3c.github.io/sparql-results-xml/spec/" id="ref-for-index-term-sparql-1-2-query-results-xml-formats-1">SPARQL 1.2 Query Results XML Formats</a></cite></li>
-  <li><cite><a data-matched-text="[[[SPARQL12-ENTAILMENT]]]" href="https://w3c.github.io/sparql-entailment/spec/" id="ref-for-index-term-sparql-1-2-entailment-regimes-1">SPARQL 1.2 Entailment Regimes</a></cite></li>
-  <li><cite><a data-matched-text="[[[SPARQL12-PROTOCOL]]]" href="https://w3c.github.io/sparql-protocol/spec/" id="ref-for-index-term-sparql-1-2-protocol-1">SPARQL 1.2 Protocol</a></cite></li>
-  <li><cite><a data-matched-text="[[[SPARQL12-GRAPH-STORE-PROTOCOL]]]" href="https://w3c.github.io/sparql-graph-store-protocol/spec/" id="ref-for-index-term-sparql-1-2-graph-store-http-protocol-1">SPARQL 1.2 Graph Store HTTP Protocol</a></cite></li>
+  <li><cite><a data-matched-text="[[[SPARQL12-RESULTS-XML]]]" href="https://w3c.github.io/sparql-results-xml/spec/">SPARQL 1.2 Query Results XML Formats</a></cite></li>
+  <li><cite><a data-matched-text="[[[SPARQL12-ENTAILMENT]]]" href="https://w3c.github.io/sparql-entailment/spec/">SPARQL 1.2 Entailment Regimes</a></cite></li>
+  <li><cite><a data-matched-text="[[[SPARQL12-PROTOCOL]]]" href="https://w3c.github.io/sparql-protocol/spec/">SPARQL 1.2 Protocol</a></cite></li>
+  <li><cite><a data-matched-text="[[[SPARQL12-GRAPH-STORE-PROTOCOL]]]" href="https://w3c.github.io/sparql-graph-store-protocol/spec/">SPARQL 1.2 Graph Store HTTP Protocol</a></cite></li>
 </ol>
 </section>
     
 
     <section id="introduction"><div class="header-wrapper"><h2 id="x2-introduction"><bdi class="secno">2. </bdi>Introduction</h2><a class="self-link" href="#introduction" aria-label="Permalink for Section 2."></a></div>
     
-    <p>This document describes CSV and TSV formats for expressing the results of a SPARQL <code>SELECT</code> query. They provide lowest common denominator formats between systems using different
-    implementation technologies.</p>
-    <p>Other formats for expression SPARQL results are the SPARQL XML Results Format [<cite><a class="bibref" data-link-type="biblio" href="#bib-sparql12-results-xml" title="SPARQL 1.2 Query Results XML Formats">SPARQL12-RESULTS-XML</a></cite>] and SPARQL
-    JSON Results Format
-     [<cite><a class="bibref" data-link-type="biblio" href="#bib-sparql12-results-json" title="SPARQL 1.2 Query Results JSON Format">SPARQL12-RESULTS-JSON</a></cite>]. Each format is useful in different application scenarios.</p>
-    <p>The SPARQL Results CSV Results Format is a lossy encoding of a table of results. It does not encode all the details of each RDF term in the results but instead just gives a string without
-    indicating the type of the term (IRI, Literal, Literal with datatype, Literal with language, or blank node). This makes it simple to consume data, such as text and numbers, in applications
-    without needing to understand the details of RDF. In some applications, guesses as to which elements are hyperlinks are made pragmatically, for example, guessing that strings starting "http://"
-    are links.</p>
-    <p>The SPARQL Results TSV Results Format does encode the details of RDF terms in the results table by using the syntax that SPARQL
-     [<cite><a class="bibref" data-link-type="biblio" href="#bib-sparql12-query" title="SPARQL 1.2 Query Language">SPARQL12-QUERY</a></cite>] and Turtle [<cite><a class="bibref" data-link-type="biblio" href="#bib-rdf12-turtle" title="RDF 1.2 Turtle">RDF12-TURTLE</a></cite>] use. An application receiving a TSV-encoded results set
-    can split each line into elements of the result row, and extract all the details it wishes to process of the RDF terms by simple string processing, without a complete XML or JSON parser required
-    by the more complex SPARQL result formats.</p>
+    <p>This document describes CSV and TSV formats for expressing the results of a SPARQL <code>SELECT</code> query.
+      They provide lowest common denominator formats between systems using different implementation technologies.</p>
+    <p>Other formats for expression of SPARQL results are the SPARQL Results XML Format 
+      [<cite><a class="bibref" data-link-type="biblio" href="#bib-sparql12-results-xml" title="SPARQL 1.2 Query Results XML Formats">SPARQL12-RESULTS-XML</a></cite>] and 
+      the SPARQL Results JSON Format [<cite><a class="bibref" data-link-type="biblio" href="#bib-sparql12-results-json" title="SPARQL 1.2 Query Results JSON Format">SPARQL12-RESULTS-JSON</a></cite>]. Each format is useful
+      in different application scenarios.</p>
+    <p>The SPARQL Results CSV Format is a lossy encoding of a table of results. It does not encode all the
+      details of each RDF term in the results; instead, it just gives a string without indicating the type of the
+      term (IRI, Literal, Literal with datatype, Literal with language, or blank node). This makes it simple to
+      consume data, such as text and numbers, in applications that don't need to understand the details of RDF. In
+      some applications, guesses as to which elements are hyperlinks are made pragmatically, for example, guessing
+      that strings starting "<code>http://</code>" are links.</p>
+    <p>The SPARQL Results TSV Format does encode the details of RDF terms in the results table, by using the syntax
+      that SPARQL [<cite><a class="bibref" data-link-type="biblio" href="#bib-sparql12-query" title="SPARQL 1.2 Query Language">SPARQL12-QUERY</a></cite>] and Turtle [<cite><a class="bibref" data-link-type="biblio" href="#bib-rdf12-turtle" title="RDF 1.2 Turtle">RDF12-TURTLE</a></cite>] use. An application receiving
+      a TSV-encoded result set can split each line into elements of the result row, and extract all the details of
+      the RDF terms it wishes to process by simple string processing, without a complete XML or JSON parser as may 
+      by required by the more complex SPARQL result formats.</p>
     <p>When this document uses the words <em class="rfc2119" title="must">must</em>, <em class="rfc2119" title="must not">must not</em>, <em class="rfc2119" title="should">should</em>, <em class="rfc2119" title="should not">should not</em>, <em class="rfc2119" title="may">may</em> and <em class="rfc2119" title="recommended">recommended</em>, they must be interpreted as described in RFC
-    2119 [<cite><a class="bibref" data-link-type="biblio" href="#bib-rfc2119" title="Key words for use in RFCs to Indicate Requirement Levels">RFC2119</a></cite>].</p>
+      2119 [<cite><a class="bibref" data-link-type="biblio" href="#bib-rfc2119" title="Key words for use in RFCs to Indicate Requirement Levels">RFC2119</a></cite>].</p>
 
       <section id="example1"><div class="header-wrapper"><h3 id="x2-1-example"><bdi class="secno">2.1 </bdi>Example</h3><a class="self-link" href="#example1" aria-label="Permalink for Section 2.1"></a></div>
       
@@ -969,42 +979,67 @@ var[data-type]:hover::after,var[data-type]:hover::before{opacity:1}
     </section>
     <section id="general-comments"><div class="header-wrapper"><h2 id="x3-transmission-issues-using-csv-and-tsv-formats"><bdi class="secno">3. </bdi>Transmission issues using CSV and TSV Formats</h2><a class="self-link" href="#general-comments" aria-label="Permalink for Section 3."></a></div>
     
-    <p>The SPARQL results formats described here confirm to the formal specifications of the relevant formats, Comma Separated values (CSV) [<cite><a class="bibref" data-link-type="biblio" href="#bib-rfc4180" title="Common Format and MIME Type for Comma-Separated Values (CSV) Files">RFC4180</a></cite>] and Tab Separated Value (TSV) [<cite><a class="bibref" data-link-type="biblio" href="#bib-iana-tsv" title="Definition of tab-separated-values (tsv)">IANA-TSV</a></cite>].</p>
-    <p>Systems providing these formats should note that the content types for CSV is <code>text/csv</code> and for TSV <code>text/tab-separated-values</code>. Being <code>text/*</code>, the default character set
-    is US-ASCII. The <code>charset</code> parameter <em class="rfc2119" title="should">should</em> be used in conjunction with SPARQL Results; UTF-8 is recommended: <code>text/csv; charset=utf-8</code> and
-    <code>text/tab-separated-values; charset=utf-8</code>.</p>
-    <p>The end-of-line in CSV is <code>CRLF</code> i.e. Unicode codepoints 13 (0x0D) and 10 (0x0A).</p>
-    <p>The end-of-line in TSV is <code>EOL</code> i.e. Unicode codepoint 10 (0x0A).</p>
-    <p>Applications reading these formats are advised to cope with both CRLF and LF as end of line markers and not rely on conformance to the formal specifications.</p>
+    <p>The SPARQL result formats described here conform to the formal specifications of the relevant formats, 
+      Comma Separated values (CSV) [<cite><a class="bibref" data-link-type="biblio" href="#bib-rfc4180" title="Common Format and MIME Type for Comma-Separated Values (CSV) Files">RFC4180</a></cite>] 
+      and Tab Separated Value (TSV) [<cite><a class="bibref" data-link-type="biblio" href="#bib-iana-tsv" title="Definition of tab-separated-values (tsv)">IANA-TSV</a></cite>].</p>
+    <p>Systems providing these formats should note that the content types are <code>text/csv</code> for CSV and 
+      <code>text/tab-separated-values</code> for TSV. Being <code>text/*</code>, the default character set
+      is US-ASCII. The <code>charset</code> parameter <em class="rfc2119" title="should">should</em> be used in
+      conjunction with SPARQL Results; UTF-8 is recommended; giving us <code>text/csv; charset=utf-8</code> and
+      <code>text/tab-separated-values; charset=utf-8</code>.</p>
+    <p>The end-of-line in CSV is <code>CRLF</code>, i.e., Unicode codepoints 13 (<code>U+000D</code>) and 10 (<code>U+000A</code>).</p>
+    <p>The end-of-line in TSV is <code>EOL</code>, i.e., Unicode codepoint 10 (<code>U+000A</code>).</p>
+    <p>Applications reading these formats are advised to cope with both CRLF and LF as end of line markers and
+      not rely on conformance to the formal specifications.</p>
     </section>
     
-    <section id="csv-table"><div class="header-wrapper"><h2 id="x4-csv-comma-separated-values"><bdi class="secno">4. </bdi>CSV - Comma Separated values</h2><a class="self-link" href="#csv-table" aria-label="Permalink for Section 4."></a></div>
+    <section id="csv-table"><div class="header-wrapper"><h2 id="x4-csv-comma-separated-values"><bdi class="secno">4. </bdi>CSV — Comma Separated values</h2><a class="self-link" href="#csv-table" aria-label="Permalink for Section 4."></a></div>
     
-    <p>In the SPARQL Results CSV Format, the results table is serialized as one line listing the variables in the results, using the CSV header line, followed by one line for each query solution (a
-    line may end up split by newlines in the data). Values in the results are strings, for URIs, literals and blank nodes, together with numbers when the literals are of numeric XSD datatype.</p>
+    <p>In the SPARQL Results CSV Format, the results table is serialized as one line listing the variables in
+      the results, using the CSV header line, followed by one line for each query solution. (Note: a line may end up
+      split by newlines in the data). Values in the results are:</p>
+      <ul>
+        <li>strings for 
+          <ul>
+            <li>URIs</li>
+            <li>lexical forms of non-numeric XSD datatypes</li>
+            <li>blank node labels</li>
+          </ul>
+        </li>
+        <li>numbers for literals of numeric XSD datatypes</li>
+      </ul>
       <section id="serializing-results"><div class="header-wrapper"><h3 id="x4-1-serializing-the-results-table"><bdi class="secno">4.1 </bdi>Serializing the Results Table</h3><a class="self-link" href="#serializing-results" aria-label="Permalink for Section 4.1"></a></div>
       
-      <p>The first line of a SPARQL CSV Results Format response is the header line giving the names of the variables used in the result set. The header line consists of the variable names, without
-      leading <code>?</code>, separated by commas.</p>
-      <p>While the <code>text/csv</code> format does not require a header row, the SPARQL CSV Results Format <em class="rfc2119" title="must">must</em> use a header row. If the content type parameter
-      <code>header</code> is used, it <em class="rfc2119" title="must">must</em> be <code>header=present</code>.</p>
-      <p>The remaining rows are the values of the results, with each binding determined by the position in the row, corresponding to the entry in the header line.</p>
+      <p>The first line of a SPARQL Results CSV Format response is the header line, giving the names of the variables
+        used in the result set. The header line consists of the variable names, without leading question marks
+        <code>?</code>, separated by commas.</p>
+      <p>While the <code>text/csv</code> format does not require a header row, the SPARQL Results CSV Format 
+        <em class="rfc2119" title="must">must</em> use a header row. If the content type parameter
+        <code>header</code> is used, it <em class="rfc2119" title="must">must</em> be <code>header=present</code>.</p>
+      <p>The remaining rows are the values of the results, with each binding determined by the position in the row,
+        corresponding to the entry in the header line.</p>
       <p>If a variable is not bound, an empty field is used (e.g. <code>,,</code>). Each row <em class="rfc2119" title="must">must</em> have the same number of fields, with each field corresponding to a
-      binding to the variable in the header line in the same field position.</p>
+        binding to the variable in the header line in the same field position.</p>
       </section>
 
       <section id="csv-terms"><div class="header-wrapper"><h3 id="x4-2-serializing-rdf-terms"><bdi class="secno">4.2 </bdi>Serializing RDF Terms</h3><a class="self-link" href="#csv-terms" aria-label="Permalink for Section 4.2"></a></div>
       
-      <p>The entry in each field is the string corresponding to the RDF term value. (c.f. SPARQL STR()) without syntax to denote what kind of term it is. The encoding quoting rules of CSV format must
-      be used.</p>
-      <p>Blank nodes use the <code>_:label</code> form from Turtle and SPARQL. Use of the same label indicates the same blank node within the results but has no significance outside the results.</p>
-      <p>Fields containing any of <code>"</code> (<small>QUOTATION MARK</small>, code point 34, 0x22 in Unicode [<cite><a class="bibref" data-link-type="biblio" href="#bib-unicode" title="The Unicode Standard">UNICODE</a></cite>]),
-      <code>,</code> (<small>COMMA</small>, code point 44, 0x2C), <code>LF</code> (code point 10, 0x0A) or <code>CR</code> (code point 13, 0x0D) must be quoted using the quoting mechanism of [<cite><a class="bibref" data-link-type="biblio" href="#bib-rfc4180" title="Common Format and MIME Type for Comma-Separated Values (CSV) Files">RFC4180</a></cite>].
-      Fields are limited by a pair of quotation marks <code>"</code> (code point 0x22). Within quote strings, all
-      characters except <code>"</code>, including new line characters have their exact meaning - newlines do not end a CSV record. <code>"</code> is written using a pair of quotation
-      marks <code>""</code>.</p>
-      <p>The standard CSV format does not distinguish between missing values and empty strings. The SPARQL 1.2 CSV Results Format uses the same representation for unbound variables as for variables
-      bound to an empty string literal. The other SPARQL Result formats (based on JSON, TSV or XML) can be used if this distinction is required.</p>
+      <p>The entry in each field is the string corresponding to the RDF term value. (cf. SPARQL <code>STR()</code>)
+        without syntax to denote what kind of term it is. The encoding quoting rules of CSV format must be used.</p>
+      <p>Blank nodes use the <code>_:label</code> form from Turtle and SPARQL. Use of the same label indicates the
+        same blank node within the result set but has no significance outside the result set.</p>
+      <p>Fields containing any of <code>"</code> (<small>QUOTATION MARK</small>, code point 34, <code>U+0022</code> in 
+        Unicode [<cite><a class="bibref" data-link-type="biblio" href="#bib-unicode" title="The Unicode Standard">UNICODE</a></cite>]),
+        <code>,</code> (<small>COMMA</small>, code point 44, <code>U+002C</code>), <code>LF</code> (code point 10,
+        <code>U+000A</code>) or <code>CR</code> (code point 13, <code>U+000D</code>) must be quoted using the quoting
+        mechanism of RFC4180 [<cite><a class="bibref" data-link-type="biblio" href="#bib-rfc4180" title="Common Format and MIME Type for Comma-Separated Values (CSV) Files">RFC4180</a></cite>].
+        Fields are limited by a pair of quotation marks <code>"</code> (code point <code>U+0022</code>). Within quote strings, all
+        characters except <code>"</code>, including new line characters have their exact meaning — newlines do not
+        end a CSV record. Inline <code>"</code> is written using a pair of quotation marks <code>""</code>.</p>
+      <p>The standard CSV format does not distinguish between missing values and empty strings. The SPARQL 1.2
+        Results CSV Format uses the same representation for unbound variables as for variables bound to an empty
+        string literal. The other SPARQL Result formats (based on JSON, TSV, or XML) can be used if this distinction
+        is required.</p>
       </section>
     
       <section id="csv-example"><div class="header-wrapper"><h3 id="x4-3-example-of-csv-serialized-results"><bdi class="secno">4.3 </bdi>Example of CSV-Serialized Results</h3><a class="self-link" href="#csv-example" aria-label="Permalink for Section 4.3"></a></div>
@@ -1021,44 +1056,57 @@ _:b1,123</pre>
       </section>
     </section>
 
-    <section id="tsv"><div class="header-wrapper"><h2 id="x5-tsv-tab-separated-values"><bdi class="secno">5. </bdi>TSV - Tab Separated values</h2><a class="self-link" href="#tsv" aria-label="Permalink for Section 5."></a></div>
+    <section id="tsv"><div class="header-wrapper"><h2 id="x5-tsv-tab-separated-values"><bdi class="secno">5. </bdi>TSV — Tab Separated values</h2><a class="self-link" href="#tsv" aria-label="Permalink for Section 5."></a></div>
     
-    <p>In the SPARQL Results TSV Format, the results table is serialized as one line listing the variables in the results, followed by one line for each query solution. All RDF terms used in the
-    format are encoded in the format specified by Turtle [<cite><a class="bibref" data-link-type="biblio" href="#bib-rdf12-turtle" title="RDF 1.2 Turtle">RDF12-TURTLE</a></cite>] except that the triple quoted forms for the lexical part of
-    literals <em class="rfc2119" title="must not">must not</em> be used. These forms would allow raw newlines and tabs that form part of the TSV format. A TSV format SPARQL result set must use the
-    single quoted literal forms, together with any necessary escapes such as <code>\t</code>, <code>\n</code> and <code>\r</code>.</p>
+    <p>In the SPARQL Results TSV Format, the results table is serialized as one line listing the variables
+      in the results, followed by one line for each query solution. All RDF terms used in the format are
+      encoded in the format specified by Turtle [[RDF12-TURTLE]
+      except that the triple quoted forms for the lexical part of
+      literals <em class="rfc2119" title="must not">must not</em> be used. These forms would allow raw
+      newlines and tabs that are part of the TSV format. A TSV format SPARQL result set must use the
+      single quoted literal forms, together with any necessary escapes such as <code>\t</code>, 
+      <code>\n</code>, and <code>\r</code>.</p>
 
       <section id="tsv-table"><div class="header-wrapper"><h3 id="x5-1-serializing-the-results-table"><bdi class="secno">5.1 </bdi>Serializing the Results Table</h3><a class="self-link" href="#tsv-table" aria-label="Permalink for Section 5.1"></a></div>
       
-      <p>The results table is serialized as one line listing the variables in the results, followed by one line for each query solution. This first line is required by the TSV format [<cite><a class="bibref" data-link-type="biblio" href="#bib-iana-tsv" title="Definition of tab-separated-values (tsv)">IANA-TSV</a></cite>], unlike CSV, where it is optional.</p>
-      <p>Variables are serialized in SPARQL syntax, using question mark <code>?</code> character followed by the variable name.</p>
-      <p>Each row of the result set is serialized by sequence of RDF terms in SPARQL syntax, separated by a tab (Horizontal Tab, Unicode codepoint 9) character.</p>
+      <p>The results table is serialized as one line listing the variables in the results, followed by
+        one line for each query solution. This first line is required by the TSV format [<cite><a class="bibref" data-link-type="biblio" href="#bib-iana-tsv" title="Definition of tab-separated-values (tsv)">IANA-TSV</a></cite>],
+        unlike CSV, where it is optional.</p>
+      <p>Variables are serialized in SPARQL syntax, using question mark <code>?</code> character followed
+        by the variable name.</p>
+      <p>Each row of the result set is serialized by sequence of RDF terms in SPARQL syntax, separated
+        by a tab (Horizontal Tab, Unicode code point <code>U+0009</code>) character.</p>
       <p>If a variable is not bound in a row, an empty field is used. Each row <em class="rfc2119" title="must">must</em> have the same number of fields, corresponding to the variables listed in the
-      first row.</p>
+        first row.</p>
       </section>
 
       <section id="tsv-terms"><div class="header-wrapper"><h3 id="x5-2-serializing-rdf-terms"><bdi class="secno">5.2 </bdi>Serializing RDF Terms</h3><a class="self-link" href="#tsv-terms" aria-label="Permalink for Section 5.2"></a></div>
       
-      <p>The SPARQL Results TSV Results Format serializes RDF terms in the results table by using the syntax that SPARQL
-       [<cite><a class="bibref" data-link-type="biblio" href="#bib-sparql12-query" title="SPARQL 1.2 Query Language">SPARQL12-QUERY</a></cite>] and Turtle [<cite><a class="bibref" data-link-type="biblio" href="#bib-rdf12-turtle" title="RDF 1.2 Turtle">RDF12-TURTLE</a></cite>] use.</p>
-      <p>IRIs are enclosed in <code>&lt;...&gt;</code>, literals are enclosed with double quotes <code>"</code>...<code>"</code> or single quotes <code>'</code> ...<code>'</code> with optional <code>@lang</code> or <code>^^</code>
-      for datatype.
-      IRIs are written enclosed in <code>&lt;...&gt;</code>.
-      They <em class="rfc2119" title="must">must</em> conform to the <a href="https://www.rfc-editor.org/rfc/rfc3987#section-2.2" id="ref-for-index-term-iri-rule-1">IRI rule</a> of <cite><a data-matched-text="[[[RFC3987]]]" href="https://www.rfc-editor.org/rfc/rfc3987" id="ref-for-index-term-internationalized-resource-identifiers-iris-1">Internationalized Resource Identifiers (IRIs)</a></cite>.
-      Such IRIs include the IRI scheme and <em class="rfc2119" title="must not">must not</em> be a <a href="https://www.rfc-editor.org/rfc/rfc3986#section-4.2" id="ref-for-index-term-relative-reference-1">Relative Reference</a>.
-      This includes IRIs used as datatypes.
+      <p>The SPARQL Results TSV Format serializes RDF terms in the results table by using the syntax that
+        SPARQL [<cite><a class="bibref" data-link-type="biblio" href="#bib-sparql12-query" title="SPARQL 1.2 Query Language">SPARQL12-QUERY</a></cite>] and Turtle [<cite><a class="bibref" data-link-type="biblio" href="#bib-rdf12-turtle" title="RDF 1.2 Turtle">RDF12-TURTLE</a></cite>] use.</p>
+
+      <p>IRIs are enclosed in <code>&lt;...&gt;</code>, literals are enclosed with double quotes 
+        <code>"</code>...<code>"</code> or single quotes <code>'</code> ...<code>'</code> with optional
+        <code>@lang</code> or <code>^^</code> for datatype. IRIs are written enclosed in
+        <code>&lt;...&gt;</code>. They <em class="rfc2119" title="must">must</em> conform to the
+        <a href="https://www.rfc-editor.org/rfc/rfc3987#section-2.2">IRI rule</a> of <cite><a data-matched-text="[[[RFC3987]]]" href="https://www.rfc-editor.org/rfc/rfc3987">Internationalized Resource Identifiers (IRIs)</a></cite>.
+        Such IRIs include the IRI scheme and <em class="rfc2119" title="must not">must not</em> be
+        <a href="https://www.rfc-editor.org/rfc/rfc3986#section-4.2" id="ref-for-index-term-relative-reference-1">Relative Reference</a>. 
+        This includes IRIs used as datatypes.
       </p>
-      <p>
-         Literals are written with the lexical form in quotes. Tab, newline and carriage return characters (Unicode codepoints 0x09, 0x0A (line feed) and 0x0D (Carriage Return)) are encoded in
-      strings as <code>\t</code>, <code>\n</code> and <code>\r</code> respectively. The long string forms using triple quotes <code>"""</code> and <code>'''</code> <em class="rfc2119" title="must not">must not</em> be
-      used. </p>
-      <p>The abbreviated forms for numbers (XSD integers, decimals and doubles) <em class="rfc2119" title="should">should</em> be used.</p>
-      <p>Blank nodes use the <code>_:label</code> form from Turtle and SPARQL. Use of the same label indicates the same blank node within the results but has no significance outside the results.</p>
+      <p>Literals are written with the lexical form in quotes. Tab, newline, and carriage return characters
+        (Unicode code points <code>U+0009</code> (tab), <code>U+0010</code> (line feed) and <code>U+0013</code>
+        (carriage return)) are encoded in strings as <code>\t</code>, <code>\n</code> and <code>\r</code>
+        respectively. The long string forms using triple quotes — <code>"""</code> or <code>'''</code> 
+        — <em class="rfc2119" title="must not">must not</em> be used. </p>
+      <p>The abbreviated forms for numbers (XSD integers, decimals, and doubles) <em class="rfc2119" title="should">should</em> be used.</p>
+      <p>Blank nodes use the <code>_:label</code> form from Turtle and SPARQL. Use of the same label
+        indicates the same blank node within the result set, but has no significance outside the result set.</p>
       </section>
 
       <section id="tsv-example"><div class="header-wrapper"><h3 id="x5-3-example-of-tsv-serialized-results"><bdi class="secno">5.3 </bdi>Example of TSV-Serialized Results</h3><a class="self-link" href="#tsv-example" aria-label="Permalink for Section 5.3"></a></div>
       
-      <p>Writing <code>&lt;TAB&gt;</code> for a raw tab character (Unicode code point 9):</p>
+      <p>Writing <code>&lt;TAB&gt;</code> for a raw tab character (Unicode code point <code>U+0009</code>):</p>
       <pre class="box tsv nohighlight">?x&lt;TAB&gt;?literal
 &lt;http://example/x&gt;&lt;TAB&gt;"String"
 &lt;http://example/x&gt;&lt;TAB&gt;"String-with-dquote\"" 
@@ -1076,6 +1124,7 @@ _:blank1&lt;TAB&gt;123</pre>
     <section id="conformance"><div class="header-wrapper"><h2 id="x6-conformance"><bdi class="secno">6. </bdi>Conformance</h2><a class="self-link" href="#conformance" aria-label="Permalink for Section 6."></a></div><p>As well as sections marked as non-normative, all authoring guidelines, diagrams, examples, and notes in this specification are non-normative. Everything else in this specification is normative.</p>
       <section id="conformance-0"><div class="header-wrapper"><h3 id="x6-1-conformance"><bdi class="secno">6.1 </bdi>Conformance</h3><a class="self-link" href="#conformance-0" aria-label="Permalink for Section 6.1"></a></div>
     </section></section>
+
 
     <section id="privacy"><div class="header-wrapper"><h2 id="x7-privacy-considerations"><bdi class="secno">7. </bdi>Privacy Considerations</h2><a class="self-link" href="#privacy" aria-label="Permalink for Section 7."></a></div>
       
@@ -1112,92 +1161,6 @@ _:blank1&lt;TAB&gt;123</pre>
     <span class="index-term" data-href="https://www.rfc-editor.org/rfc/rfc3986#section-4.2" id="index-term-relative-reference" tabindex="0" aria-haspopup="dialog">Relative Reference</span>
   </li>
         </ul>
-      </li><li>
-        [<cite><a class="bibref" data-link-type="biblio" href="#bib-rfc3987">RFC3987</a></cite>] defines the following:
-        <ul>
-          <li>
-    <span class="index-term" data-href="https://www.rfc-editor.org/rfc/rfc3987" id="index-term-internationalized-resource-identifiers-iris" tabindex="0" aria-haspopup="dialog">Internationalized Resource Identifiers (IRIs)</span>
-  </li><li>
-    <span class="index-term" data-href="https://www.rfc-editor.org/rfc/rfc3987#section-2.2" id="index-term-iri-rule" tabindex="0" aria-haspopup="dialog">IRI rule</span>
-  </li>
-        </ul>
-      </li><li>
-        [<cite><a class="bibref" data-link-type="biblio" href="#bib-sparql12-concepts">SPARQL12-CONCEPTS</a></cite>] defines the following:
-        <ul>
-          <li>
-    <span class="index-term" data-href="https://w3c.github.io/sparql-concepts/spec/" id="index-term-sparql-1-2-concepts" tabindex="0" aria-haspopup="dialog">SPARQL 1.2 Concepts</span>
-  </li>
-        </ul>
-      </li><li>
-        [<cite><a class="bibref" data-link-type="biblio" href="#bib-sparql12-entailment">SPARQL12-ENTAILMENT</a></cite>] defines the following:
-        <ul>
-          <li>
-    <span class="index-term" data-href="https://w3c.github.io/sparql-entailment/spec/" id="index-term-sparql-1-2-entailment-regimes" tabindex="0" aria-haspopup="dialog">SPARQL 1.2 Entailment Regimes</span>
-  </li>
-        </ul>
-      </li><li>
-        [<cite><a class="bibref" data-link-type="biblio" href="#bib-sparql12-federated-query">SPARQL12-FEDERATED-QUERY</a></cite>] defines the following:
-        <ul>
-          <li>
-    <span class="index-term" data-href="https://w3c.github.io/sparql-federated-query/spec/" id="index-term-sparql-1-2-federated-query" tabindex="0" aria-haspopup="dialog">SPARQL 1.2 Federated Query</span>
-  </li>
-        </ul>
-      </li><li>
-        [<cite><a class="bibref" data-link-type="biblio" href="#bib-sparql12-graph-store-protocol">SPARQL12-GRAPH-STORE-PROTOCOL</a></cite>] defines the following:
-        <ul>
-          <li>
-    <span class="index-term" data-href="https://w3c.github.io/sparql-graph-store-protocol/spec/" id="index-term-sparql-1-2-graph-store-http-protocol" tabindex="0" aria-haspopup="dialog">SPARQL 1.2 Graph Store HTTP Protocol</span>
-  </li>
-        </ul>
-      </li><li>
-        [<cite><a class="bibref" data-link-type="biblio" href="#bib-sparql12-new">SPARQL12-NEW</a></cite>] defines the following:
-        <ul>
-          <li>
-    <span class="index-term" data-href="https://w3c.github.io/sparql-new/spec/" id="index-term-what-s-new-in-sparql-1-2" tabindex="0" aria-haspopup="dialog">What’s New in SPARQL 1.2</span>
-  </li>
-        </ul>
-      </li><li>
-        [<cite><a class="bibref" data-link-type="biblio" href="#bib-sparql12-protocol">SPARQL12-PROTOCOL</a></cite>] defines the following:
-        <ul>
-          <li>
-    <span class="index-term" data-href="https://w3c.github.io/sparql-protocol/spec/" id="index-term-sparql-1-2-protocol" tabindex="0" aria-haspopup="dialog">SPARQL 1.2 Protocol</span>
-  </li>
-        </ul>
-      </li><li>
-        [<cite><a class="bibref" data-link-type="biblio" href="#bib-sparql12-query">SPARQL12-QUERY</a></cite>] defines the following:
-        <ul>
-          <li>
-    <span class="index-term" data-href="https://w3c.github.io/sparql-query/spec/" id="index-term-sparql-1-2-query-language" tabindex="0" aria-haspopup="dialog">SPARQL 1.2 Query Language</span>
-  </li>
-        </ul>
-      </li><li>
-        [<cite><a class="bibref" data-link-type="biblio" href="#bib-sparql12-results-json">SPARQL12-RESULTS-JSON</a></cite>] defines the following:
-        <ul>
-          <li>
-    <span class="index-term" data-href="https://w3c.github.io/sparql-results-json/spec/" id="index-term-sparql-1-2-query-results-json-format" tabindex="0" aria-haspopup="dialog">SPARQL 1.2 Query Results JSON Format</span>
-  </li>
-        </ul>
-      </li><li>
-        [<cite><a class="bibref" data-link-type="biblio" href="#bib-sparql12-results-xml">SPARQL12-RESULTS-XML</a></cite>] defines the following:
-        <ul>
-          <li>
-    <span class="index-term" data-href="https://w3c.github.io/sparql-results-xml/spec/" id="index-term-sparql-1-2-query-results-xml-formats" tabindex="0" aria-haspopup="dialog">SPARQL 1.2 Query Results XML Formats</span>
-  </li>
-        </ul>
-      </li><li>
-        [<cite><a class="bibref" data-link-type="biblio" href="#bib-sparql12-service-description">SPARQL12-SERVICE-DESCRIPTION</a></cite>] defines the following:
-        <ul>
-          <li>
-    <span class="index-term" data-href="https://w3c.github.io/sparql-service-description/spec/" id="index-term-sparql-1-2-service-description" tabindex="0" aria-haspopup="dialog">SPARQL 1.2 Service Description</span>
-  </li>
-        </ul>
-      </li><li>
-        [<cite><a class="bibref" data-link-type="biblio" href="#bib-sparql12-update">SPARQL12-UPDATE</a></cite>] defines the following:
-        <ul>
-          <li>
-    <span class="index-term" data-href="https://w3c.github.io/sparql-update/spec/" id="index-term-sparql-1-2-update" tabindex="0" aria-haspopup="dialog">SPARQL 1.2 Update</span>
-  </li>
-        </ul>
       </li>
   </ul>
   </section></section>
@@ -1214,32 +1177,32 @@ _:blank1&lt;TAB&gt;123</pre>
       <a href="https://www.rfc-editor.org/rfc/rfc2119"><cite>Key words for use in RFCs to Indicate Requirement Levels</cite></a>. S. Bradner.  IETF. March 1997. Best Current Practice. URL: <a href="https://www.rfc-editor.org/rfc/rfc2119">https://www.rfc-editor.org/rfc/rfc2119</a>
     </dd><dt id="bib-rfc3986">[rfc3986]</dt><dd>
       <a href="https://www.rfc-editor.org/rfc/rfc3986"><cite>Uniform Resource Identifier (URI): Generic Syntax</cite></a>. T. Berners-Lee; R. Fielding; L. Masinter.  IETF. January 2005. Internet Standard. URL: <a href="https://www.rfc-editor.org/rfc/rfc3986">https://www.rfc-editor.org/rfc/rfc3986</a>
-    </dd><dt id="bib-rfc3987">[rfc3987]</dt><dd>
-      <a href="https://www.rfc-editor.org/rfc/rfc3987" id="ref-for-index-term-internationalized-resource-identifiers-iris-2"><cite>Internationalized Resource Identifiers (IRIs)</cite></a>. M. Duerst; M. Suignard.  IETF. January 2005. Proposed Standard. URL: <a href="https://www.rfc-editor.org/rfc/rfc3987" id="ref-for-index-term-internationalized-resource-identifiers-iris-3">https://www.rfc-editor.org/rfc/rfc3987</a>
+    </dd><dt id="bib-rfc3987">[RFC3987]</dt><dd>
+      <a href="https://www.rfc-editor.org/rfc/rfc3987"><cite>Internationalized Resource Identifiers (IRIs)</cite></a>. M. Duerst; M. Suignard.  IETF. January 2005. Proposed Standard. URL: <a href="https://www.rfc-editor.org/rfc/rfc3987">https://www.rfc-editor.org/rfc/rfc3987</a>
     </dd><dt id="bib-rfc4180">[RFC4180]</dt><dd>
       <a href="https://www.rfc-editor.org/rfc/rfc4180"><cite>Common Format and MIME Type for Comma-Separated Values (CSV) Files</cite></a>. Y. Shafranovich.  IETF. October 2005. Informational. URL: <a href="https://www.rfc-editor.org/rfc/rfc4180">https://www.rfc-editor.org/rfc/rfc4180</a>
     </dd><dt id="bib-sparql12-concepts">[SPARQL12-CONCEPTS]</dt><dd>
-      <a href="https://w3c.github.io/sparql-concepts/spec/" id="ref-for-index-term-sparql-1-2-concepts-2"><cite>SPARQL 1.2 Concepts</cite></a>. The W3C RDF-star Working Group.  W3C. W3C Working Draft. URL: <a href="https://w3c.github.io/sparql-concepts/spec/" id="ref-for-index-term-sparql-1-2-concepts-3">https://w3c.github.io/sparql-concepts/spec/</a>
+      <a href="https://w3c.github.io/sparql-concepts/spec/"><cite>SPARQL 1.2 Concepts</cite></a>. The W3C RDF-star Working Group.  W3C. W3C Working Draft. URL: <a href="https://w3c.github.io/sparql-concepts/spec/">https://w3c.github.io/sparql-concepts/spec/</a>
     </dd><dt id="bib-sparql12-entailment">[SPARQL12-ENTAILMENT]</dt><dd>
-      <a href="https://w3c.github.io/sparql-entailment/spec/" id="ref-for-index-term-sparql-1-2-entailment-regimes-2"><cite>SPARQL 1.2 Entailment Regimes</cite></a>. Birte Glimm; Chimezie Ogbuji.  W3C. W3C Working Draft. URL: <a href="https://w3c.github.io/sparql-entailment/spec/" id="ref-for-index-term-sparql-1-2-entailment-regimes-3">https://w3c.github.io/sparql-entailment/spec/</a>
+      <a href="https://w3c.github.io/sparql-entailment/spec/"><cite>SPARQL 1.2 Entailment Regimes</cite></a>. Birte Glimm; Chimezie Ogbuji.  W3C. W3C Working Draft. URL: <a href="https://w3c.github.io/sparql-entailment/spec/">https://w3c.github.io/sparql-entailment/spec/</a>
     </dd><dt id="bib-sparql12-federated-query">[SPARQL12-FEDERATED-QUERY]</dt><dd>
-      <a href="https://w3c.github.io/sparql-federated-query/spec/" id="ref-for-index-term-sparql-1-2-federated-query-2"><cite>SPARQL 1.2 Federated Query</cite></a>. Eric Prud'hommeaux; Carlos Buil Aranda.  W3C. W3C Working Draft. URL: <a href="https://w3c.github.io/sparql-federated-query/spec/" id="ref-for-index-term-sparql-1-2-federated-query-3">https://w3c.github.io/sparql-federated-query/spec/</a>
+      <a href="https://w3c.github.io/sparql-federated-query/spec/"><cite>SPARQL 1.2 Federated Query</cite></a>. Eric Prud'hommeaux; Carlos Buil Aranda.  W3C. W3C Working Draft. URL: <a href="https://w3c.github.io/sparql-federated-query/spec/">https://w3c.github.io/sparql-federated-query/spec/</a>
     </dd><dt id="bib-sparql12-graph-store-protocol">[SPARQL12-GRAPH-STORE-PROTOCOL]</dt><dd>
-      <a href="https://w3c.github.io/sparql-graph-store-protocol/spec/" id="ref-for-index-term-sparql-1-2-graph-store-http-protocol-2"><cite>SPARQL 1.2 Graph Store HTTP Protocol</cite></a>. Chimezie Ogbuji.  W3C. W3C Working Draft. URL: <a href="https://w3c.github.io/sparql-graph-store-protocol/spec/" id="ref-for-index-term-sparql-1-2-graph-store-http-protocol-3">https://w3c.github.io/sparql-graph-store-protocol/spec/</a>
+      <a href="https://w3c.github.io/sparql-graph-store-protocol/spec/"><cite>SPARQL 1.2 Graph Store HTTP Protocol</cite></a>. Chimezie Ogbuji.  W3C. W3C Working Draft. URL: <a href="https://w3c.github.io/sparql-graph-store-protocol/spec/">https://w3c.github.io/sparql-graph-store-protocol/spec/</a>
     </dd><dt id="bib-sparql12-new">[SPARQL12-NEW]</dt><dd>
-      <a href="https://w3c.github.io/sparql-new/spec/" id="ref-for-index-term-what-s-new-in-sparql-1-2-2"><cite>What’s New in SPARQL 1.2</cite></a>. The W3C RDF-star Working Group.  W3C. W3C Working Draft. URL: <a href="https://w3c.github.io/sparql-new/spec/" id="ref-for-index-term-what-s-new-in-sparql-1-2-3">https://w3c.github.io/sparql-new/spec/</a>
+      <a href="https://w3c.github.io/sparql-new/spec/"><cite>What’s New in SPARQL 1.2</cite></a>. The W3C RDF-star Working Group.  W3C. W3C Working Draft. URL: <a href="https://w3c.github.io/sparql-new/spec/">https://w3c.github.io/sparql-new/spec/</a>
     </dd><dt id="bib-sparql12-protocol">[SPARQL12-PROTOCOL]</dt><dd>
-      <a href="https://w3c.github.io/sparql-protocol/spec/" id="ref-for-index-term-sparql-1-2-protocol-2"><cite>SPARQL 1.2 Protocol</cite></a>. Lee Feigenbaum; Gregory Williams; Kendall Clark; Elias Torres.  W3C. W3C Working Draft. URL: <a href="https://w3c.github.io/sparql-protocol/spec/" id="ref-for-index-term-sparql-1-2-protocol-3">https://w3c.github.io/sparql-protocol/spec/</a>
+      <a href="https://w3c.github.io/sparql-protocol/spec/"><cite>SPARQL 1.2 Protocol</cite></a>. Lee Feigenbaum; Gregory Williams; Kendall Clark; Elias Torres.  W3C. W3C Working Draft. URL: <a href="https://w3c.github.io/sparql-protocol/spec/">https://w3c.github.io/sparql-protocol/spec/</a>
     </dd><dt id="bib-sparql12-query">[SPARQL12-QUERY]</dt><dd>
-      <a href="https://w3c.github.io/sparql-query/spec/" id="ref-for-index-term-sparql-1-2-query-language-2"><cite>SPARQL 1.2 Query Language</cite></a>. Steven Harris; Andy Seaborne.  W3C. W3C Working Draft. URL: <a href="https://w3c.github.io/sparql-query/spec/" id="ref-for-index-term-sparql-1-2-query-language-3">https://w3c.github.io/sparql-query/spec/</a>
+      <a href="https://w3c.github.io/sparql-query/spec/"><cite>SPARQL 1.2 Query Language</cite></a>. Steven Harris; Andy Seaborne.  W3C. W3C Working Draft. URL: <a href="https://w3c.github.io/sparql-query/spec/">https://w3c.github.io/sparql-query/spec/</a>
     </dd><dt id="bib-sparql12-results-json">[SPARQL12-RESULTS-JSON]</dt><dd>
-      <a href="https://w3c.github.io/sparql-results-json/spec/" id="ref-for-index-term-sparql-1-2-query-results-json-format-2"><cite>SPARQL 1.2 Query Results JSON Format</cite></a>. Andy Seaborne.  W3C. W3C Working Draft. URL: <a href="https://w3c.github.io/sparql-results-json/spec/" id="ref-for-index-term-sparql-1-2-query-results-json-format-3">https://w3c.github.io/sparql-results-json/spec/</a>
+      <a href="https://w3c.github.io/sparql-results-json/spec/"><cite>SPARQL 1.2 Query Results JSON Format</cite></a>. Andy Seaborne.  W3C. W3C Working Draft. URL: <a href="https://w3c.github.io/sparql-results-json/spec/">https://w3c.github.io/sparql-results-json/spec/</a>
     </dd><dt id="bib-sparql12-results-xml">[SPARQL12-RESULTS-XML]</dt><dd>
-      <a href="https://w3c.github.io/sparql-results-xml/spec/" id="ref-for-index-term-sparql-1-2-query-results-xml-formats-2"><cite>SPARQL 1.2 Query Results XML Formats</cite></a>. Sandro Hawke; Dave Beckett; Jeen Broekstra.  W3C. W3C Working Draft. URL: <a href="https://w3c.github.io/sparql-results-xml/spec/" id="ref-for-index-term-sparql-1-2-query-results-xml-formats-3">https://w3c.github.io/sparql-results-xml/spec/</a>
+      <a href="https://w3c.github.io/sparql-results-xml/spec/"><cite>SPARQL 1.2 Query Results XML Formats</cite></a>. Sandro Hawke; Dave Beckett; Jeen Broekstra.  W3C. W3C Working Draft. URL: <a href="https://w3c.github.io/sparql-results-xml/spec/">https://w3c.github.io/sparql-results-xml/spec/</a>
     </dd><dt id="bib-sparql12-service-description">[SPARQL12-SERVICE-DESCRIPTION]</dt><dd>
-      <a href="https://w3c.github.io/sparql-service-description/spec/" id="ref-for-index-term-sparql-1-2-service-description-2"><cite>SPARQL 1.2 Service Description</cite></a>. Gregory Williams.  W3C. W3C Working Draft. URL: <a href="https://w3c.github.io/sparql-service-description/spec/" id="ref-for-index-term-sparql-1-2-service-description-3">https://w3c.github.io/sparql-service-description/spec/</a>
+      <a href="https://w3c.github.io/sparql-service-description/spec/"><cite>SPARQL 1.2 Service Description</cite></a>. Gregory Williams.  W3C. W3C Working Draft. URL: <a href="https://w3c.github.io/sparql-service-description/spec/">https://w3c.github.io/sparql-service-description/spec/</a>
     </dd><dt id="bib-sparql12-update">[SPARQL12-UPDATE]</dt><dd>
-      <a href="https://w3c.github.io/sparql-update/spec/" id="ref-for-index-term-sparql-1-2-update-2"><cite>SPARQL 1.2 Update</cite></a>. Paula Gearon; Alexandre Passant; Axel Polleres.  W3C. W3C Working Draft. URL: <a href="https://w3c.github.io/sparql-update/spec/" id="ref-for-index-term-sparql-1-2-update-3">https://w3c.github.io/sparql-update/spec/</a>
+      <a href="https://w3c.github.io/sparql-update/spec/"><cite>SPARQL 1.2 Update</cite></a>. Paula Gearon; Alexandre Passant; Axel Polleres.  W3C. W3C Working Draft. URL: <a href="https://w3c.github.io/sparql-update/spec/">https://w3c.github.io/sparql-update/spec/</a>
     </dd><dt id="bib-unicode">[UNICODE]</dt><dd>
       <a href="https://www.unicode.org/versions/latest/"><cite>The Unicode Standard</cite></a>.  Unicode Consortium. URL: <a href="https://www.unicode.org/versions/latest/">https://www.unicode.org/versions/latest/</a>
     </dd></dl>
@@ -1255,186 +1218,6 @@ _:blank1&lt;TAB&gt;123</pre>
       <ul>
     <li>
     <a href="#ref-for-index-term-relative-reference-1" title="§ 5.2 Serializing RDF Terms">§ 5.2 Serializing RDF Terms</a> 
-  </li>
-  </ul>
-    </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-internationalized-resource-identifiers-iris" aria-label="Links in this document to definition: Internationalized Resource Identifiers (IRIs)">
-      <span class="caret"></span>
-      <div>
-        <a class="self-link" href="https://www.rfc-editor.org/rfc/rfc3987" aria-label="Permalink for definition: Internationalized Resource Identifiers (IRIs). Activate to close this dialog.">Permalink</a>
-         
-      </div>
-      <p><b>Referenced in:</b></p>
-      <ul>
-    <li>
-    <a href="#ref-for-index-term-internationalized-resource-identifiers-iris-1" title="§ 5.2 Serializing RDF Terms">§ 5.2 Serializing RDF Terms</a> 
-  </li><li>
-    <a href="#ref-for-index-term-internationalized-resource-identifiers-iris-2" title="§ C.1 Normative references">§ C.1 Normative references</a> <a href="#ref-for-index-term-internationalized-resource-identifiers-iris-3" title="Reference 2">(2)</a> 
-  </li>
-  </ul>
-    </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-iri-rule" aria-label="Links in this document to definition: IRI rule">
-      <span class="caret"></span>
-      <div>
-        <a class="self-link" href="https://www.rfc-editor.org/rfc/rfc3987#section-2.2" aria-label="Permalink for definition: IRI rule. Activate to close this dialog.">Permalink</a>
-         
-      </div>
-      <p><b>Referenced in:</b></p>
-      <ul>
-    <li>
-    <a href="#ref-for-index-term-iri-rule-1" title="§ 5.2 Serializing RDF Terms">§ 5.2 Serializing RDF Terms</a> 
-  </li>
-  </ul>
-    </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-sparql-1-2-concepts" aria-label="Links in this document to definition: SPARQL 1.2 Concepts">
-      <span class="caret"></span>
-      <div>
-        <a class="self-link" href="https://w3c.github.io/sparql-concepts/spec/" aria-label="Permalink for definition: SPARQL 1.2 Concepts. Activate to close this dialog.">Permalink</a>
-         
-      </div>
-      <p><b>Referenced in:</b></p>
-      <ul>
-    <li>
-    <a href="#ref-for-index-term-sparql-1-2-concepts-1" title="§ 1. Set of Documents">§ 1. Set of Documents</a> 
-  </li><li>
-    <a href="#ref-for-index-term-sparql-1-2-concepts-2" title="§ C.1 Normative references">§ C.1 Normative references</a> <a href="#ref-for-index-term-sparql-1-2-concepts-3" title="Reference 2">(2)</a> 
-  </li>
-  </ul>
-    </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-sparql-1-2-entailment-regimes" aria-label="Links in this document to definition: SPARQL 1.2 Entailment Regimes">
-      <span class="caret"></span>
-      <div>
-        <a class="self-link" href="https://w3c.github.io/sparql-entailment/spec/" aria-label="Permalink for definition: SPARQL 1.2 Entailment Regimes. Activate to close this dialog.">Permalink</a>
-         
-      </div>
-      <p><b>Referenced in:</b></p>
-      <ul>
-    <li>
-    <a href="#ref-for-index-term-sparql-1-2-entailment-regimes-1" title="§ 1. Set of Documents">§ 1. Set of Documents</a> 
-  </li><li>
-    <a href="#ref-for-index-term-sparql-1-2-entailment-regimes-2" title="§ C.1 Normative references">§ C.1 Normative references</a> <a href="#ref-for-index-term-sparql-1-2-entailment-regimes-3" title="Reference 2">(2)</a> 
-  </li>
-  </ul>
-    </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-sparql-1-2-federated-query" aria-label="Links in this document to definition: SPARQL 1.2 Federated Query">
-      <span class="caret"></span>
-      <div>
-        <a class="self-link" href="https://w3c.github.io/sparql-federated-query/spec/" aria-label="Permalink for definition: SPARQL 1.2 Federated Query. Activate to close this dialog.">Permalink</a>
-         
-      </div>
-      <p><b>Referenced in:</b></p>
-      <ul>
-    <li>
-    <a href="#ref-for-index-term-sparql-1-2-federated-query-1" title="§ 1. Set of Documents">§ 1. Set of Documents</a> 
-  </li><li>
-    <a href="#ref-for-index-term-sparql-1-2-federated-query-2" title="§ C.1 Normative references">§ C.1 Normative references</a> <a href="#ref-for-index-term-sparql-1-2-federated-query-3" title="Reference 2">(2)</a> 
-  </li>
-  </ul>
-    </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-sparql-1-2-graph-store-http-protocol" aria-label="Links in this document to definition: SPARQL 1.2 Graph Store HTTP Protocol">
-      <span class="caret"></span>
-      <div>
-        <a class="self-link" href="https://w3c.github.io/sparql-graph-store-protocol/spec/" aria-label="Permalink for definition: SPARQL 1.2 Graph Store HTTP Protocol. Activate to close this dialog.">Permalink</a>
-         
-      </div>
-      <p><b>Referenced in:</b></p>
-      <ul>
-    <li>
-    <a href="#ref-for-index-term-sparql-1-2-graph-store-http-protocol-1" title="§ 1. Set of Documents">§ 1. Set of Documents</a> 
-  </li><li>
-    <a href="#ref-for-index-term-sparql-1-2-graph-store-http-protocol-2" title="§ C.1 Normative references">§ C.1 Normative references</a> <a href="#ref-for-index-term-sparql-1-2-graph-store-http-protocol-3" title="Reference 2">(2)</a> 
-  </li>
-  </ul>
-    </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-what-s-new-in-sparql-1-2" aria-label="Links in this document to definition: What’s New in SPARQL 1.2">
-      <span class="caret"></span>
-      <div>
-        <a class="self-link" href="https://w3c.github.io/sparql-new/spec/" aria-label="Permalink for definition: What’s New in SPARQL 1.2. Activate to close this dialog.">Permalink</a>
-         
-      </div>
-      <p><b>Referenced in:</b></p>
-      <ul>
-    <li>
-    <a href="#ref-for-index-term-what-s-new-in-sparql-1-2-1" title="§ 1. Set of Documents">§ 1. Set of Documents</a> 
-  </li><li>
-    <a href="#ref-for-index-term-what-s-new-in-sparql-1-2-2" title="§ C.1 Normative references">§ C.1 Normative references</a> <a href="#ref-for-index-term-what-s-new-in-sparql-1-2-3" title="Reference 2">(2)</a> 
-  </li>
-  </ul>
-    </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-sparql-1-2-protocol" aria-label="Links in this document to definition: SPARQL 1.2 Protocol">
-      <span class="caret"></span>
-      <div>
-        <a class="self-link" href="https://w3c.github.io/sparql-protocol/spec/" aria-label="Permalink for definition: SPARQL 1.2 Protocol. Activate to close this dialog.">Permalink</a>
-         
-      </div>
-      <p><b>Referenced in:</b></p>
-      <ul>
-    <li>
-    <a href="#ref-for-index-term-sparql-1-2-protocol-1" title="§ 1. Set of Documents">§ 1. Set of Documents</a> 
-  </li><li>
-    <a href="#ref-for-index-term-sparql-1-2-protocol-2" title="§ C.1 Normative references">§ C.1 Normative references</a> <a href="#ref-for-index-term-sparql-1-2-protocol-3" title="Reference 2">(2)</a> 
-  </li>
-  </ul>
-    </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-sparql-1-2-query-language" aria-label="Links in this document to definition: SPARQL 1.2 Query Language">
-      <span class="caret"></span>
-      <div>
-        <a class="self-link" href="https://w3c.github.io/sparql-query/spec/" aria-label="Permalink for definition: SPARQL 1.2 Query Language. Activate to close this dialog.">Permalink</a>
-         
-      </div>
-      <p><b>Referenced in:</b></p>
-      <ul>
-    <li>
-    <a href="#ref-for-index-term-sparql-1-2-query-language-1" title="§ 1. Set of Documents">§ 1. Set of Documents</a> 
-  </li><li>
-    <a href="#ref-for-index-term-sparql-1-2-query-language-2" title="§ C.1 Normative references">§ C.1 Normative references</a> <a href="#ref-for-index-term-sparql-1-2-query-language-3" title="Reference 2">(2)</a> 
-  </li>
-  </ul>
-    </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-sparql-1-2-query-results-json-format" aria-label="Links in this document to definition: SPARQL 1.2 Query Results JSON Format">
-      <span class="caret"></span>
-      <div>
-        <a class="self-link" href="https://w3c.github.io/sparql-results-json/spec/" aria-label="Permalink for definition: SPARQL 1.2 Query Results JSON Format. Activate to close this dialog.">Permalink</a>
-         
-      </div>
-      <p><b>Referenced in:</b></p>
-      <ul>
-    <li>
-    <a href="#ref-for-index-term-sparql-1-2-query-results-json-format-1" title="§ 1. Set of Documents">§ 1. Set of Documents</a> 
-  </li><li>
-    <a href="#ref-for-index-term-sparql-1-2-query-results-json-format-2" title="§ C.1 Normative references">§ C.1 Normative references</a> <a href="#ref-for-index-term-sparql-1-2-query-results-json-format-3" title="Reference 2">(2)</a> 
-  </li>
-  </ul>
-    </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-sparql-1-2-query-results-xml-formats" aria-label="Links in this document to definition: SPARQL 1.2 Query Results XML Formats">
-      <span class="caret"></span>
-      <div>
-        <a class="self-link" href="https://w3c.github.io/sparql-results-xml/spec/" aria-label="Permalink for definition: SPARQL 1.2 Query Results XML Formats. Activate to close this dialog.">Permalink</a>
-         
-      </div>
-      <p><b>Referenced in:</b></p>
-      <ul>
-    <li>
-    <a href="#ref-for-index-term-sparql-1-2-query-results-xml-formats-1" title="§ 1. Set of Documents">§ 1. Set of Documents</a> 
-  </li><li>
-    <a href="#ref-for-index-term-sparql-1-2-query-results-xml-formats-2" title="§ C.1 Normative references">§ C.1 Normative references</a> <a href="#ref-for-index-term-sparql-1-2-query-results-xml-formats-3" title="Reference 2">(2)</a> 
-  </li>
-  </ul>
-    </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-sparql-1-2-service-description" aria-label="Links in this document to definition: SPARQL 1.2 Service Description">
-      <span class="caret"></span>
-      <div>
-        <a class="self-link" href="https://w3c.github.io/sparql-service-description/spec/" aria-label="Permalink for definition: SPARQL 1.2 Service Description. Activate to close this dialog.">Permalink</a>
-         
-      </div>
-      <p><b>Referenced in:</b></p>
-      <ul>
-    <li>
-    <a href="#ref-for-index-term-sparql-1-2-service-description-1" title="§ 1. Set of Documents">§ 1. Set of Documents</a> 
-  </li><li>
-    <a href="#ref-for-index-term-sparql-1-2-service-description-2" title="§ C.1 Normative references">§ C.1 Normative references</a> <a href="#ref-for-index-term-sparql-1-2-service-description-3" title="Reference 2">(2)</a> 
-  </li>
-  </ul>
-    </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-sparql-1-2-update" aria-label="Links in this document to definition: SPARQL 1.2 Update">
-      <span class="caret"></span>
-      <div>
-        <a class="self-link" href="https://w3c.github.io/sparql-update/spec/" aria-label="Permalink for definition: SPARQL 1.2 Update. Activate to close this dialog.">Permalink</a>
-         
-      </div>
-      <p><b>Referenced in:</b></p>
-      <ul>
-    <li>
-    <a href="#ref-for-index-term-sparql-1-2-update-1" title="§ 1. Set of Documents">§ 1. Set of Documents</a> 
-  </li><li>
-    <a href="#ref-for-index-term-sparql-1-2-update-2" title="§ C.1 Normative references">§ C.1 Normative references</a> <a href="#ref-for-index-term-sparql-1-2-update-3" title="Reference 2">(2)</a> 
   </li>
   </ul>
     </div><script id="respec-dfn-panel">(() => {
