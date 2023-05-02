@@ -38,3 +38,8 @@ proc sparql12-protocol
 proc sparql12-graph-store-protocol
 proc sparql12-federated-query
 proc sparql12-service-description
+
+## proc sparql12-entailment
+## proc sparql12-new
+## proc sparql12-concepts
+

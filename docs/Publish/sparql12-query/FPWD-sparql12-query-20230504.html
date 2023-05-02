@@ -1,6 +1,6 @@
 <!DOCTYPE html><html lang="en" dir="ltr"><head>
 <meta charset="utf-8">
-<meta name="generator" content="ReSpec 34.1.0">
+<meta name="generator" content="ReSpec 34.1.1">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <style>
 .issue-label{text-transform:initial}
@@ -797,21 +797,21 @@ var[data-type]:hover::after,var[data-type]:hover::before{opacity:1}
   "lint": {
     "no-unused-dfns": false
   },
-  "pubDate": "2023-04-04",
-  "publishISODate": "2023-04-29T00:00:00.000Z",
-  "generatedSubtitle": "W3C First Public Working Draft 29 April 2023"
+  "publishDate": "2023-05-04",
+  "publishISODate": "2023-05-04T00:00:00.000Z",
+  "generatedSubtitle": "W3C First Public Working Draft 04 May 2023"
 }</script>
 <link rel="stylesheet" href="https://www.w3.org/StyleSheets/TR/2021/W3C-WD"></head>
   <body class="h-entry"><div class="head">
     <p class="logos"><a class="logo" href="https://www.w3.org/"><img crossorigin="" alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2021/logos/W3C" width="72">
   </a></p>
     <h1 id="title" class="title">SPARQL 1.2 Query Language</h1> 
-    <p id="w3c-state"><a href="https://www.w3.org/standards/types#FPWD">W3C First Public Working Draft</a> <time class="dt-published" datetime="2023-04-29">29 April 2023</time></p>
+    <p id="w3c-state"><a href="https://www.w3.org/standards/types#FPWD">W3C First Public Working Draft</a> <time class="dt-published" datetime="2023-05-04">04 May 2023</time></p>
     <details open="">
       <summary>More details about this document</summary>
       <dl>
         <dt>This version:</dt><dd>
-                <a class="u-url" href="https://www.w3.org/TR/2023/WD-sparql12-query-20230429/">https://www.w3.org/TR/2023/WD-sparql12-query-20230429/</a>
+                <a class="u-url" href="https://www.w3.org/TR/2023/WD-sparql12-query-20230504/">https://www.w3.org/TR/2023/WD-sparql12-query-20230504/</a>
               </dd>
         <dt>Latest published version:</dt><dd>
                 <a href="https://www.w3.org/TR/sparql12-query/">https://www.w3.org/TR/sparql12-query/</a>
@@ -1123,7 +1123,7 @@ PREFIX :     &lt;http://example.org/book/&gt;
         </section>
         <section id="docTerminology"><div class="header-wrapper"><h4 id="x1-2-4-terminology"><bdi class="secno">1.2.4 </bdi>Terminology</h4><a class="self-link" href="#docTerminology" aria-label="Permalink for Section 1.2.4"></a></div>
           
-          <p>The SPARQL language includes IRIs, a subset of RDF URI References that omits spaces.
+          <p>The SPARQL language includes IRIs.
             Note that all IRIs in SPARQL queries are absolute; they may or may not include a fragment
             identifier [[RFC3987], section 3.1. IRIs include URIs [<cite><a class="bibref" data-link-type="biblio" href="#bib-rfc3986" title="Uniform Resource Identifier (URI): Generic Syntax">RFC3986</a></cite>] and URLs. The abbreviated
             forms (<a href="#QSynIRI">relative IRIs and prefixed names</a>) in the SPARQL syntax are
@@ -1131,13 +1131,9 @@ PREFIX :     &lt;http://example.org/book/&gt;
           <p>The following terms are defined in <cite><a data-matched-text="[[[RDF12-CONCEPTS]]]" href="https://w3c.github.io/rdf-concepts/spec/">RDF 1.2 Concepts and Abstract Syntax</a></cite> [<cite><a class="bibref" data-link-type="biblio" href="#bib-rdf12-concepts" title="RDF 1.2 Concepts and Abstract Syntax">RDF12-CONCEPTS</a></cite>] and used in
             SPARQL:</p>
 
-          <div class="note" role="note" id="issue-container-generatedID"><div role="heading" class="note-title marker" id="h-note" aria-level="5"><span>Note</span></div><p class="">
-            IRI : align to RDF Concept2 -- "RDF URI reference" is RDF 1.0 terminology.
-          </p></div>
           <ul>
             <li>
               <a href="https://w3c.github.io/rdf-concepts/spec/#dfn-iri" id="ref-for-index-term-iri-1">IRI</a>
-              (corresponds to the Concepts and Abstract Syntax term "<code>RDF URI reference</code>")
             </li>
             <li>
               <a href="https://w3c.github.io/rdf-concepts/spec/#dfn-literal" id="ref-for-index-term-literal-1">literal</a>
@@ -1149,8 +1145,7 @@ PREFIX :     &lt;http://example.org/book/&gt;
               <a href="https://w3c.github.io/rdf-concepts/spec/#dfn-language-tag" id="ref-for-index-term-language-tag-1">language tag</a>
             </li>
             <li>
-              <a href="https://w3c.github.io/rdf-concepts/spec/#dfn-recognized-datatype-iri" id="ref-for-index-term-datatype-iri-1">datatype IRI</a>
-              (corresponds to the Concepts and Abstract Syntax term "<code>recognized datatype URI</code>")
+              <a href="https://w3c.github.io/rdf-concepts/spec/#dfn-datatype-iri" id="ref-for-index-term-datatype-iri-1">datatype IRI</a>
             </li>
             <li>
               <a href="https://w3c.github.io/rdf-concepts/spec/#dfn-blank-node" id="ref-for-index-term-blank-node-1">blank node</a>
@@ -1167,7 +1162,7 @@ PREFIX :     &lt;http://example.org/book/&gt;
       <p>Most forms of SPARQL query contain a set of triple patterns called a <em>basic graph
           pattern</em>. Triple patterns are like RDF triples except that each of the subject, predicate
         and object may be a variable. A basic graph pattern <em>matches</em> a subgraph of the RDF data
-        when <a href="https://w3c.github.io/rdf-concepts/spec/#dfn-rdf-term" id="ref-for-index-term-rdf-term-3">RDF term</a> from that subgraph may be substituted for the
+        when an <a href="https://w3c.github.io/rdf-concepts/spec/#dfn-rdf-term" id="ref-for-index-term-rdf-term-3">RDF term</a> from that subgraph may be substituted for the
         variables and the result is RDF graph equivalent to the subgraph.</p>
       <section id="WritingSimpleQueries"><div class="header-wrapper"><h3 id="x2-1-writing-a-simple-query"><bdi class="secno">2.1 </bdi>Writing a Simple Query</h3><a class="self-link" href="#WritingSimpleQueries" aria-label="Permalink for Section 2.1"></a></div>
         
@@ -1659,12 +1654,6 @@ WHERE   {
             '&lt;' and '&gt;' delimiters do not form part of the IRI reference. Relative IRIs match the
             <code>irelative-ref</code> reference in section 2.2 ABNF for IRI References and IRIs in
             [<cite><a class="bibref" data-link-type="biblio" href="#bib-rfc3987" title="Internationalized Resource Identifiers (IRIs)">RFC3987</a></cite>] and are resolved to IRIs as described below.</p>
-          <p>The set of RDF terms defined in <cite><a data-matched-text="[[[RDF12-CONCEPTS]]]" href="https://w3c.github.io/rdf-concepts/spec/">RDF 1.2 Concepts and Abstract Syntax</a></cite> includes RDF URI references while
-            SPARQL terms include IRIs. RDF URI references containing "<code>&lt;</code>",
-            "<code>&gt;</code>", '<code>"</code>' (double quote), space, "<code>{</code>",
-            "<code>}</code>", "<code>|</code>", "<code>\</code>", "<code>^</code>", and
-            "<code>`</code>" are not IRIs. The behavior of a SPARQL query against RDF statements
-            composed of such RDF URI references is not defined.</p>
           <section id="prefNames"><div class="header-wrapper"><h5 id="x4-1-1-1-prefixed-names"><bdi class="secno">4.1.1.1 </bdi>Prefixed Names</h5><a class="self-link" href="#prefNames" aria-label="Permalink for Section 4.1.1.1"></a></div>
             
             <p>The <code>PREFIX</code> keyword associates a prefix label with an IRI. A prefixed name
@@ -4569,7 +4558,7 @@ CONSTRUCT { ?s ?p ?o } WHERE
         <section id="SolModandCONSTRUCT"><div class="header-wrapper"><h4 id="x16-2-3-solution-modifiers-and-construct"><bdi class="secno">16.2.3 </bdi>Solution Modifiers and CONSTRUCT</h4><a class="self-link" href="#SolModandCONSTRUCT" aria-label="Permalink for Section 16.2.3"></a></div>
           
           <p>The solution modifiers of a query affect the results of a <code>CONSTRUCT</code> query.
-            In this example, the output graph from the <code>CONSTRUCT</code> template is formed from
+            In this example, the output graph from the <code>CONSTRUCT</code> template is derived from
             just two of the solutions from graph pattern matching. The query outputs a graph with the
             names of the people with the top two sites, rated by hits. The triples in the RDF graph are
             not ordered.</p>
@@ -4779,7 +4768,7 @@ _:b   a:annotates   &lt;http://www.w3.org/TR/rdf-sparql-query/&gt; .
 _:b   dc:date       "2004-12-31T19:01:00-05:00"^^&lt;http://www.w3.org/2001/XMLSchema#dateTime&gt; .</pre>
         <p>The object of the first <code>dc:date</code> triple is a 
           <a href="https://w3c.github.io/rdf-concepts/spec/#dfn-simple-literal" id="ref-for-index-term-simple-literal-1">simple literal</a>
-          has a datatype of <code>xsd:string</code>.
+          that has a datatype of <code>xsd:string</code>.
           The second has the datatype <code>xsd:dateTime</code>.
           They are different <a href="https://w3c.github.io/rdf-concepts/spec/#dfn-rdf-term" id="ref-for-index-term-rdf-term-5">RDF terms</a>
           with different values.
@@ -5575,9 +5564,9 @@ WHERE {
                   </table>
                 </div>
               </div>
-              <p>One may test that a graph pattern is <em>not</em> expressed by specifying an
+              <p>One may test whether a graph pattern is <em>not</em> expressed by specifying an
               <code><em class="rfc2119">OPTIONAL</em></code> graph pattern
-              that introduces a variable and testing to see that the variable is not
+              that introduces a variable and testing to see whether the variable is not
                 <span class="term">bound</span>
                 This is called <em>Negation as Failure</em> in logic programming.</p>
               <div class="queryGroup">
@@ -5736,8 +5725,8 @@ WHERE {
             <ul>
                 <li>Returns TRUE if <code>term1</code> and <code>term2</code> are <em>equal</em> RDF terms, as defined below.</li>
                 <li>Produces a type error if <code>term1</code> and <code>term2</code> are both literals having the
-              same <a href="https://w3c.github.io/rdf-concepts/spec/#dfn-datatype-iri" id="ref-for-index-term-datatype-iri-0-1">datatype IRI</a>; this datatype IRI is <em>not</em> in the
-              set of <a href="https://w3c.github.io/rdf-concepts/spec/#dfn-recognized-datatype-iri" id="ref-for-index-term-datatype-iri-2">recognized datatype IRIs</a>; and the
+              same <a href="https://w3c.github.io/rdf-concepts/spec/#dfn-datatype-iri" id="ref-for-index-term-datatype-iri-2">datatype IRI</a>; this datatype IRI is <em>not</em> in the
+              set of <a href="https://w3c.github.io/rdf-concepts/spec/#dfn-recognized-datatype-iri" id="ref-for-index-term-recognized-datatype-iris-1">recognized datatype IRIs</a>; and the
               <a href="https://w3c.github.io/rdf-concepts/spec/#dfn-lexical-form" id="ref-for-index-term-lexical-form-2">lexical forms</a> of the two literals are different from one another.</li>
                 <li>Returns FALSE otherwise.</li>
             </ul>
@@ -5759,9 +5748,9 @@ WHERE {
               <li>
                 <span class="name">term1</span> is a <span class="literal type">literal</span> and
                 <span class="name">term2</span> is a <span class="literal type">literal</span>
-                such that the <a href="https://w3c.github.io/rdf-concepts/spec/#dfn-datatype-iri" id="ref-for-index-term-datatype-iri-0-2">datatype IRI</a>
+                such that the <a href="https://w3c.github.io/rdf-concepts/spec/#dfn-datatype-iri" id="ref-for-index-term-datatype-iri-3">datatype IRI</a>
                 of each of these two literals is in the set of
-                <a href="https://w3c.github.io/rdf-concepts/spec/#dfn-recognized-datatype-iri" id="ref-for-index-term-datatype-iri-3">recognized datatype IRIs</a>
+                <a href="https://w3c.github.io/rdf-concepts/spec/#dfn-recognized-datatype-iri" id="ref-for-index-term-recognized-datatype-iris-2">recognized datatype IRIs</a>
                 and both literals have the same <a href="https://w3c.github.io/rdf-concepts/spec/#dfn-literal-value" id="ref-for-index-term-literal-value-1">literal value</a>.
               </li>
               <li>
@@ -5769,7 +5758,7 @@ WHERE {
                 <span class="bnode type">blank node</span>.
               </li>
             </ul>
-            <div class="note" role="note" id="func-RDFterm-equal-note1"><div role="heading" class="note-title marker" id="h-note-0" aria-level="6"><span>Note</span></div><p class="">
+            <div class="note" role="note" id="func-RDFterm-equal-note1"><div role="heading" class="note-title marker" id="h-note" aria-level="6"><span>Note</span></div><p class="">
               An extended implementation may support additional datatypes for literals. An
               implementation processing a query that tests for equivalence of literals with non-recognized datatypes
               (and non-identical lexical form and datatype IRI) returns an error, indicating that it
@@ -6323,8 +6312,8 @@ WHERE {
             <pre class="prototype nohighlight"><span class="return"><span class="type IRI">iri</span></span>  <span class="operator">DATATYPE</span> (<span class="type"><span class="type">literal</span></span> <span class="name">literal</span>)</pre>
             <p>Returns the <span class="type datatypeIRI">datatype IRI</span> of a
               <code>literal</code>.</p>
-            <div class="note" role="note" id="issue-container-generatedID-0"><div role="heading" class="note-title marker" id="h-note-1" aria-level="6"><span>Note</span></div><p class="">
-                The datatype of literals with a <a href="https://w3c.github.io/rdf-concepts/spec/#dfn-language-tag" id="ref-for-index-term-language-tag-2">language tag</a> is <code>rdf:langString</code>.
+            <div class="note" role="note" id="issue-container-generatedID"><div role="heading" class="note-title marker" id="h-note-0" aria-level="6"><span>Note</span></div><p class="">
+                The datatype of a literal with a <a href="https://w3c.github.io/rdf-concepts/spec/#dfn-language-tag" id="ref-for-index-term-language-tag-2">language tag</a> is <code>rdf:langString</code>.
             </p></div>
             <div class="exampleGroup">
               <pre class="data nohighlight">@prefix foaf:       &lt;http://xmlns.com/foaf/0.1/&gt; .
@@ -6365,7 +6354,7 @@ WHERE {
                 </div>
               </div>
             </div>
-            <div class="note" role="note" id="issue-container-generatedID-1"><div role="heading" class="note-title marker" id="h-note-2" aria-level="6"><span>Note</span></div><div class="">
+            <div class="note" role="note" id="issue-container-generatedID-0"><div role="heading" class="note-title marker" id="h-note-1" aria-level="6"><span>Note</span></div><div class="">
               <p>In <cite><a data-matched-text="[[[RDF-SPARQL-QUERY]]]" href="https://www.w3.org/TR/rdf-sparql-query/">SPARQL Query Language for RDF</a></cite> the <code>DATATYPE</code> function was not defined for
                 literals with a language tag. Therefore, an unextended implementation would raise an
                 error when <code>DATATYPE</code> was called with a literal with a language tag.
@@ -6482,7 +6471,7 @@ WHERE {
           <section id="func-struuid"><div class="header-wrapper"><h5 id="x17-4-2-13-struuid"><bdi class="secno">17.4.2.13 </bdi>STRUUID</h5><a class="self-link" href="#func-struuid" aria-label="Permalink for Section 17.4.2.13"></a></div>
             
             <pre class="prototype nohighlight"><span class="return">xsd:string</span>  <span class="operator">STRUUID</span>()</pre>
-            <p>Return a string that is the scheme specific part of UUID. That is, as a literal with datatype <code>xsd:string</code>,
+            <p>Return a string that is the scheme-specific part of UUID. That is, as a literal with datatype <code>xsd:string</code>,
               the result of generating a UUID, converting to a literal with datatype <code>xsd:string</code> and removing the
               initial <code>urn:uuid:</code>.</p>
             <div class="result">
@@ -6503,8 +6492,8 @@ WHERE {
             
             <section id="func-string"><div class="header-wrapper"><h6 id="x17-4-3-1-1-string-arguments"><bdi class="secno">17.4.3.1.1 </bdi>String arguments</h6><a class="self-link" href="#func-string" aria-label="Permalink for Section 17.4.3.1.1"></a></div>
               
-              <p>Certain functions (e.g. <a href="#func-regex">REGEX</a>, <a href="#func-strlen">STRLEN</a>, <a href="#func-contains">CONTAINS</a>)
-                take a <code>string literal</code> as an argument and accept a literal with datatype <code>xsd:string</code>, or a literal with
+              <p>Certain functions (e.g., <a href="#func-regex">REGEX</a>, <a href="#func-strlen">STRLEN</a>, <a href="#func-contains">CONTAINS</a>)
+                take a <code>string literal</code> as an argument and accept a literal with datatype <code>xsd:string</code>, or a literal with a
                 language tag. They then act on the lexical form
                 of the literal.</p>
               <p>The term <code>string literal</code> is used in the function descriptions for this.
@@ -6523,7 +6512,7 @@ WHERE {
               <ul>
                 <li>The arguments are literals with datatype <code>xsd:string</code></li>
                 <li>The arguments are literals with identical language tags</li>
-                <li>The first argument is a literal with language tag and the second argument is a literal with datatype <code>xsd:string</code></li>
+                <li>The first argument is a literal with a language tag and the second argument is a literal with datatype <code>xsd:string</code></li>
               </ul>
               <div class="result">
                 <table>
@@ -6566,7 +6555,7 @@ WHERE {
                   </tbody>
                 </table>
               </div>
-              <div class="note" role="note" id="issue-container-generatedID-2"><div role="heading" class="note-title marker" id="h-note-3" aria-level="7"><span>Note</span></div><p class="">
+              <div class="note" role="note" id="issue-container-generatedID-1"><div role="heading" class="note-title marker" id="h-note-2" aria-level="7"><span>Note</span></div><p class="">
                 <code>"abc"</code> is a                 
                 <a href="https://w3c.github.io/rdf-concepts/spec/#dfn-simple-literal" id="ref-for-index-term-simple-literal-2">simple literal</a>
                 syntactic shorthand for <code>"abc"^^xsd:string</code>.
@@ -6616,8 +6605,8 @@ WHERE {
             <p>The <code>substr</code> function corresponds to the XPath 
               <a href="https://www.w3.org/TR/xpath-functions/#func-substring" id="ref-for-index-term-fn-substring-1">fn:substring</a> function and returns a literal of the
               same kind (literal with datatype <code>xsd:string</code>, literal with the same language tag)
-              as the <code>source</code> input parameter but with a lexical form formed from
-              the substring of the lexcial form of the source.</p>
+              as the <code>source</code> input parameter but with a lexical form derived from
+              the substring of the lexical form of the source.</p>
             <p>The arguments <code>startingLoc</code> and <code>length</code> may be derived types of
               xsd:integer.</p>
             <p>The index of the first character in a strings is 1.</p>
@@ -6978,7 +6967,7 @@ WHERE {
               literals as arguments.</p>
             <p>The lexical form of the returned literal is obtained by concatenating the lexical
               forms of its inputs. If all input literals are literals with identical language
-              tag, then the returned literal is a literal with the same language tag, in all
+              tags, then the returned literal is a literal with the same language tag, in all
               other cases, the returned literal is a literal with datatype <code>xsd:string</code>.</p>
             <div class="result">
               <table>
@@ -8761,7 +8750,7 @@ For each HAVING(E) in Q
 
 <pre class="code nohighlightBlock" aria-busy="false"><code class="hljs">Let P := the algebra translation of the query level so far
 P := Join(P, ToMultiSet(data))
-  where data is a solution sequence formed from the VALUES clause</code></pre>
+  where data is a solution sequence derived from the VALUES clause</code></pre>
 
             <p>The translatation of the data is the same as for <a href="#data-block">inline
                 data</a>.</p>
@@ -11341,9 +11330,7 @@ a\u003Ab            # a:b -- codepoint x3A is colon</pre>
           <li>
     <span class="index-term" data-href="https://w3c.github.io/rdf-concepts/spec/#dfn-blank-node" id="index-term-blank-node" tabindex="0" aria-haspopup="dialog">blank node</span>
   </li><li>
-    <span class="index-term" data-href="https://w3c.github.io/rdf-concepts/spec/#dfn-recognized-datatype-iri" id="index-term-datatype-iri" tabindex="0" aria-haspopup="dialog">datatype IRI</span>
-  </li><li>
-    <span class="index-term" data-href="https://w3c.github.io/rdf-concepts/spec/#dfn-datatype-iri" id="index-term-datatype-iri-0" tabindex="0" aria-haspopup="dialog">datatype IRI</span>
+    <span class="index-term" data-href="https://w3c.github.io/rdf-concepts/spec/#dfn-datatype-iri" id="index-term-datatype-iri" tabindex="0" aria-haspopup="dialog">datatype IRI</span>
   </li><li>
     <span class="index-term" data-href="https://w3c.github.io/rdf-concepts/spec/#dfn-iri" id="index-term-iri" tabindex="0" aria-haspopup="dialog">IRI</span>
   </li><li>
@@ -11360,6 +11347,8 @@ a\u003Ab            # a:b -- codepoint x3A is colon</pre>
     <span class="index-term" data-href="https://w3c.github.io/rdf-concepts/spec/#dfn-literal-value" id="index-term-literal-value" tabindex="0" aria-haspopup="dialog">literal value</span>
   </li><li>
     <span class="index-term" data-href="https://w3c.github.io/rdf-concepts/spec/#dfn-rdf-term" id="index-term-rdf-term" tabindex="0" aria-haspopup="dialog">RDF term</span>
+  </li><li>
+    <span class="index-term" data-href="https://w3c.github.io/rdf-concepts/spec/#dfn-recognized-datatype-iri" id="index-term-recognized-datatype-iris" tabindex="0" aria-haspopup="dialog">recognized datatype IRIs</span>
   </li><li>
     <span class="index-term" data-href="https://w3c.github.io/rdf-concepts/spec/#dfn-simple-literal" id="index-term-simple-literal" tabindex="0" aria-haspopup="dialog">simple literal</span>
   </li>
@@ -11813,7 +11802,7 @@ a\u003Ab            # a:b -- codepoint x3A is colon</pre>
     </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-datatype-iri" aria-label="Links in this document to definition: datatype IRI">
       <span class="caret"></span>
       <div>
-        <a class="self-link" href="https://w3c.github.io/rdf-concepts/spec/#dfn-recognized-datatype-iri" aria-label="Permalink for definition: datatype IRI. Activate to close this dialog.">Permalink</a>
+        <a class="self-link" href="https://w3c.github.io/rdf-concepts/spec/#dfn-datatype-iri" aria-label="Permalink for definition: datatype IRI. Activate to close this dialog.">Permalink</a>
          
       </div>
       <p><b>Referenced in:</b></p>
@@ -11822,18 +11811,6 @@ a\u003Ab            # a:b -- codepoint x3A is colon</pre>
     <a href="#ref-for-index-term-datatype-iri-1" title="§ 1.2.4 Terminology">§ 1.2.4 Terminology</a> 
   </li><li>
     <a href="#ref-for-index-term-datatype-iri-2" title="§ 17.4.1.7 RDFterm-equal">§ 17.4.1.7 RDFterm-equal</a> <a href="#ref-for-index-term-datatype-iri-3" title="Reference 2">(2)</a> 
-  </li>
-  </ul>
-    </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-datatype-iri-0" aria-label="Links in this document to definition: datatype IRI">
-      <span class="caret"></span>
-      <div>
-        <a class="self-link" href="https://w3c.github.io/rdf-concepts/spec/#dfn-datatype-iri" aria-label="Permalink for definition: datatype IRI. Activate to close this dialog.">Permalink</a>
-         
-      </div>
-      <p><b>Referenced in:</b></p>
-      <ul>
-    <li>
-    <a href="#ref-for-index-term-datatype-iri-0-1" title="§ 17.4.1.7 RDFterm-equal">§ 17.4.1.7 RDFterm-equal</a> <a href="#ref-for-index-term-datatype-iri-0-2" title="Reference 2">(2)</a> 
   </li>
   </ul>
     </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-iri" aria-label="Links in this document to definition: IRI">
@@ -11944,6 +11921,18 @@ a\u003Ab            # a:b -- codepoint x3A is colon</pre>
     <a href="#ref-for-index-term-rdf-term-4" title="§ 4. SPARQL Syntax">§ 4. SPARQL Syntax</a> 
   </li><li>
     <a href="#ref-for-index-term-rdf-term-5" title="§ 17. Expressions and Testing Values">§ 17. Expressions and Testing Values</a> 
+  </li>
+  </ul>
+    </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-recognized-datatype-iris" aria-label="Links in this document to definition: recognized datatype IRIs">
+      <span class="caret"></span>
+      <div>
+        <a class="self-link" href="https://w3c.github.io/rdf-concepts/spec/#dfn-recognized-datatype-iri" aria-label="Permalink for definition: recognized datatype IRIs. Activate to close this dialog.">Permalink</a>
+         
+      </div>
+      <p><b>Referenced in:</b></p>
+      <ul>
+    <li>
+    <a href="#ref-for-index-term-recognized-datatype-iris-1" title="§ 17.4.1.7 RDFterm-equal">§ 17.4.1.7 RDFterm-equal</a> <a href="#ref-for-index-term-recognized-datatype-iris-2" title="Reference 2">(2)</a> 
   </li>
   </ul>
     </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-simple-literal" aria-label="Links in this document to definition: simple literal">

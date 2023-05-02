@@ -24,7 +24,7 @@ dfn{cursor:pointer}
 </style>
     
     
-<title>SPARQL 1.2 Query Results JSON Format</title>
+<title>SPARQL 1.2 Query Results CSV and TSV Formats</title>
 
     
 <style id="respec-mainstyle">
@@ -402,23 +402,12 @@ ul.index code{color:inherit}
 #index-defined-here .print-only{display:initial}
 }
 </style>
-<meta name="description" content="SPARQL is a set of standards for the query and update of RDF data, along with ways to access such data over the web. This document describes
-    the representation of SELECT and ASK query results using JSON.">
-<link rel="canonical" href="https://www.w3.org/TR/sparql12-results-json/">
-<style>
-.hljs{display:block;overflow-x:auto;padding:.5em;color:#383a42;background:#fafafa}
-.hljs-comment,.hljs-quote{color:#717277;font-style:italic}
-.hljs-doctag,.hljs-formula,.hljs-keyword{color:#a626a4}
-.hljs-deletion,.hljs-name,.hljs-section,.hljs-selector-tag,.hljs-subst{color:#ca4706;font-weight:700}
-.hljs-literal{color:#0b76c5}
-.hljs-addition,.hljs-attribute,.hljs-meta-string,.hljs-regexp,.hljs-string{color:#42803c}
-.hljs-built_in,.hljs-class .hljs-title{color:#9a6a01}
-.hljs-attr,.hljs-number,.hljs-selector-attr,.hljs-selector-class,.hljs-selector-pseudo,.hljs-template-variable,.hljs-type,.hljs-variable{color:#986801}
-.hljs-bullet,.hljs-link,.hljs-meta,.hljs-selector-id,.hljs-symbol,.hljs-title{color:#336ae3}
-.hljs-emphasis{font-style:italic}
-.hljs-strong{font-weight:700}
-.hljs-link{text-decoration:underline}
-</style>
+<meta name="description" content="The formats CSV [RFC4180] (comma separated values) 
+        and TSV [IANA-TSV] (tab separated values) provide simple, easy to process formats
+        for the transmission of tabular data. They are supported as input datat formats by many tools,
+        particularly spreadsheets. This document describes their use for expressing SPARQL query results
+        from SELECT queries.">
+<link rel="canonical" href="https://www.w3.org/TR/sparql12-results-csv-tsv/">
 <style>
 var{position:relative;cursor:pointer}
 var[data-type]::after,var[data-type]::before{position:absolute;left:50%;top:-6px;opacity:0;transition:opacity .4s;pointer-events:none}
@@ -578,7 +567,8 @@ var[data-type]:hover::after,var[data-type]:hover::before{opacity:1}
       "title": "RDF 1.2 Turtle",
       "rawDate": "2022-01-01",
       "status": "WD",
-      "publisher": "W3C"
+      "publisher": "W3C",
+      "id": "rdf12-turtle"
     },
     "RDF12-XML": {
       "authors": [
@@ -669,7 +659,8 @@ var[data-type]:hover::after,var[data-type]:hover::before{opacity:1}
       "title": "SPARQL 1.2 Query Results JSON Format",
       "rawDate": "2022-01-01",
       "status": "WD",
-      "publisher": "W3C"
+      "publisher": "W3C",
+      "id": "sparql12-results-json"
     },
     "SPARQL12-RESULTS-CSV-TSV": {
       "authors": [
@@ -679,8 +670,7 @@ var[data-type]:hover::after,var[data-type]:hover::before{opacity:1}
       "title": "SPARQL 1.2 Query Results CSV and TSV Formats",
       "rawDate": "2022-01-01",
       "status": "WD",
-      "publisher": "W3C",
-      "id": "sparql12-results-csv-tsv"
+      "publisher": "W3C"
     },
     "SPARQL12-RESULTS-XML": {
       "authors": [
@@ -744,21 +734,17 @@ var[data-type]:hover::after,var[data-type]:hover::before{opacity:1}
     }
   },
   "specStatus": "FPWD",
-  "edDraftURI": "https://w3c.github.io/sparql-results-json/spec/",
+  "edDraftURI": "https://w3c.github.io/sparql-results-csv-tsv/spec/",
   "testSuiteURI": "https://w3c.github.io/rdf-tests/",
-  "shortName": "sparql12-results-json",
+  "shortName": "sparql12-results-csv-tsv",
   "copyrightStart": "2012",
-  "github": "https://github.com/w3c/sparql-results-json",
+  "github": "https://github.com/w3c/sparql-results-csv-tsv",
   "wgPublicList": "public-rdf-star-wg",
   "previousPublishDate": "2013-03-21",
-  "prevRecURI": "https://www.w3.org/TR/2013/REC-sparql11-results-json-20130321",
-  "prevRecShortname": "sparql11-results-json",
+  "prevRecURI": "https://www.w3.org/TR/2013/REC-sparql11-results-csv-tsv-20130321",
+  "prevRecShortname": "sparql11-results-csv-tsv",
   "previousMaturity": "REC",
   "editors": [
-    {
-      "name": "Andy Seaborne",
-      "w3cid": "29909"
-    },
     {
       "name": "Ruben Taelman",
       "w3cid": "84199"
@@ -771,75 +757,58 @@ var[data-type]:hover::after,var[data-type]:hover::before{opacity:1}
   "formerEditors": [
     {
       "name": "Andy Seaborne"
-    },
-    {
-      "name": "Kendall Grant Clark"
-    },
-    {
-      "name": "Lee Feigenbaum"
-    },
-    {
-      "name": "Elias Torres"
     }
   ],
   "lint": {
     "no-unused-dfns": false
   },
-  "pubDate": "2023-04-04",
-  "publishISODate": "2023-04-28T00:00:00.000Z",
-  "generatedSubtitle": "W3C First Public Working Draft 28 April 2023"
+  "publishDate": "2023-05-04",
+  "publishISODate": "2023-05-04T00:00:00.000Z",
+  "generatedSubtitle": "W3C First Public Working Draft 04 May 2023"
 }</script>
 <link rel="stylesheet" href="https://www.w3.org/StyleSheets/TR/2021/W3C-WD"></head>
-  <body class="h-entry informative"><div class="head">
+  <body class="h-entry"><div class="head">
     <p class="logos"><a class="logo" href="https://www.w3.org/"><img crossorigin="" alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2021/logos/W3C" width="72">
   </a></p>
-    <h1 id="title" class="title">SPARQL 1.2 Query Results JSON Format</h1> 
-    <p id="w3c-state"><a href="https://www.w3.org/standards/types#FPWD">W3C First Public Working Draft</a> <time class="dt-published" datetime="2023-04-28">28 April 2023</time></p>
+    <h1 id="title" class="title">SPARQL 1.2 Query Results CSV and TSV Formats</h1> 
+    <p id="w3c-state"><a href="https://www.w3.org/standards/types#FPWD">W3C First Public Working Draft</a> <time class="dt-published" datetime="2023-05-04">04 May 2023</time></p>
     <details open="">
       <summary>More details about this document</summary>
       <dl>
         <dt>This version:</dt><dd>
-                <a class="u-url" href="https://www.w3.org/TR/2023/WD-sparql12-results-json-20230428/">https://www.w3.org/TR/2023/WD-sparql12-results-json-20230428/</a>
+                <a class="u-url" href="https://www.w3.org/TR/2023/WD-sparql12-results-csv-tsv-20230504/">https://www.w3.org/TR/2023/WD-sparql12-results-csv-tsv-20230504/</a>
               </dd>
         <dt>Latest published version:</dt><dd>
-                <a href="https://www.w3.org/TR/sparql12-results-json/">https://www.w3.org/TR/sparql12-results-json/</a>
+                <a href="https://www.w3.org/TR/sparql12-results-csv-tsv/">https://www.w3.org/TR/sparql12-results-csv-tsv/</a>
               </dd>
-        <dt>Latest editor's draft:</dt><dd><a href="https://w3c.github.io/sparql-results-json/spec/">https://w3c.github.io/sparql-results-json/spec/</a></dd>
+        <dt>Latest editor's draft:</dt><dd><a href="https://w3c.github.io/sparql-results-csv-tsv/spec/">https://w3c.github.io/sparql-results-csv-tsv/spec/</a></dd>
         <dt>History:</dt><dd>
-                    <a href="https://www.w3.org/standards/history/sparql12-results-json">https://www.w3.org/standards/history/sparql12-results-json</a>
+                    <a href="https://www.w3.org/standards/history/sparql12-results-csv-tsv">https://www.w3.org/standards/history/sparql12-results-csv-tsv</a>
                   </dd><dd>
-                    <a href="https://github.com/w3c/sparql-results-json/commits/">Commit history</a>
+                    <a href="https://github.com/w3c/sparql-results-csv-tsv/commits/">Commit history</a>
                   </dd>
         <dt>Test suite:</dt><dd><a href="https://w3c.github.io/rdf-tests/">https://w3c.github.io/rdf-tests/</a></dd>
         
         
         
-        <dt>Latest Recommendation:</dt><dd><a href="https://www.w3.org/TR/2013/REC-sparql11-results-json-20130321">https://www.w3.org/TR/2013/REC-sparql11-results-json-20130321</a></dd>
-        <dt>Editors:</dt><dd class="editor p-author h-card vcard" data-editor-id="29909">
-    <span class="p-name fn">Andy Seaborne</span>
-  </dd><dd class="editor p-author h-card vcard" data-editor-id="84199">
+        <dt>Latest Recommendation:</dt><dd><a href="https://www.w3.org/TR/2013/REC-sparql11-results-csv-tsv-20130321">https://www.w3.org/TR/2013/REC-sparql11-results-csv-tsv-20130321</a></dd>
+        <dt>Editors:</dt><dd class="editor p-author h-card vcard" data-editor-id="84199">
     <span class="p-name fn">Ruben Taelman</span>
   </dd><dd class="editor p-author h-card vcard" data-editor-id="38870">
     <span class="p-name fn">Gregory Williams</span>
   </dd>
         <dt>
-                Former editors:
+                Former editor:
               </dt><dd class="editor p-author h-card vcard">
     <span class="p-name fn">Andy Seaborne</span>
-  </dd><dd class="editor p-author h-card vcard">
-    <span class="p-name fn">Kendall Grant Clark</span>
-  </dd><dd class="editor p-author h-card vcard">
-    <span class="p-name fn">Lee Feigenbaum</span>
-  </dd><dd class="editor p-author h-card vcard">
-    <span class="p-name fn">Elias Torres</span>
   </dd>
         
         <dt>Feedback:</dt><dd>
-        <a href="https://github.com/w3c/sparql-results-json/">GitHub w3c/sparql-results-json</a>
-        (<a href="https://github.com/w3c/sparql-results-json/pulls/">pull requests</a>,
-        <a href="https://github.com/w3c/sparql-results-json/issues/new/choose">new issue</a>,
-        <a href="https://github.com/w3c/sparql-results-json/issues/">open issues</a>)
-      </dd><dd><a href="mailto:public-rdf-star-wg@w3.org?subject=%5Bsparql12-results-json%5D%20YOUR%20TOPIC%20HERE">public-rdf-star-wg@w3.org</a> with subject line <kbd>[sparql12-results-json] <em>… message topic …</em></kbd> (<a rel="discussion" href="https://lists.w3.org/Archives/Public/public-rdf-star-wg">archives</a>)</dd>
+        <a href="https://github.com/w3c/sparql-results-csv-tsv/">GitHub w3c/sparql-results-csv-tsv</a>
+        (<a href="https://github.com/w3c/sparql-results-csv-tsv/pulls/">pull requests</a>,
+        <a href="https://github.com/w3c/sparql-results-csv-tsv/issues/new/choose">new issue</a>,
+        <a href="https://github.com/w3c/sparql-results-csv-tsv/issues/">open issues</a>)
+      </dd><dd><a href="mailto:public-rdf-star-wg@w3.org?subject=%5Bsparql12-results-csv-tsv%5D%20YOUR%20TOPIC%20HERE">public-rdf-star-wg@w3.org</a> with subject line <kbd>[sparql12-results-csv-tsv] <em>… message topic …</em></kbd> (<a rel="discussion" href="https://lists.w3.org/Archives/Public/public-rdf-star-wg">archives</a>)</dd>
         
         
       </dl>
@@ -861,8 +830,11 @@ var[data-type]:hover::after,var[data-type]:hover::before{opacity:1}
   </div>
     <section id="abstract" class="introductory"><h2>Abstract</h2>
       
-<p><a href="https://w3c.github.io/sparql-concepts/spec/#" id="ref-for-index-term-sparql-1">SPARQL</a> is a set of standards for the query and update of RDF data, along with ways to access such data over the web. This document describes
-    the representation of SELECT and ASK query results using <a href="https://www.rfc-editor.org/rfc/rfc4627#" id="ref-for-index-term-json-1">JSON</a>.</p>
+      <p>The formats CSV [<cite><a class="bibref" data-link-type="biblio" href="#bib-rfc4180" title="Common Format and MIME Type for Comma-Separated Values (CSV) Files">RFC4180</a></cite>] (comma separated values) 
+        and TSV [<cite><a class="bibref" data-link-type="biblio" href="#bib-iana-tsv" title="Definition of tab-separated-values (tsv)">IANA-TSV</a></cite>] (tab separated values) provide simple, easy to process formats
+        for the transmission of tabular data. They are supported as input datat formats by many tools,
+        particularly spreadsheets. This document describes their use for expressing SPARQL query results
+        from <code>SELECT</code> queries.</p>
     </section>
 
     <section id="sotd" class="introductory"><h2>Status of This Document</h2><p><em>This section describes the status of this
@@ -906,7 +878,7 @@ var[data-type]:hover::after,var[data-type]:hover::before{opacity:1}
   </p><p>
                   This document is governed by the
                   <a id="w3c_process_revision" href="https://www.w3.org/2021/Process-20211102/">2 November 2021 <abbr title="World Wide Web Consortium">W3C</abbr> Process Document</a>.
-                </p></section><nav id="toc"><h2 class="introductory" id="table-of-contents">Table of Contents</h2><ol class="toc"><li class="tocline"><a class="tocxref" href="#abstract">Abstract</a></li><li class="tocline"><a class="tocxref" href="#sotd">Status of This Document</a></li><li class="tocline"><a class="tocxref" href="#related"><bdi class="secno">1. </bdi>Set of Documents</a></li><li class="tocline"><a class="tocxref" href="#introduction"><bdi class="secno">2. </bdi>Introduction</a></li><li class="tocline"><a class="tocxref" href="#json-result-object"><bdi class="secno">3. </bdi>JSON Results Object</a></li><li class="tocline"><a class="tocxref" href="#select-results-form"><bdi class="secno">4. </bdi>Variable Binding Results</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#select-head"><bdi class="secno">4.1 </bdi>"head"</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#select-vars"><bdi class="secno">4.1.1 </bdi>"vars"</a></li><li class="tocline"><a class="tocxref" href="#select-link"><bdi class="secno">4.1.2 </bdi>"link"</a></li></ol></li><li class="tocline"><a class="tocxref" href="#select-results"><bdi class="secno">4.2 </bdi>"results"</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#select-bindings"><bdi class="secno">4.2.1 </bdi>"bindings"</a></li><li class="tocline"><a class="tocxref" href="#select-encode-terms"><bdi class="secno">4.2.2 </bdi>Encoding RDF terms</a></li></ol></li></ol></li><li class="tocline"><a class="tocxref" href="#ask-result-form"><bdi class="secno">5. </bdi>Boolean Results</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#ask-head"><bdi class="secno">5.1 </bdi>"head"</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#ask-link"><bdi class="secno">5.1.1 </bdi>"link"</a></li></ol></li><li class="tocline"><a class="tocxref" href="#ask-boolean"><bdi class="secno">5.2 </bdi>"boolean"</a></li></ol></li><li class="tocline"><a class="tocxref" href="#example"><bdi class="secno">6. </bdi>Examples</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#example-bindings"><bdi class="secno">6.1 </bdi>Variable Binding Results Examples</a></li><li class="tocline"><a class="tocxref" href="#example-bindings-quoted"><bdi class="secno">6.2 </bdi>Variable Binding Results Examples with Quoted Triples</a></li></ol></li><li class="tocline"><a class="tocxref" href="#content-type"><bdi class="secno">7. </bdi>Internet Media Type, File Extension and Macintosh File Type</a></li><li class="tocline"><a class="tocxref" href="#privacy"><bdi class="secno">8. </bdi>Privacy Considerations</a></li><li class="tocline"><a class="tocxref" href="#security"><bdi class="secno">9. </bdi>Security Considerations</a></li><li class="tocline"><a class="tocxref" href="#internationalization"><bdi class="secno">10. </bdi>Internationalization Considerations</a></li><li class="tocline"><a class="tocxref" href="#changes-from-sparql11"><bdi class="secno">A. </bdi>Change Log</a></li><li class="tocline"><a class="tocxref" href="#index"><bdi class="secno">B. </bdi>Index</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#index-defined-here"><bdi class="secno">B.1 </bdi>Terms defined by this specification</a></li><li class="tocline"><a class="tocxref" href="#index-defined-elsewhere"><bdi class="secno">B.2 </bdi>Terms defined by reference</a></li></ol></li><li class="tocline"><a class="tocxref" href="#references"><bdi class="secno">C. </bdi>References</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#informative-references"><bdi class="secno">C.1 </bdi>Informative references</a></li></ol></li></ol></nav>
+                </p></section><nav id="toc"><h2 class="introductory" id="table-of-contents">Table of Contents</h2><ol class="toc"><li class="tocline"><a class="tocxref" href="#abstract">Abstract</a></li><li class="tocline"><a class="tocxref" href="#sotd">Status of This Document</a></li><li class="tocline"><a class="tocxref" href="#related"><bdi class="secno">1. </bdi>Set of Documents</a></li><li class="tocline"><a class="tocxref" href="#introduction"><bdi class="secno">2. </bdi>Introduction</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#example1"><bdi class="secno">2.1 </bdi>Example</a></li></ol></li><li class="tocline"><a class="tocxref" href="#general-comments"><bdi class="secno">3. </bdi>Transmission issues using CSV and TSV Formats</a></li><li class="tocline"><a class="tocxref" href="#csv-table"><bdi class="secno">4. </bdi>CSV — Comma Separated values</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#serializing-results"><bdi class="secno">4.1 </bdi>Serializing the Results Table</a></li><li class="tocline"><a class="tocxref" href="#csv-terms"><bdi class="secno">4.2 </bdi>Serializing RDF Terms</a></li><li class="tocline"><a class="tocxref" href="#csv-example"><bdi class="secno">4.3 </bdi>Example of CSV-Serialized Results</a></li></ol></li><li class="tocline"><a class="tocxref" href="#tsv"><bdi class="secno">5. </bdi>TSV — Tab Separated values</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#tsv-table"><bdi class="secno">5.1 </bdi>Serializing the Results Table</a></li><li class="tocline"><a class="tocxref" href="#tsv-terms"><bdi class="secno">5.2 </bdi>Serializing RDF Terms</a></li><li class="tocline"><a class="tocxref" href="#tsv-example"><bdi class="secno">5.3 </bdi>Example of TSV-Serialized Results</a></li></ol></li><li class="tocline"><a class="tocxref" href="#conformance"><bdi class="secno">6. </bdi>Conformance</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#conformance-0"><bdi class="secno">6.1 </bdi>Conformance</a></li></ol></li><li class="tocline"><a class="tocxref" href="#privacy"><bdi class="secno">7. </bdi>Privacy Considerations</a></li><li class="tocline"><a class="tocxref" href="#security"><bdi class="secno">8. </bdi>Security Considerations</a></li><li class="tocline"><a class="tocxref" href="#internationalization"><bdi class="secno">9. </bdi>Internationalization Considerations</a></li><li class="tocline"><a class="tocxref" href="#changes-from-sparql11"><bdi class="secno">A. </bdi>Change Log</a></li><li class="tocline"><a class="tocxref" href="#index"><bdi class="secno">B. </bdi>Index</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#index-defined-here"><bdi class="secno">B.1 </bdi>Terms defined by this specification</a></li><li class="tocline"><a class="tocxref" href="#index-defined-elsewhere"><bdi class="secno">B.2 </bdi>Terms defined by reference</a></li></ol></li><li class="tocline"><a class="tocxref" href="#references"><bdi class="secno">C. </bdi>References</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#normative-references"><bdi class="secno">C.1 </bdi>Normative references</a></li></ol></li></ol></nav>
 
     <section id="related"><div class="header-wrapper"><h2 id="x1-set-of-documents"><bdi class="secno">1. </bdi>Set of Documents</h2><a class="self-link" href="#related" aria-label="Permalink for Section 1."></a></div>
 <p>This document is one of twelve SPARQL 1.2 Recommendations produced by the <a href="https://www.w3.org/groups/wg/rdf-star">RDF-star Working Group</a>:</p>
@@ -919,8 +891,8 @@ var[data-type]:hover::after,var[data-type]:hover::before{opacity:1}
   <li><cite><a data-matched-text="[[[SPARQL12-UPDATE]]]" href="https://w3c.github.io/sparql-update/spec/">SPARQL 1.2 Update</a></cite></li>
   <li><cite><a data-matched-text="[[[SPARQL12-SERVICE-DESCRIPTION]]]" href="https://w3c.github.io/sparql-service-description/spec/">SPARQL 1.2 Service Description</a></cite></li>
   <li><cite><a data-matched-text="[[[SPARQL12-FEDERATED-QUERY]]]" href="https://w3c.github.io/sparql-federated-query/spec/">SPARQL 1.2 Federated Query</a></cite></li>
-  <li>SPARQL 1.2 Query Results JSON Format(this document)</li>
-  <li><cite><a data-matched-text="[[[SPARQL12-RESULTS-CSV-TSV]]]" href="https://w3c.github.io/sparql-results-csv-tsv/spec/">SPARQL 1.2 Query Results CSV and TSV Formats</a></cite></li>
+  <li><cite><a data-matched-text="[[[SPARQL12-RESULTS-JSON]]]" href="https://w3c.github.io/sparql-results-json/spec/">SPARQL 1.2 Query Results JSON Format</a></cite></li>
+  <li>SPARQL 1.2 Query Results CSV and TSV Formats(this document)</li>
   <li><cite><a data-matched-text="[[[SPARQL12-RESULTS-XML]]]" href="https://w3c.github.io/sparql-results-xml/spec/">SPARQL 1.2 Query Results XML Formats</a></cite></li>
   <li><cite><a data-matched-text="[[[SPARQL12-ENTAILMENT]]]" href="https://w3c.github.io/sparql-entailment/spec/">SPARQL 1.2 Entailment Regimes</a></cite></li>
   <li><cite><a data-matched-text="[[[SPARQL12-PROTOCOL]]]" href="https://w3c.github.io/sparql-protocol/spec/">SPARQL 1.2 Protocol</a></cite></li>
@@ -930,316 +902,241 @@ var[data-type]:hover::after,var[data-type]:hover::before{opacity:1}
     
 
     <section id="introduction"><div class="header-wrapper"><h2 id="x2-introduction"><bdi class="secno">2. </bdi>Introduction</h2><a class="self-link" href="#introduction" aria-label="Permalink for Section 2."></a></div>
+    
+    <p>This document describes CSV and TSV formats for expressing the results of a SPARQL <code>SELECT</code> query.
+      They provide lowest common denominator formats between systems using different implementation technologies.</p>
+    <p>Other formats for expression of SPARQL results are the SPARQL Results XML Format 
+      [<cite><a class="bibref" data-link-type="biblio" href="#bib-sparql12-results-xml" title="SPARQL 1.2 Query Results XML Formats">SPARQL12-RESULTS-XML</a></cite>] and 
+      the SPARQL Results JSON Format [<cite><a class="bibref" data-link-type="biblio" href="#bib-sparql12-results-json" title="SPARQL 1.2 Query Results JSON Format">SPARQL12-RESULTS-JSON</a></cite>]. Each format is useful
+      in different application scenarios.</p>
+    <p>The SPARQL Results CSV Format is a lossy encoding of a table of results. It does not encode all the
+      details of each RDF term in the results; instead, it just gives a string without indicating the type of the
+      term (IRI, Literal, Literal with datatype, Literal with language, or blank node). This makes it simple to
+      consume data, such as text and numbers, in applications that don't need to understand the details of RDF. In
+      some applications, guesses as to which elements are hyperlinks are made pragmatically, for example, guessing
+      that strings starting "<code>http://</code>" are links.</p>
+    <p>The SPARQL Results TSV Format does encode the details of RDF terms in the results table, by using the syntax
+      that SPARQL [<cite><a class="bibref" data-link-type="biblio" href="#bib-sparql12-query" title="SPARQL 1.2 Query Language">SPARQL12-QUERY</a></cite>] and Turtle [<cite><a class="bibref" data-link-type="biblio" href="#bib-rdf12-turtle" title="RDF 1.2 Turtle">RDF12-TURTLE</a></cite>] use. An application receiving
+      a TSV-encoded result set can split each line into elements of the result row, and extract all the details of
+      the RDF terms it wishes to process by simple string processing, without a complete XML or JSON parser as may 
+      by required by the more complex SPARQL result formats.</p>
+    <p>When this document uses the words <em class="rfc2119" title="must">must</em>, <em class="rfc2119" title="must not">must not</em>, <em class="rfc2119" title="should">should</em>, <em class="rfc2119" title="should not">should not</em>, <em class="rfc2119" title="may">may</em> and <em class="rfc2119" title="recommended">recommended</em>, they must be interpreted as described in RFC
+      2119 [<cite><a class="bibref" data-link-type="biblio" href="#bib-rfc2119" title="Key words for use in RFCs to Indicate Requirement Levels">RFC2119</a></cite>].</p>
+
+      <section id="example1"><div class="header-wrapper"><h3 id="x2-1-example"><bdi class="secno">2.1 </bdi>Example</h3><a class="self-link" href="#example1" aria-label="Permalink for Section 2.1"></a></div>
       
-      <p>This document describes how to serialize SPARQL results (SELECT and ASK query forms) in a <a href="https://www.rfc-editor.org/rfc/rfc4627#" id="ref-for-index-term-json-2">JSON</a> format. The format is designed to be a
-      complete representation of the information in the query results. The results of a SELECT query are serilialized as an array, where each array element is one "row" of the query results; the
-      results of an ASK query give the boolean value of the query result.</p>
-      <p>An Internet Media Type is provided for <code>application/sparql-results+json</code>.</p>
-      <p>There is also a <cite><a data-matched-text="[[[SPARQL12-RESULTS-XML]]]" href="https://w3c.github.io/sparql-results-xml/spec/">SPARQL 1.2 Query Results XML Formats</a></cite> which follows a similar design pattern but uses XML as the
-      serialization.</p>
-      <p>Unless otherwise noted in the section heading, all sections and appendices in this document are normative.</p>
-    </section>
-    <section id="json-result-object"><div class="header-wrapper"><h2 id="x3-json-results-object"><bdi class="secno">3. </bdi>JSON Results Object</h2><a class="self-link" href="#json-result-object" aria-label="Permalink for Section 3."></a></div>
-      
-      <p>The results of a SPARQL Query are serialized in JSON as a single top-level JSON object. This object has a <code>"head"</code> member and either a <code>"results"</code> member or a
-      <code>"boolean"</code> member, depending on the query form.</p>
-      <p>This example shows the results of a <code>SELECT</code> query. The query solutions are represented in an array which is the value of the <code>"bindings"</code> key, in turn part of an
-      object that is the value of the <code>"results"</code> key:</p>
-      <pre aria-busy="false"><code class="hljs json">{
-  <span class="hljs-attr">"head"</span>: { <span class="hljs-attr">"vars"</span>: [ <span class="hljs-string">"book"</span> , <span class="hljs-string">"title"</span> ]
-  } ,
-  <span class="hljs-attr">"results"</span>: { 
-    <span class="hljs-attr">"bindings"</span>: [
-      {
-        <span class="hljs-attr">"book"</span>: { <span class="hljs-attr">"type"</span>: <span class="hljs-string">"uri"</span> , <span class="hljs-attr">"value"</span>: <span class="hljs-string">"http://example.org/book/book6"</span> } ,
-        <span class="hljs-attr">"title"</span>: { <span class="hljs-attr">"type"</span>: <span class="hljs-string">"literal"</span> , <span class="hljs-attr">"value"</span>: <span class="hljs-string">"Harry Potter and the Half-Blood Prince"</span> }
-      } ,
-      {
-        <span class="hljs-attr">"book"</span>: { <span class="hljs-attr">"type"</span>: <span class="hljs-string">"uri"</span> , <span class="hljs-attr">"value"</span>: <span class="hljs-string">"http://example.org/book/book7"</span> } ,
-        <span class="hljs-attr">"title"</span>: { <span class="hljs-attr">"type"</span>: <span class="hljs-string">"literal"</span> , <span class="hljs-attr">"value"</span>: <span class="hljs-string">"Harry Potter and the Deathly Hallows"</span> }
-      } ,
-      {
-        <span class="hljs-attr">"book"</span>: { <span class="hljs-attr">"type"</span>: <span class="hljs-string">"uri"</span> , <span class="hljs-attr">"value"</span>: <span class="hljs-string">"http://example.org/book/book5"</span> } ,
-        <span class="hljs-attr">"title"</span>: { <span class="hljs-attr">"type"</span>: <span class="hljs-string">"literal"</span> , <span class="hljs-attr">"value"</span>: <span class="hljs-string">"Harry Potter and the Order of the Phoenix"</span> }
-      } ,
-      {
-        <span class="hljs-attr">"book"</span>: { <span class="hljs-attr">"type"</span>: <span class="hljs-string">"uri"</span> , <span class="hljs-attr">"value"</span>: <span class="hljs-string">"http://example.org/book/book4"</span> } ,
-        <span class="hljs-attr">"title"</span>: { <span class="hljs-attr">"type"</span>: <span class="hljs-string">"literal"</span> , <span class="hljs-attr">"value"</span>: <span class="hljs-string">"Harry Potter and the Goblet of Fire"</span> }
-      } ,
-      {
-        <span class="hljs-attr">"book"</span>: { <span class="hljs-attr">"type"</span>: <span class="hljs-string">"uri"</span> , <span class="hljs-attr">"value"</span>: <span class="hljs-string">"http://example.org/book/book2"</span> } ,
-        <span class="hljs-attr">"title"</span>: { <span class="hljs-attr">"type"</span>: <span class="hljs-string">"literal"</span> , <span class="hljs-attr">"value"</span>: <span class="hljs-string">"Harry Potter and the Chamber of Secrets"</span> }
-      } ,
-      {
-        <span class="hljs-attr">"book"</span>: { <span class="hljs-attr">"type"</span>: <span class="hljs-string">"uri"</span> , <span class="hljs-attr">"value"</span>: <span class="hljs-string">"http://example.org/book/book3"</span> } ,
-        <span class="hljs-attr">"title"</span>: { <span class="hljs-attr">"type"</span>: <span class="hljs-string">"literal"</span> , <span class="hljs-attr">"value"</span>: <span class="hljs-string">"Harry Potter and the Prisoner Of Azkaban"</span> }
-      } ,
-      {
-        <span class="hljs-attr">"book"</span>: { <span class="hljs-attr">"type"</span>: <span class="hljs-string">"uri"</span> , <span class="hljs-attr">"value"</span>: <span class="hljs-string">"http://example.org/book/book1"</span> } ,
-        <span class="hljs-attr">"title"</span>: { <span class="hljs-attr">"type"</span>: <span class="hljs-string">"literal"</span> , <span class="hljs-attr">"value"</span>: <span class="hljs-string">"Harry Potter and the Philosopher's Stone"</span> }
-      }
-    ]
-  }
-}</code></pre>
-      <p>This example shows the result from an <code>ASK</code> query:</p>
-      <pre aria-busy="false"><code class="hljs json">{ 
-  <span class="hljs-attr">"head"</span> : { } ,
-  <span class="hljs-attr">"boolean"</span> : <span class="hljs-literal">true</span>
-}</code></pre>
-      <p>Other keys, with different names, may be present in the JSON Results Object but are not defined by this specification.</p>
-    </section>
-    <section id="select-results-form"><div class="header-wrapper"><h2 id="x4-variable-binding-results"><bdi class="secno">4. </bdi>Variable Binding Results</h2><a class="self-link" href="#select-results-form" aria-label="Permalink for Section 4."></a></div>
-      
-      <p>The results of a SPARQL <code>SELECT</code> query are serialized as an array of bindings of variables. The value of the <code>"head"</code> key is an array of all variables projected in the
-      query's <code>SELECT</code> clause.</p>
-      <section id="select-head"><div class="header-wrapper"><h3 id="x4-1-head"><bdi class="secno">4.1 </bdi>"head"</h3><a class="self-link" href="#select-head" aria-label="Permalink for Section 4.1"></a></div>
-        
-        <p>The <code>"head"</code> member gives the variables mentioned in the results and may contain a <code>"link"</code> member.</p>
-        <pre class="json" aria-busy="false"><code class="hljs">{
-"head" { 
-   "vars" : [ ... ] ,
-   "link" : [ ... ] }</code></pre>
-        <section id="select-vars"><div class="header-wrapper"><h4 id="x4-1-1-vars"><bdi class="secno">4.1.1 </bdi>"vars"</h4><a class="self-link" href="#select-vars" aria-label="Permalink for Section 4.1.1"></a></div>
-          
-          <p>The <code>"vars"</code> member is an array giving the names of the variables used in the results. These are the projected variables from the query. A variable is not necessarily given a
-          value in every query solution of the results.</p>
-          <pre class="json" aria-busy="false"><code class="hljs">"vars" : [ "book" , "title" ]</code></pre>
-          <p>The order of variable names should correspond to the variables in the SELECT clause of the query, unless the query is of the form <code>SELECT *</code> in which case order is not
-          significant.</p>
-        </section>
-        <section id="select-link"><div class="header-wrapper"><h4 id="x4-1-2-link"><bdi class="secno">4.1.2 </bdi>"link"</h4><a class="self-link" href="#select-link" aria-label="Permalink for Section 4.1.2"></a></div>
-          
-          <p>The optional <code>"link"</code> member gives an array of URIs, as strings, to refer for further information. The format and content of these link references is not defined by this
-          document.</p>
-          <pre class="json" aria-busy="false"><code class="hljs">"link" : [ "http://example/dataset/metadata.ttl" ]</code></pre>
-        </section>
-      </section>
-      <section id="select-results"><div class="header-wrapper"><h3 id="x4-2-results"><bdi class="secno">4.2 </bdi>"results"</h3><a class="self-link" href="#select-results" aria-label="Permalink for Section 4.2"></a></div>
-        
-        <p>The value of the <code>"results"</code> member is an object with a single key, <code>"bindings"</code>.</p>
-        <section id="select-bindings"><div class="header-wrapper"><h4 id="x4-2-1-bindings"><bdi class="secno">4.2.1 </bdi>"bindings"</h4><a class="self-link" href="#select-bindings" aria-label="Permalink for Section 4.2.1"></a></div>
-          
-          <p>The value of the <code>"bindings"</code> member is an array with zero or more elements, one element per query solution. Each query solution is a JSON object. Each key of this object is a
-          variable name from the query solution. The value for a given variable name is a JSON object that <a href="#select-encode-terms">encodes the variable's bound value, an RDF term.</a> There
-          are zero elements in the array if the query returned an empty solution sequence. Variables names do not include the initial "?" or "$" character. Each variable name that appears as a key
-          within the <code>"bindings"</code> array will have appeared in the <a href="#select-vars"><code>"vars"</code></a> array in the results header.</p>
-          <p>A variable does not appear in an array element if it is not bound in that particular query solution.</p>
-          <p>The order of elements in the bindings array reflects the order, if any, of the query solution sequence.</p>
-          <pre class="json" aria-busy="false"><code class="hljs">"bindings" : [
-  {
-    "a" : { ... } ,
-    "b" : { ... } 
-  } ,
-  {
-    "a" : { ... } ,
-    "b" : { ... } 
-  }
-]</code></pre>
-          <p>If the query returns no solutions, an empty array is used.</p>
-          <pre class="json" aria-busy="false"><code class="hljs">"bindings" : []</code></pre>
-        </section>
-        <section id="select-encode-terms"><div class="header-wrapper"><h4 id="x4-2-2-encoding-rdf-terms"><bdi class="secno">4.2.2 </bdi>Encoding RDF terms</h4><a class="self-link" href="#select-encode-terms" aria-label="Permalink for Section 4.2.2"></a></div>
-          
-          <p>An RDF term (IRI, literal, blank node, or quoted triple) is encoded as a JSON object. All aspects of the RDF term are represented. The JSON object has a <code>"type"</code> member and other members
-          depending on the specific kind of RDF term.</p>
-          <table style="border-collapse: collapse; border-color: #000000; border-spacing: 5px; border-width: 1px">
-            <tbody>
-              <tr>
-                <th>RDF Term</th>
-                <th>JSON form</th>
-              </tr>
-              <tr>
-                <td>IRI <em><b>I</b></em></td>
-                <td><code>{"type": "uri", "value": "<em><b>I</b></em>"}</code></td>
-              </tr>
-              <tr>
-                <td>Literal <em><b>S</b></em></td>
-                <td><code>{"type": "literal","value": "<em><b>S</b></em>"}</code></td>
-              </tr>
-              <tr>
-                <td>Literal <em><b>S</b></em> with language tag <em><b>L</b></em></td>
-                <td><code>{ "type": "literal", "value": "<em><b>S</b></em>", "xml:lang": "<em><b>L</b></em>"}</code></td>
-              </tr>
-              <tr>
-                <td>Literal <em><b>S</b></em> with datatype IRI <em><b>D</b></em></td>
-                <td><code>{ "type": "literal", "value": "<em><b>S</b></em>", "datatype": "<em><b>D</b></em>"}</code></td>
-              </tr>
-              <tr>
-                <td>Blank node, label <em><b>B</b></em></td>
-                <td><code>{"type": "bnode", "value": "<em><b>B</b></em>"}</code></td>
-              </tr>
-              <tr>
-                <td>Quoted triple, with subject <em><b>S</b></em>, predicate <em><b>P</b></em>, and object <em><b>O</b></em></td>
-                <td><code>{"type": "triple", "subject": "<em><b>S</b></em>", "predicate": "<em><b>P</b></em>", "object": "<em><b>O</b></em>"}</code></td>
-              </tr>
-            </tbody>
-          </table>
-          <p>The blank node label is scoped to the results object. That is, two blank nodes with the same label in a single SPARQL Results JSON object are the same blank node. This is not an
-          indication of any internal system identifier the SPARQL processor may use. Use of the same label in another SPARQL Results JSON object does not imply it is the same blank node.</p>
-          <p>The subject, predicate, and object of a quoted triple are encoded using the same format, recursively.</p>
-        </section>
+      <p>The following artificial example is used to illustrate the features of serializing results in each format.</p>
+      <table class="result">
+        <tbody>
+          <tr>
+            <th>x</th>
+            <th>literal</th>
+            <th class="tablecomment"><i>Comment (not part of the table)</i></th>
+          </tr>
+          <tr>
+            <td>&lt;http://example/x&gt;</td>
+            <td>String</td>
+            <td class="tablecomment">An IRI and a string consisting of characters S-t-r-i-n-g</td>
+          </tr>
+          <tr>
+            <td>&lt;http://example/x&gt;</td>
+            <td>String-with-dquote"</td>
+            <td class="tablecomment">String with a double quote in it.</td>
+          </tr>
+          <tr>
+            <td>_:b0</td>
+            <td>Blank node</td>
+            <td class="tablecomment">Blank node</td>
+          </tr>
+          <tr>
+            <td></td>
+            <td>Missing 'x'</td>
+            <td class="tablecomment">No RDF term for the <b>x</b> column</td>
+          </tr>
+          <tr>
+            <td></td>
+            <td></td>
+            <td class="tablecomment">This row has no terms in it.</td>
+          </tr>
+          <tr>
+            <td>&lt;http://example/x&gt;</td>
+            <td></td>
+            <td class="tablecomment">No term in the <b>literal</b> column.</td>
+          </tr>
+          <tr>
+            <td>_:b1</td>
+            <td>"String-with-lang"@en</td>
+            <td class="tablecomment">An RDF literal with a language tag</td>
+          </tr>
+          <tr>
+            <td>_:b1</td>
+            <td>123</td>
+            <td class="tablecomment">An RDF literal, datatype xsd:integer, and lexical form 123.</td>
+          </tr>
+        </tbody>
+      </table>
       </section>
     </section>
-    <section id="ask-result-form"><div class="header-wrapper"><h2 id="x5-boolean-results"><bdi class="secno">5. </bdi>Boolean Results</h2><a class="self-link" href="#ask-result-form" aria-label="Permalink for Section 5."></a></div>
-      
-      <p>The results of a SPARQL <code>ASK</code> query are serialized as a boolean value, giving the result of the query evaluation.</p>
-      <section id="ask-head"><div class="header-wrapper"><h3 id="x5-1-head"><bdi class="secno">5.1 </bdi>"head"</h3><a class="self-link" href="#ask-head" aria-label="Permalink for Section 5.1"></a></div>
-        
-        <section id="ask-link"><div class="header-wrapper"><h4 id="x5-1-1-link"><bdi class="secno">5.1.1 </bdi>"link"</h4><a class="self-link" href="#ask-link" aria-label="Permalink for Section 5.1.1"></a></div>
-          
-          <p>The <code>"link"</code> member has the same format as the <a href="#select-link">SELECT <code>"link"</code></a> member.</p>
-        </section>
-      </section>
-      <section id="ask-boolean"><div class="header-wrapper"><h3 id="x5-2-boolean"><bdi class="secno">5.2 </bdi>"boolean"</h3><a class="self-link" href="#ask-boolean" aria-label="Permalink for Section 5.2"></a></div>
-        
-        <p>The result of an <code>ASK</code> query form are encoded by the <code>"boolean"</code> member, which takes either the JSON value <code>true</code> or the JSON value <code>false</code>.</p>
-        <pre class="json" aria-busy="false"><code class="hljs">"boolean" : true</code></pre>
-      </section>
-    </section>
-    <section id="example"><div class="header-wrapper"><h2 id="x6-examples"><bdi class="secno">6. </bdi>Examples</h2><a class="self-link" href="#example" aria-label="Permalink for Section 6."></a></div>
-      
-      <p>This section is not normative.</p>
-      <section id="example-bindings"><div class="header-wrapper"><h3 id="x6-1-variable-binding-results-examples"><bdi class="secno">6.1 </bdi>Variable Binding Results Examples</h3><a class="self-link" href="#example-bindings" aria-label="Permalink for Section 6.1"></a></div>
-        
-        <p>The following JSON is a serialization of the XML document <a class="reference" href="https://www.w3.org/2009/sparql/xml-results/output.srx">output.srx</a>:</p>
-        <pre aria-busy="false"><code class="hljs json">{
-  <span class="hljs-attr">"head"</span>: {
-    <span class="hljs-attr">"link"</span>: [ <span class="hljs-string">"http://www.w3.org/TR/rdf-sparql-XMLres/example.rq"</span> ],
-    <span class="hljs-attr">"vars"</span>: [
-      <span class="hljs-string">"x"</span>,
-      <span class="hljs-string">"hpage"</span>,
-      <span class="hljs-string">"name"</span>,
-      <span class="hljs-string">"mbox"</span>,
-      <span class="hljs-string">"age"</span>,
-      <span class="hljs-string">"blurb"</span>,
-      <span class="hljs-string">"friend"</span>
-    ]
-  },
-  <span class="hljs-attr">"results"</span>: {
-    <span class="hljs-attr">"bindings"</span>: [
-      {
-        <span class="hljs-attr">"x"</span>:     { <span class="hljs-attr">"type"</span>: <span class="hljs-string">"bnode"</span>,   <span class="hljs-attr">"value"</span>: <span class="hljs-string">"r1"</span> },
-        <span class="hljs-attr">"hpage"</span>: { <span class="hljs-attr">"type"</span>: <span class="hljs-string">"uri"</span>,     <span class="hljs-attr">"value"</span>: <span class="hljs-string">"http://work.example.org/alice/"</span> },
-        <span class="hljs-attr">"name"</span>:  { <span class="hljs-attr">"type"</span>: <span class="hljs-string">"literal"</span>, <span class="hljs-attr">"value"</span>: <span class="hljs-string">"Alice"</span> },
-        <span class="hljs-attr">"mbox"</span>:  { <span class="hljs-attr">"type"</span>: <span class="hljs-string">"literal"</span>, <span class="hljs-attr">"value"</span>: <span class="hljs-string">""</span> },
-        <span class="hljs-attr">"blurb"</span>: {
-          <span class="hljs-attr">"datatype"</span>: <span class="hljs-string">"http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral"</span>,
-          <span class="hljs-attr">"type"</span>: <span class="hljs-string">"literal"</span>,
-          <span class="hljs-attr">"value"</span>: <span class="hljs-string">"&lt;p xmlns=\"http://www.w3.org/1999/xhtml\"&gt;My name is &lt;b&gt;alice&lt;/b&gt;&lt;/p&gt;"</span>
-        },
-        <span class="hljs-attr">"friend"</span>: { <span class="hljs-attr">"type"</span>: <span class="hljs-string">"bnode"</span>, <span class="hljs-attr">"value"</span>: <span class="hljs-string">"r2"</span> }
-      },
-      {
-        <span class="hljs-attr">"x"</span>:      { <span class="hljs-attr">"type"</span>: <span class="hljs-string">"bnode"</span>,   <span class="hljs-attr">"value"</span>: <span class="hljs-string">"r2"</span> },
-        <span class="hljs-attr">"hpage"</span>:  { <span class="hljs-attr">"type"</span>: <span class="hljs-string">"uri"</span>,     <span class="hljs-attr">"value"</span>: <span class="hljs-string">"http://work.example.org/bob/"</span> },
-        <span class="hljs-attr">"name"</span>:   { <span class="hljs-attr">"type"</span>: <span class="hljs-string">"literal"</span>, <span class="hljs-attr">"value"</span>: <span class="hljs-string">"Bob"</span>, <span class="hljs-attr">"xml:lang"</span>: <span class="hljs-string">"en"</span> },
-        <span class="hljs-attr">"mbox"</span>:   { <span class="hljs-attr">"type"</span>: <span class="hljs-string">"uri"</span>,     <span class="hljs-attr">"value"</span>: <span class="hljs-string">"mailto:bob@work.example.org"</span> },
-        <span class="hljs-attr">"friend"</span>: { <span class="hljs-attr">"type"</span>: <span class="hljs-string">"bnode"</span>,   <span class="hljs-attr">"value"</span>: <span class="hljs-string">"r1"</span> }
-      }
-    ]
-  }
-}</code></pre>
-      </section>
-      <section id="example-bindings-quoted"><div class="header-wrapper"><h3 id="x6-2-variable-binding-results-examples-with-quoted-triples"><bdi class="secno">6.2 </bdi>Variable Binding Results Examples with Quoted Triples</h3><a class="self-link" href="#example-bindings-quoted" aria-label="Permalink for Section 6.2"></a></div>
-        
-        <p>The following JSON is a serialization of the XML document <a class="reference" href="https://www.w3.org/2009/sparql/xml-results/output-quoted.srx">output-quoted.srx</a> that contains quoted triples:</p>
-        <pre aria-busy="false"><code class="hljs json">{
-  <span class="hljs-attr">"head"</span>: {
-    <span class="hljs-attr">"link"</span>: [ <span class="hljs-string">"http://www.w3.org/TR/rdf-sparql-XMLres/example-quoted.rq"</span> ],
-    <span class="hljs-attr">"vars"</span>: [
-      <span class="hljs-string">"x"</span>,
-      <span class="hljs-string">"name"</span>,
-      <span class="hljs-string">"quoted"</span>
-    ]
-  },
-  <span class="hljs-attr">"results"</span>: {
-    <span class="hljs-attr">"bindings"</span>: [
-      {
-        <span class="hljs-attr">"x"</span>:    { <span class="hljs-attr">"type"</span>: <span class="hljs-string">"bnode"</span>,   <span class="hljs-attr">"value"</span>: <span class="hljs-string">"r1"</span> },
-        <span class="hljs-attr">"name"</span>: { <span class="hljs-attr">"type"</span>: <span class="hljs-string">"literal"</span>, <span class="hljs-attr">"value"</span>: <span class="hljs-string">"Alice"</span> },
-        <span class="hljs-attr">"quoted"</span>: {
-          <span class="hljs-attr">"type"</span>: <span class="hljs-string">"triple"</span>,
-          <span class="hljs-attr">"value"</span>: {
-            <span class="hljs-attr">"subject"</span>:   { <span class="hljs-attr">"type"</span>: <span class="hljs-string">"uri"</span>,     <span class="hljs-attr">"value"</span>: <span class="hljs-string">"http://example.org/alice"</span> },
-            <span class="hljs-attr">"predicate"</span>: { <span class="hljs-attr">"type"</span>: <span class="hljs-string">"uri"</span>,     <span class="hljs-attr">"value"</span>: <span class="hljs-string">"http://example.org/name"</span> },
-            <span class="hljs-attr">"object"</span>:    { <span class="hljs-attr">"type"</span>: <span class="hljs-string">"literal"</span>, <span class="hljs-attr">"value"</span>: <span class="hljs-string">"Alice"</span>, <span class="hljs-attr">"datatype"</span>: <span class="hljs-string">"http://www.w3.org/2001/XMLSchema#string"</span> }
-          }
-        }
-      },
-      {
-        <span class="hljs-attr">"x"</span>:    { <span class="hljs-attr">"type"</span>: <span class="hljs-string">"bnode"</span>,   <span class="hljs-attr">"value"</span>: <span class="hljs-string">"r2"</span> },
-        <span class="hljs-attr">"name"</span>: { <span class="hljs-attr">"type"</span>: <span class="hljs-string">"literal"</span>, <span class="hljs-attr">"value"</span>: <span class="hljs-string">"Bob"</span>, <span class="hljs-attr">"xml:lang"</span>: <span class="hljs-string">"en"</span> },
-        <span class="hljs-attr">"quoted"</span>: {
-          <span class="hljs-attr">"type"</span>: <span class="hljs-string">"triple"</span>,
-          <span class="hljs-attr">"value"</span>: {
-            <span class="hljs-attr">"subject"</span>:   { <span class="hljs-attr">"type"</span>: <span class="hljs-string">"uri"</span>,     <span class="hljs-attr">"value"</span>: <span class="hljs-string">"http://example.org/bob"</span> },
-            <span class="hljs-attr">"predicate"</span>: { <span class="hljs-attr">"type"</span>: <span class="hljs-string">"uri"</span>,     <span class="hljs-attr">"value"</span>: <span class="hljs-string">"http://example.org/name"</span> },
-            <span class="hljs-attr">"object"</span>:    { <span class="hljs-attr">"type"</span>: <span class="hljs-string">"literal"</span>, <span class="hljs-attr">"value"</span>: <span class="hljs-string">"Bob"</span>, <span class="hljs-attr">"datatype"</span>: <span class="hljs-string">"http://www.w3.org/2001/XMLSchema#string"</span> }
-          }
-        }
-      }
-    ]
-  }
-}</code></pre>
-      </section>
-    </section>
-    <section id="content-type"><div class="header-wrapper"><h2 id="x7-internet-media-type-file-extension-and-macintosh-file-type"><bdi class="secno">7. </bdi>Internet Media Type, File Extension and Macintosh File Type</h2><a class="self-link" href="#content-type" aria-label="Permalink for Section 7."></a></div>
-      
-      <p>The Internet Media Type / MIME Type for the SPARQL Query Results JSON Format is "application/sparql-results+json".</p>
-      <p>It is recommended that SPARQL Query Results JSON Format files have the extension ".srj" (all lowercase) on all platforms.</p>
-      <p>It is recommended that SPARQL Query Results JSON Format files stored on Macintosh HFS file systems be given a file type of "TEXT".</p>
-      <p>This information that follows is intended to be submitted to the IESG for review, approval, and registration with IANA.</p>
-      <dl>
-        <dt>Type name:</dt>
-        <dd>application</dd>
-        <dt>Subtype name:</dt>
-        <dd>sparql-results+json</dd>
-        <dt>Required parameters:</dt>
-        <dd>None</dd>
-        <dt>Optional parameters:</dt>
-        <dd>None</dd>
-        <dt>Encoding considerations:</dt>
-        <dd>The encoding considerations of the SPARQL Query Results JSON Format is identical to those of the "application/json" as specified in [<cite><a class="bibref" data-link-type="biblio" href="#bib-rfc4627" title="The application/json Media Type for JavaScript Object Notation (JSON)">RFC4627</a></cite>].</dd>
-        <dt>Security considerations:</dt>
-        <dd>SPARQL query results uses URIs. See Section 7 of [<cite><a class="bibref" data-link-type="biblio" href="#bib-rfc3986" title="Uniform Resource Identifier (URI): Generic Syntax">RFC3986</a></cite>].<br>
-        SPARQL query results uses IRIs. See Section 8 of [<cite><a class="bibref" data-link-type="biblio" href="#bib-rfc3987" title="Internationalized Resource Identifiers (IRIs)">RFC3987</a></cite>].<br>
-        The security considerations of the SPARQL Query Results JSON Format is identical to those of the "application/json" as specified in [<cite><a class="bibref" data-link-type="biblio" href="#bib-rfc4627" title="The application/json Media Type for JavaScript Object Notation (JSON)">RFC4627</a></cite>].</dd>
-        <dt>Interoperability considerations:</dt>
-        <dd>There are no known interoperability issues.</dd>
-        <dt>Published specification:</dt>
-        <dd>http://www.w3.org/TR/sparql11-results-json/</dd>
-        <dt>Applications which use this media type:</dt>
-        <dd>No known applications currently use this media type.</dd>
-        <dt>Additional information:</dt>
-        <dt>Magic number(s):</dt>
-        <dd>n/a</dd>
-        <dt>File extension(s):</dt>
-        <dd>".srj"</dd>
-        <dt>Macintosh file type code(s):</dt>
-        <dd>"TEXT"</dd>
-        <dt>Person &amp; email address to contact for further information:</dt>
-        <dd>Andy Seaborne &lt;public-rdf-dawg-comments@w3.org&gt;</dd>
-        <dt>Intended usage:</dt>
-        <dd>COMMON</dd>
-        <dt>Restrictions on usage:</dt>
-        <dd>None</dd>
-        <dt>Author/Change controller:</dt>
-        <dd>The SPARQL specification is a work product of the World Wide Web Consortium's SPARQL Working Group. The <abbr title="World Wide Web Consortium">W3C</abbr> has change control over these specifications.</dd>
-      </dl>
+    <section id="general-comments"><div class="header-wrapper"><h2 id="x3-transmission-issues-using-csv-and-tsv-formats"><bdi class="secno">3. </bdi>Transmission issues using CSV and TSV Formats</h2><a class="self-link" href="#general-comments" aria-label="Permalink for Section 3."></a></div>
+    
+    <p>The SPARQL result formats described here conform to the formal specifications of the relevant formats, 
+      Comma Separated values (CSV) [<cite><a class="bibref" data-link-type="biblio" href="#bib-rfc4180" title="Common Format and MIME Type for Comma-Separated Values (CSV) Files">RFC4180</a></cite>] 
+      and Tab Separated Value (TSV) [<cite><a class="bibref" data-link-type="biblio" href="#bib-iana-tsv" title="Definition of tab-separated-values (tsv)">IANA-TSV</a></cite>].</p>
+    <p>Systems providing these formats should note that the content types are <code>text/csv</code> for CSV and 
+      <code>text/tab-separated-values</code> for TSV. Being <code>text/*</code>, the default character set
+      is US-ASCII. The <code>charset</code> parameter <em class="rfc2119" title="should">should</em> be used in
+      conjunction with SPARQL Results; UTF-8 is recommended; giving us <code>text/csv; charset=utf-8</code> and
+      <code>text/tab-separated-values; charset=utf-8</code>.</p>
+    <p>The end-of-line in CSV is <code>CRLF</code>, i.e., Unicode codepoints 13 (<code>U+000D</code>) and 10 (<code>U+000A</code>).</p>
+    <p>The end-of-line in TSV is <code>EOL</code>, i.e., Unicode codepoint 10 (<code>U+000A</code>).</p>
+    <p>Applications reading these formats are advised to cope with both CRLF and LF as end of line markers and
+      not rely on conformance to the formal specifications.</p>
     </section>
     
+    <section id="csv-table"><div class="header-wrapper"><h2 id="x4-csv-comma-separated-values"><bdi class="secno">4. </bdi>CSV — Comma Separated values</h2><a class="self-link" href="#csv-table" aria-label="Permalink for Section 4."></a></div>
+    
+    <p>In the SPARQL Results CSV Format, the results table is serialized as one line listing the variables in
+      the results, using the CSV header line, followed by one line for each query solution. (Note: a line may end up
+      split by newlines in the data). Values in the results are:</p>
+      <ul>
+        <li>strings for 
+          <ul>
+            <li>URIs</li>
+            <li>lexical forms of non-numeric XSD datatypes</li>
+            <li>blank node labels</li>
+          </ul>
+        </li>
+        <li>numbers for literals of numeric XSD datatypes</li>
+      </ul>
+      <section id="serializing-results"><div class="header-wrapper"><h3 id="x4-1-serializing-the-results-table"><bdi class="secno">4.1 </bdi>Serializing the Results Table</h3><a class="self-link" href="#serializing-results" aria-label="Permalink for Section 4.1"></a></div>
+      
+      <p>The first line of a SPARQL Results CSV Format response is the header line, giving the names of the variables
+        used in the result set. The header line consists of the variable names, without leading question marks
+        <code>?</code>, separated by commas.</p>
+      <p>While the <code>text/csv</code> format does not require a header row, the SPARQL Results CSV Format 
+        <em class="rfc2119" title="must">must</em> use a header row. If the content type parameter
+        <code>header</code> is used, it <em class="rfc2119" title="must">must</em> be <code>header=present</code>.</p>
+      <p>The remaining rows are the values of the results, with each binding determined by the position in the row,
+        corresponding to the entry in the header line.</p>
+      <p>If a variable is not bound, an empty field is used (e.g. <code>,,</code>). Each row <em class="rfc2119" title="must">must</em> have the same number of fields, with each field corresponding to a
+        binding to the variable in the header line in the same field position.</p>
+      </section>
 
-    <section id="privacy"><div class="header-wrapper"><h2 id="x8-privacy-considerations"><bdi class="secno">8. </bdi>Privacy Considerations</h2><a class="self-link" href="#privacy" aria-label="Permalink for Section 8."></a></div>
+      <section id="csv-terms"><div class="header-wrapper"><h3 id="x4-2-serializing-rdf-terms"><bdi class="secno">4.2 </bdi>Serializing RDF Terms</h3><a class="self-link" href="#csv-terms" aria-label="Permalink for Section 4.2"></a></div>
+      
+      <p>The entry in each field is the string corresponding to the RDF term value. (cf. SPARQL <code>STR()</code>)
+        without syntax to denote what kind of term it is. The encoding quoting rules of CSV format must be used.</p>
+      <p>Blank nodes use the <code>_:label</code> form from Turtle and SPARQL. Use of the same label indicates the
+        same blank node within the result set but has no significance outside the result set.</p>
+      <p>Fields containing any of <code>"</code> (<small>QUOTATION MARK</small>, code point 34, <code>U+0022</code> in 
+        Unicode [<cite><a class="bibref" data-link-type="biblio" href="#bib-unicode" title="The Unicode Standard">UNICODE</a></cite>]),
+        <code>,</code> (<small>COMMA</small>, code point 44, <code>U+002C</code>), <code>LF</code> (code point 10,
+        <code>U+000A</code>) or <code>CR</code> (code point 13, <code>U+000D</code>) must be quoted using the quoting
+        mechanism of RFC4180 [<cite><a class="bibref" data-link-type="biblio" href="#bib-rfc4180" title="Common Format and MIME Type for Comma-Separated Values (CSV) Files">RFC4180</a></cite>].
+        Fields are limited by a pair of quotation marks <code>"</code> (code point <code>U+0022</code>). Within quote strings, all
+        characters except <code>"</code>, including new line characters have their exact meaning — newlines do not
+        end a CSV record. Inline <code>"</code> is written using a pair of quotation marks <code>""</code>.</p>
+      <p>The standard CSV format does not distinguish between missing values and empty strings. The SPARQL 1.2
+        Results CSV Format uses the same representation for unbound variables as for variables bound to an empty
+        string literal. The other SPARQL Result formats (based on JSON, TSV, or XML) can be used if this distinction
+        is required.</p>
+      </section>
+    
+      <section id="csv-example"><div class="header-wrapper"><h3 id="x4-3-example-of-csv-serialized-results"><bdi class="secno">4.3 </bdi>Example of CSV-Serialized Results</h3><a class="self-link" href="#csv-example" aria-label="Permalink for Section 4.3"></a></div>
+      
+      <pre class="box csv nohighlight">x,literal
+http://example/x,String
+http://example/x,"String-with-dquote"""
+_:b0,Blank node
+,Missing 'x'
+,
+http://example/x,
+_:b1,String-with-lang
+_:b1,123</pre>
+      </section>
+    </section>
+
+    <section id="tsv"><div class="header-wrapper"><h2 id="x5-tsv-tab-separated-values"><bdi class="secno">5. </bdi>TSV — Tab Separated values</h2><a class="self-link" href="#tsv" aria-label="Permalink for Section 5."></a></div>
+    
+    <p>In the SPARQL Results TSV Format, the results table is serialized as one line listing the variables
+      in the results, followed by one line for each query solution. All RDF terms used in the format are
+      encoded in the format specified by Turtle [[RDF12-TURTLE]
+      except that the triple quoted forms for the lexical part of
+      literals <em class="rfc2119" title="must not">must not</em> be used. These forms would allow raw
+      newlines and tabs that are part of the TSV format. A TSV format SPARQL result set must use the
+      single quoted literal forms, together with any necessary escapes such as <code>\t</code>, 
+      <code>\n</code>, and <code>\r</code>.</p>
+
+      <section id="tsv-table"><div class="header-wrapper"><h3 id="x5-1-serializing-the-results-table"><bdi class="secno">5.1 </bdi>Serializing the Results Table</h3><a class="self-link" href="#tsv-table" aria-label="Permalink for Section 5.1"></a></div>
+      
+      <p>The results table is serialized as one line listing the variables in the results, followed by
+        one line for each query solution. This first line is required by the TSV format [<cite><a class="bibref" data-link-type="biblio" href="#bib-iana-tsv" title="Definition of tab-separated-values (tsv)">IANA-TSV</a></cite>],
+        unlike CSV, where it is optional.</p>
+      <p>Variables are serialized in SPARQL syntax, using question mark <code>?</code> character followed
+        by the variable name.</p>
+      <p>Each row of the result set is serialized by sequence of RDF terms in SPARQL syntax, separated
+        by a tab (Horizontal Tab, Unicode code point <code>U+0009</code>) character.</p>
+      <p>If a variable is not bound in a row, an empty field is used. Each row <em class="rfc2119" title="must">must</em> have the same number of fields, corresponding to the variables listed in the
+        first row.</p>
+      </section>
+
+      <section id="tsv-terms"><div class="header-wrapper"><h3 id="x5-2-serializing-rdf-terms"><bdi class="secno">5.2 </bdi>Serializing RDF Terms</h3><a class="self-link" href="#tsv-terms" aria-label="Permalink for Section 5.2"></a></div>
+      
+      <p>The SPARQL Results TSV Format serializes RDF terms in the results table by using the syntax that
+        SPARQL [<cite><a class="bibref" data-link-type="biblio" href="#bib-sparql12-query" title="SPARQL 1.2 Query Language">SPARQL12-QUERY</a></cite>] and Turtle [<cite><a class="bibref" data-link-type="biblio" href="#bib-rdf12-turtle" title="RDF 1.2 Turtle">RDF12-TURTLE</a></cite>] use.</p>
+
+      <p>IRIs are enclosed in <code>&lt;...&gt;</code>, literals are enclosed with double quotes 
+        <code>"</code>...<code>"</code> or single quotes <code>'</code> ...<code>'</code> with optional
+        <code>@lang</code> or <code>^^</code> for datatype. IRIs are written enclosed in
+        <code>&lt;...&gt;</code>. They <em class="rfc2119" title="must">must</em> conform to the
+        <a href="https://www.rfc-editor.org/rfc/rfc3987#section-2.2">IRI rule</a> of <cite><a data-matched-text="[[[RFC3987]]]" href="https://www.rfc-editor.org/rfc/rfc3987">Internationalized Resource Identifiers (IRIs)</a></cite>.
+        Such IRIs include the IRI scheme and <em class="rfc2119" title="must not">must not</em> be
+        <a href="https://www.rfc-editor.org/rfc/rfc3986#section-4.2" id="ref-for-index-term-relative-reference-1">Relative Reference</a>. 
+        This includes IRIs used as datatypes.
+      </p>
+      <p>Literals are written with the lexical form in quotes. Tab, newline, and carriage return characters
+        (Unicode code points <code>U+0009</code> (tab), <code>U+0010</code> (line feed) and <code>U+0013</code>
+        (carriage return)) are encoded in strings as <code>\t</code>, <code>\n</code> and <code>\r</code>
+        respectively. The long string forms using triple quotes — <code>"""</code> or <code>'''</code> 
+        — <em class="rfc2119" title="must not">must not</em> be used. </p>
+      <p>The abbreviated forms for numbers (XSD integers, decimals, and doubles) <em class="rfc2119" title="should">should</em> be used.</p>
+      <p>Blank nodes use the <code>_:label</code> form from Turtle and SPARQL. Use of the same label
+        indicates the same blank node within the result set, but has no significance outside the result set.</p>
+      </section>
+
+      <section id="tsv-example"><div class="header-wrapper"><h3 id="x5-3-example-of-tsv-serialized-results"><bdi class="secno">5.3 </bdi>Example of TSV-Serialized Results</h3><a class="self-link" href="#tsv-example" aria-label="Permalink for Section 5.3"></a></div>
+      
+      <p>Writing <code>&lt;TAB&gt;</code> for a raw tab character (Unicode code point <code>U+0009</code>):</p>
+      <pre class="box tsv nohighlight">?x&lt;TAB&gt;?literal
+&lt;http://example/x&gt;&lt;TAB&gt;"String"
+&lt;http://example/x&gt;&lt;TAB&gt;"String-with-dquote\"" 
+
+
+_:blank0&lt;TAB&gt;"Blank node"
+&lt;TAB&gt;"Missing 'x'"
+&lt;TAB&gt;
+&lt;http://example/x&gt;&lt;TAB&gt;
+_:blank1&lt;TAB&gt;"String-with-lang"@en
+_:blank1&lt;TAB&gt;123</pre>
+      </section>
+    </section>
+
+    <section id="conformance"><div class="header-wrapper"><h2 id="x6-conformance"><bdi class="secno">6. </bdi>Conformance</h2><a class="self-link" href="#conformance" aria-label="Permalink for Section 6."></a></div><p>As well as sections marked as non-normative, all authoring guidelines, diagrams, examples, and notes in this specification are non-normative. Everything else in this specification is normative.</p>
+      <section id="conformance-0"><div class="header-wrapper"><h3 id="x6-1-conformance"><bdi class="secno">6.1 </bdi>Conformance</h3><a class="self-link" href="#conformance-0" aria-label="Permalink for Section 6.1"></a></div>
+    </section></section>
+
+
+    <section id="privacy"><div class="header-wrapper"><h2 id="x7-privacy-considerations"><bdi class="secno">7. </bdi>Privacy Considerations</h2><a class="self-link" href="#privacy" aria-label="Permalink for Section 7."></a></div>
       
       <p>TODO</p>
     </section>
 
-    <section id="security"><div class="header-wrapper"><h2 id="x9-security-considerations"><bdi class="secno">9. </bdi>Security Considerations</h2><a class="self-link" href="#security" aria-label="Permalink for Section 9."></a></div>
+    <section id="security"><div class="header-wrapper"><h2 id="x8-security-considerations"><bdi class="secno">8. </bdi>Security Considerations</h2><a class="self-link" href="#security" aria-label="Permalink for Section 8."></a></div>
       
       <p>TODO</p>
     </section>
 
-    <section id="internationalization"><div class="header-wrapper"><h2 id="x10-internationalization-considerations"><bdi class="secno">10. </bdi>Internationalization Considerations</h2><a class="self-link" href="#internationalization" aria-label="Permalink for Section 10."></a></div>
+    <section id="internationalization"><div class="header-wrapper"><h2 id="x9-internationalization-considerations"><bdi class="secno">9. </bdi>Internationalization Considerations</h2><a class="self-link" href="#internationalization" aria-label="Permalink for Section 9."></a></div>
       
       <p>TODO</p>                
     </section>
@@ -1258,17 +1155,10 @@ var[data-type]:hover::after,var[data-type]:hover::before{opacity:1}
     
     <ul class="index">
     <li>
-        [<cite><a class="bibref" data-link-type="biblio" href="#bib-rfc4627">RFC4627</a></cite>] defines the following:
+        [<cite><a class="bibref" data-link-type="biblio" href="#bib-rfc3986">RFC3986</a></cite>] defines the following:
         <ul>
           <li>
-    <span class="index-term" data-href="https://www.rfc-editor.org/rfc/rfc4627#" id="index-term-json" tabindex="0" aria-haspopup="dialog">JSON</span>
-  </li>
-        </ul>
-      </li><li>
-        [<cite><a class="bibref" data-link-type="biblio" href="#bib-sparql12-concepts">SPARQL12-CONCEPTS</a></cite>] defines the following:
-        <ul>
-          <li>
-    <span class="index-term" data-href="https://w3c.github.io/sparql-concepts/spec/#" id="index-term-sparql" tabindex="0" aria-haspopup="dialog">SPARQL</span>
+    <span class="index-term" data-href="https://www.rfc-editor.org/rfc/rfc3986#section-4.2" id="index-term-relative-reference" tabindex="0" aria-haspopup="dialog">Relative Reference</span>
   </li>
         </ul>
       </li>
@@ -1277,14 +1167,20 @@ var[data-type]:hover::after,var[data-type]:hover::before{opacity:1}
 
   
 
-<section id="references" class="appendix"><div class="header-wrapper"><h2 id="c-references"><bdi class="secno">C. </bdi>References</h2><a class="self-link" href="#references" aria-label="Permalink for Appendix C."></a></div><section id="informative-references"><div class="header-wrapper"><h3 id="c-1-informative-references"><bdi class="secno">C.1 </bdi>Informative references</h3><a class="self-link" href="#informative-references" aria-label="Permalink for Appendix C.1"></a></div>
+<section id="references" class="appendix"><div class="header-wrapper"><h2 id="c-references"><bdi class="secno">C. </bdi>References</h2><a class="self-link" href="#references" aria-label="Permalink for Appendix C."></a></div><section id="normative-references"><div class="header-wrapper"><h3 id="c-1-normative-references"><bdi class="secno">C.1 </bdi>Normative references</h3><a class="self-link" href="#normative-references" aria-label="Permalink for Appendix C.1"></a></div>
     
-    <dl class="bibliography"><dt id="bib-rfc3986">[RFC3986]</dt><dd>
+    <dl class="bibliography"><dt id="bib-iana-tsv">[IANA-TSV]</dt><dd>
+      <a href="https://www.iana.org/assignments/media-types/text/tab-separated-values"><cite>Definition of tab-separated-values (tsv)</cite></a>. Paul Lindner.  IANA. June 1993. IANA Media Type Registration. URL: <a href="https://www.iana.org/assignments/media-types/text/tab-separated-values">https://www.iana.org/assignments/media-types/text/tab-separated-values</a>
+    </dd><dt id="bib-rdf12-turtle">[RDF12-TURTLE]</dt><dd>
+      <a href="https://w3c.github.io/rdf-turtle/spec/"><cite>RDF 1.2 Turtle</cite></a>. Eric Prud'hommeaux; Gavin Carothers.  W3C. W3C Working Draft. URL: <a href="https://w3c.github.io/rdf-turtle/spec/">https://w3c.github.io/rdf-turtle/spec/</a>
+    </dd><dt id="bib-rfc2119">[RFC2119]</dt><dd>
+      <a href="https://www.rfc-editor.org/rfc/rfc2119"><cite>Key words for use in RFCs to Indicate Requirement Levels</cite></a>. S. Bradner.  IETF. March 1997. Best Current Practice. URL: <a href="https://www.rfc-editor.org/rfc/rfc2119">https://www.rfc-editor.org/rfc/rfc2119</a>
+    </dd><dt id="bib-rfc3986">[rfc3986]</dt><dd>
       <a href="https://www.rfc-editor.org/rfc/rfc3986"><cite>Uniform Resource Identifier (URI): Generic Syntax</cite></a>. T. Berners-Lee; R. Fielding; L. Masinter.  IETF. January 2005. Internet Standard. URL: <a href="https://www.rfc-editor.org/rfc/rfc3986">https://www.rfc-editor.org/rfc/rfc3986</a>
     </dd><dt id="bib-rfc3987">[RFC3987]</dt><dd>
       <a href="https://www.rfc-editor.org/rfc/rfc3987"><cite>Internationalized Resource Identifiers (IRIs)</cite></a>. M. Duerst; M. Suignard.  IETF. January 2005. Proposed Standard. URL: <a href="https://www.rfc-editor.org/rfc/rfc3987">https://www.rfc-editor.org/rfc/rfc3987</a>
-    </dd><dt id="bib-rfc4627">[RFC4627]</dt><dd>
-      <a href="https://www.rfc-editor.org/rfc/rfc4627"><cite>The application/json Media Type for JavaScript Object Notation (JSON)</cite></a>. D. Crockford.  IETF. July 2006. Informational. URL: <a href="https://www.rfc-editor.org/rfc/rfc4627">https://www.rfc-editor.org/rfc/rfc4627</a>
+    </dd><dt id="bib-rfc4180">[RFC4180]</dt><dd>
+      <a href="https://www.rfc-editor.org/rfc/rfc4180"><cite>Common Format and MIME Type for Comma-Separated Values (CSV) Files</cite></a>. Y. Shafranovich.  IETF. October 2005. Informational. URL: <a href="https://www.rfc-editor.org/rfc/rfc4180">https://www.rfc-editor.org/rfc/rfc4180</a>
     </dd><dt id="bib-sparql12-concepts">[SPARQL12-CONCEPTS]</dt><dd>
       <a href="https://w3c.github.io/sparql-concepts/spec/"><cite>SPARQL 1.2 Concepts</cite></a>. The W3C RDF-star Working Group.  W3C. W3C Working Draft. URL: <a href="https://w3c.github.io/sparql-concepts/spec/">https://w3c.github.io/sparql-concepts/spec/</a>
     </dd><dt id="bib-sparql12-entailment">[SPARQL12-ENTAILMENT]</dt><dd>
@@ -1299,41 +1195,29 @@ var[data-type]:hover::after,var[data-type]:hover::before{opacity:1}
       <a href="https://w3c.github.io/sparql-protocol/spec/"><cite>SPARQL 1.2 Protocol</cite></a>. Lee Feigenbaum; Gregory Williams; Kendall Clark; Elias Torres.  W3C. W3C Working Draft. URL: <a href="https://w3c.github.io/sparql-protocol/spec/">https://w3c.github.io/sparql-protocol/spec/</a>
     </dd><dt id="bib-sparql12-query">[SPARQL12-QUERY]</dt><dd>
       <a href="https://w3c.github.io/sparql-query/spec/"><cite>SPARQL 1.2 Query Language</cite></a>. Steven Harris; Andy Seaborne.  W3C. W3C Working Draft. URL: <a href="https://w3c.github.io/sparql-query/spec/">https://w3c.github.io/sparql-query/spec/</a>
-    </dd><dt id="bib-sparql12-results-csv-tsv">[SPARQL12-RESULTS-CSV-TSV]</dt><dd>
-      <a href="https://w3c.github.io/sparql-results-csv-tsv/spec/"><cite>SPARQL 1.2 Query Results CSV and TSV Formats</cite></a>. Andy Seaborne.  W3C. W3C Working Draft. URL: <a href="https://w3c.github.io/sparql-results-csv-tsv/spec/">https://w3c.github.io/sparql-results-csv-tsv/spec/</a>
+    </dd><dt id="bib-sparql12-results-json">[SPARQL12-RESULTS-JSON]</dt><dd>
+      <a href="https://w3c.github.io/sparql-results-json/spec/"><cite>SPARQL 1.2 Query Results JSON Format</cite></a>. Andy Seaborne.  W3C. W3C Working Draft. URL: <a href="https://w3c.github.io/sparql-results-json/spec/">https://w3c.github.io/sparql-results-json/spec/</a>
     </dd><dt id="bib-sparql12-results-xml">[SPARQL12-RESULTS-XML]</dt><dd>
       <a href="https://w3c.github.io/sparql-results-xml/spec/"><cite>SPARQL 1.2 Query Results XML Formats</cite></a>. Sandro Hawke; Dave Beckett; Jeen Broekstra.  W3C. W3C Working Draft. URL: <a href="https://w3c.github.io/sparql-results-xml/spec/">https://w3c.github.io/sparql-results-xml/spec/</a>
     </dd><dt id="bib-sparql12-service-description">[SPARQL12-SERVICE-DESCRIPTION]</dt><dd>
       <a href="https://w3c.github.io/sparql-service-description/spec/"><cite>SPARQL 1.2 Service Description</cite></a>. Gregory Williams.  W3C. W3C Working Draft. URL: <a href="https://w3c.github.io/sparql-service-description/spec/">https://w3c.github.io/sparql-service-description/spec/</a>
     </dd><dt id="bib-sparql12-update">[SPARQL12-UPDATE]</dt><dd>
       <a href="https://w3c.github.io/sparql-update/spec/"><cite>SPARQL 1.2 Update</cite></a>. Paula Gearon; Alexandre Passant; Axel Polleres.  W3C. W3C Working Draft. URL: <a href="https://w3c.github.io/sparql-update/spec/">https://w3c.github.io/sparql-update/spec/</a>
+    </dd><dt id="bib-unicode">[UNICODE]</dt><dd>
+      <a href="https://www.unicode.org/versions/latest/"><cite>The Unicode Standard</cite></a>.  Unicode Consortium. URL: <a href="https://www.unicode.org/versions/latest/">https://www.unicode.org/versions/latest/</a>
     </dd></dl>
   </section></section><p role="navigation" id="back-to-top">
     <a href="#title"><abbr title="Back to Top">↑</abbr></a>
-  </p><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-json" aria-label="Links in this document to definition: JSON">
+  </p><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-relative-reference" aria-label="Links in this document to definition: Relative Reference">
       <span class="caret"></span>
       <div>
-        <a class="self-link" href="https://www.rfc-editor.org/rfc/rfc4627#" aria-label="Permalink for definition: JSON. Activate to close this dialog.">Permalink</a>
+        <a class="self-link" href="https://www.rfc-editor.org/rfc/rfc3986#section-4.2" aria-label="Permalink for definition: Relative Reference. Activate to close this dialog.">Permalink</a>
          
       </div>
       <p><b>Referenced in:</b></p>
       <ul>
     <li>
-    <a href="#ref-for-index-term-json-1" title="§ Abstract">§ Abstract</a> 
-  </li><li>
-    <a href="#ref-for-index-term-json-2" title="§ 2. Introduction">§ 2. Introduction</a> 
-  </li>
-  </ul>
-    </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-sparql" aria-label="Links in this document to definition: SPARQL">
-      <span class="caret"></span>
-      <div>
-        <a class="self-link" href="https://w3c.github.io/sparql-concepts/spec/#" aria-label="Permalink for definition: SPARQL. Activate to close this dialog.">Permalink</a>
-         
-      </div>
-      <p><b>Referenced in:</b></p>
-      <ul>
-    <li>
-    <a href="#ref-for-index-term-sparql-1" title="§ Abstract">§ Abstract</a> 
+    <a href="#ref-for-index-term-relative-reference-1" title="§ 5.2 Serializing RDF Terms">§ 5.2 Serializing RDF Terms</a> 
   </li>
   </ul>
     </div><script id="respec-dfn-panel">(() => {

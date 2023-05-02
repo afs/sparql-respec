@@ -67,30 +67,39 @@ function func {
     done
 }    
 
-echo "---"
-echo "layout: null"
-echo "title: Drafts"
-echo "---"
-echo
+(
+    echo "---"
+    echo "layout: null"
+    echo "title: Drafts"
+    echo "---"
+    echo
 
-echo "## SPARQL files"
-# Includes 12
+    echo "## SPARQL files"
+    # Includes 12
 
-func  sparql12-query
-func  sparql12-update
-echo
+    func  sparql12-query
+    func  sparql12-update
+    echo
 
-func  sparql12-results-json
-func  sparql12-results-csv-tsv
-func  sparql12-results-xml
-echo
+    func  sparql12-results-json
+    func  sparql12-results-csv-tsv
+    func  sparql12-results-xml
+    echo
 
-func  sparql12-protocol
-func  sparql12-graph-store-protocol
-echo
+    func  sparql12-protocol
+    func  sparql12-graph-store-protocol
+    echo
 
-func  sparql12-federated-query
-func  sparql12-service-description
+    func  sparql12-federated-query
+    func  sparql12-service-description
+
+    ## echo
+    ## func  sparql12-entailment
+    ## func  sparql12-new
+    ## func  sparql12-concepts
+
+) > map.md
+
 
 ## https://www.w3.org/pubrules/?url=https%3A%2F%2Fafs.github.io%2Fsparql-respec%2FFPWD-sparql12-query-20230416.html&profile=FPWD&validation=simple-validation&informativeOnly=false&echidnaReady=false&patentPolicy=pp2020
 
