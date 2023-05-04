@@ -1,0 +1,1554 @@
+<!DOCTYPE html><html lang="en" dir="ltr"><head>
+<meta charset="utf-8">
+<meta name="generator" content="ReSpec 34.1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<style>
+dfn{cursor:pointer}
+.dfn-panel{position:absolute;z-index:35;min-width:300px;max-width:500px;padding:.5em .75em;margin-top:.6em;font-family:"Helvetica Neue",sans-serif;font-size:small;background:#fff;color:#000;box-shadow:0 1em 3em -.4em rgba(0,0,0,.3),0 0 1px 1px rgba(0,0,0,.05);border-radius:2px}
+.dfn-panel:not(.docked)>.caret{position:absolute;top:-9px}
+.dfn-panel:not(.docked)>.caret::after,.dfn-panel:not(.docked)>.caret::before{content:"";position:absolute;border:10px solid transparent;border-top:0;border-bottom:10px solid #fff;top:0}
+.dfn-panel:not(.docked)>.caret::before{border-bottom:9px solid #a2a9b1}
+.dfn-panel *{margin:0}
+.dfn-panel b{display:block;color:#000;margin-top:.25em}
+.dfn-panel ul a[href]{color:#333}
+.dfn-panel>div{display:flex}
+.dfn-panel a.self-link{font-weight:700;margin-right:auto}
+.dfn-panel .marker{padding:.1em;margin-left:.5em;border-radius:.2em;text-align:center;white-space:nowrap;font-size:90%;color:#040b1c}
+.dfn-panel .marker.dfn-exported{background:#d1edfd;box-shadow:0 0 0 .125em #1ca5f940}
+.dfn-panel .marker.idl-block{background:#8ccbf2;box-shadow:0 0 0 .125em #0670b161}
+.dfn-panel a:not(:hover){text-decoration:none!important;border-bottom:none!important}
+.dfn-panel a[href]:hover{border-bottom-width:1px}
+.dfn-panel ul{padding:0}
+.dfn-panel li{margin-left:1em}
+.dfn-panel.docked{position:fixed;left:.5em;top:unset;bottom:2em;margin:0 auto;max-width:calc(100vw - .75em * 2 - .5em - .2em * 2);max-height:30vh;overflow:auto}
+</style>
+    
+    
+<title>SPARQL 1.2 Graph Store Protocol</title>
+
+    
+<style id="respec-mainstyle">
+@keyframes pop{
+0%{transform:scale(1,1)}
+25%{transform:scale(1.25,1.25);opacity:.75}
+100%{transform:scale(1,1)}
+}
+:is(h1,h2,h3,h4,h5,h6,a) abbr{border:none}
+dfn{font-weight:700}
+a.internalDFN{color:inherit;border-bottom:1px solid #99c;text-decoration:none}
+a.externalDFN{color:inherit;border-bottom:1px dotted #ccc;text-decoration:none}
+a.bibref{text-decoration:none}
+.respec-offending-element:target{animation:pop .25s ease-in-out 0s 1}
+.respec-offending-element,a[href].respec-offending-element{text-decoration:red wavy underline}
+@supports not (text-decoration:red wavy underline){
+.respec-offending-element:not(pre){display:inline-block}
+.respec-offending-element{background:url(data:image/gif;base64,R0lGODdhBAADAPEAANv///8AAP///wAAACwAAAAABAADAEACBZQjmIAFADs=) bottom repeat-x}
+}
+#references :target{background:#eaf3ff;animation:pop .4s ease-in-out 0s 1}
+cite .bibref{font-style:normal}
+a[href].orcid{padding-left:4px;padding-right:4px}
+a[href].orcid>svg{margin-bottom:-2px}
+.toc a,.tof a{text-decoration:none}
+a .figno,a .secno{color:#000}
+ol.tof,ul.tof{list-style:none outside none}
+.caption{margin-top:.5em;font-style:italic}
+table.simple{border-spacing:0;border-collapse:collapse;border-bottom:3px solid #005a9c}
+.simple th{background:#005a9c;color:#fff;padding:3px 5px;text-align:left}
+.simple th a{color:#fff;padding:3px 5px;text-align:left}
+.simple th[scope=row]{background:inherit;color:inherit;border-top:1px solid #ddd}
+.simple td{padding:3px 10px;border-top:1px solid #ddd}
+.simple tr:nth-child(even){background:#f0f6ff}
+.section dd>p:first-child{margin-top:0}
+.section dd>p:last-child{margin-bottom:0}
+.section dd{margin-bottom:1em}
+.section dl.attrs dd,.section dl.eldef dd{margin-bottom:0}
+#issue-summary>ul{column-count:2}
+#issue-summary li{list-style:none;display:inline-block}
+details.respec-tests-details{margin-left:1em;display:inline-block;vertical-align:top}
+details.respec-tests-details>*{padding-right:2em}
+details.respec-tests-details[open]{z-index:999999;position:absolute;border:thin solid #cad3e2;border-radius:.3em;background-color:#fff;padding-bottom:.5em}
+details.respec-tests-details[open]>summary{border-bottom:thin solid #cad3e2;padding-left:1em;margin-bottom:1em;line-height:2em}
+details.respec-tests-details>ul{width:100%;margin-top:-.3em}
+details.respec-tests-details>li{padding-left:1em}
+.self-link:hover{opacity:1;text-decoration:none;background-color:transparent}
+aside.example .marker>a.self-link{color:inherit}
+.header-wrapper{display:flex;align-items:baseline}
+:is(h2,h3,h4,h5,h6):not(#toc>h2,#abstract>h2,#sotd>h2,.head>h2){position:relative;left:-.5em}
+:is(h2,h3,h4,h5,h6):not(#toch2)+a.self-link{color:inherit;order:-1;position:relative;left:-1.1em;font-size:1rem;opacity:.5}
+:is(h2,h3,h4,h5,h6)+a.self-link::before{content:"§";text-decoration:none;color:var(--heading-text)}
+:is(h2,h3)+a.self-link{top:-.2em}
+:is(h4,h5,h6)+a.self-link::before{color:#000}
+@media (max-width:767px){
+dd{margin-left:0}
+}
+@media print{
+.removeOnSave{display:none}
+}
+</style>
+    
+    
+
+    
+
+    
+<style>
+
+      /* @import url("local.css"); */
+      /* Inlined to make preview work */
+
+/* CSS For SPARQL Query */
+
+/* In-progress working draft artifacts - to be removed eventually */
+  .issue	{ background-color: #fdd;
+                  font-size: 88% ; }
+  .add		{ background-color: #7fff7f }
+  .remove	{ background-color: #ff7f7f }
+ul.issue	{}
+  .issueBlock	{ margin: 1em 4em 1em 2.5em ; /* Top Right Bottom Left */
+                  padding: 1ex;
+	          /*overflow: auto;*/
+                  page-break-inside: avoid ; }
+  .issueTopic	{ font-weight: bold ; }
+
+ .todo		{ font-size: 80% ; color: #444 ; }
+p.todo		{}
+
+.wgNote	{ border: 0.2em solid red;
+      padding: 0.5em ;
+      margin: 1em 4em 1em 2em ; }
+
+.box     { border: thin solid #888888;
+           page-break-inside: avoid ;
+           background-color: #F8F8F8 ; padding:1em ;
+           margin-left:0 ; margin-right: 2ex; 
+           margin-top: 0.1ex ; margin-bottom: 0.1ex ;
+         }
+
+/* Misc WD stuff */
+span.cvs-id     {color: gray; font-size:80%; display: block; }
+
+/* == General Tag Treatment == */
+pre		 { margin: 1em 4em 1em 2.5em ; /* Top Right Bottom Left */
+                   padding: 1ex;
+	           /*overflow: auto;*/
+                   page-break-inside: avoid ; }
+
+/* Tables */
+table, td	{ text-align: left; }
+td, th   { border-style: solid;
+                  border-width: 1px;
+                  border-color: black;
+                  border-bottom-color: gray;
+                  border-right-color: gray; }
+td.annotation, th.annotation { border-style: none; border-bottom-style: dotted; }
+table.plain	{ border-spacing: 0px; padding: 0px ; border-collapse: collapse ; }
+                  /* cellpadding="0" cellspacing="1" style="border-collapse: collapse */
+
+
+th.major	{ background-color: #005a9c;
+                  color: white; }
+.subHeading	{ text-align: left;
+                  background-color: #CCCCCC; }
+th, td		{ padding: 3px; }
+td		{ font-size: 85%; }
+th a:link	{ text-decoration: none; }
+th a:hover	{ background-color:#FFFF99;
+                  text-decoration: underline; }
+
+/* == Prototypes == */
+pre.prototype	{ background-color:#f7f8ff;
+                  border:thin solid #8888aa;
+                  margin: 1em 4em 1em 0em ; }
+.return, .type	{ color: #177 }
+
+/* == Notes ==  */
+.note		{ margin-left: 2.5em; margin-right: 4ex ; font-size: 85% ; font-style: italic ; }
+
+/* Definitions */
+.defn		{ margin-left:0 ; margin-right: 2ex; 
+                  margin-top: 0.1ex ; margin-bottom: 0.1ex ;
+                  /*border: double 1px #888888; *//* Buggy */
+                  border: thin solid #888888;
+                  padding: 1ex 2ex 0.5ex 2ex ; /* top, right, bottom, left */
+                  page-break-inside: avoid ;
+                  background-color: #F0F8F8 ; }
+div.defn p	{ margin-top: 1ex ; margin-bottom: 1.5ex ;}
+div.defn ul	{ margin-top: 1ex ; margin-bottom: 1.5ex ; }
+@media print	{ .defn { margin: 1em 1em 1em 1em ; } }
+span.definedTerm	{font-weight: bold;}
+
+div.grammarExtract
+                { border: thin solid #888888;
+                  padding: 1ex 2ex 1ex 2ex ; /* top, right, bottom, left */
+                  margin: 1em 6em 1em 2em ; 
+                  page-break-inside: avoid ;
+                  background-color: #F8F8F8 ; }
+
+pre.codeBlock  { font-family:monospace ; page-break-inside: avoid ; 
+                 margin: 0 ;
+	         margin-right: 2ex ;
+                 border: thin solid #888888; }
+
+
+
+
+/* Examples */
+pre.data	{ border: thin solid #88AA88;
+                  background-color: #E8F0E8;
+                  margin: 1em 4em 1em 0em ; }
+
+pre.dataExcerpt	{ border: thin solid #88AA88;
+                  background-color: #E8F0E8;
+                  margin: 1em 4em 1em 0em ; }
+/* Example Queries */
+.query          { background-color:#f7f8ff; }
+.queryExcerpt   { background-color:#f7f8ff; }
+pre.query	{ border:thin solid #8888aa;
+                  margin: 1em 4em 1em 0em ; }
+/* Example Results */
+.result		{ border: thin solid  #888888 ;
+                  background-color: #F0F0F0 ; }
+pre.resultGraph	{  margin: 0em 0em 0em 0em ; /* Top Right Bottom Left */
+                   padding: 0ex;
+                   font-size: 100% ;
+                   page-break-inside: avoid ; }
+pre.resultSet	{  margin: 0em 0em 0em 0em ; /* Top Right Bottom Left */
+                   padding: 0ex;
+                   font-size: 100% ;
+                   page-break-inside: avoid ; }
+pre.resultAsk	{  margin: 0em 0em 0em 0em ; /* Top Right Bottom Left */
+                   padding: 0ex;
+                   font-size: 100% ;
+                   page-break-inside: avoid ; }
+pre.resultTurtle{  margin: 0em 0em 0em 0em ; /* Top Right Bottom Left */
+                   padding: 0ex;
+                   font-size: 100% ;
+                   page-break-inside: avoid ; }
+
+pre.result	{ margin: 1em 4em 1em 0em ; }
+
+div.result	{ font-family: monospace;
+                  margin:  1em 4em 1em 0em ;
+                  padding: 1ex ; }
+
+.result table	{ border-collapse: collapse; }
+.result table td{ border-width: 1px ;
+                  border-color : black ; 
+                  font-family: monospace ;
+                  empty-cells: show;
+                  padding-left: 1ex ; padding-right: 1ex ;
+                  vertical-align:top;
+                  text-align: left ; } 
+/*  spacing: 0 ;*/
+.result table th{ border-width: 1px ;
+                  font-family: monospace ;
+                  border-color: black ;
+                  empty-cells: show;
+                  padding-left: 1ex ; padding-right: 1ex ;
+                  vertical-align:top;
+                  text-align:center; } 
+
+/* Examples : Algebra */
+div.algExample {  border: thin solid #888888;
+                  page-break-inside: avoid ;
+                  padding:0.5em ; margin:0.5em ;
+                  margin-left: 2em ; margin-right: 2em ;
+                  font-family:monospace ; }
+
+div.algExample1 { padding:0.5em ; background-color: #F0F0FF ; }
+div.algExample2 { padding:0.5em ; margin-top: 0.5em ; background-color: #F0FFF0 ; }
+
+/* Grammar Mark-up */
+.operator	{ color: #3f3f5f;
+                  text-transform: uppercase; }
+.function	{ color: #3f3f5f;
+                }
+
+/* Tuned to cope with different browsers behaviours */
+div.grammarTable table	{ border-style: solid ;
+			  border-width: 1px ;
+			  border-color: #AAA ;
+			  border-spacing: 0px ; 
+			  border-collapse: collapse ; }
+
+div.grammarTable table * { border-left-width: 0px ;
+			   border-right-width: 0px ;
+			   border-color: #AAA ; } 
+
+div.grammarTable table * tr   { border-top-style: solid ;
+			  border-top-width: 1px ;
+			  border-top-color: #AAA ; } 
+
+.grammar	{ text-align: left ;
+                  vertical-align: top ; }
+.token		{ color: #3f3f5f; }
+table.FAndOTable .token		{ color: #00c; }
+table.FAndOTable .token:visited		{ color: #a0c; }
+.gRuleHead	{ font-style: italic ;
+                  font-family: monospace ; }
+.gRuleBody	{ font-family: monospace ; }
+.gRuleLabel	{ font-family: monospace ; }
+
+.code		{ font-family: monospace; font-size: 100%; }
+pre.code	{ font-family: monospace; font-size: 100%; margin: 0 ; }
+
+/* Table of Contents */
+.toc		{ text-indent: 0; }
+DIV.toc UL UL, DIV.toc OL OL {margin-left: 0}
+DIV.toc UL UL UL, DIV.toc OL OL OL {margin-left: 1em}
+DIV.toc UL UL UL UL, DIV.toc OL OL OL OL {margin-left: 0}
+LI.tocline1	{ font-weight: bold}
+LI.tocline2	{ font-weight: normal}
+LI.tocline4	{ font-style: italic}
+/* The border in the following rule crashes NN4 on fonts.html :-(
+DIV.subtoc	{ padding: 1em; border: solid black thin; margin: 1em 0;
+                  background: #ddd} */
+DIV.toc, UL.index, DT { text-align: left; }
+
+
+/* References to the Rdf Data Model */
+span.rdfDM	{ color: #11d; }
+
+
+/* Truth Table */
+  .truth	{ font-family: monospace; }
+  .error	{ color: #ff1f1f; }
+  table.truthTable td	{ text-align: center; font-family: monospace; }
+  table.truthTable th	{ background-color: #dfdfdf; }
+  table.truthTable tbody th	{ font-weight: normal; font-family: monospace; }
+
+/* Casting table */
+table.casting	{ font-size: x-small; }
+
+.castY	{ background-color: #7FFF7F;
+                  color: black; }
+
+.castN	{ background-color: #FF7F7F;
+                  color: black; }
+
+.castM	{ background-color: white;
+                  color: black; }
+
+span.cancast:hover { background-color: #ffa;
+                     color: black; }
+
+.SPARQLoperator	{ background-color: #FFFFbf; /* yellow */
+          }
+
+.owlnonterminal {
+    font-weight: bold;
+    font-family: sans-serif;
+    font-size: 95%;
+}
+.owlgrammar {
+    margin-top: 1ex;
+    margin-bottom: 1ex;
+    padding-left: 1ex;
+    padding-right: 1ex;
+    padding-top: 1ex;
+    padding-bottom: 0.6ex;
+    border: 1px dashed #2f6fab;
+    font-family: monospace;
+}
+
+      /* ReSpec */
+      dfn { font-style: normal ; }
+      /* ReSpec */
+
+  code           { font-family: monospace; }
+
+  div.constraint,
+  div.issue,
+  div.note,
+  div.notice     { margin-left: 2em; }
+
+  ol.enumar      { list-style-type: decimal; }
+  ol.enumla      { list-style-type: lower-alpha; }
+  ol.enumlr      { list-style-type: lower-roman; }
+  ol.enumua      { list-style-type: upper-alpha; }
+  ol.enumur      { list-style-type: upper-roman; }
+
+
+  div.exampleInner pre { margin-left: 1em;
+                       margin-top: 0em; margin-bottom: 0em}
+  div.exampleOuter {border: 4px double gray;
+                  margin: 0em; padding: 0em}
+  div.exampleInner { background-color: #d5dee3;
+                   border-top-width: 4px;
+                   border-top-style: double;
+                   border-top-color: #d3d3d3;
+                   border-bottom-width: 4px;
+                   border-bottom-style: double;
+                   border-bottom-color: #d3d3d3;
+                   padding: 4px; margin: 0em }
+  div.exampleWrapper { margin: 4px }
+  div.exampleHeader { font-weight: bold;
+                    margin: 4px}
+
+  em.rfc2119 { text-transform: lowercase;
+             font-variant: small-caps;
+             font-style: normal; }
+    
+</style>
+  
+<style>
+ul.index{columns:30ch;column-gap:1.5em}
+ul.index li{list-style:inherit}
+ul.index li span{color:inherit;cursor:pointer;white-space:normal}
+#index-defined-here ul.index li{font-size:.9rem}
+ul.index code{color:inherit}
+#index-defined-here .print-only{display:none}
+@media print{
+#index-defined-here .print-only{display:initial}
+}
+</style>
+<meta name="description" content="This document describes the use of HTTP operations for the purpose of managing a
+        collection of RDF graphs. This interface is an alternative to
+        SPARQL 1.2 Protocol. Most of the operations defined here can be performed
+        using that interface, but for some clients or servers, this interface may be
+        easier to implement or work with. This specification may serve as a non-normative
+        suggestion for HTTP operations on RDF graphs which are managed outside of a SPARQL
+        graph store.">
+<link rel="canonical" href="https://www.w3.org/TR/sparql12-graph-store-protocol/">
+<style>
+.hljs{display:block;overflow-x:auto;padding:.5em;color:#383a42;background:#fafafa}
+.hljs-comment,.hljs-quote{color:#717277;font-style:italic}
+.hljs-doctag,.hljs-formula,.hljs-keyword{color:#a626a4}
+.hljs-deletion,.hljs-name,.hljs-section,.hljs-selector-tag,.hljs-subst{color:#ca4706;font-weight:700}
+.hljs-literal{color:#0b76c5}
+.hljs-addition,.hljs-attribute,.hljs-meta-string,.hljs-regexp,.hljs-string{color:#42803c}
+.hljs-built_in,.hljs-class .hljs-title{color:#9a6a01}
+.hljs-attr,.hljs-number,.hljs-selector-attr,.hljs-selector-class,.hljs-selector-pseudo,.hljs-template-variable,.hljs-type,.hljs-variable{color:#986801}
+.hljs-bullet,.hljs-link,.hljs-meta,.hljs-selector-id,.hljs-symbol,.hljs-title{color:#336ae3}
+.hljs-emphasis{font-style:italic}
+.hljs-strong{font-weight:700}
+.hljs-link{text-decoration:underline}
+</style>
+<style>
+var{position:relative;cursor:pointer}
+var[data-type]::after,var[data-type]::before{position:absolute;left:50%;top:-6px;opacity:0;transition:opacity .4s;pointer-events:none}
+var[data-type]::before{content:"";transform:translateX(-50%);border-width:4px 6px 0 6px;border-style:solid;border-color:transparent;border-top-color:#000}
+var[data-type]::after{content:attr(data-type);transform:translateX(-50%) translateY(-100%);background:#000;text-align:center;font-family:"Dank Mono","Fira Code",monospace;font-style:normal;padding:6px;border-radius:3px;color:#daca88;text-indent:0;font-weight:400}
+var[data-type]:hover::after,var[data-type]:hover::before{opacity:1}
+</style>
+<script id="initialUserConfig" type="application/json">{
+  "group": "rdf-star",
+  "localBiblio": {
+    "ISO24707": {
+      "id": "ISO24707",
+      "title": "Information technology — Common Logic (CL) — A framework for a family of logic-based languages",
+      "date": "2018-07",
+      "href": "https://www.iso.org/standard/66249.html",
+      "status": "Published",
+      "publisher": "ISO/EIC"
+    },
+    "HORST04": {
+      "id": "HORST04",
+      "title": "Extending the RDFS Entailment Lemma",
+      "authors": [
+        "Herman J. ter Horst"
+      ],
+      "date": "2004",
+      "isbn": "978-3-540-30475-3",
+      "href": "https://doi.org/10.1007/978-3-540-30475-3_7",
+      "status": "Conference Proceeding",
+      "publisher": "Springer, Berlin, Heidelberg"
+    },
+    "HORST05": {
+      "id": "HORST05",
+      "title": "Completeness, Decidability and Complexity of Entailment for RDF Schema and a Semantic Extension Involving the OWL Vocabulary",
+      "authors": [
+        "Herman J. ter Horst"
+      ],
+      "date": "2005",
+      "href": "https://dx.doi.org/10.2139/ssrn.3199251",
+      "status": "Conference Proceeding",
+      "publisher": "Journal of Web Semantics"
+    },
+    "SAFETY": {
+      "title": "Saftety of recursive horn clauses with infinite relations",
+      "href": "http://arxiv.org/abs/cs.LO/9809032",
+      "authors": [
+        "R. Ramakrishnan",
+        "F. Bancilhon",
+        "A. Silberschatz"
+      ],
+      "date": "1987",
+      "publisher": "ACM New York"
+    },
+    "STRIPEDRDF": {
+      "id": "STRIPEDRDF",
+      "title": "RDF: Understanding the Striped RDF/XML Syntax",
+      "editors": [
+        "D. Brickley"
+      ],
+      "date": "2001",
+      "href": "http://www.w3.org/2001/10/stripes/",
+      "status": "Team Submission",
+      "publisher": "W3C"
+    },
+    "RDF12-CONCEPTS": {
+      "authors": [
+        "Richard Cyganiak",
+        "David Wood",
+        "Markus Lanthaler"
+      ],
+      "href": "https://w3c.github.io/rdf-concepts/spec/",
+      "title": "RDF 1.2 Concepts and Abstract Syntax",
+      "rawDate": "2022-01-01",
+      "status": "WD",
+      "publisher": "W3C"
+    },
+    "RDF12-SEMANTICS": {
+      "authors": [
+        "Patrick Hayes",
+        "Peter Patel-Schneider"
+      ],
+      "href": "https://w3c.github.io/rdf-semantics/spec/",
+      "title": "RDF 1.2 Semantics",
+      "rawDate": "2022-01-01",
+      "status": "WD",
+      "publisher": "W3C"
+    },
+    "RDF12-N-QUADS": {
+      "authors": [
+        "Gavin Carothers"
+      ],
+      "href": "https://w3c.github.io/rdf-n-quads/spec/",
+      "title": "RDF 1.2 N-Quads",
+      "rawDate": "2022-01-01",
+      "status": "WD",
+      "publisher": "W3C"
+    },
+    "RDF12-N-TRIPLES": {
+      "authors": [
+        "Gavin Carothers",
+        "Andy Seaborne"
+      ],
+      "href": "https://w3c.github.io/rdf-n-triples/spec/",
+      "title": "RDF 1.2 N-Triples",
+      "rawDate": "2022-01-01",
+      "status": "WD",
+      "publisher": "W3C"
+    },
+    "RDF12-NEW": {
+      "authors": [
+        "David Wood"
+      ],
+      "href": "https://w3c.github.io/rdf-new/spec/",
+      "title": "What’s New in RDF 1.2",
+      "rawDate": "2022-01-01",
+      "status": "DNOTE",
+      "publisher": "W3C"
+    },
+    "RDF12-PRIMER": {
+      "authors": [
+        "Guus Schreiber",
+        "Yves Raimond"
+      ],
+      "href": "https://w3c.github.io/rdf-primer/spec/",
+      "title": "RDF 1.2 Primer",
+      "rawDate": "2022-01-01",
+      "status": "DNOTE",
+      "publisher": "W3C"
+    },
+    "RDF12-SCHEMA": {
+      "authors": [
+        "Dan Brickley",
+        "Ramanathan Guha"
+      ],
+      "href": "https://w3c.github.io/rdf-schema/spec/",
+      "title": "RDF 1.2 Schema",
+      "rawDate": "2022-01-01",
+      "status": "WD",
+      "publisher": "W3C"
+    },
+    "RDF12-TRIG": {
+      "authors": [
+        "Gavin Carothers",
+        "Andy Seaborne"
+      ],
+      "href": "https://w3c.github.io/rdf-trig/spec/",
+      "title": "RDF 1.2 TriG",
+      "rawDate": "2022-01-01",
+      "status": "WD",
+      "publisher": "W3C"
+    },
+    "RDF12-TURTLE": {
+      "authors": [
+        "Eric Prud'hommeaux",
+        "Gavin Carothers"
+      ],
+      "href": "https://w3c.github.io/rdf-turtle/spec/",
+      "title": "RDF 1.2 Turtle",
+      "rawDate": "2022-01-01",
+      "status": "WD",
+      "publisher": "W3C"
+    },
+    "RDF12-XML": {
+      "authors": [
+        "Fabien Gandon",
+        "Guus Schreiber"
+      ],
+      "href": "https://w3c.github.io/rdf-xml/spec/",
+      "title": "RDF 1.2 XML Syntax",
+      "rawDate": "2022-01-01",
+      "status": "WD",
+      "publisher": "W3C"
+    },
+    "SPARQL12-NEW": {
+      "authors": [
+        "The W3C RDF-star Working Group"
+      ],
+      "href": "https://w3c.github.io/sparql-new/spec/",
+      "title": "What’s New in SPARQL 1.2",
+      "rawDate": "2022-01-01",
+      "status": "WD",
+      "publisher": "W3C",
+      "id": "sparql12-new"
+    },
+    "SPARQL12-CONCEPTS": {
+      "authors": [
+        "The W3C RDF-star Working Group"
+      ],
+      "href": "https://w3c.github.io/sparql-concepts/spec/",
+      "title": "SPARQL 1.2 Concepts",
+      "rawDate": "2022-01-01",
+      "status": "WD",
+      "publisher": "W3C",
+      "id": "sparql12-concepts"
+    },
+    "SPARQL12-QUERY": {
+      "authors": [
+        "Steven Harris",
+        "Andy Seaborne"
+      ],
+      "href": "https://w3c.github.io/sparql-query/spec/",
+      "title": "SPARQL 1.2 Query Language",
+      "rawDate": "2022-01-01",
+      "status": "WD",
+      "publisher": "W3C",
+      "id": "sparql12-query"
+    },
+    "SPARQL12-UPDATE": {
+      "authors": [
+        "Paula Gearon",
+        "Alexandre Passant",
+        "Axel Polleres"
+      ],
+      "href": "https://w3c.github.io/sparql-update/spec/",
+      "title": "SPARQL 1.2 Update",
+      "rawDate": "2022-01-01",
+      "status": "WD",
+      "publisher": "W3C",
+      "id": "sparql12-update"
+    },
+    "SPARQL12-SERVICE-DESCRIPTION": {
+      "authors": [
+        "Gregory Williams"
+      ],
+      "href": "https://w3c.github.io/sparql-service-description/spec/",
+      "title": "SPARQL 1.2 Service Description",
+      "rawDate": "2022-01-01",
+      "status": "WD",
+      "publisher": "W3C",
+      "id": "sparql12-service-description"
+    },
+    "SPARQL12-FEDERATED-QUERY": {
+      "authors": [
+        "Eric Prud'hommeaux",
+        "Carlos Buil Aranda"
+      ],
+      "href": "https://w3c.github.io/sparql-federated-query/spec/",
+      "title": "SPARQL 1.2 Federated Query",
+      "rawDate": "2022-01-01",
+      "status": "WD",
+      "publisher": "W3C",
+      "id": "sparql12-federated-query"
+    },
+    "SPARQL12-RESULTS-JSON": {
+      "authors": [
+        "Andy Seaborne"
+      ],
+      "href": "https://w3c.github.io/sparql-results-json/spec/",
+      "title": "SPARQL 1.2 Query Results JSON Format",
+      "rawDate": "2022-01-01",
+      "status": "WD",
+      "publisher": "W3C",
+      "id": "sparql12-results-json"
+    },
+    "SPARQL12-RESULTS-CSV-TSV": {
+      "authors": [
+        "Andy Seaborne"
+      ],
+      "href": "https://w3c.github.io/sparql-results-csv-tsv/spec/",
+      "title": "SPARQL 1.2 Query Results CSV and TSV Formats",
+      "rawDate": "2022-01-01",
+      "status": "WD",
+      "publisher": "W3C",
+      "id": "sparql12-results-csv-tsv"
+    },
+    "SPARQL12-RESULTS-XML": {
+      "authors": [
+        "Sandro Hawke",
+        "Dave Beckett",
+        "Jeen Broekstra"
+      ],
+      "href": "https://w3c.github.io/sparql-results-xml/spec/",
+      "title": "SPARQL 1.2 Query Results XML Formats",
+      "rawDate": "2022-01-01",
+      "status": "WD",
+      "publisher": "W3C",
+      "id": "sparql12-results-xml"
+    },
+    "SPARQL12-ENTAILMENT": {
+      "authors": [
+        "Birte Glimm",
+        "Chimezie Ogbuji"
+      ],
+      "href": "https://w3c.github.io/sparql-entailment/spec/",
+      "title": "SPARQL 1.2 Entailment Regimes",
+      "rawDate": "2022-01-01",
+      "status": "WD",
+      "publisher": "W3C",
+      "id": "sparql12-entailment"
+    },
+    "SPARQL12-PROTOCOL": {
+      "authors": [
+        "Lee Feigenbaum",
+        "Gregory Williams",
+        "Kendall Clark",
+        "Elias Torres"
+      ],
+      "href": "https://w3c.github.io/sparql-protocol/spec/",
+      "title": "SPARQL 1.2 Protocol",
+      "rawDate": "2022-01-01",
+      "status": "WD",
+      "publisher": "W3C",
+      "id": "sparql12-protocol"
+    },
+    "SPARQL12-GRAPH-STORE-PROTOCOL": {
+      "authors": [
+        "Chimezie Ogbuji"
+      ],
+      "href": "https://w3c.github.io/sparql-graph-store-protocol/spec/",
+      "title": "SPARQL 1.2 Graph Store HTTP Protocol",
+      "rawDate": "2022-01-01",
+      "status": "WD",
+      "publisher": "W3C"
+    },
+    "CBD": {
+      "title": "CBD - Concise Bounded Description",
+      "href": "https://www.w3.org/Submission/CBD/",
+      "authors": [
+        "Patrick Stickler, Nokia"
+      ],
+      "rawDate": "2005-06-03",
+      "publisher": "W3C",
+      "status": "W3C Member Submission"
+    }
+  },
+  "specStatus": "FPWD",
+  "edDraftURI": "https://w3c.github.io/sparql-graph-store-protocol/spec/",
+  "testSuiteURI": "https://w3c.github.io/rdf-tests/",
+  "shortName": "sparql12-graph-store-protocol",
+  "copyrightStart": "2012",
+  "github": "https://github.com/w3c/sparql-graph-store-protocol",
+  "wgPublicList": "public-rdf-star-wg",
+  "previousPublishDate": "2013-03-21",
+  "prevRecURI": "https://www.w3.org/TR/2013/REC-sparql11-http-rdf-update-20130321",
+  "prevRecShortname": "sparql11-graph-store-protocol",
+  "previousMaturity": "REC",
+  "editors": [
+    {
+      "name": "Andy Seaborne",
+      "w3cid": "29909"
+    }
+  ],
+  "formerEditors": [
+    {
+      "name": "Chimezie Ogbuji"
+    }
+  ],
+  "lint": {
+    "no-unused-dfns": false
+  },
+  "publishDate": "2023-05-04",
+  "publishISODate": "2023-05-04T00:00:00.000Z",
+  "generatedSubtitle": "W3C First Public Working Draft 04 May 2023"
+}</script>
+<link rel="stylesheet" href="https://www.w3.org/StyleSheets/TR/2021/W3C-WD"></head>
+  <body class="h-entry"><div class="head">
+    <p class="logos"><a class="logo" href="https://www.w3.org/"><img crossorigin="" alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2021/logos/W3C" width="72">
+  </a></p>
+    <h1 id="title" class="title">SPARQL 1.2 Graph Store Protocol</h1> 
+    <p id="w3c-state"><a href="https://www.w3.org/standards/types#FPWD">W3C First Public Working Draft</a> <time class="dt-published" datetime="2023-05-04">04 May 2023</time></p>
+    <details open="">
+      <summary>More details about this document</summary>
+      <dl>
+        <dt>This version:</dt><dd>
+                <a class="u-url" href="https://www.w3.org/TR/2023/WD-sparql12-graph-store-protocol-20230504/">https://www.w3.org/TR/2023/WD-sparql12-graph-store-protocol-20230504/</a>
+              </dd>
+        <dt>Latest published version:</dt><dd>
+                <a href="https://www.w3.org/TR/sparql12-graph-store-protocol/">https://www.w3.org/TR/sparql12-graph-store-protocol/</a>
+              </dd>
+        <dt>Latest editor's draft:</dt><dd><a href="https://w3c.github.io/sparql-graph-store-protocol/spec/">https://w3c.github.io/sparql-graph-store-protocol/spec/</a></dd>
+        <dt>History:</dt><dd>
+                    <a href="https://www.w3.org/standards/history/sparql12-graph-store-protocol">https://www.w3.org/standards/history/sparql12-graph-store-protocol</a>
+                  </dd><dd>
+                    <a href="https://github.com/w3c/sparql-graph-store-protocol/commits/">Commit history</a>
+                  </dd>
+        <dt>Test suite:</dt><dd><a href="https://w3c.github.io/rdf-tests/">https://w3c.github.io/rdf-tests/</a></dd>
+        
+        
+        
+        <dt>Latest Recommendation:</dt><dd><a href="https://www.w3.org/TR/2013/REC-sparql11-http-rdf-update-20130321">https://www.w3.org/TR/2013/REC-sparql11-http-rdf-update-20130321</a></dd>
+        <dt>Editor:</dt><dd class="editor p-author h-card vcard" data-editor-id="29909">
+    <span class="p-name fn">Andy Seaborne</span>
+  </dd>
+        <dt>
+                Former editor:
+              </dt><dd class="editor p-author h-card vcard">
+    <span class="p-name fn">Chimezie Ogbuji</span>
+  </dd>
+        
+        <dt>Feedback:</dt><dd>
+        <a href="https://github.com/w3c/sparql-graph-store-protocol/">GitHub w3c/sparql-graph-store-protocol</a>
+        (<a href="https://github.com/w3c/sparql-graph-store-protocol/pulls/">pull requests</a>,
+        <a href="https://github.com/w3c/sparql-graph-store-protocol/issues/new/choose">new issue</a>,
+        <a href="https://github.com/w3c/sparql-graph-store-protocol/issues/">open issues</a>)
+      </dd><dd><a href="mailto:public-rdf-star-wg@w3.org?subject=%5Bsparql12-graph-store-protocol%5D%20YOUR%20TOPIC%20HERE">public-rdf-star-wg@w3.org</a> with subject line <kbd>[sparql12-graph-store-protocol] <em>… message topic …</em></kbd> (<a rel="discussion" href="https://lists.w3.org/Archives/Public/public-rdf-star-wg">archives</a>)</dd>
+        
+        
+      </dl>
+    </details>
+    
+    
+    <p class="copyright">
+    <a href="https://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Copyright</a>
+    ©
+    2012-2023
+    
+    <a href="https://www.w3.org/">World Wide Web Consortium</a>.
+    <abbr title="World Wide Web Consortium">W3C</abbr><sup>®</sup>
+    <a href="https://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer">liability</a>,
+    <a href="https://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks">trademark</a> and
+    <a rel="license" href="https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document" title="W3C Software and Document Notice and License">permissive document license</a> rules apply.
+  </p>
+    <hr title="Separator for header">
+  </div>
+    <section id="abstract" class="introductory"><h2>Abstract</h2>
+      
+      <p>
+        This document describes the use of HTTP operations for the purpose of managing a
+        collection of RDF graphs. This interface is an alternative to
+        <cite><a data-matched-text="[[[SPARQL12-PROTOCOL]]]" href="https://w3c.github.io/sparql-protocol/spec/">SPARQL 1.2 Protocol</a></cite>. Most of the operations defined here can be performed
+        using that interface, but for some clients or servers, this interface may be
+        easier to implement or work with. This specification may serve as a non-normative
+        suggestion for HTTP operations on RDF graphs which are managed outside of a SPARQL
+        graph store.
+      </p>
+    </section>
+
+    <section id="sotd" class="introductory"><h2>Status of This Document</h2><p><em>This section describes the status of this
+      document at the time of its publication. A list of current <abbr title="World Wide Web Consortium">W3C</abbr>
+      publications and the latest revision of this technical report can be found
+      in the <a href="https://www.w3.org/TR/"><abbr title="World Wide Web Consortium">W3C</abbr> technical reports index</a> at
+      https://www.w3.org/TR/.</em></p>
+      <p>
+        This specification is published by the
+        <a href="https://www.w3.org/groups/wg/rdf-star">RDF Star Working Group</a> as part of the
+        update of specifications for format and errata.
+      </p>
+    <p>
+    This document was published by the <a href="https://www.w3.org/groups/wg/rdf-star">RDF-star Working Group</a> as
+    a First Public Working Draft using the
+        <a href="https://www.w3.org/2021/Process-20211102/#recs-and-notes">Recommendation track</a>. 
+  </p><p>Publication as a First Public Working Draft does not
+  imply endorsement by <abbr title="World Wide Web Consortium">W3C</abbr> and its Members. </p><p>
+    This is a draft document and may be updated, replaced or obsoleted by other
+    documents at any time. It is inappropriate to cite this document as other
+    than work in progress.
+    
+  </p><p>
+    
+        This document was produced by a group
+        operating under the
+        <a href="https://www.w3.org/Consortium/Patent-Policy/"><abbr title="World Wide Web Consortium">W3C</abbr> Patent
+          Policy</a>.
+      
+    
+                <abbr title="World Wide Web Consortium">W3C</abbr> maintains a
+                <a rel="disclosure" href="https://www.w3.org/groups/wg/rdf-star/ipr">public list of any patent disclosures</a>
+          made in connection with the deliverables of
+          the group; that page also includes
+          instructions for disclosing a patent. An individual who has actual
+          knowledge of a patent which the individual believes contains
+          <a href="https://www.w3.org/Consortium/Patent-Policy/#def-essential">Essential Claim(s)</a>
+          must disclose the information in accordance with
+          <a href="https://www.w3.org/Consortium/Patent-Policy/#sec-Disclosure">section 6 of the <abbr title="World Wide Web Consortium">W3C</abbr> Patent Policy</a>.
+        
+  </p><p>
+                  This document is governed by the
+                  <a id="w3c_process_revision" href="https://www.w3.org/2021/Process-20211102/">2 November 2021 <abbr title="World Wide Web Consortium">W3C</abbr> Process Document</a>.
+                </p></section><nav id="toc"><h2 class="introductory" id="table-of-contents">Table of Contents</h2><ol class="toc"><li class="tocline"><a class="tocxref" href="#abstract">Abstract</a></li><li class="tocline"><a class="tocxref" href="#sotd">Status of This Document</a></li><li class="tocline"><a class="tocxref" href="#related"><bdi class="secno">1. </bdi>Set of Documents</a></li><li class="tocline"><a class="tocxref" href="#introduction"><bdi class="secno">2. </bdi>Introduction</a></li><li class="tocline"><a class="tocxref" href="#terminology"><bdi class="secno">3. </bdi>Terminology</a></li><li class="tocline"><a class="tocxref" href="#protocol-model"><bdi class="secno">4. </bdi>Protocol Model</a></li><li class="tocline"><a class="tocxref" href="#graph-identification"><bdi class="secno">5. </bdi>Graph Identification</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#direct-graph-identification"><bdi class="secno">5.1 </bdi>Direct Graph Identification</a></li><li class="tocline"><a class="tocxref" href="#indirect-graph-identification"><bdi class="secno">5.2 </bdi>Indirect Graph Identification</a></li></ol></li><li class="tocline"><a class="tocxref" href="#graph-management"><bdi class="secno">6. </bdi>Graph Management Operations</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#status-codes"><bdi class="secno">6.1 </bdi>Status Codes</a></li><li class="tocline"><a class="tocxref" href="#http-get"><bdi class="secno">6.2 </bdi>HTTP GET</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#httpRange-14"><bdi class="secno">6.2.1 </bdi>Ambiguity Regarding the Range of HTTP GET (Informative)</a></li></ol></li><li class="tocline"><a class="tocxref" href="#http-put"><bdi class="secno">6.3 </bdi>HTTP PUT</a></li><li class="tocline"><a class="tocxref" href="#http-delete"><bdi class="secno">6.4 </bdi>HTTP DELETE</a></li><li class="tocline"><a class="tocxref" href="#http-post"><bdi class="secno">6.5 </bdi>HTTP POST</a></li><li class="tocline"><a class="tocxref" href="#http-head"><bdi class="secno">6.6 </bdi>HTTP HEAD</a></li><li class="tocline"><a class="tocxref" href="#http-patch"><bdi class="secno">6.7 </bdi>HTTP PATCH (Informative)</a></li></ol></li><li class="tocline"><a class="tocxref" href="#security-original"><bdi class="secno">7. </bdi>Security Considerations</a></li><li class="tocline"><a class="tocxref" href="#conformance"><bdi class="secno">8. </bdi>Conformance</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#conformance-0"><bdi class="secno">8.1 </bdi>Conformance</a></li></ol></li><li class="tocline"><a class="tocxref" href="#changes"><bdi class="secno">9. </bdi>Changes</a></li><li class="tocline"><a class="tocxref" href="#sec-bibliography"><bdi class="secno">10. </bdi>References</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#section-Normative-References"><bdi class="secno">10.1 </bdi>Normative References</a></li><li class="tocline"><a class="tocxref" href="#section-informative-references"><bdi class="secno">10.2 </bdi>Informative References</a></li></ol></li><li class="tocline"><a class="tocxref" href="#ackacknowledgements"><bdi class="secno">11. </bdi>Acknowledgements</a></li><li class="tocline"><a class="tocxref" href="#privacy"><bdi class="secno">12. </bdi>Privacy Considerations</a></li><li class="tocline"><a class="tocxref" href="#security"><bdi class="secno">13. </bdi>Security Considerations</a></li><li class="tocline"><a class="tocxref" href="#internationalization"><bdi class="secno">14. </bdi>Internationalization Considerations</a></li><li class="tocline"><a class="tocxref" href="#changes-from-sparql11"><bdi class="secno">A. </bdi>Change Log</a></li><li class="tocline"><a class="tocxref" href="#index"><bdi class="secno">B. </bdi>Index</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#index-defined-here"><bdi class="secno">B.1 </bdi>Terms defined by this specification</a></li><li class="tocline"><a class="tocxref" href="#index-defined-elsewhere"><bdi class="secno">B.2 </bdi>Terms defined by reference</a></li></ol></li><li class="tocline"><a class="tocxref" href="#references"><bdi class="secno">C. </bdi>References</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#normative-references"><bdi class="secno">C.1 </bdi>Normative references</a></li></ol></li></ol></nav>
+
+    <section id="related"><div class="header-wrapper"><h2 id="x1-set-of-documents"><bdi class="secno">1. </bdi>Set of Documents</h2><a class="self-link" href="#related" aria-label="Permalink for Section 1."></a></div>
+<p>This document is one of twelve SPARQL 1.2 Recommendations produced by the <a href="https://www.w3.org/groups/wg/rdf-star">RDF-star Working Group</a>:</p>
+
+<p>SPARQL 1.2 Recommendations:</p>
+<ol>
+  <li><cite><a data-matched-text="[[[SPARQL12-NEW]]]" href="https://w3c.github.io/sparql-new/spec/">What’s New in SPARQL 1.2</a></cite></li>
+  <li><cite><a data-matched-text="[[[SPARQL12-CONCEPTS]]]" href="https://w3c.github.io/sparql-concepts/spec/">SPARQL 1.2 Concepts</a></cite></li>
+  <li><cite><a data-matched-text="[[[SPARQL12-QUERY]]]" href="https://w3c.github.io/sparql-query/spec/">SPARQL 1.2 Query Language</a></cite></li>
+  <li><cite><a data-matched-text="[[[SPARQL12-UPDATE]]]" href="https://w3c.github.io/sparql-update/spec/">SPARQL 1.2 Update</a></cite></li>
+  <li><cite><a data-matched-text="[[[SPARQL12-SERVICE-DESCRIPTION]]]" href="https://w3c.github.io/sparql-service-description/spec/">SPARQL 1.2 Service Description</a></cite></li>
+  <li><cite><a data-matched-text="[[[SPARQL12-FEDERATED-QUERY]]]" href="https://w3c.github.io/sparql-federated-query/spec/">SPARQL 1.2 Federated Query</a></cite></li>
+  <li><cite><a data-matched-text="[[[SPARQL12-RESULTS-JSON]]]" href="https://w3c.github.io/sparql-results-json/spec/">SPARQL 1.2 Query Results JSON Format</a></cite></li>
+  <li><cite><a data-matched-text="[[[SPARQL12-RESULTS-CSV-TSV]]]" href="https://w3c.github.io/sparql-results-csv-tsv/spec/">SPARQL 1.2 Query Results CSV and TSV Formats</a></cite></li>
+  <li><cite><a data-matched-text="[[[SPARQL12-RESULTS-XML]]]" href="https://w3c.github.io/sparql-results-xml/spec/">SPARQL 1.2 Query Results XML Formats</a></cite></li>
+  <li><cite><a data-matched-text="[[[SPARQL12-ENTAILMENT]]]" href="https://w3c.github.io/sparql-entailment/spec/">SPARQL 1.2 Entailment Regimes</a></cite></li>
+  <li><cite><a data-matched-text="[[[SPARQL12-PROTOCOL]]]" href="https://w3c.github.io/sparql-protocol/spec/">SPARQL 1.2 Protocol</a></cite></li>
+  <li>SPARQL 1.2 Graph Store Protocol(this document)</li>
+</ol>
+</section>
+    
+
+    <section id="introduction"><div class="header-wrapper"><h2 id="x2-introduction"><bdi class="secno">2. </bdi>Introduction</h2><a class="self-link" href="#introduction" aria-label="Permalink for Section 2."></a></div>
+  
+  <p>This document describes an application protocol for the distributed updating and fetching of RDF graph content in a Graph Store via the mechanics of the Hypertext Transfer Protocol (HTTP)
+  <a href="#rfc3987">[RFC2616]</a>. In doing so, it appeals to the following interface constraints that emphasize the core, architectural components underlying HTTP:</p>
+  <ol>
+    <li>identification of resources (via Request IRI and the IRI of a graph in a Graph Store)</li>
+    <li>manipulation of resources through representations (via the use of an RDF graph representation as input to RDF graph management actions)</li>
+    <li>self-describing messages (via the inherent characteristics of RDF as the framework for a <a href="http://www.w3.org/2001/tag/doc/selfDescribingDocuments.html">Self-Describing Semantic
+    Web</a>)</li>
+  </ol>
+  <p>This specification relies on an intuitive interpretation of the underlying HTTP protocol semantics to determine interaction with a Graph Store. Where the meaning of the operations are described,
+  a SPARQL Update equivalent syntax is shown for clarity.</p>
+  <p>When this document uses the words <em><em class="rfc2119">MUST</em></em>, <em><em class="rfc2119">MUST NOT</em></em>, <em><em class="rfc2119">SHOULD</em></em>, <em><em class="rfc2119">SHOULD NOT</em></em>, <em><em class="rfc2119">MAY</em></em> and <em><em class="rfc2119">RECOMMENDED</em></em>, and the words appear as emphasized text, they
+  must be interpreted as described in <a href="http://www.faqs.org/rfcs/rfc2119.html">RFC 2119</a> <a href="#rfc2119">[RFC2119]</a>.</p>
+    </section>
+
+    <section id="terminology"><div class="header-wrapper"><h2 id="x3-terminology"><bdi class="secno">3. </bdi>Terminology</h2><a class="self-link" href="#terminology" aria-label="Permalink for Section 3."></a></div>
+  
+  <p>The following terminology is used in this document:</p>
+  <ul>
+    <li><em>Architectural style</em> - An architectural design perspective that limits a system in order to induce harmonous behavior</li>
+    <li><em>Representation State Transfer architectural style (REST) <span class="doc-ref">[REST]</span></em> - An architectural style for distributed hypermedia systems.</li>
+    <li><em>URI</em> - A Uniform Resource Identifier as defined in <a href="#rfc3986">[RFC3986]</a>.</li>
+    <li><em>IRI</em> - An Internationalized Resource Identifier as defined in <a href="#rfc3987">[RFC3987]</a>. Before an IRI found in a document is used by HTTP, the IRI is first converted to a
+    URI.</li>
+    <li><em>Resource</em> - Per <a href="#RDF-MT">[RDF-MT]</a>, the referents of RDF URI references are called "resources", but no assumptions are made about their nature. For the sake of this
+    protocol, the <a href="#rfc2616">[RFC2616]</a> definition is used (unless the term "RDF Resource" is used explicitly): a network-accessible data object or service identified by an IRI.</li>
+    <li><em>Resolvable URI</em> - A URI whose resource potentially has one or more representations available via invoking HTTP <strong>GET</strong> on the URI as defined in <a href="#WEBARCH">[WEBARCH]</a>.</li>
+    <li><em>Serialize (verb.)</em> - When used in a sentence where the subject is an RDF document and the object is an RDF graph, this is understood to mean that the result of parsing the document is the graph.
+    </li><li><em>RDF document</em> - A serialization of an RDF Graph into a concrete syntax, typically an RDF/XML or Turtle document.</li>
+    <li><em>Graph Store</em> - A mutable repository of RDF graphs managed by one or more services <a href="#SPARQL-UPDATE">[SPARQL-UPDATE]</a>.</li>
+    <li><em>Graph IRI</em> - An IRI involved in this protocol that is specified as a request URI or embedded as the query component of a request URI and corresponds to the IRI of a graph in the
+    underlying Graph Store.</li>
+    <li><em>RDF graph content</em> - An information resource identified by the graph IRI of a named graph and managed by a server that implements this protocol or identified by an indirect operation
+    or the default graph. See <a href="#WEBARCH">[WEBARCH]</a> for further discussion on Resources.</li>
+    <li><em>Semantic</em> (adj.) , semantics (n.). Concerned with the specification of meanings. Often contrasted with syntactic to emphasize the distinction between expressions and what they denote <a href="#RDF-MT">[RDF-MT]</a>.</li>
+    <li><em>RDF payload</em> - The representation <a href="#rfc2616">[RFC2616]</a> comprised of an RDF document that is sometimes included with the body of invocations of the operations defined
+      here.</li>
+  </ul>
+  <p>Servers implementing this protocol are HTTP/1.1 servers <a href="#rfc2616">[RFC2616]</a> and <em class="rfc2119">MUST</em> interpret request messages as graph management operations on an underlying Graph Store. The
+  subject of the operation is indicated by the request IRI.</p>
+    </section>
+
+    <section id="protocol-model"><div class="header-wrapper"><h2 id="x4-protocol-model"><bdi class="secno">4. </bdi>Protocol Model</h2><a class="self-link" href="#protocol-model" aria-label="Permalink for Section 4."></a></div>
+  
+  <p>This protocol specifies the semantics of HTTP operations for managing a Graph Store. In particular, it provides operations for removing, creating, and replacing RDF graph content as well as for
+  adding RDF statements to existing RDF graph content. The interface defined here uses IRIs to direct native HTTP operations to an implementation of this protocol which responds by making appropriate
+  modifications to the underlying Graph Store. A compliant implementation of this specification <em class="rfc2119">MUST</em> accept HTTP requests directed at its Graph Store and handle them as specified by this protocol
+  with the exception of security considerations such as those discussed in section 7 and others (Denial-of-Service attacks, etc.)</p>
+    </section>
+
+    <section id="graph-identification"><div class="header-wrapper"><h2 id="x5-graph-identification"><bdi class="secno">5. </bdi>Graph Identification</h2><a class="self-link" href="#graph-identification" aria-label="Permalink for Section 5."></a></div>
+  
+  <p>A client using this protocol to manipulate a graph store needs an IRI for each graph. Within the graph store, each graph (except the default graph) is associated with a graph IRI. In some cases
+  ("Direct Graph Identification"), the graph IRIs can be directly used as the request URI of a graph management operation. In other cases ("Indirect Graph Identification"), the Graph Store IRI is
+  used to route the operations onto RDF graph content.</p>
+
+      <section id="direct-graph-identification"><div class="header-wrapper"><h3 id="x5-1-direct-graph-identification"><bdi class="secno">5.1 </bdi>Direct Graph Identification</h3><a class="self-link" href="#direct-graph-identification" aria-label="Permalink for Section 5.1"></a></div>
+  
+  <p>We recall from <a href="#SPARQL">[SPARQL]</a> that IRIs for RDF graphs in SPARQL queries identify a resource, and the resource can have a representation that serializes that graph (or, more
+  precisely: by an RDF document of the graph)</p>
+  <p>Consider the following HTTP request to a server that implements this protocol:</p>
+  <pre class="defn" aria-busy="false"><code class="hljs">GET /rdf-graphs/employees HTTP/1.1
+Host: example.com
+Accept: text/turtle; charset=utf-8</code></pre>
+  <p>Per <a href="#rfc2616">[RFC2616]</a>, the most common usage of a Request-URI is to identify a resource on an origin server or gateway. In our example, the corresponding request,
+  <strong>http://example.com/rdf-graphs/employees</strong> is meant to identify RDF triples on the example.com server that describe employees. In addition, the request specifies the
+  <strong>GET</strong> method, which means that a representation of these triples should be returned. In this case, the preferred representation format is <em>text/turtle</em></p>
+  <p>In this way, the server would route operations onto a <em>named graph</em> in a Graph Store via its Graph IRI. However, in using an IRI in this way, we are not <em>directly</em> identifying an
+  RDF graph but rather the RDF graph content that is represented by an RDF document, which is a serialization of that graph. Intuitively, the set of interpretations that satisfy <a href="#RDF-MT">[RDF-MT]</a> the RDF graph the RDF document <em>serializes</em> can be thought of as this RDF graph content.</p>
+  <p>The diagram illustrates this distinction. This diagram illustrates the basic kind of operation where the request URI identifies the RDF graph content being manipulated over the protocol.
+  Requests to an implementation of this protocol receive HTTP requests using one of the HTTP methods that is directed at some RDF graph content. Above the arrows indicating the request is the
+  relevant HTTP methods and below is any message body content or additional headers that accompany the request. At the head of the arrows leaving RDF graph content is the message body for the
+  corresponding response.</p>
+  <p><img src="./ProtocolModel.jpg" alt="Protocol model diagram"><br>
+  <b>Figure 1</b>: A diagram of the protocol model for direct graph references.</p>
+      </section>
+
+      <section id="indirect-graph-identification"><div class="header-wrapper"><h3 id="x5-2-indirect-graph-identification"><bdi class="secno">5.2 </bdi>Indirect Graph Identification</h3><a class="self-link" href="#indirect-graph-identification" aria-label="Permalink for Section 5.2"></a></div>
+  
+  <p>Despite the convenience of using the request URI to identify RDF graph content for manipulation, it is often the case that:</p>
+  <ul>
+    <li>the naming authority associated with the IRI of an RDF graph in a Graph Store is not the same as the server managing the identified RDF content</li>
+    <li>the naming authority is not available</li>
+    <li>the IRI is not <a href="http://www.w3.org/TR/webarch/#uri-dereference">dereferenceable</a> (i.e., when dereferenced, it does not produce a RDF graph representation)</li>
+  </ul>
+  <p>As discussed in <a href="#rfc3986">[RFC3986]</a>, query components are often used to carry identifying information in the form of key / value pairs where the value is another IRI. This protocol
+  leverages this convention and provides a specific interface whereby a graph IRI can be embedded within the query component of the request IRI:</p>
+  <pre class="defn" aria-busy="false"><code class="hljs">GET /rdf-graph-store?graph=http%3A//www.example.com/other/graph HTTP/1.1
+Host: example.com
+Accept: text/turtle; charset=utf-8</code></pre>
+  <p>In the example above, the encoded graph IRI (<code>http://www.example.com/other/graph</code>) is percent-encoded <a href="#rfc3986">[RFC3986]</a> and <em>indirectly</em> identifies RDF triples
+  to manipulate. Any server that implements this protocol and receives a request IRI in this form <em class="rfc2119">MUST</em> perform the indicated operation on the RDF graph content identified by the IRI embedded in the
+  query component where the IRI is the result of percent-decoding the value associated with the <em>graph</em> key. The query string IRI <em class="rfc2119">MUST</em> be an absolute IRI and the server <em class="rfc2119">MUST</em> respond with a
+  <code>400 Bad Request</code> if it is not. The diagram below illustrates this.</p>
+  <p><img src="./ProtocolModelIndirect.jpg" alt="Protocol model diagram for indirect manipulation"><br>
+  <b>Figure 2</b>: A diagram of the protocol model for indirect graph references (uses the same legend as the previous diagramT).</p>
+  <p>As indicated in <a href="http://www.apps.ietf.org/rfc/rfc3986.html#sec-3.3">section 3.3</a> of <a href="#rfc3986">[RFC3986]</a>, the path component (of an IRI) contains data, usually organized
+  in hierarchical form, that, along with data in the non-hierarchical query component, serves to identify a resource within the scope of the IRI's scheme and naming authority. As a result, the full
+  request IRI identifies the same RDF graph content as does the IRI embedded in the query component.</p>
+  <p>A future Working Group may provide additional interfaces for indirectly identifying RDF graph content as well as mechanisms for their discovery.</p>
+  <p>In a similar manner, a query component comprised of the string <em>default</em> can be used to indicate that the operation indirectly identifies the default graph in the Graph Store. In this
+  way, the example above can be modified to a request for an RDF/XML document that serializes the default graph in the Graph Store:</p>
+  <pre class="defn" aria-busy="false"><code class="hljs">GET /rdf-graph-store?default HTTP/1.1
+Host: example.com
+Accept: text/turtle; charset=utf-8</code></pre>
+  <p>In a request such as:</p>
+  <pre class="defn" aria-busy="false"><code class="hljs">GET /rdf-graph-store?graph=http%3A//www.example.com/other/graph HTTP/1.1
+Host: example.com
+Accept: text/turtle; charset=utf-8</code></pre>
+  <p><code>http://www.example.com/rdf-graph-store</code> identifies the Graph Store managed by the HTTP service. In order to dispatch requests to manage named or default graphs by embedding them in
+  the query component of the Graph Store URL, the URL will need to be known a priori. 
+      </p></section>
+    </section>
+
+    <section id="graph-management"><div class="header-wrapper"><h2 id="x6-graph-management-operations"><bdi class="secno">6. </bdi>Graph Management Operations</h2><a class="self-link" href="#graph-management" aria-label="Permalink for Section 6."></a></div>
+  
+  <p>This section describes the use of the HTTP verbs to determine the operations performed on RDF graph content. In places where an equivalent SPARQL Update operation is given, &lt;graph_uri&gt; is
+  understood to be either the request IRI or the IRI indirectly specified via the query component as described above. Similarly, in the case of an operation that manages the default graph, the SPARQL
+  Update operation will not include any mention of a graph.</p>
+  <p>If the <em>Accept</em> header is not provided with a GET request, the server <em class="rfc2119">MUST</em> return one of RDF XML, Turtle, or N-Triples. For operations involving an RDF payload (PUT and POST), the server
+  <em class="rfc2119">MUST</em> parse the RDF payload according to media type specified in the <em>Content-Type</em> header if it is provided in the request. If the header is not provided, the implementation has a routine
+  that can guess the type by the content of the resource or via the extension of the file it was loaded from, and such a routine reported that the resource was clearly some other document format and
+  not RDF/XML, then the implementation <em class="rfc2119">MAY</em> attempt to parse the document using this format. Otherwise, if this header is not provided, the server <em class="rfc2119">SHOULD</em> attempt to parse the RDF payload as
+  RDF/XML.</p>
+  <p>This protocol also supports the proper handling of operations involving "multipart/form-data" <a href="#html4">[html4]</a>. In particular, section <a href="http://www.w3.org/TR/html4/interact/forms.html#h-17.13.4.2">17.13.4 Form content types</a> discusses how content indicated with the <em>multipart/form-data</em> content type are messages
+  containing a series of parts. This protocol supports the submission of multiple RDF documents in operations involving some indicated RDF graph content via this mechanism, where each document is
+  uploaded using the standard web form file upload widget. The specifics of this mechanism is discussed in section <a href="#http-post">5.5</a> (HTTP POST).</p>
+
+  <p>Developers of implementations of this protocol should refer to <a href="#rfc2616">[RFC2616]</a> for additional details of appropriate behavior beyond those specified here. Section 5 only serves
+  to define the behavior specific to the manipulation of RDF graph content. For example, conditional requests that make use of headers such as If-Modified-Since that are intended to reduce
+  unnecessary network usage should be handled appropriately by implementations of this protocol per <a href="#rfc2616">[RFC2616]</a>.</p>
+
+      <section id="status-codes"><div class="header-wrapper"><h3 id="x6-1-status-codes"><bdi class="secno">6.1 </bdi>Status Codes</h3><a class="self-link" href="#status-codes" aria-label="Permalink for Section 6.1"></a></div>
+  
+  <p>Implementations <em class="rfc2119">MUST</em> use the response status codes defined in HTTP <a href="#rfc2616">[RFC2616]</a> to indicate the success or failure of an operation. Developers should consult the HTTP
+  specification for detailed definitions of each status code. For example, in response to operations involving an RDF payload, if the attempt to parse the RDF payload according to the provided
+  <em>Content-Type</em> fails then the server <em class="rfc2119">MUST</em> respond with a <code>400 Bad Request</code>.</p>
+  <p>A request using an unsupported HTTP verb in conjunction with a malformed or unsupported request syntax <em class="rfc2119">MUST</em> receive a response with a <code>405 Method Not Allowed</code>. If the RDF graph
+  content identified in the request does not exist in the server, and the operation requires that it does, a <code>404 Not Found</code> response code <em class="rfc2119">MUST</em> be provided in the response.</p>
+  <p>If a clients issues a POST or PUT with a content type that is not understood by the graph store, the implementation <em class="rfc2119">MUST</em> respond with <code>415 Unsupported Media Type</code>. The use of 401 and
+  403 is covered later in the section regarding security.</p>
+      </section>
+
+      <section id="http-get"><div class="header-wrapper"><h3 id="x6-2-http-get"><bdi class="secno">6.2 </bdi>HTTP GET</h3><a class="self-link" href="#http-get" aria-label="Permalink for Section 6.2"></a></div>
+  
+  <p>A request that uses the HTTP <strong>GET</strong> method <em class="rfc2119">MUST</em> retrieve an RDF payload that is a serialization of the named graph paired with the graph IRI in the Graph Store. Developers of
+  implementations of this protocol should refer to <a href="#rfc2616">[RFC2616]</a> (section 13) for details on recommended cache-control headers and usage.</p>
+  <p>The following two operations are considered to be equivalent</p>
+  <pre class="defn" aria-busy="false"><code class="hljs">GET /rdf-graph-store?graph=..graph_uri.. HTTP/1.1
+Host: example.com
+Accept: text/turtle; charset=utf-8</code></pre>
+  <pre class="defn" aria-busy="false"><code class="hljs">CONSTRUCT { ?s ?p ?o } WHERE { GRAPH &lt;graph_uri&gt; { ?s ?p ?o } }</code></pre>
+  <p>Where the request involves the <em>default</em> query component, the following two operations are equivalent</p>
+  <pre class="defn" aria-busy="false"><code class="hljs">GET /rdf-graph-store?default HTTP/1.1
+Host: example.com
+Accept: text/turtle; charset=utf-8</code></pre>
+  <pre class="defn" aria-busy="false"><code class="hljs">CONSTRUCT { ?s ?p ?o } WHERE { ?s ?p ?o }</code></pre>
+  <p>The response to such request <em class="rfc2119">SHOULD</em> be made cacheable wherever possible and in any of the preferred representation formats specified in the Accept request-header field. In the event that the
+  specified representation format is not supported, a <code>406 Not Acceptable</code> response code <em class="rfc2119">SHOULD</em> be returned.</p>
+
+        <section id="httpRange-14"><div class="header-wrapper"><h4 id="x6-2-1-ambiguity-regarding-the-range-of-http-get-informative"><bdi class="secno">6.2.1 </bdi>Ambiguity Regarding the Range of HTTP GET (Informative)</h4><a class="self-link" href="#httpRange-14" aria-label="Permalink for Section 6.2.1"></a></div>
+  
+  <p>Historically, there has been some <a href="http://www.w3.org/2001/tag/issues.html#httpRange-14">ambiguity</a> regarding the nature of what is returned from dereferencing an IRI. When an HTTP
+  <strong>GET</strong> is invoked with a request IRI, what is returned and what is its relation to the resource identified by the request IRI? In resolving this ambiguity, the <abbr title="World Wide Web Consortium">W3C</abbr> Technical
+  Architecture Group specified a <a href="http://lists.w3.org/Archives/Public/www-tag/2005Jun/0039">simple rule</a> that determines the nature of the resource based on the response code returned. In
+  this protocol, HTTP <strong>GET</strong> requests are used to retrieve a representation of the RDF graph content identified (directly or indirectly) by the request IRI. Graph IRIs identify RDF
+  graph content (an information resource) and so such a request should receive a response with a <code>200 (Ok)</code> which is consistent with these rules, the first of which states: <span>If an
+  "http" resource responds to a <strong>GET</strong> request with a <code>2xx</code> response, then the resource identified by that IRI is an information resource.</span></p>
+  <p>Information resources are resources with essential characteristics that can all be conveyed in a message <a href="#WEBARCH">[WEBARCH]</a>. In this case, the characteristics of RDF graph content
+  can be conveyed as RDF payload which serializes the named graph paired with the graph IRI in the underlying Graph Store. This protocol provides a means for requesting the representation without the
+  need for indirection at the protocol level even if the naming authority associated with the IRI of the named RDF graph in the Graph Store is not the same as the server managing the identified RDF
+  graph content.</p>
+        </section>
+      </section>
+
+      <section id="http-put"><div class="header-wrapper"><h3 id="x6-3-http-put"><bdi class="secno">6.3 </bdi>HTTP PUT</h3><a class="self-link" href="#http-put" aria-label="Permalink for Section 6.3"></a></div>
+  
+  <p>A request that uses the HTTP <strong>PUT</strong> method <em class="rfc2119">MUST</em> store the enclosed RDF payload as RDF graph content. In the examples below, the initial HTTP request <em class="rfc2119">MUST</em> be understood to have the
+  same effect as the sequence of SPARQL Update operations that follow</p>
+  <pre class="defn" aria-busy="false"><code class="hljs">PUT /rdf-graph-store?graph=..graph_uri.. HTTP/1.1
+Host: example.com
+Content-Type: text/turtle
+
+... RDF payload ...</code></pre>
+  <pre class="defn" aria-busy="false"><code class="hljs">DROP SILENT GRAPH &lt;graph_uri&gt;;
+INSERT DATA { GRAPH &lt;graph_uri&gt; { .. RDF payload .. } }</code></pre>
+  <p>In the case where the default graph is targeted (via <em>default</em> query component) for management, the following operations are equivalent</p>
+  <pre class="defn" aria-busy="false"><code class="hljs">PUT /rdf-graph-store?default HTTP/1.1
+Host: example.com
+Content-Type: text/turtle
+
+... RDF payload ...</code></pre>
+  <pre class="defn" aria-busy="false"><code class="hljs">DROP SILENT DEFAULT;
+INSERT DATA { .. RDF payload .. }</code></pre>
+  <p>Either the request or the encoded IRI (embedded in the query component) identifies the RDF payload enclosed with the request as RDF graph content. The server <em class="rfc2119">MUST NOT</em> attempt to apply the
+  request to some other resource. If the identified RDF graph content already exists, the enclosed entity <em class="rfc2119">MUST</em> be considered as a modified version of the one residing on the origin server. If the
+  identified RDF graph content does not exist and that IRI is capable of being defined as new RDF graph content by the requesting user agent, the origin server <em class="rfc2119">MUST</em> create the RDF graph content with
+  that IRI in the underlying Graph Store. <code>DROP</code> is needed to remove any previous RDF graph content. Developers should refer to <a href="#SPARQL-UPDATE">[SPARQL-UPDATE]</a> for the specifics
+  of how to handle empty graphs. For implementations that support empty graphs, if the request body is empty and there is sufficient authorization to create a new named graph using the IRI used in
+  the request IRI, then an empty graph would need to be created. Note, this option is only relevant for situations where an empty body is appropriate for the indicated content-type. Otherwise, as
+  described in section 5.1, a <code>400 Bad Request</code> <em class="rfc2119">SHOULD</em> be returned.</p>
+  <p>If new RDF graph content is created, the origin server <em class="rfc2119">MUST</em> inform the user agent via the <code>201 Created</code> response. If existing RDF graph content is modified, either the <code>200
+  OK</code> or <code>204 No Content</code> response codes <em class="rfc2119">MUST</em> be sent to indicate successful completion of the request. If the resource could not be created or modified with the request IRI (perhaps
+  due to security considerations), an appropriate error response <em class="rfc2119">SHOULD</em> be given that reflects the nature of the problem.</p>
+      </section>
+
+      <section id="http-delete"><div class="header-wrapper"><h3 id="x6-4-http-delete"><bdi class="secno">6.4 </bdi>HTTP DELETE</h3><a class="self-link" href="#http-delete" aria-label="Permalink for Section 6.4"></a></div>
+  
+  <p>A request that uses the HTTP <strong>DELETE</strong> method <em class="rfc2119">SHOULD</em> delete the RDF graph content identified by either the request or encoded IRI. This method <em class="rfc2119">MAY</em> be overridden by human
+  intervention (or other means) on the origin server. If there is no such RDF graph content in the Graph Store, the server <em class="rfc2119">MUST</em> respond with a <code>404 Not Found</code> response code. An example of
+  when the method may be overridden is in a content management system with optimistic concurrency controls.</p>
+  <pre class="defn" aria-busy="false"><code class="hljs">DELETE /rdf-graph-store?graph=..graph_uri.. HTTP/1.1
+Host: example.com</code></pre>
+  <p>Is equivalent to:</p>
+  <pre class="defn" aria-busy="false"><code class="hljs">DROP GRAPH &lt;graph_uri&gt;</code></pre>
+  <p>in the case where a named graph is targeted for management. Otherwise, the following</p>
+  <pre class="defn" aria-busy="false"><code class="hljs">DELETE /rdf-graph-store?default HTTP/1.1
+Host: example.com</code></pre>
+  <p>is equivalent to</p>
+  <pre class="defn" aria-busy="false"><code class="hljs">DROP DEFAULT</code></pre>
+  <p>A response code of <code>200 OK</code> or <code>204 No Content</code> <em class="rfc2119">MUST</em> be given in the response if the operation succeeded or <code>202 (Accepted)</code> if the action has not yet been
+  enacted. However, the server <em class="rfc2119">SHOULD NOT</em> indicate success unless, at the time the response is given, it intends to delete the RDF graph content or move it to an inaccessible location. In the event
+  the operation is overridden, a response code of <code>403 Forbidden</code> should be returned.</p>
+      </section>
+
+      <section id="http-post"><div class="header-wrapper"><h3 id="x6-5-http-post"><bdi class="secno">6.5 </bdi>HTTP POST</h3><a class="self-link" href="#http-post" aria-label="Permalink for Section 6.5"></a></div>
+  
+  <p>A request that uses the HTTP <strong>POST</strong> method and a request IRI that identifies RDF graph content <em class="rfc2119">MUST</em> be understood as a request that the origin server perform an RDF merge of the
+  enclosed RDF payload enclosed into the RDF graph content identified by the request or encoded IRI. The following two operations are considered to have the same effect</p>
+  <pre class="defn" aria-busy="false"><code class="hljs">POST /rdf-graph-store?graph=..graph_uri.. HTTP/1.1
+Host: example.com
+Content-Type: text/turtle
+
+... RDF payload ...</code></pre>
+  <pre class="defn" aria-busy="false"><code class="hljs">INSERT DATA { GRAPH &lt;graph_uri&gt; { .. RDF payload .. } }</code></pre>
+  <p>In the case where a default graph is targeted for management, the following are equivalent</p>
+  <pre class="defn" aria-busy="false"><code class="hljs">POST /rdf-graph-store?default HTTP/1.1
+Host: example.com
+Content-Type: text/turtle
+
+... RDF payload ...</code></pre>
+  <pre class="defn" aria-busy="false"><code class="hljs">INSERT DATA { .. RDF payload .. }</code></pre>
+  <p>As mentioned earlier, "multipart/form-data" can be dispatched to implementations of this protocol. When used with POST this operation <em class="rfc2119">MUST</em> be understood as a request that the origin server
+  perform an RDF merge of the graphs - that the documents submitted with the multipart form are a serialization of - into the RDF graph content identified by the request or encoded IRI. In such a
+  case, if the <em>Content-Type</em> is not provided, implementations <em class="rfc2119">MAY</em> attempt to determine it from the file's extension rather than respond with <code>400 Bad Request</code>.</p>
+  <p>If the request IRI identifies the underlying Graph Store, the origin server <em class="rfc2119">MUST</em> create a new RDF graph comprised of the statements in the RDF payload and return a designated graph IRI
+  associated with the new graph. The new graph IRI should be specified in the Location HTTP header along with a <code>201 Created</code> code and be different from the request IRI.</p>
+  <p>This scenario is useful for situations where the requesting agent either does not want to specify the graph IRI of a new graph to create (via the PUT method) or does not have the appropriate
+  authorization to do so. If the graph IRI does not identify either a Graph Store or RDF graph content, the origin server should respond with a <code>404 Not Found</code>.</p>
+  <p>In either case, if the request body is empty, the implementation <em class="rfc2119">SHOULD</em> respond with <code>204 No Content</code>.</p>
+  <p>This protocol is a companion to the use of both SPARQL Update and SPARQL Query over the SPARQL protocol via HTTP POST. Both protocols specify <em>different</em> operations performed via the HTTP
+  POST method.</p>
+      </section>
+
+      <section id="http-head"><div class="header-wrapper"><h3 id="x6-6-http-head"><bdi class="secno">6.6 </bdi>HTTP HEAD</h3><a class="self-link" href="#http-head" aria-label="Permalink for Section 6.6"></a></div>
+  
+  <p>When used in this protocol, the HTTP <strong>HEAD</strong> method is identical to <strong>GET</strong> except that the server <em class="rfc2119">MUST NOT</em> return a message-body in the response. It is meant to be
+  used for testing dereferenceable IRIs for validity, accessibility, and recent modification.</p>
+  <p>The response to such a request from a server that manages a Graph Store <em class="rfc2119">MAY</em> be cacheable. If the new field values indicate that the cached RDF graph content differs from the current entity (as
+  would be indicated by a change in Content-Length, Content-MD5, ETag or Last-Modified), then the cache <em class="rfc2119">MUST</em> treat the cache entry as stale. As mentioned in the beginning of the previous section,
+  developers should refer to <a href="#rfc2616">[RFC2616]</a> for the specifics of this.</p>
+      </section>
+
+      <section id="http-patch"><div class="header-wrapper"><h3 id="x6-7-http-patch-informative"><bdi class="secno">6.7 </bdi>HTTP PATCH (Informative)</h3><a class="self-link" href="#http-patch" aria-label="Permalink for Section 6.7"></a></div>
+  
+  <p>The IETF specified <a href="http://tools.ietf.org/html/rfc5789">Patch Method for HTTP</a> can be used to request that a set of changes described in the request entity be applied to the named
+  graph associated with the graph IRI of the RDF graph content resource identified by the request IRI.</p>
+  <p>SPARQL 1.1 Update can be used as a patch document. In particular, SPARQL 1.1 Update requests that manage the graph associated with the RDF graph content identified (directly or indirectly) in
+  the request can be used as the RDF payload of a HTTP PATCH request to modify it. If a SPARQL 1.1 Update request is used as the RDF payload for a PATCH request that makes changes to more than one
+  graph or the graph it modifies is not the one indicated, it would be prudent for the server to respond with a <code>422 Unprocessable Entity</code> status. 
+
+  </p><p>Intuitively, the difference between the PUT and PATCH requests is reflected in the way the server processes the enclosed entity to modify the RDF graph content given by the request IRI. In a PUT
+  request, the enclosed entity is considered to be a modified version of the RDF graph content stored on the origin server, and the client is requesting that the stored version be replaced. With
+  PATCH, however, the enclosed entity contains a set of instructions describing how the RDF graph content residing on the origin server should be modified to produce a new version.</p>
+      </section>
+    </section>
+     
+    <section id="security-original"><div class="header-wrapper"><h2 id="x7-security-considerations"><bdi class="secno">7. </bdi>Security Considerations</h2><a class="self-link" href="#security-original" aria-label="Permalink for Section 7."></a></div>
+  
+  <p>As with any protocol that is implemented as a layer above HTTP, implementations <em class="rfc2119">SHOULD</em> take advantage of the many security-related facilities associated with it and are not required to carry out
+  requested graph management operations that may be in contradistinction to a particular security policy in place. For example, when faced with an unauthenticated request to replace system critical
+  RDF statements in a graph through the PUT method, applications may consider responding with the <code>401 status code (Unauthorized)</code>, indicating that the appropriate authorization is
+  required. In cases where authentication is provided fails to meet the requirements of a particular access control policy, the <code>403 status code (Forbidden)</code> can be sent back to the client
+  to indicate this failure to meet the access control policy.</p>
+    </section>
+
+    <section id="conformance"><div class="header-wrapper"><h2 id="x8-conformance"><bdi class="secno">8. </bdi>Conformance</h2><a class="self-link" href="#conformance" aria-label="Permalink for Section 8."></a></div><p>As well as sections marked as non-normative, all authoring guidelines, diagrams, examples, and notes in this specification are non-normative. Everything else in this specification is normative.</p><p>
+        The key words <em class="rfc2119">MAY</em>, <em class="rfc2119">MUST</em>, <em class="rfc2119">MUST NOT</em>, <em class="rfc2119">RECOMMENDED</em>, <em class="rfc2119">SHOULD</em>, and <em class="rfc2119">SHOULD NOT</em> in this document
+        are to be interpreted as described in
+        <a href="https://datatracker.ietf.org/doc/html/bcp14">BCP 14</a>
+        [<cite><a class="bibref" data-link-type="biblio" href="#bib-rfc2119" title="Key words for use in RFCs to Indicate Requirement Levels">RFC2119</a></cite>] [<cite><a class="bibref" data-link-type="biblio" href="#bib-rfc8174" title="Ambiguity of Uppercase vs Lowercase in RFC 2119 Key Words">RFC8174</a></cite>]
+        when, and only when, they appear in all capitals, as shown here.
+      </p>
+      <section id="conformance-0"><div class="header-wrapper"><h3 id="x8-1-conformance"><bdi class="secno">8.1 </bdi>Conformance</h3><a class="self-link" href="#conformance-0" aria-label="Permalink for Section 8.1"></a></div>
+    </section></section>
+
+    <section id="changes"><div class="header-wrapper"><h2 id="x9-changes"><bdi class="secno">9. </bdi>Changes</h2><a class="self-link" href="#changes" aria-label="Permalink for Section 9."></a></div>
+      
+      The document title changed from "SPARQL 1.1 Graph Store HTTP Protocol" to "SPARQL 1.2 Graph Store Protocol".
+    </section>
+
+    <section id="sec-bibliography"><div class="header-wrapper"><h2 id="x10-references"><bdi class="secno">10. </bdi>References</h2><a class="self-link" href="#sec-bibliography" aria-label="Permalink for Section 10."></a></div>
+  
+
+      <section id="section-Normative-References"><div class="header-wrapper"><h3 id="x10-1-normative-references"><bdi class="secno">10.1 </bdi>Normative References</h3><a class="self-link" href="#section-Normative-References" aria-label="Permalink for Section 10.1"></a></div>
+  
+  <dl class="bib">
+    <dt id="rfc2119">RFC2119</dt>
+    <dd><cite><a href="http://www.ietf.org/rfc/rfc2119.txt">RFC 2119: Key words for use in RFCs to Indicate Requirement Levels</a>, Scott Bradner, 1997. (See
+    http://www.ietf.org/rfc/rfc2119.txt)</cite></dd>
+    <dt id="html4">HTML 4.01</dt>
+    <dd><cite><a href="http://www.w3.org/TR/html4/">HTML 4.01 Specification</a>, D. Raggett, A. Le Hors, and I. Jacobs, 1999. (See http://www.w3.org/TR/html4/)</cite></dd>
+    <dt id="rfc3986">RFC3986</dt>
+    <dd><cite><a href="http://www.apps.ietf.org/rfc/rfc3986.html">Uniform Resource Identifier (URI): Generic Syntax</a></cite>, Berners-Lee, Fielding, Masinter, January 2005.</dd>
+    <dt id="rfc2616">RFC2616</dt>
+    <dd><cite><a href="http://www.ietf.org/rfc/rfc2616.txt">Hypertext Transfer Protocol - HTTP/1.1</a></cite>. J. Gettys, J. Mogul, H. Frystyk, L. Masinter, P. Leach, T. Berners-Lee, June 1999.
+    Available at http://www.ietf.org/rfc/rfc2616.txt.</dd>
+    <dt><span class="doc-ref" id="WEBARCH">WEBARCH</span></dt>
+    <dd><cite><a href="http://www.w3.org/TR/2004/REC-webarch-20041215/">Architecture of the World Wide Web, Volume One</a></cite> , N. Walsh, I. Jacobs, Editors, <abbr title="World Wide Web Consortium">W3C</abbr> Recommendation, 15 December 2004,
+    http://www.w3.org/TR/2004/REC-webarch-20041215/ . <a href="http://www.w3.org/TR/webarch/">Latest version</a> available at http://www.w3.org/TR/webarch/ .</dd>
+    <dt id="rfc3987">RFC3987</dt>
+    <dd><cite><a href="http://www.ietf.org/rfc/rfc3987.txt">Internationalized Resource Identifiers (IRIs)</a></cite>, Duerst, Suignard, January 2005.</dd>
+    <dt><span class="doc-ref" id="SPARQL-UPDATE">SPARQL-UPDATE</span></dt>
+    <dd><cite><a href="http://www.w3.org/TR/2013/REC-sparql11-update-20130321">SPARQL 1.1 Update</a></cite>, P. Gearon, A. Passant, A. Polleres, Editors, <abbr title="World Wide Web Consortium">W3C</abbr> Recommendation, 21 March 2013,
+    http://www.w3.org/TR/2013/REC-sparql11-update-20130321. <a href="http://www.w3.org/TR/sparql11-update/" title="Latest version of SPARQL 1.1 Update">Latest version</a> available at
+    http://www.w3.org/TR/sparql11-update.</dd>
+  </dl>
+      </section>
+
+      <section id="section-informative-references"><div class="header-wrapper"><h3 id="x10-2-informative-references"><bdi class="secno">10.2 </bdi>Informative References</h3><a class="self-link" href="#section-informative-references" aria-label="Permalink for Section 10.2"></a></div>
+  
+  <dl>
+    <dt><span class="doc-ref" id="RDF-MT">RDF-MT</span></dt>
+    <dd><cite><a href="http://www.w3.org/TR/2004/REC-rdf-mt-20040210/">RDF Semantics</a></cite> , P. Hayes, Editor, <abbr title="World Wide Web Consortium">W3C</abbr> Recommendation, 10 February 2004,
+    http://www.w3.org/TR/2004/REC-rdf-mt-20040210/ . <a href="http://www.w3.org/TR/rdf-mt/" title="Latest version of RDF Semantics">Latest version</a> available at http://www.w3.org/TR/rdf-mt/ .</dd>
+    <dt><span class="doc-ref" id="SPARQL">SPARQL</span></dt>
+    <dd><cite><a href="http://www.w3.org/TR/2013/REC-sparql11-query-20130321">SPARQL 1.1 Query Language</a></cite>, S. Harris, A. Seaborne, Editors, <abbr title="World Wide Web Consortium">W3C</abbr> Recommendation, 21 March 2013,
+    http://www.w3.org/TR/2013/REC-sparql11-query-20130321. <a href="http://www.w3.org/TR/sparql11-query/" title="Latest version of SPARQL 1.1 Query Language">Latest version</a> available at
+    http://www.w3.org/TR/sparql11-query.</dd>
+  </dl>
+      </section>
+    </section>
+
+    <section id="ackacknowledgements"><div class="header-wrapper"><h2 id="x11-acknowledgements"><bdi class="secno">11. </bdi>Acknowledgements</h2><a class="self-link" href="#ackacknowledgements" aria-label="Permalink for Section 11."></a></div>
+  
+  <p>Chimezie Ogbuji like to thank the following individuals for their input into the creation of this document:</p>
+  <p>Sandro Hawke, Birte Glimm, Andy Seaborne, Steve Harris, Arnaud Le Hors, Ivan Mikhailov, David Booth, Simon Johnston, Kjetil Kjernsmo, Gregg Reynolds, Leigh Dodds, Tim Berners-Lee, and Ian Davis.</p>
+    </section>
+
+    <section id="privacy"><div class="header-wrapper"><h2 id="x12-privacy-considerations"><bdi class="secno">12. </bdi>Privacy Considerations</h2><a class="self-link" href="#privacy" aria-label="Permalink for Section 12."></a></div>
+      
+      <p>TODO</p>
+    </section>
+
+    <section id="security"><div class="header-wrapper"><h2 id="x13-security-considerations"><bdi class="secno">13. </bdi>Security Considerations</h2><a class="self-link" href="#security" aria-label="Permalink for Section 13."></a></div>
+      
+      <p>TODO</p>
+    </section>
+
+    <section id="internationalization"><div class="header-wrapper"><h2 id="x14-internationalization-considerations"><bdi class="secno">14. </bdi>Internationalization Considerations</h2><a class="self-link" href="#internationalization" aria-label="Permalink for Section 14."></a></div>
+      
+      <p>TODO</p>                
+    </section>
+
+    <section class="appendix informative" id="changes-from-sparql11"><div class="header-wrapper"><h2 id="a-change-log"><bdi class="secno">A. </bdi>Change Log</h2><a class="self-link" href="#changes-from-sparql11" aria-label="Permalink for Appendix A."></a></div><p><em>This section is non-normative.</em></p>
+      
+      <p>TODO</p>
+    </section>   
+
+    <section id="index" class="appendix"><div class="header-wrapper"><h2 id="b-index"><bdi class="secno">B. </bdi>Index</h2><a class="self-link" href="#index" aria-label="Permalink for Appendix B."></a></div><section id="index-defined-here"><div class="header-wrapper"><h3 id="b-1-terms-defined-by-this-specification"><bdi class="secno">B.1 </bdi>Terms defined by this specification</h3><a class="self-link" href="#index-defined-here" aria-label="Permalink for Appendix B.1"></a></div>
+    
+    <ul class="index">
+    
+  </ul>
+  </section><section id="index-defined-elsewhere"><div class="header-wrapper"><h3 id="b-2-terms-defined-by-reference"><bdi class="secno">B.2 </bdi>Terms defined by reference</h3><a class="self-link" href="#index-defined-elsewhere" aria-label="Permalink for Appendix B.2"></a></div>
+    
+    <ul class="index">
+    
+  </ul>
+  </section></section>
+
+  
+
+<section id="references" class="appendix"><div class="header-wrapper"><h2 id="c-references"><bdi class="secno">C. </bdi>References</h2><a class="self-link" href="#references" aria-label="Permalink for Appendix C."></a></div><section id="normative-references"><div class="header-wrapper"><h3 id="c-1-normative-references"><bdi class="secno">C.1 </bdi>Normative references</h3><a class="self-link" href="#normative-references" aria-label="Permalink for Appendix C.1"></a></div>
+    
+    <dl class="bibliography"><dt id="bib-rfc2119">[RFC2119]</dt><dd>
+      <a href="https://www.rfc-editor.org/rfc/rfc2119"><cite>Key words for use in RFCs to Indicate Requirement Levels</cite></a>. S. Bradner.  IETF. March 1997. Best Current Practice. URL: <a href="https://www.rfc-editor.org/rfc/rfc2119">https://www.rfc-editor.org/rfc/rfc2119</a>
+    </dd><dt id="bib-rfc8174">[RFC8174]</dt><dd>
+      <a href="https://www.rfc-editor.org/rfc/rfc8174"><cite>Ambiguity of Uppercase vs Lowercase in RFC 2119 Key Words</cite></a>. B. Leiba.  IETF. May 2017. Best Current Practice. URL: <a href="https://www.rfc-editor.org/rfc/rfc8174">https://www.rfc-editor.org/rfc/rfc8174</a>
+    </dd><dt id="bib-sparql12-concepts">[SPARQL12-CONCEPTS]</dt><dd>
+      <a href="https://w3c.github.io/sparql-concepts/spec/"><cite>SPARQL 1.2 Concepts</cite></a>. The W3C RDF-star Working Group.  W3C. W3C Working Draft. URL: <a href="https://w3c.github.io/sparql-concepts/spec/">https://w3c.github.io/sparql-concepts/spec/</a>
+    </dd><dt id="bib-sparql12-entailment">[SPARQL12-ENTAILMENT]</dt><dd>
+      <a href="https://w3c.github.io/sparql-entailment/spec/"><cite>SPARQL 1.2 Entailment Regimes</cite></a>. Birte Glimm; Chimezie Ogbuji.  W3C. W3C Working Draft. URL: <a href="https://w3c.github.io/sparql-entailment/spec/">https://w3c.github.io/sparql-entailment/spec/</a>
+    </dd><dt id="bib-sparql12-federated-query">[SPARQL12-FEDERATED-QUERY]</dt><dd>
+      <a href="https://w3c.github.io/sparql-federated-query/spec/"><cite>SPARQL 1.2 Federated Query</cite></a>. Eric Prud'hommeaux; Carlos Buil Aranda.  W3C. W3C Working Draft. URL: <a href="https://w3c.github.io/sparql-federated-query/spec/">https://w3c.github.io/sparql-federated-query/spec/</a>
+    </dd><dt id="bib-sparql12-new">[SPARQL12-NEW]</dt><dd>
+      <a href="https://w3c.github.io/sparql-new/spec/"><cite>What’s New in SPARQL 1.2</cite></a>. The W3C RDF-star Working Group.  W3C. W3C Working Draft. URL: <a href="https://w3c.github.io/sparql-new/spec/">https://w3c.github.io/sparql-new/spec/</a>
+    </dd><dt id="bib-sparql12-protocol">[SPARQL12-PROTOCOL]</dt><dd>
+      <a href="https://w3c.github.io/sparql-protocol/spec/"><cite>SPARQL 1.2 Protocol</cite></a>. Lee Feigenbaum; Gregory Williams; Kendall Clark; Elias Torres.  W3C. W3C Working Draft. URL: <a href="https://w3c.github.io/sparql-protocol/spec/">https://w3c.github.io/sparql-protocol/spec/</a>
+    </dd><dt id="bib-sparql12-query">[SPARQL12-QUERY]</dt><dd>
+      <a href="https://w3c.github.io/sparql-query/spec/"><cite>SPARQL 1.2 Query Language</cite></a>. Steven Harris; Andy Seaborne.  W3C. W3C Working Draft. URL: <a href="https://w3c.github.io/sparql-query/spec/">https://w3c.github.io/sparql-query/spec/</a>
+    </dd><dt id="bib-sparql12-results-csv-tsv">[SPARQL12-RESULTS-CSV-TSV]</dt><dd>
+      <a href="https://w3c.github.io/sparql-results-csv-tsv/spec/"><cite>SPARQL 1.2 Query Results CSV and TSV Formats</cite></a>. Andy Seaborne.  W3C. W3C Working Draft. URL: <a href="https://w3c.github.io/sparql-results-csv-tsv/spec/">https://w3c.github.io/sparql-results-csv-tsv/spec/</a>
+    </dd><dt id="bib-sparql12-results-json">[SPARQL12-RESULTS-JSON]</dt><dd>
+      <a href="https://w3c.github.io/sparql-results-json/spec/"><cite>SPARQL 1.2 Query Results JSON Format</cite></a>. Andy Seaborne.  W3C. W3C Working Draft. URL: <a href="https://w3c.github.io/sparql-results-json/spec/">https://w3c.github.io/sparql-results-json/spec/</a>
+    </dd><dt id="bib-sparql12-results-xml">[SPARQL12-RESULTS-XML]</dt><dd>
+      <a href="https://w3c.github.io/sparql-results-xml/spec/"><cite>SPARQL 1.2 Query Results XML Formats</cite></a>. Sandro Hawke; Dave Beckett; Jeen Broekstra.  W3C. W3C Working Draft. URL: <a href="https://w3c.github.io/sparql-results-xml/spec/">https://w3c.github.io/sparql-results-xml/spec/</a>
+    </dd><dt id="bib-sparql12-service-description">[SPARQL12-SERVICE-DESCRIPTION]</dt><dd>
+      <a href="https://w3c.github.io/sparql-service-description/spec/"><cite>SPARQL 1.2 Service Description</cite></a>. Gregory Williams.  W3C. W3C Working Draft. URL: <a href="https://w3c.github.io/sparql-service-description/spec/">https://w3c.github.io/sparql-service-description/spec/</a>
+    </dd><dt id="bib-sparql12-update">[SPARQL12-UPDATE]</dt><dd>
+      <a href="https://w3c.github.io/sparql-update/spec/"><cite>SPARQL 1.2 Update</cite></a>. Paula Gearon; Alexandre Passant; Axel Polleres.  W3C. W3C Working Draft. URL: <a href="https://w3c.github.io/sparql-update/spec/">https://w3c.github.io/sparql-update/spec/</a>
+    </dd></dl>
+  </section></section><p role="navigation" id="back-to-top">
+    <a href="#title"><abbr title="Back to Top">↑</abbr></a>
+  </p><script id="respec-dfn-panel">(() => {
+// @ts-check
+if (document.respec) {
+  document.respec.ready.then(setupPanel);
+} else {
+  setupPanel();
+}
+
+function setupPanel() {
+  const listener = panelListener();
+  document.body.addEventListener("keydown", listener);
+  document.body.addEventListener("click", listener);
+}
+
+function panelListener() {
+  /** @type {HTMLElement} */
+  let panel = null;
+  return event => {
+    const { target, type } = event;
+
+    if (!(target instanceof HTMLElement)) return;
+
+    // For keys, we only care about Enter key to activate the panel
+    // otherwise it's activated via a click.
+    if (type === "keydown" && event.key !== "Enter") return;
+
+    const action = deriveAction(event);
+
+    switch (action) {
+      case "show": {
+        hidePanel(panel);
+        /** @type {HTMLElement} */
+        const dfn = target.closest("dfn, .index-term");
+        panel = document.getElementById(`dfn-panel-for-${dfn.id}`);
+        const coords = deriveCoordinates(event);
+        displayPanel(dfn, panel, coords);
+        break;
+      }
+      case "dock": {
+        panel.style.left = null;
+        panel.style.top = null;
+        panel.classList.add("docked");
+        break;
+      }
+      case "hide": {
+        hidePanel(panel);
+        panel = null;
+        break;
+      }
+    }
+  };
+}
+
+/**
+ * @param {MouseEvent|KeyboardEvent} event
+ */
+function deriveCoordinates(event) {
+  const target = /** @type HTMLElement */ (event.target);
+
+  // We prevent synthetic AT clicks from putting
+  // the dialog in a weird place. The AT events sometimes
+  // lack coordinates, so they have clientX/Y = 0
+  const rect = target.getBoundingClientRect();
+  if (
+    event instanceof MouseEvent &&
+    event.clientX >= rect.left &&
+    event.clientY >= rect.top
+  ) {
+    // The event probably happened inside the bounding rect...
+    return { x: event.clientX, y: event.clientY };
+  }
+
+  // Offset to the middle of the element
+  const x = rect.x + rect.width / 2;
+  // Placed at the bottom of the element
+  const y = rect.y + rect.height;
+  return { x, y };
+}
+
+/**
+ * @param {Event} event
+ */
+function deriveAction(event) {
+  const target = /** @type {HTMLElement} */ (event.target);
+  const hitALink = !!target.closest("a");
+  if (target.closest("dfn:not([data-cite]), .index-term")) {
+    return hitALink ? "none" : "show";
+  }
+  if (target.closest(".dfn-panel")) {
+    if (hitALink) {
+      return target.classList.contains("self-link") ? "hide" : "dock";
+    }
+    const panel = target.closest(".dfn-panel");
+    return panel.classList.contains("docked") ? "hide" : "none";
+  }
+  if (document.querySelector(".dfn-panel:not([hidden])")) {
+    return "hide";
+  }
+  return "none";
+}
+
+/**
+ * @param {HTMLElement} dfn
+ * @param {HTMLElement} panel
+ * @param {{ x: number, y: number }} clickPosition
+ */
+function displayPanel(dfn, panel, { x, y }) {
+  panel.hidden = false;
+  // distance (px) between edge of panel and the pointing triangle (caret)
+  const MARGIN = 20;
+
+  const dfnRects = dfn.getClientRects();
+  // Find the `top` offset when the `dfn` can be spread across multiple lines
+  let closestTop = 0;
+  let minDiff = Infinity;
+  for (const rect of dfnRects) {
+    const { top, bottom } = rect;
+    const diffFromClickY = Math.abs((top + bottom) / 2 - y);
+    if (diffFromClickY < minDiff) {
+      minDiff = diffFromClickY;
+      closestTop = top;
+    }
+  }
+
+  const top = window.scrollY + closestTop + dfnRects[0].height;
+  const left = x - MARGIN;
+  panel.style.left = `${left}px`;
+  panel.style.top = `${top}px`;
+
+  // Find if the panel is flowing out of the window
+  const panelRect = panel.getBoundingClientRect();
+  const SCREEN_WIDTH = Math.min(window.innerWidth, window.screen.width);
+  if (panelRect.right > SCREEN_WIDTH) {
+    const newLeft = Math.max(MARGIN, x + MARGIN - panelRect.width);
+    const newCaretOffset = left - newLeft;
+    panel.style.left = `${newLeft}px`;
+    /** @type {HTMLElement} */
+    const caret = panel.querySelector(".caret");
+    caret.style.left = `${newCaretOffset}px`;
+  }
+
+  // As it's a dialog, we trap focus.
+  // TODO: when <dialog> becomes a implemented, we should really
+  // use that.
+  trapFocus(panel, dfn);
+}
+
+/**
+ * @param {HTMLElement} panel
+ * @param {HTMLElement} dfn
+ * @returns
+ */
+function trapFocus(panel, dfn) {
+  /** @type NodeListOf<HTMLAnchorElement> elements */
+  const anchors = panel.querySelectorAll("a[href]");
+  // No need to trap focus
+  if (!anchors.length) return;
+
+  // Move focus to first anchor element
+  const first = anchors.item(0);
+  first.focus();
+
+  const trapListener = createTrapListener(anchors, panel, dfn);
+  panel.addEventListener("keydown", trapListener);
+
+  // Hiding the panel releases the trap
+  const mo = new MutationObserver(records => {
+    const [record] = records;
+    const target = /** @type HTMLElement */ (record.target);
+    if (target.hidden) {
+      panel.removeEventListener("keydown", trapListener);
+      mo.disconnect();
+    }
+  });
+  mo.observe(panel, { attributes: true, attributeFilter: ["hidden"] });
+}
+
+/**
+ *
+ * @param {NodeListOf<HTMLAnchorElement>} anchors
+ * @param {HTMLElement} panel
+ * @param {HTMLElement} dfn
+ * @returns
+ */
+function createTrapListener(anchors, panel, dfn) {
+  const lastIndex = anchors.length - 1;
+  let currentIndex = 0;
+  return event => {
+    switch (event.key) {
+      // Hitting "Tab" traps us in a nice loop around elements.
+      case "Tab": {
+        event.preventDefault();
+        currentIndex += event.shiftKey ? -1 : +1;
+        if (currentIndex < 0) {
+          currentIndex = lastIndex;
+        } else if (currentIndex > lastIndex) {
+          currentIndex = 0;
+        }
+        anchors.item(currentIndex).focus();
+        break;
+      }
+
+      // Hitting "Enter" on an anchor releases the trap.
+      case "Enter":
+        hidePanel(panel);
+        break;
+
+      // Hitting "Escape" returns focus to dfn.
+      case "Escape":
+        hidePanel(panel);
+        dfn.focus();
+        return;
+    }
+  };
+}
+
+/** @param {HTMLElement} panel */
+function hidePanel(panel) {
+  if (!panel) return;
+  panel.hidden = true;
+  panel.classList.remove("docked");
+}
+})()</script><script src="https://www.w3.org/scripts/TR/2021/fixup.js"></script></body></html>

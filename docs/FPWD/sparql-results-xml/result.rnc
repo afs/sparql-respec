@@ -1,0 +1,97 @@
+#
+# RELAX NG Schema for SPARQL Query Results XML Format
+#
+# This XML schema is normative.
+# $Id: result.rnc,v 1.1 2007/10/17 14:48:47 eric Exp $
+# 2023-02-16 domel
+#
+#
+
+namespace local = ""
+namespace res = "http://www.w3.org/2005/sparql-results#"
+namespace xsi = "http://www.w3.org/2001/XMLSchema-instance"
+datatypes xsd = "http://www.w3.org/2001/XMLSchema-datatypes"
+
+
+start = sparql
+
+xmlLang = attribute xml:lang { text }
+
+# Using xsi namespaced terms such as xsi:schemaLocation
+# is tricky, as Relax requires them to be given when used.  However,
+# WXS has this knowledge built in and validators complain when they
+# are explicitly listed without a schemaLocation (which is forbidden by
+# the WXS spec).
+
+xsiSchemaLoc = attribute xsi:schemaLocation { string }
+
+
+sparql = element res:sparql { 
+    xsiSchemaLoc?, head,
+    (results | boolean)
+}
+
+head = element res:head {
+    varName*, link*
+}
+
+varName = element res:variable {
+    nameAttr
+}
+
+nameAttr = attribute name {
+    xsd:NMTOKEN
+}
+
+hrefAttr = attribute local:href {
+    URI-reference
+}
+
+link = element res:link {
+    hrefAttr
+}
+
+results = element res:results { 
+    result*
+}
+
+
+# ASK
+boolean = element res:boolean {
+    xsd:boolean
+}
+
+# SELECT solution, single match or row
+result = element res:result {
+    indexAttr?, binding*
+}
+
+# SELECT binding in a solution
+binding = element res:binding {
+    nameAttr,
+    ( uri | bnode | literal )
+}
+
+uri = element res:uri { 
+    text
+}
+
+bnode = element res:bnode {
+    text
+}
+
+literal = element res:literal { 
+    datatypeAttr?, xmlLang?,
+    text
+}
+
+indexAttr = attribute local:index {
+    xsd:positiveInteger
+}
+
+datatypeAttr = attribute local:datatype {
+    URI-reference
+}
+
+URI-reference = xsd:anyURI
+

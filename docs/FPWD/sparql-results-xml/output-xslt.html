@@ -1,0 +1,60 @@
+<!--?xml version="1.0" encoding="UTF-8"?-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+      <title>SPARQL Query Results to XHTML (XSLT)</title>
+   </head>
+   <body>
+      <h1>SPARQL Query Results to XHTML (XSLT)</h1>
+      <div>
+         <h2>Header</h2>
+         <p>Link to example.rq</p>
+      </div>
+      <div>
+         <h2>Variable Bindings Result</h2>
+         <table border="1">
+	           <tbody><tr>
+               <th>x</th>
+               <th>hpage</th>
+               <th>name</th>
+               <th>mbox</th>
+               <th>age</th>
+               <th>blurb</th>
+               <th>friend</th>
+            </tr>
+	           <tr>
+               <td>nodeID r1</td>
+               <td>URI http://work.example.org/alice/</td>
+               <td>Alice</td>
+               <td>
+	
+	[empty literal]
+      </td>
+               <td>
+	    
+	    [unbound]
+	  </td>
+               <td>&lt;p xmlns="http://www.w3.org/1999/xhtml"&gt;My name
+ is &lt;b&gt;alice&lt;/b&gt;&lt;/p&gt; (datatype 
+http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral )
+      </td>
+               <td>nodeID r2</td>
+            </tr>
+            <tr>
+               <td>nodeID r2</td>
+               <td>URI http://work.example.org/bob/</td>
+               <td>Bob @ en</td>
+               <td>URI mailto:bob@work.example.org</td>
+               <td>30 (datatype http://www.w3.org/2001/XMLSchema#integer )
+      </td>
+               <td>
+	    
+	    [unbound]
+	  </td>
+               <td>nodeID r1</td>
+            </tr>
+         </tbody></table>
+      </div>
+   
+
+</body></html>
